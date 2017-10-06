@@ -36,13 +36,10 @@
 	waitUntil {!isNull player};
 	waitUntil {!isNull findDisplay 46};
 
-	if (isClass (configfile >> "CfgPatches" >> "cba_keybinding")) then {
-		call CHVD_fnc_keyBindings;
-	} else {
-		_actionText = if (isLocalized "STR_chvd_title") then {localize "STR_chvd_title"} else {"View Distance Settings"};
-		player addAction [_actionText, CHVD_fnc_openDialog, [], -99, false, true, '', '_target isEqualTo _this'];
-		player addEventHandler ["Respawn", format ["player addAction ['%1', CHVD_fnc_openDialog, [], -99, false, true, '', '_target isEqualTo _this']", _actionText]];
-	};
+    _actionText = if (isLocalized "STR_chvd_title") then {localize "STR_chvd_title"} else {"View Distance Settings"};
+    player addAction [_actionText, CHVD_fnc_openDialog, [], -99, false, true, '', '_target isEqualTo _this'];
+    player addEventHandler ["Respawn", format ["player addAction ['%1', CHVD_fnc_openDialog, [], -99, false, true, '', '_target isEqualTo _this']", _actionText]];
+
 	(findDisplay 46) displayAddEventHandler ["Unload", {call CHVD_fnc_updateSettings}]; // Reset obj view distance so game doesn't lag when browsing menues and so on, if FOV method was used during the game
 	
 	[] call CHVD_fnc_updateVehType;

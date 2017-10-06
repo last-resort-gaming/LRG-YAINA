@@ -3,7 +3,7 @@ class CHVD
 	tag = "CHVD";
 	class script
 	{
-		file = "CHVD";
+		file = "Functions\CHVD";
 		class onSliderChange {};
 		class onLBSelChanged {};
 		class onLBSelChanged_syncmode {};
@@ -19,7 +19,6 @@ class CHVD
 		class openDialog {};
 		class localize {};
 		class trueZoom {};
-		class keyBindings {};
 		class keyDown {};
 		class keyDownTerrain {};
 		class init {postInit = 1;};
