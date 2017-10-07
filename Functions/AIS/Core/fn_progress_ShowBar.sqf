@@ -65,7 +65,7 @@ player setVariable ["AIS_Core_displayText", _texts, true];
 if (time > _endTime) then {
     _arguments spawn _callback;
 } else {
-    ["Abbort..."] call AIS_Core_fnc_dynamicText;
+    ["Abort..."] call AIS_Core_fnc_dynamicText;
     _arguments spawn _onAbort;
 };
 

@@ -135,10 +135,12 @@ if !(AIS_REVIVE_GUARANTY) then {
 _unit setVariable ["ais_stabilized", false, true];
 
 // unit can die if they get to mutch new damage in unconscious mode
-if ((diag_tickTime > _unit getVariable ["ais_protector_delay", 0]) && {_unit getVariable ["ais_unconscious", false]}) exitWith {
-	if (_damage > 0.9) then {[_unit] call AIS_Damage_fnc_goToDead};
-	_damage = _damage min 0.89;
-	_damage
+if !(AIS_REVIVE_GUARANTY) then {
+    if ((diag_tickTime > _unit getVariable ["ais_protector_delay", 0]) && {_unit getVariable ["ais_unconscious", false]}) exitWith {
+        if (_damage > 0.9) then {[_unit] call AIS_Damage_fnc_goToDead};
+        _damage = _damage min 0.89;
+        _damage
+    };
 };
 
 

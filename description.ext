@@ -59,6 +59,7 @@ corpseRemovalMaxTime=60;
 * UI ELEMENTS
 ******************************************************************************/
 #include "Functions\CHVD\dialog.hpp"
+#include "Functions\AIS\Effects\BarDlg.hpp"
 
 /******************************************************************************
 * FUNCTIONS
@@ -68,6 +69,7 @@ class CfgFunctions {
     #include "Functions\CHVD\CfgFunctions.hpp"
     #include "Functions\CBA\CfgFunctions.hpp"
     #include "Functions\YAINA\CfgFunctions.hpp"
+    #include "Functions\AIS\cfgFunctions.hpp"
 };
 
 /******************************************************************************
