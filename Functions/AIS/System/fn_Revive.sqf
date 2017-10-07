@@ -16,6 +16,18 @@ params [
 	"_injured"
 ];
 
+// Before we start, if expecting to consume FAKs, make sure we have some,
+// If we have one left in our BP and someone takes it during the heal, then
+// so be it, since we aren't taking it here, because if they abort then we
+// would need even more logic to re-add it, so KISS.
+
+_fakLoadout = [_healer] call AIS_System_fnc_getFAKs;
+_fakCount   = 0; { _fakCount = _fakCount + _x; } count _fakLoadout;
+
+if(AIS_CONSUME_FAKS && _fakCount isEqualTo 0) exitWith {
+    ["You have no First Aid Kits to administer"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
+};
+
 _injured setVariable ["ais_hasHelper", _healer, true];
 
 //_injured playMove "AinjPpneMstpSnonWrflDnon_rolltoback";	// from AIS fsm
@@ -84,7 +96,20 @@ private _duration = [_healer, _injured] call AIS_System_fnc_calculateReviveTime;
 		{_injured enableAI _x; nil} count ["MOVE","TARGET","AUTOTARGET","ANIM","AUTOCOMBAT"];
 		[_injured, false] remoteExecCall ["AIS_System_fnc_unconcsiousRemote", 0, false]; 
 		[_injured, false] remoteExec ["setCaptive", 0, false];
-		
+
+		// And lastly, remove a FAK from somewhere if required
+		if(AIS_CONSUME_FAKS) then {
+		    _fakLoadout = [_healer] call AIS_System_fnc_getFAKs;
+		    for "_i" from 0 to count _fakLoadout do {
+                _c = _fakLoadout select _i;
+                if (!(_c isEqualTo 0)) exitWith {
+                    if (_i isEqualTo 0) then { _healer removeItemFromUniform "FirstAidKit";  };
+                    if (_i isEqualTo 1) then { _healer removeItemFromVest "FirstAidKit";  };
+                    if (_i isEqualTo 2) then { _healer removeItemFromBackpack "FirstAidKit";  };
+                };
+		    };
+		};
+
 		["GetOutMan"] remoteExec ["removeAllEventHandlers", _injured, false];
     },
     [_injured, _healer],

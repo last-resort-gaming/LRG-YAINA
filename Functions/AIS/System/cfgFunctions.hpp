@@ -26,6 +26,7 @@ class AIS_System
 		class drag;
 		class findAIHelper;
 		class getCargoIndex;
+		class getFAKs;
 		class getOutMan;
 		class handleHeal;
 		class isMedic;
