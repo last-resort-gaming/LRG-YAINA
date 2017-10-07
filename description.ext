@@ -64,16 +64,17 @@ corpseRemovalMaxTime=60;
 * FUNCTIONS
 ******************************************************************************/
 
-class CfgFunctions
-{
+class CfgFunctions {
     #include "Functions\CHVD\CfgFunctions.hpp"
+    #include "Functions\CBA\CfgFunctions.hpp"
+    #include "Functions\YAINA\CfgFunctions.hpp"
 };
-
 
 /******************************************************************************
 * MISSION PARAMS
 ******************************************************************************/
 
 class Params {
+    #include "Functions\YAINA\Params.hpp"
 };
 
