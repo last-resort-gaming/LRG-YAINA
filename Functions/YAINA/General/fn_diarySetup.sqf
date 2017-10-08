@@ -15,6 +15,9 @@ player createDiaryRecord ["YAINA", ["Credits",
 <br/>Champ-1:<br/><font face= 'PuristaLight' color= '#D3D3D3'>    CHVD</font>
 <br/>Psychobastard:<br/><font face= 'PuristaLight' color= '#D3D3D3'>    AIS Revive</font>
 <br/>code34 :<br/><font face= 'PuristaLight' color= '#D3D3D3'>    Real Weather</font>
-
+<br/>duda :<br/><font face= 'PuristaLight' color= '#D3D3D3'>
+    Advanced Towing, Advanced Rappelling,<br/>
+    Advanced Sling Loading, Advanced Urban Rappelling
+</font>
 "
 ]];

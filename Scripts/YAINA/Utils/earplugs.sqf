@@ -19,8 +19,8 @@ if (isClass(configFile >> "CfgPatches" >> "ace_main")) exitWith {};
 // And wait for main display to be around
 waitUntil {!isNull (findDisplay 46)};
 
-// We default to plugs out
-if(isNil "YAINA_PlugsIn") then { YAINA_PlugsIn = false; };
+// We default to plugs in
+if(isNil "YAINA_PlugsIn") then { YAINA_PlugsIn = true; };
 
 // Flip state if not spawning
 if (!isNil "_target") then { YAINA_PlugsIn = YAINA_PlugsIn isEqualTo false; };

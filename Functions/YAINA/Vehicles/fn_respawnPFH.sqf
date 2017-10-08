@@ -10,7 +10,7 @@ if(!isServer) exitWith {};
 
 [{
     for "_i" from count(GVAR(respawnList)) to 0 step -1 do {
-        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_loadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
+        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_loadout", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
 
         // If the vehicle is not alive / null then we remove from the respawn
         // list and schedule a delete it in 30 seconds just in case it
@@ -21,39 +21,53 @@ if(!isServer) exitWith {};
         if (!alive _veh || isNull _veh) then {
 
             GVAR(respawnList) deleteAt _i;
-
-            // We do this so teh burn out can happen nicely if it's in that state
-            [{ params ["_veh"]; if(!isNull "_veh") then { deleteVehicle _veh; }; }, [_veh], 30] call CBA_fnc_waitAndExecute;
-
             _respawn = true;
 
         } else {
 
-            // If the vehicle is owned, then the abandonDistance is doubled;
-            if(!isNil { _veh getVariable QVAR(owner) }) then { _abandonDistance =  _abandonDistance * 2; };
+            // E.g. UAVs don't have a distance.
+            if !(_abandonDistance isEqualTo 0) then {
 
-            // If players near, we can bail out
-            if (call {
-                {
-                    if ((_veh distance2D _x) < _abandonDistance || {_veh distance2D _pos < 5}) exitWith {true};
-                    false;
-                } forEach allPlayers;
-            }) exitWith {false};
+                // If the vehicle is owned, then the abandonDistance is doubled;
+                if(!isNil { _veh getVariable QVAR(owner) }) then { _abandonDistance =  _abandonDistance * 2; };
 
-            // Else we are abandoned, delete this and respawn
-            GVAR(respawnList) deleteAt _i;
-            deleteVehicle _veh;
+                // If players near, we can bail out
+                if (call {
+                    {
+                        if ((_veh distance2D _x) < _abandonDistance || {_veh distance2D _pos < 5}) exitWith {true};
+                        false;
+                    } forEach allPlayers;
+                }) exitWith {false};
 
-            _respawn = true;
+                // Else we are abandoned, delete this and respawn
+                GVAR(respawnList) deleteAt _i;
+                deleteVehicle _veh;
+
+                _respawn = true;
+            };
         };
 
         // Then we just trigger a respawn in _respawnTime
         if(_respawn) then {
             [{
-                params ["_vehType", "_pos", "_dir", "_loadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
+                params ["_vehType", "_pos", "_dir", "_loadout", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
 
                 _nv = createVehicle [_vehType, _pos, [], 0, "CAN_COLLIDE"];
                 _nv setDir _dir;
+
+                if (_nv isKindOf "UAV") then {
+
+                    // Clear spawned loadout
+                    { _nv removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _nv;
+
+                    // Reload the same pylons as before
+                    {
+                        _nv setPylonLoadout [_forEachIndex + 1, _x, true, [0]];
+                    } forEach _pylonLoadout;
+
+                    // And lastly add the crew
+                    createVehicleCrew _nv;
+                };
 
                 // handle inventories
                 clearWeaponCargoGlobal _nv;
@@ -78,11 +92,12 @@ if(!isServer) exitWith {};
                 };
 
                 // Re-Init Vehicle
+                systemChat "re-initting";
                 [_nv, _hasKeys, _respawnTime, _abandonDistance] call FNC(initVehicle);
 
                 true;
 
-            }, [_vehType, _pos, _dir, _loadout, _respawnTime, _abandonDistance, _hasKeys], _respawnTime] call CBA_fnc_waitAndExecute;
+            }, [_vehType, _pos, _dir, _loadout, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys], _respawnTime] call CBA_fnc_waitAndExecute;
         };
 
     };

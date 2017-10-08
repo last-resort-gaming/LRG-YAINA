@@ -20,14 +20,14 @@ if(SQUAD_BASED) then {
     _mm setMarkerShape "ICON";
     _mm setMarkerType "mil_triangle";
     _mm setMarkerSize [1,1];
-    _mm setMarkerText format["Your %1", getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
+    _mm setMarkerText format["%1's %2", name player, getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
 } else {
     _markerID = format["%1_%2_%3", QVAR(mm), _caller call BIS_fnc_objectVar, floor random 100000 ];
     _mm = createMarkerLocal [_markerID, position _target];
     _mm setMarkerShapeLocal "ICON";
     _mm setMarkerTypeLocal "mil_triangle";
     _mm setMarkerSizeLocal [1,1];
-    _mm setMarkerTextLocal format["Your %1", getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
+    _mm setMarkerTextLocal format["%1's %2", name player, getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
 };
 
 // We set the owner to be the _caller, and create a map marker name;

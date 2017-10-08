@@ -71,6 +71,11 @@ if !(_respawnTime isEqualTo -1) then {
         getItemCargo _veh
     ];
 
+    _pylonLoadout = [];
+    if (_veh isKindOf "UAV") then {
+        _pylonLoadout = GetPylonMagazines _veh;
+    };
+
     // And just push back to the respawn list
     GVAR(respawnList) pushBack [
         _veh,
@@ -78,6 +83,7 @@ if !(_respawnTime isEqualTo -1) then {
         getPosATL _veh,
         getDir _veh,
         _loadout,
+        _pylonLoadout,
         _respawnTime,
         _abandonDistance,
         _hasKeys

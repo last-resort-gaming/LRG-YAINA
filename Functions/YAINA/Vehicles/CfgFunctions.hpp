@@ -11,5 +11,6 @@ class YAINA_VEH {
 		class updateOwnership {};
 		class updatePlayerActions {};
 		class respawnPFH {};
+		class preInit { preInit = 1; };
     };
 };
