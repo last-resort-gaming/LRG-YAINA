@@ -3,7 +3,7 @@
 ******************************************************************************/
 
 author = "MartinCo";
-onLoadName = "Yet Another Invade and Annex";
+onLoadName = "YAINA";
 OnLoadMission = "";
 loadScreen = "Data\LoadingScreen\splash.paa";
 overviewPicture = "Data\LoadingScreen\splash.paa";

@@ -14,3 +14,15 @@ publicVariable "CBA_display_ingame_warnings";
 
 // Start our managers
 if (("TimeManagerEnable" call BIS_fnc_getParamValue) isEqualTo 1) then { call YAINA_fnc_timeManager; };
+
+// Setup our vehicles
+{
+    [_x] call YAINA_VEH_fnc_initVeh;
+} count [
+    hh1_0,
+    hh1_1,
+    hh1_2,
+    hh1_3,
+    hh1_4,
+    hh1_5
+];
