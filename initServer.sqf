@@ -17,7 +17,7 @@ if (("TimeManagerEnable" call BIS_fnc_getParamValue) isEqualTo 1) then { call YA
 
 // Setup our vehicles
 {
-    [_x] call YAINA_VEH_fnc_initVeh;
+    [_x, true, 0] call YAINA_VEH_fnc_initVehicle;
 } count [
     hh1_0,
     hh1_1,

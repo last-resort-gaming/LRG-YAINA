@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=430;
+		nextID=431;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=592;
+		nextID=614;
 	};
 	class Camera
 	{
-		pos[]={26856.973,52.294388,24578.727};
-		dir[]={-0.30446473,-0.77486503,0.55397451};
-		up[]={-0.37321442,0.63212496,0.67906469};
-		aside[]={0.87636489,1.9557774e-008,0.48165068};
+		pos[]={26873.395,105.47519,24538.723};
+		dir[]={0.021179548,-0.88802445,0.45931125};
+		up[]={0.040904764,0.45979413,0.88708317};
+		aside[]={0.99894065,-4.368485e-008,-0.046062592};
 	};
 };
 binarizationWanted=0;
@@ -177,7 +177,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=14;
+		items=15;
 		class Item0
 		{
 			dataType="Object";
@@ -253,8 +253,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={26856.303,24.331608,24577.973};
-				angles[]={6.2791882,0,0.025324726};
+				position[]={26855.777,24.294924,24574.277};
+				angles[]={6.2765174,0,0.025327841};
 			};
 			side="Empty";
 			flags=4;
@@ -600,6 +600,7 @@ class Mission
 					flags=5;
 					class Attributes
 					{
+						name="Player1";
 						isPlayer=1;
 					};
 					id=422;
@@ -658,7 +659,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={26849.369,26.376186,24582.359};
+				position[]={26849.369,26.377186,24582.359};
 				angles[]={6.2791882,1.2148539,0.030647982};
 			};
 			side="Empty";
@@ -670,15 +671,37 @@ class Mission
 			};
 			id=423;
 			type="B_MRAP_01_F";
-			atlOffset=-0.00099945068;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""hgun_Pistol_heavy_01_snds_F"",""srifle_DMR_04_F""],[1,1]],[[""Chemlight_blue""],[1]],[[""U_C_IDAP_Man_Tee_F"",""H_HelmetSpecO_blk"",""Binocular"",""V_PlateCarrier1_blk""],[1,1,1,1]],[[""B_Carryall_ghex_F"",""B_HMG_01_high_weapon_F""],[1,1]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item8
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={26840.844,26.162981,24579.146};
-				angles[]={0.0026520467,1.2148539,0.017329043};
+				position[]={26840.43,26.157055,24579.326};
+				angles[]={0.0093286335,1.2148539,0.010664274};
 			};
 			side="Empty";
 			flags=4;
@@ -689,7 +712,6 @@ class Mission
 			};
 			id=424;
 			type="B_MRAP_01_F";
-			atlOffset=-0.00016212463;
 		};
 		class Item9
 		{
@@ -773,7 +795,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={26844.492,23.761574,24601.674};
-				angles[]={0.02399601,0,0.035984326};
+				angles[]={0.023998277,0,0.035988688};
 			};
 			id=429;
 			type="ModuleCurator_F";
@@ -851,7 +873,98 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item14
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={26849.885,23.901312,24605.854};
+				angles[]={0.016004669,0,0.043964844};
+			};
+			id=430;
+			type="ModuleCurator_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCurator_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Player1";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCurator_F_Forced";
+					expression="_this setVariable ['Forced',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCurator_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCurator_F_Addons";
+					expression="_this setVariable ['Addons',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=3;
 						};
 					};
 				};
