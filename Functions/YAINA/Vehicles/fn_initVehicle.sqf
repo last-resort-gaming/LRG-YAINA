@@ -10,7 +10,7 @@ params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 
 
 if (_hasKeys) then {
     _veh addAction ["Take Keys",  FNC(takeKey), "", -98, false, true, "", format['driver _target isEqualTo _this && isNil { _target getVariable "%1"; }', QVAR(owner)]];
-    _veh addAction ["Leave Keys", FNC(dropKey), "", -98, false, true, "", format['vehicle _this isEqualTo _target && (missionNamespace getVariable (_target getVariable "%1")) isEqualTo _this; }', QVAR(owner)]];
+    _veh addAction ["Leave Keys", FNC(dropKey), "", -98, false, true, "", format['vehicle _this isEqualTo _target && (missionNamespace getVariable (_target getVariable "%1")) isEqualTo _this;', QVAR(owner)]];
 
     // just run drop key on the owner's machine to clean up their own map markers
     // and local vehicle list - this'll update the server too, so should be all
@@ -84,5 +84,7 @@ if !(_respawnTime isEqualTo -1) then {
     ];
 };
 
+// And we always ensure it's added to zeus
+[[_veh]] call YFNC(addEditableObjects);
 
 true;

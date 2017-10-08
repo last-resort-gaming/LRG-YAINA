@@ -1,8 +1,9 @@
-class YAINA_GEN {
-	tag = "YAINA_GEN";
+class YAINA {
+	tag = "YAINA";
 
 	class General {
 		file = "Functions\YAINA\General";
 		class diarySetup { postInit = 1; };
+		class addEditableObjects {};
     };
 };
