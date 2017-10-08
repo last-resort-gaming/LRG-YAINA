@@ -1,7 +1,7 @@
 class YAINA_VEH {
 	tag = "YAINA_VEH";
 
-	class Managers {
+	class Vehicles {
 		file = "Functions\YAINA\Vehicles";
 		class dropKey{};
 		class hintC {};

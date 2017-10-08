@@ -10,17 +10,29 @@ params ["_target", "_caller", "_id", "_arguments"];
 
 if !(_caller isEqualTo player) exitWith {};
 
-_markerID = format["%1_%2_%3", QVAR(mm), _caller call BIS_fnc_objectVar, floor random 100000 ];
+
+// Create the marker
+_markerID = "";
+
+if(SQUAD_BASED) then {
+    _markerID = format["_USER_DEFINED #%1/%2%3/3", player call BIS_fnc_netId splitString ":" select 0, QVAR(mm), floor random 100000];
+    _mm = createMarker [_markerID, position _target];
+    _mm setMarkerShape "ICON";
+    _mm setMarkerType "mil_triangle";
+    _mm setMarkerSize [1,1];
+    _mm setMarkerText format["Your %1", getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
+} else {
+    _markerID = format["%1_%2_%3", QVAR(mm), _caller call BIS_fnc_objectVar, floor random 100000 ];
+    _mm = createMarkerLocal [_markerID, position _target];
+    _mm setMarkerShapeLocal "ICON";
+    _mm setMarkerTypeLocal "mil_triangle";
+    _mm setMarkerSizeLocal [1,1];
+    _mm setMarkerTextLocal format["Your %1", getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
+};
 
 // We set the owner to be the _caller, and create a map marker name;
 _target setVariable [QVAR(owner), _caller call BIS_fnc_objectVar];
 _target setVariable [QVAR(mm), _markerID];
-
-// Create the marker
-_mm = createMarkerLocal [_markerID, position _target];
-_mm setMarkerTypeLocal "mil_triangle";
-_mm setMarkerSizeLocal [1,1];
-_mm setMarkerTextLocal format["Your %1", getText(configFile >> "CfgVehicles" >> typeOf (_target) >> "displayName")];
 
 // Update the server's knowledge of who owns what (unlock on disconnect etc)
 [_caller, _target, "add"] remoteExec [QFNC(updateOwnership), 2];

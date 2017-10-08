@@ -29,20 +29,24 @@ _veh addEventHandler ["killed", {
 _veh addEventHandler ["SeatSwitched", {
     params ["_veh", "_unit1", "_unit2"];
 
-    _owner = _veh getVariable QVAR(owner);
-    if (!(isNil "_owner") && !((missionNamespace getVariable _owner) isEqualTo (driver _veh))) then {
-        ["You don't have the keys."] remoteExec [QFNC(hintC), driver _veh];
-        moveOut driver _veh;
+    _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
+    if (!(isNil "_owner")) then {
+        if !([_owner isEqualTo (driver _veh), group _owner isEqualTo (group driver _veh)] select SQUAD_BASED) then {
+            ["You don't have the keys."] remoteExec [QFNC(hintC), driver _veh];
+            moveOut driver _veh;
+        };
     };
 }];
 
 _veh addEventHandler ["GetIn", {
     params ["_veh", "_pos", "_unit", "_turret"];
     if (_pos isEqualTo "driver") then {
-        _owner = _veh getVariable QVAR(owner);
-        if (!(isNil "_owner") && !((missionNamespace getVariable _owner) isEqualTo (driver _veh))) then {
-            ["You don't have the keys."] remoteExec [QFNC(hintC), _unit];
-            moveOut _unit;
+        _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
+        if (!(isNil "_owner")) then {
+            if !([_owner isEqualTo (driver _veh), (group _owner) isEqualTo (group driver _veh)] select SQUAD_BASED) then {
+                ["You don't have the keys."] remoteExec [QFNC(hintC), driver _veh];
+                moveOut driver _veh;
+            };
         };
     };
 }];
