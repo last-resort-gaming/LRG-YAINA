@@ -17,4 +17,10 @@ if(isServer) then {
 
 if(hasInterface) then {
     GVAR(myVehicles) = [];
+
+    // And we need a respawn handler to add back in the player actioon for unlcoking all vehicles
+    player addEventHandler ["Respawn", {
+        call FNC(updatePlayerActions);
+    }];
+
 };

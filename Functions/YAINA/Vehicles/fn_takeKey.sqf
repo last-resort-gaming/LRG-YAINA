@@ -13,7 +13,7 @@ if !(_caller isEqualTo player) exitWith {};
 _markerID = format["%1_%2_%3", QVAR(mm), _caller call BIS_fnc_objectVar, floor random 100000 ];
 
 // We set the owner to be the _caller, and create a map marker name;
-_target setVariable [QVAR(owner), _caller];
+_target setVariable [QVAR(owner), _caller call BIS_fnc_objectVar];
 _target setVariable [QVAR(mm), _markerID];
 
 // Create the marker
@@ -50,11 +50,6 @@ if (isNil Q(GVAR(PFHID))) then {
 };
 
 // And finally update the "Drop all Keys" action to reflect the locked vehicle count
-if (!isNil Q(GVAR(keyActionID))) then { player removeAction GVAR(keyActionID); };
-_vCount = count GVAR(myVehicles);
-if !(_vCount isEqualTo 0) then {
-    _title = ["Unlock your vehicle", format["Unlock all %1 vehicles", _vCount]] select (_vCount > 1);
-    GVAR(keyActionID) = player addAction [_title, FNC(dropKey), "", -98, false, true];
-};
+call FNC(updatePlayerActions);
 
 systemChat "You've taken the keys...";

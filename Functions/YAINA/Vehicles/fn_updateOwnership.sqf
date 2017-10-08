@@ -10,7 +10,7 @@ params ["_unit", "_veh", "_action"];
 
 if (_action isEqualTo "add") then {
     if(!(isNil "_unit") && !(isNil "_veh")) then {
-        (GVAR(owners) select 0) pushBack _unit;
+        (GVAR(owners) select 0) pushBack (_unit call BIS_fnc_objectVar);
         (GVAR(owners) select 1) pushBack _veh;
     };
 };
@@ -27,7 +27,7 @@ if (_action isEqualTo "remove") then {
     } else {
         if(!isNil "_unit") then {
             for "_i" from (count(GVAR(owners) select 0) - 1) to 0 step -1 do {
-                if (((GVAR(owners) select 0) select _i) isEqualTo _unit) then {
+                if (((GVAR(owners) select 0) select _i) isEqualTo (_unit call BIS_fnc_objectVar)) then {
                     ((GVAR(owners) select 1) select _i) setVariable [QVAR(owner), nil];
                     (GVAR(owners) select 0) deleteAt _i;
                     (GVAR(owners) select 1) deleteAt _i;
