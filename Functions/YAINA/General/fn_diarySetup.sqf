@@ -14,5 +14,7 @@ player createDiaryRecord ["YAINA", ["Credits",
 <br/>CBA_A3:<br/><font face= 'PuristaLight' color= '#D3D3D3'>    PFH Handlers</font>
 <br/>Champ-1:<br/><font face= 'PuristaLight' color= '#D3D3D3'>    CHVD</font>
 <br/>Psychobastard:<br/><font face= 'PuristaLight' color= '#D3D3D3'>    AIS Revive</font>
+<br/>code34 :<br/><font face= 'PuristaLight' color= '#D3D3D3'>    Real Weather</font>
+
 "
 ]];

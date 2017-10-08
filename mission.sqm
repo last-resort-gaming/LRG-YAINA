@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=647;
+		nextID=669;
 	};
 	class Camera
 	{
-		pos[]={26884.473,113.53758,24505.309};
+		pos[]={26853.713,42.221046,24574.605};
 		dir[]={0,-0.70710683,0.70710683};
 		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,-0};
+		aside[]={0.99999994,0,0};
 	};
 };
 binarizationWanted=0;
@@ -168,6 +168,10 @@ class Mission
 		forecastWind=0.1;
 		forecastWaves=0.1;
 		forecastLightnings=0.1;
+		rainForced=1;
+		lightningsForced=1;
+		wavesForced=1;
+		windForced=1;
 		year=2035;
 		month=6;
 		day=24;
@@ -183,19 +187,17 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={26847.475,24.854397,24591.701};
-				angles[]={0.012000273,0,0.035984326};
+				position[]={26847.475,24.854641,24591.699};
+				angles[]={0.012007865,0,0.035988688};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="0 = [""AmmoboxInit"",[this,true]] spawn BIS_fnc_arsenal; " \n "";
 				name="arsenal_1";
 			};
 			id=2;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.00022125244;
 			class CustomAttributes
 			{
 				class Attribute0
