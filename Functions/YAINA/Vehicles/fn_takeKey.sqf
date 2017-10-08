@@ -40,7 +40,10 @@ _target setVariable [QVAR(mm), _markerID];
 // And add to our vehicle list
 GVAR(myVehicles) pushBackUnique _target;
 
-// Now we trigger a PFH if there isn't one to update my vehicle positions on the map
+// Now we trigger a PFH each frame if there isn't one to update my vehicle
+// positions on the map, Given the whole squad sees it, can't really just
+// update when the map is open etc.
+
 if (isNil Q(GVAR(PFHID))) then {
     GVAR(PFHID) = [{
         // If we have none, we bail out
@@ -49,7 +52,11 @@ if (isNil Q(GVAR(PFHID))) then {
         _count = {
             _mm = _x getVariable QVAR(mm);
             if !(isNil "_mm") then {
-                _mm setMarkerPosLocal position _x;
+                if(SQUAD_BASED) then {
+                    _mm setMarkerPos position _x;
+                } else {
+                    _mm setMarkerPosLocal position _x;
+                };
             };
             true;
         } count GVAR(myVehicles);
@@ -58,7 +65,7 @@ if (isNil Q(GVAR(PFHID))) then {
             _pfhID call CBA_fnc_removePerFrameHandler;
             GVAR(PFHID) = nil;
         };
-    }, 1, []] call CBA_fnc_addPerFrameHandler;
+    }, 0, []] call CBA_fnc_addPerFrameHandler;
 };
 
 // And finally update the "Drop all Keys" action to reflect the locked vehicle count
