@@ -4,4 +4,4 @@
 	returns: nothing
 */
 
-[] execVM "scripts\YAINA\Utils\earplugs.sqf";
+[] execVM "scripts\YAINA\earplugs.sqf";

@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=451;
+		nextID=453;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=735;
+		nextID=757;
 	};
 	class Camera
 	{
-		pos[]={26925.033,58.828331,24695.605};
-		dir[]={-0.78730237,-0.41001934,-0.46053889};
-		up[]={-0.35393155,0.91206783,-0.2070342};
-		aside[]={-0.50493109,-4.5914203e-007,0.86319077};
+		pos[]={26866.6,82.161835,24703.744};
+		dir[]={-0.35250092,-0.82928401,-0.43369791};
+		up[]={-0.52304578,0.55883288,-0.64352614};
+		aside[]={-0.77603143,-6.3143671e-007,0.63074142};
 	};
 };
 binarizationWanted=0;
@@ -199,7 +199,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=23;
+		items=25;
 		class Item0
 		{
 			dataType="Object";
@@ -1326,7 +1326,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={26847.002,21.6766,24675.078};
-						angles[]={0.029321531,0.76450658,0.0079936078};
+						angles[]={0.029324362,4.0326009,0.0080009829};
 					};
 					side="West";
 					flags=6;
@@ -1343,7 +1343,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={26847.002,21.6766,24675.078};
-						angles[]={0.029321531,0.76450658,0.0079936078};
+						angles[]={0.029324362,4.0326009,0.0080009829};
 					};
 					side="West";
 					flags=4;
@@ -1398,7 +1398,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={26846.99,23.243099,24675.063};
-				angles[]={0.029321531,0.76450658,0.0079936078};
+				angles[]={0.029324362,4.0326009,0.0080009829};
 			};
 			side="West";
 			flags=6;
@@ -1434,6 +1434,41 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item23
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26814.295,21.60994,24649.908};
+				angles[]={0.018663859,0,0.012000273};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=451;
+			type="Land_JumpTarget_F";
+			atlOffset=1.9073486e-005;
+		};
+		class Item24
+		{
+			dataType="Trigger";
+			position[]={26815.301,21.610361,24650.863};
+			class Attributes
+			{
+				condition="call{(thisList select 0) isKindOf ""UAV"" && speed (thisList select 0) < 2;}";
+				onActivation="call{0 = [thisList select 0] execVM ""Scripts\YAINA\Service\uav.sqf"";}";
+				sizeA=5;
+				sizeB=5;
+				sizeC=5;
+				repeatable=1;
+				activationBy="WEST";
+				isRectangle=1;
+			};
+			id=452;
+			type="EmptyDetectorArea10x10";
 		};
 	};
 	class Connections

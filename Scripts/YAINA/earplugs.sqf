@@ -41,4 +41,4 @@ if (YAINA_PlugsIn isEqualTo true) then {
 
 // Replace menu item
 if(!isNil "_id") then { player removeAction _id; };
-player addAction [("<t color=""#FF0000"">" + _nextAction + " Earplugs</t>"),"Scripts\YAINA\Utils\earplugs.sqf","",-98,false,true,"",'_target isEqualTo _this'];
+player addAction [("<t color=""#FF0000"">" + _nextAction + " Earplugs</t>"),"Scripts\YAINA\earplugs.sqf","",-98,false,true,"",'_target isEqualTo _this'];
