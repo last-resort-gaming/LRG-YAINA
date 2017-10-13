@@ -79,28 +79,3 @@ class CfgFunctions {
 class Params {
     #include "Functions\YAINA\Params.hpp"
 };
-
-class CfgVehicles {
-
-
-    class UAV_02_dynamicLoadout_base_F;
-
-    class B_UAV_02_dynamicLoadout_F : UAV_02_dynamicLoadout_base_F {
-        class Components;
-    };
-
-    class B_UAV_02_04P_F : B_UAV_02_dynamicLoadout_F {
-        class Components: Components {
-            class TransportPylonsComponent {
-                class pylons {
-                    class pylons1 {
-                        maxweight  = 5000;
-                        attachment = "PylonRack_Bomb_GBU12_x2";
-                    };
-                    class pylons2 : pylons1 {
-                    };
-                };
-            };
-        };
-    };
-};

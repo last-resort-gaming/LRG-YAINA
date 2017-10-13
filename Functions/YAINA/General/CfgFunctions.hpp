@@ -7,5 +7,6 @@ class YAINA {
 		class addEditableObjects {};
 		class killedHint { postInit = 1; };
 		class getPrintableDuration {};
+		class showFPS { postInit = 1; };
     };
 };
