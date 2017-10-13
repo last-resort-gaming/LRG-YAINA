@@ -5,5 +5,6 @@ class YAINA {
 		file = "Functions\YAINA\General";
 		class diarySetup { postInit = 1; };
 		class addEditableObjects {};
+		class killedHint { postInit = 1; };
     };
 };

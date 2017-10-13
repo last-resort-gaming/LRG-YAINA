@@ -92,7 +92,6 @@ if(!isServer) exitWith {};
                 };
 
                 // Re-Init Vehicle
-                systemChat "re-initting";
                 [_nv, _hasKeys, _respawnTime, _abandonDistance] call FNC(initVehicle);
 
                 true;

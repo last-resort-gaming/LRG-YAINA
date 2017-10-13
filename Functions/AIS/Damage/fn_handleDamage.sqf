@@ -166,8 +166,12 @@ if (_set_unconscious && {!(_unit getVariable ["ais_unconscious", false])}) then 
 	[{[(_this select 0)] call AIS_System_fnc_setUnconscious}, [_unit]] call AIS_Core_fnc_onNextFrame;
 	// need this delay to prevent new damage for some seconds after the unit go unconscious. after the delay it is possible to kill the unit when they get to much new damage.
 	_unit setVariable ["ais_protector_delay", (diag_tickTime + 6)];
+
+	// Dispatch event so we can display who dun it
+	["AIS_Unconscious", [_unit, _source, _projectile, _damageType]] call CBA_fnc_localEvent;
 };
 
+if (isNil "_damage") then { _damage = 0.89; };
 _damage = _damage min 0.89;
 //diag_log format ["Selection: %1 --- Damage1: %2 --- Damage2: %3 --- partIndex: %4 --- Projectile: %5 ----> %6", _hitSelection, _damage, (_hitPart select 2), _hitPartIndex, _projectile, diag_frameno];
 
