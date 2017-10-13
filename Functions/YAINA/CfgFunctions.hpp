@@ -1,3 +1,5 @@
 #include "Managers\CfgFunctions.hpp"
 #include "Vehicles\CfgFunctions.hpp"
 #include "General\CfgFunctions.hpp"
+#include "Spawns\CfgFunctions.hpp"
+#include "AirDefence\CfgFunctions.hpp"

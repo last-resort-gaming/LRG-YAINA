@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=516;
+		nextID=548;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=880;
+		nextID=952;
 	};
 	class Camera
 	{
-		pos[]={27781.104,868.91455,24239.66};
-		dir[]={-0.51255137,-0.74664009,0.42405912};
-		up[]={-0.57530791,0.665178,0.47598097};
-		aside[]={0.63746047,1.4144462e-008,0.77048594};
+		pos[]={26924.219,125.85065,24494.451};
+		dir[]={-0.092817031,-0.54742128,0.83170819};
+		up[]={-0.060716372,0.83684421,0.54406244};
+		aside[]={0.99384129,-7.6164724e-008,0.11091023};
 	};
 };
 binarizationWanted=0;
@@ -44,13 +44,18 @@ addons[]=
 	"A3_Air_F_Jets_UAV_05",
 	"A3_Drones_F_Air_F_Gamma_UAV_02",
 	"A3_Armor_F_EPC_MBT_01",
-	"A3_Soft_F_Exp_MRAP_01"
+	"A3_Soft_F_Exp_MRAP_01",
+	"A3_Static_F_Jets_AAA_System_01",
+	"A3_Static_F_Jets_SAM_System_02",
+	"A3_Structures_F_Civ_Camping",
+	"A3_Structures_F_Items_Electronics",
+	"A3_Armor_F_Beta_APC_Tracked_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=14;
+		items=17;
 		class Item0
 		{
 			className="A3_Supplies_F_Heli";
@@ -149,6 +154,27 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item14
+		{
+			className="A3_Static_F_Jets";
+			name="Arma 3 Jets - Turrets";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item15
+		{
+			className="A3_Structures_F";
+			name="Arma 3 - Buildings and Structures";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
+		class Item16
+		{
+			className="A3_Armor_F_Beta";
+			name="Arma 3 Beta - Armored Land Vehicles";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 randomSeed=13195615;
@@ -215,7 +241,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=31;
+		items=45;
 		class Item0
 		{
 			dataType="Object";
@@ -2519,6 +2545,454 @@ class Mission
 			name="Layer 868";
 			id=481;
 			atlOffset=185.97;
+		};
+		class Item31
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={26948.193,21.932661,24839.74};
+						angles[]={6.2458701,0,0.0039968039};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						name="AirDefence1G";
+					};
+					id=518;
+					type="B_UAV_AI";
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=1;
+				};
+				class Links
+				{
+					items=1;
+					class Item0
+					{
+						linkID=0;
+						item0=518;
+						item1=517;
+						class CustomData
+						{
+							role=2;
+							turretPath[]={0};
+						};
+					};
+				};
+			};
+			id=516;
+		};
+		class Item32
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26948.184,24.435215,24839.596};
+				angles[]={6.2458701,0,0.0039968039};
+			};
+			side="West";
+			flags=6;
+			class Attributes
+			{
+				lock="LOCKED";
+				name="AirDefence1";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+				aiRadarUsage=1;
+			};
+			id=517;
+			type="B_AAA_System_01_F";
+		};
+		class Item33
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={27100.146,23.057312,24726.467};
+						angles[]={0.014660765,0,0};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						name="AirDefence1G_1";
+					};
+					id=520;
+					type="B_UAV_AI";
+					atlOffset=1.9073486e-006;
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=1;
+				};
+				class Links
+				{
+					items=1;
+					class Item0
+					{
+						linkID=0;
+						item0=520;
+						item1=521;
+						class CustomData
+						{
+							role=2;
+							turretPath[]={0};
+						};
+					};
+				};
+			};
+			id=519;
+			atlOffset=-0.0080986023;
+		};
+		class Item34
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={27099.949,25.553905,24726.41};
+				angles[]={0.014660765,0,0};
+			};
+			side="West";
+			flags=6;
+			class Attributes
+			{
+				lock="LOCKED";
+				name="AirDefence2";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+				aiRadarUsage=1;
+			};
+			id=521;
+			type="B_AAA_System_01_F";
+			atlOffset=-0.0080986023;
+		};
+		class Item35
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={26882.596,26.881628,24453.008};
+						angles[]={0.0026529003,0,0.014660765};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						name="AirDefence3G";
+					};
+					id=524;
+					type="B_UAV_AI";
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=1;
+				};
+				class Links
+				{
+					items=1;
+					class Item0
+					{
+						linkID=0;
+						item0=524;
+						item1=523;
+						class CustomData
+						{
+							role=2;
+							turretPath[]={0};
+						};
+					};
+				};
+			};
+			id=522;
+		};
+		class Item36
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26882.566,28.850637,24452.963};
+				angles[]={0.0026529003,0,0.014660765};
+			};
+			side="West";
+			flags=6;
+			class Attributes
+			{
+				lock="LOCKED";
+				name="AirDefence3";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+				aiRadarUsage=1;
+			};
+			id=523;
+			type="B_SAM_System_02_F";
+		};
+		class Item37
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={26705.002,19.732439,24639.686};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						name="AirDefence3G_1";
+					};
+					id=526;
+					type="B_UAV_AI";
+					atlOffset=-0.038999557;
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=1;
+				};
+				class Links
+				{
+					items=1;
+					class Item0
+					{
+						linkID=0;
+						item0=526;
+						item1=527;
+						class CustomData
+						{
+							role=2;
+							turretPath[]={0};
+						};
+					};
+				};
+			};
+			id=525;
+			atlOffset=-0.038999557;
+		};
+		class Item38
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26705.002,21.701668,24639.635};
+			};
+			side="West";
+			flags=6;
+			class Attributes
+			{
+				lock="LOCKED";
+				name="AirDefence4";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+				aiRadarUsage=1;
+			};
+			id=527;
+			type="B_SAM_System_02_F";
+			atlOffset=-0.038999557;
+		};
+		class Item39
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={26814.537,40.699623,24605.709};
+						angles[]={0,3.1381719,0};
+					};
+					side="West";
+					flags=2;
+					class Attributes
+					{
+						name="AirDefence5G";
+					};
+					id=530;
+					type="B_UAV_AI";
+					atlOffset=2.2907715;
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=1;
+				};
+				class Links
+				{
+					items=1;
+					class Item0
+					{
+						linkID=0;
+						item0=530;
+						item1=529;
+						class CustomData
+						{
+							role=2;
+							turretPath[]={0};
+						};
+					};
+				};
+			};
+			id=528;
+			atlOffset=2.2907715;
+		};
+		class Item40
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26814.537,43.203941,24605.658};
+				angles[]={0,3.1381719,0};
+			};
+			side="West";
+			flags=2;
+			class Attributes
+			{
+				lock="LOCKED";
+				name="AirDefence5";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+				aiRadarUsage=1;
+			};
+			id=529;
+			type="B_AAA_System_01_F";
+			atlOffset=2.2907715;
+		};
+		class Item41
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26820.439,24.599966,24552.445};
+				angles[]={0.0013372133,0,6.2751846};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=536;
+			type="Land_CampingTable_F";
+			atlOffset=-0.00018119812;
+		};
+		class Item42
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26820.842,25.155741,24552.451};
+				angles[]={0.0013439035,3.3574028,6.2751913};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="AirDefenseSwitch1";
+			};
+			id=537;
+			type="Land_Laptop_unfolded_F";
+			atlOffset=0.00015449524;
+		};
+		class Item43
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26928.758,25.524763,24643.814};
+				angles[]={0.023998277,0,6.2671809};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				lock="UNLOCKED";
+				name="AirDefence6";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+			};
+			id=539;
+			type="B_APC_Tracked_01_AA_F";
+			atlOffset=-1.9073486e-006;
+		};
+		class Item44
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={26895.949,26.611034,24604.219};
+				angles[]={0.0066671576,0,6.2765183};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				lock="UNLOCKED";
+				name="AirDefence7";
+				reportRemoteTargets=1;
+				receiveRemoteTargets=1;
+			};
+			id=544;
+			type="B_APC_Tracked_01_AA_F";
 		};
 	};
 	class Connections
