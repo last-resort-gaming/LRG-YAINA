@@ -31,8 +31,8 @@ if(SQUAD_BASED) then {
 };
 
 // We set the owner to be the _caller, and create a map marker name;
-_target setVariable [QVAR(owner), _caller call BIS_fnc_objectVar];
-_target setVariable [QVAR(mm), _markerID];
+_target setVariable [QVAR(owner), _caller, true];
+_target setVariable [QVAR(mm), _markerID, true];
 
 // Update the server's knowledge of who owns what (unlock on disconnect etc)
 [_caller, _target, "add"] remoteExec [QFNC(updateOwnership), 2];
@@ -49,17 +49,29 @@ if (isNil Q(GVAR(PFHID))) then {
         // If we have none, we bail out
         params ["_args", "_pfhID"];
 
-        _count = {
-            _mm = _x getVariable QVAR(mm);
-            if !(isNil "_mm") then {
+        // We use a for loop here so we can delete as we go if nullobj
+        _updated = false;
+
+        for "_i" from (count GVAR(myVehicles)-1) to 0 step -1 do {
+
+            _veh = GVAR(myVehicles) select _i;
+            if (isNull _veh) then {
+                GVAR(myVehicles) deleteAt _i;
+                _updated = true;
+            } else {
+                _mm = _veh getVariable QVAR(mm);
                 if(SQUAD_BASED) then {
-                    _mm setMarkerPos position _x;
+                    _mm setMarkerPos position _veh;
                 } else {
-                    _mm setMarkerPosLocal position _x;
+                    _mm setMarkerPosLocal position _veh;
                 };
             };
-            true;
-        } count GVAR(myVehicles);
+        };
+
+        // Update our menu actions
+        if (_updated) then {
+            call FNC(updatePlayerActions);
+        };
 
         if (_count isEqualTo 0) then {
             _pfhID call CBA_fnc_removePerFrameHandler;

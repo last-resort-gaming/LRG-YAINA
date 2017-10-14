@@ -28,16 +28,22 @@ if(!isServer) exitWith {};
             // E.g. UAVs don't have a distance.
             if !(_abandonDistance isEqualTo 0) then {
 
+                // If it's less than 5m from start pos, just bail
+                if (_veh distance2D _pos < 5) exitWith {};
+
                 // If the vehicle is owned, then the abandonDistance is doubled;
-                if(!isNil { _veh getVariable QVAR(owner) }) then { _abandonDistance =  _abandonDistance * 2; };
+                _owner = _veh getVariable QVAR(owner);
+                if(!isNil "_owner") then {
+                    _abandonDistance =  _abandonDistance * 2;
+                };
 
                 // If players near, we can bail out
                 if (call {
                     {
-                        if ((_veh distance2D _x) < _abandonDistance || {_veh distance2D _pos < 5}) exitWith {true};
+                        if ((_veh distance2D _x) < _abandonDistance) exitWith {true};
                         false;
                     } forEach allPlayers;
-                }) exitWith {false};
+                }) exitWith {};
 
                 // Else we are abandoned, delete this and respawn
                 GVAR(respawnList) deleteAt _i;

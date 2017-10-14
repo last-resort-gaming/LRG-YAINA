@@ -8,8 +8,13 @@
 
 if (isServer) then {
 
-    GVAR(nextActive) = 0;
+    // We don't allow Air defences for the first 300 seconds due to
+    // the value on the server being out of sync: https://community.bistudio.com/wiki/serverTime
+
+    GVAR(nextActive) = 300;
     GVAR(online) = false;
+    publicVariable Q(GVAR(nextActive));
+    publicVariable Q(GVAR(online));
 
     // Lock and delete any crew in there
     {
@@ -19,21 +24,30 @@ if (isServer) then {
         true;
     } count AIR_DEFENCES;
 
-    // Set action on air Defence Terminals
-    {
-        _x addAction ["<t color='#ff1111'>Activate Air-Defense Network</t>",
-        {
-            _nextAD = call FNC(activateAirDefence);
+    // Hint to let them know when it's available
+    [{
+        "Air defense network is now available" remoteExecCall ["hint", 0];
+    }, [], 300] call CBA_fnc_waitAndExecute;
 
-            if (_nextAD isEqualTo 0) exitWith {};
-
-            if (_nextAD isEqualTo -1) then {
-                hint "Air Defence Network is already online";
-            } else {
-                hint format ["Air defence network will be available in %1", _nextAD call YFNC(getPrintableDuration)];
-            };
-        }];
-        true;
-    } count AIR_DEFENCE_TERMINALS;
 };
 
+// Set action on air Defence Terminals
+{
+    _x addAction ["<t color='#ff1111'>Activate Air-Defense Network</t>",
+    {
+
+        if(GVAR(online)) exitWith {
+            hint "Air Defence Network is already online";
+        };
+
+        _currentTime = [diag_tickTime, serverTime] select isMultiplayer;
+        _nextAD      = GVAR(nextActive) - _currentTime;
+
+        if (_nextAD <= 0) exitWith {
+            call FNC(activateAirDefence);
+        };
+
+        hint format ["Air defence network will be available in %1", _nextAD call YFNC(getPrintableDuration)];
+    }];
+    true;
+} count AIR_DEFENCE_TERMINALS;

@@ -7,9 +7,9 @@
 #include "defines.h"
 //--------------------------------------------------------------
 
-_activeTime   = 300;  // Time it'll remain online
-_rechargeTime = 600; // How long it takes between activations
-_delay        = 5;   // Delay before it's online
+_activeTime   = 30;  // Time it'll remain online
+_rechargeTime = 300; // How long it takes between activations
+_delay        = 10;  // Delay before it's online
 
 //--------------------------------------------------------------
 
@@ -17,19 +17,16 @@ if (!isServer) exitWith {
     remoteExecCall [Q(FNC(activateAirDefence)), 2];
 };
 
-_currentTime   = diag_tickTime;
+_currentTime   = [diag_tickTime, serverTime] select isMultiplayer;
 _nextAvailable = _activeTime + _rechargeTime + _delay;
 
 // Can we ?
-if(_currentTime < GVAR(nextActive)) exitWith {
-
-    if (GVAR(online)) exitWith {-1};
-    GVAR(nextActive) - diag_tickTime;
-
-};
+if(_currentTime < GVAR(nextActive)) exitWith {};
 
 GVAR(nextActive) = _currentTime + _nextAvailable;
 GVAR(online) = true;
+publicVariable Q(GVAR(nextActive));
+publicVariable Q(GVAR(online));
 
 // Hint to everyone to let them know AD coming online
 if !(_delay isEqualTo 0) then {
@@ -62,6 +59,7 @@ if !(_delay isEqualTo 0) then {
     // Now we stay online for the duration, and cleanup
     [{
         GVAR(online) = false;
+        publicVariable Q(GVAR(online));
 
         params ["_groups"];
 

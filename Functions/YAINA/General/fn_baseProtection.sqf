@@ -6,8 +6,12 @@
 
 #include "..\defines.h"
 
-player addEventHandler["Fired", {
-    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_gunner"];
+player addEventHandler["FiredMan", {
+    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_veh"];
+
+    // Permit Flares
+    if (_weapon isEqualTo "CMFlareLauncher")  exitWith {true};
+
     {
         if (_unit inArea _x) exitWith {
             deleteVehicle _projectile;

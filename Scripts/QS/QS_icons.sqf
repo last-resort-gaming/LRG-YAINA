@@ -100,9 +100,9 @@ _QS_ST_iconColor_UNKNOWN = [0.7,0.6,0,0.5];					// ARRAY (NUMBER). RGBA color co
 
 _QS_ST_showMedicalWounded = TRUE;							// BOOL. TRUE to show wounded on the map and GPS. FALSE to not show wounded on the map with this script. Default TRUE.
 _QS_ST_MedicalSystem = [									// ARRAY(STRING). The Active Medical System. Uncomment ONLY ONE. FIRST UNCOMMENTED ONE WILL BE USED. Comment the rest out as shown. Do not add commas and only allow 1 to be uncommented.
-	'BIS'												// BIS Revive.
+	//'BIS'												// BIS Revive.
 	//'BTC'												// BTC Revive.
-	//'AIS'												// AIS Revive.
+	'AIS'												// AIS Revive.
 	//'ACE'												// ACE 3 Revive.
 	//'FAR'												// Farooq's Revive.
 	//'AWS'    											// A3 Wounding System by Psycho.
@@ -184,7 +184,7 @@ _QS_ST_showOwnGroup = TRUE;								// BOOL. TRUE to show the Players own group i
 //============================= CONFIGURE BONUS FEATURES ===========================//
 //==================================================================================//
 
-_QS_ST_showEmptyVehicles = FALSE;							// BOOL. TRUE to mark certain unoccupied vehicles on the map. The vehicle must be assigned this variable:    <vehicle> setVariable ['QS_ST_drawEmptyVehicle',TRUE,TRUE];    Default FALSE.   Only works if  _QS_ST_map_enableUnitIcons = TRUE;
+_QS_ST_showEmptyVehicles = TRUE;							// BOOL. TRUE to mark certain unoccupied vehicles on the map. The vehicle must be assigned this variable:    <vehicle> setVariable ['QS_ST_drawEmptyVehicle',TRUE,TRUE];    Default FALSE.   Only works if  _QS_ST_map_enableUnitIcons = TRUE;
 _QS_ST_iconColor_empty = [0.7,0.6,0,0.5];					// ARRAY (NUMBERS). Color of unoccupied vehicles, in RGBA. Default = [0.7,0.6,0,0.5];
 _QS_ST_iconSize_empty = 20;									// NUMBER. Icon size of unoccupied vehicles, if shown.
 

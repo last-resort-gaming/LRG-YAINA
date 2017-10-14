@@ -27,13 +27,13 @@ if (!isNil "_target") then { YAINA_PlugsIn = YAINA_PlugsIn isEqualTo false; };
 
 // Set the sound, and if not spawning, show the message
 if (YAINA_PlugsIn isEqualTo true) then {
-    2 fadeSound 0.2;
+    ([2, 0] select isNil "_target") fadeSound 0.2;
     _nextAction = "Remove";
     if (!isNil "_target") then {
         [" <img image='Data\Earplugs\plugs_in.paa' /><br/><t valign='middle' align='center' size='.4'>Earplugs Inserted</t>",0,0.6, 2,1,0,0] spawn BIS_fnc_dynamicText;
     };
 } else {
-    2 fadeSound 1;
+    ([2, 0] select isNil "_target") fadeSound 1;
     if (!isNil "_target") then {
         ["<img image='Data\Earplugs\plugs_out.paa' /><br/><t valign='middle' align='center' size='.4'>Earplugs Removed</t>",0,0.6, 2,1,0,0] spawn BIS_fnc_dynamicText;
     };

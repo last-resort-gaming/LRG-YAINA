@@ -1,0 +1,9 @@
+*.sqf;
+*.sqm;
+*.jpeg;
+*.paa;
+*.hpp;
+*.ext;
+*.h;
+*.fsm;
+LICENSE;
