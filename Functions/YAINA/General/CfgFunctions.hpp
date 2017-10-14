@@ -8,5 +8,7 @@ class YAINA {
 		class killedHint { postInit = 1; };
 		class getPrintableDuration {};
 		class showFPS { postInit = 1; };
+		class baseProtection {};
+		class hintC {};
     };
 };

@@ -22,7 +22,10 @@ if (("TimeManagerEnable" call BIS_fnc_getParamValue) isEqualTo 1) then { call YA
     hh1_2,
     hh1_3,
     hh1_4,
-    hh1_5
+    hh1_5,
+    hh3,
+    hh4,
+    gg3
 ];
 
 g1 setPylonLoadOut [1, "PylonRack_Bomb_GBU12_x2", true, [0]];

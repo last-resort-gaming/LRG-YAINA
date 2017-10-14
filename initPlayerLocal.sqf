@@ -14,4 +14,5 @@ if !(isServer or hasInterface) then {
 
     [] execVM "scripts\QS\QS_icons.sqf";
 
+    call YAINA_fnc_baseProtection;
 };

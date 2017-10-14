@@ -90,6 +90,23 @@ if !(_respawnTime isEqualTo -1) then {
     ];
 };
 
+_veh addEventHandler ["Fired", {
+    params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_gunner"];
+
+    // Permit Flares
+    if (_weapon isEqualTo "CMFlareLauncher")  exitWith {true};
+
+    {
+        if (_unit inArea _x) exitWith {
+            deleteVehicle _projectile;
+            "Do not fire in base" remoteExecCall [Q(YFNC(hintC)), _unit];
+            true;
+        };
+        false;
+    } count BASE_PROTECTION_AREAS;
+
+}];
+
 // And we always ensure it's added to zeus
 [[_veh]] call YFNC(addEditableObjects);
 

@@ -67,13 +67,13 @@ YAINA_explosivesMap = [[],[]];
         };
 
         _source = _vehicle;
-        _weapon = "drone";
+        _weapon = "Their drone";
     } else {
         // If no projectile, but we're in a vehicle, then blame the driver
         if (_projectile isEqualTo "" && _inVehicle) then {
             _sourcePlayer = driver _vehicle;
             _source = _vehicle;
-            _weapon = ["driving", "flying"] select (_vehicle isKindOf "Air");
+            _weapon = ["Their driving", "Their Flying"] select (_vehicle isKindOf "Air");
         };
     };
 
@@ -131,9 +131,9 @@ YAINA_explosivesMap = [[],[]];
     if(isNil "_weapon") then {
         // if falling, we have a different message
         if (_aisDamageType == "falling") then {
-            _weapon = "falling";
+            _weapon = "Falling";
         } else {
-            _weapon = "magic wand";
+            _weapon = "Their magic wand";
         };
     };
 
@@ -147,7 +147,7 @@ YAINA_explosivesMap = [[],[]];
     _bodys  = "<t align='left'>";
 
     _bodys  = _bodys + (["Killer", name _sourcePlayer] call _elem);
-    _bodys  = _bodys + (["Weapon", _weapon] call _elem);
+    _bodys  = _bodys + (["Cause", _weapon] call _elem);
 
     if !((vehicle _sourcePlayer) isEqualTo _sourcePlayer) then {
         _bodys = _bodys + (["Vehicle", getText(configFile >> "CfgVehicles" >> (typeOf (vehicle _sourcePlayer)) >> "displayName")] call _elem);

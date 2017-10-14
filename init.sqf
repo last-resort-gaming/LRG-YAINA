@@ -6,7 +6,6 @@
 //   Advanced Repelling
 //   Advanced Towing
 
-
 enableSaving [false, false];
 
 [] execVM "scripts\code34\real_weather.sqf";
