@@ -9,9 +9,6 @@ private _markerLocal = false;
 private _source = "";
 private _position  = 1;
 
-// Only run this on server, or admin
-if !(isServer || serverCommandAvailable '#kick') exitWith {};
-
 if ( isServer ) then {
     _source = "Server";
 } else {
@@ -47,6 +44,7 @@ if (_source != "") then {
 
             _myfps = diag_fps;
             _localunits = { local _x } count allUnits;
+            _localgroups = { local _x } count allGroups;
             _localvehicles = { local _x } count vehicles;
 
             _myfpsmarker setMarkerColorLocal "ColorGREEN";
@@ -54,7 +52,7 @@ if (_source != "") then {
             if ( _myfps < 20 ) then { _myfpsmarker setMarkerColorLocal "ColorORANGE"; };
             if ( _myfps < 10 ) then { _myfpsmarker setMarkerColorLocal "ColorRED"; };
 
-            _myfpsmarker setMarkerTextLocal format [ "%1: %2 fps, %3 units, %4 vehicles", _source, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localvehicles ];
+            _myfpsmarker setMarkerTextLocal format [ "%1: %2 fps, %3 units, %4 groups, %5 vehicles", _source, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localgroups, _localvehicles ];
 
         }, 5, [_source, _myfpsmarker]] call CBA_fnc_addPerFrameHandler;
 
@@ -70,6 +68,7 @@ if (_source != "") then {
 
             _myfps = diag_fps;
             _localunits = { local _x } count allUnits;
+            _localgroups = { local _x } count allGroups;
             _localvehicles = { local _x } count vehicles;
 
             _myfpsmarker setMarkerColor "ColorGREEN";
@@ -77,7 +76,7 @@ if (_source != "") then {
             if ( _myfps < 20 ) then { _myfpsmarker setMarkerColor "ColorORANGE"; };
             if ( _myfps < 10 ) then { _myfpsmarker setMarkerColor "ColorRED"; };
 
-            _myfpsmarker setMarkerText format [ "%1: %2 fps, %3 units, %4 vehicles", _source, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localvehicles ];
+            _myfpsmarker setMarkerText format [ "%1: %2 fps, %3 units, %4 groups, %5 vehicles", _source, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localgroups, _localvehicles ];
 
         }, 5, [_source, _myfpsmarker]] call CBA_fnc_addPerFrameHandler;
     };

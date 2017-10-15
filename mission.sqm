@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=560;
+		nextID=564;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1000;
+		nextID=1144;
 	};
 	class Camera
 	{
-		pos[]={26958.311,101.31705,24627.633};
-		dir[]={-0.69325525,-0.70802653,-0.13482848};
-		up[]={-0.69503701,0.70615017,-0.13517563};
-		aside[]={-0.19091909,-1.7840648e-007,0.98164707};
+		pos[]={26989.553,137.43478,24605.563};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -50,15 +50,13 @@ addons[]=
 	"A3_Structures_F_Civ_Camping",
 	"A3_Structures_F_Items_Electronics",
 	"A3_Armor_F_Beta_APC_Tracked_01",
-	"A3_Characters_F_Orange",
-	"A3_Air_F_Orange_UAV_06",
 	"A3_Air_F_Exp_UAV_03"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=20;
+		items=18;
 		class Item0
 		{
 			className="A3_Supplies_F_Heli";
@@ -180,20 +178,6 @@ class AddonsMetaData
 		};
 		class Item17
 		{
-			className="A3_Characters_F_Orange";
-			name="Arma 3 Orange - Characters and Clothing";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item18
-		{
-			className="A3_Air_F_Orange";
-			name="Arma 3 Orange - Aircraft";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item19
-		{
 			className="A3_Air_F_Exp";
 			name="Arma 3 Apex - Aircraft";
 			author="Bohemia Interactive";
@@ -265,7 +249,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=52;
+		items=48;
 		class Item0
 		{
 			dataType="Object";
@@ -683,7 +667,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={26846.148,24.080214,24584.266};
+						position[]={24221.85,37.575596,22100.299};
 						angles[]={0.039979152,2.9957006,0.010669862};
 					};
 					side="West";
@@ -3023,170 +3007,6 @@ class Mission
 		class Item45
 		{
 			dataType="Group";
-			side="East";
-			class Entities
-			{
-				items=2;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={26838.207,21.689426,24669.652};
-						angles[]={0.021328852,4.197751,0.0039967569};
-					};
-					side="East";
-					flags=6;
-					class Attributes
-					{
-					};
-					id=550;
-					type="O_UAV_AI";
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={26838.207,21.689426,24669.652};
-						angles[]={0.021328852,4.197751,0.0039967569};
-					};
-					side="East";
-					flags=4;
-					class Attributes
-					{
-					};
-					id=551;
-					type="O_UAV_AI";
-				};
-			};
-			class Attributes
-			{
-			};
-			class CrewLinks
-			{
-				class LinkIDProvider
-				{
-					nextID=2;
-				};
-				class Links
-				{
-					items=2;
-					class Item0
-					{
-						linkID=0;
-						item0=550;
-						item1=549;
-						class CustomData
-						{
-							role=1;
-						};
-					};
-					class Item1
-					{
-						linkID=1;
-						item0=551;
-						item1=549;
-						class CustomData
-						{
-							role=2;
-							turretPath[]={0};
-						};
-					};
-				};
-			};
-			id=548;
-		};
-		class Item46
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={26838.201,23.256193,24669.625};
-				angles[]={0.021328852,4.197751,0.0039967569};
-			};
-			side="East";
-			flags=6;
-			class Attributes
-			{
-				reportRemoteTargets=1;
-				reportOwnPosition=1;
-			};
-			id=549;
-			type="O_UAV_02_dynamicLoadout_F";
-		};
-		class Item47
-		{
-			dataType="Group";
-			side="Civilian";
-			class Entities
-			{
-				items=1;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={26843.291,21.522648,24679.316};
-						angles[]={0.029324362,0,0.0080009829};
-					};
-					side="Civilian";
-					flags=6;
-					class Attributes
-					{
-					};
-					id=554;
-					type="C_UAV_AI_F";
-					atlOffset=1.335144e-005;
-				};
-			};
-			class Attributes
-			{
-			};
-			class CrewLinks
-			{
-				class LinkIDProvider
-				{
-					nextID=1;
-				};
-				class Links
-				{
-					items=1;
-					class Item0
-					{
-						linkID=0;
-						item0=554;
-						item1=553;
-						class CustomData
-						{
-							role=1;
-						};
-					};
-				};
-			};
-			id=552;
-			atlOffset=1.335144e-005;
-		};
-		class Item48
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={26843.289,21.77091,24679.273};
-				angles[]={0.029324362,0,0.0080009829};
-			};
-			side="Civilian";
-			flags=6;
-			class Attributes
-			{
-			};
-			id=553;
-			type="C_UAV_06_medical_F";
-			atlOffset=1.335144e-005;
-		};
-		class Item49
-		{
-			dataType="Group";
 			side="West";
 			class Entities
 			{
@@ -3262,7 +3082,7 @@ class Mission
 			id=555;
 			atlOffset=-0.00013542175;
 		};
-		class Item50
+		class Item46
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3281,7 +3101,7 @@ class Mission
 			type="B_T_UAV_03_dynamicLoadout_F";
 			atlOffset=-0.00013542175;
 		};
-		class Item51
+		class Item47
 		{
 			dataType="Trigger";
 			position[]={26842.211,23.619267,24604.197};

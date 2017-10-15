@@ -4,8 +4,8 @@
 	returns: nothing
 */
 
-#include "..\defines.h"
 
+#include "defines.h"
 player addEventHandler["FiredMan", {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_veh"];
 

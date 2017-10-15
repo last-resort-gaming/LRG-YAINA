@@ -1,4 +1,4 @@
-#include "Managers\CfgFunctions.hpp"
+#include "Missions\CfgFunctions.hpp"
 #include "Vehicles\CfgFunctions.hpp"
 #include "General\CfgFunctions.hpp"
 #include "Spawns\CfgFunctions.hpp"

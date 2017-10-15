@@ -4,7 +4,7 @@
 	returns: nothing
 */
 
-#include "..\defines.h"
+#include "defines.h"
 
 params ["_text"];
 

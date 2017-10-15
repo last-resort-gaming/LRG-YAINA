@@ -1,1 +1,1 @@
-#include "Managers\Params.hpp"
+#include "General\Params.hpp"

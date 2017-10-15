@@ -10,5 +10,8 @@ class YAINA {
 		class showFPS { postInit = 1; };
 		class baseProtection {};
 		class hintC {};
+		class timeManager{};
+		class hideTerrainObjects{};
+		class showTerrainObjects{};
     };
 };
