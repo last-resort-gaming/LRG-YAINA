@@ -23,5 +23,6 @@
 
 #define AIR_DEFENCE_TERMINALS [ \
     AirDefenceSwitch1, \
-    AirDefenceSwitch2 \
+    AirDefenceSwitch2, \
+    Laptop_USS_F \
 ]

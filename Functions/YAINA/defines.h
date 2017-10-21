@@ -6,7 +6,9 @@
 #define GVAR(s) YAINA_##s
 
 #define BASE_PROTECTION_AREAS [ \
-    BaseProtectionArea1 \
+    "Base_Area", \
+    "USS_Freedom_Area", \
+    "INS_Area" \
 ]
 
 #define DEBUG_MODE_FULL 1

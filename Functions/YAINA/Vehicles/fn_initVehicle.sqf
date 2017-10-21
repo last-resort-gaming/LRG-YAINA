@@ -58,6 +58,7 @@ if !(_respawnTime isEqualTo -1) then {
         typeOf _veh,
         getPosATL _veh,
         getDir _veh,
+        getObjectTextures _veh,
         _loadout,
         _animationInfo,
         _pylonLoadout,

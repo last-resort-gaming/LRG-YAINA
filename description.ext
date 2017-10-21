@@ -3,7 +3,7 @@
 ******************************************************************************/
 
 author = "MartinCo";
-onLoadName = "YAINA";
+onLoadName = "YAINA || Malden";
 OnLoadMission = "";
 loadScreen = "Data\LoadingScreen\splash.paa";
 overviewPicture = "Data\LoadingScreen\splash.paa";

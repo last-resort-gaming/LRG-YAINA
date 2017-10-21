@@ -44,3 +44,8 @@ _uav setDir (getDir hangar3);
 _uav setPosATL (getPosATL hangar3);
 createVehicleCrew _uav;
 [_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
+
+
+// Setup Medivac
+MedivacChopper setObjectTextureGlobal [0, "Data\Skins\H-9M_co.paa"];
+[MedivacChopper, true, 5] call YAINA_VEH_fnc_initVehicle;

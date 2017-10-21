@@ -8,9 +8,13 @@ class YAINA_SPAWNS {
         class HQ_Endurance {};
     };
 
-	class Vehicles {
+	class General {
 		file = "Functions\YAINA\Spawns";
 		class getAirSpawnPos {};
 		class postInit { postInit = 1; };
+    };
+
+    class Reinforcements {
+        file = "Functions\YAINA\Spawns\Reinforcements";
     };
 };

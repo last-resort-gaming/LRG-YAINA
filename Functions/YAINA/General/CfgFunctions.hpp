@@ -13,5 +13,6 @@ class YAINA {
 		class timeManager{};
 		class hideTerrainObjects{};
 		class showTerrainObjects{};
+		class getPointBetween {};
     };
 };
