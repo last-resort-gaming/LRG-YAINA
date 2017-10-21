@@ -8,9 +8,6 @@
 
 params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000]];
 
-systemChat format ["InitVeh with: %1, %2 m away from player", _veh, _veh distance player];
-diag_log   format ["InitVeh with: %1, %2 m away from player", _veh, _veh distance player];
-
 // Always show on map
 _veh setVariable ['QS_ST_drawEmptyVehicle',true, true];
 
