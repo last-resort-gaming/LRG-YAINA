@@ -14,5 +14,7 @@ class YAINA {
 		class hideTerrainObjects{};
 		class showTerrainObjects{};
 		class getPointBetween {};
+		class setupTP { postInit = 1; };
+		class fadeOutAndExecute {};
     };
 };

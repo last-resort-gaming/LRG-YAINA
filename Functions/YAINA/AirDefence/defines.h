@@ -17,8 +17,8 @@
     USS_AA5, \
     USS_AA6, \
     USS_AA7, \
-    INS_AA1, \
-    INS_AA2 \
+    INS_AA1C, \
+    INS_AA2C \
 ]
 
 #define AIR_DEFENCE_TERMINALS [ \
