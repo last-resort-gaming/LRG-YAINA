@@ -10,14 +10,13 @@ if(!isServer) exitWith {};
 
 [{
     for "_i" from count(GVAR(respawnList)) to 0 step -1 do {
-        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_loadout", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
+        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
 
         // If the vehicle is not alive / null then we remove from the respawn
         // list and schedule a delete it in 30 seconds just in case it
         // doesn't get removed when not alive
 
         _respawn = false;
-
         if (!alive _veh || isNull _veh) then {
 
             GVAR(respawnList) deleteAt _i;
@@ -56,10 +55,16 @@ if(!isServer) exitWith {};
         // Then we just trigger a respawn in _respawnTime
         if(_respawn) then {
             [{
-                params ["_vehType", "_pos", "_dir", "_loadout", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
+                params ["_vehType", "_pos", "_dir", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys"];
 
-                _nv = createVehicle [_vehType, _pos, [], 0, "CAN_COLLIDE"];
+                _nv = createVehicle [_vehType, [0,0,0], [], 0, "CAN_COLLIDE"];
+
+                // reset animations
+                { _nv animate [_x select 0, _x select 1, true]; } forEach _animationInfo;
+
+                // Then move to intended location
                 _nv setDir _dir;
+                _nv setPos _pos;
 
                 if (_nv isKindOf "UAV") then {
 
@@ -102,7 +107,7 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, [_vehType, _pos, _dir, _loadout, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys], _respawnTime] call CBA_fnc_waitAndExecute;
+            }, [_vehType, _pos, _dir, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys], _respawnTime] call CBA_fnc_waitAndExecute;
         };
 
     };

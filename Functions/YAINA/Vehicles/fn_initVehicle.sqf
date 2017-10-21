@@ -8,6 +8,9 @@
 
 params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000]];
 
+systemChat format ["InitVeh with: %1, %2 m away from player", _veh, _veh distance player];
+diag_log   format ["InitVeh with: %1, %2 m away from player", _veh, _veh distance player];
+
 // Always show on map
 _veh setVariable ['QS_ST_drawEmptyVehicle',true, true];
 
@@ -39,6 +42,14 @@ if !(_respawnTime isEqualTo -1) then {
         getItemCargo _veh
     ];
 
+    // Save any wing fold state
+    _animationInfo = [];
+    if(_veh isKindOf "Plane") then {
+        _wingFoldAnimationsList = [(configFile >> "CfgVehicles" >> typeOf _veh  >> "AircraftAutomatedSystems"), "wingFoldAnimations", []] call BIS_fnc_returnConfigEntry;
+        { _animationInfo pushBack [_x, _veh animationPhase _x]; } forEach _wingFoldAnimationsList;
+    };
+
+    // Save any pylon weapon loadouts
     _pylonLoadout = [];
     if (_veh isKindOf "UAV") then {
         _pylonLoadout = GetPylonMagazines _veh;
@@ -51,6 +62,7 @@ if !(_respawnTime isEqualTo -1) then {
         getPosATL _veh,
         getDir _veh,
         _loadout,
+        _animationInfo,
         _pylonLoadout,
         _respawnTime,
         _abandonDistance,
