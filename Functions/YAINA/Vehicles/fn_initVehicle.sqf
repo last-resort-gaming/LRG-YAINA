@@ -59,6 +59,7 @@ if !(_respawnTime isEqualTo -1) then {
         getPosATL _veh,
         getDir _veh,
         getObjectTextures _veh,
+        isCopilotEnabled _veh,
         _loadout,
         _animationInfo,
         _pylonLoadout,

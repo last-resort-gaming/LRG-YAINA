@@ -8,7 +8,7 @@ class EditorData
 	toggles=33;
 	class ItemIDProvider
 	{
-		nextID=1444;
+		nextID=1448;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={1237.2738,42.38633,10417.422};
-		dir[]={0.20930189,-0.59646195,0.77487504};
-		up[]={0.15553707,0.80263984,0.57582903};
-		aside[]={0.96540618,-2.9976945e-009,-0.26076546};
+		pos[]={762.53253,53.828197,12107.886};
+		dir[]={-0.18118308,-0.55198979,0.81396788};
+		up[]={-0.11994167,0.83382094,0.53884232};
+		aside[]={0.97614652,4.7417416e-007,0.21728003};
 	};
 };
 binarizationWanted=0;
@@ -346,6 +346,52 @@ randomSeed=1783438;
 class ScenarioData
 {
 	author="MartinCo";
+	disabledAI=1;
+	wreckRemovalMaxTime=3600;
+};
+class CustomAttributes
+{
+	class Category0
+	{
+		name="Multiplayer";
+		class Attribute0
+		{
+			property="RespawnTemplates";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"ARRAY"
+						};
+					};
+					class value
+					{
+						items=1;
+						class Item0
+						{
+							class data
+							{
+								class type
+								{
+									type[]=
+									{
+										"STRING"
+									};
+								};
+								value="None";
+							};
+						};
+					};
+				};
+			};
+		};
+		nAttributes=1;
+	};
 };
 class Mission
 {
@@ -369,7 +415,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=79;
+		items=78;
 		class Item0
 		{
 			dataType="Object";
@@ -23169,7 +23215,7 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
+						init="this enableCopilot false;" \n "[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 					};
 					id=1194;
 					type="B_Heli_Light_01_F";
@@ -23310,7 +23356,7 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
+						init="this enableCopilot false;" \n "[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 					};
 					id=1201;
 					type="B_Heli_Transport_03_F";
@@ -23327,7 +23373,7 @@ class Mission
 					side="Empty";
 					class Attributes
 					{
-						init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
+						init="this enableCopilot false;" \n "[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 					};
 					id=1207;
 					type="B_Heli_Transport_01_F";
@@ -23344,7 +23390,7 @@ class Mission
 					side="Empty";
 					class Attributes
 					{
-						init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
+						init="this enableCopilot false;" \n "[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 					};
 					id=1219;
 					type="B_CTRG_Heli_Transport_01_tropic_F";
@@ -23571,7 +23617,7 @@ class Mission
 					side="Empty";
 					class Attributes
 					{
-						init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
+						init="this enableCopilot false;" \n "[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 					};
 					id=1277;
 					type="I_Heli_Transport_02_F";
@@ -23900,13 +23946,14 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={753.76624,30.699144,12132.142};
+				position[]={753.76599,30.699144,12132.141};
 				angles[]={0,0.06981317,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				init="this enableCopilot false;";
 				name="MedivacChopper";
 			};
 			id=1368;
@@ -24047,7 +24094,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={753.836,28.92,12133.164};
-				angles[]={0,0.087266453,0};
+				angles[]={0,0.08726646,0};
 			};
 			side="Empty";
 			flags=4;
@@ -24487,37 +24534,33 @@ class Mission
 		};
 		class Item77
 		{
-			dataType="Object";
-			class PositionInfo
+			dataType="Group";
+			side="West";
+			class Entities
 			{
-				position[]={1245.8372,23.528378,10366.489};
-				angles[]={-0,0.50438267,0};
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={1275.9586,0.0014388561,10412.3};
+					};
+					side="West";
+					flags=3;
+					class Attributes
+					{
+					};
+					id=1445;
+					type="B_soldier_AAA_F";
+					atlOffset=83.578789;
+				};
 			};
-			side="Empty";
-			flags=4;
 			class Attributes
 			{
 			};
-			id=1442;
-			type="Land_JumpTarget_F";
-		};
-		class Item78
-		{
-			dataType="Trigger";
-			position[]={1245.8348,23.528378,10366.492};
-			class Attributes
-			{
-				name="SA_JET_1";
-				condition="{_x isKindOf ""plane"" && !(_x isKindOf ""UAV"") && speed _x < 1} count thislist > 0;";
-				onActivation="0 = [""Plane"", (thisList select 0), 30, 30] execVM ""scripts\YAINA\Service\general.sqf"";";
-				sizeA=10;
-				sizeB=10;
-				sizeC=6;
-				repeatable=1;
-				activationBy="WEST";
-			};
-			id=1443;
-			type="EmptyDetector";
+			id=1444;
+			atlOffset=83.578789;
 		};
 	};
 };
