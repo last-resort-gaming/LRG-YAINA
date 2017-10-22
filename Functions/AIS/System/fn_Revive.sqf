@@ -31,7 +31,7 @@ if(AIS_CONSUME_FAKS && _fakCount isEqualTo 0) exitWith {
 
 // If no MedKit Bail, unless excluded
 if(AIS_REQUIRE_MEDIKIT && (_medKitCount isEqualTo 0 && _healer getVariable ["AIS_REQUIRE_MEDIKIT", true])) exitWith {
-    ["You have no Medi Kits"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
+    ["You have no Medi Kit"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
 };
 
 
