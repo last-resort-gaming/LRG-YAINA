@@ -4,7 +4,6 @@
 	returns: nothing
 */
 
-
 YAINA_last_killhint_player = 0;
 
 // Rather than searching through CfgWeapons / Magazines etc
@@ -24,6 +23,8 @@ YAINA_explosivesMap = [[],[]];
     true;
 } count ["Throw", "Put"];
 
+// Make note of our original side
+player setVariable ["YAINA_side", playerSide, true];
 
 // And add our killed by hint
 ["AIS_Unconscious", {
@@ -48,7 +49,6 @@ YAINA_explosivesMap = [[],[]];
     // can't die twice in 5 seconds
     if ((diag_tickTime - YAINA_last_killhint_player) < 5) exitWith {};
 
-
     _vehicle   = vehicle _source;
     _inVehicle = !(_vehicle isEqualTo _source);
     _weapon    = nil;
@@ -67,13 +67,13 @@ YAINA_explosivesMap = [[],[]];
         };
 
         _source = _vehicle;
-        _weapon = "Their drone";
+        _weapon = format["%1 drone", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer)];
     } else {
         // If no projectile, but we're in a vehicle, then blame the driver
         if (_projectile isEqualTo "" && _inVehicle) then {
             _sourcePlayer = driver _vehicle;
             _source = _vehicle;
-            _weapon = ["Their driving", "Their Flying"] select (_vehicle isKindOf "Air");
+            _weapon = format["%1 %2", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer), ["driving", "Flying"] select (_vehicle isKindOf "Air")];
         };
     };
 
@@ -133,7 +133,7 @@ YAINA_explosivesMap = [[],[]];
         if (_aisDamageType == "falling") then {
             _weapon = "Falling";
         } else {
-            _weapon = "Their magic wand";
+            _weapon = format["%1 magic wand", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer)];
         };
     };
 
@@ -143,7 +143,17 @@ YAINA_explosivesMap = [[],[]];
         format ["<br/><t color='#ffffff'>%1:</t><t align='right'>%2</t>", _a, _b];
     };
 
-    _header = "<t color='#ffffff' size='2' shadow='1' shadowColor='#000000' align='center'>You were killed...</t><br/>";
+    // Friendly Fire / Suicide ?
+    _header = "<t color='#ff0000' size='2' shadow='1' shadowColor='#000000' align='center'>You were killed...</t><br/>";
+
+    if(_sourcePlayer isEqualTo _unit) then {
+        _header = "<t color='#ff0000' size='2' shadow='1' shadowColor='#000000' align='center'>Suicide...</t><br/>";
+    } else {
+        if((_sourcePlayer getVariable ["YAINA_side", side _sourcePlayer]) isEqualTo (_unit getVariable ["YAINA_side", side _unit])) then {
+            _header = "<t color='#ff0000' size='2' shadow='1' shadowColor='#000000' align='center'>Friendly Fire...</t><br/>";
+        };
+    };
+
     _bodys  = "<t align='left'>";
 
     _bodys  = _bodys + (["Killer", name _sourcePlayer] call _elem);
@@ -154,10 +164,7 @@ YAINA_explosivesMap = [[],[]];
     };
 
     _bodys = _bodys + (["Range", format["%1 meter%2", round(_distance), ["s", ""] select (_distance isEqualTo 1)]] call _elem);
-
     _hint = _header + _bodys + "</t>";
-
-    diag_log _hint;
 
     hint parseText _hint;
 
