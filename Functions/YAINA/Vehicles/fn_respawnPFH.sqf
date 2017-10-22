@@ -30,6 +30,9 @@ if(!isServer) exitWith {};
                 // If it's less than 5m from start pos, just bail
                 if (_veh distance2D _pos < 5) exitWith {};
 
+                // If it's within a BASE area, just bail
+                if !(call { {_veh inArea _x} count BASE_PROTECTION_AREAS; } isEqualTo 0) exitWith {};
+
                 // If the vehicle is owned, then the abandonDistance is doubled;
                 _owner = _veh getVariable QVAR(owner);
                 if(!isNil "_owner") then {
