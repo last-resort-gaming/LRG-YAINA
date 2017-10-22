@@ -6,7 +6,7 @@
 
 #include "defines.h"
 
-params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000]];
+params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000], ["_persistVars", []]];
 
 // Always show on map
 _veh setVariable ['QS_ST_drawEmptyVehicle',true, true];
@@ -52,6 +52,9 @@ if !(_respawnTime isEqualTo -1) then {
         _pylonLoadout = GetPylonMagazines _veh;
     };
 
+    // Save persist vars
+    _persistVarsSave = _persistVars apply { [_x, _veh getVariable _x] };
+
     // And just push back to the respawn list
     GVAR(respawnList) pushBack [
         _veh,
@@ -65,7 +68,8 @@ if !(_respawnTime isEqualTo -1) then {
         _pylonLoadout,
         _respawnTime,
         _abandonDistance,
-        _hasKeys
+        _hasKeys,
+        _persistVarsSave
     ];
 };
 
