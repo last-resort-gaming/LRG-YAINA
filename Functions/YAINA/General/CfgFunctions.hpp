@@ -16,5 +16,7 @@ class YAINA {
 		class getPointBetween {};
 		class setupTP { postInit = 1; };
 		class fadeOutAndExecute {};
+		class markerManager { postInit = 1; };
+		class serverPreInit { preInit = 1; };
     };
 };
