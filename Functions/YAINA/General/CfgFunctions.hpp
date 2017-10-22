@@ -18,5 +18,6 @@ class YAINA {
 		class fadeOutAndExecute {};
 		class markerManager { postInit = 1; };
 		class serverPreInit { preInit = 1; };
+		class pilotCheck { postInit = 1; };
     };
 };
