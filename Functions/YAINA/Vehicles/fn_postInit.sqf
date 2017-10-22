@@ -40,7 +40,7 @@ if(hasInterface) then {
                 _owner = _veh getVariable QVAR(owner);
                 if (!(isNil "_owner")) then {
                     if !([_owner isEqualTo (driver _veh), (group _owner) isEqualTo (group driver _veh)] select SQUAD_BASED) then {
-                        ["You don't have the keys."] remoteExec [Q(YFNC(hintC)), driver _veh];
+                        format ["%1 has the keys.", name _owner] call YFNC(hintC);
                         moveOut driver _veh;
                     };
                 } else {
