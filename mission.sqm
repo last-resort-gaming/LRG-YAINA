@@ -8,7 +8,7 @@ class EditorData
 	toggles=549;
 	class ItemIDProvider
 	{
-		nextID=1629;
+		nextID=1630;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={3027.7458,40.604805,8533.9619};
-		dir[]={0.33323267,-0.60726935,-0.72136009};
-		up[]={0.25475502,0.79432803,-0.55148131};
-		aside[]={-0.90788198,-3.5106495e-008,-0.41939226};
+		pos[]={3081.1709,29.154793,8465.2998};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -482,7 +482,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=86;
+		items=87;
 		class Item0
 		{
 			dataType="Object";
@@ -20387,6 +20387,7 @@ class Mission
 							};
 							id=1119;
 							type="B_CargoNet_01_ammo_F";
+							atlOffset=2.3841858e-007;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -21413,7 +21414,7 @@ class Mission
 							};
 							id=1339;
 							type="B_APC_Tracked_01_AA_F";
-							atlOffset=-0.021999955;
+							atlOffset=-0.021999836;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -21453,6 +21454,7 @@ class Mission
 							};
 							id=1340;
 							type="Land_HBarrier_Big_F";
+							atlOffset=-2.3841858e-007;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -21492,6 +21494,7 @@ class Mission
 							};
 							id=1341;
 							type="Land_HBarrier_Big_F";
+							atlOffset=1.1920929e-007;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -21531,7 +21534,7 @@ class Mission
 							};
 							id=1342;
 							type="Land_HBarrier_Big_F";
-							atlOffset=0.019999981;
+							atlOffset=0.019999862;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -21704,6 +21707,7 @@ class Mission
 							};
 							id=1334;
 							type="Land_HBarrier_Big_F";
+							atlOffset=-2.3841858e-007;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -23079,11 +23083,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={46.730892,6.4512634,12744.864};
+				position[]={47,5.9996147,12745};
 			};
 			id=1372;
 			type="ModuleCurator_F";
-			atlOffset=45.511673;
+			atlOffset=45.056;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -23158,7 +23162,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=2;
+							value=3;
 						};
 					};
 				};
@@ -32162,6 +32166,97 @@ class Mission
 			};
 			id=1628;
 			type="EmptyDetector";
+		};
+		class Item86
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={73,6,12745};
+			};
+			id=1629;
+			type="ModuleCurator_F";
+			atlOffset=44.203991;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCurator_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="76561197981494016";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCurator_F_Forced";
+					expression="_this setVariable ['Forced',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCurator_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="MartinCo";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCurator_F_Addons";
+					expression="_this setVariable ['Addons',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=3;
+						};
+					};
+				};
+				nAttributes=4;
+			};
 		};
 	};
 };
