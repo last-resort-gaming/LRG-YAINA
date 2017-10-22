@@ -25,7 +25,7 @@ AIS_NO_CHAT 				= 	false; 			// If set to true, a injured player cannot use text
 AIS_AI_HELP_RADIUS 			= 	100; 			// Number, Radius in metres. Units in this radius will help to revive if no group member is able to revive. Max value is 200 metres.
 AIS_DISABLE_RESPAWN_BUTTON	=	30;				// Time in seconds while the respawn button is disabled (Esc Menu). Set to 0 to enable the respawn button everytime.
 AIS_CONSUME_FAKS            =   true;           // Whether or not to consume FAKs upon successful heal
-
+AIS_REQUIRE_MEDIKIT         =   true;           // Whether or not to require MediKit, can be bypassed by setting objectVar AIS_REQUIRE_MEDIKIT to false
 
 //__________________________________________________________________________________________________________________________________________________________________
 //	v v v v v v v v v v v v  --- Visual Settings --- v v v v v v v v v v v v 

@@ -21,12 +21,19 @@ params [
 // so be it, since we aren't taking it here, because if they abort then we
 // would need even more logic to re-add it, so KISS.
 
-_fakLoadout = [_healer] call AIS_System_fnc_getFAKs;
-_fakCount   = 0; { _fakCount = _fakCount + _x; } count _fakLoadout;
+_fakCount    = count (items _healer select { _x isEqualTo "FirstAidKit"; });
+_medKitCount = count (items _healer select { _x isEqualTo "Medikit"; });
 
+// If no FAKs, Bail
 if(AIS_CONSUME_FAKS && _fakCount isEqualTo 0) exitWith {
     ["You have no First Aid Kits to administer"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
 };
+
+// If no MedKit Bail, unless excluded
+if(AIS_REQUIRE_MEDIKIT && (_medKitCount isEqualTo 0 && _healer getVariable ["AIS_REQUIRE_MEDIKIT", true])) exitWith {
+    ["You have no Medi Kits"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
+};
+
 
 _injured setVariable ["ais_hasHelper", _healer, true];
 
