@@ -12,9 +12,6 @@
 CBA_display_ingame_warnings = false;
 publicVariable "CBA_display_ingame_warnings";
 
-// Start our managers
-if (("TimeManagerEnable" call BIS_fnc_getParamValue) isEqualTo 1) then { call YAINA_fnc_timeManager; };
-
 // Bring in UAVs
 
 _uav = "B_UAV_02_dynamicLoadout_F" createVehicle [0,0,0];
@@ -48,4 +45,5 @@ createVehicleCrew _uav;
 
 // Setup Medivac
 MedivacChopper setObjectTextureGlobal [0, "Data\Skins\H-9M_co.paa"];
-[MedivacChopper, true, 5] call YAINA_VEH_fnc_initVehicle;
+MedivacChopper setVariable ["YAINA_MERT", true];
+[MedivacChopper, true, 5, 1000, ["MEDIVAC_CHOPPER"]] call YAINA_VEH_fnc_initVehicle;
