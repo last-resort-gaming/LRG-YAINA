@@ -8,7 +8,14 @@
 
 if !(isServer) exitWith {};
 
-GVAR(ownerIDs) = [[],[]];
+GVAR(ownerIDs) = [[],[]]; // [[1,2,3,...], [[uid, profileName, _owner ID],...]
+
+// Load reward Points
+YVAR(rewardPoints) = profileNamespace getVariable QYVAR(rewardPoints);
+if (isNil QYVAR(rewardPoints)) then {
+    YVAR(rewardPoints) = 0;
+};
+publicVariable QYVAR(rewardPoints);
 
 onPlayerConnected {
     (GVAR(ownerIDs) select 0) pushBack _id;

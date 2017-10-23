@@ -19,5 +19,9 @@ class YAINA {
 		class markerManager { postInit = 1; };
 		class serverPreInit { preInit = 1; };
 		class pilotCheck { postInit = 1; };
+		class dirFromNearestName {};
+		class addRewardPoints {};
+		class globalHint {};
+		class getPosAround {};
     };
 };

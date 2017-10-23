@@ -6,12 +6,12 @@
 
 #include "..\defines.h"
 
-params ["_missionID", "_missionType", "_markers", "_groups", "_vehicles", "_buildings", "_pfh", "_pfhDelay", "_pfhArgs"];
+params ["_missionID", "_missionType", "_stage", "_markers", "_groups", "_vehicles", "_buildings", "_pfh", "_pfhDelay", "_pfhArgs"];
 
 // Send it all to the server...along with our profileName
 [
     profileName,
-    _missionID, _missionType, _markers, _groups, _vehicles, _buildings, _pfh, _pfhDelay, _pfhArgs
+    _missionID, _missionType, _stage, _markers, _groups, _vehicles, _buildings, _pfh, _pfhDelay, _pfhArgs
 ] remoteExecCall [QFNC(addHCDCH), 2];
 
 // Store local args for cleanup phase

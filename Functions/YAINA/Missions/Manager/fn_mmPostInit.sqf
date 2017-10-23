@@ -9,16 +9,6 @@
 // This only needs to be run on server hosts or HC
 if !(isServer || !hasInterface) exitWith {};
 
-private _locations =  nearestLocations [
-    [worldSize/2, worldSize/2 , 0],                     // Center of the world
-    ["NameCityCapital", "NameCity", "NameLocal"],       // List of CfgLocationTypes
-    worldSize * sqrt 2                                  // Distance from center to corner
-];
-
-GVAR(MAO_Locations) = _locations apply {
-    [(text _x), (position _x)];
-};
-
 // Where we store our local MissionID
 GVAR(localMissionID) = 0;
 GVAR(localRunningMissions)  = [[], []];   // [Mission ID, Mission ID, ...], [Mission Args, Mission Args, ...]]
@@ -51,7 +41,7 @@ addMissionEventHandler["BuildingChanged", {
 
         // We always add it to a list, because if the HC failover happens, the new HC will need to know to restore
         _missionManaged = {
-            if (_from inArea ((_x select 3) select 1)) exitWith {
+            if (_from inArea ((_x select 4) select 1)) exitWith {
                 _missionID = _x select 1;
                 _idx = (GVAR(hcBuildingRestores) select 0) find _missionID;
                 if (_idx isEqualTo -1) then {

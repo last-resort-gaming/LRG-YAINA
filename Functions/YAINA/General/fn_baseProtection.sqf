@@ -12,8 +12,9 @@ player addEventHandler["FiredMan", {
     // Permit Flares
     if (_weapon isEqualTo "CMFlareLauncher")  exitWith {true};
 
+    _checkObject = [_veh, _unit] select isNull _veh;
     {
-        if (_unit inArea _x) exitWith {
+        if (_checkObject inArea _x) exitWith {
             deleteVehicle _projectile;
             "Do not fire in base" remoteExecCall [Q(YFNC(hintC)), _unit];
             true;

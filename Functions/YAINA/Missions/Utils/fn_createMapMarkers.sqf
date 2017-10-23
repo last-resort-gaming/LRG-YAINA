@@ -6,21 +6,29 @@
 
 #include "..\defines.h"
 
-params ["_missionID", "_markerPos", "_size"];
+params ["_missionID", "_markerPos", "_size", ["_showSelector", true], ["_brush", "FDiagonal"], ["_startID", 1]];
 
-TRACE_3("createMapMarkers", _missionID, _markerPos, _size);
+private _mrk1 = nil;
 
-private _mrk1 = format ["%1_mrk1", _missionID];
-createMarker [_mrk1, _markerPos];
-_mrk1 setMarkerShape "ICON";
-_mrk1 setMarkerType "selector_selectable";
-_mrk1 setMarkerColor "ColorBLUFOR";
+if !(isNil "_showSelector") then {
+    _mrk1 = format ["%1_mrk%2", _missionID, _startID];
+    createMarker [_mrk1, _markerPos];
+    _mrk1 setMarkerShape "ICON";
 
-private _mrk2 = format ["%1_mrk2", _missionID];
+    if (typeName _showSelector isEqualTo "STRING") then {
+        _mrk1 setMarkerType _showSelector;
+    } else {
+        _mrk1 setMarkerType "selector_selectable";
+        _mrk1 setMarkerColor "ColorBLUFOR";
+    };
+    INCR(_startID);
+};
+
+private _mrk2 = format ["%1_mrk%2", _missionID, _startID];
 createMarker [_mrk2, _markerPos];
 _mrk2 setMarkerShape "ELLIPSE";
 _mrk2 setMarkerSize [_size, _size];
-_mrk2 setMarkerBrush "Border";
+_mrk2 setMarkerBrush _brush;
 _mrk2 setMarkerColor "ColorOPFOR";
 
 [_mrk1, _mrk2]

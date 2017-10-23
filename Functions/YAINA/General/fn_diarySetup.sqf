@@ -19,7 +19,6 @@ player createDiaryRecord ["YAINA", ["Credits",
     Advanced Towing, Advanced Rappelling,<br/>
     Advanced Sling Loading, Advanced Urban Rappelling
 </font>
-<br/>redknight2 :<br/><font face= 'PuristaLight' color= '#D3D3D3'>    Red and Black Paramedic Uniform</font>
 <br/>suiside :<br/><font face= 'PuristaLight' color= '#D3D3D3'>    AOA Hummingbird Skin</font>
 </font>
 "

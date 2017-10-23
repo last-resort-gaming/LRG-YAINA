@@ -12,11 +12,18 @@ class YAINA_MM {
         class setMissionID {};
         class startMissionPFH {};
         class endMissionPFH {};
+        class updateMissionStage {};
+        class updateMissionState {};
     };
 
     class Objectives_MAO {
         file = "Functions\YAINA\Missions\Objectives\MainAO";
         class spawnMainAO {};
+    };
+
+    class SideMissions {
+        file = "Functions\YAINA\Missions\Objectives\SideMissions";
+        class radioTower {};
     };
 
     class Utils {

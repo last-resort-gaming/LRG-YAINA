@@ -9,7 +9,7 @@
 if (!isServer) exitWith {};
 
 GVAR(hcList) = [];                  // List of connected HCs [HC, HC, HC]
-GVAR(hcDCH)  = [];                  // List of Mission Handlers [ [HC, MissionID, MissionState, Narkers, Groups, Vehicles, Buildings, pfh, pfhDelay, pfhArgs], [...], ...];
+GVAR(hcDCH)  = [];                  // List of Mission Handlers [ [HC, MissionID, MissionStage, MissionState, Markers, Groups, Vehicles, Buildings, pfh, pfhDelay, pfhArgs], [...], ...];
 GVAR(hcBuildingRestores) = [[],[]]; // List of buildings to restore per-mission, used for restarting mission PFH
 
 // Main Server Mission Manager

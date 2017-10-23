@@ -3,7 +3,10 @@
 
 #define Q(s) #s
 #define YFNC(s) YAINA_fnc_##s
+#define QYFNC(s) Q(YFNC(s))
 #define GVAR(s) YAINA_##s
+#define YVAR(s) YAINA_##s
+#define QYVAR(s) Q(YVAR(s))
 
 #define BASE_PROTECTION_AREAS [ \
     "Base_Area", \

@@ -10,8 +10,9 @@
 
 #include "defines.h"
 
-params ["_pos", "_radius", ["_types", CATEGORIES, [[]]]];
+params ["_pos", "_radius", ["_excludes", []], ["_types", CATEGORIES, [[]]]];
 
+TRACE_4("hideTerrainObjects", _pos, _radius, _excludes, _types);
 
 _clearTypes  = [];
 {
@@ -26,8 +27,10 @@ _clearTypes  = [];
 _hide = nearestTerrainObjects [_pos, _clearTypes, _radius, false, true];
 
 {
-    _x hideObjectGlobal true;
-    _x allowDamage false;
+    if !(_x in _excludes) then {
+        _x hideObjectGlobal true;
+        _x allowDamage false;
+    };
     true;
 } count _hide;
 

@@ -6,10 +6,12 @@
 */
 #include "..\defines.h"
 
-params ["_missionID"];
+params ["_pfhID", "_missionID"];
+
+// Do we break out ?
+_fail = false;
 
 // Find our missionID
-
 private _localRunningMissionID = (GVAR(localRunningMissions) select 0) find _missionID;
 
 // We exit with true, mainly to delete the PFH even though it'll leak resources
@@ -18,14 +20,21 @@ if (_localRunningMissionID isEqualTo -1) exitWith { true; };
 // Bring in the params from our local missions
 ((GVAR(localRunningMissions) select 1) select _localRunningMissionID) params ["_markers", "_groups", "_vehicles", "_buildings"];
 
-private _return = false;
-private _areaMarker = _markers select 1;
+// We can only clear up if the area marker exists
 
-// We always set the marker alphas to 0 so they're no longer on the map, shortcut for finding people to bail
-{ _x setMarkerAlpha 0; } count _markers;
+if !(_markers isEqualTo []) then {
 
-// If there are players remaining in the AO, just bail out
-if !(call { { _x inArea _areaMarker } count allPlayers; } isEqualTo 0) exitWith { false; };
+    private _areaMarker = _markers select 1;
+
+    // We always set the marker alphas to 0 so they're no longer on the map, shortcut for finding people to bail
+    { _x setMarkerAlpha 0; } count _markers;
+
+    // If there are players remaining in the AO, just bail out
+    if !(call { { _x inArea _areaMarker } count allPlayers; } isEqualTo 0) then { _fail = true; };
+
+};
+
+if (_fail) exitWith { false; };
 
 // Restore all destroyed buildings in the area
 _rbID = (GVAR(localBuildingRestores) select 0) find _missionID;
@@ -63,6 +72,10 @@ if !(_rbID isEqualTo -1) then {
 // Call BIS_fnc_taskDelete ?
 [_missionID] call BIS_fnc_deleteTask;
 
-        [profileName, _missionID, _missionMarker] call INA_fnc_delHCDCHandler;
+// Delete our HCDCH
+[profileName, _missionID, _missionMarker] call FNC(delHCDCH);
+
+// Remove pfh
+[_pfhID] call CBA_fnc_removePerFrameHandler;
 
 true;
