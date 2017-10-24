@@ -45,5 +45,5 @@ createVehicleCrew _uav;
 
 // Setup Medivac
 MedivacChopper setObjectTextureGlobal [0, "Data\Skins\H-9M_co.paa"];
-MedivacChopper setVariable ["YAINA_MERT", true];
-[MedivacChopper, true, 5, 1000, ["MEDIVAC_CHOPPER"]] call YAINA_VEH_fnc_initVehicle;
+MedivacChopper setVariable ["YAINA_MERT", true, true];
+[MedivacChopper, true, 5, 1000, ["YAINA_MERT"]] call YAINA_VEH_fnc_initVehicle;
