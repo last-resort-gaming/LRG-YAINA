@@ -64,7 +64,7 @@ if(!isServer) exitWith {};
 
                 // reset textures
                 {
-                    _nv setObjectTexture [_forEachIndex, _x];
+                    _nv setObjectTextureGlobal [_forEachIndex, _x];
                 } forEach _tex;
 
                 // reset animations
@@ -92,7 +92,7 @@ if(!isServer) exitWith {};
                 };
 
                 // restore persistant vars
-                { _nv setVariable _x; } forEach _persistVars;
+                { _x set [2,true]; _nv setVariable _x; } forEach _persistVars;
 
                 // handle inventories
                 clearWeaponCargoGlobal _nv;
@@ -117,7 +117,7 @@ if(!isServer) exitWith {};
                 };
 
                 // Re-Init Vehicle
-                [_nv, _hasKeys, _respawnTime, _abandonDistance] call FNC(initVehicle);
+                [_nv, _hasKeys, _respawnTime, _abandonDistance, _persistVars apply { _x select 0; }] call FNC(initVehicle);
 
                 true;
 
