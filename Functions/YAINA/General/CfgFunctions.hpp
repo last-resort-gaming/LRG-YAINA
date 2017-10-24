@@ -23,5 +23,6 @@ class YAINA {
 		class addRewardPoints {};
 		class globalHint {};
 		class getPosAround {};
+		class crewNames { postInit = 1; };
     };
 };
