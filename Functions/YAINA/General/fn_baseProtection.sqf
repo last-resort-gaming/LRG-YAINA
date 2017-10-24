@@ -16,7 +16,7 @@ player addEventHandler["FiredMan", {
     {
         if (_checkObject inArea _x) exitWith {
             deleteVehicle _projectile;
-            "Do not fire in base" remoteExecCall [Q(YFNC(hintC)), _unit];
+            "Do not fire in base" remoteExecCall [QYFNC(hintC), _unit];
             true;
         };
         false;

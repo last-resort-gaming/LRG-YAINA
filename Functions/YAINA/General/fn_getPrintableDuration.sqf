@@ -40,7 +40,7 @@ if (_minutes > 0) exitWith {
     if (_seconds > 0) exitWith {
         format["%1 %2", _minutesString, _secondsString];
     };
-    _secondsString;
+    _minutesString;
 };
 
 _secondsString

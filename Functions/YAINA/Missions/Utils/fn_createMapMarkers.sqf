@@ -31,4 +31,5 @@ _mrk2 setMarkerSize [_size, _size];
 _mrk2 setMarkerBrush _brush;
 _mrk2 setMarkerColor "ColorOPFOR";
 
-[_mrk1, _mrk2]
+// return the area marker first, this is used in the cleanup phase
+[_mrk2,_mrk1]

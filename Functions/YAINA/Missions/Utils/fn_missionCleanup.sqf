@@ -24,7 +24,7 @@ if (_localRunningMissionID isEqualTo -1) exitWith { true; };
 
 if !(_markers isEqualTo []) then {
 
-    private _areaMarker = _markers select 1;
+    private _areaMarker = _markers select 0;
 
     // We always set the marker alphas to 0 so they're no longer on the map, shortcut for finding people to bail
     { _x setMarkerAlpha 0; } count _markers;
@@ -35,14 +35,6 @@ if !(_markers isEqualTo []) then {
 };
 
 if (_fail) exitWith { false; };
-
-// Restore all destroyed buildings in the area
-_rbID = (GVAR(localBuildingRestores) select 0) find _missionID;
-if !(_rbID isEqualTo -1) then {
-    { _x setDamage 0; true } count ( (GVAR(localBuildingRestores) select 1) select _rbID);
-    (GVAR(localBuildingRestores) select 0) deleteAt _rbID;
-    (GVAR(localBuildingRestores) select 1) deleteAt _rbID;
-};
 
 // Delete all vehicles
 {
@@ -56,11 +48,20 @@ if !(_rbID isEqualTo -1) then {
     deleteGroup _x;
 } count _groups;
 
-// Restore any damaged building to remove the ruins etc. then delete
+// Restore any replaced building to remove the ruins etc. then delete
+// to avoid any left-overs, these are really for the
 {
     _x setDamage 0;
     deleteVehicle _x;
 } count _buildings;
+
+// Restore any buildings around 1.5 times the AO size
+// Remove any mines around the AO
+
+_sz =  3 * (getMarkerSize (_markers select 0) select 0);
+{ _x setDamage 0; true; } count ((getMarkerPos (_markers select 0)) nearObjects ["All", _sz]);
+{ deleteVehicle _x; } count ((getMarkerPos (_markers select 0)) nearObjects ["MineBase", _sz]);
+
 
 // delete our _markers
 { deleteMarker _x; true; } count _markers;
