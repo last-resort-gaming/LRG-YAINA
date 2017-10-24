@@ -63,15 +63,16 @@ player createDiaryRecord ["YAINA", ["Credits",
 <br/>
 <font face='PuristaLight' color='#D3D3D3'>We would like to thank the following for their contributions to both the community and especially the following projects that have been used to create this mission.</font>
 <br/>
-<br/>Quicksilver:<br/><font face='PuristaLight' color='#D3D3D3'>    QS Icons</font>
+<br/>alganthe:<br/><font face='PuristaLight' color='#D3D3D3'>    Vehicle Crew HUD</font>
 <br/>CBA_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    PFH Handlers, Event Handlers</font>
 <br/>Champ-1:<br/><font face='PuristaLight' color='#D3D3D3'>    CHVD</font>
-<br/>Psychobastard:<br/><font face='PuristaLight' color='#D3D3D3'>    AIS Revive</font>
 <br/>code34 :<br/><font face='PuristaLight' color='#D3D3D3'>    Real Weather</font>
 <br/>duda :<br/><font face='PuristaLight' color='#D3D3D3'>
     Advanced Towing, Advanced Rappelling,<br/>
     Advanced Sling Loading, Advanced Urban Rappelling
 </font>
+<br/>Psychobastard:<br/><font face='PuristaLight' color='#D3D3D3'>    AIS Revive</font>
+<br/>Quicksilver:<br/><font face='PuristaLight' color='#D3D3D3'>    QS Icons</font>
 <br/>suiside :<br/><font face='PuristaLight' color='#D3D3D3'>    AOA Hummingbird Skin</font>
 </font>
 "
@@ -82,11 +83,11 @@ player createDiaryRecord ["YAINA", ["Optional Mods",
 <br/>
 <font face='PuristaLight' color='#D3D3D3'>Please click a mod to copy the URL to your clipboard</font>
 <br/>
-<br/>CBA_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=450814997'"">CBA_A3</execute></font>
-<br/>LAxemann:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825179978'"">Enhanced Soundscape</execute>, <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825181638'"">DynaSound 2</execute></font>
 <br/>badbenson:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=333310405'"">Enhanced Movement</execute></font>
-<br/>Paladin:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=767380317'"">Blastcore Edited (standalone version)</execute></font>
+<br/>CBA_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=450814997'"">CBA_A3</execute></font>
 <br/>dslyecxi:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=498740884'"">ShackTac User Interface</execute></font>
+<br/>LAxemann:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825179978'"">Enhanced Soundscape</execute>, <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825181638'"">DynaSound 2</execute></font>
+<br/>Paladin:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=767380317'"">Blastcore Edited (standalone version)</execute></font>
 "
 ]];
 
