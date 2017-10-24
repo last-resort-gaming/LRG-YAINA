@@ -14,7 +14,6 @@ if (!isServer) exitWith {};
     // If they are in global, delete
     {
         _markerInfo = (_x select [15] splitString "/");
-        diag_log format ["Marker Info: %1", _markerInfo];
 
         // Delete from Global/Side
         if (_markerInfo select 2 in ["0","1"]) then {

@@ -5,6 +5,8 @@
 	returns: nothing
 */
 
+#include "defines.h"
+
 private _markerLocal = false;
 private _source = "";
 private _position  = 1;
@@ -15,7 +17,7 @@ if ( isServer ) then {
 
     // if we have not got our map display yet, retry when we do
     if(isNull (findDisplay 12)) exitWith {
-        [{!isNull (findDisplay 12)}, {call liberation_fnc_show_fps}, []] call CBA_fnc_waitUntilAndExecute;
+        [{!isNull (findDisplay 12)}, {call YFNC(showFPS)}, []] call CBA_fnc_waitUntilAndExecute;
     };
 
     if (hasInterface) then {
