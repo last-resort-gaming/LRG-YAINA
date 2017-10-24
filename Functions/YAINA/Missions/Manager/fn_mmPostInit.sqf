@@ -91,6 +91,6 @@ if !(isServer or hasInterface) then {
 };
 
 if (isServer) then {
-    // Start our Mission Manager in 120 seconds to give our HCs time to connect
-    [{ call FNC(missionManager); }, [], 120] call CBA_fnc_waitAndExecute;
+    // Start our Mission Manager in 60 seconds to give our HCs time to connect
+    [{ call FNC(missionManager); }, [], 60] call CBA_fnc_waitAndExecute;
 };

@@ -189,7 +189,7 @@ _pfh = {
 
         // If we are in stage2, then we sit here until 90% of all enemy are dead and SMs have completed
 
-        if (player getVariable ["MISSION_COMPLETE", false]) then {
+        if (missionNamespace getVariable ["MISSION_COMPLETE", false]) then {
 
             // If we have a subObjective, ensure it's complete before progressing
             if !(isNil "_subObjective") then {
@@ -219,8 +219,6 @@ _pfh = {
         // Initiate default cleanup function to clean up officer group + group
         if ([_pfhID, _missionID] call FNC(missionCleanup)) then {
 
-            //
-
             // Once cleanup occurs, we do anything that isn't the default
             { deleteVehicle _x; true; } count _HQElements;
 
@@ -230,4 +228,4 @@ _pfh = {
 };
 
 // For now just start it
-[_missionID, "MAINAO", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainElems, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);
+[_missionID, "AO", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainElems, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);

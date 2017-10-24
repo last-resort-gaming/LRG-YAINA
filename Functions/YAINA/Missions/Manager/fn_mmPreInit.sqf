@@ -30,16 +30,32 @@ addMissionEventHandler ["HandleDisconnect", {
 
         GVAR(hcList) deleteAt _hcID;
 
+        diag_log format ["HC Disconnect: %1", _name];
+
         // loop through handlers, and migrate to server
         {
             if (_x select 0 == _name) then {
 
-                _x params ["_profileName", "_missionID", "_missionState", "_missionMarker", "_pfh", "_pfhDelay", "_pfhArgs"];
+                _x params ["_profileName", "_missionID", "_missionType", "_stage", "_markers", "_groups", "_vehicles", "_buildings", "_pfh", "_pfhDelay", "_pfhArgs"];
 
+                // We update the pfhArgs stage to be that of the HCDCH state before running it
+                // So it resumes from correct location
+                _pfhArgs set [1,_stage];
+
+                // Then add it to local running missions for the sweet cleanup
+                (GVAR(localRunningMissions) select 0) pushBack _missionID;
+                (GVAR(localRunningMissions) select 1) pushBack [_markers, _groups, _vehicles, _buildings];
+
+                // Start processing the PFH locally
                 [_pfh, _pfhDelay, _pfhArgs] call CBA_fnc_addPerFrameHandler;
+
+                // reinforcements + building restores are always kept on server, so we don't have anything to update
 
                 // update the HCDC Handler to be server
                 (GVAR(hcDCH) select _forEachIndex) set [0, profileName];
+
+                // Log
+                diag_log format ["HC Mission Migrated to Server: %1 from %2", _missionID, _name];
             };
 
         } forEach GVAR(hcDCH);

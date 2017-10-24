@@ -69,8 +69,10 @@ if !(_rbID isEqualTo -1) then {
 (GVAR(localRunningMissions) select 0) deleteAt _localRunningMissionID;
 (GVAR(localRunningMissions) select 1) deleteAt _localRunningMissionID;
 
-// Call BIS_fnc_taskDelete ?
-[_missionID] call BIS_fnc_deleteTask;
+// Call BIS_fnc_taskDeldete ? We delay this by 2 minutes so the success message
+// goes through and people can see it in the map, if an HC disconnects at this
+// point then it'll never get deleted.
+[{ _this call BIS_fnc_deleteTask; }, [_missionID], 120] call CBA_fnc_waitAndExecute;
 
 // Delete our HCDCH
 [profileName, _missionID, _missionMarker] call FNC(delHCDCH);

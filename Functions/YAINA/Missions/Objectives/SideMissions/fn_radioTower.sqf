@@ -135,7 +135,6 @@ _pfh = {
         if !( call   {
                         {
                             _x params ["_twr", "_mrks"];
-                            systemChat str _x;
                             if (isNull _twr || !(alive _twr)) then {
                                 { deleteMarker _x; } forEach _mrks;
                                 false;
@@ -182,7 +181,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SUBOBJ", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hidden, _mines, _towerMarkers]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hidden, _mines, _towerMarkers]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 _missionID;
