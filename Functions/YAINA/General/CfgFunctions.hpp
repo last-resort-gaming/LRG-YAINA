@@ -24,5 +24,6 @@ class YAINA {
 		class globalHint {};
 		class getPosAround {};
 		class crewNames { postInit = 1; };
+		class testTraits {};
     };
 };

@@ -11,7 +11,6 @@ class YAINA_SPAWNS {
 	class General {
 		file = "Functions\YAINA\Spawns";
 		class getAirSpawnPos {};
-		class postInit { postInit = 1; };
     };
 
     class Reinforcements {

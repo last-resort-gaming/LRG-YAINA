@@ -3,3 +3,4 @@
 #include "General\CfgFunctions.hpp"
 #include "Spawns\CfgFunctions.hpp"
 #include "AirDefence\CfgFunctions.hpp"
+#include "Arsenal\CfgFunctions.hpp"

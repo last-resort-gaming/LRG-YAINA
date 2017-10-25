@@ -12,11 +12,22 @@ private _flags = [
     [Flag_USSF, "USS Freedom"]
 ];
 
+// Passive flags, where you can TP from, but not to...
+private _passiveFlags = [
+    [AirDefenceSwitch1, "HQ Tower"]
+];
+
+// Only the following list can get some freedom
+if !(["HQ", "PILOT", "MERT"] call YFNC(testTraits)) then {
+    _flags deleteAt 1;
+};
+
 {
     _obj = _x select 0;
     {
         if !(_obj isEqualTo (_x select 0)) then {
             _x params ["_target", "_desc"];
+
             _obj addAction [
                 format["Teleport to %1", _desc], {
                     _target = (_this select 3) select 0;
@@ -38,5 +49,5 @@ private _flags = [
             ];
         };
     } forEach _flags;
-} forEach _flags;
+} forEach (_flags + _passiveFlags);
 

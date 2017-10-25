@@ -1,14 +1,14 @@
 version=53;
 class EditorData
 {
-	moveGridStep=0.25;
+	moveGridStep=0.125;
 	angleGridStep=0.017453292;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=557;
+	toggles=553;
 	class ItemIDProvider
 	{
-		nextID=1643;
+		nextID=1646;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=492;
+		nextID=624;
 	};
 	class Camera
 	{
-		pos[]={786.37781,284.04608,11569.236};
-		dir[]={0.85046774,-0.29752311,-0.4338364};
-		up[]={0.265048,0.95470673,-0.13520426};
-		aside[]={-0.45441386,-1.0849908e-007,-0.89080709};
+		pos[]={696.06201,32.617741,12129.841};
+		dir[]={0.9281317,-0.36468109,0.074761651};
+		up[]={0.36350951,0.93113047,0.029280689};
+		aside[]={0.080291048,-4.9127266e-008,-0.9967767};
 	};
 };
 binarizationWanted=0;
@@ -468,7 +468,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=92;
+		items=93;
 		class Item0
 		{
 			dataType="Object";
@@ -872,12 +872,12 @@ class Mission
 		class Item24
 		{
 			dataType="Marker";
-			position[]={3075.655,0,8472.5801};
+			position[]={3076.5,-0.11328125,8478};
 			name="marker_11";
 			text="Arsenal";
 			type="b_support";
 			id=1046;
-			atlOffset=-4.1404181;
+			atlOffset=-4.1092777;
 		};
 		class Item25
 		{
@@ -19392,7 +19392,7 @@ class Mission
 					name="Jet Spawn";
 					class Entities
 					{
-						items=14;
+						items=13;
 						class Item0
 						{
 							dataType="Trigger";
@@ -19658,7 +19658,7 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={814.18933,29.141598,12122.404};
+								position[]={817.33905,29.139597,12122.263};
 								angles[]={0,0.11489502,0};
 							};
 							side="Empty";
@@ -19669,7 +19669,6 @@ class Mission
 							};
 							id=1293;
 							type="Land_PlasticBarrier_01_line_x6_F";
-							atlOffset=0.0020008087;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -19695,46 +19694,6 @@ class Mission
 							};
 						};
 						class Item8
-						{
-							dataType="Object";
-							class PositionInfo
-							{
-								position[]={818.60107,29.139597,12122.005};
-								angles[]={0,0.043668136,0};
-							};
-							side="Empty";
-							flags=4;
-							class Attributes
-							{
-								disableSimulation=1;
-							};
-							id=1294;
-							type="Land_PlasticBarrier_01_line_x4_F";
-							class CustomAttributes
-							{
-								class Attribute0
-								{
-									property="allowDamage";
-									expression="_this allowdamage _value;";
-									class Value
-									{
-										class data
-										{
-											class type
-											{
-												type[]=
-												{
-													"BOOL"
-												};
-											};
-											value=0;
-										};
-									};
-								};
-								nAttributes=1;
-							};
-						};
-						class Item9
 						{
 							dataType="Object";
 							class PositionInfo
@@ -19775,7 +19734,7 @@ class Mission
 								nAttributes=1;
 							};
 						};
-						class Item10
+						class Item9
 						{
 							dataType="Object";
 							class PositionInfo
@@ -19815,7 +19774,7 @@ class Mission
 								nAttributes=1;
 							};
 						};
-						class Item11
+						class Item10
 						{
 							dataType="Object";
 							class PositionInfo
@@ -19856,7 +19815,7 @@ class Mission
 								nAttributes=1;
 							};
 						};
-						class Item12
+						class Item11
 						{
 							dataType="Object";
 							class PositionInfo
@@ -19897,7 +19856,7 @@ class Mission
 								nAttributes=1;
 							};
 						};
-						class Item13
+						class Item12
 						{
 							dataType="Object";
 							class PositionInfo
@@ -19939,11 +19898,11 @@ class Mission
 						};
 					};
 					id=1347;
-					atlOffset=-1.9073486e-006;
+					atlOffset=-3.4332275e-005;
 				};
 			};
 			id=1225;
-			atlOffset=0.029018402;
+			atlOffset=0.029001236;
 		};
 		class Item35
 		{
@@ -23556,7 +23515,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={819.70062,41.913441,12193.513};
+						position[]={819.70099,41.913441,12193.513};
 						angles[]={0,3.0555305,0};
 					};
 					side="West";
@@ -23565,6 +23524,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="COLONEL";
+						init="this setUnitTrait [""YAINA_HQ"", true, true];";
 						description="Zero  -  Headquarters";
 						isPlayable=1;
 						class Inventory
@@ -23670,15 +23630,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.14221,29.400465,12132.765};
+						position[]={707.14203,29.400438,12132.765};
 						angles[]={0,4.6084023,0};
 					};
 					side="West";
-					flags=6;
+					flags=2;
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SL"", true, true]";
 						description="Section 1 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -23799,6 +23760,7 @@ class Mission
 					};
 					id=1462;
 					type="B_Soldier_SL_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -23847,14 +23809,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.68658,29.400465,12131.926};
-						angles[]={0,4.6400633,0};
+						position[]={707.68701,29.400438,12131.926};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 1 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -23961,6 +23923,7 @@ class Mission
 					};
 					id=1463;
 					type="B_medic_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24009,14 +23972,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={708.93658,29.400465,12130.118};
-						angles[]={0,4.9619193,0};
+						position[]={708.93701,29.400438,12130.118};
+						angles[]={0,4.9619188,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AR"", true, true]";
 						description="Section 1 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -24114,6 +24077,7 @@ class Mission
 					};
 					id=1465;
 					type="B_soldier_AR_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24162,14 +24126,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={709.46173,29.400465,12129.284};
-						angles[]={0,4.7629342,0};
+						position[]={709.46198,29.400438,12129.284};
+						angles[]={0,4.7629337,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_HG"", true, true]";
 						description="Section 1 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -24269,6 +24233,7 @@ class Mission
 					};
 					id=1466;
 					type="B_HeavyGunner_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24317,14 +24282,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={710.073,29.400465,12128.422};
-						angles[]={0,5.0418205,0};
+						position[]={710.073,29.400438,12128.422};
+						angles[]={0,5.04182,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 1 - AT";
 						isPlayable=1;
 						class Inventory
@@ -24432,6 +24397,7 @@ class Mission
 					};
 					id=1467;
 					type="B_soldier_AT_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24480,14 +24446,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={710.72266,29.400465,12127.535};
-						angles[]={0,5.1422291,0};
+						position[]={710.72302,29.400438,12127.535};
+						angles[]={0,5.1422286,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_ENG"", true, true];";
 						description="Section 1 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -24611,6 +24577,7 @@ class Mission
 					};
 					id=1468;
 					type="B_engineer_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24659,14 +24626,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={711.29102,29.400465,12126.718};
+						position[]={711.29102,29.400438,12126.718};
 						angles[]={0,5.2245388,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
 						description="Section 1 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -24794,6 +24761,7 @@ class Mission
 					};
 					id=1469;
 					type="B_soldier_M_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -24842,13 +24810,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={708.25879,29.400436,12131.064};
-						angles[]={0,4.6400633,0};
+						position[]={708.25897,29.400438,12131.064};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 1 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -24955,7 +24924,7 @@ class Mission
 					};
 					id=1532;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25004,6 +24973,7 @@ class Mission
 			{
 			};
 			id=1461;
+			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -25040,7 +25010,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={705.14197,29.400436,12133.014};
+						position[]={705.14203,29.400438,12133.014};
 						angles[]={0,4.6084023,0};
 					};
 					side="West";
@@ -25049,6 +25019,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SL"", true, true]";
 						description="Section 2 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -25169,7 +25140,7 @@ class Mission
 					};
 					id=1534;
 					type="B_Soldier_SL_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25218,13 +25189,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={705.6864,29.400436,12132.176};
-						angles[]={0,4.6400633,0};
+						position[]={705.68597,29.400438,12132.176};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 2 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -25331,7 +25303,7 @@ class Mission
 					};
 					id=1535;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25380,13 +25352,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={706.9364,29.400436,12130.368};
-						angles[]={0,4.9619193,0};
+						position[]={706.93597,29.400438,12130.368};
+						angles[]={0,4.9619188,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AR"", true, true]";
 						description="Section 2 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -25484,7 +25457,7 @@ class Mission
 					};
 					id=1536;
 					type="B_soldier_AR_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25533,13 +25506,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.46149,29.400436,12129.534};
-						angles[]={0,4.7629342,0};
+						position[]={707.461,29.400438,12129.534};
+						angles[]={0,4.7629337,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_HG"", true, true]";
 						description="Section 2 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -25639,7 +25613,7 @@ class Mission
 					};
 					id=1537;
 					type="B_HeavyGunner_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25688,13 +25662,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={708.07269,29.400436,12128.671};
-						angles[]={0,5.0418205,0};
+						position[]={708.073,29.400438,12128.671};
+						angles[]={0,5.04182,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 2 - AT";
 						isPlayable=1;
 						class Inventory
@@ -25802,7 +25777,7 @@ class Mission
 					};
 					id=1538;
 					type="B_soldier_AT_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25851,13 +25826,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={708.72241,29.400436,12127.784};
-						angles[]={0,5.1422291,0};
+						position[]={708.72198,29.400438,12127.784};
+						angles[]={0,5.1422286,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_ENG"", true, true];";
 						description="Section 2 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -25981,7 +25957,7 @@ class Mission
 					};
 					id=1539;
 					type="B_engineer_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -26030,13 +26006,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={709.29077,29.400436,12126.967};
+						position[]={709.29102,29.400438,12126.967};
 						angles[]={0,5.2245388,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
 						description="Section 2 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -26164,7 +26141,7 @@ class Mission
 					};
 					id=1540;
 					type="B_soldier_M_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -26213,13 +26190,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={706.25854,29.400436,12131.314};
-						angles[]={0,4.6400633,0};
+						position[]={706.25897,29.400438,12131.314};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 2 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -26326,7 +26304,7 @@ class Mission
 					};
 					id=1541;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -26375,7 +26353,7 @@ class Mission
 			{
 			};
 			id=1533;
-			atlOffset=0.47899818;
+			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -26412,7 +26390,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={703.08569,29.400436,12133.295};
+						position[]={703.086,29.400438,12133.295};
 						angles[]={0,4.6084023,0};
 					};
 					side="West";
@@ -26421,6 +26399,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SL"", true, true]";
 						description="Section 3 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -26541,7 +26520,7 @@ class Mission
 					};
 					id=1543;
 					type="B_Soldier_SL_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -26590,13 +26569,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={703.63013,29.400436,12132.457};
-						angles[]={0,4.6400633,0};
+						position[]={703.63,29.400438,12132.457};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 3 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -26703,7 +26683,7 @@ class Mission
 					};
 					id=1544;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -26752,13 +26732,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={704.88013,29.400436,12130.649};
-						angles[]={0,4.9619193,0};
+						position[]={704.88,29.400438,12130.649};
+						angles[]={0,4.9619188,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AR"", true, true]";
 						description="Section 3 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -26856,7 +26837,7 @@ class Mission
 					};
 					id=1545;
 					type="B_soldier_AR_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -26905,13 +26886,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={705.40521,29.400436,12129.814};
-						angles[]={0,4.7629342,0};
+						position[]={705.40503,29.400438,12129.814};
+						angles[]={0,4.7629337,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_HG"", true, true]";
 						description="Section 3 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -27011,7 +26993,7 @@ class Mission
 					};
 					id=1546;
 					type="B_HeavyGunner_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -27060,13 +27042,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={706.01648,29.400436,12128.952};
-						angles[]={0,5.0418205,0};
+						position[]={706.01599,29.400438,12128.952};
+						angles[]={0,5.04182,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 3 - AT";
 						isPlayable=1;
 						class Inventory
@@ -27174,7 +27157,7 @@ class Mission
 					};
 					id=1547;
 					type="B_soldier_AT_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -27223,13 +27206,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={706.66614,29.400436,12128.065};
-						angles[]={0,5.1422291,0};
+						position[]={706.66602,29.400438,12128.065};
+						angles[]={0,5.1422286,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_ENG"", true, true];";
 						description="Section 3 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -27353,7 +27337,7 @@ class Mission
 					};
 					id=1548;
 					type="B_engineer_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -27402,13 +27386,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.23456,29.400436,12127.248};
+						position[]={707.23499,29.400438,12127.248};
 						angles[]={0,5.2245388,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
 						description="Section 3 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -27536,7 +27521,7 @@ class Mission
 					};
 					id=1549;
 					type="B_soldier_M_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -27585,13 +27570,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={704.20129,29.400436,12131.595};
-						angles[]={0,4.6400633,0};
+						position[]={704.20099,29.400438,12131.595};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 3 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -27698,7 +27684,7 @@ class Mission
 					};
 					id=1550;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -27747,7 +27733,7 @@ class Mission
 			{
 			};
 			id=1542;
-			atlOffset=0.47899818;
+			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -27784,7 +27770,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={700.98584,29.400436,12133.495};
+						position[]={700.98602,29.400438,12133.495};
 						angles[]={0,4.6084023,0};
 					};
 					side="West";
@@ -27793,6 +27779,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SL"", true, true]";
 						description="Section 4 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -27913,7 +27900,7 @@ class Mission
 					};
 					id=1552;
 					type="B_Soldier_SL_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -27962,13 +27949,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={701.53027,29.400436,12132.657};
-						angles[]={0,4.6400633,0};
+						position[]={701.53003,29.400438,12132.657};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 4 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -28075,7 +28063,7 @@ class Mission
 					};
 					id=1553;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -28124,13 +28112,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={702.78027,29.400436,12130.85};
-						angles[]={0,4.9619193,0};
+						position[]={702.78003,29.400438,12130.85};
+						angles[]={0,4.9619188,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AR"", true, true]";
 						description="Section 4 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -28228,7 +28217,7 @@ class Mission
 					};
 					id=1554;
 					type="B_soldier_AR_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -28277,13 +28266,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={703.30536,29.400436,12130.016};
-						angles[]={0,4.7629342,0};
+						position[]={703.30499,29.400438,12130.016};
+						angles[]={0,4.7629337,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_HG"", true, true]";
 						description="Section 4 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -28383,7 +28373,7 @@ class Mission
 					};
 					id=1555;
 					type="B_HeavyGunner_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -28432,13 +28422,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={703.91663,29.400436,12129.152};
-						angles[]={0,5.0418205,0};
+						position[]={703.91699,29.400438,12129.152};
+						angles[]={0,5.04182,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 4 - AT";
 						isPlayable=1;
 						class Inventory
@@ -28546,7 +28537,7 @@ class Mission
 					};
 					id=1556;
 					type="B_soldier_AT_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -28595,13 +28586,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={704.56628,29.400436,12128.266};
-						angles[]={0,5.1422291,0};
+						position[]={704.56598,29.400438,12128.266};
+						angles[]={0,5.1422286,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_ENG"", true, true];";
 						description="Section 4 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -28725,7 +28717,7 @@ class Mission
 					};
 					id=1557;
 					type="B_engineer_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -28774,13 +28766,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={705.1347,29.400436,12127.448};
+						position[]={705.13501,29.400438,12127.448};
 						angles[]={0,5.2245388,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
 						description="Section 4 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -28908,7 +28901,7 @@ class Mission
 					};
 					id=1558;
 					type="B_soldier_M_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -28957,13 +28950,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={702.10144,29.400436,12131.796};
-						angles[]={0,4.6400633,0};
+						position[]={702.10101,29.400438,12131.796};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 4 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -29070,7 +29064,7 @@ class Mission
 					};
 					id=1559;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -29119,7 +29113,7 @@ class Mission
 			{
 			};
 			id=1551;
-			atlOffset=0.47899818;
+			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -29156,7 +29150,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={698.59137,29.400436,12133.672};
+						position[]={698.591,29.400438,12133.672};
 						angles[]={0,4.6084023,0};
 					};
 					side="West";
@@ -29165,6 +29159,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SL"", true, true]";
 						description="Section 5 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -29285,7 +29280,7 @@ class Mission
 					};
 					id=1561;
 					type="B_Soldier_SL_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -29341,6 +29336,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 5 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -29496,13 +29492,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={700.3858,29.400436,12131.026};
-						angles[]={0,4.9619193,0};
+						position[]={700.38599,29.400438,12131.026};
+						angles[]={0,4.9619188,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AR"", true, true]";
 						description="Section 5 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -29600,7 +29597,7 @@ class Mission
 					};
 					id=1563;
 					type="B_soldier_AR_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -29649,13 +29646,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={700.91089,29.400436,12130.191};
-						angles[]={0,4.7629342,0};
+						position[]={700.91101,29.400438,12130.191};
+						angles[]={0,4.7629337,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_HG"", true, true]";
 						description="Section 5 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -29755,7 +29753,7 @@ class Mission
 					};
 					id=1564;
 					type="B_HeavyGunner_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -29804,14 +29802,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={701.52209,29.400436,12129.328};
-						angles[]={0,5.0418205,0};
+						position[]={701.52197,29.400438,12129.328};
+						angles[]={0,5.04182,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 5 - AT";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -29918,7 +29918,7 @@ class Mission
 					};
 					id=1565;
 					type="B_soldier_AT_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -29967,13 +29967,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={702.17181,29.400436,12128.442};
-						angles[]={0,5.1422291,0};
+						position[]={702.172,29.400438,12128.442};
+						angles[]={0,5.1422286,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_ENG"", true, true];";
 						description="Section 5 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -30097,7 +30098,7 @@ class Mission
 					};
 					id=1566;
 					type="B_engineer_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -30146,13 +30147,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={702.74017,29.400436,12127.624};
+						position[]={702.73999,29.400438,12127.624};
 						angles[]={0,5.2245388,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
 						description="Section 5 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -30280,7 +30282,7 @@ class Mission
 					};
 					id=1567;
 					type="B_soldier_M_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -30329,13 +30331,14 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={699.70691,29.400436,12131.972};
-						angles[]={0,4.6400633,0};
+						position[]={699.70697,29.400438,12131.972};
+						angles[]={0,4.6400623,0};
 					};
 					side="West";
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 5 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -30442,7 +30445,7 @@ class Mission
 					};
 					id=1568;
 					type="B_medic_F";
-					atlOffset=0.47899818;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -30491,7 +30494,7 @@ class Mission
 			{
 			};
 			id=1560;
-			atlOffset=0.47899818;
+			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -30528,15 +30531,16 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.44366,29.400465,12138.316};
+						position[]={707.44397,29.400438,12138.316};
 						angles[]={0,4.8033905,0};
 					};
 					side="West";
-					flags=6;
+					flags=2;
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SNIPER"", true, true]";
 						description="Ghost 1-1  -  Sniper";
 						isPlayable=1;
 						class Inventory
@@ -30672,6 +30676,7 @@ class Mission
 					};
 					id=1592;
 					type="B_sniper_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -30720,15 +30725,15 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.22833,29.400465,12136.791};
+						position[]={707.22803,29.400438,12136.791};
 						angles[]={0,4.7020397,0};
 					};
 					side="West";
-					flags=4;
 					class Attributes
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
+						init="this setUnitTrait [""YAINA_SPOTTER"", true, true]";
 						description="Ghost 1-1  -  Spotter";
 						isPlayable=1;
 						class Inventory
@@ -30865,6 +30870,7 @@ class Mission
 					};
 					id=1593;
 					type="B_spotter_F";
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -30913,6 +30919,7 @@ class Mission
 			{
 			};
 			id=1591;
+			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -31003,7 +31010,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={763.01703,28.921438,12130.836};
+						position[]={763.5,28.921438,12130.8};
 						angles[]={0,4.7571216,0};
 					};
 					side="West";
@@ -31012,7 +31019,7 @@ class Mission
 					{
 						skill=1;
 						rank="SERGEANT";
-						init="this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
+						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];" \n "this setUnitTrait [""YAINA_MERT_UAV"", true, true];";
 						description="MERT - UAV Paramedic";
 						isPlayable=1;
 						class Inventory
@@ -31146,7 +31153,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={762.80298,28.921438,12129.806};
+						position[]={762.75,28.921438,12129.8};
 						angles[]={0,5.080636,0};
 					};
 					side="West";
@@ -31155,7 +31162,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
+						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];" \n "this setUnitTrait [""YAINA_PILOT"", true, true];";
 						description="MERT - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31270,9 +31277,8 @@ class Mission
 					{
 						skill=1;
 						rank="SERGEANT";
-						init="this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
+						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
 						description="MERT - Paramedic";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -31484,7 +31490,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={812.93964,41.913441,12193.396};
+						position[]={812.94,41.913441,12193.396};
 						angles[]={0,3.268321,0};
 					};
 					side="West";
@@ -31492,6 +31498,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
+						init="this setUnitTrait [""YAINA_UAV"", true, true];";
 						description="Reaper -  UAV Operator";
 						isPlayable=1;
 						class Inventory
@@ -31610,7 +31617,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1212.2249,23.67601,10423.147};
+						position[]={1212.225,23.675846,10423.147};
 						angles[]={0,5.080636,0};
 					};
 					side="West";
@@ -31619,6 +31626,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
+						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
 						description="Fox - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31657,7 +31665,7 @@ class Mission
 					};
 					id=1616;
 					type="B_Helipilot_F";
-					atlOffset=0.041183472;
+					atlOffset=0.04101944;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -31706,7 +31714,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1215.3159,23.662411,10421.324};
+						position[]={1215.316,23.66251,10421.324};
 						angles[]={0,5.080636,0};
 					};
 					side="West";
@@ -31715,6 +31723,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
+						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
 						description="Squirrel- Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31753,7 +31762,7 @@ class Mission
 					};
 					id=1617;
 					type="B_Helipilot_F";
-					atlOffset=0.027585983;
+					atlOffset=0.027685165;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -31802,7 +31811,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1212.856,23.6761,10420.243};
+						position[]={1212.856,23.675846,10420.243};
 						angles[]={0,4.9235568,0};
 					};
 					side="West";
@@ -31811,6 +31820,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
+						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
 						description="Gator - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31849,7 +31859,7 @@ class Mission
 					};
 					id=1618;
 					type="B_Helipilot_F";
-					atlOffset=0.041273117;
+					atlOffset=0.04101944;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -31898,7 +31908,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1216.2059,23.634825,10423.043};
+						position[]={1216.2061,23.63496,10423.043};
 						angles[]={0,5.3773422,0};
 					};
 					side="West";
@@ -31907,6 +31917,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
+						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
 						description="Lama - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31945,6 +31956,7 @@ class Mission
 					};
 					id=1619;
 					type="B_Helipilot_F";
+					atlOffset=0.00013542175;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -31993,7 +32005,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1214.2279,23.728069,10424.753};
+						position[]={1214.228,23.727596,10424.753};
 						angles[]={0,5.3773422,0};
 					};
 					side="West";
@@ -32002,6 +32014,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
+						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
 						description="Badger - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32040,7 +32053,7 @@ class Mission
 					};
 					id=1620;
 					type="B_Helipilot_F";
-					atlOffset=0.093242645;
+					atlOffset=0.092769623;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -32089,7 +32102,7 @@ class Mission
 			{
 			};
 			id=1615;
-			atlOffset=0.041183472;
+			atlOffset=0.04101944;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -32320,6 +32333,46 @@ class Mission
 			type="Empty";
 			id=1642;
 			atlOffset=-28.92;
+		};
+		class Item92
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={763,29.812422,12133.75};
+				angles[]={0,3.1590462,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="arsenal_9";
+			};
+			id=1643;
+			type="B_supplyCrate_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""launch_NLAW_F"",""arifle_MX_F"",""arifle_MX_SW_F""],[1,2,1]],[[""30Rnd_65x39_caseless_mag"",""16Rnd_9x21_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""20Rnd_762x51_Mag"",""100Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""3Rnd_HE_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""Chemlight_green"",""NLAW_F"",""Laserbatteries"",""HandGrenade"",""MiniGrenade"",""SmokeShell"",""SmokeShellGreen"",""UGL_FlareWhite_F"",""UGL_FlareGreen_F""],[24,6,6,6,6,3,1,2,2,6,3,2,6,6,2,2,2,2]],[[""Laserdesignator"",""FirstAidKit"",""acc_flashlight"",""bipod_01_F_blk""],[1,10,2,1]],[[""B_Kitbag_mcamo""],[2]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 	};
 	class Connections
