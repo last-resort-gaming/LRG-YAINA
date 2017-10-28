@@ -25,15 +25,35 @@ if(hasInterface) then {
     player addEventHandler ["GetInMan", {
         params ["_unit", "_pos", "_veh", "_turret"];
 
+
+        if !(_veh getVariable [QVAR(hasEjectAction), false]) then {
+            _veh addAction ["Eject Passenger",  {
+                GVAR(EJECT_MENU) = [["Passenger to Eject", true]];
+                {
+                    if !(_x isEqualTo player) then {
+                        GVAR(EJECT_MENU) pushBack [
+                            name _x, [0], "", -5, [["expression", format ["moveOut (missionNamespace getVariable '%1')", _x call BIS_fnc_objectVar]]], "1", "1"
+                        ];
+                    };
+                } forEach (crew vehicle player);
+
+                showCommandingMenu format["#USER:%1", QVAR(EJECT_MENU)];
+
+            }, "", 0, false, true, "", 'driver _target isEqualTo _this && count crew _target > 1'];
+
+            _veh setVariable [QVAR(hasEjectAction), true];
+        };
+
         // Because addAction is local, we just have an event handler on the
         // vehicle that'll add the actions when a player gets in - this caters
         // for respawned vehicles etc.
 
         if(_veh getVariable[QVAR(hasKeys), false]) then {
 
-            if ((count actionIDs _veh) isEqualTo 0) then {
+            if !(_veh getVariable [QVAR(hasKeyActions), false]) then {
                 _veh addAction ["Take Keys",  FNC(takeKey), "", -98, false, true, "", format['driver _target isEqualTo _this && isNil { _target getVariable "%1"; }', QVAR(owner)]];
                 _veh addAction ["Leave Keys", FNC(dropKey), "", -98, false, true, "", format['vehicle _this isEqualTo _target && (_target getVariable "%1") isEqualTo _this;', QVAR(owner)]];
+                _veh setVariable [QVAR(hasKeyActions), true];
             };
 
             if (_pos isEqualTo "driver") then {
