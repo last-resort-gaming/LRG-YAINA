@@ -19,7 +19,7 @@ private _passiveFlags = [
 
 // Only the following list can get some freedom
 if !(["HQ", "PILOT", "MERT"] call YFNC(testTraits)) then {
-    _flags deleteAt 1;
+    _flags deleteAt 2;
 };
 
 {
