@@ -14,10 +14,10 @@ if (isServer) then {
         ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
 
         // Remove all items
-        clearWeaponCargoGlobal _x;
-        clearMagazineCargoGlobal _x;
-        clearItemCargoGlobal _x;
-        clearBackpackCargoGlobal _x;
+        //clearWeaponCargoGlobal _x;
+        //clearMagazineCargoGlobal _x;
+        //clearItemCargoGlobal _x;
+        //clearBackpackCargoGlobal _x;
 
         // Ensure no rope attachments
         _x enableRopeAttach false;
@@ -76,7 +76,7 @@ GVAR(unitWeapons) = call {
         true;
     } count _permitGroups;
 
-    _retval - _blacklistItems;
+    _retval - _blacklistItems - GVAR(globalBlacklist);
 };
 
 ///////////////////////////////////////////////////////////
@@ -249,7 +249,8 @@ GVAR(unitItems) = call {
     // DeDupe and return the list
     _retval = [];
     { if ((_retval find _x) isEqualTo -1) then { _retval pushBack _x; }; true } count _items;
-    _retval;
+
+    _retval - GVAR(globalBlacklist);
 };
 
 ///////////////////////////////////////////////////////////
@@ -285,7 +286,7 @@ GVAR(unitBackpacks) = call {
         true;
     } count _permit;
 
-    _retval
+    _retval - GVAR(globalBlacklist);
 };
 
 ///////////////////////////////////////////////////////////
@@ -334,7 +335,7 @@ GVAR(unitMags) = call {
                         "DemoCharge_Remote_Mag" ];
     };
 
-    _items;
+    _items - GVAR(globalBlacklist)
 };
 
 ///////////////////////////////////////////////////////////

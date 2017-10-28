@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=624;
+		nextID=690;
 	};
 	class Camera
 	{
-		pos[]={696.06201,32.617741,12129.841};
-		dir[]={0.9281317,-0.36468109,0.074761651};
-		up[]={0.36350951,0.93113047,0.029280689};
-		aside[]={0.080291048,-4.9127266e-008,-0.9967767};
+		pos[]={692.82257,36.77026,12127.511};
+		dir[]={0.81699657,-0.55812198,0.14502706};
+		up[]={0.54953599,0.82975423,0.097549252};
+		aside[]={0.17478108,-1.9406434e-007,-0.98461491};
 	};
 };
 binarizationWanted=0;
@@ -468,7 +468,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=93;
+		items=92;
 		class Item0
 		{
 			dataType="Object";
@@ -16169,7 +16169,7 @@ class Mission
 													"STRING"
 												};
 											};
-											value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
+											value="[[[[""launch_B_Titan_F"",""MineDetector""],[1,1]],[[""APERSTripMine_Wire_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""SmokeShellRed""],[4,2,2,1,7]],[[""Binocular"",""Laserdesignator_03"",""ItemCompass"",""NVGogglesB_grn_F"",""ItemGPS"",""ItemMap"",""Medikit"",""B_UavTerminal"",""ItemWatch""],[1,1,1,1,1,1,1,1,1]],[[""B_AssaultPack_ocamo""],[1]]],false]";
 										};
 									};
 								};
@@ -23006,11 +23006,12 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={24,8,12752};
+				position[]={24,8.0002403,12752};
 			};
+			init="this setVariable [""showNotification"", false];";
 			id=1372;
 			type="ModuleCurator_F";
-			atlOffset=48.958763;
+			atlOffset=48.959003;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -29802,8 +29803,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={701.52197,29.400438,12129.328};
-						angles[]={0,5.04182,0};
+						position[]={710.78766,29.400438,12122.396};
+						angles[]={-0,5.04182,0};
 					};
 					side="West";
 					class Attributes
@@ -32147,97 +32148,6 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={56,8,12752};
-			};
-			id=1629;
-			type="ModuleCurator_F";
-			atlOffset=47.087589;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="76561197981494016";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="MartinCo";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				nAttributes=4;
-			};
-		};
-		class Item87
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
 				position[]={24,0.00022125244,12776};
 			};
 			name="HC_1";
@@ -32246,7 +32156,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=42.946999;
 		};
-		class Item88
+		class Item87
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -32259,7 +32169,7 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=39.926998;
 		};
-		class Item89
+		class Item88
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -32272,16 +32182,17 @@ class Mission
 			type="HeadlessClient_F";
 			atlOffset=36.846001;
 		};
-		class Item90
+		class Item89
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={40,-0.00038909912,12728};
+				position[]={37.511002,0.044307709,12733.12};
 			};
+			name="AddEditableObjectsModule";
 			id=1641;
 			type="ModuleCuratorAddEditableObjects";
-			atlOffset=37.813999;
+			atlOffset=38.298;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -32318,14 +32229,14 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
 				nAttributes=2;
 			};
 		};
-		class Item91
+		class Item90
 		{
 			dataType="Marker";
 			position[]={687.21698,0,12148.328};
@@ -32334,7 +32245,7 @@ class Mission
 			id=1642;
 			atlOffset=-28.92;
 		};
-		class Item92
+		class Item91
 		{
 			dataType="Object";
 			class PositionInfo
@@ -32379,25 +32290,15 @@ class Mission
 	{
 		class LinkIDProvider
 		{
-			nextID=2;
+			nextID=1;
 		};
 		class Links
 		{
-			items=2;
+			items=1;
 			class Item0
 			{
 				linkID=0;
 				item0=1372;
-				item1=1641;
-				class CustomData
-				{
-					type="Sync";
-				};
-			};
-			class Item1
-			{
-				linkID=1;
-				item0=1629;
 				item1=1641;
 				class CustomData
 				{

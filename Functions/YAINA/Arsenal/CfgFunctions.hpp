@@ -7,6 +7,7 @@ class YAINA_ARSENAL {
         class preInit { preInit = 1; };
         class postInit { postInit = 1; };
         class enforceGear {};
+        class removeItem {};
     };
 
 };
