@@ -7,39 +7,99 @@
 #include "..\defines.h";
 
 params ["_unit", ["_item", objNull], ["_container", objNull]];
+private ["_allowedItems"];
+
+
+private _getDN = {
+    if(isClass (configFile >> "CfgWeapons"   >> _this)) exitWith { getText(configFile >> "CfgWeapons"   >> _this >> "displayName"); };
+    if(isClass (configFile >> "CfgMagazines" >> _this)) exitWith { getText(configFile >> "CfgMagazines" >> _this >> "displayName"); };
+    if(isClass (configFile >> "CfgVehicles"  >> _this)) exitWith { getText(configFile >> "CfgVehicles"  >> _this >> "displayName"); };
+    if(isClass (configFile >> "CfgGoggles"   >> _this)) exitWith { getText(configFile >> "CfgGoggles"   >> _this >> "displayName"); };
+    _this;
+};
 
 private _removedItemMessage = {
     params ["_item", "_from", "_itemClass"];
-    _msg = format ["Restricted Item: %1 removed from %2", _item, _from];
-    systemChat _msg;
-    diag_log _msg;
+    private _dn = _item call _getDN;
+    systemChat format ["Restricted Item: %1 removed from %2", _dn, _from];
 };
 
-private _getDN = {
-    if(isClass (configFile >> "CfgWeapons"   >> _x)) exitWith { getText(configFile >> "CfgWeapons"   >> _x >> "displayName"); };
-    if(isClass (configFile >> "CfgMagazines" >> _x)) exitWith { getText(configFile >> "CfgMagazines" >> _x >> "displayName"); };
-    if(isClass (configFile >> "CfgVehicles"  >> _x)) exitWith { getText(configFile >> "CfgVehicles"  >> _x >> "displayName"); };
-    _x;
+private _findCargo = {
+    params ["_cargo", "_item"];
+    !(({ !(_x find _item isEqualTo -1) } count (_cargo select 1)) isEqualTo 0);
+};
+
+private _removeItem = {
+    params ["_item", "_container"];
+
+    // Have to check as item might be in multiple places
+    if (_item isEqualTo primaryWeapon player)   then { player removeWeapon _item; [_item, "your hands"]  call _removedItemMessage; };
+    if (_item isEqualTo secondaryWeapon player) then { player removeWeapon _item; [_item, "your hands"]  call _removedItemMessage; };
+    if (_item isEqualTo handgunWeapon player)   then { player removeWeapon _item; [_item, "your hands"]  call _removedItemMessage; };
+    if (_item isEqualTo binocular player)       then { player removeWeapon _item; [_item, "your person"] call _removedItemMessage; };
+
+    // Weapon Items
+    if (_item in primaryWeaponItems player)   then { player removePrimaryWeaponItem _item;   [_item, "your primary weapon"]   call _removedItemMessage; };
+    if (_item in secondaryWeaponItems player) then { player removeSecondaryWeaponItem _item; [_item, "your secondary weapon"] call _removedItemMessage; };
+    if (_item in handgunItems player)         then { player removeHandgunItem _item;         [_item, "your handgun"]          call _removedItemMessage; };
+
+     // Auxilary Items
+    if (_item in assignedItems player)    then { player unlinkItem _item;   [_item, "your person"] call _removedItemMessage; };
+    if (_item isEqualTo goggles player)   then { player removeWeapon _item; [_item, "your head"]   call _removedItemMessage; };
+
+    // Clothes / Items
+    if (_item isEqualTo headgear player) then { removeHeadgear player; [_item, "your head"] call _removedItemMessage; };
+
+    if (_item isEqualTo vest player) then {
+        removeVest player;
+        [_item, "your chest"] call _removedItemMessage;
+    } else {
+        if (_item in vestItems player) then {
+            player removeItemFromVest _item;
+            [_item, "your vest"] call _removedItemMessage;
+        };
+    };
+
+    if (_item isEqualTo uniform player) then {
+        removeUniform player;
+        [_item, "your body"] call _removedItemMessage;
+    } else {
+        if (_item in uniformItems player) then {
+            player removeItemFromUniform _item;
+            [_item, "your uniform"] call _removedItemMessage;
+        };
+    };
+
+    if (_item isEqualTo backpack player) then {
+        removeBackpack player;
+        [_item, "your back"] call _removedItemMessage;
+    } else {
+        if (_item in backpackItems player) then {
+            player removeItemFromBackpack _item;
+            [_item, "your backpack"] call _removedItemMessage;
+        };
+    };
+
 };
 
 if !(_unit isEqualTo player) exitWith {};
 
 if (_item isEqualTo objNull) then {
 
-    _allowedItems = GVAR(unitItems) + GVAR(unitBackpacks) + GVAR(unitWeapons) + GVAR(unitMags);
+    private _allowedItems = GVAR(unitItems) + GVAR(unitBackpacks) + GVAR(unitWeapons) + GVAR(unitMags);
 
     // Test weapons first, before attachemnts
     {
         if !(_x isEqualTo "" || _x in _allowedItems) then {
             _unit removeWeapon _x;
-            [_x call _getDN, "you", _x] call _removedItemMessage;
+            [_x, "you", _x] call _removedItemMessage;
         } else {
             // Test Items
             if (_x isEqualTo primaryWeapon _unit) then {
                 {
                     if !(_x isEqualTo "" || _x in _allowedItems) then {
                         _unit removePrimaryWeaponItem _x;
-                        [_x call _getDN, "your primary weapon", _x] call _removedItemMessage;
+                        [_x, "your primary weapon", _x] call _removedItemMessage;
                     };
                     true;
                 } count primaryWeaponItems _unit;
@@ -48,7 +108,7 @@ if (_item isEqualTo objNull) then {
                 {
                     if !(_x isEqualTo "" || _x in _allowedItems) then {
                         _unit removeSecondaryWeaponItem _x;
-                        [_x call _getDN, "your secondary weapon", _x] call _removedItemMessage;
+                        [_x, "your secondary weapon", _x] call _removedItemMessage;
                     };
                     true;
                 } count secondaryWeaponItems _unit;
@@ -57,7 +117,7 @@ if (_item isEqualTo objNull) then {
                 {
                     if !(_x isEqualTo "" || _x in _allowedItems) then {
                         _unit removeHandgunItem _x;
-                        [_x call _getDN, "your handgun", _x] call _removedItemMessage;
+                        [_x, "your handgun", _x] call _removedItemMessage;
                     };
                     true;
                 } count handgunItems _unit;
@@ -77,7 +137,7 @@ if (_item isEqualTo objNull) then {
         {
             if !(_x in _allowedItems) then {
                 _unit removeItemFromUniform _x;
-                [_x call _getDN, "your uniform", _x] call _removedItemMessage;
+                [_x, "your uniform", _x] call _removedItemMessage;
             };
             true;
         } count uniformItems _unit
@@ -92,7 +152,7 @@ if (_item isEqualTo objNull) then {
         {
             if !(_x in _allowedItems) then {
                 _unit removeItemFromVest _x;
-                [_x call _getDN, "your backpack", _x] call _removedItemMessage;
+                [_x, "your backpack", _x] call _removedItemMessage;
             };
             true;
         } count vestItems _unit
@@ -107,7 +167,7 @@ if (_item isEqualTo objNull) then {
         {
             if !(_x in _allowedItems) then {
                 _unit removeItemFromBackpack _x;
-                [_x call _getDN, "your backpack", _x] call _removedItemMessage;
+                [_x, "your backpack", _x] call _removedItemMessage;
             };
             true;
         } count backpackItems _unit
@@ -116,13 +176,33 @@ if (_item isEqualTo objNull) then {
     _headgear = headgear _unit;
     if !(_headgear isEqualTo "" || _headgear in _allowedItems) then {
         removeHeadgear _unit;
-        [getText (configFile >> "CfgWeapons" >> _headgear >> "displayName"), "your head", _headgear] call _removedItemMessage;
+        [_headgear, "your head", _headgear] call _removedItemMessage;
     };
 
     _goggles = goggles _unit;
     if !(_goggles isEqualTo "" || _goggles in _allowedItems) then {
         removeGoggles _unit;
-        [getText (configFile >> "CfgGoggles" >> _goggles >> "displayName"), "your face", _goggles] call _removedItemMessage;
+        [_headgear, "your face", _goggles] call _removedItemMessage;
     };
 
+} else {
+
+    if (_container isEqualTo objNull) exitWith {};
+
+    // If it's not a valid item, replace it back into the container and say NO
+    if ([GVAR(itemCargo),_item] call _findCargo) then {
+        if !(_item in GVAR(unitItems)) then { [_item, _container] call _removeItem; _container addItemCargoGlobal [_item, 1];  };
+    } else {
+        if ([GVAR(weaponCargo),_item] call _findCargo) then {
+            if !(_item in GVAR(unitWeapons)) then { [_item, _container] call _removeItem; _container addWeaponCargoGlobal [_item, 1];  };
+        } else {
+            if ([GVAR(magazineCargo),_item] call _findCargo) then {
+                if !(_item in GVAR(unitMags)) then { [_item, _container] call _removeItem; _container addMagazineCargoGlobal [_item, 1];  };
+            } else {
+                if ([GVAR(carryPacks),_item] call _findCargo || [GVAR(specialPacks),_item] call _findCargo) then {
+                    if !(_item in GVAR(backpackCargo)) then { [_item, _container] call _removeItem; _container addBackpackCargoGlobal [_item, 1]; };
+                };
+            };
+        };
+    };
 };

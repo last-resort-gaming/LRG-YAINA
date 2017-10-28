@@ -18,10 +18,18 @@
 ]] call FNC(initArsenal);
 
 // Player take handler, if the weapon hold is BLUFOR then we enforce weapon restrictions
-/*
-player addEventHandler ["Take", {
-    params ["_unit", "_container", "_item"];
 
-    [_unit, _item, _container] call derp_fnc_gearLimitations;
-}];
-*/
+private _takeHandler = {
+    player addEventHandler ["Take", {
+        params ["_unit", "_container", "_item"];
+
+        if (_container getVariable [QVAR(filtered), false]) then {
+            [_unit, _item, _container] call FNC(enforceGear);
+        };
+    }];
+};
+
+call _takeHandler;
+//player addEventHandler ["Respawn", _takeHandler];
+
+

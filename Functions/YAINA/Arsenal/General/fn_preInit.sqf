@@ -30,8 +30,9 @@ GVAR(allItems) = [[],[]];
 
 GVAR(weaponCargo)   = [[],[]];
 GVAR(itemCargo)     = [[],[]];
-GVAR(backpackCargo) = [[],[]];
 GVAR(magazineCargo) = [[],[]];
+GVAR(carryPacks)    = [[],[]];
+GVAR(specialPacks)  = [[],[]];
 
 ///////////////////////////////////////////////////////////
 // CfgWeapons
@@ -43,7 +44,6 @@ GVAR(magazineCargo) = [[],[]];
     switch _simulation do {
         case "weapon": {
             _type = getNumber (_x >> "type");
-            diag_log format["testing weapon: %1 (%2)", _class, _type];
 
             // Primary, Handgun, Launcher
             if (_type in [1,2,4]) exitWith {
@@ -144,9 +144,6 @@ GVAR(magazineCargo) = [[],[]];
 // Backpacks, two arrays, one so one can filter by cap
 // The rest for special packs like static weapons etc.
 ///////////////////////////////////////////////////////////
-
-GVAR(carryPacks) = [[],[]];
-GVAR(specialPacks) = [[],[]];
 
 {
     _class = configName _x;
