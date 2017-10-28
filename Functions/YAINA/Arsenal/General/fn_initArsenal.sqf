@@ -14,10 +14,10 @@ if (isServer) then {
         ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
 
         // Remove all items
-        clearWeaponCargoGlobal _x;
-        clearMagazineCargoGlobal _x;
-        clearItemCargoGlobal _x;
-        clearBackpackCargoGlobal _x;
+        //clearWeaponCargoGlobal _x;
+        //clearMagazineCargoGlobal _x;
+        //clearItemCargoGlobal _x;
+        //clearBackpackCargoGlobal _x;
 
         // Ensure no rope attachments
         _x enableRopeAttach false;
@@ -29,69 +29,234 @@ if (isServer) then {
 if (isDedicated) exitWith {};
 
 ///////////////////////////////////////////////////////////
-// WEAPONS / Scopes / Attachments
+// Weapons
+// Groups:
+//      MineDetector, Binocular, Rangefinder, Laserdesignator,
+//      rocket, missile srifle, mg, hgun, arifle, arifle_gl, smg
 ///////////////////////////////////////////////////////////
 
 GVAR(unitWeapons) = call {
 
-    // By default we allow all arifiles + smgs + hguns
-    _permitGroups     = ["arifle", "smg", "hgun"];
-    _blacklistGroups  = [];
-    _blacklistItems   = [];
-    _permitItems      = [];
+    _permitGroups    = ["Binocular","Rangefinder", "arifle", "hgun", "smg"];
+    _blacklistItems  = [];
 
-    // Remove any blacklist groups before adding specifics, and reset blacklistGroups
-    _permitGroups    = _permitGroups - _blacklistGroups;
-    _blacklistGroups = [];
+    if (["AT"] call YFNC(testTraits)) then {
+        _permitGroups append ["missile", "rocket"];
+    };
 
-    // If we are marksman/sniper we allow srifiles
-    // If we are marksman/sniper we allow srifiles
+    if (["AR", "HG"] call YFNC(testTraits)) then {
+        _permitGroups pushBack "mg";
+    };
+
+    if(["ENG"] call YFNC(testTraits)) then {
+        _permitGroups pushBack "MineDetector";
+    };
+
+    if (["SL"] call YFNC(testTraits)) then {
+        _permitGroups pushBack "Laserdesignator";
+    };
+
     if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
+
+        _permitGroups append ["Laserdesignator", "srifle"];
 
         if (["Marksman"] call YFNC(testTraits)) then {
             // Deny the Lynx and 403 main sniper weapons
             _blacklistItems append ["srifle_GM6_F", "srifle_LRR_F", "srifle_LRR_camo_F"];
-
         };
     };
 
-    // If we are MGs then we allow MGs
-    if (["MG"] call YFNC(testTraits)) then {
-        _permitGroups pushBack "mg";
-    };
-
-    // And AT may have missiles / rockets
-    if (["AT"] call YFNC(testTraits)) then {
-        _permitGroups pushBack "missile";
-        _permitGroups pushBack "rocket";
-    };
-
-    // ReRemove any additional blacklistGroups based on unit traits
-    _permitGroups = _permitGroups - _blacklistGroups;
-
-    // Merge the weapon list
     _retval = [];
-
     {
-        _idx = (GVAR(allWeapons) select 0) find _x;
-        if !(_idx isEqualTo -1) then { _retval append ((GVAR(allWeapons) select 1) select _idx); };
+        _idx = (GVAR(weaponCargo) select 0) find _x;
+        if !(_idx isEqualTo -1) then { _retval append ((GVAR(weaponCargo) select 1) select _idx); };
         true;
     } count _permitGroups;
 
-    // Remove blacklisted items that aren't explicitly allowed, then add the rest of the allowed items
-    _retval = _retval - (_blacklistItems - _permitItems) + _permitItems;
-
-    _retval
+    _retval - _blacklistItems;
 };
 
 ///////////////////////////////////////////////////////////
-// BackPacks
+// Items
+// Groups:
+//  General Items:
+//      ItemWatch ItemCompass ItemGPS ItemRadio ItemMap FirstAidKit
+//  Class Items:
+//      MediKit ToolKit UAVTerm
+//  Uniform Groups:
+//      U_B U_O U_C U_Rangemaster U_OrestesBody U_I U_Competitor U_BG U_Marshal
+//  Vest Groups:
+//      V_Rangemaster, V_BandollierB, V_PlateCarrier1, V_PlateCarrier2, V_PlateCarrierGL,
+//      V_PlateCarrierSpec, V_Chestrig, V_TacVest, V_TacVestIR, V_HarnessO, V_HarnessOGL,
+//      V_PlateCarrierIA1, V_PlateCarrierIA2, V_PlateCarrierIAGL, V_RebreatherB,
+//      V_RebreatherIR, V_RebreatherIA, V_PlateCarrier, V_PlateCarrierL, V_PlateCarrierH,
+//      V_I_G_resistanceLeader_F, V_Press, V_TacChestrig, V_DeckCrew, V_Plain, V_Pocketed,
+//      V_Safety, V_LegStrapBag, V_EOD, V_EOD_IDAP_blue_F
+//  Helmet Groups:
+//      H_HelmetB, H_Booniehat, H_HelmetSpecB, H_HelmetIA, H_Cap, H_HelmetCrew_B,
+//      H_HelmetCrew_O, H_HelmetCrew_I, H_PilotHelmetFighter_B, H_PilotHelmetFighter_O,
+//      H_PilotHelmetFighter_I, H_PilotHelmetHeli_B, H_PilotHelmetHeli_O, H_PilotHelmetHeli_I,
+//      H_CrewHelmetHeli_B, H_CrewHelmetHeli_O, H_CrewHelmetHeli_I, H_HelmetO, H_HelmetLeaderO
+//      H_MilCap, H_HelmetSpecO, H_Bandanna, H_Shemag, H_ShemagOpen, H_Beret, H_Watchcap,
+//      H_StrawHat, H_Hat, H_RacingHelmet ,H_Helmet, H_HelmetCrew, H_Construction,
+//      H_EarProtectors, H_HeadSet, H_PASGT, H_HeadBandage, H_WirelessEarpiece
+//  Weapon Accessories Groups:
+//      acc_muzzle, acc_pointer, acc_bipod
+//      optic_Arco, optic_Hamr, optic_Aco, optic_ACO, optic_Holosight, optic_SOS
+//      optic_MRCO, optic_NVS, optic_Nightstalker, optic_tws, optic_DMS,
+//      optic_Yorris, optic_MRD, optic_LRPS, optic_AMS, optic_KHS, optic_ERCO, optic_PGO7
+//  NVG Groups:
+//      NVGoggles O_NVGoggles, NVGogglesB
+//  Glasses Groups:
+//      G_Spectacles, G_Combat, G_Lowprofile, G_Shades, G_Squares, G_Sport, G_Tactical,
+//      G_Aviator, G_Lady, G_Diving, G_B_Diving, G_O_Diving, G_I_Diving, G_Goggles,
+//      G_Balaclava, G_Bandanna, G_Respirator, G_EyeProtectors, G_WirelessEarpiece
+
+///////////////////////////////////////////////////////////
+
+
+GVAR(unitItems) = call {
+
+    // Default Permitted Items
+    _permitGroups    = ["ItemWatch", "ItemCompass", "ItemGPS", "ItemRadio", "ItemMap",
+                        "FirstAidKit", "NVGoggles", "acc_muzzle", "acc_pointer", "acc_bipod",
+                        "H_HelmetB", "H_HelmetSpecB", "H_Beret", "V_ALL", "G_ALL", "U_B",
+                        "optic_ALL"];
+
+    _permitItems     = [];
+
+    // These items are included by the permit groups, but by default aren't permitted by everyone and will be added
+    // where required, faster than either whitelisting, or blacklisting only
+
+    _blacklistGroups  = ["V_Rangemaster", "V_I_G_resistanceLeader","V_Press",
+                         "V_DeckCrew", "V_Plain", "V_Safety", "V_EOD", "V_EOD_IDAP",
+                         "V_PlateCarrier", "V_RebreatherIR", "V_RebreatherIA", "G_Respirator", "G_Lady", "G_EyeProtectors",
+                         "optic_LRPS", "optic_AMS", "optic_SOS", "optic_KHS", "optic_DMS", "optic_tws", "optic_Nightstalker"];
+
+    _blacklistItems   = ["H_Beret_gen_F", "H_Beret_Colonel",
+                         "U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard", "U_B_T_FullGhillie_tna_F", "U_B_T_Sniper_F",
+                         "U_B_GEN_Soldier_F", "U_B_GEN_Commander_F", "U_B_Protagonist_VR",
+                         "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls",
+                         "V_TacVest_gen_F",
+                         "G_I_Diving", "G_O_Diving", "G_WirelessEarpiece_F", "G_Goggles_VR"];
+
+    // working list
+    _items            = [];
+
+    // handle "prefix_ALL"
+    {
+        _id     = format["%1_ALL", _x];
+        _prefix = format ["%1_", _x];
+        _len = count _prefix;
+        if (_id in _permitGroups) then {
+            _permitGroups append ((GVAR(itemCargo) select 0) select { (_x select [0,_len]) isEqualTo _prefix; });
+        };
+    } count ["G", "V", "H", "optic"];
+
+    // Build the initial valid items list, as we'll need to process the permitGroups/Items and don't want a blacklist
+    // above coming in to ruin it all
+    {
+        _idx = (GVAR(itemCargo) select 0) find _x;
+        if !(_idx isEqualTo -1) then { _items append ((GVAR(itemCargo) select 1) select _idx); };
+        true;
+    } count _permitGroups;
+
+    _items append _permitItems;
+
+    {
+        _idx = ((GVAR(itemCargo) select 0) find _x);
+        if !(_idx isEqualTo -1) then {
+            {
+                _idx = (_items find _x);
+                if !(_idx isEqualTo -1) then {
+                    _items deleteAt _idx;
+                };
+                true;
+            } count (GVAR(itemCargo) select 1 select _idx);
+        };
+        true
+    } count _blacklistGroups;
+
+    _items = _items - _blacklistItems;
+
+    // Now we reset the blacklist/permit lists per-class
+    _permitGroups    = [];
+    _permitItems     = [];
+    _blacklistGroups = [];
+    _blacklistItems  = [];
+
+    if(["PILOT"] call YFNC(testTraits)) then {
+        _permitItems append  ["H_PilotHelmetHeli_B", "H_PilotHelmetFighter_B", "H_CrewHelmetHeli_B", "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
+    };
+
+    // Squad Spotters/Snipers also get NATO Ghillies
+    if(["SNIPER", "SPOTTER"] call YFNC(testTraits)) then {
+        _permitItems append ["U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard"];
+    };
+
+    if(["SNIPER", "MARKSMAN"] call YFNC(testTraits)) then {
+        _permitGroups append ["optic_AMS", "optic_SOS", "optic_DMS", "optic_KHS"];
+    };
+
+    if(["SNIPER"] call YFNC(testTraits)) then {
+        _permitGroups append ["optic_LRPS", "optic_Nightstalker"];
+    };
+
+    if(["HQ"] call YFNC(testTraits)) then {
+        _permitItems append ["H_Beret_Colonel"];
+    };
+
+    if(["UAV", "MERT_UAV"] call YFNC(testTraits)) then {
+        _permitItems append ["B_UavTerminal"];
+    };
+
+    if(["MEDIC"] call YFNC(testTraits)) then {
+        _permitItems pushBack "Medikit";
+    };
+
+    if(["ENG"] call YFNC(testTraits)) then {
+        _permitItems pushBack "ToolKit";
+    };
+
+    // Now, add in our permits, and remove blacklists again
+    {
+        _idx = (GVAR(itemCargo) select 0) find _x;
+        if !(_idx isEqualTo -1) then { _items append ((GVAR(itemCargo) select 1) select _idx); };
+        true;
+    } count _permitGroups;
+
+    _items append _permitItems;
+
+    {
+        _idx = ((GVAR(itemCargo) select 0) find _x);
+        if !(_idx isEqualTo -1) then {
+            {
+                _idx = (_items find _x);
+                if !(_idx isEqualTo -1) then {
+                    _items deleteAt _idx;
+                };
+                true;
+            } count (GVAR(itemCargo) select 1 select _idx);
+        };
+        true
+    } count _blacklistGroups;
+
+    _items = _items - _blacklistItems;
+
+    // DeDupe and return the list
+    _retval = [];
+    { if ((_retval find _x) isEqualTo -1) then { _retval pushBack _x; }; true } count _items;
+    _retval;
+};
+
+///////////////////////////////////////////////////////////
+// Backpacks
 ///////////////////////////////////////////////////////////
 
 GVAR(unitBackpacks) = call {
 
     _maxSize = 320; // Carryall, excluding Bergen
-    _minSize = 140; // Remove Messenger bags and
+    _minSize = 140; // Remove Messenger bags and msuh
 
     _retval = [];
     {
@@ -121,109 +286,53 @@ GVAR(unitBackpacks) = call {
 };
 
 ///////////////////////////////////////////////////////////
-// Items
+// Mags
+// Groups:
+//      Bullet, Rocket, Missile, Shell, SmokeShell, Grenade,
+//      Flare, Laserbatteries, B_IR_Grenade, O_IR_Grenade,
+//      I_IR_Grenade, Mine, MineLocal, MineBounding,
+//      MineDirectional, Artillery, Mags_ALL
 ///////////////////////////////////////////////////////////
 
-GVAR(unitItems) = call {
+GVAR(unitMags) = call {
 
-    // Standard Items
-    _retval = ["Binocular", "RangeFinder", "Map", "GPS", "Radio", "Compass", "Watch", "FirstAidKit"];
+    // By defeault, we allow everything except arty (which is really starter pistol flares) and mines
+    _permitGroups    = (GVAR(magazineCargo) select 0);
+    _blacklistGroups = ["Artillery", "Mine"];
 
-    // Default allowed items for all classes
-    _permitGroups     = ["H_HelmetB", "H_HelmetSpecB", "H_Beret",
-                         "V_ALL", "G_ALL", "U_B",
-                         "NVGoggles",
-                         "silencers", "optic_ALL", "acc", "bipods"];
-
-    _permitItems      = [];
-
-    _blacklistGroups  = ["V_Rangemaster", "V_I_G_resistanceLeader","V_Press",
-                         "V_DeckCrew", "V_Plain", "V_Safety", "V_EOD", "V_EOD_IDAP",
-                         "V_PlateCarrier", "V_RebreatherIR", "V_RebreatherIA", "G_Respirator", "G_Lady", "G_EyeProtectors",
-                         "optic_LRPS", "optic_AMS", "optic_SOS", "optic_KHS", "optic_DMS", "optic_tws", "optic_Nightstalker"];
-
-    _blacklistItems   = ["H_Beret_gen_F", "H_Beret_Colonel",
-                         "U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard", "U_B_T_FullGhillie_tna_F", "U_B_T_Sniper_F",
-                         "U_B_GEN_Soldier_F", "U_B_GEN_Commander_F", "U_B_Protagonist_VR",
-                         "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls",
-                         "V_TacVest_gen_F",
-                         "G_I_Diving", "G_O_Diving", "G_WirelessEarpiece_F", "G_Goggles_VR"];
-
-
-    // if it's V_ALL add in all vests
-    if ("V_ALL" in _permitGroups) then {
-        _permitGroups append ((GVAR(items) select 0) select { (_x select [0,2]) isEqualTo "V_"; });
-    };
-
-    // G_ALL for glasses
-    if ("G_ALL" in _permitGroups) then {
-        _permitGroups append ((GVAR(items) select 0) select { (_x select [0,2]) isEqualTo "G_"; });
-    };
-
-    // expand optic all
-    if ("optic_ALL" in _permitGroups) then {
-        _permitGroups append ((GVAR(items) select 0) select { (_x select [0,6]) isEqualTo "optic_"; });
-    };
-
-    // Remove any blacklist groups before adding specifics
-    _permitGroups = _permitGroups - _blacklistGroups;
-
-    // Reset blacklist Gorups so we can add specific blacklists
-    _blacklistGroups = [];
-
-    // Add any specifics
-    if(["PILOT"] call YFNC(testTraits)) then {
-        _permitGroups append ["H_PilotHelmetHeli_B", "H_PilotHelmetFighter_B", "H_CrewHelmetHeli_B"];
-        _permitItems append  ["U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
-    };
-
-    // Squad Spotters/Snipers also get Laser Designators and NATO Ghillies
-    if(["SNIPER", "SPOTTER"] call YFNC(testTraits)) then {
-        _permitGroups append ["Laserdesignator", "U_B_FullGhillie"];
-        _permitItems  append ["U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard"];
-    };
-
-    if(["SNIPER", "MARKSMAN"] call YFNC(testTraits)) then {
-        _permitGroups append ["optic_AMS", "optic_SOS", "optic_DMS", "optic_KHS"];
-    };
-
-    if(["SNIPER"] call YFNC(testTraits)) then {
-        _permitGroups append ["optic_LRPS", "optic_Nightstalker"];
-    };
-
-    if(["SL"] call YFNC(testTraits)) then {
-        _permitGroups append ["Laserdesignator"];
-    };
-
-    if(["HQ"] call YFNC(testTraits)) then {
-        _permitItems append ["H_Beret_Colonel"];
-    };
-
-    if(["UAV", "MERT_UAV"] call YFNC(testTraits)) then {
-        _permitItems append ["B_UavTerminal"];
-    };
-
-    if(["MEDIC"] call YFNC(testTraits)) then {
-        _permitItems append ["Medikit"];
-    };
-
-    if(["ENG"] call YFNC(testTraits)) then {
-        _permitItems append ["Toolkit", "MineDetector"];
-    };
-
+    _items           = [];
 
     {
-        _idx = (GVAR(items) select 0) find _x;
-        if !(_idx isEqualTo -1) then { _retval append ((GVAR(items) select 1) select _idx) };
+        _idx = (GVAR(magazineCargo) select 0) find _x;
+        if !(_idx isEqualTo -1) then {
+            { _items pushBackUnique _x; true; } count ((GVAR(magazineCargo) select 1) select _idx);
+        };
         true;
     } count _permitGroups;
 
-    // Remove blacklisted items that aren't explicitly allowed, then add the rest of the allowed items
-    _retval = _retval - (_blacklistItems - _permitItems) + _permitItems;
+    {
+        _idx = ((GVAR(magazineCargo) select 0) find _x);
+        if !(_idx isEqualTo -1) then {
+            {
+                _idx = (_items find _x);
+                if !(_idx isEqualTo -1) then {
+                    _items deleteAt _idx;
+                };
+                true;
+            } count (GVAR(magazineCargo) select 1 select _idx);
+        };
+        true
+    } count _blacklistGroups;
 
-    _retval;
+    if (["ENG"] call YFNC(testTraits)) then {
+        _items append [ "ATMine_Range_Mag", "APERSMine_Range_Mag", "APERSBoundingMine_Range_Mag",
+                        "SLAMDirectionalMine_Wire_Mag", "APERSTripMine_Wire_Mag",
+                        "ClaymoreDirectionalMine_Remote_Mag", "SatchelCharge_Remote_Mag",
+                        "DemoCharge_Remote_Mag" ];
+    };
+
+    _items;
 };
-
 
 ///////////////////////////////////////////////////////////
 // Populate
@@ -234,11 +343,13 @@ GVAR(unitItems) = call {
     [_x, [true], false] call BIS_fnc_removeVirtualItemCargo;
     [_x, [true], false] call BIS_fnc_removeVirtualWeaponCargo;
     [_x, [true], false] call BIS_fnc_removeVirtualBackpackCargo;
-    // [_obj, [true], false] call BIS_fnc_removeVirtualMagazineCargo;
+    [_x, [true], false] call BIS_fnc_removeVirtualMagazineCargo;
 
-    [_x, GVAR(unitItems),     false] call BIS_fnc_addVirtualItemCargo;
-    [_x, GVAR(unitWeapons),   false] call BIS_fnc_addVirtualWeaponCargo;
+    //[_x, ("getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgWeapons") apply { configName _x }), false] call BIS_fnc_addVirtualItemCargo;
+    [_x, GVAR(unitItems), false] call BIS_fnc_addVirtualItemCargo;
+    [_x, GVAR(unitWeapons), false] call BIS_fnc_addVirtualWeaponCargo;
     [_x, GVAR(unitBackpacks), false] call BIS_fnc_addVirtualBackpackCargo;
+    [_x, GVAR(unitMags), false] call BIS_fnc_addVirtualMagazineCargo;
 
     // Fix the action
      _x removeAction (_x getVariable "bis_fnc_arsenal_action");

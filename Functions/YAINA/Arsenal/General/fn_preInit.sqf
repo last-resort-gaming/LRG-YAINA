@@ -7,9 +7,8 @@
 #include "..\defines.h";
 
 ///////////////////////////////////////////////////////////
-// WEAPONS
+// HELPER
 ///////////////////////////////////////////////////////////
-GVAR(allWeapons) = [[],[]];
 
 _addToArray = {
     params ["_array", "_key", "_value"];
@@ -23,30 +22,129 @@ _addToArray = {
     };
 };
 
+GVAR(allItems) = [[],[]];
 
-// Weapons
+// Go through cfgWeapons, base classes only, and categorize items: we need class name, type (weapon/item), and suitable grouping
+// Most info after a long and painful journy from BIS_fnc_itemType (though it refers to Binos as Items, when they are weapons
+// At least from a cargo perspective
+
+GVAR(weaponCargo)   = [[],[]];
+GVAR(itemCargo)     = [[],[]];
+GVAR(backpackCargo) = [[],[]];
+GVAR(magazineCargo) = [[],[]];
+
+///////////////////////////////////////////////////////////
+// CfgWeapons
+///////////////////////////////////////////////////////////
 {
-    _class = configName _x;
+    _simulation = toLower getText (_x >> "simulation");
+    _class      = configName _x;
 
-    // Skip if it's a MineDetector (type 4)
-    if !(_class isEqualTo "MineDetector") then {
+    switch _simulation do {
+        case "weapon": {
+            _type = getNumber (_x >> "type");
+            diag_log format["testing weapon: %1 (%2)", _class, _type];
 
-        _type = getText (_x >> "cursor");
+            // Primary, Handgun, Launcher
+            if (_type in [1,2,4]) exitWith {
 
-        // create custom class for weapons with GLs
-        if (!({ _x in [ "EGLM", "GL_3GL_F" ] } count getArray(_x >> "muzzles") isEqualTo 0)) then {
-            _type = "gl";
+                _type = getText (_x >> "cursor");
+
+                // However, suffix _gl for those with GL muzzles
+                if (!({ _x in [ "EGLM", "GL_3GL_F" ] } count getArray(_x >> "muzzles") isEqualTo 0)) then {
+                    _type = format["%1_gl", _type];
+                };
+
+                [GVAR(weaponCargo), _type, _class] call _addToArray;
+            };
+            if (_type isEqualTo 4096) exitWith {
+                [GVAR(weaponCargo), "Laserdesignator", _class] call _addToArray;
+            };
+            if (_type isEqualTo 131072) exitWith {
+                _infoType  = getNumber (_x >> "itemInfo" >> "type");
+                _infoGroup = call {
+                    if (_infoType isEqualTo 101) exitWith { "acc_muzzle" };
+                    if (_infoType isEqualTo 201) exitWith {
+                        // we just use optic_<TYPE> e.g optic_LPRS which handles all the groups
+                        format ["optic_%1", (_class splitString "_") select 1];
+                    };
+                    if (_infoType isEqualTo 301) exitWith { "acc_pointer" };
+                    if (_infoType isEqualTo 302) exitWith { "acc_bipod" };
+                    if (_infoType isEqualTo 401) exitWith { "FirstAidKit" };
+                    if (_infoType isEqualTo 605) exitWith {
+                        // Group helmets by type, if they end with a side (_B _O etc. leave it)
+                        _elems = _class splitString "_";
+                        _group  = _elems select [0,2] joinString "_";
+                        _suffix = _elems select (count _elems -1);
+                        if (_suffix in ["B", "O", "I"]) then {
+                            _group = format["%1_%2", _group, _suffix];
+                        };
+                        _group
+                    };
+                    if (_infoType isEqualTo 619) exitWith { "Medikit" };
+                    if (_infoType isEqualTo 620) exitWith { "ToolKit" };
+                    if (_infoType isEqualTo 621) exitWith { "UAVTerm" };
+                    if (_infoType isEqualTo 701) exitWith {
+                        // For vests, we just jump the first two elements unless it's a few we keep as class
+                        _elems = _class splitString "_";
+                        _group = _elems select [0,2] joinString "_";
+                        if (_class in ["V_I_G_resistanceLeader_F", "V_EOD_IDAP_blue_F"]) then {
+                            _group = _class;
+                        };
+                        _group;
+                    };
+                    if (_infoType isEqualTo 801) exitWith {
+                        _elems = _class splitString "_";
+                        _group = _elems select [0,2] joinString "_";
+                        _group;
+                    };
+                };
+                [GVAR(itemCargo), _infoGroup, _class] call _addToArray;
+            };
         };
-
-        [GVAR(allWeapons), _type, _class] call _addToArray;
+        case "binocular": {[GVAR(weaponCargo), _class, _class] call _addToArray;};
+        case "nvgoggles": {
+            // We group by type name (NVGoggles, NVGogglesB, O_NVGoggles)
+            _elems = _class splitString "_";
+            _group = _elems select 0;
+            if (_elems select 0 isEqualTo "O") then { _group = _elems select [0,2] joinString "_"; };
+            [GVAR(itemCargo), _group, _class] call _addToArray;
+        };
+        case "itemcompass": {[GVAR(itemCargo), _class, _class] call _addToArray;};
+        case "itemgps": {[GVAR(itemCargo), _class, _class] call _addToArray;};
+        case "itemmap": {[GVAR(itemCargo), _class, _class] call _addToArray;};
+        case "itemminedetector": {[GVAR(weaponCargo), _class, _class] call _addToArray;};
+        case "itemradio": {[GVAR(itemCargo), _class, _class] call _addToArray;};
+        case "itemwatch": {[GVAR(itemCargo), _class, _class] call _addToArray;};
     };
     true;
-} count ("getnumber (_x >> 'type') in [1,2,4] AND getnumber (_x >> 'scope') isEqualTo 2 AND count ('!(configName _x isEqualTo ""LinkedItemsUnder"")' configClasses (_x >> 'LinkedItems')) isEqualTo 0" configClasses (configfile >> 'CfgWeapons'));
-// Primary weapons, main scope, do not have additional item attachments (base items) other than under for bipod
+} count ("getnumber (_x >> 'scope') isEqualTo 2 && (configName _x call BIS_fnc_baseWeapon) isEqualTo (configName _x)" configClasses (configfile >> 'CfgWeapons'));
 
 ///////////////////////////////////////////////////////////
-// BACKPACKS
+// Eye Wear
 ///////////////////////////////////////////////////////////
+{
+    _class = configName _x;
+    _elems = _class splitString "_";
+
+    if !(_class isEqualTo "None") then {
+        _type  = _elems select [0,2] joinString "_";
+
+        if ((_elems select 1) in ["C", "B", "I", "O"]) then {
+            _type = _class;
+        };
+
+        [GVAR(itemCargo), _type, _class] call _addToArray;
+    };
+    true;
+} count ("getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgGlasses"));
+
+
+///////////////////////////////////////////////////////////
+// Backpacks, two arrays, one so one can filter by cap
+// The rest for special packs like static weapons etc.
+///////////////////////////////////////////////////////////
+
 GVAR(carryPacks) = [[],[]];
 GVAR(specialPacks) = [[],[]];
 
@@ -58,8 +156,6 @@ GVAR(specialPacks) = [[],[]];
         [GVAR(carryPacks), _cap, _class] call _addToArray;
     } else {
         // Special Packs: UAVs/static weapons etc, these are split by side
-        // B_static, B_UAV, B_MedicalUAV
-
         _elems = _class splitString "_";
         _side  = _elems select 0;
         _type  = nil;
@@ -76,129 +172,54 @@ GVAR(specialPacks) = [[],[]];
                 };
             } else {
                 _type = "StaticWeapon";
-            };
+             };
             _type = format["%1_%2", _side, _type];
         };
-
         if (!isNil "_type") then {
             [GVAR(specialPacks), _type, _class] call _addToArray;
         };
     };
-
     true;
 } count ("getText (_x >> 'vehicleClass') isEqualTo 'Backpacks' AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configfile >> 'CfgVehicles'));
 
+
 ///////////////////////////////////////////////////////////
-// Headgwear / Eyewear / Vests / Uniforms / NVG / Binos
+// Magazines
 ///////////////////////////////////////////////////////////
 
-// These are all general items, so just have items, though
-// we look up the values separately as the filtering depends
-// on it
+GVAR(magazineCargo) = [[],[]];
 
-GVAR(items) = [[],[]];
-
-// Headgear
 {
     _class = configName _x;
-    _elems = _class splitString "_";
+    _ammo  = toLower getText (configFile >> "CfgAmmo" >> getText (configFile >> "CfgMagazines" >> _class >> "ammo") >> "simulation");
 
-    // If it ends with a _S<Side> we leave it e.g: PilotHelmetHeli_B
-    _type = _elems select [0,2] joinString "_";
-    _end  = _elems select (count _elems - 1);
-    if (_end in ["B", "O", "I"]) then {
-        _type = format["%1_%2", _type, _end];
+    _itemCategory = nil;
+    _type = switch _ammo do {
+        case "shotboundingmine": {_itemCategory = "Mine"; "MineBounding"};
+        case "shotbullet": {"Bullet"};
+        case "shotcm": {"CounterMeasures"};
+        case "shotdeploy": {"Artillery"};
+        case "shotdirectionalbomb": {_itemCategory = "Mine"; "MineDirectional"};
+        case "shotgrenade": {"Grenade"};
+        case "shotilluminating": {"Flare"};
+        case "shotlaser": {"Laser"};
+        case "shotmine": {_itemCategory = "Mine"; "MineLocal"};
+        case "shotmissile": {"Missile"};
+        case "shotrocket": {"Rocket"};
+        case "shotshell": {"Shell"};
+        case "shotsmoke";
+        case "shotsmokex": {"SmokeShell"};
+        case "shotspread": {"ShotgunShell"};
+        case "shotsubmunitions": {"Artillery"};
+        default { _class; };
     };
 
-    [GVAR(items), _type, _class] call _addToArray;
+    [GVAR(magazineCargo), _type, _class] call _addToArray;
 
-    true;
-} count ("getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 605 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configfile >> 'CfgWeapons'));
-
-// Vests
-{
-    _class = configName _x;
-    _elems = _class splitString "_";
-
-    // Most of the time we can just pick the first two elems, except one...
-    _type  = _elems select [0,2] joinString "_";
-
-    if (_class isEqualTo "V_I_G_resistanceLeader_F") then {
-        _type = "V_I_G_resistanceLeader";
+    if !(isNil "_itemCategory") then {
+        [GVAR(magazineCargo), _itemCategory, _class] call _addToArray;
     };
 
-    if (_class isEqualTo "V_EOD_IDAP_blue_F") then {
-        _type = "V_EOD_IDAP";
-    };
-
-    [GVAR(items), _type, _class] call _addToArray;
-
     true;
-} count ("getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 701 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configfile >> 'CfgWeapons'));
 
-// Eyewear G_X, just pick the first two again
-{
-    _class = configName _x;
-    _elems = _class splitString "_";
-
-    if !(_class isEqualTo "None") then {
-        _type  = _elems select [0,2] joinString "_";
-
-        if ((_elems select 1) in ["I", "O"]) then {
-            _type = _class;
-        };
-
-        [GVAR(items), _type, _class] call _addToArray;
-    };
-    true;
-} count ("getNumber (_x >> 'scope') >= 2" configClasses (configFile >> "CfgGlasses"));
-
-// NVGs/Binos, first item, unless it's an O, in which case first and second...
-{
-    _class = configName _x;
-    _elems = _class splitString "_";
-    _type  = _elems select 0;
-
-    if (_elems select 0 isEqualTo "O") then {
-        _type = _elems select [0,2] joinString "_";
-    };
-
-    [GVAR(items), _type, _class] call _addToArray;
-    true;
-} count ("getnumber (_x >> 'scope') isEqualTo 2 AND getnumber (_x >> 'type') isEqualTo 4096" configClasses (configfile >> 'CfgWeapons'));
-
-// Uniforms....thankfully, are consistently named
-{
-    _class = configName _x;
-    _elems = _class splitString "_";
-
-    // Because the nature, we'll shortcut, and just group by side so, U_B or U_O
-    _type = _elems select [0,2] joinString "_";
-
-    // Then filter what we don't want later
-    [GVAR(items), _type, _class] call _addToArray;
-
-    true;
-} count ("getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 801 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configfile >> 'CfgWeapons'));
-
-
-// Silencers (101) / Scopes (201) /  Attachments (IR/Flash) - 301 / Bipods (302)
-{
-    _class = configName _x;
-    _type  = getNumber (_x >> 'ItemInfo' >> 'Type');
-
-    _group = call {
-        if (_type isEqualTo 101) exitWith { "silencers" };
-        if (_type isEqualTo 201) exitWith {
-            // We group on the 2nd element
-            _elems = _class splitString "_";
-            format ["optic_%1", _elems select 1];
-        };
-        if (_type isEqualTo 301) exitWith { "acc" };
-        if (_type isEqualTo 302) exitWith { "bipods" };
-    };
-
-    [GVAR(items), _group, _class] call _addToArray;
-
-    true;
-} count ("getnumber (_x >> 'ItemInfo' >> 'Type') in [101,201,301,302] AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configfile >> 'CfgWeapons'));
+} count ("!(getnumber (_x >> 'type') isEqualTo 0) AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgMagazines'));
