@@ -20,7 +20,9 @@ if (isNil { player getVariable "YAINA_RespawnPos"; } ) then {
     player setVariable ["YAINA_RespawnPos", getPosATL player];
     player setVariable ["YAINA_RespawnDir", getDir player];
 } else {
-    // move them there
+    // move them there, else default respawn pos
+    _defaultRP = getMarkerPos "respawn";
+    _defaultRP set [2,0];
     player setPosATL (player getVariable ["YAINA_RespawnPos", _defaultRP]);
     player setDir (player getVariable ["YAINA_RespawnDir", 0]);
 };

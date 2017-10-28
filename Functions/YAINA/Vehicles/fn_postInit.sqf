@@ -31,9 +31,19 @@ if(hasInterface) then {
                 GVAR(EJECT_MENU) = [["Passenger to Eject", true]];
                 {
                     if !(_x isEqualTo player) then {
-                        GVAR(EJECT_MENU) pushBack [
-                            name _x, [0], "", -5, [["expression", format ["moveOut (missionNamespace getVariable '%1')", _x call BIS_fnc_objectVar]]], "1", "1"
-                        ];
+                        // If it's the owner, just systemChat saying you can't eject the owner!
+                        _owner = missionNamespace getVariable ((_this select 0) getVariable QVAR(owner));
+                        if (isNil "_owner") then { _owner = objNull; };
+
+                        if (_x isEqualTo _owner) then {
+                            GVAR(EJECT_MENU) pushBack [
+                                name _x, [0], "", -5, [["expression", "systemChat ""you can't eject the owner of this vehicle"" "]], "1", "1"
+                            ];
+                        } else {
+                            GVAR(EJECT_MENU) pushBack [
+                                name _x, [0], "", -5, [["expression", format ["moveOut (missionNamespace getVariable '%1')", _x call BIS_fnc_objectVar]]], "1", "1"
+                            ];
+                        };
                     };
                 } forEach (crew vehicle player);
 
@@ -52,13 +62,13 @@ if(hasInterface) then {
 
             if !(_veh getVariable [QVAR(hasKeyActions), false]) then {
                 _veh addAction ["Take Keys",  FNC(takeKey), "", -98, false, true, "", format['driver _target isEqualTo _this && isNil { _target getVariable "%1"; }', QVAR(owner)]];
-                _veh addAction ["Leave Keys", FNC(dropKey), "", -98, false, true, "", format['vehicle _this isEqualTo _target && (_target getVariable "%1") isEqualTo _this;', QVAR(owner)]];
+                _veh addAction ["Leave Keys", FNC(dropKey), "", -98, false, true, "", format['vehicle _this isEqualTo _target && (missionNamespace getVariable (_target getVariable "%1")) isEqualTo _this;', QVAR(owner)]];
                 _veh setVariable [QVAR(hasKeyActions), true];
             };
 
             if (_pos isEqualTo "driver") then {
-                _owner = _veh getVariable QVAR(owner);
-                if (!(isNil "_owner")) then {
+                _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
+                if !(isNil "_owner") then {
                     if !([_owner isEqualTo (driver _veh), (group _owner) isEqualTo (group driver _veh)] select SQUAD_BASED) then {
                         format ["%1 has the keys.", name _owner] call YFNC(hintC);
                         moveOut driver _veh;
@@ -78,7 +88,7 @@ if(hasInterface) then {
         params ["_unit1", "_unit2", "_veh"];
 
         if(_veh getVariable[QVAR(hasKeys), false]) then {
-            _owner = _veh getVariable QVAR(owner);
+            _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
             if (!(isNil "_owner")) then {
                 if !([_owner isEqualTo (driver _veh), group _owner isEqualTo (group driver _veh)] select SQUAD_BASED) then {
                     ["You don't have the keys."] remoteExec [Q(YFNC(hintC)), driver _veh];

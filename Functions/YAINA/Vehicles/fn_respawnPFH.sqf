@@ -34,7 +34,7 @@ if(!isServer) exitWith {};
                 if !(call { {_veh inArea _x} count BASE_PROTECTION_AREAS; } isEqualTo 0) exitWith {};
 
                 // If the vehicle is owned, then the abandonDistance is doubled;
-                _owner = _veh getVariable QVAR(owner);
+                _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
                 if(!isNil "_owner") then {
                     _abandonDistance =  _abandonDistance * 2;
                 };

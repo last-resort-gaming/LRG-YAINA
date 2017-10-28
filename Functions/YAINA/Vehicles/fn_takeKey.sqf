@@ -31,7 +31,7 @@ if(SQUAD_BASED) then {
 };
 
 // We set the owner to be the _caller, and create a map marker name;
-_target setVariable [QVAR(owner), _caller, true];
+_target setVariable [QVAR(owner), _caller call BIS_fnc_objectVar, true];
 _target setVariable [QVAR(mm), _markerID, true];
 
 // Update the server's knowledge of who owns what (unlock on disconnect etc)

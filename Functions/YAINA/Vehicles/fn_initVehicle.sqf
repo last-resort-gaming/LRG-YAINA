@@ -18,14 +18,14 @@ if (_hasKeys) then {
     // If it's killed/deleted we need to remove markers
     _veh addEventHandler ["killed", {
         params ["_veh", "_killer"];
-        _owner = _veh getVariable QVAR(owner);
-        [_owner, _veh, "remove"] call FNC(updateOwnership);
+        _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
+        if (!isNil "_owner") then { [_owner, _veh, "remove"] call FNC(updateOwnership); };
     }];
 
     _veh addEventHandler ["Deleted", {
         params ["_veh"];
-        _owner = _veh getVariable QVAR(owner);
-        [_owner, _veh, "remove"] call FNC(updateOwnership);
+        _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
+        if (!isNil "_owner") then { [_owner, _veh, "remove"] call FNC(updateOwnership); };
     }];
 };
 

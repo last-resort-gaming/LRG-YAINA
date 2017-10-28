@@ -1,14 +1,14 @@
 version=53;
 class EditorData
 {
-	moveGridStep=0.125;
+	moveGridStep=8;
 	angleGridStep=0.017453292;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=553;
+	toggles=557;
 	class ItemIDProvider
 	{
-		nextID=1646;
+		nextID=1647;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={692.82257,36.77026,12127.511};
-		dir[]={0.81699657,-0.55812198,0.14502706};
-		up[]={0.54953599,0.82975423,0.097549252};
-		aside[]={0.17478108,-1.9406434e-007,-0.98461491};
+		pos[]={733.13458,47.71463,12150.021};
+		dir[]={0.75862193,-0.53802109,0.36755985};
+		up[]={0.48422635,0.84290051,0.23461309};
+		aside[]={0.43604538,8.6869113e-007,-0.89996767};
 	};
 };
 binarizationWanted=0;
@@ -468,7 +468,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=92;
+		items=93;
 		class Item0
 		{
 			dataType="Object";
@@ -29803,7 +29803,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={710.78766,29.400438,12122.396};
+						position[]={701.54846,29.400438,12129.364};
 						angles[]={-0,5.04182,0};
 					};
 					side="West";
@@ -29812,7 +29812,6 @@ class Mission
 						skill=0.60000002;
 						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 5 - AT";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -31165,6 +31164,7 @@ class Mission
 						rank="CAPTAIN";
 						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];" \n "this setUnitTrait [""YAINA_PILOT"", true, true];";
 						description="MERT - Pilot";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -32187,12 +32187,12 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={37.511002,0.044307709,12733.12};
+				position[]={32,0,12736};
 			};
 			name="AddEditableObjectsModule";
 			id=1641;
 			type="ModuleCuratorAddEditableObjects";
-			atlOffset=38.298;
+			atlOffset=38.749607;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -32250,8 +32250,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={763,29.812422,12133.75};
-				angles[]={0,3.1590462,0};
+				position[]={765.93744,29.812422,12133.806};
+				angles[]={-0,4.5204034,0};
 			};
 			side="Empty";
 			flags=4;
@@ -32285,20 +32285,122 @@ class Mission
 				nAttributes=1;
 			};
 		};
+		class Item92
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={40,0.0004234314,12752};
+			};
+			init="this setVariable [""showNotification"", false];";
+			id=1646;
+			type="ModuleCurator_F";
+			atlOffset=39.751999;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCurator_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="76561197981494016";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCurator_F_Forced";
+					expression="_this setVariable ['Forced',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCurator_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCurator_F_Addons";
+					expression="_this setVariable ['Addons',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=3;
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=1;
+			nextID=2;
 		};
 		class Links
 		{
-			items=1;
+			items=2;
 			class Item0
 			{
 				linkID=0;
 				item0=1372;
+				item1=1641;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item1
+			{
+				linkID=1;
+				item0=1646;
 				item1=1641;
 				class CustomData
 				{
