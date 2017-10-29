@@ -63,7 +63,7 @@ player createDiaryRecord ["YAINA", ["Credits",
 <br/>
 <font face='PuristaLight' color='#D3D3D3'>We would like to thank the following for their contributions to both the community and especially the following projects that have been used to create this mission.</font>
 <br/>
-<br/>alganthe:<br/><font face='PuristaLight' color='#D3D3D3'>    Vehicle Crew HUD</font>
+<br/>alganthe:<br/><font face='PuristaLight' color='#D3D3D3'>    Vehicle Crew HUD, Occupy Building Function</font>
 <br/>CBA_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    PFH Handlers, Event Handlers</font>
 <br/>Champ-1:<br/><font face='PuristaLight' color='#D3D3D3'>    CHVD</font>
 <br/>code34 :<br/><font face='PuristaLight' color='#D3D3D3'>    Real Weather</font>

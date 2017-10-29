@@ -5,9 +5,10 @@
 	    from the given location, when you don't really care how messy
 	    it is, and works nicer over larger areas than findSafePos
 	args:
-	    _pos: position from which to search
-	    _min: minimum radius from _pos to permit result
-	    _max: maximum radius from _pos to permit resuls
+	    _pos:  position from which to search
+	    _min:  minimum radius from _pos to permit result
+	    _max:  maximum radius from _pos to permit resuls
+	    _code: code to validate position
 	returns:
 	    position
 */

@@ -31,6 +31,7 @@ class YAINA_MM {
         class createMapMarkers {};
         class getMissionID {};
         class missionCleanup {};
+        class getMissionGroups {};
     };
 
 };

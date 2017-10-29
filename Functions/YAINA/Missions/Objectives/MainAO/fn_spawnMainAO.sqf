@@ -96,11 +96,25 @@ _officer addEventHandler ["Killed", {
     parseText format ["<t align='center'><t size='2'>Main Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>Well done %1! You have killed the Officer stationed in the HQ.<br/><br/>Now, move in on the HQ and defend it from the enemy forces that remain in the area!", name _instigatorReal] call YFNC(globalHint);
 }];
 
+// Spawn some Infantry Groups with small patrol radius
+for "_x" from 0 to 8 do {
+    _groups pushBack ([[_AOPosition, 0, _AOSize] call YFNC(getPosAround), 20 + random 40] call SFNC(infantryPatrol));
+};
+
+// Garrison squads around the HQ
+private _garrisonedGroups = ([_HQPosition, 30, 2] call SFNC(infantryGarrison));
+{ _groups pushBack _x; true; } count _garrisonedGroups;
+
+// Garrison squads around the AO
+_garrisonedGroups = ([_AOPosition + [0], _AOSize, 5, 2] call SFNC(infantryGarrison));
+{ _groups pushBack _x; true; } count _garrisonedGroups;
+
+
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 // Add everything to zeus
-[_buildings + units _officerGroup, true] call YFNC(addEditableObjects);
+[_buildings + [_officer], true] call YFNC(addEditableObjects);
 
 ///////////////////////////////////////////////////////////
 // Start Mission
@@ -182,6 +196,23 @@ _pfh = {
 
             [_missionID, 2] call FNC(updateMissionStage);
             _args set [1,2];
+
+            // Now set units to surround the HQ...
+            {
+                // Allow them ot move etc.
+                {
+                    _x enableAI "AUTOCOMBAT";
+                    _x enableAI "PATH";
+                    true;
+                } count (units _x);
+
+                // Remove waypoints, and get them to move to HQ
+                while { (!((count waypoints _x) isEqualTo 0)) } do {
+                  deleteWaypoint ((waypoints _x) select 0);
+                };
+                _x addWaypoint [_HQPosition, 30];
+
+            } forEach ([_missionID] call FNC(getMissionGroups));
         };
     };
 

@@ -38,7 +38,7 @@ if !(isServer or hasInterface) then {
 
 if (isServer) then {
     // Start our Mission Manager in 60 seconds to give our HCs time to connect
-    [{ call FNC(missionManager); }, [], 60] call CBA_fnc_waitAndExecute;
+    [{ call FNC(missionManager); }, [], 10] call CBA_fnc_waitAndExecute;
 
 
     // We need to keep track of building changes to ensure we restore them when a player moves away

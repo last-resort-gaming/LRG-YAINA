@@ -11,6 +11,15 @@ class YAINA_SPAWNS {
 	class General {
 		file = "Functions\YAINA\Spawns";
 		class getAirSpawnPos {};
+        class getUnitsFromGroupArray {};
+    };
+
+    class Units {
+        file = "Functions\YAINA\Spawns\Units";
+        class infantryGarrison {};
+        class infantryPatrol {};
+        class setUnitSkill {};
+
     };
 
     class Reinforcements {

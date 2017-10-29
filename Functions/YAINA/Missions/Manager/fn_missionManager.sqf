@@ -115,5 +115,5 @@ if (!isServer) exitWith {};
         };
     };
 
-}, 20, []] call CBA_fnc_addPerFrameHandler;
+}, 30, []] call CBA_fnc_addPerFrameHandler;
 

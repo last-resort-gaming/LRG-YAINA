@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=0.017453292;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=557;
+	toggles=685;
 	class ItemIDProvider
 	{
-		nextID=1647;
+		nextID=1648;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=690;
+		nextID=756;
 	};
 	class Camera
 	{
-		pos[]={733.13458,47.71463,12150.021};
-		dir[]={0.75862193,-0.53802109,0.36755985};
-		up[]={0.48422635,0.84290051,0.23461309};
-		aside[]={0.43604538,8.6869113e-007,-0.89996767};
+		pos[]={765.93744,53.919998,12108.806};
+		dir[]={0,-0.70710677,0.70710683};
+		up[]={0,0.70710677,0.70710671};
+		aside[]={0.99999994,0,0};
 	};
 };
 binarizationWanted=0;
@@ -29804,7 +29804,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={701.54846,29.400438,12129.364};
-						angles[]={-0,5.04182,0};
+						angles[]={0,5.04182,0};
 					};
 					side="West";
 					class Attributes
@@ -31164,7 +31164,6 @@ class Mission
 						rank="CAPTAIN";
 						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];" \n "this setUnitTrait [""YAINA_PILOT"", true, true];";
 						description="MERT - Pilot";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -31280,6 +31279,7 @@ class Mission
 						rank="SERGEANT";
 						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
 						description="MERT - Paramedic";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -32251,7 +32251,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={765.93744,29.812422,12133.806};
-				angles[]={-0,4.5204034,0};
+				angles[]={0,4.5204034,0};
 			};
 			side="Empty";
 			flags=4;

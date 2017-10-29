@@ -1,0 +1,59 @@
+class DifficultyPresets
+{
+	class CustomDifficulty
+	{
+		class Options
+		{
+			/* Simulation */
+
+			reducedDamage = 0;		// Reduced damage
+
+			/* Situational awareness *
+			// https://community.bistudio.com/wiki/Arma_3_Difficulty_Menu#Extended_map_info
+
+			groupIndicators = 1;	// Group indicators (0 = never, 1 = limited distance, 2 = always)
+			friendlyTags = 1;		// Friendly name tags (0 = never, 1 = limited distance, 2 = always)
+			enemyTags = 0;			// Enemy name tags (0 = never, 1 = limited distance, 2 = always)
+			detectedMines = 1;		// Detected mines (0 = never, 1 = limited distance, 2 = always)
+			commands = 2;			// Commands (0 = never, 1 = fade out, 2 = always)
+			waypoints = 2;			// Waypoints (0 = never, 1 = fade out, 2 = always)
+			tacticalPing = 0;		// Tactical ping (0 = disable, 1 = enable)
+
+			/* Personal awareness */
+
+			weaponInfo = 2;			// Weapon info (0 = never, 1 = fade out, 2 = always)
+			stanceIndicator = 2;	// Stance indicator (0 = never, 1 = fade out, 2 = always)
+			staminaBar = 0;			// Stamina bar
+			weaponCrosshair = 1;	// Weapon crosshair
+			visionAid = 0;			// Vision aid
+
+			/* View */
+
+			thirdPersonView = 1;	// 3rd person view
+			cameraShake = 1;		// Camera shake
+
+			/* Multiplayer */
+
+			scoreTable = 1;			// Allow Score table
+			vonID = 1;			    // When using VoN (Voice Over Net), display the name of the player speaking
+			deathMessages = 0;		// "XXX was killed by YYY" messages in multiplayer
+
+            mapContentFriendly = 1; // Show all friendly players on map
+            mapContentEnemy = 0;    // Show enemy on map
+            mapContentMines = 0;    // Show found mines on map
+            autoReport = 0;			// (former autoSpot) Automatic reporting of spotted enemy by players only. This doesn't have any effect on AIs.
+			multipleSaves = 0;		// Multiple saves
+		};
+
+		// aiLevelPreset defines AI skill level and is counted from 0 and can have following values: 0 (Low), 1 (Normal), 2 (High), 3 (Custom).
+		// when 3 (Custom) is chosen, values of skill and precision are taken from the class CustomAILevel.
+		aiLevelPreset = 3;
+	};
+
+    // We set the skillAI + precisionAI to 1 so that setSkill
+    // has more of a profound effect
+	class CustomAILevel {
+		skillAI = 1.0;
+		precisionAI = 1.0;
+	};
+};

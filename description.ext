@@ -71,6 +71,7 @@ class CfgFunctions {
     #include "Functions\CBA\CfgFunctions.hpp"
     #include "Functions\YAINA\CfgFunctions.hpp"
     #include "Functions\AIS\cfgFunctions.hpp"
+    #include "Functions\DERP\CfgFunctions.hpp"
 };
 
 /******************************************************************************
