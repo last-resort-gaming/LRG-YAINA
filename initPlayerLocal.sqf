@@ -27,4 +27,5 @@ if (isDedicated) then {
     if(isServer) then { { _x allowDamage false; } forEach _navLights; };
 
     call YAINA_fnc_baseProtection;
+
 };

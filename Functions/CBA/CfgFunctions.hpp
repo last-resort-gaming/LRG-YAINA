@@ -14,17 +14,15 @@ class CBA {
 
     class Common {
         file = "Functions\CBA\Common";
-
         class createNamespace {};
+        class formatNumber {};
     }
 
 	class Hashes {
 	    file = "Functions\CBA\Hashes";
-
         class hashCreate {};
 	    class hashGet {};
 	    class hashSet {};
-
 	};
 
     class Events {

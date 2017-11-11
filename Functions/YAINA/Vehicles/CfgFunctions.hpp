@@ -12,5 +12,7 @@ class YAINA_VEH {
         class respawnPFH {};
         class preInit { preInit = 1; };
         class removeMarkers {};
+        class setupRopeDetachHandler {};
+        class addRopeDetachHandler {};
     };
 };

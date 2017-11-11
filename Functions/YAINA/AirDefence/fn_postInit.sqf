@@ -47,7 +47,7 @@ if (isServer) then {
             call FNC(activateAirDefence);
         };
 
-        hint format ["Air defence network will be available in %1", _nextAD call YFNC(getPrintableDuration)];
+        hint format ["Air defence network will be available in %1", _nextAD call YFNC(formatDuration)];
     }];
     true;
 } count AIR_DEFENCE_TERMINALS;

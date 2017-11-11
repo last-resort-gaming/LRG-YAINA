@@ -7,6 +7,7 @@
 #define GVAR(s) YAINA_##s
 #define YVAR(s) YAINA_##s
 #define QYVAR(s) Q(YVAR(s))
+#define QVAR(s) Q(VAR(s))
 
 #define BASE_PROTECTION_AREAS [ \
     "Base_Area", \

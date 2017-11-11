@@ -218,16 +218,20 @@ _pfh = {
 
     if (_stage isEqualTo 2) then {
 
-        // If we are in stage2, then we sit here until 90% of all enemy are dead and SMs have completed
+        // If we are in stage2, then we sit here until most of the enemy are dead and SMs have completed
 
-        if (missionNamespace getVariable ["MISSION_COMPLETE", false]) then {
-
-            // If we have a subObjective, ensure it's complete before progressing
-            if !(isNil "_subObjective") then {
-                if (_subObjective call BIS_fnc_taskExists) then {
-                    if (!(_subObjective call BIS_fnc_taskCompleted)) then { breakOut "mainPFH"; };
-                };
+        // If we have a subObjective, ensure it's complete before progressing
+        if !(isNil "_subObjective") then {
+            if (_subObjective call BIS_fnc_taskExists) then {
+                if (!(_subObjective call BIS_fnc_taskCompleted)) then { breakOut "mainPFH"; };
             };
+        };
+
+        // Now make sure we have
+        _alive = 0;
+        { _alive = _alive + ({ alive _x } count units _x); } forEach ([_missionID] call FNC(getMissionGroups));
+
+        if (_alive < 20) then {
 
             // Complete our dummy task + delete it's marker
             deleteMarker format ["%1_defend_mrk", _missionID];
@@ -235,7 +239,10 @@ _pfh = {
             // Just delete the task, main task takes care of it
             [format ["%1_defend", _missionID]] call BIS_fnc_deleteTask;
 
-            // And move on to mission windup
+            // And move on to mission windup, we don't do it here
+            // as the PFH resumes until folks are outside the AO
+            // and we don't want it to redo this all the time.
+            [_missionID, 3] call FNC(updateMissionStage);
             _args set [1,3];
         };
     };

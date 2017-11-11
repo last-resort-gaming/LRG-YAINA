@@ -61,6 +61,7 @@ corpseRemovalMaxTime=60;
 #include "Functions\CHVD\dialog.hpp"
 #include "Functions\AIS\Effects\BarDlg.hpp"
 #include "Functions\YAINA\General\crewNamesTitles.hpp"
+#include "Functions\YAINA\Tablet\GUIDefines.hpp"
 
 /******************************************************************************
 * FUNCTIONS

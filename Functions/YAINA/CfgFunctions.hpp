@@ -4,3 +4,4 @@
 #include "Spawns\CfgFunctions.hpp"
 #include "AirDefence\CfgFunctions.hpp"
 #include "Arsenal\CfgFunctions.hpp"
+#include "Tablet\CfgFunctions.hpp"

@@ -6,7 +6,7 @@ class YAINA {
 		class diarySetup { postInit = 1; };
 		class addEditableObjects {};
 		class killedHint { postInit = 1; };
-		class getPrintableDuration {};
+		class formatDuration {};
 		class showFPS { postInit = 1; };
 		class baseProtection {};
 		class hintC {};

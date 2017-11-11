@@ -13,7 +13,7 @@ if(_veh isKindOf _kind && !(_veh isKindOf "UAV") && driver _veh isEqualTo player
 
 	_type = getText(configFile >> "CfgVehicles" >> (typeOf _veh) >> "DisplayName");
 
-    _veh sideChat format ["Servicing %1, This will take at least %2", _type, _serviceTime call YAINA_fnc_getPrintableDuration];
+    _veh sideChat format ["Servicing %1, This will take at least %2", _type, _serviceTime call YAINA_fnc_formatDuration];
 
     _veh setFuel 0;
 

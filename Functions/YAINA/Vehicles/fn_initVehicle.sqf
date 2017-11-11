@@ -73,6 +73,11 @@ if !(_respawnTime isEqualTo -1) then {
     ];
 };
 
+// Setup Rope detach handlers on Helicopters
+if (_veh isKindOf "Helicopter" && !(_veh isKindOf "UAV")) then {
+    [_veh] call FNC(setupRopeDetachHandler);
+};
+
 // And we always ensure it's added to zeus
 [[_veh]] call YFNC(addEditableObjects);
 

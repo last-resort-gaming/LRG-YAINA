@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.017453292;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=685;
+	toggles=642;
 	class ItemIDProvider
 	{
 		nextID=1648;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=756;
+		nextID=866;
 	};
 	class Camera
 	{
-		pos[]={765.93744,53.919998,12108.806};
-		dir[]={0,-0.70710677,0.70710683};
-		up[]={0,0.70710677,0.70710671};
-		aside[]={0.99999994,0,0};
+		pos[]={1212.2509,25.901583,10419.204};
+		dir[]={-0.12563677,-0.48642892,0.86465549};
+		up[]={-0.06994687,0.87371099,0.4813844};
+		aside[]={0.98961937,8.4983185e-009,0.14379399};
 	};
 };
 binarizationWanted=0;
@@ -87,6 +87,7 @@ addons[]=
 	"A3_Weapons_F_Rifles_MX_Black",
 	"A3_Weapons_F_Acc",
 	"A3_Weapons_F_Pistols_Pistol_Heavy_01",
+	"L_ES_ES_sys",
 	"A3_Weapons_F_Mark",
 	"A3_Weapons_F_Items",
 	"A3_Weapons_F_Mark_Acc",
@@ -108,7 +109,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=38;
+		items=39;
 		class Item0
 		{
 			className="A3_Structures_F_EPA";
@@ -335,40 +336,46 @@ class AddonsMetaData
 		};
 		class Item32
 		{
+			className="L_ES_ES_sys";
+			name="L_ES_ES_sys";
+			author="LAxemann and jokoho482";
+		};
+		class Item33
+		{
 			className="A3_Weapons_F_Mark";
 			name="Arma 3 Marksmen - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item33
+		class Item34
 		{
 			className="A3_Characters_F_Mark";
 			name="Arma 3 Marksmen - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item34
+		class Item35
 		{
 			className="A3_Weapons_F_Orange";
 			name="Arma 3 Orange - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item35
+		class Item36
 		{
 			className="A3_Weapons_F_Exp";
 			name="Arma 3 Apex - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item36
+		class Item37
 		{
 			className="A3_Drones_F";
 			name="Arma 3 Beta - Drones";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item37
+		class Item38
 		{
 			className="A3_Characters_F_Exp";
 			name="Arma 3 Apex - Characters and Clothing";
@@ -19396,14 +19403,17 @@ class Mission
 						class Item0
 						{
 							dataType="Trigger";
-							position[]={806.55505,28.93,12111.531};
+							position[]={806.55499,28.93,12111.531};
 							angle=0.12740901;
 							class Attributes
 							{
 								name="SP_Jet";
+								condition="call{true}";
 								sizeA=10;
 								sizeB=10;
 								sizeC=6;
+								repeatable=1;
+								activationBy="ANY";
 								isRectangle=1;
 							};
 							id=1283;
@@ -21826,14 +21836,17 @@ class Mission
 		class Item39
 		{
 			dataType="Trigger";
-			position[]={924.48663,28.93,12150.941};
+			position[]={924.487,28.93,12150.941};
 			angle=6.0513706;
 			class Attributes
 			{
 				name="SP_UAV";
+				condition="call{this}";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
+				repeatable=1;
+				activationBy="ANY";
 				isRectangle=1;
 			};
 			id=1312;
@@ -21842,18 +21855,21 @@ class Mission
 		class Item40
 		{
 			dataType="Trigger";
-			position[]={3080.9094,4.1502562,8490.3115};
-			angle=-1.596431;
+			position[]={3080.9089,4.1501012,8490.3115};
+			angle=4.6867485;
 			class Attributes
 			{
 				name="SP_VEH";
+				condition="call{this}";
 				sizeA=4;
 				sizeB=4;
+				repeatable=1;
+				activationBy="ANY";
 				isRectangle=1;
 			};
 			id=1313;
 			type="EmptyDetector";
-			atlOffset=0.0031375885;
+			atlOffset=0.0029997826;
 		};
 		class Item41
 		{
@@ -21889,10 +21905,12 @@ class Mission
 			class Attributes
 			{
 				name="SP_HELI";
-				condition="";
+				condition="call{this}";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
+				repeatable=1;
+				activationBy="ANY";
 			};
 			id=1316;
 			type="EmptyDetector";
@@ -22018,6 +22036,29 @@ class Mission
 					id=984;
 					type="Land_Carrier_01_base_F";
 					atlOffset=91.100998;
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="allowDamage";
+							expression="_this allowdamage _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=1;
+					};
 				};
 				class Item1
 				{
@@ -22508,17 +22549,17 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1159.5093,25.66346,10411.519};
+						position[]={1159.5093,25.663891,10411.519};
 						angles[]={0,2.8141863,0};
 					};
 					side="Empty";
+					flags=4;
 					class Attributes
 					{
 						init="this enableCopilot false;" \n "[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 					};
 					id=1219;
 					type="B_CTRG_Heli_Transport_01_tropic_F";
-					atlOffset=113.917;
 				};
 				class Item15
 				{
@@ -23527,6 +23568,7 @@ class Mission
 						rank="COLONEL";
 						init="this setUnitTrait [""YAINA_HQ"", true, true];";
 						description="Zero  -  Headquarters";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -23600,7 +23642,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -24980,7 +25022,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -26360,7 +26402,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -27740,7 +27782,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -29120,7 +29162,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -30500,7 +30542,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -30925,7 +30967,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -31279,7 +31321,6 @@ class Mission
 						rank="SERGEANT";
 						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
 						description="MERT - Paramedic";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -31460,7 +31501,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -31587,7 +31628,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -31812,8 +31853,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1212.856,23.675846,10420.243};
-						angles[]={0,4.9235568,0};
+						position[]={1212.707,23.634731,10420.937};
+						angles[]={0,5.567059,0};
 					};
 					side="West";
 					flags=4;
@@ -31821,7 +31862,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
+						init="call{this setUnitTrait [""YAINA_PILOT"", true, true];}";
 						description="Gator - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31860,7 +31901,7 @@ class Mission
 					};
 					id=1618;
 					type="B_Helipilot_F";
-					atlOffset=0.04101944;
+					atlOffset=0.057065964;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -32109,7 +32150,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="_this setGroupID [_value];";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
 					class Value
 					{
 						class data
@@ -32134,11 +32175,14 @@ class Mission
 			position[]={735.50598,28.92,12249.267};
 			class Attributes
 			{
-				name="SP_CRATE";
-				condition="";
+				name="SP_CARGO";
+				condition="call{this}";
+				onActivation="call{diag_log format [""Entered: %1"", thisList];}";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
+				repeatable=1;
+				activationBy="ANY";
 			};
 			id=1628;
 			type="EmptyDetector";

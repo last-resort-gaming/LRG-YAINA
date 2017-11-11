@@ -16,7 +16,7 @@ if(_veh isKindOf "UAV") then {
 
 	_type = getText(configFile >> "CfgVehicles" >> (typeOf _veh) >> "DisplayName");
 
-    _veh sideChat format ["Servicing %1, This will take at least %2", _type, _serviceTime call YAINA_fnc_getPrintableDuration];
+    _veh sideChat format ["Servicing %1, This will take at least %2", _type, _serviceTime call YAINA_fnc_formatDuration];
 
     // First we remove any extra waypoints since if we don't it may
     // try and start running away and set the last one to ourselves.
