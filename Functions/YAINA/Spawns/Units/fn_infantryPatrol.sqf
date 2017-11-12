@@ -14,7 +14,9 @@ private _groupTypes = [
     "OIA_ReconSquad"
 ];
 
-private _g = [_pos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom _groupTypes))] call BIS_fnc_spawnGroup;
+// pos is a guideline, so lets find a safe pos...
+private _safepos = [_pos,0,27,1,0,2000,0] call BIS_fnc_findSafePos;
+private _g = [_safepos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom _groupTypes))] call BIS_fnc_spawnGroup;
 
 [_g, _skill] call FNC(setUnitSkill);
 

@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=954;
+		nextID=998;
 	};
 	class Camera
 	{
-		pos[]={708.74579,82.722115,12255.44};
-		dir[]={0.51331425,-0.51729769,-0.68478763};
-		up[]={0.31027651,0.85579592,-0.4139255};
-		aside[]={-0.80016464,3.0451338e-007,-0.5998019};
+		pos[]={696.16412,32.881283,12124.157};
+		dir[]={-0.73851061,-0.24590231,0.62795496};
+		up[]={-0.18736365,0.96926993,0.15931721};
+		aside[]={0.64784211,1.0126096e-006,0.76189601};
 	};
 };
 binarizationWanted=0;
@@ -108,7 +108,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=39;
+		items=38;
 		class Item0
 		{
 			className="A3_Structures_F_EPA";
@@ -335,46 +335,40 @@ class AddonsMetaData
 		};
 		class Item32
 		{
-			className="L_ES_ES_sys";
-			name="L_ES_ES_sys";
-			author="LAxemann and jokoho482";
-		};
-		class Item33
-		{
 			className="A3_Weapons_F_Mark";
 			name="Arma 3 Marksmen - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item34
+		class Item33
 		{
 			className="A3_Characters_F_Mark";
 			name="Arma 3 Marksmen - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item35
+		class Item34
 		{
 			className="A3_Weapons_F_Orange";
 			name="Arma 3 Orange - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item36
+		class Item35
 		{
 			className="A3_Weapons_F_Exp";
 			name="Arma 3 Apex - Weapons and Accessories";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item37
+		class Item36
 		{
 			className="A3_Drones_F";
 			name="Arma 3 Beta - Drones";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item38
+		class Item37
 		{
 			className="A3_Characters_F_Exp";
 			name="Arma 3 Apex - Characters and Clothing";
@@ -16722,7 +16716,7 @@ class Mission
 													"STRING"
 												};
 											};
-											value="Data\billboards\1Section.paa";
+											value="Data\billboards\section1.paa";
 										};
 									};
 								};
@@ -17080,7 +17074,7 @@ class Mission
 							class Attributes
 							{
 								skill=0.60000002;
-								description="Three Section";
+								description="section 2";
 								dynamicSimulation=1;
 							};
 							id=125;
@@ -17103,7 +17097,7 @@ class Mission
 													"STRING"
 												};
 											};
-											value="Data\billboards\2Section.paa";
+											value="Data\billboards\section2.paa";
 										};
 									};
 								};
@@ -17461,7 +17455,7 @@ class Mission
 							class Attributes
 							{
 								skill=0.60000002;
-								description="Four Section";
+								description="section 3";
 								dynamicSimulation=1;
 							};
 							id=134;
@@ -17484,7 +17478,7 @@ class Mission
 													"STRING"
 												};
 											};
-											value="Data\billboards\3Section.paa";
+											value="Data\billboards\section3.paa";
 										};
 									};
 								};
@@ -17843,7 +17837,7 @@ class Mission
 							class Attributes
 							{
 								skill=0.60000002;
-								description="Five Section";
+								description="section 4";
 								dynamicSimulation=1;
 							};
 							id=143;
@@ -17866,7 +17860,7 @@ class Mission
 													"STRING"
 												};
 											};
-											value="Data\billboards\4Section.paa";
+											value="Data\billboards\section4.paa";
 										};
 									};
 								};
@@ -18224,7 +18218,7 @@ class Mission
 							class Attributes
 							{
 								skill=0.60000002;
-								description="Six Section";
+								description="section 5";
 								dynamicSimulation=1;
 							};
 							id=152;
@@ -18247,7 +18241,7 @@ class Mission
 													"STRING"
 												};
 											};
-											value="Data\billboards\5Section.paa";
+											value="Data\billboards\section5.paa";
 										};
 									};
 								};
@@ -23643,7 +23637,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -25023,7 +25017,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -26403,7 +26397,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -27783,7 +27777,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -29163,7 +29157,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -30543,7 +30537,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -30968,7 +30962,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -31502,7 +31496,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -31629,7 +31623,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -32151,7 +32145,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
