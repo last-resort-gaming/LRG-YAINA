@@ -28,7 +28,6 @@ for "_i" from 30 to 33 do {
     _buttonbg ctrlSetBackgroundColor _bg;
 };
 
-
 // Populate LB
 private _lb = _ctrl controlsGroupCtrl 1500;
 lbClear _lb;

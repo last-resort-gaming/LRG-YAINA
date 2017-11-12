@@ -29,6 +29,10 @@ class YAINA_TABLET {
         class refreshRewardsPage {};
         class clickRewardsButton {};
         class selectionChangedRewards {};
+        class clickOrderReward {};
+        class clickCancelReward {};
+        class rewardsEH { postInit = 1; };
+        class getSpawnPoint {};
     };
 
     class Message {

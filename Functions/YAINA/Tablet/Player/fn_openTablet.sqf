@@ -43,6 +43,13 @@ GVAR(loadout) = [
 GVAR(loadout_last_idx) = nil;
 
 ///////////////////////////////////////////////////////////
+// Device
+///////////////////////////////////////////////////////////
+(_tablet displayCtrl 11) ctrlSetEventHandler ["ButtonClick", format["ctrlIDC (_this select 0) call %1", FNC(clickMainMenu)]];
+(_tablet displayCtrl 12) ctrlSetEventHandler ["ButtonClick", format["ctrlIDC (_this select 0) call %1", FNC(clickMainMenu)]];
+(_tablet displayCtrl 13) ctrlSetEventHandler ["ButtonClick", format["ctrlIDC (_this select 0) call %1", FNC(clickMainMenu)]];
+
+///////////////////////////////////////////////////////////
 // Page: Requests
 ///////////////////////////////////////////////////////////
 
@@ -70,18 +77,19 @@ for "_i" from 30 to 40 step 1 do {
 // Page: Rewards
 ///////////////////////////////////////////////////////////
 
+GVAR(lastRewardSelection) = nil;
 private _rewards = _tablet displayCtrl IDC_PAGE_REWARDS;
 for "_i" from 30 to 33 step 1 do {
   (_rewards controlsGroupCtrl _i) ctrlSetEventHandler ["ButtonClick", format["ctrlIDC (_this select 0) call %1", FNC(clickRewardsButton)]];
 };
 
 (_rewards controlsGroupCtrl 1500) ctrlSetEventHandler ["LBSelChanged", format["_this call %1", FNC(selectionChangedRewards)]];
+(_rewards controlsGroupCtrl 1600) ctrlSetEventHandler ["ButtonClick", format["call %1", FNC(clickOrderReward)]];
+(_rewards controlsGroupCtrl 1601) ctrlSetEventHandler ["ButtonClick", format["call %1", FNC(clickCancelReward)]];
 
 ///////////////////////////////////////////////////////////
 // DEVICE
 ///////////////////////////////////////////////////////////
 
-// We do these last so the event triggers
-(_tablet displayCtrl 11) ctrlSetEventHandler ["ButtonClick", format["_this call %1", FNC(clickMainMenu)]];
-(_tablet displayCtrl 12) ctrlSetEventHandler ["ButtonClick", format["_this call %1", FNC(clickMainMenu)]];
-(_tablet displayCtrl 13) ctrlSetEventHandler ["ButtonClick", format["_this call %1", FNC(clickMainMenu)]];
+// Explicitly call default parent
+11 call FNC(clickMainMenu);

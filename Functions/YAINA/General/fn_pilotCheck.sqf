@@ -20,7 +20,7 @@ player addEventHandler["GetInMan", {
     if (_unit getUnitTrait "YAINA_MERT" && _veh getVariable ["YAINA_MERT", false]) exitWith {};
 
     // And lastly, default check, no pilot, no go.
-    if !(typeOf _unit in ["B_Fighter_Pilot_F", "B_Helipilot_F", "B_Pilot_F", "B_T_Pilot_F", "B_T_Helipilot_F"]) then {
+    if !(_unit getUnitTrait "YAINA_PILOT") then {
         moveOut _unit;
         ["You're not a pilot, you're not allowed to do that."] call YFNC(hintC);
     };

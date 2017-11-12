@@ -32,7 +32,7 @@
 #define CONTENT_W (SCREEN_W - 1 * GUI_GRID_W)
 #define CONTENT_H (SCREEN_H - (10 * pixelH + 0.04))
 
-#define SLOT_W ((CONTENT_W / 3) - 8 * pixelH)
+#define SLOT_W ((CONTENT_W / 3) - 8 * pixelW)
 #define SLOT_H (0.12)
 
 ///////////////////////////////////////////////////////////
@@ -356,7 +356,7 @@ class HQTabletDialog {
                     text = "Data\Comms\linev.paa";
                     x = CONTENT_W / 3;
                     y = 0.005;
-                    w = 2 * pixelH;
+                    w = 2 * pixelW;
                     h = CONTENT_H - 0.01;
                     tileH = 2;
                     tileW = 2;
@@ -366,7 +366,7 @@ class HQTabletDialog {
                     text = "Data\Comms\linev.paa";
                     x = (2 * CONTENT_W) / 3;
                     y = 0.005;
-                    w = 2 * pixelH;
+                    w = 2 * pixelW;
                     h = CONTENT_H - 0.01;
                     tileH = 2;
                     tileW = 2;
@@ -544,9 +544,9 @@ class HQTabletDialog {
 
                 class LoadoutNBoxBG: RscFrame {
                     colorText[] = {1,1,1,1};
-                    x = 0.33 * CONTENT_W - 2* pixelH;
+                    x = 0.33 * CONTENT_W - 2* pixelW;
                     y = 0.1 + 1 * GUI_GRID_H - pixelH;
-                    w = 0.666 * CONTENT_W + 3 * pixelH;
+                    w = 0.666 * CONTENT_W + 3 * pixelW;
                     h = CONTENT_H - 4 * GUI_GRID_H + 3 * pixelH - 0.1;
                 };
 
@@ -664,7 +664,7 @@ class HQTabletDialog {
                     text = "Data\Comms\linev.paa";
                     x = CONTENT_W * 0.33333;
                     y = 0.005;
-                    w = 1 * pixelH;
+                    w = 1 * pixelW;
                     h = CONTENT_H - 0.01;
                     tileH = 2;
                     tileW = 2;
@@ -705,7 +705,7 @@ class HQTabletDialog {
                     text = "Data\Comms\linev.paa";
                     x = CONTENT_W * 0.66666;
                     y = 0.005;
-                    w = 1 * pixelH;
+                    w = pixelW;
                     h = CONTENT_H - 0.01;
                     tileH = 2;
                     tileW = 2;
@@ -751,6 +751,16 @@ class HQTabletDialog {
                     h = 0.04;
                 };
 
+                class SPText: RscText {
+                    idc = 1104;
+                    text = "Can't Build:";
+                    sizeEx = 0.03;
+                    x = CONTENT_W * 0.66666 + 0.01;
+                    y = 0.205;
+                    w = 0.3 * CONTENT_W;
+                    h = 0.04;
+                };
+
                 class CATextValue: RscText {
                     idc = 1201;
                     text = "1,000";
@@ -784,13 +794,95 @@ class HQTabletDialog {
                     h = 0.04;
                 };
 
+                class SPTextValue: RscText {
+                    idc = 1204;
+                    text = "Spawn point occupied";
+                    colorText[] = {1,0,0,1};
+                    sizeEx = 0.03;
+                    style = ST_RIGHT;
+                    x = CONTENT_W - 0.3;
+                    y = 0.205;
+                    w = 0.3;
+                    h = 0.04;
+                };
+
+
+                class ProBar {
+                    idc = 1301;
+                    type = CT_STATIC;
+                    style = 0;
+                    shadow=0;
+                    colorBackground[] = {0.3,0.3,0.3,1};
+                    colorText[] = {0.3,0.3,0.3,1};
+                    text = "";
+                    sizeEx = 0.03;
+                    font = "RobotoCondensed";
+                    y = CONTENT_H - 0.06;
+                    h = 0.05 - 2 * pixelH;
+                    x = CONTENT_W * 0.66666 + 0.02 + pixelW;
+                    w = ((CONTENT_W * 0.33333) - 0.04 - 2 * pixelW) / 3;
+                    onLoad = "ctrlShow [_this,false];";
+                };
+
+                class ProBorder {
+                    idc = 1302;
+                    type = CT_STATIC;
+                    style=64;
+                    shadow = 0;
+                    colorBackground[] = {0,0,0,0};
+                    colorText[] = {0.4,0.4,0.4,1};
+                    font = "RobotoCondensed";
+                    h = 0.05;
+                    sizeEx = 0.04;
+                    y = CONTENT_H - 0.06;
+                    x = CONTENT_W * 0.66666 + 0.02;
+                    w = (CONTENT_W * 0.33333) - 0.04;
+                    onLoad = "ctrlShow [_this,false];";
+                    text ="";
+                };
+
+                class ProBorderText: RscText {
+                    idc = 1303;
+                    colorText[] = {1,1,1,1};
+                    sizeEx = 0.03;
+                    text = "Building... 0%";
+                    h = 0.05;
+                    shadow=0;
+                    y = CONTENT_H - 0.0625;
+                    x = CONTENT_W * 0.66666 + 0.02;
+                    w = (CONTENT_W * 0.33333) - 0.04;
+                    onLoad = "ctrlShow [_this,false];";
+                };
+
                 class RewardsOrder: RscButton {
                     idc = 1600;
+                    style = ST_RIGHT;
                     text = "ORDER";
-                    x = CONTENT_W - 6 * GUI_GRID_W;
-                    y = CONTENT_H - 2 * GUI_GRID_H;
-                    w = 6 * GUI_GRID_W;
-                    h = 1 * GUI_GRID_H;
+                    sizeEx = 0.035;
+                    colorBackground[] = {0,0,0,0};
+                    colorBackgroundActive[] = {0,0,0,0};
+                    colorActive[] = BUTTON_COLOR_ACTIVE;
+                    shadow = 0;
+                    x = CONTENT_W - 3 * GUI_GRID_W - 0.02;
+                    y = CONTENT_H - 0.0625;
+                    w = 3 * GUI_GRID_W;
+                    h = 0.05;
+                };
+
+                class RewardsCancel: RscButton {
+                    idc = 1601;
+                    style = ST_RIGHT;
+                    text = "CANCEL";
+                    sizeEx = 0.035;
+                    colorBackground[] = {0,0,0,0};
+                    colorBackgroundActive[] = {0,0,0,0};
+                    colorActive[] = BUTTON_COLOR_ACTIVE;
+                    shadow = 0;
+                    x = CONTENT_W - 3 * GUI_GRID_W - 0.02;
+                    y = CONTENT_H - 0.0625;
+                    w = 3 * GUI_GRID_W;
+                    h = 0.05;
+                    onLoad = "ctrlShow [_this,false];";
                 };
 
             };

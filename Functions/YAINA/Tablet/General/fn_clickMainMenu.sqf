@@ -12,7 +12,7 @@ disableSerialization;
 params ["_button"];
 private ["_buttons", "_text", "_page"];
 
-private _tablet = ctrlParent _button;
+private _tablet = findDisplay IDD_TABLET;
 
 // change the control color of this button to active the others to inactive
 _buttons = [11, 12, 13];
@@ -31,7 +31,7 @@ for "_i" from 0 to ((count _buttons) - 1) step 1 do {
   _b = _tablet displayCtrl (_buttons select _i);
   _t = _tablet displayCtrl (_text select _i);
 
-  if (_b isEqualTo _button) then {
+  if ((_buttons select _i) isEqualTo _button) then {
     _bc = [1,1,1,1];
     _ba = [1,1,1,1];
     _bt = [1,1,1,1];

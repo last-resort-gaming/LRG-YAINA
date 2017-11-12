@@ -14,10 +14,10 @@ if (isServer) then {
         ["AmmoboxInit", [_x, true]] call BIS_fnc_arsenal;
 
         // Remove all items
-        //clearWeaponCargoGlobal _x;
-        //clearMagazineCargoGlobal _x;
-        //clearItemCargoGlobal _x;
-        //clearBackpackCargoGlobal _x;
+        clearWeaponCargoGlobal _x;
+        clearMagazineCargoGlobal _x;
+        clearItemCargoGlobal _x;
+        clearBackpackCargoGlobal _x;
 
         // Ensure no rope attachments
         _x enableRopeAttach false;

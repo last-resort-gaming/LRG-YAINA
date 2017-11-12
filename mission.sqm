@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.017453292;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=642;
+	toggles=514;
 	class ItemIDProvider
 	{
 		nextID=1648;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=866;
+		nextID=954;
 	};
 	class Camera
 	{
-		pos[]={1212.2509,25.901583,10419.204};
-		dir[]={-0.12563677,-0.48642892,0.86465549};
-		up[]={-0.06994687,0.87371099,0.4813844};
-		aside[]={0.98961937,8.4983185e-009,0.14379399};
+		pos[]={708.74579,82.722115,12255.44};
+		dir[]={0.51331425,-0.51729769,-0.68478763};
+		up[]={0.31027651,0.85579592,-0.4139255};
+		aside[]={-0.80016464,3.0451338e-007,-0.5998019};
 	};
 };
 binarizationWanted=0;
@@ -87,7 +87,6 @@ addons[]=
 	"A3_Weapons_F_Rifles_MX_Black",
 	"A3_Weapons_F_Acc",
 	"A3_Weapons_F_Pistols_Pistol_Heavy_01",
-	"L_ES_ES_sys",
 	"A3_Weapons_F_Mark",
 	"A3_Weapons_F_Items",
 	"A3_Weapons_F_Mark_Acc",
@@ -907,11 +906,11 @@ class Mission
 		class Item26
 		{
 			dataType="Trigger";
-			position[]={1144.0208,28.93,12233.311};
+			position[]={1144.021,28.93,12233.311};
 			class Attributes
 			{
 				name="SA_JET";
-				condition="{_x isKindOf ""plane"" && !(_x isKindOf ""UAV"") && speed _x < 1} count thislist > 0;";
+				condition="call{{_x isKindOf ""Plane"" && !(_x isKindOf ""UAV"") && speed _x < 1} count thislist > 0;}";
 				onActivation="0 = [""Plane"", (thisList select 0), 30, 30] execVM ""scripts\YAINA\Service\general.sqf"";";
 				sizeA=10;
 				sizeB=10;
@@ -926,6 +925,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={643.862,28.92,12176.056};
+			angle=-3.104228;
 			class Attributes
 			{
 				name="SA_HELI";
@@ -19404,13 +19404,13 @@ class Mission
 						{
 							dataType="Trigger";
 							position[]={806.55499,28.93,12111.531};
-							angle=0.12740901;
+							angle=0.13046335;
 							class Attributes
 							{
 								name="SP_Jet";
-								condition="call{true}";
-								sizeA=10;
-								sizeB=10;
+								condition="call{this}";
+								sizeA=9;
+								sizeB=9;
 								sizeC=6;
 								repeatable=1;
 								activationBy="ANY";
@@ -21856,7 +21856,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={3080.9089,4.1501012,8490.3115};
-			angle=4.6867485;
+			angle=-1.5689666;
 			class Attributes
 			{
 				name="SP_VEH";
@@ -21902,6 +21902,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={693.42798,28.92,12249.207};
+			angle=3.0881796;
 			class Attributes
 			{
 				name="SP_HELI";
@@ -23139,7 +23140,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={768.64325,31.087,12119.896};
+				position[]={772.72864,31.086998,12122.909};
 				angles[]={0,5.9690266,0};
 			};
 			areaSize[]={29.55068,0,16.688034};
@@ -23147,7 +23148,7 @@ class Mission
 			flags=1;
 			id=1373;
 			type="ModuleHideTerrainObjects_F";
-			atlOffset=2.1669998;
+			atlOffset=2.1669979;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -32173,6 +32174,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={735.50598,28.92,12249.267};
+			angle=-3.1240723;
 			class Attributes
 			{
 				name="SP_CARGO";

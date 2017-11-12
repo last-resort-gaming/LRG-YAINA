@@ -26,7 +26,8 @@ if(isNil "_type") then { _type = "B_CargoNet_01_ammo_F"; };
 if (triggerActivated SP_CARGO) exitWith { false; };
 
 _crate = _type createVehicle getPosATL SP_CARGO;
-_crate setDir getDir SP_CARGO;
+_crate setDir (triggerArea SP_CARGO select 2);
+_crate setVariable ["YAINA_ARSENAL_filtered", true, true];
 
 if (_attachable) then {
   _crate enableRopeAttach true;

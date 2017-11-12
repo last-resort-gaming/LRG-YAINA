@@ -5,10 +5,7 @@
 */
 
 if (isDedicated) then {
-
-    _lightViewDistance = 2 * worldSize * sqrt 2;
     { _x allowDamage false; } forEach nearestObjects[getMarkerPos "LightMarker", ["Land_NavigLight"], 500];
-
 } else {
 
     enableSentences false;
