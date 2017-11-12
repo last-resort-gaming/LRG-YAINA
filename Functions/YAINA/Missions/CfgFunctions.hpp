@@ -14,6 +14,7 @@ class YAINA_MM {
         class endMissionPFH {};
         class updateMissionStage {};
         class updateMissionState {};
+        class setupParadrop {};
     };
 
     class Objectives_MAO {
@@ -32,6 +33,9 @@ class YAINA_MM {
         class getMissionID {};
         class missionCleanup {};
         class getMissionGroups {};
+        class paraDrop {};
+        class setupParadropActions { postInit = 1; };
+        class openShoot {};
     };
 
 };

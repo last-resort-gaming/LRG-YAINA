@@ -265,5 +265,8 @@ _pfh = {
     };
 };
 
+// Enable players to drop onto this mission
+[(_markers select 0)] call FNC(setupParadrop);
+
 // For now just start it
 [_missionID, "AO", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainElems, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);

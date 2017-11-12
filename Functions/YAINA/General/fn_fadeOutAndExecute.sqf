@@ -4,7 +4,7 @@
 	returns: nothing
 */
 
-params ["_code", ["_args", []], ["_fadeOutTime", 1], ["_fadeInTime", 1]];
+params [["_code", {}], ["_args", []], ["_fadeOutTime", 1], ["_fadeInTime", 1]];
 
 [_code, _args, _fadeOutTime, _fadeInTime] spawn {
     params ["_code", "_args", "_fadeOutTime", "_fadeInTime"];

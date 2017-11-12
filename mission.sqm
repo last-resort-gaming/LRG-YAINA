@@ -8,7 +8,7 @@ class EditorData
 	toggles=514;
 	class ItemIDProvider
 	{
-		nextID=1648;
+		nextID=1667;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=998;
+		nextID=1020;
 	};
 	class Camera
 	{
-		pos[]={696.16412,32.881283,12124.157};
-		dir[]={-0.73851061,-0.24590231,0.62795496};
-		up[]={-0.18736365,0.96926993,0.15931721};
-		aside[]={0.64784211,1.0126096e-006,0.76189601};
+		pos[]={785.17682,84.474274,12227.407};
+		dir[]={-0.76429605,-0.4510411,-0.46114787};
+		up[]={-0.38619924,0.89247036,-0.23301698};
+		aside[]={-0.51666713,-3.9301813e-007,0.85631126};
 	};
 };
 binarizationWanted=0;
@@ -102,13 +102,14 @@ addons[]=
 	"A3_Weapons_F_Mark_LongRangeRifles_M320",
 	"A3_Weapons_F_Exp",
 	"A3_Drones_F_Weapons_F_Gamma_Items",
-	"A3_Characters_F_Exp"
+	"A3_Characters_F_Exp",
+	"A3_Props_F_Argo_Civilian_InfoBoards"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=38;
+		items=39;
 		class Item0
 		{
 			className="A3_Structures_F_EPA";
@@ -375,6 +376,13 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item38
+		{
+			className="A3_Props_F_Argo";
+			name="Arma 3 Malden - Decorative and Mission Objects";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 randomSeed=1783438;
@@ -468,7 +476,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=93;
+		items=105;
 		class Item0
 		{
 			dataType="Object";
@@ -23425,7 +23433,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={688.56598,32.896805,12151.948};
+				position[]={691.09619,32.896805,12151.817};
 			};
 			side="Empty";
 			flags=5;
@@ -23563,7 +23571,6 @@ class Mission
 						rank="COLONEL";
 						init="this setUnitTrait [""YAINA_HQ"", true, true];";
 						description="Zero  -  Headquarters";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -29840,7 +29847,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={701.54846,29.400438,12129.364};
+						position[]={701.54797,29.400438,12129.364};
 						angles[]={0,5.04182,0};
 					};
 					side="West";
@@ -29849,6 +29856,7 @@ class Mission
 						skill=0.60000002;
 						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 5 - AT";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -32416,6 +32424,222 @@ class Mission
 				};
 				nAttributes=4;
 			};
+		};
+		class Item93
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={685.10803,29.888882,12150.639};
+				angles[]={0,5.3287344,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="Paradrop1";
+			};
+			id=1649;
+			type="MapBoard_Malden_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item94
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={686.16022,29.426487,12147.507};
+				angles[]={0,2.6321588,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1653;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item95
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={685.27252,29.426487,12147.059};
+				angles[]={0,2.979342,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1654;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item96
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={686.87976,29.426487,12148.185};
+				angles[]={0,2.5644908,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1655;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item97
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={686.72107,29.426487,12146.21};
+				angles[]={0,2.7594805,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1656;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item98
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={685.7962,29.426487,12145.594};
+				angles[]={0,2.979342,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1657;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item99
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={687.51654,29.426487,12146.826};
+				angles[]={0,2.6128557,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1658;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item100
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={687.39038,29.426487,12144.9};
+				angles[]={0,2.7803082,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1659;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item101
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={686.39111,29.426487,12144.566};
+				angles[]={0,2.979342,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1660;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item102
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={688.24609,29.426487,12145.448};
+				angles[]={0,2.5559416,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1661;
+			type="Land_CampingChair_V2_F";
+		};
+		class Item103
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={684.27728,29.330256,12148.663};
+				angles[]={0,1.5916126,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1662;
+			type="Land_CampingTable_F";
+		};
+		class Item104
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={686.65833,29.330256,12151.566};
+				angles[]={0,3.0988472,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1663;
+			type="Land_CampingTable_F";
 		};
 	};
 	class Connections
