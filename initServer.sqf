@@ -63,9 +63,9 @@ private _HEMMT_initCode = {
 };
 
 {
+    _x setVariable ["YAINA_VEH_Drivers", ["HQ", "MERT", "PILOT"], true];
     [_x, false, 10, 0, nil, _HEMMT_initCode] call YAINA_VEH_fnc_initVehicle;
     [_x, []] call _HEMMT_initCode;
-    _x setVariable ["YAINA_VEH_Drivers", ["HQ", "MERT", "PILOT"], true];
 } forEach [
     HEMTT_Repair1,
     HEMTT_Repair2

@@ -18,10 +18,7 @@ if(!isServer) exitWith {};
 
         _respawn = false;
         if (!alive _veh || isNull _veh) then {
-
-            GVAR(respawnList) deleteAt _i;
             _respawn = true;
-
         } else {
 
             // E.g. UAVs don't have a distance.
@@ -48,19 +45,27 @@ if(!isServer) exitWith {};
                 }) exitWith {};
 
                 // Else we are abandoned, delete this and respawn
-                GVAR(respawnList) deleteAt _i;
                 deleteVehicle _veh;
 
+                _respawn = true;
+            };
+
+            // If it's a land base vehicle, and it's underwater, then may as well go ahead and respawn
+            if (underwater _veh && !(_vehType isKindOf "Submarine")) then {
+                deleteVehicle _veh;
                 _respawn = true;
             };
         };
 
         // Then we just trigger a respawn in _respawnTime
         if(_respawn) then {
+
+            GVAR(respawnList) deleteAt _i;
+
             [{
                 params ["_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
-                _nv = createVehicle [_vehType, [0,0,0], [], 0, "CAN_COLLIDE"];
+                _nv = createVehicle [_vehType, [0,0,0], [], 0, "NONE"];
 
                 // reset textures
                 {
@@ -77,7 +82,7 @@ if(!isServer) exitWith {};
                 // restore copilot action
                 _nv enableCopilot _coPilotEnabled;
 
-                if (_nv isKindOf "UAV") then {
+                if (_vehType isKindOf "UAV") then {
 
                     // Clear spawned loadout
                     { _nv removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _nv;
@@ -92,7 +97,7 @@ if(!isServer) exitWith {};
                 };
 
                 // restore provided persistant vars, and default persistants
-                { _x set [2,true]; _nv setVariable _x; } forEach (_persistVars + [QVAR(Drivers), QVAR(DriversMessage)]);
+                { _x set [2,true]; _nv setVariable _x; } forEach _persistVars;
 
                 // handle inventories
                 clearWeaponCargoGlobal _nv;

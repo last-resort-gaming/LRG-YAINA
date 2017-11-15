@@ -52,8 +52,12 @@ if !(_respawnTime isEqualTo -1) then {
         _pylonLoadout = GetPylonMagazines _veh;
     };
 
+    // Add default persist vars
+    _persistVars pushBackUnique QVAR(Drivers);
+    _persistVars pushBackUnique QVAR(DriversMessage);
+
     // Save persist vars
-    _persistVarsSave = _persistVars apply { [_x, _veh getVariable _x] };
+    _persistVarsSave = _persistVars apply { [_x, _veh getVariable [_x, nil]] };
 
     // And just push back to the respawn list
     GVAR(respawnList) pushBack [
