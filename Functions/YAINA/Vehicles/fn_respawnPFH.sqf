@@ -10,7 +10,7 @@ if(!isServer) exitWith {};
 
 [{
     for "_i" from count(GVAR(respawnList)) to 0 step -1 do {
-        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars"];
+        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
         // If the vehicle is not alive / null then we remove from the respawn
         // list and schedule a delete it in 30 seconds just in case it
@@ -58,7 +58,7 @@ if(!isServer) exitWith {};
         // Then we just trigger a respawn in _respawnTime
         if(_respawn) then {
             [{
-                params ["_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars"];
+                params ["_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
                 _nv = createVehicle [_vehType, [0,0,0], [], 0, "CAN_COLLIDE"];
 
@@ -91,8 +91,8 @@ if(!isServer) exitWith {};
                     createVehicleCrew _nv;
                 };
 
-                // restore persistant vars
-                { _x set [2,true]; _nv setVariable _x; } forEach _persistVars;
+                // restore provided persistant vars, and default persistants
+                { _x set [2,true]; _nv setVariable _x; } forEach (_persistVars + [QVAR(Drivers), QVAR(DriversMessage)]);
 
                 // handle inventories
                 clearWeaponCargoGlobal _nv;
@@ -116,12 +116,15 @@ if(!isServer) exitWith {};
                     };
                 };
 
+                // Run custom init script
+                [_nv, _initCodeArgs] call _initCode;
+
                 // Re-Init Vehicle
-                [_nv, _hasKeys, _respawnTime, _abandonDistance, _persistVars apply { _x select 0; }] call FNC(initVehicle);
+                [_nv, _hasKeys, _respawnTime, _abandonDistance, _persistVars apply { _x select 0; }, _initCode, _initCodeArgs] call FNC(initVehicle);
 
                 true;
 
-            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars], _respawnTime] call CBA_fnc_waitAndExecute;
+            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs], _respawnTime] call CBA_fnc_waitAndExecute;
         };
 
     };

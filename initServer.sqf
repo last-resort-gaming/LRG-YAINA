@@ -42,8 +42,36 @@ _uav setPosATL (getPosATL hangar3);
 createVehicleCrew _uav;
 [_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
 
+// Setup repair vehicles
+private _HEMMT_initCode = {
+    params ["_veh", "_args"];
+
+    // Repair actions, if cursorobject is within 10m then we can repair
+    _actionID = _veh addAction ["Repair", {
+            params ["_target", "_caller", "_id"];
+
+            if (cursorObject isKindOf "UAV") then {
+                [cursorObject, 20, 10, false, 10] execVM "Scripts\YAINA\Service\uav.sqf";
+            } else {
+                ['AllVehicles', cursorObject, 20, 10, false, true, 10] execVM "Scripts\YAINA\Service\general.sqf";
+            };
+        },
+        [], 10, true, false, "",
+        "_f = _target getVariable 'YAINA_repair_action'; if !(isNil '_f') then { _target setUserActionText [_f, format['Repair %1', getText(configFile >> 'CfgVehicles' >> (typeOf cursorObject) >> 'displayName')]] }; driver _target isEqualTo player && cursorObject distance2D player < 10 && cursorObject isKindOf 'AllVehicles' && !(cursorObject isKindOf 'Man' || cursorObject isKindOf 'StaticWeapon')"
+    ];
+    _veh setVariable ["YAINA_repair_action", _actionID, true];
+};
+
+{
+    [_x, false, 10, 0, nil, _HEMMT_initCode] call YAINA_VEH_fnc_initVehicle;
+    [_x, []] call _HEMMT_initCode;
+    _x setVariable ["YAINA_VEH_Drivers", ["HQ", "MERT", "PILOT"], true];
+} forEach [
+    HEMTT_Repair1,
+    HEMTT_Repair2
+];
 
 // Setup Medivac
 MedivacChopper setObjectTextureGlobal [0, "Data\Skins\H-9M_co.paa"];
-MedivacChopper setVariable ["YAINA_MERT", true, true];
-[MedivacChopper, true, 5, 1000, ["YAINA_MERT"]] call YAINA_VEH_fnc_initVehicle;
+MedivacChopper setVariable ["YAINA_VEH_Drivers", ["PILOT", "MERT"], true];
+[MedivacChopper, true, 5, 1000, []] call YAINA_VEH_fnc_initVehicle;

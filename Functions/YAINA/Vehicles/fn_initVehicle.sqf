@@ -6,7 +6,7 @@
 
 #include "defines.h"
 
-params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000], ["_persistVars", []]];
+params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000], ["_persistVars", []], ["_initCode", {}], ["_initCodeArgs", []]];
 
 // Always show on map
 _veh setVariable ['QS_ST_drawEmptyVehicle',true, true];
@@ -69,7 +69,9 @@ if !(_respawnTime isEqualTo -1) then {
         _respawnTime,
         _abandonDistance,
         _hasKeys,
-        _persistVarsSave
+        _persistVarsSave,
+        _initCode,
+        _initCodeArgs
     ];
 };
 

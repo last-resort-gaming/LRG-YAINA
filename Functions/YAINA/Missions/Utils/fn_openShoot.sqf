@@ -32,16 +32,18 @@ GVAR(openShootInProgress) = true;
 
     // Now, setup to remove the chute when we're on the ground
     [
-        {isTouchingGround (vehicle player)},
+        {isNull (_this select 0) || isTouchingGround (vehicle (_this select 0))},
         {
-            params ["_chute"];
+            params ["_player", "_chute"];
             GVAR(openShootInProgress) = false;
 
-            if ((vehicle player) isEqualTo _chute) then {
-                moveOut player;
-                deleteVehicle _chute;
+            if !(isNull player) then {
+                if ((vehicle _player) isEqualTo _chute) then {
+                    moveOut _player;
+                };
             };
+            deleteVehicle _chute;
         },
-        [_chute]
+        [player, _chute]
     ] call CBA_fnc_waitUntilAndExecute;
 }, [], 0.5, 1] call YFNC(fadeOutAndExecute);

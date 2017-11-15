@@ -8,7 +8,7 @@ class EditorData
 	toggles=514;
 	class ItemIDProvider
 	{
-		nextID=1667;
+		nextID=1668;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1020;
+		nextID=1042;
 	};
 	class Camera
 	{
-		pos[]={785.17682,84.474274,12227.407};
-		dir[]={-0.76429605,-0.4510411,-0.46114787};
-		up[]={-0.38619924,0.89247036,-0.23301698};
-		aside[]={-0.51666713,-3.9301813e-007,0.85631126};
+		pos[]={1225.8823,46.862514,10395.757};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,0};
 	};
 };
 binarizationWanted=0;
@@ -864,7 +864,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={3034.011,5.6854362,8479.5664};
+				position[]={3035.9529,5.7190828,8479.9248};
 				angles[]={0,2.2760143,0};
 			};
 			side="Empty";
@@ -875,7 +875,6 @@ class Mission
 			};
 			id=1024;
 			type="B_G_Van_02_transport_F";
-			atlOffset=0.011186361;
 		};
 		class Item24
 		{
@@ -18371,8 +18370,8 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={698.77698,32.97028,12152.815};
-								angles[]={0,0.017749997,0};
+								position[]={699.0036,32.97028,12152.763};
+								angles[]={0,3.1585977,0};
 							};
 							side="Empty";
 							flags=5;
@@ -18560,7 +18559,7 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={706.73102,29.766201,12152.961};
+								position[]={704.38568,29.766201,12153.538};
 								angles[]={0,4.7301416,0};
 							};
 							side="Empty";
@@ -22022,7 +22021,7 @@ class Mission
 			name="USS_Freedom";
 			class Entities
 			{
-				items=33;
+				items=34;
 				class Item0
 				{
 					dataType="Object";
@@ -22569,17 +22568,17 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1224.2859,25.484039,10427.555};
+						position[]={1224.2859,25.833164,10427.555};
 						angles[]={0,2.8440487,0};
 					};
 					side="Empty";
+					flags=4;
 					class Attributes
 					{
-						init="[this, true, 10] call YAINA_VEH_fnc_initVehicle;";
+						name="HEMTT_Repair1";
 					};
 					id=1229;
 					type="B_Truck_01_Repair_F";
-					atlOffset=111.75901;
 				};
 				class Item16
 				{
@@ -22844,7 +22843,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={1261.4368,26.037025,10443.478};
+						position[]={1261.4368,26.019205,10443.478};
 						angles[]={0,2.7741659,0};
 					};
 					side="Empty";
@@ -22856,7 +22855,6 @@ class Mission
 					};
 					id=1319;
 					type="B_Plane_Fighter_01_F";
-					atlOffset=0.017820358;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -22881,9 +22879,26 @@ class Mission
 						nAttributes=1;
 					};
 				};
+				class Item33
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={719.32751,31.233477,12131.382};
+						angles[]={0,0.037105698,0};
+					};
+					side="Empty";
+					flags=4;
+					class Attributes
+					{
+						name="HEMTT_Repair2";
+					};
+					id=1667;
+					type="B_Truck_01_Repair_F";
+				};
 			};
 			id=1349;
-			atlOffset=0.020048141;
+			atlOffset=75.176094;
 		};
 		class Item52
 		{
@@ -23571,6 +23586,7 @@ class Mission
 						rank="COLONEL";
 						init="this setUnitTrait [""YAINA_HQ"", true, true];";
 						description="Zero  -  Headquarters";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -29856,7 +29872,6 @@ class Mission
 						skill=0.60000002;
 						init="this setUnitTrait [""YAINA_AT"", true, true];";
 						description="Section 5 - AT";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -30576,11 +30591,11 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={707.44397,29.400438,12138.316};
+						position[]={707.11615,29.400465,12138.377};
 						angles[]={0,4.8033905,0};
 					};
 					side="West";
-					flags=2;
+					flags=6;
 					class Attributes
 					{
 						skill=0.60000002;
@@ -30721,7 +30736,6 @@ class Mission
 					};
 					id=1592;
 					type="B_sniper_F";
-					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -30964,7 +30978,6 @@ class Mission
 			{
 			};
 			id=1591;
-			atlOffset=0.47900009;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -31313,8 +31326,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={763.16498,28.921438,12131.757};
-						angles[]={0,4.7571216,0};
+						position[]={763.37701,28.921438,12132.895};
+						angles[]={0,4.8465524,0};
 					};
 					side="West";
 					flags=4;

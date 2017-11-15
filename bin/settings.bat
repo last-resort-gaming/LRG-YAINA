@@ -6,3 +6,6 @@ set SERVER_MODS="ServerMods\@Advanced Rappelling;ServerMods\@Advanced Sling Load
 set MODS="curator;kart;heli;mark;expansion;dlcbundle;jets;dlcbundle2;"
 set SERVER="%SERVER_DIR%\arma3server.exe"
 set PORT=2502
+set TOOLSDIR="C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools"
+set ADDONBUILDER="%TOOLSDIR%\AddonBuilder\AddonBuilder.exe"
+set CFGCONVERT="%TOOLSDIR%\CfgConvert\CfgConvert.exe"
