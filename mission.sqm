@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1042;
+		nextID=1064;
 	};
 	class Camera
 	{
-		pos[]={1225.8823,46.862514,10395.757};
-		dir[]={0,-0.70710683,0.70710683};
-		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,0};
+		pos[]={697.37512,54.001732,12174.145};
+		dir[]={0.061650008,-0.49542612,-0.86646694};
+		up[]={0.035161298,0.86864877,-0.49417961};
+		aside[]={-0.99748355,-7.6774086e-008,-0.070972085};
 	};
 };
 binarizationWanted=0;
@@ -23586,7 +23586,6 @@ class Mission
 						rank="COLONEL";
 						init="this setUnitTrait [""YAINA_HQ"", true, true];";
 						description="Zero  -  Headquarters";
-						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -30400,6 +30399,7 @@ class Mission
 						skill=0.60000002;
 						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
 						description="Section 5 - Combat Medic";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{

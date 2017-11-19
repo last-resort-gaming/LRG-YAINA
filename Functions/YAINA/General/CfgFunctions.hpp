@@ -8,7 +8,7 @@ class YAINA {
 		class killedHint { postInit = 1; };
 		class formatDuration {};
 		class showFPS { postInit = 1; };
-		class baseProtection {};
+		class baseProtection { postInit = 1; };
 		class hintC {};
 		class timeManager{};
 		class hideTerrainObjects{};

@@ -71,6 +71,7 @@ player createDiaryRecord ["YAINA", ["Credits",
     Advanced Towing, Advanced Rappelling,<br/>
     Advanced Sling Loading, Advanced Urban Rappelling
 </font>
+<br/>outlawled:<br/><font face='PuristaLight' color='#D3D3D3'>    Mag Repack</font>
 <br/>Psychobastard:<br/><font face='PuristaLight' color='#D3D3D3'>    AIS Revive</font>
 <br/>Quicksilver:<br/><font face='PuristaLight' color='#D3D3D3'>    QS Icons</font>
 <br/>suiside :<br/><font face='PuristaLight' color='#D3D3D3'>    AOA Hummingbird Skin</font>

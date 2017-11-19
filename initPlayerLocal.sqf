@@ -4,15 +4,7 @@
 	returns: nothing
 */
 
-if (isDedicated) then {
-    { _x allowDamage false; } forEach nearestObjects[getMarkerPos "LightMarker", ["Land_NavigLight"], 500];
-} else {
-
-    enableSentences false;
-
-    ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
-
-    [] execVM "scripts\QS\QS_icons.sqf";
+if (isServer) then {
 
     // Ensure the airstrip lights are visible from afar (whole world)
     _lightViewDistance = 2 * worldSize * sqrt 2;
@@ -21,8 +13,20 @@ if (isDedicated) then {
     { _x setLightFlareMaxDistance _lightViewDistance; } forEach _navLights;
 
     // And disable damage on them
-    if(isServer) then { { _x allowDamage false; } forEach _navLights; };
+    { _x allowDamage false; } forEach _navLights;
 
-    call YAINA_fnc_baseProtection;
+};
 
+if (isDedicated) then {
+    // Pass
+} else {
+
+    enableSentences false;
+
+    ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
+
+    [] execVM "scripts\QS\QS_icons.sqf";
+
+    // Repack
+    [] execVM "scripts\outlawled\magRepack\MagRepack_init_sv.sqf";
 };
