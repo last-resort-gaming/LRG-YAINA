@@ -31,7 +31,7 @@ outlw_MR_defaultKeybinding = [false, true, false, 19];
 outlw_MR_canCreateDialog = true;
 outlw_MR_keybindingMenuActive = false;
 outlw_MR_debugMode = profileNamespace getVariable ["outlw_MR_debugMode_profile", false];
-outlw_MR_doHideFull = profileNamespace getVariable ["outlw_MR_doHideFull_profile", false];
+outlw_MR_doHideFull = profileNamespace getVariable ["outlw_MR_doHideFull_profile", true];
 outlw_MR_keyList = profileNamespace getVariable ["outlw_MR_keyList_profile", outlw_MR_defaultKeybinding];
 
 if (typeName(outlw_MR_keyList select 0) != "BOOL") then
@@ -56,12 +56,6 @@ outlw_MR_listIDCs = [(missionConfigFile >> "MR_Dialog" >> "Controls")] call outl
 waitUntil {!(isNull (findDisplay 46))};
 
 (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call outlw_MR_keyDown;"];
-
-systemChat "Mag Repack Initialized";
-systemChat ("Keybinding: " + (call outlw_MR_keyListToString));
-
-
-
 
 
 

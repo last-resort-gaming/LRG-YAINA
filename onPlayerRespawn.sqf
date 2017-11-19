@@ -8,6 +8,13 @@ player enableFatigue false;
 
 [] execVM "scripts\YAINA\earplugs.sqf";
 
+// Re-add repack mag actiong
+player addAction [
+    "Repack Magazines",
+    { call outlw_MR_createDialog; },
+    "",-99
+];
+
 player setUnitLoadout (player getVariable["LastLoadout",[]]);
 
 // readd players to zeus
