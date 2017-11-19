@@ -12,8 +12,8 @@ if !(isNil "_np") exitWith {
     systemChat format ["Unable to deply parachute: %1", _np];
 };
 
-if (GVAR(openShootInProgress)) exitWith {};
-GVAR(openShootInProgress) = true;
+if (GVAR(openChuteInProgress)) exitWith {};
+GVAR(openChuteInProgress) = true;
 
 // Fade out, jump into a parachute, and fade back in
 [{
@@ -35,7 +35,7 @@ GVAR(openShootInProgress) = true;
         {isNull (_this select 0) || isTouchingGround (vehicle (_this select 0))},
         {
             params ["_player", "_chute"];
-            GVAR(openShootInProgress) = false;
+            GVAR(openChuteInProgress) = false;
 
             if !(isNull player) then {
                 if ((vehicle _player) isEqualTo _chute) then {

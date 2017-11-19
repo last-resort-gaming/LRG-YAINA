@@ -12,8 +12,6 @@
 
 params ["_pos", "_radius", ["_excludes", []], ["_types", CATEGORIES, [[]]]];
 
-TRACE_4("hideTerrainObjects", _pos, _radius, _excludes, _types);
-
 _clearTypes  = [];
 {
     _id = CATEGORIES find _x;

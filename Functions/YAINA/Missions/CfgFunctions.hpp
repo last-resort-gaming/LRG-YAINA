@@ -35,7 +35,7 @@ class YAINA_MM {
         class getMissionGroups {};
         class paraDrop {};
         class setupParadropActions { postInit = 1; };
-        class openShoot {};
+        class openChute {};
     };
 
 };
