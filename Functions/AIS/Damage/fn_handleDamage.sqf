@@ -135,12 +135,10 @@ if !(AIS_REVIVE_GUARANTY) then {
 _unit setVariable ["ais_stabilized", false, true];
 
 // unit can die if they get to mutch new damage in unconscious mode
-if !(AIS_REVIVE_GUARANTY) then {
-    if ((diag_tickTime > _unit getVariable ["ais_protector_delay", 0]) && {_unit getVariable ["ais_unconscious", false]}) exitWith {
-        if (_damage > 0.9) then {[_unit] call AIS_Damage_fnc_goToDead};
-        _damage = _damage min 0.89;
-        _damage
-    };
+if ((diag_tickTime > _unit getVariable ["ais_protector_delay", 0]) && {_unit getVariable ["ais_unconscious", false]}) exitWith {
+    if (_damage > 0.9 && !AIS_REVIVE_GUARANTY) then {[_unit] call AIS_Damage_fnc_goToDead};
+    _damage = _damage min 0.89;
+    _damage
 };
 
 
@@ -162,6 +160,11 @@ if ((_damage > 0.9) && {_hitSelection in ["", "head", "body"]}) then {
 if ((_damage > 1.5) && {_hitSelection in ["pelvis", "head", "body"]} && {_damageType in ["grenade", "baaam"]}) then {
 	_set_unconscious = true;
 };
+// And falling
+if (_damage > 1 && _damageType isEqualTo "falling") then {
+	_set_unconscious = true;
+};
+
 if (_set_unconscious && {!(_unit getVariable ["ais_unconscious", false])}) then {
 	[{[(_this select 0)] call AIS_System_fnc_setUnconscious}, [_unit]] call AIS_Core_fnc_onNextFrame;
 	// need this delay to prevent new damage for some seconds after the unit go unconscious. after the delay it is possible to kill the unit when they get to much new damage.
