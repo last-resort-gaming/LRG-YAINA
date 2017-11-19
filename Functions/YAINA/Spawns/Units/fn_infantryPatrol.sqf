@@ -5,7 +5,7 @@
 */
 #include "..\defines.h"
 
-params ["_pos", ["_patrolRadius", 0], ["_skill", 3]];
+params ["_pos", ["_patrolRadius", 0], ["_skill", 2]];
 
 private _groupTypes = [
     "OIA_InfSquad",

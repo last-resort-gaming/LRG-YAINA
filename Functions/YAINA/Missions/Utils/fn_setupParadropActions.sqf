@@ -41,7 +41,7 @@ if (isNil QVAR(paradropSetup)) then {
                 _x setObjectTextureGlobal [0, _targetTexture];
             } forEach _paraDropItems;
 
-        }, 30, [_paraDropItems]] call CBA_fnc_addPerFrameHandler;
+        }, 10, [_paraDropItems]] call CBA_fnc_addPerFrameHandler;
     };
 
     player addEventHandler ["Respawn", {
