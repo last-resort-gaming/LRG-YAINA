@@ -24,14 +24,15 @@ if (_keyDown isEqualTo 1) then {[] spawn AIS_System_fnc_disableRespawnButton};	/
 if (_keyDown isEqualTo 35) then {[player] call AIS_System_fnc_callHelp};	// key "H" --> call for Help
 
 {
-	if (_keyDown in (actionKeys _x)) exitWith {
-		if (AIS_NO_CHAT && {_keyDown in (actionKeys 'Chat')}) then {
+   if (inputAction _x > 0) exitWith {
+		if (AIS_NO_CHAT && {inputAction 'Chat' > 0}) then {
 			["Chat disabled."] call AIS_Core_fnc_dynamicText;
 		};
 		_return = true;
 	};
 	Nil
-} count ['ReloadMagazine','Gear','SwitchWeapon','Diary','DeployWeaponAuto','Chat','Throw','ShowMap','turnIn','turnOut','curatorInterface','Eject'];
+} count ['ReloadMagazine','Gear','SwitchWeapon','Diary','DeployWeaponAuto','Chat','Throw','ShowMap','turnIn','turnOut',
+         'curatorInterface','Eject','MoveUp','MoveDown','AdjustUp','AdjustDown'];
 
 
 _return
