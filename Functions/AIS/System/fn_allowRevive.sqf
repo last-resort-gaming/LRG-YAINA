@@ -32,6 +32,8 @@ _is_able_to_do = switch (AIS_MEDICAL_EDUCATION) do {
 	default {true};
 };
 
+// Do we have a mobile kmedical station near by (overrides the medical education)
+_mobile_station = [player] call AIS_System_fnc_mobileMedicStation;
 
 _return = if (
 
@@ -42,9 +44,8 @@ _return = if (
 	{_noHealer} &&
 	{_noDrag} &&
 	{_noDraging} &&
-	{_is_able_to_do} &&
+	(_is_able_to_do || !(_mobile_station isEqualTo objNull)) &&
 	{_station}
-	
 ) then {true} else {false};
 
 

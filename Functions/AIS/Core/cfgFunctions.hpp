@@ -26,5 +26,6 @@ class AIS_Core
 		class waitUntilAndExecute;
 		class handleDisconnect;
 		class resetOnTeamSwitch;
+		class addMedicStation;
     };
 };

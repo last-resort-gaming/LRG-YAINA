@@ -7,6 +7,9 @@ if (isServer) then {
 		["AIS: AIS shutdown itself cause ACE mod was detected. ACE and AIS cant work at the same time."] call BIS_fnc_logFormat;
 	};
 	publicVariable "ais_ace_shutDown";
+
+	ais_mobile_medic_stations  = [];
+	publicVariable "ais_mobile_medic_stations";
 };
 
 removeAllMissionEventHandlers "Draw3D";

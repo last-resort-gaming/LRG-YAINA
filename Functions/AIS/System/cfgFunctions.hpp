@@ -54,5 +54,6 @@ class AIS_System
 		class unconsciousAI;
 		class unconsciousPlayer;
 		class unloadInjured;
+		class mobileMedicStation;
     };
 };

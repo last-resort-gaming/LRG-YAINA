@@ -21,16 +21,33 @@ params [
 // so be it, since we aren't taking it here, because if they abort then we
 // would need even more logic to re-add it, so KISS.
 
-_fakCount    = count (items _healer select { _x isEqualTo "FirstAidKit"; });
-_medKitCount = count (items _healer select { _x isEqualTo "Medikit"; });
+_fakSource   = _healer;
+_fakCount    = 0;
+_medKitCount = 0;
+
+// If in range of mobile medic station, this becomes the source of FAK consumption
+_mobileStation = [_healer] call AIS_System_fnc_mobileMedicStation;
+
+if !(_mobileStation isEqualTo objNull) then {
+    _fakSource = _mobileStation;
+};
+
+if(_fakSource isEqualTo _healer) then {
+    _fakCount     = count (items _healer select { _x isEqualTo "FirstAidKit"; });
+    _medKitCount = count (items _healer select { _x isEqualTo "Medikit"; });
+} else {
+    // we force the medikit count to 1 when it's a mobile medic staiton
+    _fakCount     = count (itemCargo _fakSource select { _x isEqualTo "FirstAidKit" });
+    _medKitCount = count (itemCargo _fakSource select { _x isEqualTo "Medikit" });
+};
 
 // If no FAKs, Bail
-if(AIS_CONSUME_FAKS && _fakCount isEqualTo 0) exitWith {
+if((AIS_CONSUME_FAKS && !(_fakSource getVariable ["AIS_NO_CONSUME_FAKS", false])) && _fakCount isEqualTo 0) exitWith {
     ["You have no First Aid Kits to administer"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
 };
 
 // If no MedKit Bail, unless excluded
-if(AIS_REQUIRE_MEDIKIT && (_medKitCount isEqualTo 0 && _healer getVariable ["AIS_REQUIRE_MEDIKIT", true])) exitWith {
+if(AIS_REQUIRE_MEDIKIT && (_medKitCount isEqualTo 0 && _fakSource getVariable ["AIS_REQUIRE_MEDIKIT", true])) exitWith {
     ["You have no Medi Kit"] remoteExecCall ["AIS_Core_fnc_dynamicText", _healer, false];
 };
 
@@ -73,7 +90,7 @@ private _duration = [_healer, _injured] call AIS_System_fnc_calculateReviveTime;
     "Applying First Aid", 
     _duration,
     {
-		params ["_injured", "_healer"];
+		params ["_injured", "_healer", "_fakSource"];
 
 		_injured setVariable ["ais_unconscious", false, true];
 		
@@ -105,21 +122,38 @@ private _duration = [_healer, _injured] call AIS_System_fnc_calculateReviveTime;
 		[_injured, false] remoteExec ["setCaptive", 0, false];
 
 		// And lastly, remove a FAK from somewhere if required
-		if(AIS_CONSUME_FAKS) then {
-		    _fakLoadout = [_healer] call AIS_System_fnc_getFAKs;
-		    for "_i" from 0 to count _fakLoadout do {
-                _c = _fakLoadout select _i;
-                if (!(_c isEqualTo 0)) exitWith {
-                    if (_i isEqualTo 0) then { _healer removeItemFromUniform "FirstAidKit";  };
-                    if (_i isEqualTo 1) then { _healer removeItemFromVest "FirstAidKit";  };
-                    if (_i isEqualTo 2) then { _healer removeItemFromBackpack "FirstAidKit";  };
+		if(AIS_CONSUME_FAKS && !(_fakSource getVariable ["AIS_NO_CONSUME_FAKS", false])) then {
+		    if (_fakSource isEqualTo _healer) then {
+		        _fakLoadout = [_healer] call AIS_System_fnc_getFAKs;
+                for "_i" from 0 to count _fakLoadout do {
+                    _c = _fakLoadout select _i;
+                    if (!(_c isEqualTo 0)) exitWith {
+                        if (_i isEqualTo 0) then { _healer removeItemFromUniform "FirstAidKit";  };
+                        if (_i isEqualTo 1) then { _healer removeItemFromVest "FirstAidKit";  };
+                        if (_i isEqualTo 2) then { _healer removeItemFromBackpack "FirstAidKit";  };
+                    };
                 };
+		    } else {
+		        // This is a little lame, we have to clear all, and add less one
+		        _fakSourceCargo = getItemCargo _fakSource;
+		        _fakIdx = (_fakSourceCargo select 0) find "FirstAidKit";
+		        if !(_fakIdx isEqualTo -1) then {
+		            _fakCount = (_fakSourceCargo select 1) select _fakIdx;
+		            if (_fakCount isEqualTo 1) then {
+		                (_fakSourceCargo select 0) deleteAt _fakIdx;
+                        (_fakSourceCargo select 1) deleteAt _fakIdx;
+                    } else {
+                        (_fakSourceCargo select 1) set [_fakIdx, _fakCount - 1];
+                    };
+                    clearItemCargoGlobal _fakSource;
+                    { _fakSource addItemCargoGlobal [_x, (_fakSourceCargo select 1) select _forEachIndex]; } forEach (_fakSourceCargo select 0);
+		        };
 		    };
 		};
 
 		["GetOutMan"] remoteExec ["removeAllEventHandlers", _injured, false];
     },
-    [_injured, _healer],
+    [_injured, _healer, _fakSource],
 	{
 		params ["_injured", "_healer"];
 		
