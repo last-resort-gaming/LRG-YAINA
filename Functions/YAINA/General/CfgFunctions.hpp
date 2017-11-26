@@ -24,5 +24,7 @@ class YAINA {
 		class getPosAround {};
 		class crewNames { postInit = 1; };
 		class testTraits {};
+		class playerSetup { postInit = 1; };
+		class playerSetupRespawn;
     };
 };
