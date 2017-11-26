@@ -25,6 +25,7 @@ class AIS_System
 		class disableRespawnButton;
 		class drag;
 		class findAIHelper;
+		class forceRevivePlayer;
 		class getCargoIndex;
 		class getFAKs;
 		class getOutMan;

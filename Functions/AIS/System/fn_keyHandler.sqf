@@ -32,7 +32,8 @@ if (_keyDown isEqualTo 35) then {[player] call AIS_System_fnc_callHelp};	// key 
 	};
 	Nil
 } count ['ReloadMagazine','Gear','SwitchWeapon','Diary','DeployWeaponAuto','Chat','Throw','ShowMap','turnIn','turnOut',
-         'curatorInterface','Eject','MoveUp','MoveDown','AdjustUp','AdjustDown'];
-
+         'curatorInterface','Eject','MoveUp','MoveDown','AdjustUp','AdjustDown',
+         'SwitchPrimary','SwitchHandgun','SwitchSecondary','nextWeapon','prevWeapon','handgun'
+];
 
 _return
