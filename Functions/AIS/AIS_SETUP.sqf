@@ -35,4 +35,4 @@ AIS_SHOW_UNC_MESSAGE_TO 	= 	"None"; 		// "None", "Side", "Group" --> who read th
 AIS_SHOW_UNC_3D_MARKERS 	=	true; 			// If set to true, an in-game visible 3D-icon shows you the position of injured units (within a range of 20 metres and 35 metres for medics).
 AIS_IMPACT_EFFECTS 			= 	true; 			// Set to true to enable impact effects. (simple simluation of supressing effects)
 AIS_SHOW_COUNTDOWN 			= 	true; 			// If set to true, an unconscious unit will be able to see the bleed out timer.
-AIS_SHOW_DIARYINFO 			= 	true; 			// If set to true, a diary entry with some informations about the AIS (Credits, features, How to) is added.
+AIS_SHOW_DIARYINFO 			= 	false; 			// If set to true, a diary entry with some informations about the AIS (Credits, features, How to) is added.
