@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1064;
+		nextID=1086;
 	};
 	class Camera
 	{
-		pos[]={707.1358,40.505997,12173.27};
-		dir[]={0.28454033,-0.46888086,-0.83618218};
-		up[]={0.15104836,0.88326001,-0.44388849};
-		aside[]={-0.94669574,-8.4517524e-008,-0.32214659};
+		pos[]={747.44446,33.70607,12135.519};
+		dir[]={0.72837877,-0.35056099,-0.58871853};
+		up[]={0.27264461,0.93653774,-0.2203677};
+		aside[]={-0.62860835,-1.2642704e-007,-0.77773124};
 	};
 };
 binarizationWanted=0;
@@ -23059,6 +23059,29 @@ class Mission
 			};
 			id=1368;
 			type="B_Heli_Light_01_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[],[]],[[""SmokeShell"",""SmokeShellBlue""],[40,5]],[[""FirstAidKit"",""ToolKit"",""Medikit""],[30,1,1]],[[""B_UAV_06_medical_backpack_F""],[2]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item59
 		{
