@@ -16,12 +16,10 @@
 params ["_unit"];
 
 // Count the number of FAK's and Medikits this unit has
-_storage = _unit getVariable ["AIS_MedicalStore", [0,0,0,0]];
-_storage params ["_fakUni","_fakVest","_fakBackP","_medK"];
-_numFakUniform = _fakUni;
-_numFaksVest = _fakVest;
-_numFaksBackpack = _fakBackP;
-_numMedi = _medK;
+_numFakUniform = 0;
+_numFaksVest = 0;
+_numFaksBackpack = 0;
+_numMedi = 0;
 
 // Faks from the uniform
 {
