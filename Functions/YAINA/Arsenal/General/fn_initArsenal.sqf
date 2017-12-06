@@ -123,10 +123,10 @@ GVAR(unitItems) = call {
     // Default Permitted Items
     _permitGroups    = ["ItemWatch", "ItemCompass", "ItemGPS", "ItemRadio", "ItemMap",
                         "FirstAidKit", "NVGoggles", "acc_muzzle", "acc_pointer", "acc_bipod",
-                        "H_HelmetB", "H_HelmetSpecB", "H_Beret", "V_ALL", "G_ALL", "U_B",
+                        "H_HelmetB", "H_HelmetSpecB", "H_Beret", "H_Shemag", "H_ShemagOpen", "V_ALL", "G_ALL", "U_B",
                         "optic_ALL"];
 
-    _permitItems     = [];
+    _permitItems     = ["U_I_G_Story_Protagonist_F"];
 
     // These items are included by the permit groups, but by default aren't permitted by everyone and will be added
     // where required, faster than either whitelisting, or blacklisting only
