@@ -19,6 +19,9 @@ REM Copy yaina.pbo to mpmissions of server and local cache so we don't have to d
 copy /y ..\yaina.Malden.pbo "%SERVER_DIR%\mpmissions"
 copy /y ..\yaina.Malden.pbo "%MP_MISSIONS_CACHE_DIR%"
 
+REM Copy keys
+copy /y keys\* "%SERVER_DIR%\keys"
+
 echo %SERVER% ^
 	-ip=127.0.0.1 ^
 	-name=server ^
