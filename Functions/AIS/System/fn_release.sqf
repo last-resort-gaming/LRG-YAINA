@@ -26,7 +26,11 @@ detach _target;
 
 if (alive _target) then {
 	[_target, "AinjPpneMstpSnonWrflDb_release"] remoteExec ["switchMove", 0];
-	//[_target, _pos] call AIS_Core_fnc_setPosAGLS;
+
+	// We need to place the target just above the surface, otherwise they'll clip through and
+	// fall to the floor below etc. therefore, we set the veritcal component to that of the healer
+	// to whom the target was previously attached as they are already at surface level
+	_pos set [2, getPos _unit select 2 vectorAdd [0,0,0.05]];
 	_target setPos _pos;
 };
 
