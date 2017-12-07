@@ -27,7 +27,7 @@ for "_i" from 1 to (_items select 1) do {_unit addItemToVest "FirstAidKit"};
 for "_i" from 1 to (_items select 2) do {_unit addItemTobackpack "FirstAidKit"};
 
 
-_unit setVariable ["AIS_MedicalStore", [0,0,0,0], true];
+_unit setVariable ["AIS_MedicalStore", nil, true];
 
 
 true

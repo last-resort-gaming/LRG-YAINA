@@ -15,6 +15,10 @@
 
 params ["_unit"];
 
+// Bail if it's already set, this can happen if we get multiple
+// unconsious in the same frame
+if (!isNil {_unit getVariable "AIS_MedicalStore"}) exitWith {};
+
 // Count the number of FAK's and Medikits this unit has
 _numFakUniform = 0;
 _numFaksVest = 0;

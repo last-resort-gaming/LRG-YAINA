@@ -18,6 +18,7 @@ _unit setVariable ["ais_unconscious", false, true];
 _unit setVariable ["ais_stabilized", false, true];
 _unit setVariable ["ais_fireDamage", 0];
 _unit setVariable ["AIS_UnitIsDead", false];
+_unit setVariable ["AIS_MedicalStore", nil, true];
 _unit setCaptive false;
 
 if (isPlayer _unit) then {
