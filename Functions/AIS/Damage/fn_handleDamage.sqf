@@ -132,7 +132,13 @@ if !(AIS_REVIVE_GUARANTY) then {
 };
 
 // if a stabilized unit become new damage they won't be longer in the stbilized state
-_unit setVariable ["ais_stabilized", false, true];
+if (_unit getVariable ["ais_stabilized", false]) then {
+    // However, we want to reset the timeout so they don't just bleed out instantly,
+    // however, we half the amount of time since they shouldn't have been stabalized
+    // and left in a vulnerable position
+    ais_start_unc_time = diag_tickTime - ([_unit] call AIS_System_fnc_calculateLifeTime) / 2;
+    _unit setVariable ["ais_stabilized", false, true];
+};
 
 // unit can die if they get to mutch new damage in unconscious mode
 if ((diag_tickTime > _unit getVariable ["ais_protector_delay", 0]) && {_unit getVariable ["ais_unconscious", false]}) exitWith {
