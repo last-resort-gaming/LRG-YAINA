@@ -11,6 +11,8 @@
 
 params ["_injured"];
 
+if !(isPlayer _injured) exitWith {};
+
 // Remove any effects
 _injured setVariable ["ais_unconscious", false, true];
 _injured setVariable ["ais_hasHelper", ObjNull, true];

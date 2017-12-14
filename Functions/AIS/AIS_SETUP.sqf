@@ -26,6 +26,7 @@ AIS_AI_HELP_RADIUS 			= 	100; 			// Number, Radius in metres. Units in this radi
 AIS_DISABLE_RESPAWN_BUTTON	=	30;				// Time in seconds while the respawn button is disabled (Esc Menu). Set to 0 to enable the respawn button everytime.
 AIS_CONSUME_FAKS            =   true;           // Whether or not to consume FAKs upon successful heal
 AIS_REQUIRE_MEDIKIT         =   true;           // Whether or not to require MediKit, can be bypassed by setting objectVar AIS_REQUIRE_MEDIKIT to false
+AIS_RESTORE_LOADOUT         =   true;           // Restore a unit's current loadout on respawn
 
 //__________________________________________________________________________________________________________________________________________________________________
 //	v v v v v v v v v v v v  --- Visual Settings --- v v v v v v v v v v v v 

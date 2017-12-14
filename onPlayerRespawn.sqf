@@ -15,8 +15,6 @@ player addAction [
     "",-99
 ];
 
-player setUnitLoadout (player getVariable["LastLoadout",[]]);
-
 // readd players to zeus
 [[player], false] call YAINA_fnc_addEditableObjects;
 

@@ -13,6 +13,16 @@
 
 params ["_unit", "_corpse"];
 
+// Restore Loadout ?
+if (AIS_RESTORE_LOADOUT) then {
+    _loadout = _unit getVariable "AIS_RespawnLoadout";
+    if !(isNil "_loadout") then {
+        _unit setUnitLoadout _loadout;
+
+        // If we respawned from unconsious, then we'll need to restore FAKs
+        _unit call AIS_System_fnc_restoreFaks;
+    };
+};
 
 _unit setVariable ["ais_unconscious", false, true];
 _unit setVariable ["ais_stabilized", false, true];
