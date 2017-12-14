@@ -1,7 +1,10 @@
 @ECHO OFF
 
+
 REM Bring in settings
-call "%~dp0\settings.bat"
+pushd %~dp0
+call settings.bat
+popd
 
 set DIR=%~dp1
 set FN=%~nx1

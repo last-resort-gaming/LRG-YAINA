@@ -35,7 +35,7 @@ if (isNil QVAR(paradropSetup)) then {
             _args params ["_paraDropItems"];
 
             // Active if we have pilots online, and there is somewhere to drop onto
-            _pActive       = ({ _x getUnitTrait "YAINA_PILOT" } count allPlayers isEqualTo 0 && !(GVAR(paradropMarkers) isEqualTo []));
+            _pActive       = ({ [["PILOT"], _x] call YFNC(testTraits) } count allPlayers isEqualTo 0 && !(GVAR(paradropMarkers) isEqualTo []));
             _targetTexture = ["Data\Billboards\paradropInac.paa", "Data\Billboards\paradropAct.paa"] select _pActive;
             {
                 _x setObjectTextureGlobal [0, _targetTexture];

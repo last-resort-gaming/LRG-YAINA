@@ -13,7 +13,7 @@ if (GVAR(paradropMarkers) isEqualTo []) exitWith {
 };
 
 // Limit paradrop if there are pilots online
-private _pCount = { _x getUnitTrait "YAINA_PILOT"; } count allPlayers;
+private _pCount = { [["PILOT"], _x] call YFNC(testTraits); } count allPlayers;
 if (_pCount > 0) exitWith {
     systemChat "Paradrop unavailable, please utilise available pilots";
 };

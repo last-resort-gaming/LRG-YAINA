@@ -8,7 +8,7 @@
 
 if (hasInterface) then {
 
-    if (player getUnitTrait "YAINA_HQ") then {
+    if (["HQ"] call YFNC(testTraits)) then {
         player addAction [
             "Open Command Tablet",
             { call FNC(openTablet); }

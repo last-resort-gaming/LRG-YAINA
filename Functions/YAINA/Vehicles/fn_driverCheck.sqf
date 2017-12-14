@@ -31,7 +31,7 @@ player addEventHandler["GetInMan", {
         // Handle Default Air Vehicles
         if (_veh isKindOf "Air") then {
             // And lastly, default check, no pilot, no go.
-            if !(_unit getUnitTrait "YAINA_PILOT") then {
+            if !([["PILOT"], _unit] call YFNC(testTraits)) then {
                 _eject = true;
                 _ejectMessage = "You're not a pilot, you're not allowed to do that.";
             };

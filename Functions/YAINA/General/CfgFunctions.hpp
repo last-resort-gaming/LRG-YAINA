@@ -26,5 +26,6 @@ class YAINA {
 		class testTraits {};
 		class playerSetup { postInit = 1; };
 		class playerSetupRespawn;
+		class setUnitTrait;
     };
 };

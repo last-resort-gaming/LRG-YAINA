@@ -23607,7 +23607,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="COLONEL";
-						init="this setUnitTrait [""YAINA_HQ"", true, true];";
+						init="[[""HQ""], this] call YAINA_fnc_setUnitTrait;";
 						description="Zero  -  Headquarters";
 						isPlayable=1;
 						class Inventory
@@ -23722,7 +23722,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SL"", true, true]";
+						init="[[""SL""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 1 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -23899,7 +23899,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 1 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -24062,7 +24062,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 1 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -24225,7 +24225,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AR"", true, true]";
+						init="[[""AR""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 1 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -24379,7 +24379,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_HG"", true, true]";
+						init="[[""HG""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 1 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -24535,7 +24535,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AT"", true, true];";
+						init="[[""AT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 1 - AT";
 						isPlayable=1;
 						class Inventory
@@ -24699,7 +24699,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_ENG"", true, true];";
+						init="[[""ENG""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 1 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -24879,7 +24879,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
+						init="[[""Marksman""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 1 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -25102,7 +25102,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SL"", true, true]";
+						init="[[""SL""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 2 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -25279,7 +25279,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 2 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -25442,7 +25442,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 2 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -25605,7 +25605,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AR"", true, true]";
+						init="[[""AR""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 2 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -25759,7 +25759,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_HG"", true, true]";
+						init="[[""HG""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 2 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -25915,7 +25915,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AT"", true, true];";
+						init="[[""AT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 2 - AT";
 						isPlayable=1;
 						class Inventory
@@ -26079,7 +26079,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_ENG"", true, true];";
+						init="[[""ENG""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 2 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -26259,7 +26259,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
+						init="[[""Marksman""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 2 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -26482,7 +26482,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SL"", true, true]";
+						init="[[""SL""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 3 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -26659,7 +26659,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 3 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -26822,7 +26822,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 3 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -26985,7 +26985,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AR"", true, true]";
+						init="[[""AR""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 3 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -27139,7 +27139,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_HG"", true, true]";
+						init="[[""HG""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 3 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -27295,7 +27295,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AT"", true, true];";
+						init="[[""AT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 3 - AT";
 						isPlayable=1;
 						class Inventory
@@ -27459,7 +27459,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_ENG"", true, true];";
+						init="[[""ENG""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 3 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -27639,7 +27639,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
+						init="[[""Marksman""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 3 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -27862,7 +27862,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SL"", true, true]";
+						init="[[""SL""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 4 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -28039,7 +28039,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 4 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -28202,7 +28202,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 4 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -28365,7 +28365,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AR"", true, true]";
+						init="[[""AR""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 4 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -28519,7 +28519,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_HG"", true, true]";
+						init="[[""HG""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 4 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -28675,7 +28675,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AT"", true, true];";
+						init="[[""AT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 4 - AT";
 						isPlayable=1;
 						class Inventory
@@ -28839,7 +28839,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_ENG"", true, true];";
+						init="[[""ENG""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 4 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -29019,7 +29019,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
+						init="[[""Marksman""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 4 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -29765,7 +29765,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SL"", true, true]";
+						init="[[""SL""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 5 - Section Commander";
 						isPlayable=1;
 						class Inventory
@@ -29942,7 +29942,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 5 - Combat Medic";
 						isPlayable=1;
 						class Inventory
@@ -30105,7 +30105,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_MEDIC"", true, true]";
+						init="[[""MEDIC""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 5 - Combat Medic";
 						isPlayer=1;
 						isPlayable=1;
@@ -30269,7 +30269,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AR"", true, true]";
+						init="[[""AR""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 5 - Autorifleman";
 						isPlayable=1;
 						class Inventory
@@ -30423,7 +30423,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_HG"", true, true]";
+						init="[[""HG""], this] call YAINA_fnc_setUnitTrait";
 						description="Section 5 - Heavy Gunner";
 						isPlayable=1;
 						class Inventory
@@ -30579,7 +30579,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_AT"", true, true];";
+						init="[[""AT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 5 - AT";
 						isPlayable=1;
 						class Inventory
@@ -30743,7 +30743,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_ENG"", true, true];";
+						init="[[""ENG""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 5 - Engineer";
 						isPlayable=1;
 						class Inventory
@@ -30923,7 +30923,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_Marksman"", true, true];";
+						init="[[""Marksman""], this] call YAINA_fnc_setUnitTrait;";
 						description="Section 5 - Marksman";
 						isPlayable=1;
 						class Inventory
@@ -31121,7 +31121,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SNIPER"", true, true]";
+						init="[[""SNIPER""], this] call YAINA_fnc_setUnitTrait";
 						description="Ghost 1-1  -  Sniper";
 						isPlayable=1;
 						class Inventory
@@ -31313,7 +31313,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setUnitTrait [""YAINA_SPOTTER"", true, true]";
+						init="[[""SPOTTER""], this] call YAINA_fnc_setUnitTrait";
 						description="Ghost 1-1  -  Spotter";
 						isPlayable=1;
 						class Inventory
@@ -31521,7 +31521,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];" \n "this setUnitTrait [""YAINA_PILOT"", true, true];";
+						init="call{[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="MERT - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31636,7 +31636,7 @@ class Mission
 					{
 						skill=1;
 						rank="SERGEANT";
-						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];" \n "this setUnitTrait [""YAINA_MERT_UAV"", true, true];";
+						init="call{[[""Medic"", ""MERT"", ""MERT_UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="MERT - UAV Paramedic";
 						isPlayable=1;
 						class Inventory
@@ -31779,7 +31779,7 @@ class Mission
 					{
 						skill=1;
 						rank="SERGEANT";
-						init="this setUnitTrait [""Medic"", true];" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "this setUnitTrait [""YAINA_MERT"", true, true];";
+						init="call{this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;}";
 						description="MERT - Paramedic";
 						isPlayable=1;
 						class Inventory
@@ -31977,7 +31977,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setUnitTrait [""YAINA_UAV"", true, true];";
+						init="[[""UAV""], this] call YAINA_fnc_setUnitTrait;";
 						description="Reaper -  UAV Operator";
 						isPlayable=1;
 						class Inventory
@@ -32080,7 +32080,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
 						description="Fox - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32176,7 +32176,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
 						description="Squirrel- Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32273,7 +32273,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="call{this setUnitTrait [""YAINA_PILOT"", true, true];}";
+						init="call{[[""PILOT""], this] call YAINA_fnc_setUnitTrait;}";
 						description="Gator - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32370,7 +32370,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
 						description="Lama - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32467,7 +32467,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="this setUnitTrait [""YAINA_PILOT"", true, true];" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
 						description="Badger - Pilot";
 						isPlayable=1;
 						class Inventory
