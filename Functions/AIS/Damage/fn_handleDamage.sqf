@@ -134,9 +134,8 @@ if !(AIS_REVIVE_GUARANTY) then {
 // if a stabilized unit become new damage they won't be longer in the stbilized state
 if (_unit getVariable ["ais_stabilized", false]) then {
     // However, we want to reset the timeout so they don't just bleed out instantly,
-    // however, we half the amount of time since they shouldn't have been stabalized
-    // and left in a vulnerable position
-    ais_start_unc_time = diag_tickTime - ([_unit] call AIS_System_fnc_calculateLifeTime) / 2;
+    // so we reset the start_unc time back up again
+    ais_start_unc_time = diag_tickTime - [_unit] call AIS_System_fnc_calculateLifeTime;
     _unit setVariable ["ais_stabilized", false, true];
 };
 
