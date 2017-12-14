@@ -142,6 +142,12 @@ if (_unit getVariable ["ais_stabilized", false]) then {
 
 // unit can die if they get to mutch new damage in unconscious mode
 if ((diag_tickTime > _unit getVariable ["ais_protector_delay", 0]) && {_unit getVariable ["ais_unconscious", false]}) exitWith {
+
+    // If however, damage is NaN then just assume it's painful and we would die, I don't do this on line
+    // 97 when damage is first evaluated as the knock on risk is too high for random damage events, whereas in
+    // this case, we know what we're wanting to achieve and it'll be short lived and the limitations on insta-kill are below
+    if (isNil "_damage") then { _damage = 1; };
+
     if (_damage > 0.9 && !AIS_REVIVE_GUARANTY) then {[_unit] call AIS_Damage_fnc_goToDead};
     _damage = _damage min 0.89;
     _damage
