@@ -48,5 +48,7 @@ class YAINA_TABLET {
     class Spawns {
         file = "functions\YAINA\Tablet\Spawns";
         class createSupplyDrop {};
+        class createMedicalContainer {};
+        class setDroppable {};
     };
 };

@@ -56,6 +56,7 @@ GVAR(loadout_last_idx) = nil;
 private _requests = _tablet displayCtrl IDC_PAGE_REQUESTS;
 (_requests controlsGroupCtrl 1500) ctrlSetEventHandler ["ButtonClick", format["[%1] call %2 ", IDC_PAGE_AMMOBOX, FNC(displayPage)]];
 (_requests controlsGroupCtrl 1501) ctrlSetEventHandler ["ButtonClick", "call YAINA_AD_fnc_activateAirDefence"];
+(_requests controlsGroupCtrl 1502) ctrlSetEventHandler ["ButtonClick", format["call %1", FNC(createMedicalContainer)]];
 
 ///////////////////////////////////////////////////////////
 // Page: AmmoBox

@@ -309,6 +309,13 @@ class HQTabletDialog {
                     text = "Activate Air Defence";
                 };
 
+                class MedicalContainerButton : RequestButton {
+                    idc = 1502;
+                    x = (CONTENT_W * 0.5);
+                    y = 0.01;
+                    text = "Create Medical Container";
+                };
+
             };
         };
 
