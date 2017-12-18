@@ -30,7 +30,7 @@ if (alive _target) then {
 	// We need to place the target just above the surface, otherwise they'll clip through and
 	// fall to the floor below etc. therefore, we set the veritcal component to that of the healer
 	// to whom the target was previously attached as they are already at surface level
-	_pos set [2, getPos _unit select 2 vectorAdd [0,0,0.05]];
+	_pos set [2, getPos _unit select 2 + 0.05];
 	_target setPos _pos;
 };
 
