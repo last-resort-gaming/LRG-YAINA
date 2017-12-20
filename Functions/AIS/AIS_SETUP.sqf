@@ -27,7 +27,10 @@ AIS_DISABLE_RESPAWN_BUTTON	=	30;				// Time in seconds while the respawn button 
 AIS_CONSUME_FAKS            =   true;           // Whether or not to consume FAKs upon successful heal
 AIS_REQUIRE_MEDIKIT         =   true;           // Whether or not to require MediKit, can be bypassed by setting objectVar AIS_REQUIRE_MEDIKIT to false
 AIS_RESTORE_LOADOUT         =   true;           // Restore a unit's current loadout on respawn
-
+AIS_ACTION_DISTANCE         =   6;              // Max distance for actions (such as drag, stabalise, and revive), 6 m seems like a good "dash grab" distance to
+                                                // counter the slow nature of moving, using the action menu, clicking drag, then moving back to safty (it seems a
+                                                // lot when you consider it outside the game, but its from your center to their center, so it's about right, determine
+                                                // the distance you want in game rather than real life :)
 //__________________________________________________________________________________________________________________________________________________________________
 //	v v v v v v v v v v v v  --- Visual Settings --- v v v v v v v v v v v v 
 

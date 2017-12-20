@@ -45,7 +45,8 @@ _return = if (
 	{_noDrag} &&
 	{_noDraging} &&
 	(_is_able_to_do || !(_mobile_station isEqualTo objNull)) &&
-	{_station}
+	{_station} &&
+	{player distance _target <= AIS_ACTION_DISTANCE}
 ) then {true} else {false};
 
 
