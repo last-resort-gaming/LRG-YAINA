@@ -16,6 +16,9 @@ params [
 	"_injured"
 ];
 
+// Ensure we aren't going to attachTo a building etc. which can happen due to the addActions, so we reevaluate the statement that lead here
+if !(_injured isKindOf 'CAManBase' && {_injured getVariable ['ais_unconscious',false]} && {_injured call AIS_System_fnc_allowRevive}) exitWith {};
+
 // Before we start, if expecting to consume FAKs, make sure we have some,
 // If we have one left in our BP and someone takes it during the heal, then
 // so be it, since we aren't taking it here, because if they abort then we

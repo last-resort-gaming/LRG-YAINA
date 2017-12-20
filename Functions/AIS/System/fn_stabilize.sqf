@@ -13,6 +13,8 @@
 
 params ["_healer", "_injured"];
 
+// Ensure we aren't going to attachTo a building etc. which can happen due to the addActions, so we reevaluate the statement that lead here
+if !(_injured isKindOf 'CAManBase' && {_injured getVariable ['ais_unconscious',false]} && {_injured call AIS_System_fnc_allowStabilize}) exitWith {};
 
 _injured setVariable ["ais_hasHelper", _healer, true];
 

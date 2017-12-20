@@ -14,6 +14,9 @@
 
 params ["_unit", "_target"];
 
+// Ensure we aren't going to attachTo a building etc. which can happen due to the addActions, so we reevaluate the statement that lead here
+if !(_target isKindOf 'CAManBase' && {_target getVariable ['ais_unconscious',false]} && {_target call AIS_System_fnc_allowDrag}) exitWith {};
+
 _unit setVariable ["ais_DragDrop_Torso", _target];
 _target setVariable ["ais_DragDrop_Player", _unit, true];
 
