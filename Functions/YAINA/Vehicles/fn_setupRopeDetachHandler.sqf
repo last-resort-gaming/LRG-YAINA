@@ -13,6 +13,9 @@ _veh setVariable [QVAR(rddl), [[], []], true];
 _veh addEventHandler ["RopeAttach", {
     params ["_veh", "_rope", "_item"];
 
+    // Only proceed if we have a handler
+    if ( isNil { _item getVariable QVAR(rddh) } ) exitWith {};
+
     _v = _veh getVariable QVAR(rddl);
 
     if !(isNil "_v") then {
