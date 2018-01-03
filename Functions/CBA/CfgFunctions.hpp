@@ -1,5 +1,13 @@
 class CBA {
 
+    class AI {
+        file = "Functions\CBA\AI";
+        class addWaypoint {};
+        class clearWaypoints {};
+        class taskDefend {};
+        class taskPatrol {};
+    };
+
     class PFH {
         file = "Functions\CBA\PFH";
         class directCall {};
@@ -16,6 +24,8 @@ class CBA {
         file = "Functions\CBA\Common";
         class createNamespace {};
         class formatNumber {};
+        class getGroup {};
+        class getPos {};
     }
 
 	class Hashes {

@@ -98,7 +98,7 @@ _officer addEventHandler ["Killed", {
 
 // Spawn some Infantry Groups with small patrol radius
 for "_x" from 0 to 8 do {
-    _groups pushBack ([[_AOPosition, 0, _AOSize] call YFNC(getPosAround), 20 + random 40] call SFNC(infantryPatrol));
+    _groups pushBack ([[_AOPosition, 0, _AOSize] call YFNC(getPosAround), ((_AOSize/8) + (random _AOSize/4))  ] call SFNC(infantryPatrol));
 };
 
 // Garrison squads around the HQ

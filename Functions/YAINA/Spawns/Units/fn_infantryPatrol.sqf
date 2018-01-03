@@ -21,14 +21,8 @@ private _g = [_safepos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >>
 [_g, _skill] call FNC(setUnitSkill);
 
 if (_patrolRadius > 0) then {
-    [_g, _pos, _patrolRadius] call BIS_fnc_taskPatrol;
+    [_g, _pos, _patrolRadius, (ceil(random 4) + 3), "sad", ["AWARE", "SAFE"] select (random 1 > 0.5), "red", "limited"] call CBA_fnc_taskPatrol;
 };
-
-// 50% of AWARE / SAFE
-_g setBehaviour (["AWARE", "SAFE"] select (random 1 > 0.5));
-
-// Aggressive ? 10% chance of being fire at will, engage at will
-_g setCombatMode (["RED", "WHITE"] select (random 1 > 0.1));
 
 // Add units to zeus
 [units _g] call YFNC(addEditableObjects);
