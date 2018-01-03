@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1108;
+		nextID=1130;
 	};
 	class Camera
 	{
@@ -446,6 +446,7 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
+		briefingName="YAINA || Yet Another Invade and Annex || 1.0";
 		timeOfChanges=1800.0002;
 		startWeather=0.30000001;
 		startWind=0.1;
