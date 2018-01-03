@@ -55,6 +55,7 @@ if !(_respawnTime isEqualTo -1) then {
     // Add default persist vars
     _persistVars pushBackUnique QVAR(Drivers);
     _persistVars pushBackUnique QVAR(DriversMessage);
+    _persistVars pushBackUnique QVAR(getIn);
 
     // Save persist vars
     _persistVarsSave = _persistVars apply { [_x, _veh getVariable [_x, nil]] };

@@ -15,7 +15,7 @@ class YAINA_VEH {
         class setupRopeDetachHandler {};
         class addRopeDetachHandler {};
         class ejectPax {};
-        class driverCheck { postInit = 1; };
-
+        class addGetInHandler {};
+        class getInMan {};
     };
 };
