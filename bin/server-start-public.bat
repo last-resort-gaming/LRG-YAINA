@@ -32,10 +32,11 @@ echo %SERVER% ^
 	-nosplash ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
-	"-config=%cd%\bin\server.cfg" ^
+	"-config=%cd%\bin\server-public.cfg" ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
+	"-BEpath=%cd%\testing\server\battleye" ^
 	-serverMod=%SERVER_MODS%
 
 start "server" ^
@@ -45,10 +46,11 @@ start "server" ^
     -nosplash ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
-	"-config=%cd%\bin\server.cfg" ^
+	"-config=%cd%\bin\server-public.cfg" ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
+	"-BEpath=%cd%\testing\server\battleye" ^
 	-serverMod=%SERVER_MODS%
 timeout /t 10
 
