@@ -8,53 +8,26 @@
 
 params ["_veh"];
 
-_veh setVariable [QVAR(rddl), [[], []], true];
-
-_veh addEventHandler ["RopeAttach", {
-    params ["_veh", "_rope", "_item"];
-
-    // Only proceed if we have a handler
-    if ( isNil { _item getVariable QVAR(rddh) } ) exitWith {};
-
-    _v = _veh getVariable QVAR(rddl);
-
-    if !(isNil "_v") then {
-
-        _idx = (_v select 0) find _item;
-        if !(_idx isEqualTo -1) then {
-            _nv = (_v select 1) select _idx;
-            (_v select 1) set [_idx, _nv + 1 ];
-        } else {
-            (_v select 0) pushBack _item;
-            (_v select 1) pushBack 1;
-        };
-
-        _veh setVariable [QVAR(rddl), _v, true];
-    };
-}];
-
 _veh addEventHandler ["RopeBreak", {
     params ["_veh", "_rope", "_item"];
 
-    _v = _veh getVariable QVAR(rddl);
-    if !(isNil "_v") then {
-        _idx = (_v select 0) find _item;
-        if !(_idx isEqualTo -1) then {
-            _nv = ((_v select 1) select _idx) - 1;
-            (_v select 1) set [_idx, _nv];
+    // If it's the last rope, trigger the rddhs
+    _rddh = _item getVariable QVAR(rddh);
 
-            if (_nv <= 0) then {
-                _rddh = _item getVariable QVAR(rddh);
+    if (isNil "_rddh") exitWith {};
 
-                if !(isNil "_rddh") then {
-                    {
-                        [_item, _veh] call _x;
-                    } forEach _rddh;
-                };
-            };
+    // this can fire duplicates quickly due to the nature of
+    // four ropes detaching quickly so, we just limit the
+    // rate of firing per-item to 5 seconds
+
+    if (isNull (ropeAttachedTo _item)) then {
+        _last = _item getVariable [QVAR(rddh_fired), 0];
+        if (diag_tickTime > (_last + 5)) then {
+            _item setVariable [QVAR(rddh_fired), diag_tickTime];
+            {
+                [_item, _veh] call _x;
+            } forEach _rddh;
         };
-
-        _veh setVariable [QVAR(rddl), _v, true];
     };
 }];
 
