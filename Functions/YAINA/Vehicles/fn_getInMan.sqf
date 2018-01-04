@@ -57,7 +57,7 @@ if (_pos isEqualTo "driver") then {
                         ];
                     } else {
                         GVAR(EJECT_MENU) pushBack [
-                            name _x, [0], "", -5, [["expression", format ["['%1'] remoteExecCall ['%2', missionNamespace getVariable '%3']", name player, QFNC(ejectPax), _x call BIS_fnc_objectVar]]], "1", "1"
+                            name _x, [0], "", -5, [["expression", format ["moveOut (missionNamespace getVariable '%1')", _x call BIS_fnc_objectVar]]], "1", "1"
                         ];
                     };
                 };
