@@ -22,12 +22,7 @@ class Header {
 * STOCK PARAMS  https://community.bistudio.com/wiki/Description.ext
 ******************************************************************************/
 
-disableChannels[] = {
-    {0, true, true},    // Global
-    {1, false, true},   // Side Channel
-    {2, true, true},    // Command
-    {6, true, true}     // System
-};
+// disableChannels[] = {};
 
 disabledAI = 1;              // No AI in playable units
 aiKills = 0;                 // disable scorelist for AI players

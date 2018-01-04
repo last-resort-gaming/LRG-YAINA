@@ -25,11 +25,12 @@ copy /y keys\* "%SERVER_DIR%\keys"
 REM Copy Be
 mkdir "%cd%\testing\server\battleye"
 copy /y bin\beserver.cfg "testing\server\battleye"
+copy /y bin\beserver.cfg "testing\server\battleye\beserver_x64.cfg"
 
 echo %SERVER% ^
-	-ip=127.0.0.1 ^
 	-name=server ^
 	-nosplash ^
+	-noSound ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server-public.cfg" ^
@@ -41,9 +42,9 @@ echo %SERVER% ^
 
 start "server" ^
 	%SERVER% ^
-	-ip=127.0.0.1 ^
 	-name=server ^
     -nosplash ^
+	-noSound ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server-public.cfg" ^
