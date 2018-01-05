@@ -11,13 +11,13 @@
 
     arr = [[], []];
     {
-      arr set [0, (aarr select 0) + ((_x select 0) select 0)];
-      arr set [1, (aarr select 1) + ((_x select 0) select 1)];
+      arr set [0, (arr select 0) + ((_x select 0) select 0)];
+      arr set [1, (arr select 1) + ((_x select 0) select 1)];
     } forEach ([
-      [getItemCargo DummyBox],
-      [getWeaponCargo DummyBox],
-      [getBackpackCargo DummyBox],
-      [getMagazineCargo DummyBox]
+      [getItemCargo cursorObject],
+      [getWeaponCargo cursorObject],
+      [getBackpackCargo cursorObject],
+      [getMagazineCargo cursorObject]
     ]);
     diag_log str arr;
 
