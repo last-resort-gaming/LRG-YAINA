@@ -16,9 +16,9 @@ AIS_MEDEVAC_STATIONS		=	[];				// Add one or more objects and a radius to activa
 //	v v v v v v v v v v v v  --- Optional Settings --- v v v v v v v v v v v v 
 
 AIS_DAMAGE_TOLLERANCE_FACTOR = 	1; 				// A higher value means more damage tolerance. 1 is Vanilla. 0.8 mean all damage will reduce to 80% of Vanilla.
-AIS_BLEEDOUT_TIME 			= 	300; 			// Basic life time in seconds until the unit bleed out and die.. The real life time depends on the real damage of the unit. (can be less or more time from the basic value)
-AIS_REVIVETIME 				= 	5;				// Basic revive time in seconds. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
-AIS_STABILIZETIME 			= 	5;				// Basic stabilize time in seconds to stop the bleeding of a unconscious unit. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
+AIS_BLEEDOUT_TIME 			= 	400; 			// Basic life time in seconds until the unit bleed out and die.. The real life time depends on the real damage of the unit. (can be less or more time from the basic value)
+AIS_REVIVETIME 				= 	20;				// Basic revive time in seconds. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
+AIS_STABILIZETIME 			= 	15;				// Basic stabilize time in seconds to stop the bleeding of a unconscious unit. The real revive time depends on the real damage of the unit. (can be less or more time from the basic value)
 AIS_REVIVE_HEAL 			= 	true;			// If set to true the injured unit get completely healed after the revive. (casual gameplay without a medic)
 AIS_TOGGLE_RADIO 			= 	false; 			// If set to true, unconscious players cannot use his TFAR or ACRE radios.
 AIS_NO_CHAT 				= 	false; 			// If set to true, a injured player cannot use text chat during he is uncoscious.
@@ -34,7 +34,7 @@ AIS_ACTION_DISTANCE         =   6;              // Max distance for actions (suc
 //__________________________________________________________________________________________________________________________________________________________________
 //	v v v v v v v v v v v v  --- Visual Settings --- v v v v v v v v v v v v 
 
-AIS_SHOW_UNC_MARKERS	 	=	true; 			// If set to true, a marker will show injured units on the map.
+AIS_SHOW_UNC_MARKERS	 	=	false; 			// If set to true, a marker will show injured units on the map.
 AIS_SHOW_UNC_MESSAGE_TO 	= 	"None"; 		// "None", "Side", "Group" --> who read the message about wounded units.
 AIS_SHOW_UNC_3D_MARKERS 	=	true; 			// If set to true, an in-game visible 3D-icon shows you the position of injured units (within a range of 20 metres and 35 metres for medics).
 AIS_IMPACT_EFFECTS 			= 	true; 			// Set to true to enable impact effects. (simple simluation of supressing effects)
