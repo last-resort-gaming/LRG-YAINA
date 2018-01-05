@@ -29,7 +29,7 @@ if (isServer) then {
 };
 
 // custom chat command system
-[QGVAR(chatMessageSent), {
+["CBA_events_chatMessageSent", {
     params ["_message"];
 
     if (((_message select [0,1]) isEqualTo "#") && {!isNil QGVAR(customChatCommands)}) then {
@@ -66,14 +66,15 @@ if (isServer) then {
     };
 }] call CBA_fnc_addEventHandler;
 
-// And add the listener
+// And add the listener, manually setting the tag here due to the mod stealing it from our control
+// and to keep it consistent without updating everything
+
 _h = [] spawn {
     while {true} do {
-
         waitUntil {!(isNull (findDisplay 24))};
         _keyDown = (findDisplay 24) displayAddEventHandler ["KeyDown", {
             if ((_this select 1) in [28,156]) then {
-                [QGVAR(chatMessageSent), [ctrlText ((_this select 0) displayCtrl 101), _this select 0]] call CBA_fnc_localEvent;
+                ["CBA_events_chatMessageSent", [ctrlText ((_this select 0) displayCtrl 101), _this select 0]] call CBA_fnc_localEvent;
             };
             false
         }];
