@@ -56,3 +56,8 @@ for "_x" from 0 to ((count _items) - 1) do {
 if(_droppable) then {
     [_crate] call FNC(setDroppable);
 };
+
+// Add to zeeus
+[[_crate]] call YFNC(addEditableObjects);
+
+_crate

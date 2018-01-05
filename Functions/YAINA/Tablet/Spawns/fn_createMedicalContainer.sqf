@@ -27,3 +27,6 @@ _crate addItemCargoGlobal ["FirstAidKit", 10];
 
 // Allow it to be droppable
 [_crate] call FNC(setDroppable);
+
+// Add to zeeus
+[[_crate]] call YFNC(addEditableObjects);
