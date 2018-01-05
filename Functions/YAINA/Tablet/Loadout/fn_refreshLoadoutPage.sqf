@@ -37,7 +37,7 @@ private _playerSide = side player;
     if (alive _x && side _x == _playerSide) then {
         _allGroupsWithPlayers pushBackUnique group _x
     }
-} forEach (allUnits - entities "HeadlessClient_F");
+} forEach (allPlayers - entities "HeadlessClient_F");
 
 // Clear them
 lbClear _lb;
