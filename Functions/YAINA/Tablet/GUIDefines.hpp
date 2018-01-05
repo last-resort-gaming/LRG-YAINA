@@ -22,14 +22,14 @@
 #define GUI_GRID_W	(0.025)
 #define GUI_GRID_H	(0.025)
 
-#define SCREEN_X (safezoneX + 0.2917 * safezoneW)
-#define SCREEN_Y (safezoneY + 0.2773 * (0.8 * safezoneH) + 0.1 * safezoneH + 5 * pixelH)
-#define SCREEN_W (0.3980 * safezoneW)
 #define SCREEN_H (0.5957 * (0.8 * safezoneH) - 10 * pixelH)
+#define SCREEN_W (0.3980 * (1.35 * safezoneH))
+#define SCREEN_Y (safezoneY + 0.2773 * (0.8 * safezoneH) + 0.1 * safezoneH + 5 * pixelH)
+#define SCREEN_X (safezoneX + ((safezoneW - (1.35 * safezoneH)) / 2) + 0.28 * (1.4 * safezoneH))
 
 #define CONTENT_Y (SCREEN_Y + (10 * pixelH) + 0.04)
 #define CONTENT_X (SCREEN_X + .5 * GUI_GRID_W)
-#define CONTENT_W (SCREEN_W - 1 * GUI_GRID_W)
+#define CONTENT_W (SCREEN_W - (10 * pixelW))
 #define CONTENT_H (SCREEN_H - (10 * pixelH + 0.04))
 
 #define SLOT_W ((CONTENT_W / 3) - 8 * pixelW)
@@ -208,13 +208,13 @@ class HQTabletDialog {
 
         // Bring on the device...
         class DeviceBG: RscPicture {
-        	idc = -1;
+            idc = -1;
             text = "Data\Comms\x10gxx.paa";
             colorBackground[] = {0,0,0,1};
-        	x = safezoneX;
-        	w = safezoneW;
+            h = 0.8  * safezoneH;
+            w = 1.35 * safezoneH;
+            x = safezoneX + ((safezoneW - (1.35 * safezoneH)) / 2);
             y = 0.1 * safezoneH + safezoneY;
-            h = 0.8 * safezoneH;
         };
 
         class NavButtonP1BG : NavButton {

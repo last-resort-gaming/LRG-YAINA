@@ -3,7 +3,6 @@ class YAINA_TABLET {
 
     class Init {
         file = "functions\YAINA\Tablet\Init";
-        class preInit { preInit = 1; };
         class postInit { postInit = 1; };
     };
 
