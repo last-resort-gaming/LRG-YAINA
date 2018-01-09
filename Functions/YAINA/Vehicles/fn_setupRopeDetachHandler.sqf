@@ -23,7 +23,7 @@ _veh addEventHandler ["RopeBreak", {
     if (isNull (ropeAttachedTo _item)) then {
         _last = _item getVariable [QVAR(rddh_fired), 0];
         if (diag_tickTime > (_last + 5)) then {
-            _item setVariable [QVAR(rddh_fired), diag_tickTime];
+            _item setVariable [QVAR(rddh_fired), diag_tickTime, true];
             {
                 [_item, _veh] call _x;
             } forEach _rddh;
