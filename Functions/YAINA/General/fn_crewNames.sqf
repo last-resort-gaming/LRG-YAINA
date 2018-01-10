@@ -15,7 +15,7 @@ player addEventHandler ["GetInMan", {
         params ["_args", "_pfhID"];
 
         if (isNull objectParent player) then {
-            _pfhID call CBA_fnc_removePerFrameHandler;
+            [_pfhID] call CBA_fnc_removePerFrameHandler;
         } else {
             disableSerialization;
 

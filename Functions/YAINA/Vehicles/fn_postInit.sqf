@@ -50,7 +50,6 @@ if(hasInterface) then {
         params ["_mapOpen", "_mapIsForced"];
 
         if (_mapOpen) then {
-            systemChat "adding pfh";
 
             GVAR(pfhID) = [{
 
@@ -90,9 +89,7 @@ if(hasInterface) then {
             }, 0, []] call CBA_fnc_addPerFrameHandler;
         } else {
             // Delete our PFH and vehicle markers
-
-            systemChat "removing pfh";
-            GVAR(pfhID) call CBA_fnc_removePerFrameHandler;
+            [GVAR(pfhID)] call CBA_fnc_removePerFrameHandler;
             { deleteMarkerLocal _x; true; } count ([QVAR(mrk)] call FNC(getMarkers));
         };
     }];
