@@ -82,25 +82,30 @@ if (_pos isEqualTo "driver") then {
             _veh setVariable [QVAR(hasKeyActions), true];
         };
 
-        if (_pos isEqualTo "driver") then {
-            _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
-            if !(isNil "_owner") then {
-                if !([_owner isEqualTo (driver _veh), (group _owner) isEqualTo (group driver _veh)] select SQUAD_BASED) then {
-                    format ["%1 has the keys.", name _owner] call YFNC(hintC);
-                    moveOut driver _veh;
-                };
-            } else {
-                // remove the variable so we can take it
-                _veh setVariable [QVAR(owner), nil, true];
+
+        _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
+        if !(isNil "_owner") then {
+            if !([_owner isEqualTo (driver _veh), (group _owner) isEqualTo (group driver _veh)] select SQUAD_BASED) then {
+                format ["%1 has the keys.", name _owner] call YFNC(hintC);
+                moveOut driver _veh;
+                _eject = true;
             };
+        } else {
+            // remove the variable so we can take it
+            _veh setVariable [QVAR(owner), nil, true];
         };
+
     };
 };
 
-// Now, if we got this far, handle our GetIn associated with the vehicles itself by addGetInHandler
-{
-    // Ensure unit still in veh
-    if ((vehicle _unit) isEqualTo _veh) then {
-        [_unit, _pos, _veh, _turret, _x select 1] call (_x select 0);
-    };
-} forEach (_veh getVariable [QVAR(getIn), []]);
+// Now, if we got this far, do a check juts in case the owner handler occurs
+// then trigger our GetIn associated with the vehicles itself by addGetInHandler
+if !(_eject) then {
+    {
+        // Ensure unit still in veh
+        if ((vehicle _unit) isEqualTo _veh) then {
+            [_unit, _pos, _veh, _turret, _x select 1] call (_x select 0);
+        };
+    } forEach (_veh getVariable [QVAR(getIn), []]);
+};
+

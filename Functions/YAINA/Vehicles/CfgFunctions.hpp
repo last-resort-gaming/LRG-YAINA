@@ -17,5 +17,6 @@ class YAINA_VEH {
         class ejectPax {};
         class addGetInHandler {};
         class getInMan {};
+        class getMarkers {};
     };
 };

@@ -46,4 +46,51 @@ if(hasInterface) then {
 
     }];
 
+    addMissionEventHandler["Map", {
+        params ["_mapOpen", "_mapIsForced"];
+
+        if (_mapOpen) then {
+
+            GVAR(pfhID) = [{
+
+                // VEH Markers
+                _markers = [];
+                _markersFor = units (group player);
+
+                // HQ can see everyones vehicle
+                if ("HQ" call YFNC(testTraits)) then {
+                    _markersFor = allPlayers;
+                };
+
+                {
+
+                    _p = _x;
+                    _pids = _p getVariable [QVAR(vehicles), []];
+                    {
+                        _id = _x call BIS_fnc_objectVar;
+                        _md = format["%1_%2", QVAR(mrk), _id];
+                        _markers pushBack _md;
+
+                        if ((getMarkerPos _md) isEqualTo [0,0,0]) then {
+                            createMarkerLocal [_md, position _x];
+                            _md setMarkerShapeLocal "ICON";
+                            _md setMarkerTypeLocal "mil_triangle";
+                            _md setMarkerTextLocal format["%1's %2", name _p, getText(configFile >> "CfgVehicles" >> typeOf (_x) >> "displayName")];
+                        };
+
+                        _md setMarkerPos (position _x);
+
+                    } forEach _pids;
+                } forEach _markersFor;
+
+                // Delete any markers that don't belong to our group / given up keys for
+                { if !(_x in _vehMarkers) then { deleteMarkerLocal _x; }; true; } count ([QVAR(mrk)] call FNC(getMarkers));
+
+            }, 0, []] call CBA_fnc_addPerFrameHandler;
+        } else {
+            // Delete our PFH and vehicle markers
+            [GVAR(pfhID)] call CBA_fnc_removePerFrameHandler;
+            { deleteMarkerLocal _x; true; } count ([QVAR(mrk)] call FNC(getMarkers));
+        };
+    }];
 };
