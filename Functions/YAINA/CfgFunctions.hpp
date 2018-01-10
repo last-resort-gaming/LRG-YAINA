@@ -5,3 +5,4 @@
 #include "AirDefence\CfgFunctions.hpp"
 #include "Arsenal\CfgFunctions.hpp"
 #include "Tablet\CfgFunctions.hpp"
+#include "Commands\CfgFunctions.hpp"
