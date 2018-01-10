@@ -86,7 +86,7 @@ openMap true;
     _args params ["_dMrk"];
 
     if !(visibleMap) then {
-        { if !(isNil "_x") then { deleteMarker _x; }; } forEach _dMrk;
+        { if !(isNil "_x") then { deleteMarkerLocal _x; }; } forEach _dMrk;
         [QVAR(paradropClickHandlerID), "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
         [_pfhID] call CBA_fnc_removePerFrameHandler;
     };
