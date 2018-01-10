@@ -10,7 +10,7 @@ if(!isServer) exitWith {};
 
 [{
     for "_i" from count(GVAR(respawnList)) to 0 step -1 do {
-        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
+        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
         // If the vehicle is not alive / null then we remove from the respawn
         // list and schedule a delete it in 30 seconds just in case it
@@ -63,7 +63,7 @@ if(!isServer) exitWith {};
             GVAR(respawnList) deleteAt _i;
 
             [{
-                params ["_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
+                params ["_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
                 _nv = createVehicle [_vehType, [0,0,0], [], 0, "NONE"];
 
@@ -81,6 +81,9 @@ if(!isServer) exitWith {};
 
                 // restore copilot action
                 _nv enableCopilot _coPilotEnabled;
+
+                // restore lcoked state
+                _nv lock _locked;
 
                 if (_vehType isKindOf "UAV") then {
 
@@ -129,7 +132,7 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs], _respawnTime] call CBA_fnc_waitAndExecute;
+            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs], _respawnTime] call CBA_fnc_waitAndExecute;
         };
 
     };
