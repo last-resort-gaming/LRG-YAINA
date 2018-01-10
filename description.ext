@@ -2,7 +2,7 @@
 * MISSION INFO
 ******************************************************************************/
 
-author = "MartinCo";
+author = "YAINA";
 onLoadName = "YAINA || Malden";
 OnLoadMission = "";
 loadScreen = "Data\LoadingScreen\splash.paa";
