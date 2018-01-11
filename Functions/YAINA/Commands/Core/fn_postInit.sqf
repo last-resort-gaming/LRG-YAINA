@@ -9,8 +9,15 @@
 if(isServer) then {
 
     // we dispatch a list of server commands to clients
-    GVAR(commandList) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_CMD" >> "Commands")) apply { configName _x };
-    publicVariable QVAR(commandList);
+    GVAR(commands) = [
+        ["help", "credits", "addcredits", "ugmsg"],
+        [0, 0, 3, 1]
+    ];
+    publicVariable QVAR(commands);
+
+    _cmdMax = 0;
+    { if (_x > _cmdMax) then { _cmdMax = _x; }; true } count ((GVAR(commands) select 0) apply { count _x; });
+    GVAR(cmdMax) = _cmdMax;
 
 };
 
@@ -22,7 +29,7 @@ if (hasInterface) then {
     ["CBA_events_chatMessageSent", {
         params ["_message"];
 
-        if (((_message select [0,1]) isEqualTo "#") && {!isNil QVAR(commandList)}) then {
+        if (((_message select [0,1]) isEqualTo "#") && {!isNil QVAR(commands)}) then {
             private _index = _message find " ";
 
             // no argument
@@ -33,8 +40,8 @@ if (hasInterface) then {
             private _command = _message select [1, _index - 1];
             private _argument = _message select [_index + 1];
 
-            if (_command in GVAR(commandList)) then {
-                _argument call (missionNamespace getVariable [format["YAINA_CMD_fnc_%1", _command], {}]);
+            if (_command in (GVAR(commands) select 0)) then {
+                [_command, _argument] remoteExecCall [QFNC(exec), 2];
             };
         };
 

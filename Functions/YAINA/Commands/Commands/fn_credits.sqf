@@ -6,4 +6,8 @@
 
 #include "..\defines.h"
 
-systemChat format ["gimmie credit count bitches: %1", _this];
+params ["_owner", "_caller", "_argStr"];
+
+_msg = format ["Credit Balance: %1", [YVAR(rewardPoints), 1, 0, true] call CBA_fnc_formatNumber];
+_msg remoteExecCall ["systemChat", _owner];
+_msg
