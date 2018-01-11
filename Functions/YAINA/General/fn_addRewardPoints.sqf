@@ -9,7 +9,7 @@
 params ["_count", ["_source", ""]];
 
 if (!isServer) exitWith {
-    [_count] remoteExecCall [QYFNC(addRewardPoints), 2];
+    [_count, _source] remoteExecCall [QYFNC(addRewardPoints), 2];
 };
 
 YVAR(rewardPoints) = YVAR(rewardPoints) + _count;
@@ -17,12 +17,13 @@ if (YVAR(rewardPoints) < 0) then {
     YVAR(rewardPoints) = 0;
 };
 
+if(_source isEqualTo "") then { _source = "unknown"; };
+
 // Logging
-private _owner = remoteExecutedOwner;
-if (_owner isEqualTo 0) then {
-    _owner = "server";
-} else {
-    _idx = (YVAR(ownerIDs) select 0) find _owner;
+private _owner = "server";
+
+if (isRemoteExecuted && { !(remoteExecutedOwner isEqualTo 0) } ) then {
+    _idx = (YVAR(ownerIDs) select 0) find remoteExecutedOwner;
     if !(_idx isEqualTo -1) then {
         _owner = (YVAR(ownerIDs) select 1) select 1;
     };
