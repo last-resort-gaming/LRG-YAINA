@@ -22,6 +22,9 @@ copy /y ..\yaina.Malden.pbo "%MP_MISSIONS_CACHE_DIR%"
 REM Copy keys
 copy /y keys\* "%SERVER_DIR%\keys"
 
+REM Should substitute path
+copy /y bin\A3Log-EU1.ini "%SERVER_DIR%\A3Log-EU1.ini"
+
 REM Copy Be
 mkdir "%cd%\testing\server\battleye"
 copy /y bin\beserver.cfg "testing\server\battleye"
@@ -33,6 +36,7 @@ echo %SERVER% ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server.cfg" ^
+	-A3Log=A3Log-EU1.ini ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
@@ -46,6 +50,7 @@ start "server" ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server.cfg" ^
+	-A3Log=A3Log-EU1.ini ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
