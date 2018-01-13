@@ -7,6 +7,7 @@ class YAINA_CMD {
         class log {};
         class exec {};
         class allowed {};
+        class findPlayer {};
     };
 
     class Commands {
