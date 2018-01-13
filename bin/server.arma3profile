@@ -24,7 +24,7 @@ class DifficultyPresets
 			weaponInfo = 2;			// Weapon info (0 = never, 1 = fade out, 2 = always)
 			stanceIndicator = 2;	// Stance indicator (0 = never, 1 = fade out, 2 = always)
 			staminaBar = 0;			// Stamina bar
-			weaponCrosshair = 1;	// Weapon crosshair
+			weaponCrosshair = 0;	// Weapon crosshair
 			visionAid = 0;			// Vision aid
 
 			/* View */
@@ -50,10 +50,10 @@ class DifficultyPresets
 		aiLevelPreset = 3;
 	};
 
-    // We set the skillAI + precisionAI to 1 so that setSkill
-    // has more of a profound effect
+    // skillAI to that of Veteran
+    // precisionAI to that between Regular/Veteran
 	class CustomAILevel {
-		skillAI = 1.0;
-		precisionAI = 1.0;
+		skillAI = 0.85;
+		precisionAI = 0.625;
 	};
 };
