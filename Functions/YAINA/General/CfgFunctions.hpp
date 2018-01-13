@@ -30,5 +30,6 @@ class YAINA {
 		class loadAdmins { postInit = 1; };
 		class log {};
 		class getAdminLevel {};
+		class addActionMP {};
     };
 };
