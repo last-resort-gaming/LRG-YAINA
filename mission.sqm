@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1152;
+		nextID=1130;
 	};
 	class Camera
 	{
-		pos[]={702.73199,50.966705,12161.26};
-		dir[]={-0.27913794,-0.85272115,0.44153887};
-		up[]={-0.45566386,0.52236599,0.72076643};
-		aside[]={0.84525687,2.7401256e-008,0.53436595};
+		pos[]={766.45313,144.61287,12129.916};
+		dir[]={0.026009185,-0.99958605,-0.012344567};
+		up[]={0.90303671,0.028715789,-0.42860228};
+		aside[]={-0.42877939,2.3283064e-009,-0.90341014};
 	};
 };
 binarizationWanted=0;
@@ -802,164 +802,73 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={697.74902,31.112946,12174.455};
+				position[]={3079.8464,6.418622,8508.1475};
 				angles[]={0.016004669,4.7165775,6.2671809};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				lock="LOCKED";
 				init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 			};
 			id=986;
 			type="B_MRAP_01_F";
-			atlOffset=-0.013000488;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="Enh_featureType";
-					expression="_this setFeatureType (parseNumber _value)";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				nAttributes=1;
-			};
 		};
 		class Item18
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={697.37903,31.113947,12170.815};
+				position[]={3079.4756,6.4203238,8504.5078};
 				angles[]={6.2815971,4.7165775,0.0015882496};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				lock="LOCKED";
 				init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 			};
 			id=988;
 			type="B_MRAP_01_F";
-			atlOffset=-0.01199913;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="Enh_featureType";
-					expression="_this setFeatureType (parseNumber _value)";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				nAttributes=1;
-			};
 		};
 		class Item19
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={698.88098,31.080151,12166.377};
+				position[]={3080.9785,6.3858333,8500.0693};
 				angles[]={6.2815971,4.7081132,0.0015882496};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				lock="LOCKED";
 				init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 			};
 			id=990;
 			type="B_LSV_01_unarmed_F";
-			atlOffset=-0.016000748;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="Enh_featureType";
-					expression="_this setFeatureType (parseNumber _value)";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				nAttributes=1;
-			};
 		};
 		class Item20
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={698.97101,31.096151,12162.906};
+				position[]={3081.0676,6.4022164,8496.5986};
 				angles[]={0.0047996556,4.7081132,0.0015882496};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				lock="UNLOCKED";
+				lock="LOCKED";
 				init="[this, true, 30] call YAINA_VEH_fnc_initVehicle;";
 			};
 			id=994;
 			type="B_LSV_01_unarmed_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="Enh_featureType";
-					expression="_this setFeatureType (parseNumber _value)";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="0";
-						};
-					};
-				};
-				nAttributes=1;
-			};
+			atlOffset=-4.7683716e-007;
 		};
 		class Item21
 		{
@@ -23863,7 +23772,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -25053,8 +24962,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={695.59631,29.400425,12164.493};
-						angles[]={0,1.6445949,0};
+						position[]={711.29102,29.400438,12126.718};
+						angles[]={0,5.2245388,0};
 					};
 					side="West";
 					class Attributes
@@ -25188,7 +25097,7 @@ class Mission
 					};
 					id=1469;
 					type="B_soldier_M_F";
-					atlOffset=0.47898674;
+					atlOffset=0.47900009;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25243,7 +25152,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -26623,7 +26532,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -28003,7 +27912,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
@@ -29383,7 +29292,7 @@ class Mission
 				class Attribute0
 				{
 					property="groupID";
-					expression="[_this, _value] call CBA_fnc_setCallsign";
+					expression="_this setGroupID [_value];";
 					class Value
 					{
 						class data
