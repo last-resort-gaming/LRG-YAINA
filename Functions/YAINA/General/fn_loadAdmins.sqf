@@ -16,7 +16,7 @@ if !(isServer) exitWith {};
 
 if (isNil QVAR(loadAdmins)) then {
     if (isClass(configFile >> "CfgPatches" >> "inidbi2")) then {
-        call compile preProcessFile "\inidbi\init.sqf";
+        call compile preProcessFile "\inidbi2\init.sqf";
         GVAR(loadAdmins) = 1;
     } else {
         ["localAdmins: inidbi2 not loaded, dynamic admin levels disabled"] call YFNC(log);
