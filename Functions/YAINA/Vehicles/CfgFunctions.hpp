@@ -14,7 +14,6 @@ class YAINA_VEH {
         class removeMarkers {};
         class setupRopeDetachHandler {};
         class addRopeDetachHandler {};
-        class ejectPax {};
         class addGetInHandler {};
         class getInMan {};
         class getMarkers {};

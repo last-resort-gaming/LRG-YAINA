@@ -72,6 +72,13 @@ openMap true;
         hint "We're dropping you near your leader";
     };
 
+    // Add the action
+    player addAction [
+        ("<t color=""#ED2744"">") + ("Open Parachute") + "</t>",
+        {player removeAction (_this select 2); call FNC(openChute)}, [], 10, false, true,"",
+        "(((position _target) select 2) > 20) && (_target == (vehicle _target))"
+    ];
+
     [{ player setPos (_this select 0) }, [_dropPos], 1, 2] call YFNC(fadeOutAndExecute);
 
 

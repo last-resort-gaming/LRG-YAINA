@@ -43,20 +43,8 @@ if (isNil QVAR(paradropSetup)) then {
 
         }, 10, [_paraDropItems]] call CBA_fnc_addPerFrameHandler;
     };
-
-    player addEventHandler ["Respawn", {
-        call FNC(setupParadropActions);
-    }];
-
     GVAR(paradropSetup) = true;
 };
 
 // And they're not falling by default
 GVAR(openChuteInProgress) = false;
-
-// We also allow the player to drop
-player addAction [
-    ("<t color=""#ED2744"">") + ("Open Parachute") + "</t>",
-    {call FNC(openChute)}, [], 10, false, true,"",
-    "(((position _target) select 2) > 20) && (_target == (vehicle _target))"
-];
