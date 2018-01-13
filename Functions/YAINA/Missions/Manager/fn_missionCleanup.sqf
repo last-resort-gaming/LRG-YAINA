@@ -6,7 +6,7 @@
 */
 #include "..\defines.h"
 
-params ["_pfhID", "_missionID"];
+params ["_pfhID", "_missionID", ["_force", false]];
 
 // Do we break out ?
 _fail = false;
@@ -34,7 +34,8 @@ if !(_markers isEqualTo []) then {
 
 };
 
-if (_fail) exitWith { false; };
+// Fail now unless it's forced, in which case we want to delete units/vehicles
+if (_fail && { not _force } ) exitWith { false; };
 
 // Delete all vehicles
 {
@@ -47,6 +48,9 @@ if (_fail) exitWith { false; };
     { if !(isNull _x) then { deleteVehicle _x; }; true; } count units _x;
     deleteGroup _x;
 } count _groups;
+
+// As we have deleted units, fail as we dont wanna kill buildings with folks in
+if (_fail) exitWith { false; };
 
 // Restore any replaced building to remove the ruins etc. then delete
 // to avoid any left-overs, these are really for the
@@ -75,8 +79,14 @@ _sz =  3 * (getMarkerSize (_markers select 0) select 0);
 // point then it'll never get deleted.
 [{ _this call BIS_fnc_deleteTask; }, [_missionID], 120] call CBA_fnc_waitAndExecute;
 
+// Remove from stopRequests
+_idx = GVAR(stopRequests) find _missionID;
+if !(_idx isEqualTo -1) then {
+    GVAR(stopRequests) deleteAt _idx;
+};
+
 // Delete our HCDCH
-[profileName, _missionID, _missionMarker] call FNC(delHCDCH);
+[profileName, _missionID] remoteExecCall [QFNC(delHCDCH), 2];
 
 // Remove pfh
 [_pfhID] call CBA_fnc_removePerFrameHandler;

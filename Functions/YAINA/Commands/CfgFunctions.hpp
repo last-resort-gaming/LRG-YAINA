@@ -15,5 +15,9 @@ class YAINA_CMD {
         class credits    {};
         class help {};
         class ugmsg {};
+        class mmstart {};
+        class mmpause {};
+        class mmlist {};
+        class mmstop {};
     };
 };

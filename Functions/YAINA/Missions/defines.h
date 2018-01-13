@@ -7,6 +7,9 @@
 #define QVAR(s) Q(GVAR(s))
 #define QFNC(s) Q(FNC(s))
 
+#define OFNC(s) ##PREFIX##_OBJ_fnc_##s
+#define QOFNC(s) Q(OFNC(s))
+
 #define INCR(s) s = (s) + 1
 
 #define SFNC(s) YAINA_SPAWNS##_fnc_##s

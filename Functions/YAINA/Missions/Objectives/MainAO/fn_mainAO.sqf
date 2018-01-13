@@ -32,7 +32,7 @@ _HQPosition = [nil, _blacklistAreas, {
 
 // Its okay to bail, the mission manager will try again...
 if (_HQPosition isEqualTo []) exitWith {
-    TRACE_1("spawnMainAO: Failed to find location", _location);
+    TRACE_1("mainAO: Failed to find location", _location);
 };
 
 // Now find a location for our AO center position fuzz the HQ...
@@ -45,6 +45,8 @@ if (_AOPosition isEqualTo []) exitWith {
 // Find our nearest town + direction for mission description
 _nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
 
+// Mission Description
+private _missionDescription = format["Main AO: %1 of %2", _nearestTown select 2, text (_nearestTown select 0)];
 
 ///////////////////////////////////////////////////////////
 // Spawn Mission
@@ -143,8 +145,8 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 ///////////////////////////////////////////////////////////
 
 _idx = 5;
-_sms = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM" >> "SideMissions")) apply {
-            missionNamespace getVariable format["YAINA_MM_fnc_%1", configName _x]
+_sms = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SideMissions")) apply {
+            missionNamespace getVariable format["YAINA_MM_OBJ_fnc_%1", configName _x]
        };
 
 _subObjective = nil;
@@ -163,6 +165,12 @@ _pfh = {
     params ["_args", "_pfhID"];
     _args params ["_missionID", "_stage", "_subObjective", "_hiddenTerrainElems", "_HQElements", "_officerGroup", "_HQPosition"];
 
+    // Stop requested ?
+    _stopRequested = _missionID in GVAR(stopRequests);
+    if (_stopRequested && { _stage < 3 }) then {
+        // Jump right to stage 3
+        _stage = 3;
+    };
 
     if (_stage isEqualTo 1) then {
 
@@ -251,11 +259,17 @@ _pfh = {
     if (_stage isEqualTo 3) then {
 
         // Set Mission Exit State
-        [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
+        [_missionID, 'Succeeded', not _stopRequested] call BIS_fnc_taskSetState;
+
         [_missionID, "CLEANUP"] call FNC(updateMissionState);
+        _args set [1,4];
+        _stage = 4;
+    };
+
+    if (_stage isEqualTo 4) then {
 
         // Initiate default cleanup function to clean up officer group + group
-        if ([_pfhID, _missionID] call FNC(missionCleanup)) then {
+        if ([_pfhID, _missionID, _stopRequested] call FNC(missionCleanup)) then {
 
             // Once cleanup occurs, we do anything that isn't the default
             { deleteVehicle _x; true; } count _HQElements;
@@ -269,4 +283,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "AO", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainElems, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);
+[_missionID, "AO", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainElems, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);

@@ -1,3 +1,18 @@
+class YAINA_MM_OBJ {
+    tag = "YAINA_MM_OBJ";
+
+    class Objectives_MAO {
+        file = "Functions\YAINA\Missions\Objectives\MainAO";
+        class mainAO {};
+    };
+
+    class SideMissions {
+        file = "Functions\YAINA\Missions\Objectives\SideMissions";
+        class radioTower {};
+    };
+
+};
+
 class YAINA_MM {
     tag = "YAINA_MM";
 
@@ -11,27 +26,18 @@ class YAINA_MM {
         class mmPreInit  { preInit=1; };
         class setMissionID {};
         class startMissionPFH {};
-        class endMissionPFH {};
         class updateMissionStage {};
         class updateMissionState {};
         class setupParadrop {};
-    };
-
-    class Objectives_MAO {
-        file = "Functions\YAINA\Missions\Objectives\MainAO";
-        class spawnMainAO {};
-    };
-
-    class SideMissions {
-        file = "Functions\YAINA\Missions\Objectives\SideMissions";
-        class radioTower {};
+        class startMission {};
+        class stopMission {};
+        class missionCleanup {};
     };
 
     class Utils {
         file = "Functions\YAINA\Missions\Utils";
         class createMapMarkers {};
         class getMissionID {};
-        class missionCleanup {};
         class getMissionGroups {};
         class paraDrop {};
         class setupParadropActions { postInit = 1; };

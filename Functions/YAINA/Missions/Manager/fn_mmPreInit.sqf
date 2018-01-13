@@ -14,7 +14,7 @@ if (hasInterface) then {
 if (!isServer) exitWith {};
 
 GVAR(hcList) = [];                  // List of connected HCs [HC, HC, HC]
-GVAR(hcDCH)  = [];                  // List of Mission Handlers [ [HC, MissionID, MissionStage, MissionState, Markers, Groups, Vehicles, Buildings, pfh, pfhDelay, pfhArgs], [...], ...];
+GVAR(hcDCH)  = [];                  // List of Mission Handlers [ [HC, MissionID, MissionStage, MissionState, MissionDesc, ParentMission, Markers, Groups, Vehicles, Buildings, pfh, pfhDelay, pfhArgs], [...], ...];
 
 // Main Server Mission Manager
 GVAR(hcMissionID) = [[], []];          // [ [HC, HC, HC, ...], [MissionID, MissionID, ...]];
@@ -40,7 +40,7 @@ addMissionEventHandler ["HandleDisconnect", {
         {
             if (_x select 0 == _name) then {
 
-                _x params ["_profileName", "_missionID", "_missionType", "_stage", "_markers", "_groups", "_vehicles", "_buildings", "_pfh", "_pfhDelay", "_pfhArgs"];
+                _x params ["_profileName", "_missionID", "_missionType", "_stage", "_missionName", "_parentMissionID", "_markers", "_groups", "_vehicles", "_buildings", "_pfh", "_pfhDelay", "_pfhArgs"];
 
                 // We update the pfhArgs stage to be that of the HCDCH state before running it
                 // So it resumes from correct location

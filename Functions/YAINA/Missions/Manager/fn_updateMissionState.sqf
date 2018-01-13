@@ -11,7 +11,7 @@ private ["_idx"];
 
 // Find our mission and update the state accordingly
 if (!isServer) exitWith {
-    [_missionID, _stage] remoteExecCall [QFNC(updateMissionState), 2];
+    [_missionID, _state] remoteExecCall [QFNC(updateMissionState), 2];
 };
 
 {

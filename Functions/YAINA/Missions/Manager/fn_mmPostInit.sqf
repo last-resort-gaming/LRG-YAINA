@@ -10,8 +10,10 @@
 if !(isServer || !hasInterface) exitWith {};
 
 // Where we store our local MissionID
+GVAR(paused) = false;
 GVAR(localMissionID) = 0;
 GVAR(localRunningMissions)  = [[], []];   // [Mission ID, Mission ID, ...], [Mission Args, Mission Args, ...]]
+GVAR(stopRequests) = []; // List of mission IDs that have been requested for force completion
 
 // Setup our HCs
 if !(isServer or hasInterface) then {
@@ -53,7 +55,7 @@ if (isServer) then {
         if(isServer) then {
 
             // We always add it to a list, because if the HC failover happens, the new HC will need to know to restore
-            _missionManaged = { _from inArea ((_x select 4) select 0) } count GVAR(hcDCH);
+            _missionManaged = { _from inArea ((_x select 6) select 0) } count GVAR(hcDCH);
 
             // Restore the building if all players are fair enough distance away
             if (_missionManaged isEqualTo 0) then {

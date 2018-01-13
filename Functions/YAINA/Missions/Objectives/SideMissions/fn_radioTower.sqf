@@ -129,6 +129,14 @@ _pfh = {
     params ["_args", "_pfhID"];
     _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hidden", "_mines", "_towerMarkers"];
 
+
+    // Stop requested ?
+    _stopRequested = _missionID in GVAR(stopRequests);
+    if (_stopRequested && { _stage < 2 } ) then {
+        // Destroy the towers
+        { _x setDamage 1; } forEach _towers;
+    };
+
     if (_stage isEqualTo 1) then {
 
         // Bail if any towers are alive
@@ -145,14 +153,17 @@ _pfh = {
                     } isEqualTo 0) exitWith {};
 
         // Give them some points, 100 per tower
-        _points = 100 * (count _towers);
-        [_points, "radioTowerObjective"] call YFNC(addRewardPoints);
+        if !(_stopRequested) then {
+            _points = 100 * (count _towers);
+            [_points, "radioTowerObjective"] call YFNC(addRewardPoints);
 
-        // Let them know
-        parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact the OPFORs ability to call in air support as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", _points] call YFNC(globalHint);
+            // Let them know
+            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact the OPFORs ability to call in air support as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", _points] call YFNC(globalHint);
+        };
 
         // Otherwise, success! go to cleanup
-        [_missionID, 'Succeeded', true] call BIS_fnc_taskSetState;
+        [_missionID, 'Succeeded', not _stopRequested] call BIS_fnc_taskSetState;
+
 
         // Then we need to update the server's stage
         _args set[1,2];
@@ -169,7 +180,7 @@ _pfh = {
     // We are now complete, let the server know we're in cleanup so it will spawn another AO
     // We don't need to update the server here as worst case is that this gets executed again
     // if this HC disconnects
-    if (_stage isEqualTo 2) then {
+    if (_stage isEqualTo 2 ) then {
         [_missionID, "CLEANUP"] call FNC(updateMissionState);
         _args set [1,3];
     };
@@ -181,7 +192,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SO", 1, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hidden, _mines, _towerMarkers]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hidden, _mines, _towerMarkers]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 _missionID;
