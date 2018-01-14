@@ -10,30 +10,22 @@ REM Kill Existing Servers
 call server-kill.bat
 
 REM Build PBO
-call genPBO.bat
+call genPBO-altis.bat
 
 REM move up to root dir to make life easier
 pushd ..
 
 REM Copy yaina.pbo to mpmissions of server and local cache so we don't have to download it
-copy /y ..\yaina.Malden.pbo "%SERVER_DIR%\mpmissions"
-copy /y ..\yaina.Malden.pbo "%MP_MISSIONS_CACHE_DIR%"
+copy /y ..\yaina.Altis.pbo "%SERVER_DIR%\mpmissions"
+copy /y ..\yaina.Altis.pbo "%MP_MISSIONS_CACHE_DIR%"
 
 REM Copy keys
 copy /y keys\* "%SERVER_DIR%\keys"
-
-REM Should substitute path
-copy /y bin\A3Log-EU1.ini "%SERVER_DIR%\A3Log-EU1.ini"
 
 REM Copy Be
 mkdir "%cd%\testing\server\battleye"
 copy /y bin\beserver.cfg "testing\server\battleye"
 copy /y bin\beserver.cfg "testing\server\battleye\beserver_x64.cfg"
-
-REM Copy Server Config
-mkdir "%cd%\testing\server\Users"
-mkdir "%cd%\testing\server\Users\server"
-copy /y bin\server.arma3profile "%cd%\testing\server\Users\server\server.Arma3Profile"
 
 echo %SERVER% ^
 	-name=server ^
@@ -41,7 +33,7 @@ echo %SERVER% ^
 	-noSound ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
-	"-config=%cd%\bin\server-public.cfg" ^
+	"-config=%cd%\bin\server-public-altis.cfg" ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
@@ -55,7 +47,7 @@ start "server" ^
 	-noSound ^
 	"-profiles=%cd%\testing\server" ^
 	-port=%PORT% ^
-	"-config=%cd%\bin\server-public.cfg" ^
+	"-config=%cd%\bin\server-public-altis.cfg" ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^

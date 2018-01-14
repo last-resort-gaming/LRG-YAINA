@@ -8,6 +8,7 @@ class YAINA_CMD {
         class exec {};
         class allowed {};
         class findPlayer {};
+        class notifyAdmins {};
     };
 
     class Commands {
@@ -20,5 +21,8 @@ class YAINA_CMD {
         class mmpause {};
         class mmlist {};
         class mmstop {};
+        class report {};
+        class setadmin {};
+        class settrait {};
     };
 };

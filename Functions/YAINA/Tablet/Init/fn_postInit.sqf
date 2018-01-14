@@ -8,21 +8,12 @@
 
 if (hasInterface) then {
 
-    if (["HQ"] call YFNC(testTraits)) then {
+    [player] remoteExec [QFNC(addAction), 2];
 
-        player addAction [
-            "Open Command Tablet",
-            { call FNC(openTablet); }
-        ];
-
-        // Add for respawn too
-        player addEventHandler ["Respawn", {
-            player addAction [
-                "Open Command Tablet",
-                { call FNC(openTablet); }
-            ];
-        }];
-    };
+    // Add for respawn too
+    player addEventHandler ["Respawn", {
+        [player] remoteExec [QFNC(addAction), 2];
+    }];
 };
 
 /*

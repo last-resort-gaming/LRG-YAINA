@@ -34,11 +34,12 @@ if (GVAR(loadAdmins) isEqualTo 0) then {
     if ("exists" call GVAR(inidbi)) then {
         GVAR(admins) = ["read", ["general", "admins", [[],[]]]] call GVAR(inidbi);
     } else {
-        GVAR(admins) = [];
+        GVAR(admins) = [[],[]];
     };
 
     if (((GVAR(admins) select 0) find "76561197981494016") isEqualTo -1) then {
         (GVAR(admins) select 0) pushBack "76561197981494016";
         (GVAR(admins) select 1) pushBack 3;
     };
+
 };

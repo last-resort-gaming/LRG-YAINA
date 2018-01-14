@@ -13,4 +13,6 @@ private _pads = "";
 
 for "_i" from 0 to _pad do { _pads = _pads + " "; };
 
+if (isNil "_str") then { _str = ""; };
+
 [format ["%1 | %2%3 | %4 | %5 | %6", ["REJECT", "PERMIT"] select _permitted, _command, _pads, getplayerUID _caller, name _caller, _str], "CommandsLog"] call YFNC(log);

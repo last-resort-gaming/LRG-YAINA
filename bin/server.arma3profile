@@ -40,7 +40,7 @@ class DifficultyPresets
 
             mapContentFriendly = 1; // Show all friendly players on map
             mapContentEnemy = 0;    // Show enemy on map
-            mapContentMines = 0;    // Show found mines on map
+            mapContentMines = 1;    // Show found mines on map
             autoReport = 0;			// (former autoSpot) Automatic reporting of spotted enemy by players only. This doesn't have any effect on AIs.
 			multipleSaves = 0;		// Multiple saves
 		};

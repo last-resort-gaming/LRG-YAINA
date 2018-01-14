@@ -27,7 +27,7 @@ class YAINA {
 		class playerSetup { postInit = 1; };
 		class playerSetupRespawn;
 		class setUnitTrait;
-		class loadAdmins { postInit = 1; };
+		class loadAdmins {};
 		class log {};
 		class getAdminLevel {};
 		class addActionMP {};

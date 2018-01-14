@@ -27,9 +27,14 @@ if !([_caller, _lvl] call FNC(allowed)) exitWith {
     [_caller, _command, false, "NOT PERMITTED"] call FNC(log);
 };
 
-// Split duplicate spaces
-_argument = _argument splitString " " joinString " ";
+// Ensure the command exists
+private _cmd = missionNamespace getVariable format["YAINA_CMD_fnc_%1", _command];
+if (isNil "_cmd") exitWith {
+    [_caller, _command, false, "UNDEFINED"] call FNC(log);
+};
 
-// Finally, execute the command, returning the log line
-private _msg = [remoteExecutedOwner, _caller, _argument] call (missionNamespace getVariable [format["YAINA_CMD_fnc_%1", _command], {}]);
+// Remove duplicate spaces. and execute the command, returning the log line
+
+_argument = _argument splitString " " joinString " ";
+private _msg = [remoteExecutedOwner, _caller, _argument] call _cmd;
 [_caller, _command, true, _msg] call FNC(log);

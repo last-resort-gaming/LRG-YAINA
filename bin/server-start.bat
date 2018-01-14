@@ -28,6 +28,12 @@ copy /y bin\A3Log-EU1.ini "%SERVER_DIR%\A3Log-EU1.ini"
 REM Copy Be
 mkdir "%cd%\testing\server\battleye"
 copy /y bin\beserver.cfg "testing\server\battleye"
+copy /y bin\beserver.cfg "testing\server\battleye\beserver_x64.cfg"
+
+REM Copy Server Config
+mkdir "%cd%\testing\server\Users"
+mkdir "%cd%\testing\server\Users\server"
+copy /y bin\server.arma3profile "%cd%\testing\server\Users\server\server.Arma3Profile"
 
 echo %SERVER% ^
 	-ip=127.0.0.1 ^
