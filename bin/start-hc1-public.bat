@@ -11,7 +11,7 @@ pushd ..
 
 start "HC_1" ^
 	%SERVER% ^
-	"-profiles=%cd%\testing\HC_1" ^
+	"-profiles=%cd%\Temp\HC_1" ^
 	-nosplash ^
 	-client ^
 	-noSound ^

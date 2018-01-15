@@ -26,26 +26,27 @@ REM Should substitute path
 copy /y bin\A3Log-EU1.ini "%SERVER_DIR%\A3Log-EU1.ini"
 
 REM Copy Be
-mkdir "%cd%\testing\server\battleye"
-copy /y bin\beserver.cfg "testing\server\battleye"
-copy /y bin\beserver.cfg "testing\server\battleye\beserver_x64.cfg"
+mkdir "%cd%\Temp\server\battleye"
+copy /y bin\beserver.cfg "Temp\server\battleye"
+copy /y bin\beserver.cfg "Temp\server\battleye\beserver_x64.cfg"
 
 REM Copy Server Config
-mkdir "%cd%\testing\server\Users"
-mkdir "%cd%\testing\server\Users\server"
-copy /y bin\server.arma3profile "%cd%\testing\server\Users\server\server.Arma3Profile"
+mkdir "%cd%\Temp\server\Users"
+mkdir "%cd%\Temp\server\Users\server"
+copy /y bin\server.arma3profile "%cd%\Temp\server\Users\server\server.Arma3Profile"
 
 echo %SERVER% ^
 	-name=server ^
 	-nosplash ^
 	-noSound ^
-	"-profiles=%cd%\testing\server" ^
+	"-profiles=%cd%\Temp\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server-public.cfg" ^
+	-A3Log=A3Log-EU1.ini ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
-	"-BEpath=%cd%\testing\server\battleye" ^
+	"-BEpath=%cd%\Temp\server\battleye" ^
 	-serverMod=%SERVER_MODS%
 
 start "server" ^
@@ -53,13 +54,14 @@ start "server" ^
 	-name=server ^
     -nosplash ^
 	-noSound ^
-	"-profiles=%cd%\testing\server" ^
+	"-profiles=%cd%\Temp\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server-public.cfg" ^
+	-A3Log=A3Log-EU1.ini ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
-	"-BEpath=%cd%\testing\server\battleye" ^
+	"-BEpath=%cd%\Temp\server\battleye" ^
 	-serverMod=%SERVER_MODS%
 timeout /t 10
 

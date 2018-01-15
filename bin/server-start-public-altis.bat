@@ -23,21 +23,21 @@ REM Copy keys
 copy /y keys\* "%SERVER_DIR%\keys"
 
 REM Copy Be
-mkdir "%cd%\testing\server\battleye"
-copy /y bin\beserver.cfg "testing\server\battleye"
-copy /y bin\beserver.cfg "testing\server\battleye\beserver_x64.cfg"
+mkdir "%cd%\Temp\server\battleye"
+copy /y bin\beserver.cfg "Temp\server\battleye"
+copy /y bin\beserver.cfg "Temp\server\battleye\beserver_x64.cfg"
 
 echo %SERVER% ^
 	-name=server ^
 	-nosplash ^
 	-noSound ^
-	"-profiles=%cd%\testing\server" ^
+	"-profiles=%cd%\Temp\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server-public-altis.cfg" ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
-	"-BEpath=%cd%\testing\server\battleye" ^
+	"-BEpath=%cd%\Temp\server\battleye" ^
 	-serverMod=%SERVER_MODS%
 
 start "server" ^
@@ -45,13 +45,13 @@ start "server" ^
 	-name=server ^
     -nosplash ^
 	-noSound ^
-	"-profiles=%cd%\testing\server" ^
+	"-profiles=%cd%\Temp\server" ^
 	-port=%PORT% ^
 	"-config=%cd%\bin\server-public-altis.cfg" ^
 	-world=empty ^
 	-autoInit ^
 	-loadMissionToMemory ^
-	"-BEpath=%cd%\testing\server\battleye" ^
+	"-BEpath=%cd%\Temp\server\battleye" ^
 	-serverMod=%SERVER_MODS%
 timeout /t 10
 
