@@ -24,5 +24,6 @@ class YAINA_CMD {
         class report {};
         class setadmin {};
         class settrait {};
+        class revive {};
     };
 };
