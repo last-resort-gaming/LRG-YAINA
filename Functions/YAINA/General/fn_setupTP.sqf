@@ -6,6 +6,8 @@
 
 #include "defines.h";
 
+if (worldName isEqualTo "Tanoa") exitWith {};
+
 private _flags = [
     [Flag_Base, "HQ"],
     [Flag_INS, "Land Insertion Point"],

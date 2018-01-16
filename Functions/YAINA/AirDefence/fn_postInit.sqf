@@ -6,6 +6,34 @@
 
 #include "defines.h"
 
+
+AIR_DEFENCES = [];
+AIR_DEFENCES_TERMINALS = [];
+
+if (worldName isEqualTo "Malden") then {
+    AIR_DEFENCES = [
+        HQ_AA1C,
+        HQ_AA2C,
+        HQ_AA3C,
+        HQ_AA4C,
+        USS_AA1,
+        USS_AA2,
+        USS_AA3,
+        USS_AA4,
+        USS_AA5,
+        USS_AA6,
+        USS_AA7,
+        INS_AA1C,
+        INS_AA2C
+    ];
+
+    AIR_DEFENCES_TERMINALS = [
+        AirDefenceSwitch1,
+        AirDefenceSwitch2,
+        Laptop_USS_F
+    ];
+};
+
 if (isServer) then {
 
     // We don't allow Air defences for the first 300 seconds due to
@@ -50,4 +78,4 @@ if (isServer) then {
         hint format ["Air defence network will be available in %1", _nextAD call YFNC(formatDuration)];
     }];
     true;
-} count AIR_DEFENCE_TERMINALS;
+} count AIR_DEFENCES_TERMINALS;

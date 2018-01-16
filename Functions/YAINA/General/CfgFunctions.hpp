@@ -17,7 +17,7 @@ class YAINA {
 		class setupTP { postInit = 1; };
 		class fadeOutAndExecute {};
 		class markerManager { postInit = 1; };
-		class serverPreInit { preInit = 1; };
+		class preInit { preInit = 1; };
 		class dirFromNearestName {};
 		class addRewardPoints {};
 		class globalHint {};

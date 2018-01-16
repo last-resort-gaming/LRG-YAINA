@@ -14,14 +14,16 @@ publicVariable "CBA_display_ingame_warnings";
 
 // Bring in UAVs
 
-_uav = "B_UAV_02_dynamicLoadout_F" createVehicle [0,0,0];
-{ _uav removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") } forEach getPylonMagazines _uav;
-_uav setPylonLoadOut [1, "PylonRack_Bomb_GBU12_x2", true, [0]];
-_uav setPylonLoadOut [2, "PylonRack_Bomb_GBU12_x2", true, [0]];
-_uav setDir (getDir hangar1);
-_uav setPosATL (getPosATL hangar1);
-createVehicleCrew _uav;
-[_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
+if (worldName isEqualTo "Malden") then {
+    _uav = "B_UAV_02_dynamicLoadout_F" createVehicle [0,0,0];
+    { _uav removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") } forEach getPylonMagazines _uav;
+    _uav setPylonLoadOut [1, "PylonRack_Bomb_GBU12_x2", true, [0]];
+    _uav setPylonLoadOut [2, "PylonRack_Bomb_GBU12_x2", true, [0]];
+    _uav setDir (getDir hangar1);
+    _uav setPosATL (getPosATL hangar1);
+    createVehicleCrew _uav;
+    [_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
+};
 
 _uav = "B_UAV_02_dynamicLoadout_F" createVehicle [0,0,0];
 { _uav removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") } forEach getPylonMagazines _uav;
@@ -41,6 +43,20 @@ _uav setDir (getDir hangar3);
 _uav setPosATL (getPosATL hangar3);
 createVehicleCrew _uav;
 [_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
+
+private _repairVehs = [];
+if (worldName isEqualTo "Tanoa") then {
+    _repairVehs = [
+        Bobcat_Repair
+    ];
+};
+
+if(worldName isEqualTo "Malden") then {
+    _repairVehs = [
+        HEMTT_Repair1,
+        HEMTT_Repair2
+    ];
+};
 
 {
     _x setVariable ["YAINA_VEH_Drivers", ["HQ", "MERT", "PILOT", "UAV"], true];
@@ -69,12 +85,11 @@ createVehicleCrew _uav;
 
     // We init vehicle last to ensure the handlers / vars are set to copy onto any respawned assets
     [_x, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
-} forEach [
-    HEMTT_Repair1,
-    HEMTT_Repair2
-];
+} forEach _repairVehs;
 
 // Setup Medivac
-MedivacChopper setObjectTextureGlobal [0, "Data\Skins\H-9M_co.paa"];
+if (worldName isEqualTo "Malden") then {
+    MedivacChopper setObjectTextureGlobal [0, "Data\Skins\H-9M_co.paa"];
+};
 MedivacChopper setVariable ["YAINA_VEH_Drivers", ["PILOT", "MERT"], true];
-[MedivacChopper, true, 5, 1000, []] call YAINA_VEH_fnc_initVehicle;
+[MedivacChopper, false, 5, 1000, []] call YAINA_VEH_fnc_initVehicle;

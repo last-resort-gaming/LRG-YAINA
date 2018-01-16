@@ -6,6 +6,22 @@
 
 
 #include "defines.h"
+
+
+if (worldName isEqualTo "Tanoa") then {
+    BASE_PROTECTION_AREAS = [
+        "Base_Area"
+    ];
+};
+
+if (worldName isEqualTo "Malden") then {
+    BASE_PROTECTION_AREAS = [
+        "Base_Area",
+        "USS_Freedom_Area",
+        "INS_Area"
+    ];
+};
+
 player addEventHandler["FiredMan", {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_veh"];
 

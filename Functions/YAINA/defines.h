@@ -9,12 +9,6 @@
 #define QYVAR(s) Q(YVAR(s))
 #define QVAR(s) Q(VAR(s))
 
-#define BASE_PROTECTION_AREAS [ \
-    "Base_Area", \
-    "USS_Freedom_Area", \
-    "INS_Area" \
-]
-
 #define DEBUG_MODE_FULL 1
 
 #define INCR(s) s = (s) + 1

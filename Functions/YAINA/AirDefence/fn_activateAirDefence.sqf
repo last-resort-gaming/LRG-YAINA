@@ -5,6 +5,11 @@
 */
 
 #include "defines.h"
+
+if (!isServer) exitWith {
+    [] remoteExecCall [QFNC(activateAirDefence), 2];
+};
+
 //--------------------------------------------------------------
 
 _activeTime   = 30;  // Time it'll remain online

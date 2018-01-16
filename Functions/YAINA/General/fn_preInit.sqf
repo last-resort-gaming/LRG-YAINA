@@ -6,6 +6,9 @@
 
 #include "defines.h"
 
+
+BASE_PROTECTION_AREAS = [];
+
 if !(isServer) exitWith {};
 
 // Bring in admins from DB
