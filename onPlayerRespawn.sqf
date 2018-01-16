@@ -12,7 +12,7 @@ player enableFatigue false;
 player addAction [
     "Repack Magazines",
     { call outlw_MR_createDialog; },
-    "",-99
+    "",-99, false
 ];
 
 // readd players to zeus
