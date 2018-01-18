@@ -53,9 +53,9 @@ waitUntil {!(isNil "outlw_MR_getIDCs")};
 
 outlw_MR_listIDCs = [(missionConfigFile >> "MR_Dialog" >> "Controls")] call outlw_MR_getIDCs;
 
-waitUntil {!(isNull (findDisplay 46))};
-
-(findDisplay 46) displayAddEventHandler ["KeyDown", "_this call outlw_MR_keyDown;"];
+// Remove the key down hanlders to avoid conflicts
+// waitUntil {!(isNull (findDisplay 46))};
+// (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call outlw_MR_keyDown;"];
 
 
 
