@@ -1,21 +1,30 @@
 // Common defines for all YAINA
 
+//////////////////////////////////////////////
+// GLOBALS
+//////////////////////////////////////////////
 
 #define Q(s) #s
-#define YFNC(s) YAINA_fnc_##s
-#define QYFNC(s) Q(YFNC(s))
-#define GVAR(s) YAINA_##s
 #define YVAR(s) YAINA_##s
 #define QYVAR(s) Q(YVAR(s))
-#define QVAR(s) Q(VAR(s))
-
-#define DEBUG_MODE_FULL 1
+#define YFNC(s) YAINA_fnc_##s
+#define QYFNC(s) Q(YFNC(s))
 
 #define INCR(s) s = (s) + 1
 
 //////////////////////////////////////////////
+// PREFIXED
+//////////////////////////////////////////////
+
+#define FNC(s)  ##PREFIX##_fnc_##s
+#define QFNC(s) Q(FNC(s))
+#define GVAR(s) ##PREFIX##_##s
+#define QVAR(s) Q(GVAR(s))
+
+//////////////////////////////////////////////
 // FROM CBA
 //////////////////////////////////////////////
+#define DEBUG_MODE_FULL 1
 
 /* -------------------------------------------
 Macros: ARR_#()

@@ -14,32 +14,32 @@
 
 if !(isServer) exitWith {};
 
-if (isNil QVAR(loadAdmins)) then {
+if (isNil QYVAR(loadAdmins)) then {
     if (isClass(configFile >> "CfgPatches" >> "inidbi2")) then {
-        GVAR(loadAdmins) = 1;
+        YVAR(loadAdmins) = 1;
     } else {
         ["localAdmins: inidbi2 not loaded, dynamic admin levels disabled"] call YFNC(log);
-        GVAR(loadAdmins) = 0;
+        YVAR(loadAdmins) = 0;
     };
 };
 
-if (GVAR(loadAdmins) isEqualTo 0) then {
-    GVAR(admins) = [
+if (YVAR(loadAdmins) isEqualTo 0) then {
+    YVAR(admins) = [
         ["76561197981494016"],
         [3]
     ];
 } else {
 
-    GVAR(inidbi) = ["new", "yaina"] call OO_INIDBI;
-    if ("exists" call GVAR(inidbi)) then {
-        GVAR(admins) = ["read", ["general", "admins", [[],[]]]] call GVAR(inidbi);
+    YVAR(inidbi) = ["new", "yaina"] call OO_INIDBI;
+    if ("exists" call YVAR(inidbi)) then {
+        YVAR(admins) = ["read", ["general", "admins", [[],[]]]] call YVAR(inidbi);
     } else {
-        GVAR(admins) = [[],[]];
+        YVAR(admins) = [[],[]];
     };
 
-    if (((GVAR(admins) select 0) find "76561197981494016") isEqualTo -1) then {
-        (GVAR(admins) select 0) pushBack "76561197981494016";
-        (GVAR(admins) select 1) pushBack 3;
+    if (((YVAR(admins) select 0) find "76561197981494016") isEqualTo -1) then {
+        (YVAR(admins) select 0) pushBack "76561197981494016";
+        (YVAR(admins) select 1) pushBack 3;
     };
 
 };

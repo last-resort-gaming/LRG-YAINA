@@ -12,9 +12,9 @@ private _owner = owner _player;
 
 private _lvl = 0;
 
-private _idx = (GVAR(ownerIDs) select 0) find _owner;
+private _idx = (YVAR(ownerIDs) select 0) find _owner;
 if !(_idx isEqualTo -1) then {
-    _lvl = ((GVAR(ownerIDs) select 1) select _idx) select 3;
+    _lvl = ((YVAR(ownerIDs) select 1) select _idx) select 3;
 };
 
 // Also if they're HQ, they have an admin level of 1

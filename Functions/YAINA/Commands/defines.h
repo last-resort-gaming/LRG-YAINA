@@ -1,8 +1,4 @@
-#include "..\defines.h"
-
 #define PREFIX  YAINA_CMD
 
-#define FNC(s)  ##PREFIX##_fnc_##s
-#define GVAR(s) ##PREFIX##_##s
-#define QVAR(s) Q(GVAR(s))
-#define QFNC(s) Q(FNC(s))
+// GENERAL INCLUDE
+#include "..\defines.h"

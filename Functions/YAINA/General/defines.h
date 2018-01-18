@@ -1,6 +1,3 @@
-
-#include "..\defines.h"
-
 #define MAP_TYPES_BUILDING      ["BUILDING","HOUSE","CHURCH","CHAPEL","FUELSTATION","HOSPITAL","RUIN","BUNKER"]
 #define MAP_TYPES_VEGETATION    ["TREE","SMALL TREE","BUSH"]
 #define MAP_TYPES_WALL          ["WALL","FENCE"]
@@ -8,3 +5,6 @@
 
 #define CATEGORIES              ["BUILDINGS", "WALLS", "VEGETATION", "MISC"]
 #define CATEGORY_COMP           [MAP_TYPES_BUILDING,MAP_TYPES_WALL,MAP_TYPES_VEGETATION,MAP_TYPES_MISC]
+
+// GENERAL INCLUDE
+#include "..\defines.h"

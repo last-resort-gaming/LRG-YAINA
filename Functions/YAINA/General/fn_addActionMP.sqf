@@ -11,7 +11,7 @@ if (!isServer) exitWith {
 };
 
 // Add it for JIP clients
-GVAR(addActionMPList) pushBack _this;
+YVAR(addActionMPList) pushBack _this;
 
 [_this, {
     _obj = _this deleteAt 0;
