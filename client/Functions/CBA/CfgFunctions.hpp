@@ -26,7 +26,7 @@ class CBA {
         class formatNumber {};
         class getGroup {};
         class getPos {};
-    }
+    };
 
 	class Hashes {
 	    file = "Functions\CBA\Hashes";
