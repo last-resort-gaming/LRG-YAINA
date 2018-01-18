@@ -8,7 +8,7 @@ class DifficultyPresets
 
 			reducedDamage = 0;		// Reduced damage
 
-			/* Situational awareness *
+			/* Situational awareness */
 			// https://community.bistudio.com/wiki/Arma_3_Difficulty_Menu#Extended_map_info
 
 			groupIndicators = 1;	// Group indicators (0 = never, 1 = limited distance, 2 = always)
@@ -53,7 +53,7 @@ class DifficultyPresets
     // skillAI to that of Veteran
     // precisionAI to that between Regular/Veteran
 	class CustomAILevel {
-		skillAI = 0.85;
+		skillAI = 0.9;
 		precisionAI = 0.625;
 	};
 };
