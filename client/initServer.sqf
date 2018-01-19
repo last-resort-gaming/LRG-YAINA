@@ -93,3 +93,10 @@ if (worldName isEqualTo "Malden") then {
 };
 MedivacChopper setVariable ["YAINA_VEH_Drivers", ["PILOT", "MERT"], true];
 [MedivacChopper, false, 5, 1000, []] call YAINA_VEH_fnc_initVehicle;
+
+// Bring in AUR/AR - we add these to the mission as the linux server
+// really doesn't like mods with either/and anims + sound and this
+// does the server side without the client side, so it's good to go
+
+[] execVM "scripts\duda123\fn_advancedUrbanRappellingInit.sqf";
+[] execVM "scripts\duda123\fn_advancedRappellingInit.sqf";
