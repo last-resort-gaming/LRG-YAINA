@@ -6,7 +6,7 @@
 
 #include "..\..\defines.h"
 
-params ["_AOPos", "_AOSize", "_parentMissionID"];
+params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
 
 // We always start with these 4, as they're in every mission
 private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
@@ -49,9 +49,9 @@ _towerClasses = [
 
 _towerCount = floor(random 2);
 
-_towers = [];
-_hidden = [];
-_mines  = [];
+_towers  = [];
+_hideKey = format["HT_%1", _missionID];
+_mines   = [];
 _towermarkers = [];
 
 for "_x" from 0 to _towerCount do {
@@ -73,7 +73,9 @@ for "_x" from 0 to _towerCount do {
     _tbbr = boundingBoxReal _tower;
     _r    = ((_tbbr select 0) distance2D (_tbbr select 1)) / 2;
 
-    _hidden = _hidden + ([_spawnPos, _r, _towers] call YFNC(hideTerrainObjects));
+    [clientOwner, _hideKey, _spawnPos, _r, _towers] remoteExec [QYFNC(hideTerrainObjects), 2];
+    waitUntil { !isNil {  missionNamespace getVariable _hideKey } };
+    missionNamespace setVariable [_hideKey, nil];
 
     // Mines?
     if ((round (random 1)) isEqualTo 1) then {
@@ -95,7 +97,10 @@ for "_x" from 0 to _towerCount do {
 };
 
 // Ensure some are still alive
-if ( ({alive _x} count _towers) isEqualTo 0) exitWith {nil};
+if ( ({alive _x} count _towers) isEqualTo 0) exitWith {
+    missionNamespace setVariable [_key, false];
+    nil
+};
 
 // Add them to zeus
 [_towers + _mines] call YFNC(addEditableObjects);
@@ -127,7 +132,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hidden", "_mines", "_towerMarkers"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hideKey", "_mines", "_towerMarkers"];
 
 
     // Stop requested ?
@@ -186,13 +191,13 @@ _pfh = {
     };
 
     if ([_pfhID, _missionID] call FNC(missionCleanup)) then {
-        [_hidden] call YFNC(showTerrainObjects);
+        [_hideKey] call YFNC(showTerrainObjects);
 
         { deleteVehicle _x; true } count _mines;
     };
 };
 
-[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hidden, _mines, _towerMarkers]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hideKey, _mines, _towerMarkers]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
-_missionID;
+missionNamespace setVariable [_key, _missionID];

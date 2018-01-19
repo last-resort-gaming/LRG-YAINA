@@ -15,6 +15,7 @@ class YAINA {
 		class showTerrainObjects{};
 		class getPointBetween {};
 		class setupTP { postInit = 1; };
+		class postInit { postInit = 1; };
 		class fadeOutAndExecute {};
 		class markerManager { postInit = 1; };
 		class preInit { preInit = 1; };

@@ -52,7 +52,7 @@ private _missionDescription = format["Main AO: %1 of %2", _nearestTown select 2,
 // Spawn Mission
 ///////////////////////////////////////////////////////////
 
-private ["_hiddenTerrainElems", "_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer"];
+private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer"];
 
 // Now we have our HQ + Location, bring in the HQ
 _missionID = call FNC(getMissionID);
@@ -65,7 +65,12 @@ _hqFunc = selectRandom (
           );
 
 // Hide any terrain and slam down the HQ
-_hiddenTerrainElems = [_HQPosition, 30] call YFNC(hideTerrainObjects);
+private _hiddenTerrainKey = format["HT_%1", _missionID];
+[clientOwner, _hiddenTerrainKey, _HQPosition, 30] remoteExec [QYFNC(hideTerrainObjects), 2];
+
+// Wait for the server to send us back
+waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
+
 _HQElements         = [_HQPosition, random 360, call _hqFunc] call BIS_fnc_ObjectsMapper;
 _buildings          = _HQElements;
 
@@ -144,7 +149,7 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 // so that it becomes a child of it
 ///////////////////////////////////////////////////////////
 
-_idx = 5;
+private _idx = 5;
 _sms = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SideMissions")) apply {
             missionNamespace getVariable format["YAINA_MM_OBJ_fnc_%1", configName _x]
        };
@@ -152,10 +157,17 @@ _sms = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_O
 _subObjective = nil;
 
 while { _idx > 0 && isNil "_subObjective" } do {
-    _subObjective = [_AOPosition, _AOSize, _missionID] call (selectRandom _sms);
-    _idx = _idx - 1;
+    _k = format["SO_%1", _missionID];
+    [_k, _AOPosition, _AOSize, _missionID] call (selectRandom _sms);
+    waitUntil { !isNil { missionNamespace getVariable _k } };
+    _mm = missionNamespace getVariable _k;
+    if (_mm isEqualTo false) then {
+        _idx = _idx - 1;
+    } else {
+        _subObjective = _mm;
+    };
+    missionNamespace setVariable [_k, nil];
 };
-
 
 // Build the progression PFH
 _pfh = {
@@ -163,7 +175,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_subObjective", "_hiddenTerrainElems", "_HQElements", "_officerGroup", "_HQPosition"];
+    _args params ["_missionID", "_stage", "_subObjective", "_hiddenTerrainKey", "_HQElements", "_officerGroup", "_HQPosition"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -274,7 +286,7 @@ _pfh = {
             // Once cleanup occurs, we do anything that isn't the default
             { deleteVehicle _x; true; } count _HQElements;
 
-            [_hiddenTerrainElems] call YFNC(showTerrainObjects);
+            [_hiddenTerrainKey] remoteExec [QYFNC(showTerrainObjects), 2];
         };
     };
 };
@@ -283,4 +295,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "AO", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainElems, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);
+[_missionID, "AO", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainKey, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);

@@ -60,7 +60,7 @@ while { !(_sortedHCs isEqualTo []) and !_dispatched } do {
 
         if !((GVAR(hcList) find (name _hc)) isEqualTo -1) then {
             diag_log format ["missionManager: dispatching mission %1 to %2", _start, _hc];
-            remoteExec [_start, _hc];
+            [] remoteExec [_start, _hc];
             _dispatched = true;
         };
     };
@@ -69,5 +69,7 @@ while { !(_sortedHCs isEqualTo []) and !_dispatched } do {
 // No suitable HC found, start on server here
 if !(_dispatched) then {
     diag_log format ["missionManager: starting %1 on server", _start];
-    call (missionNamespace getVariable _start);
+    _start spawn { call (missionNamespace getVariable _this ); };
 };
+
+nil

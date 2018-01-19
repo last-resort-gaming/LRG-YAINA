@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1130;
+		nextID=1152;
 	};
 	class Camera
 	{
-		pos[]={766.45313,144.61287,12129.916};
+		pos[]={753.99628,131.36186,12115.798};
 		dir[]={0.026009185,-0.99958605,-0.012344567};
 		up[]={0.90303671,0.028715789,-0.42860228};
 		aside[]={-0.42877939,2.3283064e-009,-0.90341014};
@@ -376,6 +376,10 @@ class AddonsMetaData
 			url="https://www.arma3.com";
 		};
 	};
+};
+class DynamicSimulation
+{
+	enable=0;
 };
 randomSeed=1783438;
 class ScenarioData
