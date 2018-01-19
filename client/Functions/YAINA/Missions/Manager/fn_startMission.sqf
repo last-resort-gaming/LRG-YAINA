@@ -16,7 +16,7 @@ _hcList = [[], []];
     if !(_x select 0 isEqualTo profileName) then {
         if !(_x select 2 isEqualTo "CLEANUP") then {
             _hc = _x select 0;
-            _id = _hcList find _hc;
+            _id = (_hcList select 0) find _hc;
             if(_id isEqualTo -1) then {
                 (_hcList select 0) pushBack _hc;
                 (_hcList select 1) pushBack 1;
