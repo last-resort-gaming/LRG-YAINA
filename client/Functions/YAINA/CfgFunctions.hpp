@@ -6,3 +6,4 @@
 #include "Arsenal\CfgFunctions.hpp"
 #include "Tablet\CfgFunctions.hpp"
 #include "Commands\CfgFunctions.hpp"
+#include "Metrics\CfgFunctions.hpp"
