@@ -85,7 +85,7 @@ if(!isServer) exitWith {};
                 // restore lcoked state
                 _nv lock _locked;
 
-                if (_vehType isKindOf "UAV") then {
+                if ([_nv] call YFNC(isUAV)) then {
 
                     // Clear spawned loadout
                     { _nv removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _nv;
@@ -97,6 +97,8 @@ if(!isServer) exitWith {};
 
                     // And lastly add the crew
                     createVehicleCrew _nv;
+
+                    ["UAVSpawn", _nv] call CBAP_fnc_globalEvent;
                 };
 
                 // restore provided persistant vars, and default persistants

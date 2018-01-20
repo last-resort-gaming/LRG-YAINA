@@ -30,7 +30,7 @@ if (_jipID isEqualTo "") then {
 
     GVAR(lastJIPID) = GVAR(lastJIPID) + 1;
 
-    _jipID = ["CBA", clientOwner, GVAR(lastJIPID)] joinString ":";
+    _jipID = ["CBAP", clientOwner, GVAR(lastJIPID)] joinString ":";
 };
 
 // put on JIP stack

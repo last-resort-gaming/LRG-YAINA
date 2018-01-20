@@ -365,11 +365,8 @@ GVAR(unitMags) = call {
 
             [_unit] spawn {
                 params ["_unit"];
-
-                uiSleep 2;
-                (uinamespace getvariable "bis_fnc_arsenal_display") displayAddEventHandler ["Unload", {
-                    [player] call FNC(enforceGear);
-                }];
+                waitUntil { isNull ( uiNamespace getVariable [ "BIS_fnc_arsenal_cam", objNull ] )  };
+                [player] call FNC(enforceGear);
             };
 
         },

@@ -7,3 +7,4 @@
 #include "Tablet\CfgFunctions.hpp"
 #include "Commands\CfgFunctions.hpp"
 #include "Metrics\CfgFunctions.hpp"
+#include "UAVRestrictions\CfgFunctions.hpp"
