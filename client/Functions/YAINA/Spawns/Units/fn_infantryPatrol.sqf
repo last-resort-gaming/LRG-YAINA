@@ -21,7 +21,7 @@ private _g = [_safepos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >>
 [_g, _skill] call FNC(setUnitSkill);
 
 if (_patrolRadius > 0) then {
-    [_g, _pos, _patrolRadius, (ceil(random 4) + 3), "sad", ["AWARE", "SAFE"] select (random 1 > 0.5), "red", "limited"] call CBA_fnc_taskPatrol;
+    [_g, _pos, _patrolRadius, (ceil(random 4) + 3), "sad", ["AWARE", "SAFE"] select (random 1 > 0.5), "red", "limited"] call CBAP_fnc_taskPatrol;
 };
 
 // Add units to zeus

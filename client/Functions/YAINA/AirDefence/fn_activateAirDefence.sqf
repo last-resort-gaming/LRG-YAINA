@@ -41,7 +41,7 @@ if !(_delay isEqualTo 0) then {
 // Hint to let them know when it's back online
 [{
     "Air defense network is now available" remoteExecCall ["hint", 0];
-}, [], _nextAvailable] call CBA_fnc_waitAndExecute;
+}, [], _nextAvailable] call CBAP_fnc_waitAndExecute;
 
 // Now we wait the dealy
 [{
@@ -75,8 +75,8 @@ if !(_delay isEqualTo 0) then {
         } count _groups;
 
         "Air defence network now offline" remoteExec ["hint", 0];
-    }, [_groups], _activeTime] call CBA_fnc_waitAndExecute;
+    }, [_groups], _activeTime] call CBAP_fnc_waitAndExecute;
 
-}, [_activeTime], _delay] call CBA_fnc_waitAndExecute;
+}, [_activeTime], _delay] call CBAP_fnc_waitAndExecute;
 
 0;

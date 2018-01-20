@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_addWaypoint
+Function: CBAP_fnc_addWaypoint
 
 Description:
     A function used to add a waypoint to a group.
@@ -21,7 +21,7 @@ Optional:
 
 Example:
     (begin example)
-    [this, this, 300, "MOVE", "AWARE", "YELLOW", "FULL", "STAG COLUMN", "this spawn CBA_fnc_searchNearby", [3, 6, 9]] call CBA_fnc_addWaypoint
+    [this, this, 300, "MOVE", "AWARE", "YELLOW", "FULL", "STAG COLUMN", "this spawn CBAP_fnc_searchNearby", [3, 6, 9]] call CBAP_fnc_addWaypoint
     (end)
 
 Returns:
@@ -45,8 +45,8 @@ params [
     ["_timeout", [0,0,0], [[]], 3],
     ["_compRadius", 0, [0]]
 ];
-_group = _group call CBA_fnc_getGroup;
-_position = _position call CBA_fnc_getPos;
+_group = _group call CBAP_fnc_getGroup;
+_position = _position call CBAP_fnc_getPos;
 
 private ["_waypoint"];
 _waypoint = _group addWaypoint [_position, _radius];

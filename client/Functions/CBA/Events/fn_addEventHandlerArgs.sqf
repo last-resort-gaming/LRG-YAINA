@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_addEventHandlerArgs
+Function: CBAP_fnc_addEventHandlerArgs
 
 Description:
     Registers an event handler for a specific CBA event with arguments.
@@ -17,16 +17,16 @@ Parameters:
     _arguments - Arguments to pass to event handler. (optional) <Any>
 
 Returns:
-    _eventId - Unique ID of the event handler (can be used with CBA_fnc_removeEventHandler).
+    _eventId - Unique ID of the event handler (can be used with CBAP_fnc_removeEventHandler).
 
 Examples:
     (begin example)
         ["test1", {
             systemChat str _thisArgs;
-            [_thisType, _thisId] call CBA_fnc_removeEventHandler
-        }, "hello world"] call CBA_fnc_addEventHandlerArgs;
+            [_thisType, _thisId] call CBAP_fnc_removeEventHandler
+        }, "hello world"] call CBAP_fnc_addEventHandlerArgs;
 
-        "test1" call CBA_fnc_localEvent;
+        "test1" call CBAP_fnc_localEvent;
     (end)
 
 Author:
@@ -48,7 +48,7 @@ _eventFunc = compile format ['
     _this call _thisFnc;
 ', _id];
 
-private _eventId = [_eventName, _eventFunc] call CBA_fnc_addEventHandler;
+private _eventId = [_eventName, _eventFunc] call CBAP_fnc_addEventHandler;
 
 _eventData pushBack _eventId;
 _eventId

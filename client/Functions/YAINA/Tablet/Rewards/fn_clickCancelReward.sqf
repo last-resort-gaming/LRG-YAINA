@@ -13,7 +13,7 @@ disableSerialization;
 _pfhIds = GVAR(orderInProgress);
 if !(isNil "_pfhIds") then {
     _pfhIds params ["_pfhID", "_cancelCode", "_cancelCodeArgs"];
-    [_pfhID] call CBA_fnc_removePerFrameHandler;
+    [_pfhID] call CBAP_fnc_removePerFrameHandler;
 
     player sideChat format["Reward: %1 has been cancelled", getText (configFile >> "CfgVehicles" >> (_cancelCodeArgs select 0) >> "displayName")];
 
@@ -40,5 +40,5 @@ GVAR(orderRewardInProgress) = false;
 publicVariable QVAR(orderRewardInProgress);
 
 // Refresh to be sure if it was clicked from object
-[{ [true] call FNC(refreshRewardsPage) }, [], 0.5] call CBA_fnc_waitAndExecute;
+[{ [true] call FNC(refreshRewardsPage) }, [], 0.5] call CBAP_fnc_waitAndExecute;
 

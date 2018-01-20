@@ -1,5 +1,5 @@
 /* -----------------------------------------------------------------------------
-Function: CBA_fnc_formatNumber
+Function: CBAP_fnc_formatNumber
 
 Description:
     Formats a number to a minimum integer width and to a specific number of
@@ -34,22 +34,22 @@ Returns:
 Examples:
     (begin example)
         // Assumes English formatting.
-        [0.0001, 1, 3] call CBA_fnc_formatNumber;               // => "0.000"
-        [0.0005, 1, 3] call CBA_fnc_formatNumber;               // => "0.001"
+        [0.0001, 1, 3] call CBAP_fnc_formatNumber;               // => "0.000"
+        [0.0005, 1, 3] call CBAP_fnc_formatNumber;               // => "0.001"
 
-        [12345, 1, 0, true] call CBA_fnc_formatNumber;          // => "12,345"
-        [1234567, 1, 0, true] call CBA_fnc_formatNumber;        // => "1,234,567"
+        [12345, 1, 0, true] call CBAP_fnc_formatNumber;          // => "12,345"
+        [1234567, 1, 0, true] call CBAP_fnc_formatNumber;        // => "1,234,567"
 
-        [12345.67, 1, 1, true] call CBA_fnc_formatNumber;       // => "12,345.7"
-        [1234, 1, 3, true] call CBA_fnc_formatNumber;           // => "1,234.000"
+        [12345.67, 1, 1, true] call CBAP_fnc_formatNumber;       // => "12,345.7"
+        [1234, 1, 3, true] call CBAP_fnc_formatNumber;           // => "1,234.000"
 
-        [0.1, 1] call CBA_fnc_formatNumber;                     // => "0"
-        [0.1, 3, 1] call CBA_fnc_formatNumber;                  // => "000.1"
-        [0.1, 0, 2] call CBA_fnc_formatNumber;                  // => ".10"
-        [12, 0] call CBA_fnc_formatNumber;                      // => "12"
-        [12, 3] call CBA_fnc_formatNumber;                      // => "012"
+        [0.1, 1] call CBAP_fnc_formatNumber;                     // => "0"
+        [0.1, 3, 1] call CBAP_fnc_formatNumber;                  // => "000.1"
+        [0.1, 0, 2] call CBAP_fnc_formatNumber;                  // => ".10"
+        [12, 0] call CBAP_fnc_formatNumber;                      // => "12"
+        [12, 3] call CBAP_fnc_formatNumber;                      // => "012"
 
-        [-12] call CBA_fnc_formatNumber;                        // => "-12"
+        [-12] call CBAP_fnc_formatNumber;                        // => "-12"
     (end)
 
 Author:

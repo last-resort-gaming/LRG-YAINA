@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_getGroup
+Function: CBAP_fnc_getGroup
 
 Description:
     A function used to find out the group of an object.
@@ -9,7 +9,7 @@ Parameters:
 
 Example:
     (begin example)
-        _group = player call CBA_fnc_getGroup
+        _group = player call CBAP_fnc_getGroup
     (end)
 
 Returns:

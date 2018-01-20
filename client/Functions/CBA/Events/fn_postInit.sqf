@@ -6,30 +6,30 @@
         private _event = GVAR(eventNamespaceJIP) getVariable _x;
         if (_event isEqualType []) then {
             if ((_event select 0) isEqualTo EVENT_PVAR_STR) then {
-                (_event select 1) call CBA_fnc_localEvent;
+                (_event select 1) call CBAP_fnc_localEvent;
             };
         };
     } forEach allVariables GVAR(eventNamespaceJIP);
 
     // allow new incoming jip events
-    [QGVAR(eventJIP), CBA_fnc_localEvent] call CBA_fnc_addEventHandler;
-}, []] call CBA_fnc_execNextFrame;
+    [QGVAR(eventJIP), CBAP_fnc_localEvent] call CBAP_fnc_addEventHandler;
+}, []] call CBAP_fnc_execNextFrame;
 
 if (isServer) then {
-    CBA_clientID = [0, 2] select isMultiplayer;
+    CBAP_clientID = [0, 2] select isMultiplayer;
     addMissionEventHandler ["PlayerConnected", {
         params ["_id", "_uid", "_name", "_jip", "_owner"];
 
         if (_owner != 2) then {
-            CBA_clientID = _owner;
-            _owner publicVariableClient "CBA_clientID";
-            CBA_clientID = [0, 2] select isMultiplayer;
+            CBAP_clientID = _owner;
+            _owner publicVariableClient "CBAP_clientID";
+            CBAP_clientID = [0, 2] select isMultiplayer;
         };
     }];
 };
 
 // custom chat command system
-["CBA_events_chatMessageSent", {
+["CBAP_events_chatMessageSent", {
     params ["_message"];
 
     if (((_message select [0,1]) isEqualTo "#") && {!isNil QGVAR(customChatCommands)}) then {
@@ -64,7 +64,7 @@ if (isServer) then {
             };
         };
     };
-}] call CBA_fnc_addEventHandler;
+}] call CBAP_fnc_addEventHandler;
 
 // And add the listener, manually setting the tag here due to the mod stealing it from our control
 // and to keep it consistent without updating everything
@@ -74,7 +74,7 @@ _h = [] spawn {
         waitUntil {!(isNull (findDisplay 24))};
         _keyDown = (findDisplay 24) displayAddEventHandler ["KeyDown", {
             if ((_this select 1) in [28,156]) then {
-                ["CBA_events_chatMessageSent", [ctrlText ((_this select 0) displayCtrl 101), _this select 0]] call CBA_fnc_localEvent;
+                ["CBAP_events_chatMessageSent", [ctrlText ((_this select 0) displayCtrl 101), _this select 0]] call CBAP_fnc_localEvent;
             };
             false
         }];

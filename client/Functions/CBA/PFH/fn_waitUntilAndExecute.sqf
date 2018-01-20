@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_waitUntilAndExecute
+Function: CBAP_fnc_waitUntilAndExecute
 Description:
     Executes a code once in non sched environment after a condition is true.
 Parameters:
@@ -10,13 +10,13 @@ Returns:
     Nothing
 Examples:
     (begin example)
-        [{(_this select 0) == vehicle (_this select 0)}, {(_this select 0) setDamage 1;}, [player]] call CBA_fnc_waitUntilAndExecute;
+        [{(_this select 0) == vehicle (_this select 0)}, {(_this select 0) setDamage 1;}, [player]] call CBAP_fnc_waitUntilAndExecute;
     (end)
 Author:
     joko // Jonas, donated from ACE3
 ---------------------------------------------------------------------------- */
 params [["_condition", {}, [{}]], ["_statement", {}, [{}]], ["_args", []]];
 
-CBA_waitUntilAndExecArray pushBack [_condition, _statement, _args];
+CBAP_waitUntilAndExecArray pushBack [_condition, _statement, _args];
 
 nil

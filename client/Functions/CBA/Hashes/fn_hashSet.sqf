@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_hashSet
+Function: CBAP_fnc_hashSet
 
 Description:
     Sets a value for a given key in a Hash.
 
-    See <CBA_fnc_hashCreate>.
+    See <CBAP_fnc_hashCreate>.
 
 Parameters:
     _hash - Hash to use [Hash]

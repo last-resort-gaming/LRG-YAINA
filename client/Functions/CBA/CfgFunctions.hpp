@@ -1,4 +1,4 @@
-class CBA {
+class CBAP {
 
     class AI {
         file = "Functions\CBA\AI";
@@ -41,7 +41,7 @@ class CBA {
         class registerChatCommand {};
         class addEventHandler { description = "Registers an event handler for a specific CBA event."; };
         class addEventHandlerArgs { description = "Registers an event handler for a specific CBA event with arguments."; };
-        class removeEventHandler { description = "Removes an event handler previously registered with CBA_fnc_addEventHandler."; };
+        class removeEventHandler { description = "Removes an event handler previously registered with CBAP_fnc_addEventHandler."; };
         class localEvent { description = "Raises a CBA event on the local machine."; };
         class globalEvent { description = "Raises a CBA event on all machines, including the local one."; };
         class globalEventJIP { description = "Raises a CBA event on all machines. Event is put on a stack that is executed on every future JIP machine. Stack can be overwritten by using the same JIP-Stack-ID."; };

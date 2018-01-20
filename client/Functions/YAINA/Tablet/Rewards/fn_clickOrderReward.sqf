@@ -70,7 +70,7 @@ _pfh = {
         if !(ctrlCommitted _bar) then {
             _textCtrl ctrlSetText format ["building... %1%2", floor(100 * (ctrlPosition _bar select 2) / _targetWidth), "%"];
         } else {
-            [_pfhId] call CBA_fnc_removePerFrameHandler;
+            [_pfhId] call CBAP_fnc_removePerFrameHandler;
             _completeCodeArgs call _completeCode;
         };
     };
@@ -95,7 +95,7 @@ _pfhID = [_pfh, 1, [_bar, _r select 2, _text, {
     GVAR(orderInProgress) = nil;
     call FNC(clickCancelReward);
 
-}, [_class]]] call CBA_fnc_addPerFrameHandler;
+}, [_class]]] call CBAP_fnc_addPerFrameHandler;
 
 // CancelCode
 _cancelCode = {

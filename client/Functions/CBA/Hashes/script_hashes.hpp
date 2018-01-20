@@ -3,4 +3,4 @@
 #define HASH_VALUES 2
 #define HASH_DEFAULT_VALUE 3
 
-#define TYPE_HASH "#CBA_HASH#"
+#define TYPE_HASH "#CBAP_HASH#"

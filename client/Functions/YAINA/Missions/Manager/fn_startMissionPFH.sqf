@@ -19,4 +19,4 @@ params ["_missionID", "_missionType", "_stage", "_missionName", "_parentMissionI
 (GVAR(localRunningMissions) select 1) pushBack [_markers, _groups, _vehicles, _buildings];
 
 // Start processing the PFH locally
-[_pfh, _pfhDelay, _pfhArgs] call CBA_fnc_addPerFrameHandler;
+[_pfh, _pfhDelay, _pfhArgs] call CBAP_fnc_addPerFrameHandler;

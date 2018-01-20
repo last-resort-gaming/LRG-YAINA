@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_createNamespace
+Function: CBAP_fnc_createNamespace
 
 Description:
     Creates a namespace. Used to store and read variables via setVariable and getVariable.
@@ -14,9 +14,9 @@ Returns:
 
 Examples:
     (begin example)
-        _namespace = call CBA_fnc_createNamespace;
+        _namespace = call CBAP_fnc_createNamespace;
 
-        My_GlobalNamespace = true call CBA_fnc_createNamespace;
+        My_GlobalNamespace = true call CBAP_fnc_createNamespace;
         publicVariable "My_GlobalNamespace";
     (end)
 

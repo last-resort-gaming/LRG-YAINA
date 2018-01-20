@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_getPos
+Function: CBAP_fnc_getPos
 
 Description:
     A function used to get the position of an entity.
@@ -9,7 +9,7 @@ Parameters:
 
 Example:
     (begin example)
-        _position = (group player) call CBA_fnc_getPos
+        _position = (group player) call CBAP_fnc_getPos
     (end)
 
 Returns:

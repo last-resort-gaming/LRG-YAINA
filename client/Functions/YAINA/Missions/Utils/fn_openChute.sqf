@@ -45,5 +45,5 @@ GVAR(openChuteInProgress) = true;
             deleteVehicle _chute;
         },
         [player, _chute]
-    ] call CBA_fnc_waitUntilAndExecute;
+    ] call CBAP_fnc_waitUntilAndExecute;
 }, [], 0.5, 1] call YFNC(fadeOutAndExecute);

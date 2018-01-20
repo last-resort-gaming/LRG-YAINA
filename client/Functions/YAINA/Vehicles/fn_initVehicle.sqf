@@ -44,7 +44,7 @@ if (_hasKeys) then {
 
             // We delete the pfh if we are no longer the driver
             if !(driver _veh isEqualTo player) then {
-                [_pfhID] call CBA_fnc_removePerFrameHandler;
+                [_pfhID] call CBAP_fnc_removePerFrameHandler;
             };
 
             // Otherwise, return if no owner set
@@ -57,7 +57,7 @@ if (_hasKeys) then {
 
             if !((group _owner) isEqualTo (group player)) then {
                 // So we can remove this PFH to stop it firing
-                [_pfhID] call CBA_fnc_removePerFrameHandler;
+                [_pfhID] call CBAP_fnc_removePerFrameHandler;
 
                 0 = [] spawn {
                     _veh = vehicle player;
@@ -86,7 +86,7 @@ if (_hasKeys) then {
                 };
             };
 
-        }, 1, [_veh]] call CBA_fnc_addPerFrameHandler;
+        }, 1, [_veh]] call CBAP_fnc_addPerFrameHandler;
 
     }] call FNC(addGetInHandler);
 };

@@ -92,10 +92,10 @@ if(hasInterface) then {
                 // Delete any markers that don't belong to our group / given up keys for
                 { if !(_x in _markers) then { deleteMarkerLocal _x; }; true; } count ([QVAR(mrk)] call FNC(getMarkers));
 
-            }, 0, []] call CBA_fnc_addPerFrameHandler;
+            }, 0, []] call CBAP_fnc_addPerFrameHandler;
         } else {
             // Delete our PFH and vehicle markers
-            [GVAR(pfhID)] call CBA_fnc_removePerFrameHandler;
+            [GVAR(pfhID)] call CBAP_fnc_removePerFrameHandler;
             GVAR(pfhID) = nil;
             { deleteMarkerLocal _x; true; } count ([QVAR(mrk)] call FNC(getMarkers));
         };

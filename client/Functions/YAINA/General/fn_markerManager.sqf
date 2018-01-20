@@ -43,4 +43,4 @@ if (!isServer) exitWith {};
         true;
     } count (allMapMarkers select { _x select [0,15] isEqualTo "_USER_DEFINED #" });
 
-}, 2, []] call CBA_fnc_addPerFrameHandler;
+}, 2, []] call CBAP_fnc_addPerFrameHandler;

@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_hashGet
+Function: CBAP_fnc_hashGet
 
 Description:
     Gets a value for a given key from a Hash.
 
-    See <CBA_fnc_hashCreate>.
+    See <CBAP_fnc_hashCreate>.
 
 Parameters:
     _hash - Hash to look for key in [Array which is a Hash structure]

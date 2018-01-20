@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_taskDefend
+Function: CBAP_fnc_taskDefend
 
 Description:
     A function for a group to defend a parsed location. Should be ran locally.
@@ -21,7 +21,7 @@ Returns:
 
 Examples:
     (begin example)
-        [this] call CBA_fnc_taskDefend
+        [this] call CBAP_fnc_taskDefend
     (end)
 
 Author:
@@ -37,11 +37,11 @@ params [
 ];
 
 // Input validation stuff here
-_group = _group call CBA_fnc_getGroup;
+_group = _group call CBAP_fnc_getGroup;
 if !(local _group) exitWith {}; // Don't create waypoints on each machine
 
 _position = [_position, _group] select (_position isEqualTo []);
-_position = _position call CBA_fnc_getPos;
+_position = _position call CBAP_fnc_getPos;
 
 if (_patrol isEqualType true) then {
     _patrol = [0, 0.1] select _patrol;
@@ -52,7 +52,7 @@ if (_hold isEqualType true) then {
 };
 
 // Start of the actual function
-[_group] call CBA_fnc_clearWaypoints;
+[_group] call CBAP_fnc_clearWaypoints;
 
 private _statics = _position nearObjects ["StaticWeapon", _radius];
 private _buildings = _position nearObjects ["Building", _radius];
@@ -64,8 +64,8 @@ _statics = _statics select {(_x emptyPositions "Gunner") > 0};
 _buildings = _buildings select {
     private _positions = _x buildingPos -1;
 
-    if (isNil {_x getVariable "CBA_taskDefend_positions"}) then {
-        _x setVariable ["CBA_taskDefend_positions", _positions];
+    if (isNil {_x getVariable "CBAP_taskDefend_positions"}) then {
+        _x setVariable ["CBAP_taskDefend_positions", _positions];
     };
 
     count (_positions) >= _threshold
@@ -86,7 +86,7 @@ if (_patrol > 0 && {count _units > 1}) then {
         // Respect chance to patrol, or force if no building positions left
         if !((_buildings isEqualto []) || { (random 1 < _patrol) }) then {
             private _building = selectRandom _buildings;
-            private _array = _building getVariable ["CBA_taskDefend_positions", []];
+            private _array = _building getVariable ["CBAP_taskDefend_positions", []];
 
             if !(_array isEqualTo []) then {
                 private _pos = _array deleteAt (floor (random (count _array)));
@@ -94,9 +94,9 @@ if (_patrol > 0 && {count _units > 1}) then {
                 // If building positions are all taken remove from possible buildings
                 if (_array isEqualTo []) then {
                     _buildings deleteAt (_buildings find _building);
-                    _building setVariable ["CBA_taskDefend_positions", nil];
+                    _building setVariable ["CBAP_taskDefend_positions", nil];
                 } else {
-                    _building setVariable ["CBA_taskDefend_positions", _array];
+                    _building setVariable ["CBAP_taskDefend_positions", _array];
                 };
 
                 // Wait until AI is in position then force them to stay
@@ -122,4 +122,4 @@ if (_patrol > 0 && {count _units > 1}) then {
 } forEach _units;
 
 // Unassigned (or combat reacted) units will patrol
-[_group, _position, _radius, 5, "sad", "safe", "red", "limited"] call CBA_fnc_taskPatrol;
+[_group, _position, _radius, 5, "sad", "safe", "red", "limited"] call CBAP_fnc_taskPatrol;

@@ -16,12 +16,12 @@ Author:
     commy2
 ---------------------------------------------------------------------------- */
 
-params [["_CBA_code", {}, [{}]], ["_CBA_arguments", []]];
+params [["_CBAP_code", {}, [{}]], ["_CBAP_arguments", []]];
 
-private "_CBA_return";
+private "_CBAP_return";
 
 isNil {
-    _CBA_return = _CBA_arguments call _CBA_code;
+    _CBAP_return = _CBAP_arguments call _CBAP_code;
 };
 
-if (!isNil "_CBA_return") then {_CBA_return};
+if (!isNil "_CBAP_return") then {_CBAP_return};

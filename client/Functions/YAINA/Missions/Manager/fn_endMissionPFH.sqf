@@ -9,7 +9,7 @@
 params ["_missionID", "_pfhID"];
 
 // remove PFH locally
-[_pfhID] call CBA_fnc_removePerFrameHandler;
+[_pfhID] call CBAP_fnc_removePerFrameHandler;
 
 // Delete Task
 [_missionID] call BIS_fnc_deleteTask;

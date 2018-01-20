@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_globalEvent
+Function: CBAP_fnc_globalEvent
 
 Description:
     Raises a CBA event on all machines, including the local one.
@@ -13,7 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-        ["test", ["global"]] call CBA_fnc_globalEvent;
+        ["test", ["global"]] call CBAP_fnc_globalEvent;
     (end)
 
 Author:

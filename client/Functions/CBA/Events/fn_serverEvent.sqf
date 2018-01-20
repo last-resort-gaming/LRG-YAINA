@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_serverEvent
+Function: CBAP_fnc_serverEvent
 
 Description:
     Raises a CBA event on the server machine.
@@ -13,7 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-        ["test", ["server"]] call CBA_fnc_serverEvent;
+        ["test", ["server"]] call CBAP_fnc_serverEvent;
     (end)
 
 Author:

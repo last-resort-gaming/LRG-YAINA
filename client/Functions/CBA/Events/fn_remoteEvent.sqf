@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_remoteEvent
+Function: CBAP_fnc_remoteEvent
 
 Description:
     Raises a CBA event on all machines, except the local one.
@@ -13,7 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-        ["test", ["remote"]] call CBA_fnc_remoteEvent;
+        ["test", ["remote"]] call CBAP_fnc_remoteEvent;
     (end)
 
 Author:

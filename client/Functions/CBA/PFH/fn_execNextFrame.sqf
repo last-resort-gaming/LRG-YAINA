@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_execNextFrame
+Function: CBAP_fnc_execNextFrame
 Description:
     Executes a code once in non sched environment on the next frame.
 Parameters:
@@ -9,15 +9,15 @@ Returns:
     Nothing
 Examples:
     (begin example)
-        [{player sideChat format ["This is frame %1, not %2", diag_frameno, _this select 0];}, [diag_frameno]] call CBA_fnc_execNextFrame;
+        [{player sideChat format ["This is frame %1, not %2", diag_frameno, _this select 0];}, [diag_frameno]] call CBAP_fnc_execNextFrame;
     (end)
 Author:
     esteldunedain and PabstMirror, donated from ACE3
 ---------------------------------------------------------------------------- */
 params [["_function", {}, [{}]], ["_args", []]];
 
-if (diag_frameno != CBA_nextFrameNo) then {
-    CBA_nextFrameBufferA pushBack [_args, _function];
+if (diag_frameno != CBAP_nextFrameNo) then {
+    CBAP_nextFrameBufferA pushBack [_args, _function];
 } else {
-    CBA_nextFrameBufferB pushBack [_args, _function];
+    CBAP_nextFrameBufferB pushBack [_args, _function];
 };

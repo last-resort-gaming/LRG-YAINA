@@ -23,10 +23,10 @@ if(isServer) then {
 
 if (hasInterface) then {
 
-    diag_log "Adding listener for CBA_events_chatMessageSent";
+    diag_log "Adding listener for CBAP_events_chatMessageSent";
 
     // Client side, we just check if the command is defined, if it is, send it to the server for processing
-    ["CBA_events_chatMessageSent", {
+    ["CBAP_events_chatMessageSent", {
         params ["_message"];
 
         if (((_message select [0,1]) isEqualTo "#") && {!isNil QVAR(commands)}) then {
@@ -45,5 +45,5 @@ if (hasInterface) then {
             };
         };
 
-    }] call CBA_fnc_addEventHandler;
+    }] call CBAP_fnc_addEventHandler;
 };

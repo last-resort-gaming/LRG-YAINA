@@ -132,8 +132,8 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs], _respawnTime] call CBA_fnc_waitAndExecute;
+            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs], _respawnTime] call CBAP_fnc_waitAndExecute;
         };
 
     };
-}, 10, []] call CBA_fnc_addPerFrameHandler;
+}, 10, []] call CBAP_fnc_addPerFrameHandler;

@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_localEvent
+Function: CBAP_fnc_localEvent
 
 Description:
     Raises a CBA event on the local machine.
@@ -13,7 +13,7 @@ Returns:
 
 Examples:
     (begin example)
-        ["test", ["local"]] call CBA_fnc_localEvent;
+        ["test", ["local"]] call CBAP_fnc_localEvent;
     (end)
 
 Author:

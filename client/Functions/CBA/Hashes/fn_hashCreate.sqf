@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_hashCreate
+Function: CBAP_fnc_hashCreate
 
 Description:
     Check if a Hash has a value defined for a key.
@@ -13,13 +13,13 @@ Returns:
 
 Examples:
 (begin code)
-    _emptyHash = [] call CBA_fnc_hashCreate;
-    [_emptyHash, "frog"] call CBA_fnc_hashGet; // => nil
+    _emptyHash = [] call CBAP_fnc_hashCreate;
+    [_emptyHash, "frog"] call CBAP_fnc_hashGet; // => nil
 
     _pairs = [["frog", 12], ["fish", 9]];
-    _animalCounts = [_pairs, 0] call CBA_fnc_hashCreate;
-    [_animalCounts, "frog"] call CBA_fnc_hashGet; // => 12
-    [_animalCounts, "monkey"] call CBA_fnc_hashGet; // => 0
+    _animalCounts = [_pairs, 0] call CBAP_fnc_hashCreate;
+    [_animalCounts, "frog"] call CBAP_fnc_hashGet; // => 12
+    [_animalCounts, "monkey"] call CBAP_fnc_hashGet; // => 0
 (end code)
 
 Author:

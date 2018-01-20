@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_taskPatrol
+Function: CBAP_fnc_taskPatrol
 
 Description:
     A function for a group to randomly patrol a parsed radius and location.
@@ -21,8 +21,8 @@ Optional:
 
 Example:
     (begin example)
-    [this, getMarkerPos "objective1", 50] call CBA_fnc_taskPatrol
-    [this, this, 300, 7, "MOVE", "AWARE", "YELLOW", "FULL", "STAG COLUMN", "this call CBA_fnc_searchNearby", [3, 6, 9]] call CBA_fnc_taskPatrol;
+    [this, getMarkerPos "objective1", 50] call CBAP_fnc_taskPatrol
+    [this, this, 300, 7, "MOVE", "AWARE", "YELLOW", "FULL", "STAG COLUMN", "this call CBAP_fnc_searchNearby", [3, 6, 9]] call CBAP_fnc_taskPatrol;
     (end)
 
 Returns:
@@ -40,14 +40,14 @@ params [
     ["_count", 3, [0]]
 ];
 
-_group = _group call CBA_fnc_getGroup;
+_group = _group call CBAP_fnc_getGroup;
 if !(local _group) exitWith {}; // Don't create waypoints on each machine
 
 _position = [_position, _group] select (_position isEqualTo []);
-_position = _position call CBA_fnc_getPos;
+_position = _position call CBAP_fnc_getPos;
 
 // Clear existing waypoints first
-[_group] call CBA_fnc_clearWaypoints;
+[_group] call CBAP_fnc_clearWaypoints;
 
 // Can pass parameters straight through to addWaypoint
 _this =+ _this;
@@ -68,11 +68,11 @@ for "_i" from 1 to _count do {
     private _theta = (_i % 2) * 180 + sin (deg (_step * _i)) * _offset + _step * _i;
 
     _this set [1, _position getPos [_rad, _theta]];
-    _this call CBA_fnc_addWaypoint;
+    _this call CBAP_fnc_addWaypoint;
 };
 
 // Close the patrol loop
 _this set [1, _position];
 _this set [2, _radius];
 _this set [3, "CYCLE"];
-_this call CBA_fnc_addWaypoint;
+_this call CBAP_fnc_addWaypoint;

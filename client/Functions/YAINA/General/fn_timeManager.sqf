@@ -40,4 +40,4 @@ private _nightMultiplier = ("NightDuration" call BIS_fnc_getParamValue) / 10;
         setTimeMultiplier _mTime;
     };
 
-}, 60, [_dawnMultiplier, _dayMultiplier, _duskMultiplier, _nightMultiplier]] call CBA_fnc_addPerFrameHandler;
+}, 60, [_dawnMultiplier, _dayMultiplier, _duskMultiplier, _nightMultiplier]] call CBAP_fnc_addPerFrameHandler;

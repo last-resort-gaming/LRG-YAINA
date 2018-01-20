@@ -1,1 +1,1 @@
-addMissionEventHandler ["EachFrame", CBA_fnc_onFrame];
+addMissionEventHandler ["EachFrame", CBAP_fnc_onFrame];

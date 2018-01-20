@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_registerChatCommand
+Function: CBAP_fnc_registerChatCommand
 
 Description:
     Register a custom chat command on the local machine.
@@ -16,10 +16,10 @@ Returns:
 Examples:
     (begin example)
         // '#skipTime 12' will make it night
-        ["skipTime", { parseNumber (_this select 0) remoteExec ["skipTime"]; }, "all"] call CBA_fnc_registerChatCommand;
+        ["skipTime", { parseNumber (_this select 0) remoteExec ["skipTime"]; }, "all"] call CBAP_fnc_registerChatCommand;
 
         // "Detonate" will blow up the charge
-        ["Detonate", {_thisArgs setDamage 1}, "admin", _placedDemoCharge] call CBA_fnc_registerChatCommand;
+        ["Detonate", {_thisArgs setDamage 1}, "admin", _placedDemoCharge] call CBAP_fnc_registerChatCommand;
     (end)
 
 Author:
@@ -28,7 +28,7 @@ Author:
 #include "script_component.hpp"
 
 if (isNil QGVAR(customChatCommands)) then {
-    GVAR(customChatCommands) = [] call CBA_fnc_createNamespace;
+    GVAR(customChatCommands) = [] call CBAP_fnc_createNamespace;
 };
 
 params [

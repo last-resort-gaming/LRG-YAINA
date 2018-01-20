@@ -51,7 +51,7 @@ addMissionEventHandler ["HandleDisconnect", {
                 (GVAR(localRunningMissions) select 1) pushBack [_markers, _groups, _vehicles, _buildings];
 
                 // Start processing the PFH locally
-                [_pfh, _pfhDelay, _pfhArgs] call CBA_fnc_addPerFrameHandler;
+                [_pfh, _pfhDelay, _pfhArgs] call CBAP_fnc_addPerFrameHandler;
 
                 // reinforcements + building restores are always kept on server, so we don't have anything to update
 

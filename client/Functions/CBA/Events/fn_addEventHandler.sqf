@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_addEventHandler
+Function: CBAP_fnc_addEventHandler
 
 Description:
     Registers an event handler for a specific CBA event.
@@ -9,11 +9,11 @@ Parameters:
     _eventFunc - Function to call when event is raised. <CODE>
 
 Returns:
-    _eventId - Unique ID of the event handler (can be used with CBA_fnc_removeEventHandler).
+    _eventId - Unique ID of the event handler (can be used with CBAP_fnc_removeEventHandler).
 
 Examples:
     (begin example)
-        _id = ["test", {systemChat str _this}] call CBA_fnc_addEventHandler;
+        _id = ["test", {systemChat str _this}] call CBAP_fnc_addEventHandler;
     (end)
 
 Author:
@@ -35,18 +35,18 @@ Author:
         _events = [];
         GVAR(eventNamespace) setVariable [_eventName, _events];
 
-        _eventHash = [[], -1] call CBA_fnc_hashCreate;
+        _eventHash = [[], -1] call CBAP_fnc_hashCreate;
         GVAR(eventHashes) setVariable [_eventName, _eventHash];
     };
 
     private _internalId = _events pushBack _eventFunc;
 
     // get new id
-    private _eventId = [_eventHash, "#lastId"] call CBA_fnc_hashGet;
+    private _eventId = [_eventHash, "#lastId"] call CBAP_fnc_hashGet;
     INC(_eventId);
 
-    [_eventHash, "#lastId", _eventId] call CBA_fnc_hashSet;
-    [_eventHash, _eventId, _internalId] call CBA_fnc_hashSet;
+    [_eventHash, "#lastId", _eventId] call CBAP_fnc_hashSet;
+    [_eventHash, _eventId, _internalId] call CBAP_fnc_hashSet;
 
     _eventId
-}, _this] call CBA_fnc_directCall;
+}, _this] call CBAP_fnc_directCall;

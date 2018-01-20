@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_globalEventJIP
+Function: CBAP_fnc_globalEventJIP
 
 Description:
     Raises a CBA event on all machines.
@@ -37,6 +37,6 @@ if (_jipID isEqualTo "") then {
 GVAR(eventNamespaceJIP) setVariable [_jipID, [EVENT_PVAR_STR, [_eventName, _params]], true];
 
 // execute on every machine
-[QGVAR(eventJIP), [_eventName, _params]] call CBA_fnc_globalEvent;
+[QGVAR(eventJIP), [_eventName, _params]] call CBAP_fnc_globalEvent;
 
 _jipID

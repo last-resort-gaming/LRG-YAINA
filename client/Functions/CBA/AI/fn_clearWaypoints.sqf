@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_clearWaypoints
+Function: CBAP_fnc_clearWaypoints
 
 Description:
     A function used to correctly clear all waypoints from a group.
@@ -9,7 +9,7 @@ Parameters:
 
 Example:
     (begin example)
-    [group player] call CBA_fnc_clearWaypoints
+    [group player] call CBAP_fnc_clearWaypoints
     (end)
 
 Returns:
@@ -21,7 +21,7 @@ Author:
 ---------------------------------------------------------------------------- */
 
 params [["_group", grpNull, [grpNull, objNull]]];
-_group = _group call CBA_fnc_getGroup;
+_group = _group call CBAP_fnc_getGroup;
 
 private _waypoints = waypoints _group;
 {

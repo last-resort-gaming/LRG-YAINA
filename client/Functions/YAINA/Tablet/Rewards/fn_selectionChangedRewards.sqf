@@ -29,11 +29,11 @@ GVAR(rewards) apply { _x select { _x select 0 isEqualTo _class; }; } select { !(
 (_ctrlGroup controlsGroupCtrl 1101) ctrlSetText (getText (configFile >> "CfgVehicles" >> _class >> "editorPreview"));
 
 // Set Available Creds / Build Time
-(_ctrlGroup controlsGroupCtrl 1201) ctrlSetText ([YVAR(rewardPoints),0,0,true] call CBA_fnc_formatNumber);
+(_ctrlGroup controlsGroupCtrl 1201) ctrlSetText ([YVAR(rewardPoints),0,0,true] call CBAP_fnc_formatNumber);
 (_ctrlGroup controlsGroupCtrl 1203) ctrlSetText (_buildTime call FNC(formatDuration));
 
 // Cost Color
-_costText ctrlSetText ([_price,0,0,true] call CBA_fnc_formatNumber);
+_costText ctrlSetText ([_price,0,0,true] call CBAP_fnc_formatNumber);
 _costText ctrlSetTextColor ([[1,1,1,1], [1,0,0,1]] select (_price > YVAR(rewardPoints)));
 
 // Spawn point Occupied ?

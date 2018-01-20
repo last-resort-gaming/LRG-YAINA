@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-Function: CBA_fnc_targetEvent
+Function: CBAP_fnc_targetEvent
 
 Description:
     Raises a CBA event on all machines where this object or at least one of these objects are local.
@@ -14,7 +14,7 @@ Returns:
 
 Examples:
     (begin example)
-        ["test", ["target"], cursorTarget] call CBA_fnc_targetEvent;
+        ["test", ["target"], cursorTarget] call CBAP_fnc_targetEvent;
     (end)
 
 Author:

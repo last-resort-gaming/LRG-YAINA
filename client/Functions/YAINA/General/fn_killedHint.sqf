@@ -178,4 +178,4 @@ player setVariable ["YAINA_side", playerSide, true];
     */
     YAINA_last_killhint_player = diag_tickTime;
 
-}] call CBA_fnc_addEventHandler;
+}] call CBAP_fnc_addEventHandler;
