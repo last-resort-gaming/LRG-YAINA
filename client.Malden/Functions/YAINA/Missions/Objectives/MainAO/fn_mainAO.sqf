@@ -137,8 +137,8 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
         ""
     ],
     _AOPosition,
-    true,
-    10,
+    false,
+    0,
     true,
     "Attack",
     true
@@ -150,7 +150,7 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 ///////////////////////////////////////////////////////////
 
 private _idx = 5;
-_sms = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SideMissions")) apply {
+_sms = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SubObjectives")) apply {
             missionNamespace getVariable format["YAINA_MM_OBJ_fnc_%1", configName _x]
        };
 
@@ -167,6 +167,7 @@ while { _idx > 0 && isNil "_subObjective" } do {
         _subObjective = _mm;
     };
     missionNamespace setVariable [_k, nil];
+    _idx = _idx - 1;
 };
 
 // Build the progression PFH
@@ -199,8 +200,8 @@ _pfh = {
                     ""
                 ],
                 _HQPosition,
-                true,
-                10,
+                false,
+                0,
                 true,
                 "Defend",
                 false

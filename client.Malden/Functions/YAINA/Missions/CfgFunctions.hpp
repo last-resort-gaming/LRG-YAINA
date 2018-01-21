@@ -6,14 +6,19 @@ class YAINA_MM_OBJ {
         class conquest {};
     };
 
-    class Objectives_MAO {
+    class MainAO {
         file = "Functions\YAINA\Missions\Objectives\MainAO";
         class mainAO {};
     };
 
+    class SubObjectives {
+        file = "Functions\YAINA\Missions\Objectives\SubObjectives";
+        class radioTower {};
+    };
+
     class SideMissions {
         file = "Functions\YAINA\Missions\Objectives\SideMissions";
-        class radioTower {};
+        class prototypeTank {};
     };
 
 };

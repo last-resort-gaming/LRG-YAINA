@@ -179,7 +179,7 @@ _markers = [_missionID, _CQPosition, _AOSize, nil, nil, nil, "ColorGUER"] call F
         ""
     ],
     _CQPosition,
-    true,
+    false,
     10,
     true,
     "Attack",

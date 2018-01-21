@@ -121,7 +121,7 @@ _buildings = _towers;
     ],
     objNull,
     "Created",
-    5,
+    0,
     false,
     "destroy",
     true

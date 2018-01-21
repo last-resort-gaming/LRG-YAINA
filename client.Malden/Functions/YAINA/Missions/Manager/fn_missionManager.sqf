@@ -10,7 +10,13 @@
 // we add priority missions from time to time...
 
 // If not a server, we shouldn't be here
-if (!isServer) exitWith {};
+if !(isServer) exitWith {};
+if !(isNil QVAR(running)) exitWith {};
+
+GVAR(running) = true;
+GVAR(lAO) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "MainAO")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
+GVAR(lIO) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "InfantryObjectives")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
+GVAR(lSM) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SideMissions")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
 
 [{
     params ["_args", "_pfhID"];
@@ -18,9 +24,9 @@ if (!isServer) exitWith {};
     // If we're paused, pause
     if (GVAR(paused)) exitWith {};
 
-    private _maxAOs = 2;
+    private _maxAOs = 1;
     private _maxIOs = 1;
-    private _maxSMs = 2;
+    private _maxSMs = 1;
 
     private _nAO = 0;
     private _nIO = 0;
@@ -46,8 +52,9 @@ if (!isServer) exitWith {};
     // What should I create?
 
     private _start = call {
-        if (_nIO < _maxIOs) exitWith { QOFNC(conquest); };
-        if (_nAO < _maxAOs) exitWith { QOFNC(mainAO); };
+        if (_nIO < _maxIOs) exitWith { selectRandom GVAR(lIO); };
+        if (_nAO < _maxAOs) exitWith { selectRandom GVAR(lAO); };
+        if (_nSM < _maxSMs) exitWith { selectRandom GVAR(lSM); };
         nil
     };
 

@@ -26,6 +26,9 @@ class YAINA_SPAWNS {
         class infantryGarrison {};
         class infantryPatrol {};
         class setUnitSkill {};
+        class createCrew {};
+        class taskPatrol {};
+        class sideMissionEnemy {};
 
     };
 
