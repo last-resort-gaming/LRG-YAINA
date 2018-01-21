@@ -214,7 +214,7 @@ _pfh = {
             _mrk setMarkerColor "ColorPink";
             _mrk setMarkerAlpha 0.5;
 
-            [_missionID, 2] call FNC(updateMissionStage);
+            [_missionID, 2] call FNC(updateMission);
             _args set [1,2];
 
             // Now set units to surround the HQ...
@@ -262,7 +262,7 @@ _pfh = {
             // And move on to mission windup, we don't do it here
             // as the PFH resumes until folks are outside the AO
             // and we don't want it to redo this all the time.
-            [_missionID, 3] call FNC(updateMissionStage);
+            [_missionID, 3] call FNC(updateMission);
             _args set [1,3];
         };
     };
@@ -273,9 +273,10 @@ _pfh = {
         // Set Mission Exit State
         [_missionID, 'Succeeded', not _stopRequested] call BIS_fnc_taskSetState;
 
-        [_missionID, "CLEANUP"] call FNC(updateMissionState);
         _args set [1,4];
         _stage = 4;
+
+        [_missionID, _stage, "CLEANUP"] call FNC(updateMission);
     };
 
     if (_stage isEqualTo 4) then {

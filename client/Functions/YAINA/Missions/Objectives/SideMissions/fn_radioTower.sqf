@@ -172,7 +172,7 @@ _pfh = {
 
         // Then we need to update the server's stage
         _args set[1,2];
-        [_missionID, 2] call FNC(updateMissionStage);
+        [_missionID, 2] call FNC(updateMission);
     };
 
     // Only clean up when parent mission gone
@@ -183,18 +183,19 @@ _pfh = {
     };
 
     // We are now complete, let the server know we're in cleanup so it will spawn another AO
-    // We don't need to update the server here as worst case is that this gets executed again
-    // if this HC disconnects
     if (_stage isEqualTo 2 ) then {
-        [_missionID, "CLEANUP"] call FNC(updateMissionState);
-        _args set [1,3];
+        _stage = 3;
+        _args set [1,_stage];
+        [_missionID, _stage, "CLEANUP"] call FNC(updateMission);
     };
 
-    if ([_pfhID, _missionID] call FNC(missionCleanup)) then {
-        [_hideKey] call YFNC(showTerrainObjects);
+    if (_stage isEqualTo 3) then {
+        if ([_pfhID, _missionID] call FNC(missionCleanup)) then {
+            [_hideKey] call YFNC(showTerrainObjects);
 
-        { deleteVehicle _x; true } count _mines;
-    };
+            { deleteVehicle _x; true } count _mines;
+        };
+    }
 };
 
 [_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hideKey, _mines, _towerMarkers]] call FNC(startMissionPFH);

@@ -1,6 +1,11 @@
 class YAINA_MM_OBJ {
     tag = "YAINA_MM_OBJ";
 
+    class Conquest {
+        file = "Functions\YAINA\Missions\Objectives\Conquest";
+        class conquest {};
+    };
+
     class Objectives_MAO {
         file = "Functions\YAINA\Missions\Objectives\MainAO";
         class mainAO {};
@@ -26,8 +31,7 @@ class YAINA_MM {
         class mmPreInit  { preInit=1; };
         class setMissionID {};
         class startMissionPFH {};
-        class updateMissionStage {};
-        class updateMissionState {};
+        class updateMission{};
         class setupParadrop {};
         class startMission {};
         class stopMission {};
@@ -42,6 +46,7 @@ class YAINA_MM {
         class paraDrop {};
         class setupParadropActions { postInit = 1; };
         class openChute {};
+        class findLargestBuilding {};
     };
 
 };

@@ -29,6 +29,7 @@ if(!isServer) exitWith {
         (YVAR(hiddenTerrainObjects) select 0) deleteAt _idx;
         (YVAR(hiddenTerrainObjects) select 1) deleteAt _idx;
     };
+    true;
 } count _this; // array of keys
 
 nil

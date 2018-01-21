@@ -30,6 +30,3 @@ popd
 
 REM Back to bin dir
 popd
-
-echo %cd%
-pause

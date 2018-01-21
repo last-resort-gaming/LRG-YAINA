@@ -5,18 +5,23 @@
 */
 #include "..\defines.h"
 
-params ["_pos", ["_patrolRadius", 0], ["_skill", 2]];
+params ["_pos", ["_patrolRadius", 0], ["_skill", 2], ["_side", EAST]];
 
-private _groupTypes = [
-    "OIA_InfSquad",
-    "OIA_InfSquad_Weapons",
-    "OIA_InfAssault",
-    "OIA_ReconSquad"
-];
+private _groupTypes = [];
+private _faction    = "";
+private _cside      = "";
+
+_groupTypes = call {
+    if(_side isEqualTo East) exitWith { _cside = "East"; _faction = "OPF_F"; ["OIA_InfSquad", "OIA_InfSquad_Weapons", "OIA_InfAssault", "OIA_ReconSquad"] };
+    if(_side isEqualTo independent) exitWith { _cside = "Indep" ; _faction = "IND_C_F"; ["BanditCombatGroup", "BanditShockTeam", "BanditFireTeam"] };
+    []
+};
+
+if (_groupTypes isEqualTo []) exitWith { objNull };
 
 // pos is a guideline, so lets find a safe pos...
 private _safepos = [_pos,0,27,1,0,2000,0] call BIS_fnc_findSafePos;
-private _g = [_safepos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom _groupTypes))] call BIS_fnc_spawnGroup;
+private _g = [_safepos, _side, (configFile >> "CfgGroups" >> _cside >> _faction >> "Infantry" >> (selectRandom _groupTypes))] call BIS_fnc_spawnGroup;
 
 [_g, _skill] call FNC(setUnitSkill);
 

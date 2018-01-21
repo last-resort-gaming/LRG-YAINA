@@ -1,6 +1,13 @@
 class YAINA_SPAWNS {
 	tag = "YAINA_SPAWNS";
 
+    class CQ {
+        file = "Functions\YAINA\Spawns\CQ";
+        class CQ_Deer {};
+        class CQ_Eagle {};
+        class CQ_Falcon {};
+    };
+
     class HQ {
         file = "Functions\YAINA\Spawns\HQ";
         class HQ_Courage {};

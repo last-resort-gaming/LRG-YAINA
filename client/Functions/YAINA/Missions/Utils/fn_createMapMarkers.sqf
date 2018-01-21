@@ -6,7 +6,7 @@
 
 #include "..\defines.h"
 
-params ["_missionID", "_markerPos", "_size", ["_showSelector", true], ["_brush", "FDiagonal"], ["_startID", 1]];
+params ["_missionID", "_markerPos", "_size", ["_showSelector", true], ["_brush", "FDiagonal"], ["_startID", 1], ["_color", "ColorOPFOR"]];
 
 private _mrk1 = nil;
 
@@ -29,7 +29,7 @@ createMarker [_mrk2, _markerPos];
 _mrk2 setMarkerShape "ELLIPSE";
 _mrk2 setMarkerSize [_size, _size];
 _mrk2 setMarkerBrush _brush;
-_mrk2 setMarkerColor "ColorOPFOR";
+_mrk2 setMarkerColor _color;
 
 // return the area marker first, this is used in the cleanup phase
 [_mrk2,_mrk1]
