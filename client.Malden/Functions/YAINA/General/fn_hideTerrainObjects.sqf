@@ -12,14 +12,11 @@
 
 params ["_oid", "_key", "_pos", "_radius", ["_excludes", []], ["_types", CATEGORIES, [[]]]];
 
-if(!isServer) exitWith {
-    _this remoteExec [QYFNC(hideTerrainObjects), 2];
-};
-
 // This is a bit shit, so we either want remoteExsecutedOwner to be 2, or 0
 // as headless clients come up as 0, along with false on isRemoteExecuted.
-if !( remoteExecutedOwner isEqualTo 2 || { remoteExecutedOwner isEqualTo 0 }) exitWith {};
-if (_oid isEqualTo 0 && { isMultiplayer }) exitWith {};
+if !( remoteExecutedOwner isEqualTo 2 || { remoteExecutedOwner isEqualTo 0 }) exitWith { diag_log format["bailing hideTerrainObjects 1 called with: %1", _this]; };
+if (_oid isEqualTo 0 && { isMultiplayer }) exitWith {diag_log format["bailing hideTerrainObjects 2 (oid: %1) called with: %2", _oid, _this]; };
+
 
 private _clearTypes  = [];
 {

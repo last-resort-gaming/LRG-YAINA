@@ -45,11 +45,10 @@ if (!isServer) exitWith {};
 
     // What should I create?
 
-    private _start    = nil;
-    private _startFnc = nil;
-
-    if (_nAO < _maxAOs) then {
-        _start = QOFNC(mainAO);
+    private _start = call {
+        if (_nIO < _maxIOs) exitWith { QOFNC(conquest); };
+        if (_nAO < _maxAOs) exitWith { QOFNC(mainAO); };
+        nil
     };
 
     if !(isNil "_start") then {

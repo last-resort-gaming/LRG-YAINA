@@ -1,8 +1,8 @@
 class YAINA_MM_OBJ {
     tag = "YAINA_MM_OBJ";
 
-    class Conquest {
-        file = "Functions\YAINA\Missions\Objectives\Conquest";
+    class InfantryObjectives {
+        file = "Functions\YAINA\Missions\Objectives\InfantryObjectives";
         class conquest {};
     };
 

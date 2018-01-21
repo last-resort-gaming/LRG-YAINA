@@ -12,6 +12,7 @@ private _msg = "";
 private _selector = {true};
 private _missionDescription = "all";
 
+if (_argStr isEqualTo "") then { _argStr = "all"; };
 if (_argStr isEqualTo "all") then {
     YAINA_MM_paused = true;
 } else {

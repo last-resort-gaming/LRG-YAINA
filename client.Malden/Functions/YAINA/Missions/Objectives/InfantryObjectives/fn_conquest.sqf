@@ -69,14 +69,10 @@ _cqFunc = selectRandom (
 
 // Hide any terrain and slam down the HQ
 private _hiddenTerrainKey = format["HT_%1", _missionID];
-systemChat _hiddenTerrainKey;
-[clientOwner, _hiddenTerrainKey, _CQPosition, 30] call YFNC(hideTerrainObjects);
+[clientOwner, _hiddenTerrainKey, _CQPosition, 30] remoteExec [QYFNC(hideTerrainObjects), 2];
 
-systemChat format ["waiting for %1", _hiddenTerrainKey];
 // Wait for the server to send us back
 waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
-
-systemChat format ["waiting for %1 complete", _hiddenTerrainKey];
 
 _CQElements  = [_CQPosition, random 360, call _cqFunc] call BIS_fnc_ObjectsMapper;
 _buildings   = _CQElements;
@@ -85,7 +81,6 @@ _buildings   = _CQElements;
 // Spawn AI
 ///////////////////////////////////////////////////////////
 
-systemChat format ["CQP: %1",_CQPosition];
 // use the largest building around as our CQ Building
 private _CQBuildingInfo = [_CQPosition, 30] call FNC(findLargestBuilding);
 if (_CQBuildingInfo isEqualTo []) exitWith {};
@@ -95,7 +90,6 @@ private _CQBuilding = _CQBuildingInfo select 0;
 _priorityGroup = createGroup independent;
 _groups pushBack _priorityGroup;
 
-systemChat "a";
 _garrisonpos = _CQBuildingInfo select 1;
 _buildingposcount = count _garrisonpos;
 
@@ -112,8 +106,6 @@ for "_i" from 1 to _buildingposcount do {
 };
 
 _priorityGroup setGroupIdGlobal [format ['Conquest Garrison']];
-
-systemChat "b";
 
 private _ConquestInfAmount = 0;
 
@@ -133,9 +125,6 @@ for "_x" from 0 to (4 + (random 2)) do {
     [_ConquestGroup, 3] call SFNC(setUnitSkill);
 
 };
-
-
-systemChat "c";
 
 private _ConquestVehAmmount = 0;
 for "_x" from 0 to (2 + (random 3)) do {
@@ -167,8 +156,6 @@ for "_x" from 0 to (2 + (random 3)) do {
 
 };
 
-
-systemChat "d";
 
 ///////////////////////////////////////////////////////////
 // Start Mission
@@ -255,4 +242,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "CQ", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _hiddenTerrainKey, _CQElements]] call FNC(startMissionPFH);
+[_missionID, "IO", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _hiddenTerrainKey, _CQElements]] call FNC(startMissionPFH);
