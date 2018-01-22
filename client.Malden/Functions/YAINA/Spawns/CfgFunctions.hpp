@@ -29,7 +29,7 @@ class YAINA_SPAWNS {
         class createCrew {};
         class taskPatrol {};
         class sideMissionEnemy {};
-
+        class smEnemyEastIntel {};
     };
 
     class Reinforcements {

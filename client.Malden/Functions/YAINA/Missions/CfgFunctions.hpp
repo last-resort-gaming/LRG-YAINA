@@ -19,6 +19,7 @@ class YAINA_MM_OBJ {
     class SideMissions {
         file = "Functions\YAINA\Missions\Objectives\SideMissions";
         class prototypeTank {};
+        class secureintelvehicle {};
     };
 
 };
