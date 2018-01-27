@@ -19,7 +19,7 @@
  * [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call ace_common_fnc_garrison
 */
 
-params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", 50, [0]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]], ["_maxFill", 0, [0]]];
+params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", [0, 50], [[]]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]], ["_maxFill", 0, [0]]];
 
 _unitsArray = _unitsArray select {alive _x && {!isPlayer _x}};
 
@@ -33,15 +33,14 @@ if (count _unitsArray == 0 || {isNull (_unitsArray select 0)}) exitWith {
 
 private _buildings = [];
 
-if (_fillingRadius < 50) then {
-    _buildings = nearestObjects [_startingPos, _buildingTypes, 50];
-} else {
-    _buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius];
-    _buildings = _buildings call BIS_fnc_arrayShuffle;
-};
+if ((_fillingRadius select 1) < 30) then { _fillingRadius set [1,30]; };
+
+_buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius select 1] select { _x distance2D _startingPos > (_fillingRadius select 0) };
+_buildings = _buildings call BIS_fnc_arrayShuffle;
 
 if (count _buildings == 0) exitWith {
     diag_log "[derp_AIOccupyBuilding] Error: No valid building found";
+    _unitsArray
 };
 
 private _buildingsIndexes = [];
@@ -62,7 +61,7 @@ if (_topDownFilling) then {
         } forEach _buildingPos;
 
         if (_maxFill > 0) then {
-            _buildingsIndexes pushBack (_buildingPos select [0, floor(random (_maxFill+1))]);
+            _buildingsIndexes pushBack (_buildingPos select [0, _maxFill]);
         } else {
             _buildingsIndexes pushBack _buildingPos;
         };
@@ -71,7 +70,7 @@ if (_topDownFilling) then {
 } else {
     {
         if(_maxFill > 0) then {
-            _buildingsIndexes pushBack ((_x buildingPos -1) select [0,floor(random (_maxFill+1))]);
+            _buildingsIndexes pushBack (((_x buildingPos -1) call BIS_fnc_arrayShuffle) select [0,_maxFill]);
         } else {
             _buildingsIndexes pushBack (_x buildingPos -1);
         };

@@ -11,7 +11,7 @@
 
 params ["_missionID", "_center", "_radius",
         ["_garrisons", 1],
-        ["_garrisonDist", 60],
+        ["_garrisonDist", [0,60]],
         ["_infMin", 3],
         ["_sniperMin", 1],
         ["_vehMin", 2],
