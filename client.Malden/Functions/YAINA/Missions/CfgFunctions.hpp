@@ -21,6 +21,7 @@ class YAINA_MM_OBJ {
         class prototypeTank {};
         class secureintelvehicle {};
         class secureradar {};
+        class securechopper {};
     };
 
 };

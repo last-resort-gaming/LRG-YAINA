@@ -32,11 +32,12 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 private _AOSize = 400;
 
-// pick a random spawn that's 2 * _AOSize away from players + other AOs
+// pick a random spawn that's 3 * _AOSize away from players + other AOs
 private _ObjectPosition = [nil, BASE_PROTECTION_AREAS + ["water"] + GVAR(paradropMarkers), {
-    { _x distance2D _this < (_AOSize * 3) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,0,0.1,sizeOf "Land_Radar_Small_F",0,false] isEqualTo [])
+    { _x distance2D _this < (_AOSize * 3) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,0,0.2,20,0,false] isEqualTo [])
 }] call BIS_fnc_randomPos;
 
+// It's ok to bail
 if (_ObjectPosition isEqualTo [0,0]) exitWith {};
 
 // Suitable location for marker
@@ -50,12 +51,36 @@ _missionID = call FNC(getMissionID);
 // Objective Setup
 ///////////////////////////////////////////////////////////
 
+// plop down the hangar for now
+private _hangar = createVehicle ["Land_TentHangar_V1_F", [0,0,0], [], 0, "NONE"];
+private _d = [];
+{ _d append (_x select [0,2] apply { abs _x } ); true; } count (boundingBox _hangar);
 
-private ["_obj", "_tower", "_house", "_table", "_laptop"];
+// Hide any terrain and slam down the hangar
+private _hiddenTerrainKey = format["HT_%1", _missionID];
+[clientOwner, _hiddenTerrainKey, _ObjectPosition, (selectMax _d) + 2] remoteExec [QYFNC(hideTerrainObjects), 2];
 
-_tower = "Land_Radar_Small_F" createVehicle _ObjectPosition;
-_buildings pushBack _tower;
+// Wait for the server to send us back
+waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 
+
+// Then re-position
+_hangar setPos _ObjectPosition;
+_hangar setDir (random 360);
+
+private _surfaceNormal = surfaceNormal position _hangar;
+_hangar setVectorUp _surfaceNormal;
+_buildings pushBack _hangar;
+
+// Spawn Chopper
+private _chopper = createVehicle [selectRandom ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","B_Heli_Attack_01_F"], [0,0,0], [], 0, "NONE"];
+_chopper setDir (getDir _hangar);
+_chopper setVectorUp _surfaceNormal;
+_chopper setPosATL (getPosATL _hangar);
+_chopper lock 3;
+_vehicles pushBack _chopper;
+
+// House with Laptop
 _house = "Land_Cargo_House_V3_F" createVehicle ([_ObjectPosition, 15, 30, 10, 0, 0.5, 0] call BIS_fnc_findSafePos);
 _house setDir random 360;
 _house allowDamage false;
@@ -72,24 +97,13 @@ _laptop = (selectRandom ["Land_Laptop_device_F", "Land_Laptop_F"]) createVehicle
 _vehicles pushBack _table;
 _vehicles pushBack _laptop;
 
-// Aux towers
-for "_i" from 0 to 2 do {
-    _obj = "Land_Cargo_Patrol_V3_F" createVehicle ([[_ObjectPosition, 30, [0,120,240] select _i] call BIS_fnc_relPos, 5, 35, 10, 0, 0.5, 0] call BIS_fnc_findSafePos);
-    _obj setDir ((_tower getRelDir _obj) + 180);
-    _obj allowDamage false;
-    _buildings pushBack _obj;
-};
-
-// Rotate tower after the patrol tower positioning
-_tower setDir random 360;
-
 // Namespace for variables, something that wont die before cleanup :)
 _ns = _house;
+
 
 //-------------------- SPAWN FORCE PROTECTION
 
 ([_missionID, _ObjectPosition, _AOSize/2, 2, 75] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
-//[[],[]] params ["_spGroups", "_spVehs"];
 
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
@@ -108,8 +122,8 @@ _groups = _spGroups;
     west,
     _missionID,
     [
-        "OPFOR have captured a small radar on the island to support their aircraft. We've marked the position on your map; head over there and secure the site. Take the data and destroy it.",
-        "Side Mission: Secure Radar",
+        "OPFOR forces have been provided with a new prototype attack chopper and they're keeping it in a hangar somewhere on the island.We've marked the suspected location on your map; head to the hangar, get the data and destroy the helicopter.",
+        "Side Mission: Secure Chopper",
         ""
     ],
     _AOPosition,
@@ -125,7 +139,7 @@ _groups = _spGroups;
 
 [_laptop, "<t color='#ff1111'>Take Laptop and Set Explosives</t>", {
     params ["_target", "_caller", "_id", "_arguments"];
-    _arguments params ["_tower", "_ns"];
+    _arguments params ["_objective", "_ns"];
 
     // We set serverTime to now, in case of a DC whilst downloading, we
     // dont want the mission to bug out, also limits two folks planting
@@ -136,7 +150,7 @@ _groups = _spGroups;
 
     ["Planting Explosives", 10, {
         // Success, move onto verify
-        params ["_target", "_tower", "_ns"];
+        params ["_target", "_objective", "_ns"];
 
         // We set complete on _ns as our laptop is about to be deleted and we need
         // to know if it was destoryed by friendlies or by the explosion
@@ -144,35 +158,36 @@ _groups = _spGroups;
 
         // Let them know detonation in 30 seconds
         [[west, "HQ"], selectRandom [
-            "Radar data secured. The charge has been set! 30 seconds until detonation.",
-            "Radar telemetry secured. The explosives have been set! 30 seconds until detonation.",
-            "Radar intel secured. The charge is planted! 30 seconds until detonation."]] remoteExec ["sideChat"];
+            "Chopper data secured. The charge has been set! 30 seconds until detonation.",
+            "Heli data secured. The explosives have been set! 30 seconds until detonation.",
+            "Chopper intel secured. The charge is planted! 30 seconds until detonation."]] remoteExec ["sideChat"];
+
 
         // Delete the laptop, and place explosives down
         deleteVehicle _target;
 
         // We place the explosives down, and delete the laptop
-        _ap = getPos _tower vectorAdd [0,5,0.5];
+        _ap = getPos _objective vectorAdd [0,1,0.5];
         _ammo = "Box_NATO_AmmoOrd_F" createVehicle _ap;
 
         // Schedule blow up on server for DC protection
         [30, _ap] remoteExec [QFNC(destroy), 2];
 
-    }, [_target, _tower, _ns], {
+    }, [_target, _objective, _ns], {
         // on Abort;
-        params ["_target", "_tower", "_ns"];
+        params ["_target", "_objective", "_ns"];
         _target setVariable[QVAR(explosivesPlanting), 0, true];
         [[west, "HQ"], format["%1 failed to set the explosives, we need to try again!", name player]] remoteExec ["sideChat"];
     }] call AIS_Core_fnc_Progress_ShowBar;
 
-}, [_tower, _ns], 6, false, true, "", format["alive _target && { serverTime - (_target getVariable['%1', 0]) > 12 } }", QVAR(explosivesPlanting)], 5, false] call YFNC(addActionMP);
+}, [_chopper, _ns], 6, false, true, "", format["alive _target && { serverTime - (_target getVariable['%1', 0]) > 12 } }", QVAR(explosivesPlanting)], 5, false] call YFNC(addActionMP);
 
 // Now onto the easier completion PFH
 _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_ns", "_tower", "_laptop"];
+    _args params ["_missionID", "_stage", "_hiddenTerrainKey", "_ns", "_chopper", "_laptop"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -180,7 +195,7 @@ _pfh = {
 
     // Main
     if (_stage isEqualTo 1) then {
-        if(!alive _tower || {!alive _laptop} ) then {
+        if(!alive _chopper || {!alive _laptop} ) then {
 
             _mState = "Succeeded";
 
@@ -188,7 +203,7 @@ _pfh = {
             if (_ns getVariable [QVAR(explosivesPlanted), false]) then {
                 // Success...
                 [500, "secure radar"] call YFNC(addRewardPoints);
-                parseText format ["<t align='center' size='2.2'>Side Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Secure Radar</t><br/>____________________<br/>Good work out there. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
+                parseText format ["<t align='center' size='2.2'>Side Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Secure Chopper</t><br/>____________________<br/>Good work out there. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
             } else {
                 // Failed...
                 _mState = "Failed";
@@ -213,7 +228,9 @@ _pfh = {
 
     if (_stage isEqualTo 3) then {
         // Initiate default cleanup function to clean up officer group + group
-        [_pfhID, _missionID, _stopRequested] call FNC(missionCleanup);
+        if ([_pfhID, _missionID, _stopRequested] call FNC(missionCleanup)) then {
+            [_hiddenTerrainKey] remoteExec [QYFNC(showTerrainObjects), 2];
+        };
     };
 };
 
@@ -221,4 +238,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "SM", 1, "secure intel (vehicle)", "", _markers, _groups, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _ns, _tower, _laptop]] call FNC(startMissionPFH);
+[_missionID, "SM", 1, "secure intel (vehicle)", "", _markers, _groups, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _hiddenTerrainKey, _ns, _chopper, _laptop]] call FNC(startMissionPFH);
