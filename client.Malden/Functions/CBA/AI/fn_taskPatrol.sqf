@@ -60,15 +60,31 @@ if (count _this > 3) then {
 // Also fixes weird editor bug where all WP are on same position
 private _step = 360 / _count;
 private _offset = random _step;
-for "_i" from 1 to _count do {
+private _wpc = 0;
+private _wps = 0;
+
+while { !(_wpc isEqualTo _count ) } do {
+
     // Gaussian distribution avoids all waypoints ending up in the center
     private _rad = _radius * random [0.1, 0.75, 1];
 
     // Alternate sides of circle & modulate offset
-    private _theta = (_i % 2) * 180 + sin (deg (_step * _i)) * _offset + _step * _i;
+    private _theta = (_wps % 2) * 180 + sin (deg (_step * _wps)) * _offset + _step * _wps;
 
-    _this set [1, _position getPos [_rad, _theta]];
-    _this call CBAP_fnc_addWaypoint;
+    private _testPos = _position getPos [_rad, _theta];
+
+    if !(surfaceIsWater _testPos) then {
+        _this set [1, _testPos];
+        _this call CBAP_fnc_addWaypoint;
+        _wpc = _wpc + 1;
+        _wps = _wps + 1;
+    };
+
+    // If we failed in finding a position, flip to other side again, so we don't end up hitting a wall
+    // trying to find a position when onyl faced with water
+    if (_wps isEqualTo _wps) then {
+        _wps = _wps + 1;
+    };
 };
 
 // Close the patrol loop
