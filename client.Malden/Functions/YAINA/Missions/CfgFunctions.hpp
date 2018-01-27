@@ -22,6 +22,7 @@ class YAINA_MM_OBJ {
         class secureintelvehicle {};
         class secureradar {};
         class securechopper {};
+        class hqcoast {};
     };
 
 };
@@ -56,6 +57,7 @@ class YAINA_MM {
         class openChute {};
         class findLargestBuilding {};
         class destroy {};
+        class getAOExclusions {};
     };
 
 };

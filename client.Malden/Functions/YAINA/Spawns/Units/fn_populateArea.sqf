@@ -24,6 +24,9 @@ params ["_missionID", "_center", "_radius",
 
 private ["_x","_g","_pos","_flatPos","_rpos","_v"];
 
+// Simple protection for broken requests
+if (_center isEqualTo [0,0]) exitWith {};
+
 // Prep return values
 private _groups = [];
 private _vehicles = [];
@@ -44,7 +47,6 @@ INCR(_aaRand);
 // GARRISONS
 ///////////////////////////////////////////////////////////
 
-systemChat str [_center, _garrisonDist, _garrisons];
 private _garrisonedGroups = ([_center, _garrisonDist, _garrisons] call FNC(infantryGarrison));
 { _groups pushBack _x; _x setGroupIdGlobal [format["%1_gar%2", _missionID, _forEachIndex]]; } forEach _garrisonedGroups;
 
