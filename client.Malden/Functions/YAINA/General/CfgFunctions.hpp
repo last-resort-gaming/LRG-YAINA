@@ -31,5 +31,6 @@ class YAINA {
 		class getAdminLevel {};
 		class addActionMP {};
 		class isUAV {};
+		class killLog {};
     };
 };

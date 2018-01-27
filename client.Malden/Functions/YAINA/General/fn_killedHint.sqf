@@ -4,18 +4,22 @@
 	returns: nothing
 */
 
-YAINA_last_killhint_player = 0;
+#include "defines.h"
+
+if(!hasInterface) exitWith {};
+
+YVAR(last_killhint_player) = 0;
 
 // Rather than searching through CfgWeapons / Magazines etc
 // each time for explosives (pain), just do it here
-YAINA_explosivesMap = [[],[]];
+YVAR(explosivesMap) = [[],[]];
 
 {
     _type = _x;
     {
         {
-            (YAINA_explosivesMap select 0) pushBack getText(configFile >> "CfgMagazines" >> _x >> "ammo");
-            (YAINA_explosivesMap select 1) pushBack getText(configFile >> "CfgMagazines" >> _x >> "displayName");
+            (YVAR(explosivesMap) select 0) pushBack getText(configFile >> "CfgMagazines" >> _x >> "ammo");
+            (YVAR(explosivesMap) select 1) pushBack getText(configFile >> "CfgMagazines" >> _x >> "displayName");
             true;
         } count (getArray(configFile >> "CfgWeapons" >> _type >> _x >> "Magazines"));
         true;
@@ -23,8 +27,8 @@ YAINA_explosivesMap = [[],[]];
     true;
 } count ["Throw", "Put"];
 
-// Make note of our original side
-player setVariable ["YAINA_side", playerSide, true];
+// Make note of our original side (unconsious etc.)
+player setVariable [QYVAR(side), playerSide, true];
 
 // And add our killed by hint
 ["AIS_Unconscious", {
@@ -47,7 +51,7 @@ player setVariable ["YAINA_side", playerSide, true];
     */
 
     // can't die twice in 5 seconds
-    if ((diag_tickTime - YAINA_last_killhint_player) < 5) exitWith {};
+    if ((diag_tickTime - YVAR(last_killhint_player)) < 5) exitWith {};
 
     _vehicle   = vehicle _source;
     _inVehicle = !(_vehicle isEqualTo _source);
@@ -92,6 +96,17 @@ player setVariable ["YAINA_side", playerSide, true];
 
         {
             _test = _x;
+
+            // For each weapon, we either have just the magazines, or the magazines of each of the muzzles
+            _magazines = getArray(configFile >> "CfgWeapons" >> _test >> "Magazines");
+
+            // If it's a turret etc. with multiple muzzles, gather them here
+            if (isClass(configFile >> "CfgWeapons" >> _test >> "Muzzles")) then {
+                {
+                    _magazines append getArray(configFile >> "CfgWeapons" >> _test >> _x >> "Magazines");
+                } count getArray(configFile >> "CfgWeapons" >> _test >> "Muzzles");
+            };
+
             _c = {
                 _ammo = getText (configFile >> "CfgMagazines" >> _x >> "ammo");
                 if (_ammo isEqualTo _projectile) exitWith {
@@ -110,18 +125,19 @@ player setVariable ["YAINA_side", playerSide, true];
                     };
                 };
                 false
-            } count (getArray(configFile >> "CfgWeapons" >> _test >> "Magazines"));
+            } count _magazines;
 
-            if !(_c isEqualTo 0) exitWith { true; };
-            false
+            // Time to look at muzzles for each of our weapons if we haven't found them
+            if !(_c isEqualTo 0) exitWith { true };
+            false;
         } count _weaponMap;
     };
 
     // If still nice dice, perhaps it was some explosives...
     if(isNil "_weapon") then {
-        _eidx = (YAINA_explosivesMap select 0) find _projectile;
+        _eidx = (YVAR(explosivesMap) select 0) find _projectile;
         if !(_eidx isEqualTo -1) then {
-            _weapon = (YAINA_explosivesMap select 1) select _eidx;
+            _weapon = (YVAR(explosivesMap) select 1) select _eidx;
         };
     };
 
@@ -133,7 +149,7 @@ player setVariable ["YAINA_side", playerSide, true];
         if (_aisDamageType == "falling") then {
             _weapon = "Falling";
         } else {
-            _weapon = format["%1 magic wand", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer)];
+            _weapon = format["%1 magic wand - %2", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer), _aisDamageType];
         };
     };
 
@@ -149,23 +165,32 @@ player setVariable ["YAINA_side", playerSide, true];
     if(_sourcePlayer isEqualTo _unit) then {
         _header = "<t color='#ff0000' size='2' shadow='1' shadowColor='#000000' align='center'>Suicide...</t><br/>";
     } else {
-        if((_sourcePlayer getVariable ["YAINA_side", side _sourcePlayer]) isEqualTo (_unit getVariable ["YAINA_side", side _unit])) then {
+        if((_sourcePlayer getVariable [QYVAR(side), side _sourcePlayer]) isEqualTo (_unit getVariable [QYVAR(side), side _unit])) then {
             _header = "<t color='#ff0000' size='2' shadow='1' shadowColor='#000000' align='center'>Friendly Fire...</t><br/>";
         };
     };
 
     _bodys  = "<t align='left'>";
-
     _bodys  = _bodys + (["Killer", name _sourcePlayer] call _elem);
     _bodys  = _bodys + (["Cause", _weapon] call _elem);
 
+    _feedb  = format["%1 killed by %2 (%3) with %4", name player, name _sourcePlayer, groupId (group _sourcePlayer), _weapon];
+
     if !((vehicle _sourcePlayer) isEqualTo _sourcePlayer) then {
-        _bodys = _bodys + (["Vehicle", getText(configFile >> "CfgVehicles" >> (typeOf (vehicle _sourcePlayer)) >> "displayName")] call _elem);
+        private _vs = getText(configFile >> "CfgVehicles" >> (typeOf (vehicle _sourcePlayer)) >> "displayName");
+        _bodys = _bodys + (["Vehicle", _vs] call _elem);
+        _feedb = _feedb + format[" from their %1", _vs];
     };
 
-    _bodys = _bodys + (["Range", format["%1 meter%2", round(_distance), ["s", ""] select (_distance isEqualTo 1)]] call _elem);
-    _hint = _header + _bodys + "</t>";
+    private _rtxt = format["%1 meter%2", round(_distance), ["s", ""] select (_distance isEqualTo 1)];
+    _bodys = _bodys + (["from", _rtxt] call _elem);
+    _feedb = _feedb + format[" range %1", _rtxt];
 
+
+    // We also dispatch to the server for the kill feed
+    [_sourcePlayer, format["%2", _feedTitle, _feedb]] remoteExec [QYFNC(killLog), 2];
+
+    _hint = _header + _bodys + "</t>";
     hint parseText _hint;
 
     /*
@@ -176,6 +201,6 @@ player setVariable ["YAINA_side", playerSide, true];
         (YAINA_last_killhint select 1) set [_lkid, diag_tickTime];
     };
     */
-    YAINA_last_killhint_player = diag_tickTime;
+    YVAR(last_killhint_player) = diag_tickTime;
 
 }] call CBAP_fnc_addEventHandler;
