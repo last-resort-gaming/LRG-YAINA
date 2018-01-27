@@ -23,6 +23,7 @@ class YAINA_MM_OBJ {
         class secureradar {};
         class securechopper {};
         class hqcoast {};
+        class hqresearch {};
     };
 
 };
