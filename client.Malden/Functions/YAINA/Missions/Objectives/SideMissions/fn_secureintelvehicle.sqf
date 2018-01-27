@@ -51,11 +51,13 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 ///////////////////////////////////////////////////////////
 
 private _AOSize = 400;
+private _ObjectPosition = [0,0];
 
-// pick a random spawn that's 2 * _AOSize away from players + other AOs
-private _ObjectPosition = [nil, BASE_PROTECTION_AREAS + ["water"] + GVAR(paradropMarkers), {
-    { _x distance2D _this < (_AOSize * 3) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [8,-1,0.6,30,0,false,objNull] isEqualTo [])
-}] call BIS_fnc_randomPos;
+while { _ObjectPosition isEqualTo [0,0] } do {
+    _ObjectPosition = [nil, ([] call FNC(getAOExclusions)) + ["water"], {
+        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [8,-1,0.6,30,0,false,objNull] isEqualTo [])
+    }] call BIS_fnc_randomPos;
+};
 
 // Suitable location for marker
 private _AOPosition = [_ObjectPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
