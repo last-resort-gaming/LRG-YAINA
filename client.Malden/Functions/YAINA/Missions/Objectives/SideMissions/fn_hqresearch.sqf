@@ -140,7 +140,7 @@ _groups = _spGroups;
         deleteVehicle _target;
 
         // Schedule blow up on server for DC protection
-        [30, getPos _target vectorAdd [0,1,0.5], [6,3]] remoteExec [QFNC(destroy), 2];
+        [30, getPos _target vectorAdd [0,1,0.5], [6,4,5]] remoteExec [QFNC(destroy), 2];
 
     }, [_target, _ns], {
         // on Abort;
