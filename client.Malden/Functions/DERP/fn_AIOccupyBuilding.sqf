@@ -9,6 +9,7 @@
  * 3: Radius to fill building(s) <SCALAR> default: 50
  * 4: 0: even filling, 1: building by building, 2: random filling <SCALAR> default: 0
  * 5: True to fill building(s) from top to bottom <BOOL> default: false
+ * 6: max number of positions to fill in any given building, default 0 (all)
  * Return Value:
  * Array of units not garrisoned
  *
@@ -17,7 +18,8 @@
  * Example:
  * [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call ace_common_fnc_garrison
 */
-params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", 50, [0]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]]];
+
+params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", 50, [0]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]], ["_maxFill", 0, [0]]];
 
 _unitsArray = _unitsArray select {alive _x && {!isPlayer _x}};
 
@@ -59,11 +61,20 @@ if (_topDownFilling) then {
             reverse _x;
         } forEach _buildingPos;
 
-        _buildingsIndexes pushBack _buildingPos;
+        if (_maxFill > 0) then {
+            _buildingsIndexes pushBack (_buildingPos select [0, floor(random (_maxFill+1))]);
+        } else {
+            _buildingsIndexes pushBack _buildingPos;
+        };
+
     } forEach _buildings;
 } else {
     {
-        _buildingsIndexes pushBack (_x buildingPos -1);
+        if(_maxFill > 0) then {
+            _buildingsIndexes pushBack ((_x buildingPos -1) select [0,floor(random (_maxFill+1))]);
+        } else {
+            _buildingsIndexes pushBack (_x buildingPos -1);
+        };
     } forEach _buildings;
 };
 

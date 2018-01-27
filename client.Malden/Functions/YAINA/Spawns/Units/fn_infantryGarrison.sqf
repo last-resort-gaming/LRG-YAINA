@@ -6,7 +6,7 @@
 
 #include "..\defines.h"
 
-params ["_pos", ["_radius", 30], ["_groupCount", 1], ["_AIOB_Positioning", 0], ["_skill", 2], ["_groups", []]];
+params ["_pos", ["_radius", 30], ["_groupCount", 1], ["_AIOB_Positioning", 2], ["_skill", 2], ["_maxFill", 4], ["_groups", []]];
 
 if (_groups isEqualTo []) then {
     for "_x" from 0 to _groupCount do {
@@ -17,7 +17,7 @@ if (_groups isEqualTo []) then {
 };
 
 private _allUnits = [_groups] call FNC(getUnitsFromGroupArray);
-_failed = [_pos, nil, _allUnits, _radius, _AIOB_Positioning, true] call DERP_fnc_AIOccupyBuilding;
+_failed = [_pos, nil, _allUnits, _radius, _AIOB_Positioning, true, _maxFill] call DERP_fnc_AIOccupyBuilding;
 
 // Remove any non-garrisoned units
 { deleteVehicle _x; } forEach _failed;

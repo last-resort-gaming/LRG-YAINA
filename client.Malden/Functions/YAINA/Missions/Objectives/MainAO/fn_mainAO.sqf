@@ -104,7 +104,7 @@ for "_x" from 0 to 8 do {
 };
 
 // Garrison squads around the HQ
-private _garrisonedGroups = ([_HQPosition, 30] call SFNC(infantryGarrison));
+private _garrisonedGroups = ([_HQPosition, 30, nil, nil, nil, 6] call SFNC(infantryGarrison));
 { _groups pushBack _x; true; } count _garrisonedGroups;
 
 // Garrison squads around the AO
