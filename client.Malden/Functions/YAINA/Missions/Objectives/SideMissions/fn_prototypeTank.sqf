@@ -131,7 +131,7 @@ _pfh = {
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
-    if (_stopRequested && {_stage < 2}) then { _stage = 2; };
+    if (_stopRequested && {_stage < 3}) then { _stage = 2; };
 
 
     // Now make sure the prototype tank is dead

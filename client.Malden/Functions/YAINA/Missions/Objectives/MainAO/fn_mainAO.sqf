@@ -27,7 +27,7 @@ private _AOSize = 600;
 _blacklistAreas = BASE_PROTECTION_AREAS + ["water"] + GVAR(paradropMarkers);
 
 _HQPosition = [nil, _blacklistAreas, {
-    { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
+    { _x distance2D _this < (_AOSize * 3) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
 }] call BIS_fnc_randomPos;
 
 // Its okay to bail, the mission manager will try again...

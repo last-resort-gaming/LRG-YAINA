@@ -27,7 +27,7 @@ Author:
 params [["_isGlobal", false]];
 
 if (_isGlobal isEqualTo true) then {
-    createSimpleObject ["Invisible", [-1000, -1000, 0]]
+    createSimpleObject ["Land_HelipadEmpty_F", [-1000, -1000, 0]]
 } else {
     createLocation ["Invisible", [-1000, -1000, 0], 0, 0]
 };

@@ -20,6 +20,7 @@ class YAINA_MM_OBJ {
         file = "Functions\YAINA\Missions\Objectives\SideMissions";
         class prototypeTank {};
         class secureintelvehicle {};
+        class secureradar {};
     };
 
 };
@@ -53,6 +54,7 @@ class YAINA_MM {
         class setupParadropActions { postInit = 1; };
         class openChute {};
         class findLargestBuilding {};
+        class destroy {};
     };
 
 };

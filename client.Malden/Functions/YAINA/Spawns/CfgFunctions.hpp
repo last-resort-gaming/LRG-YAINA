@@ -30,6 +30,7 @@ class YAINA_SPAWNS {
         class taskPatrol {};
         class sideMissionEnemy {};
         class smEnemyEastIntel {};
+        class populateArea {};
     };
 
     class Reinforcements {
