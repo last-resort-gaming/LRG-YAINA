@@ -19,8 +19,9 @@
  * [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call ace_common_fnc_garrison
 */
 
-params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", [0, 50], [[]]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]], ["_maxFill", 0, [0]]];
+params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", [0, 50], [[]]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]], ["_maxFill", 0, [0]], ["_excludes", [], [[]]]];
 
+_origUnits  = _unitsArray + [];
 _unitsArray = _unitsArray select {alive _x && {!isPlayer _x}};
 
 if (_startingPos isEqualTo [0,0,0]) exitWith {
@@ -35,7 +36,7 @@ private _buildings = [];
 
 if ((_fillingRadius select 1) < 30) then { _fillingRadius set [1,30]; };
 
-_buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius select 1] select { _x distance2D _startingPos > (_fillingRadius select 0) };
+_buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius select 1] select { _x distance2D _startingPos > (_fillingRadius select 0) && { !(_x in _excludes) } };
 _buildings = _buildings call BIS_fnc_arrayShuffle;
 
 if (count _buildings == 0) exitWith {
@@ -47,7 +48,7 @@ private _buildingsIndexes = [];
 
 if (_topDownFilling) then {
     {
-        private _buildingPos = _x buildingPos -1;
+        private _buildingPos = (_x buildingPos -1) select { !(_x in _excludes) };
 
         // Those reverse are necessary, as dumb as it is there's no better way to sort those subarrays in sqf
         {
@@ -70,9 +71,9 @@ if (_topDownFilling) then {
 } else {
     {
         if(_maxFill > 0) then {
-            _buildingsIndexes pushBack (((_x buildingPos -1) call BIS_fnc_arrayShuffle) select [0,_maxFill]);
+            _buildingsIndexes pushBack ((((_x buildingPos -1) select { !(_x in _excludes) }) call BIS_fnc_arrayShuffle) select [0,_maxFill]);
         } else {
-            _buildingsIndexes pushBack (_x buildingPos -1);
+            _buildingsIndexes pushBack ((_x buildingPos -1) select { !(_x in _excludes) });
         };
     } forEach _buildings;
 };
@@ -180,4 +181,4 @@ switch (_fillingType) do {
     _x disableAI "PATH";
 } forEach _placedUnits;
 
-_unitsArray
+_origUnits - _placedUnits

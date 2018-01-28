@@ -8,7 +8,7 @@ params ["_pos", "_radius"];
 
 private _a = [[],[],[]];
 
-_a set [0, nearestObjects [_pos, ["HOUSE"], _radius]];
+_a set [0, nearestObjects [_pos, ["HOUSE", "BUILDING"], _radius] select { !(isObjectHidden _x) }];
 if ((_a select 0) isEqualTo []) exitWith { [] };
 
 // Work out the positions and the number of them

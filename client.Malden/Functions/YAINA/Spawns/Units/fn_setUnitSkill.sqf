@@ -15,6 +15,7 @@ if (typeName _skillLevel isEqualTo "SCALAR") then {
 private _skillt = ["aimingAccuracy", "aimingShake", "aimingSpeed", "commanding", "courage", "endurance", "general", "reloadSpeed", "spotDistance", "spotTime"];
 private _skillv = call {
     if (_skillLevel isEqualTo "SME") exitWith { [0.10, 0.20, 0.20, 1, 1, 1, 1, 0.5, 0.50, 0.2] };
+    if (_skillLevel isEqualTo "MAO") exitWith { [0.10, 0.20, 0.20, 1, 1, 1, 1, 0.5, 0.50, 0.2] };
     if (_skillLevel isEqualTo 1)     exitWith { [0.25, 0.65, 0.40, 1, 1, 1, 1, 1.0, 0.75, 0.6] };
     if (_skillLevel isEqualTo 2)     exitWith { [0.35, 0.75, 0.55, 1, 1, 1, 1, 1.0, 0.80, 0.7] };
     if (_skillLevel isEqualTo 3)     exitWith { [0.50, 0.90, 0.70, 1, 1, 1, 1, 1.0, 1.00, 0.9] };

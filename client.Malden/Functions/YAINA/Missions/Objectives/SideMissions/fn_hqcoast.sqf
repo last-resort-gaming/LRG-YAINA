@@ -103,7 +103,7 @@ private _hqg = [getPos _hq, [0,30], nil, nil, nil, 6] call SFNC(infantryGarrison
 { _groups pushBack _x; _x setGroupIdGlobal [format["%1_hqg%2", _missionID, _forEachIndex]]; } forEach _hqg;
 
 // Then the rest of the AO
-([_missionID, _ObjectPosition, _AOSize/2, 2, [30, 75]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([_missionID, _ObjectPosition, _AOSize/2, [2, 30, 75]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
 
 
 // Bring in the Markers

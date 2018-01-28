@@ -188,7 +188,7 @@ _pfh = {
 
                     // If it's night, we fire a flare above them and hope they see it...
                     if (daytime > 20 || { daytime < 4}) then {
-                        [{ _v = "F_20mm_Red" createVehicle (_this select 0); _v setVelocity [0,0,-0.5] }, [_target modelToWorld [random[-30,0,30],10 + random 30,160]], _sleepTime] call CBAP_fnc_waitAndExecute;
+                        [{ _v = "F_20mm_Red" createVehicle (_this select 0); _v setVelocity [0,0,-0.5] }, [_target modelToWorld [-30 + random 60,10 + random 30,160]], _sleepTime] call CBAP_fnc_waitAndExecute;
                     };
 
                     // Then we sleep for a long time between fires, between 10 and 20 minutes

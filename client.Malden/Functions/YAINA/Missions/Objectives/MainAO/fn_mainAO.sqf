@@ -66,19 +66,19 @@ private _hiddenTerrainKey = format["HT_%1", _missionID];
 // Wait for the server to send us back
 waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 
-_HQElements         = [_HQPosition, random 360, call _hqFunc] call BIS_fnc_ObjectsMapper;
-_buildings          = _HQElements;
+_HQElements = [_HQPosition, random 360, call _hqFunc] call BIS_fnc_ObjectsMapper;
+_buildings  = _HQElements;
 
 // Bring in an officer to one of the buildings
 _officerPos = call {
-    _officerBuilding    = selectRandom (nearestObjects [_HQPosition, ["house", "building"], 30] select { !(isObjectHidden _x || count (_x buildingPos -1) isEqualTo 0) });
-    _officerBuildingPos = _officerBuilding buildingPos -1;
-    _officerBuildingPos select round(random(count (_officerBuildingPos) - 1));
+    ([_HQPosition, 30] call FNC(findLargestBuilding)) params ["_officerBuilding", "_officerBuildingPositions"];
+    selectRandom _officerBuildingPositions;
 };
 
 // Spawn Officer
 _officerGroup = createGroup east;
-_officer = _officerGroup createUnit ["O_Officer_F", _officerPos ,[],0,"NONE"];
+_officer = _officerGroup createUnit ["O_Officer_F", _officerPos, [],0,"NONE"];
+_officer setPos _officerPos;
 _groups pushBack _officerGroup;
 
 // Add event handler on that officer so we know who dun it
@@ -90,33 +90,31 @@ _officer addEventHandler ["Killed", {
         if (_killer isKindOf "UAV") then {
             _instigatorReal = (UAVControl _killer) select 0;
         } else {
-            // Dunno...someoen
             _instigatorReal = _killer;
         };
     };
 
-    parseText format ["<t align='center'><t size='2'>Main Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>Well done %1! You have killed the Officer stationed in the HQ.<br/><br/>Now, move in on the HQ and defend it from the enemy forces that remain in the area!", name _instigatorReal] call YFNC(globalHint);
+    parseText format ["<t align='center'><t size='2'>Main Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>Well done %1! You have killed the Officer stationed in the HQ.<br/><br/>Now, move in on the HQ and defend it from the enemy forces that remain in the area!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
 }];
 
-// Spawn some Infantry Groups with small patrol radius
-for "_x" from 0 to 8 do {
-    _groups pushBack ([[_AOPosition, 0, _AOSize] call YFNC(getPosAround), ((_AOSize/8) + (random _AOSize/4))  ] call SFNC(infantryPatrol));
-};
 
-// Garrison squads around the HQ
-private _garrisonedGroups = ([_HQPosition, [0,30], nil, nil, nil, 6] call SFNC(infantryGarrison));
-{ _groups pushBack _x; true; } count _garrisonedGroups;
+// Garrison Units around HQ
+private _hqg = [_HQPosition, [0,50], 3, nil, nil, 6] call SFNC(infantryGarrison);
+{ _groups pushBack _x; _x setGroupIdGlobal [format["%1_hqg%2", _missionID, _forEachIndex]]; } forEach _hqg;
 
-// Garrison squads around the AO
-_garrisonedGroups = ([_AOPosition + [0], [30,_AOSize], 5] call SFNC(infantryGarrison));
-{ _groups pushBack _x; true; } count _garrisonedGroups;
+// Then the rest of the AO
+// mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand
+([_missionID, _AOPosition + [0], _AOSize*0.9, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
 
+_groups append _spGroups;
+_vehicles append _spVehs;
 
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 // Add everything to zeus
-[_buildings + [_officer], true] call YFNC(addEditableObjects);
+{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
+[ _vehicles + _buildings, true] call YFNC(addEditableObjects);
 
 ///////////////////////////////////////////////////////////
 // Start Mission
