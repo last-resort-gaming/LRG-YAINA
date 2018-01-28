@@ -24,7 +24,7 @@ private _kc = objNull;
 private _kt = "AI    ";
 
 _tmp = (allPlayers select { owner _x isEqualTo _ko } );
-if !(_tmp isEqualTo []) then {
+if !(_tmp isEqualTo [] && { YAINA_MM_hcList find (name (_tmp select 0)) isEqualTo -1 }) then {
     _kc = _tmp select 0;
     _kt = ["ZEUS  ", "PLAYER"] select (_kc isEqualTo _killer);
 };
