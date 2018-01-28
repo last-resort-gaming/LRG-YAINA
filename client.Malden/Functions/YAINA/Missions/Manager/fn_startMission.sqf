@@ -10,6 +10,11 @@
 params ["_start"];
 private ["_hcList", "_sortedHCs", "_dispatched"];
 
+// If we are asked to start a PM, reset the PM timer, this covers #mmstart arty etc.
+if (_start in GVAR(lPM)) then {
+    GVAR(nextPM) = -1;
+};
+
 // Pick an HC to run on base on min number of non CLEANUP missions currently running
 _hcList = [[], []];
 {

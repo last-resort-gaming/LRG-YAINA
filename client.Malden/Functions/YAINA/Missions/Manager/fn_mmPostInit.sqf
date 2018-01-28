@@ -10,7 +10,7 @@
 if !(isServer || !hasInterface) exitWith {};
 
 // Where we store our local MissionID
-GVAR(paused) = true;
+GVAR(paused) = false;
 GVAR(localMissionID) = 0;
 GVAR(localRunningMissions)  = [[], []];   // [Mission ID, Mission ID, ...], [Mission Args, Mission Args, ...]]
 GVAR(stopRequests) = []; // List of mission IDs that have been requested for force completion

@@ -16,6 +16,11 @@ class YAINA_MM_OBJ {
         class radioTower {};
     };
 
+    class Priority {
+        file = "Functions\YAINA\Missions\Objectives\Priority";
+        class arty {};
+    };
+
     class SideMissions {
         file = "Functions\YAINA\Missions\Objectives\SideMissions";
         class prototypeTank {};
