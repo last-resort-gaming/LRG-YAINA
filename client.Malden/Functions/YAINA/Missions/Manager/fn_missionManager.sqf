@@ -19,7 +19,7 @@ GVAR(lIO) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA
 GVAR(lSM) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SideMissions")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
 
 // Not all Priority Targets are created equal
-GVAR(lPM) = ["arty", "arty", "arty"] apply { format["YAINA_MM_OBJ_fnc_%1", _x] };
+GVAR(lPM) = ["arty", "arty", "arty", "aa"] apply { format["YAINA_MM_OBJ_fnc_%1", _x] };
 
 // First Priority Mission occurs at between 30 and 60 minutes after server start
 GVAR(nextPM) = -1;

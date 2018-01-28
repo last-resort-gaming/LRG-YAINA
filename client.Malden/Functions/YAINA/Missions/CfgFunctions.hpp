@@ -19,6 +19,7 @@ class YAINA_MM_OBJ {
     class Priority {
         file = "Functions\YAINA\Missions\Objectives\Priority";
         class arty {};
+        class aa {};
     };
 
     class SideMissions {
