@@ -149,7 +149,7 @@ _groups = _spGroups;
         [[west, "HQ"], format["%1 failed to set the explosives, we need to try again!", name player]] remoteExec ["sideChat"];
     }] call AIS_Core_fnc_Progress_ShowBar;
 
-}, [_ns], 6, false, true, "", format["alive _target && { serverTime - (_target getVariable['%1', 0]) > 12 } }", QVAR(explosivesPlanting)], 5, false] call YFNC(addActionMP);
+}, [_ns], 6, false, true, "", format["alive _target && { (serverTime - (_target getVariable['%1', 0])) > 12 }", QVAR(explosivesPlanting)], 5, false] call YFNC(addActionMP);
 
 // Now onto the easier completion PFH
 _pfh = {
