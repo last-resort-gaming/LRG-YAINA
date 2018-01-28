@@ -28,22 +28,16 @@ private _AOSize = 400;
 // pick a random MAIN AO spawn that's 2 * _AOSize away from players + other AOs
 _blacklistAreas = BASE_PROTECTION_AREAS + ["water"] + GVAR(paradropMarkers);
 
-_CQPosition = [nil, _blacklistAreas, {
-    { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
-}] call BIS_fnc_randomPos;
-
-
-// Its okay to bail, the mission manager will try again...
-if (_CQPosition isEqualTo []) exitWith {
-    TRACE_1("conquest: Failed to find location", _location);
+_CQPosition = [0,0];
+while { _CQPosition isEqualTo [0,0] } do {
+    // pick a random spawn that's 2 * _AOSize away from players + other AOs
+    _CQPosition = [nil, call FNC(getAOExclusions) + ["water"], {
+        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false] isEqualTo [])
+    }] call BIS_fnc_randomPos;
 };
 
 // Now find a location for our AO center position fuzz the HQ...
 _AOPosition = [_CQPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
-
-if (_AOPosition isEqualTo []) exitWith {
-    TRACE_1("findSafePos: Failed to find safe location from", _CQPosition);
-};
 
 // Find our nearest town + direction for mission description
 _nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
@@ -88,6 +82,7 @@ if (_CQBuildingInfo isEqualTo []) exitWith {};
 private _CQBuilding = _CQBuildingInfo select 0;
 
 _priorityGroup = createGroup independent;
+_priorityGroup setGroupIdGlobal ['Conquest garrison'];
 _groups pushBack _priorityGroup;
 
 _garrisonpos = _CQBuildingInfo select 1;

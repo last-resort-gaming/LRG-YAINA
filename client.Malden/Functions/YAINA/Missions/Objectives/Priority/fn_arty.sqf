@@ -104,7 +104,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([_missionID, _ObjectPosition, _AOSize/2, 0, nil, 6, 0, 1, 0, 2] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([_missionID, _ObjectPosition, _AOSize/2, [0,0,0], [3,2], nil, nil, [0,0], [0,0], [0,0], [0,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
 
 _groups append _spGroups;
 _vehicles append _spVehs;
