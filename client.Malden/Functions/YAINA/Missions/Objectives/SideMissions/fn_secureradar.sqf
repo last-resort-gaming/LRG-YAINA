@@ -102,8 +102,8 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 
 // Add to Zeus
-_vehicles = _vehicles + _spVehs;
-_groups = _spGroups;
+_vehicles append _spVehs;
+_groups append _spGroups;
 
 // Add everything to zeus
 { [units _x] call YFNC(addEditableObjects); true; } count _groups;

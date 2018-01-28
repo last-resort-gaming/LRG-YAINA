@@ -31,18 +31,6 @@ if (_center isEqualTo [0,0]) exitWith {};
 private _groups = [];
 private _vehicles = [];
 
-// fix mins
-_infMin = (_infMin - 1) max 0;
-_sniperMin = (_sniperMin - 1) max 0;
-_vehMin = (_vehMin - 1) max 0;
-_aaMin = (_aaMin - 1) max 0;
-
-// fix rands
-INCR(_infRand);
-INCR(_sniperRand);
-INCR(_vehRand);
-INCR(_aaRand);
-
 ///////////////////////////////////////////////////////////
 // GARRISONS
 ///////////////////////////////////////////////////////////
@@ -54,71 +42,78 @@ private _garrisonedGroups = ([_center, _garrisonDist, _garrisons] call FNC(infan
 // INFANTRY
 ///////////////////////////////////////////////////////////
 
-for "_x" from 0 to (_infMin + floor(random _infRand)) do {
-	_rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
-	_g = [_rpos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> [INF_TEAMS] call BIS_fnc_selectRandom)] call BIS_fnc_spawnGroup;
-	_g setGroupIdGlobal [format["%1_inf%2", _missionID, _x]];
-	[_g, _center, _radius/1.5] call CBAP_fnc_taskPatrol;
-	[_g, 2] call FNC(setUnitSkill);
-	_groups pushBack _g;
+if !((_infMin + _infRand) isEqualTo 0) then {
+    for "_x" from 0 to (((_infMin-1) max 0) + floor(random (_infRand+1))) do {
+        _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
+        _g = [_rpos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> [INF_TEAMS] call BIS_fnc_selectRandom)] call BIS_fnc_spawnGroup;
+        _g setGroupIdGlobal [format["%1_inf%2", _missionID, _x]];
+        [_g, _center, _radius/1.5] call CBAP_fnc_taskPatrol;
+        [_g, 2] call FNC(setUnitSkill);
+        _groups pushBack _g;
+    };
 };
 
 ///////////////////////////////////////////////////////////
 // SNIPER TEAMS
 ///////////////////////////////////////////////////////////
-
-for "_x" from 0 to (_sniperMin + floor(random _sniperRand)) do {
-	_rpos = [_center, _radius, 100, 20] call BIS_fnc_findOverwatch;
-	_g = [_rpos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_SniperTeam")] call BIS_fnc_spawnGroup;
-	_g setGroupIdGlobal [format["%1_sniper%2", _missionID, _x]];
-	_g setBehaviour "COMBAT";
-	_g setCombatMode "RED";
-	[_g, 3] call FNC(setUnitSkill);
-	_groups pushBack _g;
+if !((_sniperMin + _sniperRand) isEqualTo 0) then {
+    for "_x" from 0 to (((_sniperMin-1) max 0) + floor(random (_sniperRand+1))) do {
+        _rpos = [_center, _radius, 100, 20] call BIS_fnc_findOverwatch;
+        _g = [_rpos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_SniperTeam")] call BIS_fnc_spawnGroup;
+        _g setGroupIdGlobal [format["%1_sniper%2", _missionID, _x]];
+        _g setBehaviour "COMBAT";
+        _g setCombatMode "RED";
+        [_g, 3] call FNC(setUnitSkill);
+        _groups pushBack _g;
+    };
 };
 
 ///////////////////////////////////////////////////////////
 // STD VEHICLES
 ///////////////////////////////////////////////////////////
 
-for "_x" from 0 to (_vehMin + floor(random _vehRand)) do {
+if !((_vehMin + _vehRand) isEqualTo 0) then {
+    for "_x" from 0 to (((_vehMin-1) max 0) + floor(random (_vehRand+1))) do {
 
-    _g = createGroup east;
-    _g setGroupIdGlobal [format ["%1_Veh%2", _missionID, _x]];
+        _g = createGroup east;
+        _g setGroupIdGlobal [format ["%1_Veh%2", _missionID, _x]];
 
-    _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
-    _v = [VEH_TYPES] call BIS_fnc_selectRandom createVehicle _rpos;
-    _v lock 3;
+        _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
+        _v = [VEH_TYPES] call BIS_fnc_selectRandom createVehicle _rpos;
+        _v lock 3;
 
-    [_v, _g] call BIS_fnc_spawnCrew;
-    [_g, _center, _radius/2] call CBAP_fnc_taskPatrol;
-    [_g, 3] call FNC(setUnitSkill);
-    if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
+        [_v, _g] call BIS_fnc_spawnCrew;
+        [_g, _center, _radius/2] call CBAP_fnc_taskPatrol;
+        [_g, 3] call FNC(setUnitSkill);
+        if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-    _groups pushBack _g;
-    _vehicles pushBack _v;
+        _groups pushBack _g;
+        _vehicles pushBack _v;
+    };
 };
 
 ///////////////////////////////////////////////////////////
 // TIGRIS
 ///////////////////////////////////////////////////////////
 
-for "_x" from 0 to (_aaMin + floor(random _aaRand)) do {
+if !((_aaMin + _aaRand) isEqualTo 0) then {
+    for "_x" from 0 to (((_aaMin-1) max 0) + floor(random (_aaRand+1))) do {
 
-    _g = createGroup east;
-    _g setGroupIdGlobal [format ["%1_VehAA%2", _missionID, _x]];
+        _g = createGroup east;
+        _g setGroupIdGlobal [format ["%1_VehAA%2", _missionID, _x]];
 
-    _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
-    _v = "O_APC_Tracked_02_AA_F" createVehicle _rpos ;
-    _v lock 3;
+        _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
+        _v = "O_APC_Tracked_02_AA_F" createVehicle _rpos ;
+        _v lock 3;
 
-    [_v, _g] call BIS_fnc_spawnCrew;
-    [_g, _center, _radius / 2] call CBAP_fnc_taskPatrol;
-    [_g, 4] call FNC(setUnitSkill);
-    if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
+        [_v, _g] call BIS_fnc_spawnCrew;
+        [_g, _center, _radius / 2] call CBAP_fnc_taskPatrol;
+        [_g, 4] call FNC(setUnitSkill);
+        if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-    _groups pushBack _g;
-    _vehicles pushBack _v;
+        _groups pushBack _g;
+        _vehicles pushBack _v;
+    };
 };
 
 [_groups, _vehicles]
