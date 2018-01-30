@@ -56,7 +56,7 @@ for "_x" from 1 to (_infMin + floor(random (_infRand+1))) do {
     _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
     _g = [_rpos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> selectRandom [INF])] call BIS_fnc_spawnGroup;
     _g setGroupIdGlobal [format["%1_inf%2", _missionID, _x]];
-    [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
+    [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
     [_g, _infSkill] call FNC(setUnitSkill);
     _groups pushBack _g;
 };
@@ -69,7 +69,7 @@ for "_x" from 1 to (_infaaMin + floor(random (_infaaRand+1))) do {
     _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
     _g = [_rpos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam_AA")] call BIS_fnc_spawnGroup;
     _g setGroupIdGlobal [format["%1_infaa%2", _missionID, _x]];
-    [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
+    [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
     [_g, _infaaSkill] call FNC(setUnitSkill);
     _groups pushBack _g;
 };
@@ -82,7 +82,7 @@ for "_x" from 1 to (_infatMin + floor(random (_infatRand+1))) do {
     _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
     _g = [_rpos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfTeam_AA")] call BIS_fnc_spawnGroup;
     _g setGroupIdGlobal [format["%1_infat%2", _missionID, _x]];
-    [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
+    [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
     [_g, _infatSkill] call FNC(setUnitSkill);
     _groups pushBack _g;
 };
@@ -116,7 +116,7 @@ for "_x" from 1 to (_vehaaMin + floor(random (_vehaaRand+1))) do {
         _v lock 2;
 
         [_v, _g] call BIS_fnc_spawnCrew;
-        [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
+        [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _vehaaSkill] call FNC(setUnitSkill);
         if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -141,7 +141,7 @@ for "_x" from 1 to (_vehmrapMin + floor(random (_vehmrapRand+1))) do {
         _v lock 3;
 
         [_v, _g] call BIS_fnc_spawnCrew;
-        [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
+        [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _vehmrapSkill] call FNC(setUnitSkill);
         if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -166,7 +166,7 @@ for "_x" from 1 to (_vehrandMin + floor(random (_vehrandRand+1))) do {
         _v lock 3;
 
         [_v, _g] call BIS_fnc_spawnCrew;
-        [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
+        [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _vehrandSkill] call FNC(setUnitSkill);
         if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 

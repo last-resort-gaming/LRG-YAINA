@@ -10,8 +10,8 @@ if(isServer) then {
 
     // we dispatch a list of server commands to clients
     GVAR(commands) = [
-        ["help", "credits", "addcredits", "ugmsg", "mmpause", "mmstart", "mmlist", "mmstop", "report", "setadmin", "settrait", "revive","credits2"],
-        [0, 0, 3, 1, 3, 3, 3, 3, 0, 3, 3, 3, 0]
+        ["help", "credits", "addcredits", "ugmsg", "mmpause", "mmstart", "mmlist", "mmstop", "report", "setadmin", "settrait", "revive","zeuslist", "zeusadd", "zeusdel"],
+        [0, 0, 3, 1, 3, 3, 3, 3, 0, 3, 3, 3, 3,3,3]
     ];
     publicVariable QVAR(commands);
 

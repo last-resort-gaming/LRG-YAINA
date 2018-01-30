@@ -16,8 +16,8 @@ REM move up to root dir to make life easier
 pushd ..
 
 REM Copy yaina.pbo to mpmissions of server and local cache so we don't have to download it
-copy /y client.Malden.pbo "%SERVER_DIR%\mpmissions\yaina.Malden.pbo"
-copy /y client.Malden.pbo "%MP_MISSIONS_CACHE_DIR%\yaina.Malden.pbo"
+copy /y client.Altis.pbo "%SERVER_DIR%\mpmissions\yaina.Altis.pbo"
+copy /y client.Altis.pbo "%MP_MISSIONS_CACHE_DIR%\yaina.Altis.pbo"
 
 REM Copy keys
 copy /y keys\* "%SERVER_DIR%\keys"

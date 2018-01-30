@@ -6,7 +6,7 @@ for %%F in ("%~dp0..") do set projectName=%%~nxF
 
 REM Move up to parent dir, then binaries
 pushd ..
-pushd client.Malden
+pushd client.Altis
 
 "%CFGCONVERT%" -bin -dst mission.sqm.bin mission.sqm
 move /y mission.sqm.bin mission.sqm
@@ -16,10 +16,10 @@ popd
 
 echo %cd%
 
-"%ADDONBUILDER%" "%cd%\client.Malden" "%cd%" -include="%~dp0genPBO-in.lst" -clear
+"%ADDONBUILDER%" "%cd%\client.Altis" "%cd%" -include="%~dp0genPBO-in.lst" -clear
 REM copy %projectName%.pbo C:\Arma3Server\SteamFiles\mpmissions
 
-pushd client
+pushd client.Altis
 
 REM UnBinarize
 "%CFGCONVERT%" -txt -dst mission.sqm.txt mission.sqm

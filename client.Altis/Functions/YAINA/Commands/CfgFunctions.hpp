@@ -25,5 +25,8 @@ class YAINA_CMD {
         class setadmin {};
         class settrait {};
         class revive {};
+        class zeusadd {};
+        class zeusdel {};
+        class zeuslist {};
     };
 };

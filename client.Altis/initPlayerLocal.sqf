@@ -10,8 +10,12 @@ if (!isDedicated) then {
 
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 
-    [] execVM "scripts\QS\QS_icons.sqf";
+    // As long as we aren't zeus
+    if !(side player isEqualTo sidelogic) then {
 
-    // Repack
-    [] execVM "scripts\outlawled\magRepack\MagRepack_init_sv.sqf";
+        [] execVM "scripts\QS\QS_icons.sqf";
+
+        // Repack
+        [] execVM "scripts\outlawled\magRepack\MagRepack_init_sv.sqf";
+    };
 };

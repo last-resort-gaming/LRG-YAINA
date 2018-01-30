@@ -9,7 +9,7 @@
 if !(isServer) exitWith {};
 
 // Bring in admins from DB
-call YFNC(loadAdmins);
+call YFNC(loadDB);
 
 YVAR(ownerIDs) = [[],[]]; // [[1,2,3,...], [[uid, profileName, _owner ID]]
 YVAR(addActionMPList) = [];

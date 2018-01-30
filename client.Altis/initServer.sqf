@@ -20,3 +20,5 @@ publicVariable "CBA_display_ingame_warnings";
 ///////////////////////////////////////////////////////////
 private _mapInit = missionNamespace getVariable format["YAINA_INIT_fnc_server%1", worldName];
 if (!isNil "_mapInit") then { call _mapInit; };
+
+SERVER_COMMAND_PASSWORD = "ASUO1g10n8bn";

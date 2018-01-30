@@ -26,7 +26,7 @@ class YAINA {
 		class crewNames { postInit = 1; };
 		class testTraits {};
 		class setUnitTrait;
-		class loadAdmins {};
+		class loadDB {};
 		class log {};
 		class getAdminLevel {};
 		class addActionMP {};
