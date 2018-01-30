@@ -4,20 +4,6 @@
 	returns: nothing
 */
 
-if (isServer) then {
-
-    // Ensure the airstrip lights are visible from afar (whole world)
-    if (worldName isEqualTo "Malden") then {
-        _lightViewDistance = 2 * worldSize * sqrt 2;
-        _navLights         = getMarkerPos "Base" nearObjects ["Land_NavigLight", 500];
-
-        { _x setLightFlareMaxDistance _lightViewDistance; } forEach _navLights;
-
-        // And disable damage on them
-        { _x allowDamage false; } forEach _navLights;
-    };
-};
-
 if (!isDedicated) then {
 
     enableSentences false;

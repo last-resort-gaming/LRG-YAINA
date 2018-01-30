@@ -6,7 +6,7 @@
 
 #include "defines.h";
 
-if (worldName isEqualTo "Tanoa") exitWith {};
+if !(worldName isEqualTo "Malden") exitWith {};
 
 private _flags = [
     [Flag_Base, "HQ"],

@@ -4,6 +4,8 @@
 	returns: nothing
 */
 
+#include "defines.h"
+
 private _mert = ["MERT_UAV"] call YAINA_fnc_testTraits;
 
 {

@@ -8,3 +8,4 @@
 #include "Commands\CfgFunctions.hpp"
 #include "Metrics\CfgFunctions.hpp"
 #include "UAVRestrictions\CfgFunctions.hpp"
+#include "Init\CfgFunctions.hpp"
