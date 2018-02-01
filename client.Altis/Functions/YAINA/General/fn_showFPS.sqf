@@ -25,8 +25,8 @@ if ( isServer ) then {
         _source = "local";
         _markerLocal = true;
     } else {
-        if ((profileName select [0,3]) isEqualTo "HC_") then {
-            _position = floor(parseNumber(profileName select [3])) + 1;
+        if ((profileName select [0,2]) isEqualTo "HC") then {
+            _position = floor(parseNumber(profileName select [2])) + 1;
             _source = profileName;
         };
     };

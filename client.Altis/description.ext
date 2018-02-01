@@ -56,7 +56,7 @@ wreckRemovalMaxTime = 120;
 //-------------------------Respawn
 respawn = 3;
 respawnDelay = 10;
-respawnOnStart = -1;
+respawnOnStart = 0;
 
 /******************************************************************************
 * SCRIPT ADDITIONS
