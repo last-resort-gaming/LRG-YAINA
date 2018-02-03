@@ -84,6 +84,15 @@ _uav setPylonLoadOut [2, "PylonRack_Bomb_GBU12_x2", true, [0]];
 TM setVariable ["YAINA_VEH_Drivers", ["PILOT", "MERT"], true];
 [TM, false, 10, 1000, []] call YAINA_VEH_fnc_initVehicle;
 
+///////////////////////////////////////////////////////////
+// STATIC MEDICSTATIONS
+///////////////////////////////////////////////////////////
+{
+    _x setVariable ["AIS_REQUIRE_MEDIKIT", false, true];
+    _x setVariable ["AIS_NO_CONSUME_FAKS", true, true];
+    [_x, 20] call AIS_Core_fnc_addMedicStation;
+} forEach [MedicStation1];
+
 
 ///////////////////////////////////////////////////////////
 // VEHICLES
