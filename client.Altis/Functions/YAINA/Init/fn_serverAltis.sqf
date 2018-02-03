@@ -4,6 +4,8 @@
 	returns: nothing
 */
 
+#include "..\defines.h"
+
 ///////////////////////////////////////////////////////////
 // RUNWAY LIGHTING
 ///////////////////////////////////////////////////////////
@@ -27,13 +29,6 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
     _uav setPylonLoadOut [2, "PylonRack_Bomb_GBU12_x2", true, [0]];
     [_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
 } forEach [UAV1, UAV2];
-
-_uav = UAV3;
-{ _uav removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") } forEach getPylonMagazines _uav;
-{ _uav animate [_x, 1, true]; } forEach getArray (configFile >> "CfgVehicles" >> "B_UAV_05_F" >> "AircraftAutomatedSystems" >> "wingFoldAnimations");
-_uav setPylonLoadOut [1, "PylonMissile_1Rnd_BombCluster_01_F", true, [0]];
-_uav setPylonLoadOut [2, "PylonRack_Bomb_GBU12_x2", true, [0]];
-[_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
 
 ///////////////////////////////////////////////////////////
 // REPAIR
@@ -93,6 +88,11 @@ TM setVariable ["YAINA_VEH_Drivers", ["PILOT", "MERT"], true];
     [_x, 20] call AIS_Core_fnc_addMedicStation;
 } forEach [MedicStation1];
 
+///////////////////////////////////////////////////////////
+// AA Ammo
+///////////////////////////////////////////////////////////
+
+{ _x addEventHandler ["Fired", {(_this select 0) setvehicleammo 1}] } forEach AIR_DEFENCES;
 
 ///////////////////////////////////////////////////////////
 // VEHICLES
