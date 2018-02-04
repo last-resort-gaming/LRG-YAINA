@@ -4,7 +4,7 @@
 
 author = Last Resort Gaming;
 onLoadName = "LRG Invade and Annex 1.0";
-OnLoadMission = "Welcome to the Last Resort Gaming Invade and Annex Public Server.";
+OnLoadMission = "Welcome to the Last Resort Gaming Invade and Annex Public Server. Powered by YAINA";
 loadScreen = "Data\Billboards\billboard.paa";
 overviewPicture = "Data\Billboards\billboard.paa";
 
@@ -80,6 +80,7 @@ respawnDialog=0;
 #include "Functions\AIS\Effects\BarDlg.hpp"
 #include "Functions\YAINA\General\crewNamesTitles.hpp"
 #include "Functions\YAINA\Tablet\GUIDefines.hpp"
+#include "scripts\infistar\infiSTAR_AdminMenu.hpp"
 
 /******************************************************************************
 * FUNCTIONS
