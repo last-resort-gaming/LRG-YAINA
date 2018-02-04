@@ -402,8 +402,8 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="Last Resort Gaming || Invade & Annex || Altis";
-		overviewText="Last Resort Gaming - Invade and Annex";
+		briefingName="Zombies and Demons || Altis";
+		overviewText="Zombies and Demons || Altis";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
@@ -809,7 +809,6 @@ class Mission
 			class Attributes
 			{
 				name="inf_gate";
-				disableSimulation=1;
 			};
 			id=28;
 			type="Land_BarGate_F";
@@ -5168,7 +5167,7 @@ class Mission
 			class Attributes
 			{
 				name="SA_JET";
-				condition="call{{_x isKindOf ""Plane"" && !(_x isKindOf ""UAV"") && speed _x < 1} count thislist > 0;}";
+				condition="{_x isKindOf ""Plane"" && !(_x isKindOf ""UAV"") && speed _x < 1} count thislist > 0;";
 				onActivation="0 = [""Plane"", (thisList select 0), 30, 30] execVM ""scripts\YAINA\Service\general.sqf"";";
 				sizeA=10;
 				sizeB=10;
@@ -5206,7 +5205,7 @@ class Mission
 			class Attributes
 			{
 				name="SP_UAV";
-				condition="call{this}";
+				condition="this";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
@@ -5225,7 +5224,7 @@ class Mission
 			class Attributes
 			{
 				name="SP_VEH";
-				condition="call{this}";
+				condition="this";
 				sizeA=4;
 				sizeB=4;
 				repeatable=1;
@@ -5243,7 +5242,7 @@ class Mission
 			class Attributes
 			{
 				name="SP_HELI";
-				condition="call{this}";
+				condition="this";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
@@ -10923,8 +10922,8 @@ class Mission
 			class Attributes
 			{
 				name="SP_CARGO";
-				condition="call{this}";
-				onActivation="call{diag_log format [""Entered: %1"", thisList];}";
+				condition="this";
+				onActivation="diag_log format [""Entered: %1"", thisList];";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
@@ -12461,7 +12460,7 @@ class Mission
 			class Attributes
 			{
 				name="SP_Jet";
-				condition="call{this}";
+				condition="this";
 				sizeA=9;
 				sizeB=9;
 				sizeC=6;
@@ -12681,9 +12680,9 @@ class Mission
 			angle=2.5293477;
 			class Attributes
 			{
-				condition="call{this}";
-				onActivation="call{inf_gate animate [""Door_1_rot"", 1];}";
-				onDeactivation="call{inf_gate animate [""Door_1_rot"", 0];}";
+				condition="this";
+				onActivation="inf_gate animate [""Door_1_rot"", 1];";
+				onDeactivation="inf_gate animate [""Door_1_rot"", 0];";
 				sizeA=4;
 				sizeB=6;
 				sizeC=7;
@@ -12983,7 +12982,7 @@ class Mission
 				position[]={1080,0,29888};
 			};
 			name="ZeusAgro";
-			init="call{this setVariable [""showNotification"", false];}";
+			init="this setVariable [""showNotification"", false];";
 			id=1731;
 			type="ModuleCurator_F";
 			atlOffset=185.97;
@@ -25448,7 +25447,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="call{[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];";
 						description="MERT - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -25563,7 +25562,7 @@ class Mission
 					{
 						skill=1;
 						rank="SERGEANT";
-						init="call{[[""Medic"", ""MERT"", ""MERT_UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="[[""Medic"", ""MERT"", ""MERT_UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];";
 						description="MERT - UAV Paramedic";
 						isPlayable=1;
 						class Inventory
@@ -25706,7 +25705,7 @@ class Mission
 					{
 						skill=1;
 						rank="SERGEANT";
-						init="call{this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;}";
+						init="this setVariable [""AIS_REQUIRE_MEDIKIT"", false];" \n "[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;";
 						description="MERT - Paramedic";
 						isPlayable=1;
 						class Inventory
@@ -26056,7 +26055,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Fox - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -26152,7 +26151,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Squirrel- Pilot";
 						isPlayable=1;
 						class Inventory
@@ -26248,7 +26247,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="call{[[""PILOT""], this] call YAINA_fnc_setUnitTrait;}";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Gator - Pilot";
 						isPlayer=1;
 						isPlayable=1;
@@ -26345,7 +26344,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Llama - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -26442,7 +26441,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "";
+						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
 						description="Badger - Pilot";
 						isPlayable=1;
 						class Inventory
