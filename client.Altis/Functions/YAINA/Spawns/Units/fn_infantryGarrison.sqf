@@ -6,11 +6,17 @@
 
 #include "..\defines.h"
 
-params ["_pos", ["_radius", [0, 30]], ["_groupCount", 1], ["_AIOB_Positioning", 2], ["_skill", 2], ["_maxFill", 4], ["_excludes", []], ["_groups", []]];
+params ["_pos", ["_radius", [0, 30]], "_side", ["_groupCount", 1], ["_AIOB_Positioning", 2], ["_skill", 2], ["_maxFill", 4], ["_excludes", []], ["_groups", []]];
 
 if (_groups isEqualTo []) then {
+
+    private _groupType = (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad");
+    if (_side isEqualTo resistance) then {
+        _groupType = (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "ParaFireTeam");
+    };
+
     for "_x" from 1 to _groupCount do {
-        private _g = [_pos, EAST, (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad")] call BIS_fnc_spawnGroup;
+        private _g = [_pos, _side, _groupType] call BIS_fnc_spawnGroup;
         _groups pushBack _g;
         [_g, _skill] call FNC(setUnitSkill);
     };

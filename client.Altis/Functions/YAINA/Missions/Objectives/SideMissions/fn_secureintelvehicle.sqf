@@ -93,6 +93,7 @@ _off = _aGroup createUnit ["O_officer_F", _vpos, [], 5, "NONE"];
 _off assignAsDriver _obj1;
 _off moveInDriver _obj1;
 
+_vehicles pushBack _obj1;
 
 //--------- OBJ 2
 
@@ -105,6 +106,7 @@ _off = _bGroup createUnit ["O_officer_F", _vpos, [], 5, "NONE"];
 _off assignAsDriver _obj2;
 _off moveInDriver _obj2;
 
+_vehicles pushBack _obj2;
 //-------- OBJ 3
 
 _vtype = selectRandom [OBJVEH_TYPES];
@@ -116,7 +118,7 @@ _off = _cGroup createUnit ["O_Officer_F", _vpos, [], 5, "NONE"];
 _off assignAsDriver _obj3;
 _off moveInDriver _obj3;
 
-
+_vehicles pushBack _obj3;
 ///////////////////////////////////////////////////////////
 // ASSOCIATE INTEL WITH VEH
 ///////////////////////////////////////////////////////////
@@ -195,7 +197,37 @@ _intelObj addEventHandler ["Killed", {
 // SPAWN DEFENSES
 ///////////////////////////////////////////////////////////
 
-([_obj1] call SFNC(SMenemyEASTintel)) params ["_spGroups", "_spVehs"];
+
+for "_x" from 0 to (2 + (random 3)) do {
+	_randomPos = [[[_ObjectPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
+
+	_infteamPatrol = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> ["OIA_InfTeam","OIA_InfTeam_AT","OIA_InfTeam_AA","OI_reconPatrol","OIA_GuardTeam"] call BIS_fnc_selectRandom)] call BIS_fnc_spawnGroup;
+	_infteamPatrol setGroupIdGlobal [format["%1_inf%2", _missionID, _x]];
+	_groups pushBack _infteamPatrol;
+
+	[_infteamPatrol, _ObjectPosition, 100] call BIS_fnc_taskPatrol;
+	[_infteamPatrol, 2] call SFNC(setUnitSkill);
+};
+
+//---------- RANDOM VEHICLE
+
+private _SMvehPatrol = createGroup east;
+_SMvehPatrol setGroupIdGlobal [format["%1_mrap", _missionID]];
+_groups pushBack _SMvehPatrol;
+
+_randomPos = [[[_ObjectPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
+
+private _SMveh = ["O_MRAP_02_gmg_F","O_MRAP_02_hmg_F","O_APC_Tracked_02_cannon_F"] call BIS_fnc_selectRandom createVehicle _randomPos;
+_vehicles pushBack _SMveh;
+_SMveh lock 3;
+
+[_SMveh, _SMvehPatrol] call BIS_fnc_spawnCrew;
+[_SMvehPatrol, _ObjectPosition, 150] call BIS_fnc_taskPatrol;
+[_SMvehPatrol, 2] call SFNC(setUnitSkill);
+
+if (random 1 >= 0.5) then {
+	_SMveh allowCrewInImmobile true;
+};
 
 ///////////////////////////////////////////////////////////
 // Start Mission
@@ -205,9 +237,6 @@ _intelObj addEventHandler ["Killed", {
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
-// Bundle the groups
-_groups   = _spGroups + [_aGroup, _bGroup, _cGroup];
-_vehicles = _spVehs + [_obj1, _obj2, _obj3];
 
 // Add everything to zeus
 { [units _x] call YFNC(addEditableObjects); true; } count _groups;

@@ -28,8 +28,6 @@ class YAINA_SPAWNS {
         class setUnitSkill {};
         class createCrew {};
         class taskPatrol {};
-        class sideMissionEnemy {};
-        class smEnemyEastIntel {};
         class populateArea {};
     };
 

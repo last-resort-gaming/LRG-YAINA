@@ -21,7 +21,7 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 // AO Setup
 ///////////////////////////////////////////////////////////
 
-private _AOSize = 300;
+private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
 while { _ObjectPosition isEqualTo [0,0] } do {
@@ -30,7 +30,10 @@ while { _ObjectPosition isEqualTo [0,0] } do {
     }] call BIS_fnc_randomPos;
 };
 
-private _AOPosition = [_ObjectPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+private _AOPosition = [_ObjectPosition, 0, 100, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+
+// Mission ID Gen
+_missionID = call FNC(getMissionID);
 
 ///////////////////////////////////////////////////////////
 // Spwan Tank
@@ -85,23 +88,28 @@ _protoTank addEventHandler ["HandleDamage", {
 
 [_grp1, _ObjectPosition, 200] call bis_fnc_taskPatrol;
 
+_vehicles pushBack _protoTank;
+_groups   pushBack _grp1;
+
 // Spawn SM Forces --------------------------------
-([_ObjectPosition,300,2,3,2,4,2,2] call SFNC(sideMissionEnemy)) params ["_smGroups", "_smVehs"];
+
+// Whilst marjoity indipendants
+([_missionID, _ObjectPosition,300, resistance, [0], [4], [0], [0], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smGroups", "_smVehs"];
+_groups append _smGroups;
+_vehicles append _smVehs;
+
+// We want some AA/AT Teams so add in some easties
+([_missionID, _ObjectPosition,300, east, [0], [0], [2], [2], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_smGroups", "_smVehs"];
+_groups append _smGroups;
+_vehicles append _smVehs;
 
 
 ///////////////////////////////////////////////////////////
 // Start Mission
 ///////////////////////////////////////////////////////////
 
-// Mission ID Gen
-_missionID = call FNC(getMissionID);
-
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
-
-// Bundle the groups
-_groups   = _smGroups + [_grp1];
-_vehicles = _smVehs + [_protoTank];
 
 // Add everything to zeus
 { [units _x] call YFNC(addEditableObjects); true; } count _groups;

@@ -99,12 +99,12 @@ _officer addEventHandler ["Killed", {
 
 
 // Garrison Units around HQ
-private _hqg = [_HQPosition, [0,50], 3, nil, nil, 6] call SFNC(infantryGarrison);
+private _hqg = [_HQPosition, [0,50], east, 3, nil, nil, 6] call SFNC(infantryGarrison);
 { _groups pushBack _x; _x setGroupIdGlobal [format["%1_hqg%2", _missionID, _forEachIndex]]; } forEach _hqg;
 
 // Then the rest of the AO
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand
-([_missionID, _AOPosition + [0], _AOSize*0.9, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([_missionID, _AOPosition + [0], _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
 
 _groups append _spGroups;
 _vehicles append _spVehs;
