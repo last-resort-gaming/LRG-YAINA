@@ -4,6 +4,7 @@
 	returns: nothing
 */
 
+enableSentences false;
 player enableFatigue false;
 
 [] execVM "scripts\YAINA\earplugs.sqf";
