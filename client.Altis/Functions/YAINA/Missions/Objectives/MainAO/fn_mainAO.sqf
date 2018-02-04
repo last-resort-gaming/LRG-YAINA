@@ -224,7 +224,11 @@ _pfh = {
                 while { (!((count waypoints _x) isEqualTo 0)) } do {
                   deleteWaypoint ((waypoints _x) select 0);
                 };
-                _x addWaypoint [_HQPosition, 30];
+
+                // Instead of adding a waypoint on the HQ position, we set one between 20-50 meters away, and put them in a
+                // smaller patrol pattern
+
+                [_x, [getPos (leader _x), _HQPosition, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
 
             } forEach ([_missionID] call FNC(getMissionGroups));
         };
