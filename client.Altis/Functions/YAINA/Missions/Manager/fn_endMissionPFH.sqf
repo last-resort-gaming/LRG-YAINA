@@ -28,5 +28,12 @@ if !(_idx isEqualTo -1) then {
     (GVAR(localBuildingRestores) select 1) deleteAt _idx;
 };
 
+// Remove reinforcements
+_idx = (GVAR(reinforcements) select 0) find _missionID;
+if !(_idx isEqualTo -1) then {
+    (GVAR(reinforcements) select 0) deleteAt _idx;
+    (GVAR(reinforcements) select 1) deleteAt _idx;
+};
+
 // Reqest server to stop monitoring
 [profileName, _missionID] remoteExecCall [QFNC(delHCDCH), 2];

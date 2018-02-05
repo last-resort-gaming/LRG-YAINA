@@ -41,7 +41,7 @@ private ["_confBase", "_infList", "_infaaList", "_infatList", "_vehAAList", "_ve
 // TODO: UAVs ?
 
 _confBase     = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry";
-_infList      = ["OIA_InfTeam","OI_reconPatrol","OIA_GuardTeam"];
+_infList      = ["OIA_InfTeam","OI_reconPatrol"];
 _infaaList    = ["OIA_InfTeam_AA"];
 _infatList    = ["OIA_InfTeam_AT"];
 _sniperList   = ["OI_SniperTeam"];

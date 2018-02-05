@@ -33,9 +33,12 @@ while { _HQPosition isEqualTo [0,0] } do {
 // Now find a location for our AO center position fuzz the HQ...
 _AOPosition = [_HQPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
 
-if (_AOPosition isEqualTo []) exitWith {
+if !((count _AOPosition) isEqualTo 2) exitWith {
     TRACE_1("findSafePos: Failed to find safe location from", _HQPosition);
 };
+
+// Add in so we don't have to do it everywhere
+_AOPosition pushBack 0;
 
 // Find our nearest town + direction for mission description
 _nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
@@ -104,7 +107,7 @@ private _hqg = [_HQPosition, [0,50], east, 3, nil, nil, 6] call SFNC(infantryGar
 
 // Then the rest of the AO
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand
-([_missionID, _AOPosition + [0], _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([_missionID, _AOPosition, _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
 
 _groups append _spGroups;
 _vehicles append _spVehs;

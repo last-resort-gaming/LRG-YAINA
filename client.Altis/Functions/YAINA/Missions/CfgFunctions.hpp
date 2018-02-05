@@ -14,6 +14,7 @@ class YAINA_MM_OBJ {
     class SubObjectives {
         file = "Functions\YAINA\Missions\Objectives\SubObjectives";
         class radioTower {};
+        class factory {};
     };
 
     class Priority {
@@ -52,6 +53,7 @@ class YAINA_MM {
         class startMission {};
         class stopMission {};
         class missionCleanup {};
+        class addReinforcements {};
     };
 
     class Utils {

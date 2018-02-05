@@ -13,6 +13,7 @@ if !(isServer || !hasInterface) exitWith {};
 GVAR(paused) = false;
 GVAR(localMissionID) = 0;
 GVAR(localRunningMissions)  = [[], []];   // [Mission ID, Mission ID, ...], [Mission Args, Mission Args, ...]]
+GVAR(reinforcements)        = [[], []];   // [Mission ID, Mission ID, ...], [[[Grps,Veh], [Grps, Veh], ...], [...]]
 GVAR(stopRequests) = []; // List of mission IDs that have been requested for force completion
 
 // Setup our HCs

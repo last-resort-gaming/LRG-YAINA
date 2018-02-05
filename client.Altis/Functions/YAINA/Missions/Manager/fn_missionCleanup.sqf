@@ -7,6 +7,7 @@
 #include "..\defines.h"
 
 params ["_pfhID", "_missionID", ["_force", false]];
+private ["_idx"];
 
 // Do we break out ?
 _fail = false;
@@ -48,6 +49,28 @@ if (_fail && { not _force } ) exitWith { false; };
     { if !(isNull _x) then { deleteVehicle _x; }; true; } count units _x;
     deleteGroup _x;
 } count _groups;
+
+// Delete all reinforcements
+private _idx = (GVAR(reinforcements) select 0) find _missionID;
+if !(_idx isEqualTo -1) then {
+    {
+        _x params ["_rgroups", "_rvehs"];
+        // Reinforcement Groups
+        {
+            { if !(isNull _x) then { deleteVehicle _x; }; true; } count units _x;
+            deleteGroup _x;
+            nil
+        } count _rgroups;
+
+        // Reinfrocement vehicles
+        {
+            if !(isNull _x) then { deleteVehicle _x; };
+            nil
+        } count _rvehs;
+
+        nil
+    } count ((GVAR(reinforcements) select 1) select _idx);
+};
 
 // As we have deleted units, fail as we dont wanna kill buildings with folks in
 if (_fail) exitWith { false; };

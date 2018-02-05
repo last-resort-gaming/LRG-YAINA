@@ -59,9 +59,9 @@ for "_x" from 0 to _towerCount do {
     _towerClass = selectRandom _towerClasses;
 
     // Find safe pos isn't empty, so we should really not use it...just random point in marker
-    _spawnPos = [_AOPos, 10, _AOSize, { !(_this isFlatEmpty [-1, -1, 0.4, 10, 0, false, objNull] isEqualTo []) }] call YFNC(getPosAround);
+    _spawnPos = [_AOPos, 10, _AOSize, { !(_this isFlatEmpty [8, -1, 0.4, 10, 0, false, objNull] isEqualTo []) }] call YFNC(getPosAround);
 
-    if (_spawnPos isEqualTo []) then {
+    if (_spawnPos isEqualTo []) exitWith {
         diag_log "Unable to find suitable location for tower";
     };
 
@@ -132,7 +132,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hideKey", "_mines", "_towerMarkers"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hideKey", "_mines", "_towerMarkers", "_AOPos", "_AOSize", "_jetSpawnTime"];
 
 
     // Stop requested ?
@@ -155,7 +155,15 @@ _pfh = {
                                 true
                             };
                         } count _towerMarkers;
-                    } isEqualTo 0) exitWith {};
+                    } isEqualTo 0) exitWith {
+
+            if (serverTime > _jetSpawnTime) then {
+                // Call in a JET
+                _args set [9, serverTime + 900 + random 300];
+                [_AOPos, _AOSize] remoteExecCall [QSFNC(cas), 2];
+            };
+
+        };
 
         // Give them some points, 100 per tower
         if !(_stopRequested) then {
@@ -198,7 +206,7 @@ _pfh = {
     }
 };
 
-[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hideKey, _mines, _towerMarkers]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hideKey, _mines, _towerMarkers, _AOPos, _AOSize, serverTime + random 300]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];
