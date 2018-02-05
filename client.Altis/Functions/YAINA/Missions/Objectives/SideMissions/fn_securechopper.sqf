@@ -103,7 +103,7 @@ _ns = _house;
 //-------------------- SPAWN FORCE PROTECTION
 
 // Garrison Units around HQ
-private _hqg = [getPos _house, [0,30], east, nil, nil, nil, 4] call FNC(infantryGarrison);
+private _hqg = [getPos _house, [0,30], east] call SFNC(infantryGarrison);
 { _groups pushBack _x; _x setGroupIdGlobal [format["%1_hqg%2", _missionID, _forEachIndex]]; } forEach _hqg;
 
 // Then the rest of the AO
