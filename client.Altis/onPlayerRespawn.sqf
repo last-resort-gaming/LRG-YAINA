@@ -19,8 +19,14 @@ player addAction [
 // readd players to zeus
 [[player], false] call YAINA_fnc_addEditableObjects;
 
-// Update their respawn pos if not set, else move them there
 
+// Turn off bloody auto-voice for all players, uses JIP but these are
+// auto-cleaned up when players leave due to being assigned to an object
+player disableConversation true;
+[player ,"NoVoice"] remoteExec ["setSpeaker",0,true];
+
+
+// Update their respawn pos if not set, else move them there
 if (isNil { player getVariable "YAINA_RespawnPos"; } ) then {
     // save respawn position
     player setVariable ["YAINA_RespawnPos", getPosATL player];
