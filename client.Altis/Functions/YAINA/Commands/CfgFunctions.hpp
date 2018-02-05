@@ -9,6 +9,7 @@ class YAINA_CMD {
         class allowed {};
         class findPlayer {};
         class notifyAdmins {};
+        class generalMessage {};
     };
 
     class Commands {
@@ -16,7 +17,6 @@ class YAINA_CMD {
         class addcredits {};
         class credits    {};
         class help {};
-        class ugmsg {};
         class mmstart {};
         class mmpause {};
         class mmlist {};
@@ -28,5 +28,20 @@ class YAINA_CMD {
         class zeusadd {};
         class zeusdel {};
         class zeuslist {};
+    };
+
+    class Messages {
+        file = "Functions\YAINA\Commands\Messages";
+        class abusemsg {};
+        class ffmsg {};
+        class helimsg {};
+        class hqmsg {};
+        class lwmsg {};
+        class mertmsg {};
+        class pilotmsg {};
+        class uavmsg {};
+        class ugmsg {};
+        class vehmsg {};
+
     };
 };
