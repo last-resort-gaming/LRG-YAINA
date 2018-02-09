@@ -189,7 +189,7 @@ GVAR(unitItems) = call {
     _blacklistItems  = [];
 
     if(["PILOT"] call YFNC(testTraits)) then {
-        _permitItems append  ["H_PilotHelmetHeli_B", "H_PilotHelmetFighter_B", "H_CrewHelmetHeli_B", "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
+        _permitItems append  ["H_PilotHelmetHeli_B", "H_PilotHelmetHeli_O", "H_PilotHelmetFighter_B", "H_CrewHelmetHeli_B", "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
     };
 
     // Squad Spotters/Snipers also get NATO Ghillies
