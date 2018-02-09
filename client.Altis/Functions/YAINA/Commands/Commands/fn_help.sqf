@@ -18,6 +18,9 @@ private _lvl = [_caller] call YFNC(getAdminLevel);
     };
 } forEach (GVAR(commands) select 1);
 
+// Sort the list and output it
+_avail sort true;
+
 _msg = format["Available Commands: %1", _avail joinString ", "];
 
 _msg remoteExec ["systemChat", _caller];

@@ -38,7 +38,6 @@ class CBAP {
     class Events {
         file = "Functions\CBA\Events";
 
-        class registerChatCommand {};
         class addEventHandler { description = "Registers an event handler for a specific CBA event."; };
         class addEventHandlerArgs { description = "Registers an event handler for a specific CBA event with arguments."; };
         class removeEventHandler { description = "Removes an event handler previously registered with CBAP_fnc_addEventHandler."; };
