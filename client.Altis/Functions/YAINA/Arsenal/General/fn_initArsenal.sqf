@@ -56,7 +56,7 @@ GVAR(unitWeapons) = call {
     };
 
     if (["SL"] call YFNC(testTraits)) then {
-        _permitGroups pushBack "Laserdesignator";
+        _permitGroups append ["Laserdesignator", "arifle_gl"];
     };
 
     if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
@@ -65,7 +65,7 @@ GVAR(unitWeapons) = call {
 
         if (["Marksman"] call YFNC(testTraits)) then {
             // Deny the Lynx and 403 main sniper weapons
-            _blacklistItems append ["srifle_GM6_F", "srifle_LRR_F", "srifle_LRR_camo_F"];
+            _blacklistItems append ["srifle_GM6_F", "srifle_GM6_camo_F", "srifle_GM6_ghex_F", "srifle_LRR_F", "srifle_LRR_camo_F", "srifle_LRR_tna_F"];
         };
     };
 
@@ -123,10 +123,10 @@ GVAR(unitItems) = call {
     // Default Permitted Items
     _permitGroups    = ["ItemWatch", "ItemCompass", "ItemGPS", "ItemRadio", "ItemMap",
                         "FirstAidKit", "NVGoggles", "acc_muzzle", "acc_pointer", "acc_bipod",
-                        "H_HelmetB", "H_HelmetSpecB", "H_Beret", "H_Shemag", "H_ShemagOpen", "V_ALL", "G_ALL", "U_B",
+                        "H_HelmetB", "H_HelmetSpecB", "H_Beret", "H_Shemag", "H_Booniehat", "H_ShemagOpen", "V_ALL", "G_ALL", "U_B",
                         "optic_ALL"];
 
-    _permitItems     = ["U_I_G_Story_Protagonist_F"];
+    _permitItems     = ["U_I_G_Story_Protagonist_F", "H_Cap_khaki_specops_UK", "H_Cap_tan_specops_US", "H_Cap_usblack"];
 
     // These items are included by the permit groups, but by default aren't permitted by everyone and will be added
     // where required, faster than either whitelisting, or blacklisting only
