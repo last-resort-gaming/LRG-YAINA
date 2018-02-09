@@ -76,7 +76,7 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
 // MEDEVAC
 ///////////////////////////////////////////////////////////
 
-TM setVariable ["YAINA_VEH_Drivers", ["PILOT", "MERT"], true];
+TM setVariable ["YAINA_VEH_Drivers", ["MERT"], true];
 [TM, false, 10, 1000, []] call YAINA_VEH_fnc_initVehicle;
 
 ///////////////////////////////////////////////////////////
