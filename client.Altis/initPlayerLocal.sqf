@@ -5,9 +5,43 @@
 */
 
 if (!hasInterface) exitWith {};
+
+////////////////////////////////////////////////////////////////////////////
+// RADIO MANAGEMENT
+////////////////////////////////////////////////////////////////////////////
+
+// Zeus can use global
 if (side player isEqualTo sidelogic) exitWith {
-    1 enableChannel true;
+    0 enableChannel true;
 };
+
+// Channel Management
+[{
+    _settings = [];
+
+    // Command Channel Management
+    _settings pushBack [1, "HQ" call YAINA_fnc_testTraits || { player getVariable ["YAINA_adminLevel", 0] > 0 }, true];
+    _settings pushBack [2, leader (group player) isEqualTo player];
+
+    {
+        _x params ["_chan", "_destVoice", "_destChat"];
+        if (isNil "_destChat") then { _destChat = _destVoice; };
+
+        _destState = [_destChat, _destVoice];
+        _chanState = channelEnabled _chan;
+
+        if !(_destState isEqualTo _chanState) then {
+            _chan enableChannel _destState;
+        };
+        nil
+    } count _settings;
+
+}, 1, []] call CBAP_fnc_addPerFrameHandler;
+
+
+////////////////////////////////////////////////////////////////////////////
+// GENERAL GROUPS / ADDONS
+////////////////////////////////////////////////////////////////////////////
 
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 
@@ -17,9 +51,10 @@ if (side player isEqualTo sidelogic) exitWith {
 // Repack
 [] execVM "scripts\outlawled\magRepack\MagRepack_init_sv.sqf";
 
-// Comms, von/chat on global, disable von on side except HQ
-0 enableChannel [false, false];
-1 enableChannel [true, "HQ" call YAINA_fnc_testTraits];
+
+////////////////////////////////////////////////////////////////////////////
+// GROUPS
+////////////////////////////////////////////////////////////////////////////
 
 // Intro Music / Shot
 INTRO_HANDLE =  addMissionEventHandler ["PreloadFinished", {

@@ -50,6 +50,9 @@ if (_argStr isEqualTo "" || { _argSplit isEqualTo [] } || { not ((str _lvln) isE
                 // Save the DB
                 ["write", ["general", "admins", YVAR(admins)]] call YVAR(inidbi);
 
+                // Update the vars (used for radio comms really)
+                _newAdmin setVariable ["YAINA_adminLevel", _lvln, true];
+
                 // And let them know
                 format["Your admin level has been changed to %1", _lvln] remoteExec ["systemChat", owner _newAdmin];
             };
