@@ -123,7 +123,7 @@ GVAR(unitItems) = call {
     // Default Permitted Items
     _permitGroups    = ["ItemWatch", "ItemCompass", "ItemGPS", "ItemRadio", "ItemMap",
                         "FirstAidKit", "NVGoggles", "acc_muzzle", "acc_pointer", "acc_bipod",
-                        "H_HelmetB", "H_HelmetSpecB", "H_Beret", "H_Shemag", "H_Booniehat", "H_ShemagOpen", "V_ALL", "G_ALL", "U_B",
+                        "H_HelmetB", "H_HelmetSpecB", "H_Shemag", "H_Booniehat", "H_ShemagOpen", "V_ALL", "G_ALL", "U_B",
                         "optic_ALL"];
 
     _permitItems     = ["U_I_G_Story_Protagonist_F", "H_Cap_khaki_specops_UK", "H_Cap_tan_specops_US", "H_Cap_usblack"];
@@ -136,8 +136,7 @@ GVAR(unitItems) = call {
                          "V_PlateCarrier", "V_RebreatherIR", "V_RebreatherIA", "G_Respirator", "G_Lady", "G_EyeProtectors",
                          "optic_LRPS", "optic_AMS", "optic_SOS", "optic_KHS", "optic_DMS", "optic_tws", "optic_Nightstalker"];
 
-    _blacklistItems   = ["H_Beret_gen_F", "H_Beret_Colonel",
-                         "U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard", "U_B_T_FullGhillie_tna_F", "U_B_T_Sniper_F",
+    _blacklistItems   = ["U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard", "U_B_T_FullGhillie_tna_F", "U_B_T_Sniper_F",
                          "U_B_GEN_Soldier_F", "U_B_GEN_Commander_F", "U_B_Protagonist_VR",
                          "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls",
                          "V_TacVest_gen_F",
@@ -206,7 +205,7 @@ GVAR(unitItems) = call {
     };
 
     if(["HQ"] call YFNC(testTraits)) then {
-        _permitItems append ["H_Beret_Colonel"];
+        _permitItems append ["H_Beret_02", "H_Beret_Colonel"];
     };
 
     if(["UAV", "MERT_UAV"] call YFNC(testTraits)) then {
