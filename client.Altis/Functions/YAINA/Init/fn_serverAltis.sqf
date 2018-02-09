@@ -67,6 +67,7 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
 ///////////////////////////////////////////////////////////
 
 {
+    _x enableCopilot false;
     [_x, false, 10, 1000] call YAINA_VEH_fnc_initVehicle;
 } forEach [HE1, HE2, HE3, HE4, HE5];
 
@@ -76,6 +77,7 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
 // MEDEVAC
 ///////////////////////////////////////////////////////////
 
+TM enableCopilot false;
 TM setVariable ["YAINA_VEH_Drivers", ["MERT"], true];
 [TM, false, 10, 1000, []] call YAINA_VEH_fnc_initVehicle;
 
