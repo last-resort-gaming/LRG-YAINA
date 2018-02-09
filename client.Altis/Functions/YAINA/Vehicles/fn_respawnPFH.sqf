@@ -10,7 +10,7 @@ if(!isServer) exitWith {};
 
 [{
     for "_i" from count(GVAR(respawnList)) to 0 step -1 do {
-        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
+        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_respawnArea", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
         // If the vehicle is not alive / null then we remove from the respawn
         // list and schedule a delete it in 30 seconds just in case it
@@ -63,7 +63,17 @@ if(!isServer) exitWith {};
             GVAR(respawnList) deleteAt _i;
 
             [{
-                params ["_vehType", "_pos", "_dir", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
+                params ["_args", "_pfhID"];
+                _args params ["_respawnAfter", "_vehType", "_pos", "_dir", "_respawnArea", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
+
+                // Make sure we've passed the respawn time
+                if (serverTime < _respawnAfter) exitWith {};
+
+                // Wait for area to be empty before proceeding
+                if !(count (entities "AllVehicles" select { _x inArea _respawnArea }) isEqualTo 0) exitWith {};
+
+                // And stop this PFH, and respawn
+                [_pfhID] call CBAP_fnc_removePerFrameHandler;
 
                 _nv = createVehicle [_vehType, [0,0,0], [], 0, "NONE"];
 
@@ -134,7 +144,7 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, [_vehType, _pos, _dir, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs], _respawnTime] call CBAP_fnc_waitAndExecute;
+            }, 10, [serverTime + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBAP_fnc_addPerFrameHandler;
         };
 
     };

@@ -122,12 +122,19 @@ if !(_respawnTime isEqualTo -1) then {
     // Save persist vars
     _persistVarsSave = _persistVars apply { [_x, _veh getVariable [_x, nil]] };
 
+    // Build respawn area
+    boundingBoxReal _veh params ["_p1", "_p2"];
+    _maxWidth = abs ((_p2 select 0) - (_p1 select 0));
+    _maxLength = abs ((_p2 select 1) - (_p1 select 1));
+    _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
+
     // And just push back to the respawn list
     GVAR(respawnList) pushBack [
         _veh,
         typeOf _veh,
         getPosATL _veh,
         getDir _veh,
+        [_veh modelToWorld [0,0,0], _maxWidth, _maxLength, getDir _veh, true, _maxHeight],
         getObjectTextures _veh,
         isCopilotEnabled _veh,
         locked _veh,
