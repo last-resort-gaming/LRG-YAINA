@@ -387,8 +387,7 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="Zombies and Demons || Altis";
-		overviewText="Zombies and Demons || Altis";
+		briefingName="Invade and Annex || 1.0-rc1";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
