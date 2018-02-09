@@ -14,9 +14,6 @@ if (_veh getVariable [QVAR(init), false]) exitWith {};
 // Mark as complete straight away
 _veh setVariable [QVAR(init), true, true];
 
-// Always show on map
-_veh setVariable ['QS_ST_drawEmptyVehicle',true, true];
-
 if (_hasKeys) then {
 
     _veh setVariable [QVAR(hasKeys), true, true];
