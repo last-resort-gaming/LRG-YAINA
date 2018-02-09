@@ -60,9 +60,10 @@ addMissionEventHandler["PlayerDisconnected", {
         (YVAR(adminsLogged) select 1) deleteAt _idx;
     };
 
-    _idx = (YVAR(ownerIDs) select 0) find _id;
+    _idx = (YVAR(ownerIDs) select 0) find _owner;
     if !(_idx isEqualTo -1) then {
         (YVAR(ownerIDs) select 0) deleteAt _idx;
         (YVAR(ownerIDs) select 1) deleteAt _idx;
     };
+
 }];
