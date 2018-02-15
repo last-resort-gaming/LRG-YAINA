@@ -16,6 +16,9 @@ GVAR(localRunningMissions)  = [[], []];   // [Mission ID, Mission ID, ...], [Mis
 GVAR(reinforcements)        = [[], []];   // [Mission ID, Mission ID, ...], [[[Grps,Veh], [Grps, Veh], ...], [...]]
 GVAR(stopRequests) = []; // List of mission IDs that have been requested for force completion
 
+// General Setup
+call FNC(utilityPFH);
+
 // Setup our HCs
 if !(isServer or hasInterface) then {
 
@@ -36,7 +39,6 @@ if !(isServer or hasInterface) then {
         },
         []
     ] call CBAP_fnc_waitUntilAndExecute;
-
 };
 
 if (isServer) then {

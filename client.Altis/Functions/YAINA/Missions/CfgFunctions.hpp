@@ -54,6 +54,7 @@ class YAINA_MM {
         class stopMission {};
         class missionCleanup {};
         class addReinforcements {};
+        class utilityPFH {};
     };
 
     class Utils {
