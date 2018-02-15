@@ -57,6 +57,10 @@ _factory setDir random 360;
 _factory allowDamage false; //no CAS bombing it until the Engineer inside is killed.
 _buildings pushBack _factory;
 
+// Factory Marekrs
+private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, "o_installation", "Border"] call FNC(createMapMarkers);
+{_markers pushBack _x; true } count _mrks;
+
 // Spawn Engineer
 
 // Bring in an engineer to one of the buildings
@@ -125,7 +129,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_engineer", "_factory", "_AOPos", "_AOSize", "_nextSpawnTime"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_engineer", "_factory", "_AOPos", "_AOSize", "_nextSpawnTime"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -233,6 +237,10 @@ _pfh = {
         // Move onto stage 4
         _stage = 4; _args set [1,_stage];
         [_missionID, _stage] call FNC(updateMission);
+
+        // Hide our markers
+        { _x setMarkerAlpha 0; } count _markers;
+
     };
 
     // Only clean up when parent mission gone
@@ -255,7 +263,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _engineer, _factory, _AOPos, _AOSize, 0]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];
