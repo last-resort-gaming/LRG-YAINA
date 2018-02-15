@@ -34,21 +34,8 @@ player setVariable [QYVAR(side), playerSide, true];
 ["AIS_Unconscious", {
     params ["_unit", "_source", "_projectile", "_aisDamageType"];
 
-    diag_log _this;
-
     // If i'm not the one unconsious, bail
     if (_unit != player) exitWith {};
-
-    // There is also a race here with this being triggered multiple times in a frame so...
-    // Lets just make sure we have a suitable gap between notifications
-
-    /*
-    _lkid = (YAINA_last_killhint select 0) find _unit;
-    _lktt = 0;
-    if !(_lkid isEqualTo -1) then {
-        _lktt = (YAINA_last_killhint select 1) select _lkid;
-    };
-    */
 
     // can't die twice in 5 seconds
     if ((diag_tickTime - YVAR(last_killhint_player)) < 5) exitWith {};
@@ -77,12 +64,18 @@ player setVariable [QYVAR(side), playerSide, true];
         if (_projectile isEqualTo "" && _inVehicle) then {
             _sourcePlayer = driver _vehicle;
             _source = _vehicle;
-            _weapon = format["%1 %2", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer), ["driving", "Flying"] select (_vehicle isKindOf "Air")];
+            _weapon = format["%1 %2", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer), ["driving", "flying"] select (_vehicle isKindOf "Air")];
         };
     };
 
-    // if source is empty, then it's likely environmental, probably zeus though as they show up null-objs
-    if (isNil "_sourcePlayer" || isNull _sourcePlayer) exitWith {};
+    // if source is empty, then it's likely environmental, possibly zeus though as they show up null-objs
+    // when using ModuleOrdnanceHowitzer_F_ammo / LightningBolt etc.
+
+    if (isNil "_sourcePlayer" || isNull _sourcePlayer) exitWith {
+        // We update here to avoid getting suicide from residual damage
+        YVAR(last_killhint_player) = diag_tickTime;
+        [_source, _projectile, _aisDamageType] remoteExec [QYFNC(killLog), 2];
+    };
 
     // Distance
     _distance = _source distance _unit;
@@ -101,11 +94,11 @@ player setVariable [QYVAR(side), playerSide, true];
             _magazines = getArray(configFile >> "CfgWeapons" >> _test >> "Magazines");
 
             // If it's a turret etc. with multiple muzzles, gather them here
-            if (isClass(configFile >> "CfgWeapons" >> _test >> "Muzzles")) then {
-                {
+            {
+                if (isClass(configFile >> "CfgWeapons" >> _test >> _x)) then {
                     _magazines append getArray(configFile >> "CfgWeapons" >> _test >> _x >> "Magazines");
-                } count getArray(configFile >> "CfgWeapons" >> _test >> "Muzzles");
-            };
+                };
+            } count getArray(configFile >> "CfgWeapons" >> _test >> "Muzzles");
 
             _c = {
                 _ammo = getText (configFile >> "CfgMagazines" >> _x >> "ammo");
@@ -149,7 +142,7 @@ player setVariable [QYVAR(side), playerSide, true];
         if (_aisDamageType == "falling") then {
             _weapon = "Falling";
         } else {
-            _weapon = format["%1 magic wand - %2", ["Their", "Your"] select (_unit isEqualTo _sourcePlayer), _aisDamageType];
+            _weapon = "Unknown";
         };
     };
 
@@ -186,21 +179,12 @@ player setVariable [QYVAR(side), playerSide, true];
     _bodys = _bodys + (["from", _rtxt] call _elem);
     _feedb = _feedb + format[" range %1", _rtxt];
 
-
     // We also dispatch to the server for the kill feed
-    [_sourcePlayer, format["%2", _feedTitle, _feedb]] remoteExec [QYFNC(killLog), 2];
+    [_sourcePlayer, _projectile, _aisDamageType, _weapon, weapons _source, _vehicle] remoteExec [QYFNC(killLog), 2];
 
     _hint = _header + _bodys + "</t>";
     hint parseText _hint;
 
-    /*
-    if (_lkid isEqualTo -1) then {
-        (YAINA_last_killhint select 0) pushBack _unit;
-        (YAINA_last_killhint select 1) pushBack diag_tickTime;
-    } else {
-        (YAINA_last_killhint select 1) set [_lkid, diag_tickTime];
-    };
-    */
     YVAR(last_killhint_player) = diag_tickTime;
 
 }] call CBAP_fnc_addEventHandler;
