@@ -11,8 +11,9 @@
     player addEventHandler["FiredMan", {
         params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_veh"];
 
-        // Permit Flares
+        // Permit Flares / zeusing
         if (_weapon isEqualTo "CMFlareLauncher")  exitWith {true};
+        if !(cameraOn isEqualTo player) exitWith {true};
 
         _checkObject = [_veh, _unit] select isNull _veh;
         {
