@@ -26,19 +26,30 @@ if (_nt < GVAR(paradropTimeout) and !(GVAR(lastParadrop) isEqualTo 0)) exitWith 
 };
 
 private _dMrk = [];
+private _aMrk = [];
 private _dCnt = 0;
 
 // Draw all AO locations
 {
     _dCnt = _dCnt + 1;
-    _mn = format ["dm_mrk_%1", _dCnt];
+    _mn = format ["dm_mrk_%1a", _dCnt];
     _mk = createMarkerLocal [_mn, getMarkerPos _x];
     _mk setMarkerShapeLocal "ELLIPSE";
-    _mk setMarkerSizeLocal (getMarkerSize _x apply { _x * 2 });
+    _mk setMarkerSizeLocal (getMarkerSize _x apply { _x * 2.5 });
     _mk setMarkerBrushLocal "SolidBorder";
     _mk setMarkerColorLocal "ColorBLUE";
     _mk setMarkerAlphaLocal 0.5;
     _dMrk pushBack _mk;
+
+    _mn = format ["dm_mrk_%1b", _dCnt];
+    _mk = createMarkerLocal [_mn, getMarkerPos _x];
+    _mk setMarkerShapeLocal "ELLIPSE";
+    _mk setMarkerSizeLocal (getMarkerSize _x apply { _x * 1.5 });
+    _mk setMarkerBrushLocal "SolidBorder";
+    _mk setMarkerColorLocal "ColorBlack";
+    _mk setMarkerAlphaLocal 0.75;
+    _aMrk pushBack _mk;
+
 } forEach GVAR(paradropMarkers);
 
 // Bring up the map
@@ -48,10 +59,20 @@ openMap true;
 [QVAR(paradropClickHandlerID), "onMapSingleClick", {
 
     private _dMrk = _this select 4;
+    private _aMrk = _this select 5;
+    private _inAO = false;
     private _selectedAO = nil;
 
     // are we in the drop zone ?
     scopeName "para_main";
+
+    {
+        if (_pos inArea _x) then {
+            _inAO = true;
+            breakTo "para_main";
+         };
+    } forEach _aMrk;
+
     {
         if (_pos inArea _x) then {
             _selectedAO = _x;
@@ -60,6 +81,7 @@ openMap true;
     } forEach _dMrk;
 
     if (isNil "_selectedAO") exitWith { systemChat "Please click within the available AOs"; };
+    if (_inAO) exitWith { systemChat "You cannot drop directly on top of an AO"; };
 
     private _leader = leader (group player);
 
@@ -84,18 +106,19 @@ openMap true;
 
     openMap false;
 
-}, [_dMrk]] call BIS_fnc_addStackedEventHandler;
+}, [_dMrk, _aMrk]] call BIS_fnc_addStackedEventHandler;
 
 
 // Add a PFH (to clean up)
 [{
     params ["_args", "_pfhID"];
-    _args params ["_dMrk"];
+    _args params ["_dMrk", "_aMrk"];
 
     if !(visibleMap) then {
         { if !(isNil "_x") then { deleteMarkerLocal _x; }; } forEach _dMrk;
+        { if !(isNil "_x") then { deleteMarkerLocal _x; }; } forEach _aMrk;
         [QVAR(paradropClickHandlerID), "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
         [_pfhID] call CBAP_fnc_removePerFrameHandler;
     };
-}, 0, [_dMrk]] call CBAP_fnc_addPerFrameHandler;
+}, 0, [_dMrk, _aMrk]] call CBAP_fnc_addPerFrameHandler;
 
