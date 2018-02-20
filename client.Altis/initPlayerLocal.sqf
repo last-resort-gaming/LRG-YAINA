@@ -92,9 +92,10 @@ INTRO_HANDLE =  addMissionEventHandler ["PreloadFinished", {
 
         [intro_base, "Welcome to Last Resort Gaming", 10, 80, 140, 1] call BIS_fnc_establishingShot;
 
-        sleep 10;
         5 fadeMusic 0;
 
+        // We have to re-apply earplugs here as establishingShot sets sound to 1
+        [] execVM "scripts\YAINA\earplugs.sqf";
         [] execVM "scripts\lrg\intro_msg.sqf";
     };
 }];

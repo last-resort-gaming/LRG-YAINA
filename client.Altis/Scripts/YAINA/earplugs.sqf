@@ -12,6 +12,7 @@ Author:
 
 params ["_target", "_caller", "_id", "_arguments"];
 private _nextAction = "Insert";
+private _nextColor  = "#00FF00";
 
 // Don't load if ACE is detected - it contains plugs
 if (isClass(configFile >> "CfgPatches" >> "ace_main")) exitWith {};
@@ -29,6 +30,7 @@ if (!isNil "_target") then { YAINA_PlugsIn = YAINA_PlugsIn isEqualTo false; };
 if (YAINA_PlugsIn isEqualTo true) then {
     ([2, 0] select isNil "_target") fadeSound 0.2;
     _nextAction = "Remove";
+    _nextColor  = "#FF0000";
     if (!isNil "_target") then {
         [" <img image='Data\Earplugs\plugs_in.paa' /><br/><t valign='middle' align='center' size='.4'>Earplugs Inserted</t>",0,0.6, 2,1,0,0] spawn BIS_fnc_dynamicText;
     };
@@ -40,5 +42,7 @@ if (YAINA_PlugsIn isEqualTo true) then {
 };
 
 // Replace menu item
-if(!isNil "_id") then { player removeAction _id; };
-player addAction [("<t color=""#FF0000"">" + _nextAction + " Earplugs</t>"),"Scripts\YAINA\earplugs.sqf","",-98,false,true,"",'_target isEqualTo vehicle _this'];
+_aid = player getVariable "YAINA_Earplugs_AID";
+if(!isNil "_aid") then { player removeAction _aid; };
+_aid = player addAction [("<t color=""" + _nextColor + """>" + _nextAction + " Earplugs</t>"),"Scripts\YAINA\earplugs.sqf","",-98,false,true,"",'_target isEqualTo vehicle _this'];
+player setVariable ["YAINA_Earplugs_AID", _aid];

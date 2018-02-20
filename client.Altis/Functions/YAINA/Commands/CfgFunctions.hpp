@@ -34,7 +34,7 @@ class YAINA_CMD {
     class Messages {
         file = "Functions\YAINA\Commands\Messages";
         class abusemsg {};
-        class ffmsg {file="foo.sqf";};
+        class ffmsg {};
         class helimsg {};
         class hqmsg {};
         class lwmsg {};
