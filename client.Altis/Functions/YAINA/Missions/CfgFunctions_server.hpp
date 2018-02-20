@@ -44,7 +44,6 @@ class YAINA_MM {
         class addHCDCH {};
         class delHCDCH {};
         class missionManager {};
-        class mmPostInit { postInit=1; };
         class mmPostInitServer { postInit=1; };
         class mmPreInit  { preInit=1; };
         class setMissionID {};
@@ -63,9 +62,6 @@ class YAINA_MM {
         class createMapMarkers {};
         class getMissionID {};
         class getMissionGroups {};
-        class paraDrop {};
-        class setupParadropActions { postInit = 1; };
-        class openChute {};
         class findLargestBuilding {};
         class destroy {};
         class getAOExclusions {};

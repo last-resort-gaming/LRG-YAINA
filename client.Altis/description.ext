@@ -3,7 +3,7 @@
 ******************************************************************************/
 
 author = Last Resort Gaming;
-onLoadName = "LRG Invade and Annex 1.0";
+onLoadName = "LRG Invade and Annex %VERSION%";
 OnLoadMission = "Welcome to the Last Resort Gaming Invade and Annex Public Server. Powered by YAINA";
 loadScreen = "Data\Billboards\billboard.paa";
 overviewPicture = "Data\Billboards\billboard.paa";

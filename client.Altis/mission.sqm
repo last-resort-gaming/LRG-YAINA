@@ -410,7 +410,7 @@ class Mission
 	assetType="Free";
 	class Intel
 	{
-		briefingName="Invade and Annex || VERSION";
+		briefingName="Invade and Annex || %VERSION%";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;

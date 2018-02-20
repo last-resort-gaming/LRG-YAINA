@@ -3,7 +3,6 @@ class YAINA_CMD {
 
     class Core {
         file = "Functions\YAINA\Commands\Core";
-        class postInit { postInit=1; };
 		class postInitServer { postInit=1; };
         class log {};
         class exec {};
@@ -34,7 +33,7 @@ class YAINA_CMD {
     class Messages {
         file = "Functions\YAINA\Commands\Messages";
         class abusemsg {};
-        class ffmsg {file="foo.sqf";};
+        class ffmsg {};
         class helimsg {};
         class hqmsg {};
         class lwmsg {};

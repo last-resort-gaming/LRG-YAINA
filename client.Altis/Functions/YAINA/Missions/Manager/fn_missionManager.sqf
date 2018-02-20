@@ -14,9 +14,9 @@ if !(isServer) exitWith {};
 if !(isNil QVAR(running)) exitWith {};
 
 GVAR(running) = false;
-GVAR(lAO) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "MainAO")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
-GVAR(lIO) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "InfantryObjectives")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
-GVAR(lSM) = ("true" configClasses (missionconfigfile >> "CfgFunctions" >> "YAINA_MM_OBJ" >> "SideMissions")) apply { format["YAINA_MM_OBJ_fnc_%1", configName _x] };
+GVAR(lAO) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "MainAO"]] call FNC(getFunctions);
+GVAR(lIO) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "InfantryObjectives"]] call FNC(getFunctions);
+GVAR(lSM) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SideMissions"]] call FNC(getFunctions);
 
 // Not all Priority Targets are created equal
 GVAR(lPM) = ["arty", "arty", "arty", "aa"] apply { format["YAINA_MM_OBJ_fnc_%1", _x] };

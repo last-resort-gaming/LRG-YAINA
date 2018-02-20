@@ -17,6 +17,6 @@ start "HC_1" ^
 	-noSound ^
 	-connect=127.0.0.1 ^
 	-port=%PORT% ^
-	-mod=%MODS%
+git j
 
 popd
