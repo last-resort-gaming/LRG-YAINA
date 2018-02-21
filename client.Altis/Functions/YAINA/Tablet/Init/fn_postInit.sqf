@@ -54,7 +54,7 @@ if (isServer) then {
             ["B_Heli_Light_01_F",800,20],
             ["B_Heli_Transport_01_F",1200,30],
             ["B_Heli_Transport_03_unarmed_F",1000,25],
-            ["B_Heli_Transport_03_unarmed_F",1200,30],
+            ["B_Heli_Transport_03_F",1200,30],
             ["I_Heli_light_03_dynamicLoadout_F",3000,40],
             ["I_Heli_light_03_unarmed_F",1000,25],
             ["I_Heli_Transport_02_F",1000,25],
