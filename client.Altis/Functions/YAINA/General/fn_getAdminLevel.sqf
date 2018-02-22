@@ -8,11 +8,11 @@
 
 params ["_player"];
 
-if (isNil QYVAR(ownerIDs)) exitWith { 0 };
+if (isNil QYVAR(ownerIDs)) exitWith { 5 };
 
 private _owner = owner _player;
 
-private _lvl = 0;
+private _lvl = 5;
 
 private _idx = (YVAR(ownerIDs) select 0) find _owner;
 if !(_idx isEqualTo -1) then {
