@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=822;
+		nextID=843;
 	};
 	class Camera
 	{
-		pos[]={9176.457,25.499601,21651.146};
-		dir[]={-0.9276619,-0.36529559,-0.079071015};
-		up[]={-0.36414862,0.9307698,-0.031038981};
-		aside[]={-0.084934555,-6.3577318e-007,0.99650568};
+		pos[]={9222.5225,31.884493,21692.887};
+		dir[]={-0.58002043,-0.77262986,-0.25859401};
+		up[]={-0.70569545,0.63474292,-0.31462264};
+		aside[]={-0.40724126,2.0430307e-006,0.91344905};
 	};
 };
 binarizationWanted=0;
@@ -5326,6 +5326,7 @@ class Mission
 			};
 			id=642;
 			type="Land_Billboard_F";
+			atlOffset=-9.5367432e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -5428,7 +5429,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={9092.25,16.875,21478.25};
-			angle=2.4202363;
+			angle=2.5167997;
 			class Attributes
 			{
 				name="SP_UAV";
@@ -5465,7 +5466,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={8977.75,17.678659,21396};
-			angle=3.0881846;
+			angle=1.462852;
 			class Attributes
 			{
 				name="SP_HELI";
@@ -21141,8 +21142,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8977.75,17.678659,21396};
-				angles[]={0.025327841,1.5707964,0.0026744273};
+				position[]={8977.75,17.52866,21396};
+				angles[]={0.025324726,1.5707964,0.0026703537};
 			};
 			side="Empty";
 			flags=4;
@@ -21151,6 +21152,7 @@ class Mission
 			};
 			id=1894;
 			type="Land_HelipadCircle_F";
+			atlOffset=-0.14999962;
 		};
 		class Item227
 		{
@@ -31986,7 +31988,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={9168.7695,14.340017,21686.217};
-			angle=2.5293479;
+			angle=2.5293477;
 			class Attributes
 			{
 				condition="({ [[""MERT""], _x] call YAINA_fnc_testTraits } count thisList) > 0";
