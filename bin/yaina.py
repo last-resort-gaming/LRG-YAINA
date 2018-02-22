@@ -18,7 +18,7 @@ class yaina(object):
         self.args   = args;
         self.root   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.conf   = os.path.join(self.root, 'conf', 'yaina.ini')
-        self.conf_s = os.path.join(self.root, 'conf', 'yaina_secrets.ini')
+        self.conf_l = os.path.join(self.root, 'conf', 'yaina_local.ini')
         self.tmpdir = tempfile.mkdtemp(prefix="yaina_")
         self.logger = logging.getLogger("yaina")
 
@@ -35,13 +35,15 @@ class yaina(object):
 
         # And populate config
         self.config = ConfigParser.ConfigParser()
-        self.config.read([self.conf, self.conf_s])
+        self.config.optionxform=str
+        self.config.read([self.conf, self.conf_l])
 
         # And from this, we get our runtime config
         self.runconf_file = os.path.join(self.config.get('common', 'root'),
                                         self.config.get('common', 'instance'), 'runtime.ini')
 
         self.runconf = ConfigParser.ConfigParser()
+        self.runconf.optionxform=str
         self.runconf.read(self.runconf_file)
 
         # Lets create required dirs

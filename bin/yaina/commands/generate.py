@@ -23,7 +23,7 @@ class List(Command):
 
         og = p.add_argument_group('Optional Arguments')
         og.add_argument("-m", "--map", help="Package which Map (default: Altis)", default="Altis")
-        og.add_argument("-b", "--base", help="Merge Base Path, Server Side Includes (default: None)")
+        og.add_argument("-b", "--base", help="Merge Base Path, Server Side Includes")
         og.add_argument("-h", "--help", action="help", help="show this help message and exit")
         og.add_argument("-r", "--release", action="store_true", help="releae, tag it in git")
 
@@ -76,9 +76,6 @@ class List(Command):
                     src_path  = os.path.join(self.source,    server_cfg[tag].cats.data[cat].params['file'].value[1:-1])
                     base_path = os.path.join(self.build_dir, server_cfg[tag].cats.data[cat].params['file'].value[1:-1])
 
-                    # Now we're here, we have to update our file to be absolute
-                    server_cfg[tag].cats.data[cat].params['file'].set("\"\yaina\%s\"" % server_cfg[tag].cats.data[cat].params['file'].value[1:-1])
-
                 # Now we copy each file from from src_path to base_path
                 for cmd in server_cfg[tag].cats.data[cat].cmds.data:
                     s = self.get_path(src_path, server_cfg[tag].cats.data[cat].cmds.data[cmd])
@@ -108,8 +105,62 @@ class List(Command):
                         self.logger.debug("Bringing in associated file: %s" % os.path.join(relpath, file))
                         shutil.copyfile(os.path.join(root,file), os.path.join(dest_dir, file))
 
-        if self.yaina.args.base is not None:
-            self.logger.debug("Starting to merge :%s" % self.yaina.args.base)
+        #####################################################################
+        # MERGE BASE
+        #####################################################################
+
+        merge_base = self.yaina.args.base
+        if merge_base is None:
+            try:
+                merge_base = os.path.join(self.yaina.root, self.yaina.config.get('server', 'merge_base'))
+            except: pass
+
+
+        if merge_base is not None:
+
+            merge_dir = os.path.abspath(merge_base)
+            self.logger.debug("Starting to merge: %s" % merge_dir)
+            merge_cfg = CfgFunctions.getTags(os.path.join(merge_dir, 'CfgFunctions.hpp'), False, delete=False)
+
+            for tag in merge_cfg.data:
+                if tag not in server_cfg:
+                    server_cfg.data[tag] = merge_cfg.data[tag]
+
+                for cat in merge_cfg[tag].cats.data:
+
+                    base_path = os.path.join(merge_dir, 'Functions', cat)
+
+                    if cat not in server_cfg[tag].cats:
+                        server_cfg[tag].cats[cat] = merge_cfg[tag].cats[cat]
+
+                    if ('file' in server_cfg[tag].cats.data[cat].params):
+                        src_path  = os.path.join(merge_dir,      merge_cfg[tag].cats.data[cat].params['file'].value[1:-1])
+                        base_path = os.path.join(self.build_dir, server_cfg[tag].cats.data[cat].params['file'].value[1:-1])
+
+                    for cmd in merge_cfg[tag].cats.data[cat].cmds.data:
+                        if cmd not in server_cfg[tag].cats.data[cat].cmds:
+                            server_cfg[tag].cats.data[cat].cmds[cmd] = merge_cfg[tag].cats.data[cat].cmds[cmd]
+
+                        s = self.get_path(src_path, server_cfg[tag].cats.data[cat].cmds.data[cmd])
+                        d = self.get_path(base_path, server_cfg[tag].cats.data[cat].cmds.data[cmd])
+
+                        try:
+                            os.makedirs(os.path.dirname(d))
+                        except:
+                            try:
+                                os.unlink(d)
+                            except: pass
+
+                        self.logger.debug("Importing %s -> %s" % (s,d))
+                        shutil.copyfile(s,d)
+
+        # We need to rewrite the destination paths in the functions for the addon to find them
+        for tag in server_cfg.data:
+            for cat in server_cfg[tag].cats.data:
+                if ('file' in server_cfg[tag].cats.data[cat].params):
+                    # Now we're here, we have to update our file to be absolute
+                    server_cfg[tag].cats.data[cat].params['file'].set("\"\yaina\%s\"" % server_cfg[tag].cats.data[cat].params['file'].value[1:-1])
+
 
         pbo_ver  = self.yaina.getNextVersion()
         pbo_name = "yaina"

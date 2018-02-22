@@ -82,6 +82,8 @@ class CfgFunctions(object):
 
                     include_target = os.path.join(fd, m.group(2))
 
+                    logger.debug("including %s" % include_target)
+
                     comps = list(os.path.splitext(include_target))
                     comps[0] += "_server"
                     server_target  = "".join(comps)
@@ -90,13 +92,13 @@ class CfgFunctions(object):
 
                     if server:
                         if (os.path.exists(server_target)):
-                            self._read(server_target)
+                            self._read(server_target, server=server, delete=delete)
                         else:
                             if os.path.exists(exclude_target):
-                               self._read(include_target)
+                               self._read(include_target, server=server, delete=delete)
                     else:
                         if not os.path.exists(exclude_target):
-                            self._read(include_target)
+                            self._read(include_target, server=server, delete=delete)
 
                     if delete:
                         try:

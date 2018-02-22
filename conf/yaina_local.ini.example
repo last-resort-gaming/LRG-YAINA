@@ -1,0 +1,19 @@
+[common]
+instance = EU1
+root = C:\Users\Martin\Documents\Arma 3 - Other Profiles\CM%2e%20MartinCo\mpmissions\yaina\temp
+
+[battleye]
+RConPort = 2315
+MaxPing = 200
+RConPassword = foo
+
+[server]
+port = 2502
+battleye = 0
+passwordAdmin = password
+serverCommandPassword = servercommandpassword
+addon_include = server.example
+
+[hc]
+count = 0
+server = 127.0.0.1

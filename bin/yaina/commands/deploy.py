@@ -51,7 +51,7 @@ class Deploy(Command):
         beservercfg = os.path.join(instance_be, 'beserver.cfg')
         with open(beservercfg, 'w') as fh:
             for o in yaina.config.options('battleye'):
-                fh.write("%s %s" % (o, yaina.config.get('battleye', o)))
+                fh.write("%s %s\n" % (o, yaina.config.get('battleye', o)))
 
         # We then copy this for beserver_x64
         beservercfg_x64 = os.path.join(instance_be, 'beserver_x64.cfg')
@@ -68,6 +68,7 @@ class Deploy(Command):
 
         # Logging, we only care about changing the output path to instance_root / logs
         a3log = ConfigParser.ConfigParser()
+        a3log.optionxform=str
         a3log.read(os.path.join(yaina.root, 'conf', 'A3Log.ini'))
         a3log.set('Settings', 'CustomDirectory',instance_logs)
         with open(os.path.join(server_dir, 'A3Log-%s.ini' % instance_name), 'w') as fh:
