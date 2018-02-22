@@ -10,7 +10,13 @@ params ["_crate"];
     if ((position _crate) select 2 >= 50) then {
 
         _smoke1 = "SmokeShellGreen" createVehicle (position _crate);
-        _smoke1 attachTo [_crate, [0,0,0.5]];
+        _smoke1 attachTo [_crate, [0,0,0.6]];
+
+        _chemLight = "Chemlight_green" createVehicle (position _crate);
+        _chemLight attachTo [_crate, [0,0.2,0.8]];
+
+        _irGrenade = "B_IRStrobe" createVehicle (position _crate);
+        _irGrenade attachTo [_crate, [0,-0.2,0.8]];
 
         // wait until we are 40m below chopper...
         [
