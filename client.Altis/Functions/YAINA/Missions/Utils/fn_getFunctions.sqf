@@ -12,9 +12,9 @@ private ["_cf", "_ret"];
 _ret = [];
 
 if (isNil "_prefix") then {
-      _prefix = "";
+    _prefix = "";
 } else {
-  _prefix = _prefix + "_";
+    _prefix = _prefix + "_";
 };
 
 // Config File
