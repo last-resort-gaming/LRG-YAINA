@@ -58,18 +58,18 @@ if(hasInterface) then {
 
                 // VEH Markers
                 _markers = [];
-                _markersFor = units (group player);
+                _markersFor = (units (group player)) apply { [_x, 1] };
 
                 // If the map is shut just skip this
                 if (visibleMap) then {
 
                     // HQ can see everyones vehicle
-                    if ("HQ" call YFNC(testTraits)) then {
-                        _markersFor = allPlayers;
+                    if ("HQ" call YFNC(testTraits) || { [player] call YFNC(getAdminLevel) <= 4 }) then {
+                        _markersFor = allPlayers apply { [_x, [0.25,1] select ((group _x) isEqualTo (group player)) ] };
                     };
 
                     {
-                        _p = _x;
+                        _x params ["_p", "_a"];
                         _pids = _p getVariable [QVAR(vehicles), []];
                         {
                             _id = _x call BIS_fnc_objectVar;
@@ -81,6 +81,7 @@ if(hasInterface) then {
                                 _md setMarkerShapeLocal "ICON";
                                 _md setMarkerTypeLocal "mil_triangle";
                                 _md setMarkerTextLocal format["%1's %2", name _p, getText(configFile >> "CfgVehicles" >> typeOf (_x) >> "displayName")];
+                                _md setMarkerAlphaLocal _a;
                             };
 
                             _md setMarkerPos (position _x);
