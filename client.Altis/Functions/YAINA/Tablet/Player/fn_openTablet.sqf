@@ -19,7 +19,7 @@
       [getBackpackCargo cursorObject],
       [getMagazineCargo cursorObject]
     ]);
-    diag_log str arr;
+    copyToClipboard str arr;
 
 */
 #include "..\defines.h"
@@ -35,8 +35,8 @@ private _tablet = findDisplay IDD_TABLET;
 
 // RESET TO BASE LOADOUT
 GVAR(loadout) = [
-    ["FirstAidKit","Medikit","NVGoggles_OPFOR","optic_NVS","ToolKit","arifle_AK12_F","B_Patrol_Soldier_Carrier_weapon_F","30Rnd_65x39_caseless_mag","20Rnd_762x51_Mag","Laserbatteries","HandGrenade","MiniGrenade","SmokeShell","10Rnd_338_Mag","130Rnd_338_Mag","5Rnd_127x108_APDS_Mag","150Rnd_556x45_Drum_Mag_Tracer_F","200Rnd_556x45_Box_Tracer_Red_F","150Rnd_762x54_Box_Tracer","30Rnd_762x39_Mag_Tracer_Green_F","DemoCharge_Remote_Mag","SatchelCharge_Remote_Mag","RPG32_HE_F","RPG32_F","SmokeShellBlue","Titan_AA","Titan_AP","Titan_AT"],
-    [20,2,5,2,2,2,5,25,10,5,10,10,30,10,10,20,10,10,10,25,10,5,5,10,10,5,5,10]
+    ["FirstAidKit","optic_NVS","optic_MRCO","NVGoggles_OPFOR","1Rnd_HE_Grenade_shell","20Rnd_556x45_UW_mag","20Rnd_762x51_Mag","30Rnd_45ACP_Mag_SMG_01","30Rnd_556x45_Stanag_red","30Rnd_65x39_caseless_mag","7Rnd_408_Mag","B_IR_Grenade","DemoCharge_Remote_Mag","HandGrenade","NLAW_F","SatchelCharge_Remote_Mag","SmokeShell","SmokeShellBlue","Titan_AA","Titan_AP","Titan_AT","UGL_FlareWhite_F","10Rnd_338_Mag","130Rnd_338_Mag","10Rnd_50BW_Mag_F","10Rnd_127x54_Mag","5Rnd_127x108_APDS_Mag","30Rnd_545x39_Mag_F","150Rnd_556x45_Drum_Mag_F","200Rnd_556x45_Box_Red_F","100Rnd_580x42_Mag_F","30Rnd_580x42_Mag_F","100Rnd_65x39_caseless_mag","200Rnd_65x39_cased_Box","20Rnd_650x39_Cased_Mag_F","30Rnd_65x39_caseless_green","150Rnd_762x54_Box","30Rnd_762x39_Mag_Green_F","10Rnd_762x54_Mag","30Rnd_9x21_Mag_SMG_02","10Rnd_93x64_DMR_05_Mag","150Rnd_93x64_Mag","RPG7_F","RPG32_HE_F","RPG32_F"],
+    [20,10,10,10,10,10,10,10,30,60,10,5,5,20,5,5,60,10,5,5,5,5,10,10,5,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,5,5,5]
 ];
 
 // Place holder for last selected player
