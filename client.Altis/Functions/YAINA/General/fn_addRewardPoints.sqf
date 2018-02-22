@@ -25,7 +25,7 @@ private _owner = "server";
 if (isRemoteExecuted && { !(remoteExecutedOwner isEqualTo 0) } ) then {
     _idx = (YVAR(ownerIDs) select 0) find remoteExecutedOwner;
     if !(_idx isEqualTo -1) then {
-        _owner = (YVAR(ownerIDs) select 1) select 1;
+        _owner = (YVAR(ownerIDs) select 1) select _idx;
     };
 };
 
