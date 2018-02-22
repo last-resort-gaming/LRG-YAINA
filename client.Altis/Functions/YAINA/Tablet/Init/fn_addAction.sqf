@@ -8,7 +8,7 @@
 
 params ["_player"];
 
-if ([["HQ"], _player] call YFNC(testTraits) || { [_player] call YFNC(getAdminLevel) >= 3 }) then {
+if ([["HQ"], _player] call YFNC(testTraits) || { [_player] call YFNC(getAdminLevel) <= 2 }) then {
 
     [[], {
         player addAction [

@@ -8,19 +8,38 @@
 
 if(isServer) then {
 
-    // we dispatch a list of server commands to clients
-    GVAR(commands) = [
-        ["help", "credits", "addcredits", "mmpause", "mmstart", "mmlist", "mmstop", "report", "setadmin", "settrait", "revive","zeuslist", "zeusadd", "zeusdel", "abusemsg", "ffmsg", "helimsg", "hqmsg", "lwmsg", "mertmsg", "pilotmsg", "uavmsg", "ugmsg", "vehmsg", "30mban", "24hban", "72hban", "servermsg"],
-        [0, 0, 3, 3, 3, 3, 3, 0, 3, 3, 3, 3,3,3, 1,1,1,1,1,1,1,1,1,1,3,3,3, 0]
+    // Pretty map of commands, easy to assign, but a pain to check against
+    GVAR(commandMap) = [
+        [
+            5,
+            4,
+            3,
+            2,
+            1
+        ],
+        [
+            ["help", "credits", "report"],
+            ["abusemsg", "ffmsg", "helimsg", "hqmsg", "lwmsg", "mertmsg", "pilotmsg", "uavmsg", "ugmsg", "vehmsg"],
+            ["addcredits", "mmpause", "mmstart","mmlist", "mmstop", "revive", "restart", "30mban"],
+            ["setadmin", "settrait", "zeuslist", "zeusadd", "zeusdel", "24hban", "restarthard", "72hban"],
+            []
+        ]
     ];
 
-    GVAR(becCommands) = ["30mban", "24hban", "72hban"];
+    // So we format it to just an assoc array
+    GVAR(commands) = [[], []];
+    {
+        _lvl = _x;
+        {
+            (GVAR(commands) select 0) pushBack _x;
+            (GVAR(commands) select 1) pushBack _lvl;
+            nil
+        } count ((GVAR(commandMap) select 1) select _forEachIndex);
+    } forEach (GVAR(commandMap) select 0);
+
+    GVAR(becCommands) = ["30mban", "24hban", "72hban", "restarthard"];
 
     publicVariable QVAR(commands);
     publicVariable QVAR(becCommands);
-
-    _cmdMax = 0;
-    { if (_x > _cmdMax) then { _cmdMax = _x; }; true } count ((GVAR(commands) select 0) apply { count _x; });
-    GVAR(cmdMax) = _cmdMax;
 
 };

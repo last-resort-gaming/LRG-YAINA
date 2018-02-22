@@ -10,4 +10,4 @@ params ["_caller", "_requiredLvl"];
 
 // Lookup admin level
 private _lvl = [_caller] call YFNC(getAdminLevel);
-_lvl >= _requiredLvl
+_lvl <= _requiredLvl

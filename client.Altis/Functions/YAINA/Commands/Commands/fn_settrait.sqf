@@ -31,7 +31,7 @@ if (_p isEqualTo []) then {
 
         // Let admins know
         _ret = format ["set unitTrait %1 on player: %2", _trait, name (_p select 0)];
-        [_caller, _ret, 3] call FNC(notifyAdmins);
+        [_caller, _ret, 2] call FNC(notifyAdmins);
     };
 };
 

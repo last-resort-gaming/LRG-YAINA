@@ -19,7 +19,7 @@ if (_argStr isEqualTo "") then {
     _ret = "Thank you, we have logged the issue, any admins online have been notified, and the event logged for offline evaluation";
     _log = _argStr;
     // Let other admins know
-    [_caller, format ["REPORT: %1", _argStr], 3] call FNC(notifyAdmins);
+    [_caller, format ["REPORT: %1", _argStr], 2] call FNC(notifyAdmins);
 };
 
 _ret remoteExecCall ["systemChat", _owner];
