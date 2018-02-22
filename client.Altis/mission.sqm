@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={9222.5225,31.884493,21692.887};
-		dir[]={-0.58002043,-0.77262986,-0.25859401};
-		up[]={-0.70569545,0.63474292,-0.31462264};
-		aside[]={-0.40724126,2.0430307e-006,0.91344905};
+		pos[]={9214.9424,43.124794,21642.281};
+		dir[]={-0.73182374,-0.50215846,0.46099931};
+		up[]={-0.4250412,0.86461473,0.26774603};
+		aside[]={0.53306592,1.9818544e-006,0.84622282};
 	};
 };
 binarizationWanted=0;
@@ -816,10 +816,12 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				init="this setVariable [""bis_disabled_Door_1"", 1];" \n "";
 				name="inf_gate";
 			};
 			id=28;
 			type="Land_BarGate_F";
+			atlOffset=9.5367432e-007;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -19909,6 +19911,7 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				init="this setVariable [""bis_disabled_Door_1"", 1];" \n "this setVariable [""bis_disabled_Door_2"", 1];";
 				name="car_gate";
 			};
 			id=1855;
@@ -31024,7 +31027,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9190.5,15.641298,21685.754};
+				position[]={9190.6094,15.642302,21685.639};
 				angles[]={0.0039968039,4.1887903,0.0066671576};
 			};
 			side="Empty";
@@ -31034,7 +31037,7 @@ class Mission
 			};
 			id=2090;
 			type="Land_Cargo20_military_green_F";
-			atlOffset=9.5367432e-006;
+			atlOffset=-0.00018024445;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -31173,6 +31176,7 @@ class Mission
 			flags=5;
 			class Attributes
 			{
+				init="this setVariable [""bis_disabled_Door_1"", 1];";
 				name="mert_gate";
 			};
 			id=2093;
