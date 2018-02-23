@@ -32,5 +32,6 @@ class YAINA {
 		class addActionMP {};
 		class isUAV {};
 		class killLog {};
+		class deleteVehicleIn {};
     };
 };

@@ -21,5 +21,6 @@ class YAINA {
 		class getAdminLevel {};
 		class addActionMP {};
 		class killLog {};
+		class deleteVehicleIn {};
     };
 };
