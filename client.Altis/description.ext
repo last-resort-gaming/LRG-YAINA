@@ -52,7 +52,9 @@ showPad = 0;
 showSquadRadar = 1;
 
 //------------------------- Garbage collector
-							
+
+minPlayerDistance = 0;
+
 corpseManagerMode = 1;
 corpseLimit = 1;
 corpseRemovalMinTime = 1800;
