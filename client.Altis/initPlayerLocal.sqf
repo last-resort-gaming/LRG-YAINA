@@ -10,9 +10,10 @@ if (!hasInterface) exitWith {};
 // RADIO MANAGEMENT
 ////////////////////////////////////////////////////////////////////////////
 
-// Zeus can use global
-if (side player isEqualTo sidelogic) exitWith {
-    0 enableChannel true;
+// Zeus is a little special, so we just exit here with initialize dynamic
+// groups and allow the zeusConnected handler to sort out the rest
+if (typeOf player isEqualTo "VirtualCurator_F") exitWith {
+    ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 };
 
 // Channel Management

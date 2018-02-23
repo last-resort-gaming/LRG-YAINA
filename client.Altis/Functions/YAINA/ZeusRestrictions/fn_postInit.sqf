@@ -29,7 +29,7 @@ if (isServer) then {
     }, 2, []] call CBAP_fnc_addPerFrameHandler;
 };
 
-if !(side player isEqualTo sideLogic && { typeOf player isEqualTo "VirtualCurator_F" } ) exitWith {};
+if !(typeOf player isEqualTo "VirtualCurator_F") exitWith {};
 
 // we spawn here to esnure we have a display
 

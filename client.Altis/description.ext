@@ -118,7 +118,7 @@ class CfgDebriefing
 	class ZeusSlotRestricted
 	{
 		title = "Slot Restricted";
-		subtitle = "Whitelist restrictions in place. Please contact a CM";
+		subtitle = "Zeus slots are for whitelisted members only";
 		description = "";
 		debriefing = 0;
 		pictureColor[] = {0.0,0.3,0.6,1};

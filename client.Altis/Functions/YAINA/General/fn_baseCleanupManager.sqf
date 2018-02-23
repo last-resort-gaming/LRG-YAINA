@@ -29,6 +29,9 @@ if(!isServer) exitWith {};
                 true
             } count ["GroundWeaponHolder"];
 
+            // Remove any empty groups, not technically base, but no point creating another cleanup
+            { deleteGroup _x; true } count (allGroups select { count (units _x) isEqualTo 0; } );
+
             nil
         } count BASE_PROTECTION_AREAS;
     };
