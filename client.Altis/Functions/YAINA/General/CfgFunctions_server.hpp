@@ -3,7 +3,6 @@ class YAINA {
 
 	class General {
 		file = "Functions\YAINA\General";
-		class killedHint { postInit = 1; };
 		class baseCleanupManager { postInit = 1; };
 		class timeManager{ postInit=1; };
 		class hideTerrainObjects{};
