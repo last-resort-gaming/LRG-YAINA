@@ -11,7 +11,7 @@ class YAINA {
 		class baseProtection { postInit = 1; };
 		class baseCleanupManager { postInit = 1; };
 		class hintC {};
-		class timeManager{};
+		class timeManager{ postInit=1; };
 		class hideTerrainObjects{};
 		class showTerrainObjects{};
 		class getPointBetween {};

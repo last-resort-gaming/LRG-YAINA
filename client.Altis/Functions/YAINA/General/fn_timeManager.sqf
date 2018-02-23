@@ -8,11 +8,15 @@
 // Day    05:30 - 18:30   5.5 -> 18.5
 // Dusk   18:30 - 20:30  18.5 -> 20.5
 // Night  20:30 - 03:30  20.5 -> ...
+if !(isServer) exitWith {};
 
-private _dawnMultiplier  = ("DawnDuration"  call BIS_fnc_getParamValue) / 10;
-private _dayMultiplier   = ("DayDuration"   call BIS_fnc_getParamValue) / 10;
-private _duskMultiplier  = ("DuskDuration"  call BIS_fnc_getParamValue) / 10;
-private _nightMultiplier = ("NightDuration" call BIS_fnc_getParamValue) / 10;
+private _timeManager     = ("TimeManagerEnable" call BIS_fnc_getParamValue);
+private _dawnMultiplier  = ("TimeManagerDawnDuration"  call BIS_fnc_getParamValue) / 10;
+private _dayMultiplier   = ("TimeManagerDayDuration"   call BIS_fnc_getParamValue) / 10;
+private _duskMultiplier  = ("TimeManagerDuskDuration"  call BIS_fnc_getParamValue) / 10;
+private _nightMultiplier = ("TimeManagerNightDuration" call BIS_fnc_getParamValue) / 10;
+
+if (_timeManager isEqualTo 0) exitWith {};
 
 [{
     params ["_args", "_pfhID"];

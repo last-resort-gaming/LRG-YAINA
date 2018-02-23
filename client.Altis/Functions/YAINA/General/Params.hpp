@@ -7,7 +7,7 @@ class TimeManagerEnable {
     title = "Enable Time Manager";
     values[] = {0, 1};
     texts[] = {"No", "Yes"};
-    default = 0;
+    default = 1;
 };
 
 // 03:30 - 05:30
