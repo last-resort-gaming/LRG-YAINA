@@ -82,36 +82,63 @@ if (_fail) exitWith { false; };
     deleteVehicle _x;
 } count _buildings;
 
-// Restore any buildings around 1.5 times the AO size
-// Remove any mines around the AO
+// Due to the intensity of the following section, we spawn it so it doesn't
+// Lag out the HC. We do the buildings above, as when this fnc returns true, any
+// terrain objects clear will re-appear and we don't want that to go too badly
 
-_sz =  3 * (getMarkerSize (_markers select 0) select 0);
-{ _x setDamage 0; true; } count ((getMarkerPos (_markers select 0)) nearObjects ["All", _sz]);
-{ deleteVehicle _x; } count ((getMarkerPos (_markers select 0)) nearObjects ["MineBase", _sz]);
+[_pfhID, _missionID, _markers, _groups, _vehicles, _buildings, _localRunningMissionID] spawn {
+    params ["_pfhID", "_missionID", "_markers", "_groups", "_vehicles", "_buildings", "_localRunningMissionID"];
 
+    // cleanup area = 1.5 times the AO size
+    _cp = getMarkerPos (_markers select 0);
+    _sz =  1.5 * (getMarkerSize (_markers select 0) select 0);
 
-// delete our _markers
-{ deleteMarker _x; true; } count _markers;
+    // Restore buildings/Things etc, but delete thoose placed in game (e.g. zeus minefield signs)
+    {
+        {
+            _x setDamage 0;
+            if (getObjectType _x isEqualTo 8) then {
+                deleteVehicle _x;
+            };
+            true;
+        } count (_cp nearObjects [_x, _sz]);
+        nil
+    } count ["Building", "Thing"];
 
-// Delete ourselves from our local running missions flag
-(GVAR(localRunningMissions) select 0) deleteAt _localRunningMissionID;
-(GVAR(localRunningMissions) select 1) deleteAt _localRunningMissionID;
+    // Remove UXO / Mines etc. / Smokes / Ground weapon holders (backpacks/rifles on floor etc) / blood splatters
+    {
+        _t = _x;
+        { deleteVehicle _x; true } count (_cp nearObjects [_t, _sz]);
+        true
+    } count ["MineBase", "Grenade", "#crater", "GroundWeaponHolder", "#slop"];
 
-// Call BIS_fnc_taskDeldete ? We delay this by 2 minutes so the success message
-// goes through and people can see it in the map, if an HC disconnects at this
-// point then it'll never get deleted.
-[{ _this call BIS_fnc_deleteTask; }, [_missionID], 120] call CBAP_fnc_waitAndExecute;
+    // Now we just remove any zeus-units, vehicles, dead bodies, ammo crates etc. etc.
+    { deleteVehicle _x; true } count (entities [["All"], ["Animal_Base_F", "Logic"], true, false] select { _x distance2D _cp < _sz });
 
-// Remove from stopRequests
-_idx = GVAR(stopRequests) find _missionID;
-if !(_idx isEqualTo -1) then {
-    GVAR(stopRequests) deleteAt _idx;
+    // delete our _markers
+    { deleteMarker _x; true; } count _markers;
+
+    // Delete ourselves from our local running missions flag
+    (GVAR(localRunningMissions) select 0) deleteAt _localRunningMissionID;
+    (GVAR(localRunningMissions) select 1) deleteAt _localRunningMissionID;
+
+    // Call BIS_fnc_taskDeldete ? We delay this by 2 minutes so the success message
+    // goes through and people can see it in the map, if an HC disconnects at this
+    // point then it'll never get deleted.
+    [{ _this call BIS_fnc_deleteTask; }, [_missionID], 120] call CBAP_fnc_waitAndExecute;
+
+    // Remove from stopRequests
+    _idx = GVAR(stopRequests) find _missionID;
+    if !(_idx isEqualTo -1) then {
+        GVAR(stopRequests) deleteAt _idx;
+    };
+
+    // Delete our HCDCH
+    [profileName, _missionID] remoteExecCall [QFNC(delHCDCH), 2];
+
+    // Remove pfh
+    [_pfhID] call CBAP_fnc_removePerFrameHandler;
+
 };
-
-// Delete our HCDCH
-[profileName, _missionID] remoteExecCall [QFNC(delHCDCH), 2];
-
-// Remove pfh
-[_pfhID] call CBAP_fnc_removePerFrameHandler;
 
 true;

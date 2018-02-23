@@ -53,10 +53,10 @@ showSquadRadar = 1;
 
 //------------------------- Garbage collector
 							
-corpseManagerMode = 1;
-corpseLimit = 20;
-corpseRemovalMinTime = 60;			
-corpseRemovalMaxTime = 120;							
+corpseManagerMode = 2;
+corpseLimit = 1;
+corpseRemovalMinTime = 60;
+corpseRemovalMaxTime = 120;
 
 wreckManagerMode = 1;
 wreckLimit = 5;

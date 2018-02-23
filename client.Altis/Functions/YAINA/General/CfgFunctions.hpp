@@ -9,12 +9,12 @@ class YAINA {
 		class formatDuration {};
 		class showFPS { postInit = 1; };
 		class baseProtection { postInit = 1; };
+		class baseCleanupManager { postInit = 1; };
 		class hintC {};
 		class timeManager{};
 		class hideTerrainObjects{};
 		class showTerrainObjects{};
 		class getPointBetween {};
-		class setupTP { postInit = 1; };
 		class postInit { postInit = 1; };
 		class fadeOutAndExecute {};
 		class markerManager { postInit = 1; };
