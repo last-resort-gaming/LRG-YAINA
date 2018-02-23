@@ -20,7 +20,7 @@ if (side player isEqualTo sidelogic) exitWith {
     _settings = [];
 
     // Command Channel Management
-    _settings pushBack [1, "HQ" call YAINA_fnc_testTraits || { player getVariable ["YAINA_adminLevel", 0] > 0 }, true];
+    _settings pushBack [1, "HQ" call YAINA_fnc_testTraits || { player getVariable ["YAINA_adminLevel", 0] <= 3 }, true];
     _settings pushBack [2, leader (group player) isEqualTo player];
 
     {
