@@ -11,7 +11,6 @@ class YAINA_VEH {
         class updatePlayerActions {};
         class respawnPFH {};
         class preInit { preInit = 1; };
-        class removeMarkers {};
         class setupRopeDetachHandler {};
         class addRopeDetachHandler {};
         class addGetInHandler {};

@@ -10,7 +10,7 @@ if(!isServer) exitWith {};
 
 [{
     for "_i" from count(GVAR(respawnList)) to 0 step -1 do {
-        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_respawnArea", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
+        (GVAR(respawnList) select _i) params ["_veh", "_vehType", "_pos", "_dir", "_respawnArea", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs", "_respawnCode", "_respawnCodeArgs"];
 
         // If the vehicle is not alive / null then we remove from the respawn
         // list and schedule a delete it in 30 seconds just in case it
@@ -61,6 +61,12 @@ if(!isServer) exitWith {};
         if(_respawn) then {
 
             GVAR(respawnList) deleteAt _i;
+
+            // Run our respawn code
+            _respawnCodeArgs call _respawnCode;
+
+            // If we are not to be respawning, we're done here
+            if(_respawnTime isEqualTo -1) exitWith {};
 
             [{
                 params ["_args", "_pfhID"];

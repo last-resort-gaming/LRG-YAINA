@@ -24,7 +24,6 @@ if (_action isEqualTo "remove") then {
 
             _owner = (GVAR(owners) select 0) select _id;
             _mm    = _veh getVariable QVAR(mm);
-            [_owner, _mm] call FNC(removeMarkers);
 
             _veh setVariable [QVAR(owner), nil, true];
             (GVAR(owners) select 0) deleteAt _id;
@@ -38,8 +37,6 @@ if (_action isEqualTo "remove") then {
                     _veh   = ((GVAR(owners) select 1) select _i);
                     _owner = ((GVAR(owners) select 0) select _i);
                     _mm    = _veh getVariable QVAR(mm);
-
-                    [_owner, _mm] call FNC(removeMarkers);
 
                     _veh setVariable [QVAR(owner), nil, true];
                     (GVAR(owners) select 0) deleteAt _i;

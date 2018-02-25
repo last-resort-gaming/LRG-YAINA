@@ -6,6 +6,8 @@
 
 #include "..\defines.h"
 
+if !(isServer) exitWith {};
+
 ///////////////////////////////////////////////////////////
 // RUNWAY LIGHTING
 ///////////////////////////////////////////////////////////
@@ -79,7 +81,109 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
 
 TM enableCopilot false;
 TM setVariable ["YAINA_VEH_Drivers", ["MERT"], true];
-[TM, false, 10, 1000, []] call YAINA_VEH_fnc_initVehicle;
+TM setVariable ["MERT_QUAD_unloading", 0, true];
+[TM, false, 10, 1000, [], {
+
+    params ["_veh", "_args"];
+
+    _internalQuad = "B_QuadBike_01_F" createVehicle [0,0,0];
+    _internalQuad enableSimulationGlobal false;
+    _internalQuad attachTo [_veh, [0,-1,0]];
+    _veh setVariable ["MERT_QUAD_dummy", _internalQuad, true];
+
+    ///////////////////////////////////////////////////////
+    // REMOVE QUAD
+    ///////////////////////////////////////////////////////
+
+    _checkCode = "!(vehicle _this isEqualTo _target) &&
+        { [['MERT'], _this] call YAINA_fnc_testTraits } &&
+        { serverTime - (_target getVariable['MERT_QUAD_unloading', 0]) > 12 } &&
+        { !(isObjectHidden (_target getVariable 'MERT_QUAD_dummy')) }";
+
+    [_veh, "<t color='#ff1111'>Unload Quadbike</t>", {
+        params ["_target", "_caller", "_id", "_arguments"];
+
+        // We set serverTime to now, in case of a DC whilst downloading, we
+        // dont want the mission to bug out
+        _target setVariable["MERT_QUAD_unloading", serverTime, true];
+
+        ["Unloading Quad Bike", 10, {
+            // Success, unpack quad
+            params ["_target", "_caller", "_internalQuad"];
+
+            _target setVariable["MERT_QUAD_unloading", 0, true];
+
+            // Ensure we have no quad
+            if(isNil {_target getVariable "MERT_QUAD_veh"} || { !(alive (_target getVariable "MERT_QUAD_veh")) } ) then {
+
+                _quad = "B_QuadBike_01_F" createVehicle [0,0,0];
+                _quad setDir (getDir _target);
+                _quad setPos (_target getRelPos [7, 180]);
+
+                // Only allow MERT to drive it...
+                _quad setVariable ["YAINA_VEH_Drivers", ["MERT"], true];
+                _target setVariable ["MERT_QUAD_veh", _quad, true];
+
+                // Vehicle Handler, this has a short despawn distance (200m)
+                [_quad, true, -1, 100, [], {
+                    params ["_veh", "_args"];
+                    (_args select 0) hideObjectGlobal true;
+                }, [_internalQuad], true, {
+                    params ["_internalQuad"];
+                    if (!isNull _internalQuad) then { _internalQuad hideObjectGlobal false; };
+                }, [_internalQuad]] call YAINA_VEH_fnc_initVehicle;
+
+                // And the guy who deployed it takes the keys so it shows up on the map
+                [_quad, _caller] call YAINA_VEH_fnc_takeKey;
+            } else {
+                systemChat "The quadbike has already been deployed..."
+            };
+        }, [_target, _caller, _arguments select 0], {
+            // on Abort;
+            params ["_target", "_caller", "_internalQuad"];
+            _target setVariable["MERT_QUAD_unloading", 0, true];
+        }] call AIS_Core_fnc_Progress_ShowBar;
+
+    }, [_internalQuad], 6, false, true, "", _checkCode, 5, false] call YFNC(addActionMP);
+
+    ///////////////////////////////////////////////////////
+    // INSERT QUAD
+    ///////////////////////////////////////////////////////
+
+    _checkLoadCode = "!(vehicle _this isEqualTo _target) &&
+        { serverTime - (_target getVariable['MERT_QUAD_loading', 0]) > 12 } &&
+        { !(isNil { _target getVariable 'MERT_QUAD_veh' }) && { alive (_target getVariable 'MERT_QUAD_veh') } } &&
+        { (_target getVariable 'MERT_QUAD_veh') distance2D _target < 10 }";
+
+    [_veh, "<t color='#ff1111'>Reload Quadbike</t>", {
+        params ["_target", "_caller", "_id", "_arguments"];
+
+        // We set serverTime to now, in case of a DC whilst downloading, we
+        // dont want the mission to bug out
+        _target setVariable["MERT_QUAD_loading", serverTime, true];
+
+        ["Loading Quad Bike", 10, {
+            // Success, unpack quad
+            params ["_target", "_caller"];
+
+            _target setVariable["MERT_QUAD_loading", 0, true];
+
+            // Delete our quad
+            deleteVehicle (_target getVariable "MERT_QUAD_veh");
+
+            // Show the dummy
+            [(_target getVariable "MERT_QUAD_dummy"), false] remoteExec ["hideObjectGlobal", 2];
+
+        }, [_target, _caller], {
+            // on Abort;
+            params ["_target", "_caller"];
+            _target setVariable["MERT_QUAD_loading", 0, true];
+        }] call AIS_Core_fnc_Progress_ShowBar;
+
+    }, [], 6, false, true, "", _checkLoadCode, 5, false] call YFNC(addActionMP);
+
+}, [], true] call YAINA_VEH_fnc_initVehicle;
+
 
 ///////////////////////////////////////////////////////////
 // STATIC MEDICSTATIONS

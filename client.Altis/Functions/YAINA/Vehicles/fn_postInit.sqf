@@ -84,7 +84,7 @@ if(hasInterface) then {
                                 _md setMarkerAlphaLocal _a;
                             };
 
-                            _md setMarkerPos (position _x);
+                            _md setMarkerPosLocal (position _x);
 
                         } forEach _pids;
                     } forEach _markersFor;

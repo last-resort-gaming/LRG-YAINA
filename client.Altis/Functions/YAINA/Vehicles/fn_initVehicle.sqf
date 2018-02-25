@@ -6,13 +6,32 @@
 
 #include "defines.h"
 
-params ["_veh", ["_hasKeys", true],  ["_respawnTime", -1], ["_abandonDistance", 1000], ["_persistVars", []], ["_initCode", {}], ["_initCodeArgs", []]];
+if(!isServer) exitWith {
+    _this remoteExec[QFNC(initVehicle), 2]
+};
+
+params ["_veh",
+    ["_hasKeys", true],
+    ["_respawnTime", -1],
+    ["_abandonDistance", 1000],
+    ["_persistVars", []],
+    ["_initCode", {}],
+    ["_initCodeArgs", []],
+    ["_initOnInit", false],
+    ["_respawnCode", {}],
+    ["_respawnCodeArgs", []]
+];
 
 // Dont init more than once
 if (_veh getVariable [QVAR(init), false]) exitWith {};
 
 // Mark as complete straight away
 _veh setVariable [QVAR(init), true, true];
+
+if (_initOnInit) then {
+    diag_log format["Running init on %1", _veh];
+    [_veh, _initCodeArgs] call _initCode;
+};
 
 if (_hasKeys) then {
 
@@ -88,64 +107,63 @@ if (_hasKeys) then {
     }] call FNC(addGetInHandler);
 };
 
-if !(_respawnTime isEqualTo -1) then {
+// Setup the loadout
+_loadout =  [
+    getBackpackCargo _veh,
+    getWeaponCargo _veh,
+    getMagazineCargo _veh,
+    getItemCargo _veh
+];
 
-    // Setup the loadout
-    _loadout =  [
-        getBackpackCargo _veh,
-        getWeaponCargo _veh,
-        getMagazineCargo _veh,
-        getItemCargo _veh
-    ];
-
-    // Save any wing fold state
-    _animationInfo = [];
-    if(_veh isKindOf "Plane") then {
-        _wingFoldAnimationsList = [(configFile >> "CfgVehicles" >> typeOf _veh  >> "AircraftAutomatedSystems"), "wingFoldAnimations", []] call BIS_fnc_returnConfigEntry;
-        { _animationInfo pushBack [_x, _veh animationPhase _x]; } forEach _wingFoldAnimationsList;
-    };
-
-    // Save any pylon weapon loadouts
-    _pylonLoadout = [];
-    if (_veh isKindOf "UAV") then {
-        _pylonLoadout = GetPylonMagazines _veh;
-    };
-
-    // Add default persist vars
-    _persistVars pushBackUnique QVAR(Drivers);
-    _persistVars pushBackUnique QVAR(DriversMessage);
-    _persistVars pushBackUnique QVAR(getIn);
-
-    // Save persist vars
-    _persistVarsSave = _persistVars apply { [_x, _veh getVariable [_x, nil]] };
-
-    // Build respawn area
-    boundingBoxReal _veh params ["_p1", "_p2"];
-    _maxWidth = abs ((_p2 select 0) - (_p1 select 0));
-    _maxLength = abs ((_p2 select 1) - (_p1 select 1));
-    _maxHeight = abs ((_p2 select 2) - (_p1 select 2));
-
-    // And just push back to the respawn list
-    GVAR(respawnList) pushBack [
-        _veh,
-        typeOf _veh,
-        getPosATL _veh,
-        getDir _veh,
-        [_veh modelToWorld [0,0,0], _maxWidth, _maxLength, getDir _veh, true, _maxHeight],
-        getObjectTextures _veh,
-        isCopilotEnabled _veh,
-        locked _veh,
-        _loadout,
-        _animationInfo,
-        _pylonLoadout,
-        _respawnTime,
-        _abandonDistance,
-        _hasKeys,
-        _persistVarsSave,
-        _initCode,
-        _initCodeArgs
-    ];
+// Save any wing fold state
+_animationInfo = [];
+if(_veh isKindOf "Plane") then {
+    _wingFoldAnimationsList = [(configFile >> "CfgVehicles" >> typeOf _veh  >> "AircraftAutomatedSystems"), "wingFoldAnimations", []] call BIS_fnc_returnConfigEntry;
+    { _animationInfo pushBack [_x, _veh animationPhase _x]; } forEach _wingFoldAnimationsList;
 };
+
+// Save any pylon weapon loadouts
+_pylonLoadout = [];
+if (_veh isKindOf "UAV") then {
+    _pylonLoadout = GetPylonMagazines _veh;
+};
+
+// Add default persist vars
+_persistVars pushBackUnique QVAR(Drivers);
+_persistVars pushBackUnique QVAR(DriversMessage);
+_persistVars pushBackUnique QVAR(getIn);
+
+// Save persist vars
+_persistVarsSave = _persistVars apply { [_x, _veh getVariable [_x, nil]] };
+
+// Build respawn area
+boundingBoxReal _veh params ["_p1", "_p2"];
+_maxWidth = abs ((_p2 select 0) - (_p1 select 0));
+_maxLength = abs ((_p2 select 1) - (_p1 select 1));
+_maxHeight = abs ((_p2 select 2) - (_p1 select 2));
+
+// And just push back to the respawn list
+GVAR(respawnList) pushBack [
+    _veh,
+    typeOf _veh,
+    getPosATL _veh,
+    getDir _veh,
+    [_veh modelToWorld [0,0,0], _maxWidth, _maxLength, getDir _veh, true, _maxHeight],
+    getObjectTextures _veh,
+    isCopilotEnabled _veh,
+    locked _veh,
+    _loadout,
+    _animationInfo,
+    _pylonLoadout,
+    _respawnTime,
+    _abandonDistance,
+    _hasKeys,
+    _persistVarsSave,
+    _initCode,
+    _initCodeArgs,
+    _respawnCode,
+    _respawnCodeArgs
+];
 
 // Setup Rope detach handlers on Helicopters
 if (_veh isKindOf "Helicopter" && !(_veh isKindOf "UAV")) then {
