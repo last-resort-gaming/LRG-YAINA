@@ -91,7 +91,8 @@ if (_item isEqualTo objNull) then {
 
     if (_container isEqualTo objNull) exitWith {};
 
-    private _filteredContainer = _container getVariable [QVAR(filtered), false];
+    private _inBase = !(({ player inArea _x } count BASE_PROTECTION_AREAS) isEqualTo 0);
+    private _filteredContainer = _inBase || { _container getVariable [QVAR(filtered), false] };
 
     // What do we filter on, if it's a filtered container (i.e. blufor), we filter against
     // Our unit's entire permit/deny list, if it's not (i.e. looted from the enemy) we only
