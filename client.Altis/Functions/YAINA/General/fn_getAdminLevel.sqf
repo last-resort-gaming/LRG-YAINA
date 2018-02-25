@@ -8,11 +8,17 @@
 
 params ["_player"];
 
-if (isNil QYVAR(ownerIDs)) exitWith { 5 };
+_defaultAdminLevel = 5;
+
+if !(isServer) exitWith {
+    _player getVariable ["YAINA_adminLevel", _defaultAdminLevel];
+};
+
+if (isNil QYVAR(ownerIDs)) exitWith { _defaultAdminLevel };
 
 private _owner = owner _player;
 
-private _lvl = 5;
+private _lvl = _defaultAdminLevel;
 
 private _idx = (YVAR(ownerIDs) select 0) find _owner;
 if !(_idx isEqualTo -1) then {

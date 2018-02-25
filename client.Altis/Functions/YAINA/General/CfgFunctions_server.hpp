@@ -17,7 +17,6 @@ class YAINA {
 		class getPosAround {};
 		class loadDB {};
 		class log {};
-		class getAdminLevel {};
 		class addActionMP {};
 		class killLog {};
 		class deleteVehicleIn {};
