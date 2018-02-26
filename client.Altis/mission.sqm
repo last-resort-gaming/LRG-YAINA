@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=2171;
+		nextID=2172;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={9044.876,41.975452,21490.127};
-		dir[]={-0.50099295,-0.45595318,-0.7357685};
-		up[]={-0.25675806,0.88979149,-0.37707943};
-		aside[]={-0.82665819,2.7001079e-006,0.56288898};
+		pos[]={9169.915,20.260824,21659.455};
+		dir[]={-0.25348845,-0.63559031,0.7293942};
+		up[]={-0.20870225,0.77178824,0.60052234};
+		aside[]={0.94468212,3.858906e-006,0.32830185};
 	};
 };
 binarizationWanted=0;
@@ -442,7 +442,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=267;
+		items=268;
 		class Item0
 		{
 			dataType="Object";
@@ -32425,6 +32425,23 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item267
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9164.2998,14.819145,21667.15};
+				angles[]={0,0.97738457,0.0012918708};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2171;
+			type="Land_BagFence_Long_F";
+			atlOffset=0.00076675415;
 		};
 	};
 	class Connections
