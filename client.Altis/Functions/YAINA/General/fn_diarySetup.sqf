@@ -1,26 +1,26 @@
 /*
-	author: Martin
-	description: none
+	author: Sekwah
+	description: Player and server rules
 	returns: nothing
 */
 
 if (!hasInterface) exitWith {};
 
-player createDiarySubject ["YAINA", "YAINA"];
+player createDiarySubject ["LRG Public Server", "LRG Public Server"];
 
 
-player createDiaryRecord ["YAINA", ["Issues",
+player createDiaryRecord ["LRG Public Server", ["Issues",
 "
 <br/>
-<font face='PuristaLight' color='#D3D3D3'>Were sorry if you are encountering issues, please feel free to contact us on our forums or raise an issue in our bug tracker linked below</font>
+<font face='PuristaLight' color='#D3D3D3'>If you do encounter any bugs, issues or want to leave us feedback feel free to talk to a Community Manager (CM), post on our forums or log an issue on our tracker, all linked below:</font>
 <br/>
-<br/>Teamspeak:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute></font>
-<br/>Forums:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute></font>
-<br/>Issue Tracker:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute></font>
+<br/>Teamspeak:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute></font>
+<br/>Forums:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">lastresortgaming.net</execute></font>
+<br/>Issue Tracker:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'https://bitbucket.org/lastresortgaming/lrg-yaina/issues/new'"">lastresortgaming.net</execute></font>
 "
 ]];
 
-player createDiaryRecord ["YAINA", ["Credits",
+player createDiaryRecord ["LRG Public Server", ["Credits",
 "
 <br/>
 <font face='PuristaLight' color='#D3D3D3'>We would like to thank the following for their contributions to both the community and especially the following projects that have been used to create this mission.</font>
@@ -41,22 +41,22 @@ player createDiaryRecord ["YAINA", ["Credits",
 "
 ]];
 
-player createDiaryRecord ["YAINA", ["Medical System",
+player createDiaryRecord ["LRG Public Server", ["Medical System",
 "
 <br/>
-<font face='PuristaLight' color='#D3D3D3'>YAINA Runs a modified AIS medical system, the highlights as follows</font>
+<font face='PuristaLight' color='#D3D3D3'>The LRG public server runs a modified AIS medical system, the highlights as follows</font>
 <font face='PuristaLight' color='#D3D3D3' size='12'>
 <br/>
-<br/>* After taking too much damange, units become unconsious
-<br/>* Anyone can stabalise an unconsious player to avoid bleed out
-<br/>* Medical stations such as Medical UAVs allow non-medics to revive
-<br/>  players if they are within range.
+<br/>* After taking too much damage, players become unconscious
+<br/>* Anyone can stabalise an unconscious player to avoid bleed out
+<br/>* MSpecialist medical equipment such as MERT UAVs allow non-medics
+<br/>  to revive players if they are within range.
 <br/>
 </font>
 "
 ]];
 
-player createDiaryRecord ["YAINA", ["Optional Mods",
+player createDiaryRecord ["LRG Public Server", ["Optional Mods",
 "
 <br/>
 <font face='PuristaLight' color='#D3D3D3'>Please click a mod to copy the URL to your clipboard, alternatively, use the following collection url: <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=1214679552'"">YAINA Approved Mods Collection</execute></font>
@@ -66,8 +66,6 @@ player createDiaryRecord ["YAINA", ["Optional Mods",
 <br/>dslyecxi:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=498740884'"">ShackTac User Interface</execute></font>
 <br/>LAxemann:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825179978'"">Enhanced Soundscape</execute>, <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825181638'"">DynaSound 2</execute></font>
 <br/>LordJarhead:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=861133494'"">JSRS SOUNDMOD</execute></font>
-
-
 <br/>Paladin:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=767380317'"">Blastcore Edited (standalone version)</execute></font>
 "
 ]];
@@ -80,12 +78,15 @@ player createDiaryRecord ["** SERVER RULES **", ["HQ",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-HQ is a support role, your job is to coordinate support for ground units, schedule pilots and supplies.
+HQ is a support role, your job is to coordinate the tasking, transport, reinforcement and resupply of players and assets.
 <br/>
-<br />1. You must be on Teamspeak: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
-<br />2. You agree to purchase rewards sensibly, for the benefit of the entire server population
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
+<br />2. You should be in a locked group alone, and name it HQ or ZERO to clearly identify yourself and ensure players can contact you.
+<br />3. When directing sections and players such as pilots, consider both the mission and player enjoyment together.
+<br />4. HQ should be fair in directing pilots and section commanders, not ignoring or favouring individuals.
+<br />5. Any rewards purchased should be bought with the best interests of the entire playerbase and the mission requirements.
 <br/>
-<br />If you see a player in violation of the above, contact an admin on Teamspeak or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
@@ -94,24 +95,14 @@ player createDiaryRecord ["** SERVER RULES **", ["MERT",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br />
-Medical Emergency Response Team: your job is to support ground forces when their medics are incapacitated
+Medical Emergency Response Team (MERT) is a support role, your job is to support ground forces with emergency medical aid when their medics are incapacitated or impeded
 <br />
-<br />
-</font>
-General:
-<font face='PuristaLight' color='#D3D3D3'>
-<br />1. You must be on Teamspeak: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
-<br />2. You must be in a MERT group so section leaders can communicate with you to call you in
-<br />3. Any MERT member can fly the MERT chopper, but please be sensible
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
+<br />2. You must be in a clearly identified MERT group so section leaders can contact you
+<br />3. Any MERT member can fly the MERT chopper - use this with sensibly
 <br />4. Only insert to safe locatinos, if the section is pinned down, and you are unable to safely appraoch, make use of the medical UAVs
 <br />
-<br />
-</font>
-UAV:
-<font face='PuristaLight' color='#D3D3D3'>
-<br />1. Use only the Medical UAVs, unless no main UAV operator is online
-<br />
-<br />If you see a player in violation of the above, contact an admin on Teamspeak or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
@@ -121,45 +112,52 @@ player createDiaryRecord ["** SERVER RULES **", ["Pilots",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-Infantry units need safe, responsible pilots, as such you have to maintain our code of conduct to participate in this role.
+Pilot is a support role, your job is to provide infantry units with safe, responsible transport, as such you have to maintain our code of conduct to participate in this role.
 <br/>
-<br />1. You must be on Teamspeak: <execute expression=""copyToClipboard 'http://ts.yaina.eu'"">yaina.eu</execute>
-<br />2. You agree to take over HQ responsibilities if no HQ is online
-<br />3. You agree to listen and obay orders from HQ
-<br />4. Excessive failure to deliver your cargo may result in a kick/ban
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
+<br />2. You should be in a locked group alone, clearly identified with a call sign to ensure HQ and other players can contact you.
+<br />3. If no HQ is online, pilots must coordinate transport and resupply directly with section leaders.
+<br />4. If an HQ is online, pilots must obey their instructions and taskings.
+<br />5. You are expected to have a basic standard of ability at flying aircraft in game before joining this server as a pilot.
+<br />6. Close Air Support (CAS) is only to be undertaken following specific request from a ground unit observing the target.
+<br />7. Pilots are a critical role on the server and failure to meet standards and rules may result in immediate kicking and/or banning.
 <br/>
-<br />If you see a player in violation of the above, contact an admin on Teamspeak (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>) or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
 
-player createDiaryRecord ["** SERVER RULES **", ["UAV Operators",
+player createDiaryRecord ["** SERVER RULES **", ["UAV Operator",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-UAV Operators are a support role, your job is to coordinate air support with section leaders and threat identification
+UAV Operators are a support role, your job is to provide intelligence of enemy positions and movements, as well as fire support on request only.
 <br/>
-<br />1. You must be on Teamspeak: (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>)
-<br />2. You must be in your own group so section leaders can communicate with you
-<br />3. Help locate and identify incoming threats for ground forces
-<br />4. Only initiate strikes upon authorization from section leaders.
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
+<br />2. You should be in a locked group alone, clearly identified with a call sign to ensure HQ and other players can contact you.
+<br />3. You must coordinate your actions with HQ and Section Leaders and not operate unilaterally.
+<br />4. You should mark targets and enemy positions on the map but do not overclutter it so as to obstruct players ability to use it.
+<br />5. Close Air Support (CAS) is only to be undertaken following specific request from a ground unit observing the target.
+<br />6. UAVs are highly valuable assets for the server and failure to meet standards and rules may result in immediate kicking and banning.
 <br/>
-<br />If you see a player in violation of the above, contact an admin on Teamspeak (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>) or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
 
-player createDiaryRecord ["** SERVER RULES **", ["Sniper Team",
+player createDiaryRecord ["** SERVER RULES **", ["Sniper Team (GHOST)",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-Snipers are a support role, your job is to coordinate overwatch with section leaders in thhe operational areas.
+Snipers are a support role, your job is to provide sections with covert surveillance and target acquisition, as well as precision fires in support of their manoeuvres.
 <br/>
-<br />1. You must be in your own group (along with your spotter if online) unless an admin approves embedding with another section
-<br />2. You must communicate with section leaders on incoming threats
-<br />3. You are expected to be in sensible locations to carry out overwatch
+<br />1. You should be in a locked group containing only the sniper and observer (if both online), clearly identified with the GHOST call sign to ensure HQ and other players can contact you.
+<br />2. GHOST may not deploy as a member of a normal infantry section unless specifically directed to do so by a Zeus. GHOST is an independent specialist asset.
+<br />3. You must communicate effectvely with HQ and section leaders on your observations in the AO.
+<br />4. You are expected to be in sensible locations to carry out overwatch. Remember you are a small isolated unit and may not be able to get medical support if you are downed.
+<br />5. Your primary role is intelligence gathering, providing precision fires only in support of another unit or at direction of HQ.
 <br/>
-<br />If you see a player in violation of the above, contact an admin on Teamspeak (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>) or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
@@ -168,13 +166,14 @@ player createDiaryRecord ["** SERVER RULES **", ["Section Members",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-Section Members, the main fighting force on the ground
+You are the the main fighting force on the ground.
 <br/>
-<br />1. You must listen to your section leader
-<br />2. Do not board vehicles without approval of your section leader
-<br />3. If you need transport, request it from your section leader who will coordinate with HQ
+<br />1. All players must be in a section, and these sections must contain at least 4 players to deploy to the field.
+<br />2. You must listen to and follow the instructions of your section leader.
+<br />3. Do not board vehicles or leave the main base without approval of your section leader.
+<br />4. If you need transport, request it from your section leader who will coordinate with HQ.
 <br/>
-<br />If you see a player in violation of the above, contact an admin on Teamspeak (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>) or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
@@ -183,14 +182,14 @@ player createDiaryRecord ["** SERVER RULES **", ["Section Leaders",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-You are the commanders on the ground, in addition to the section member rules
+You are the commanders on the ground, expected to follow the section member rules as well as those below.
 <br/>
-<br />1. Take lead of your section with respect
+<br />1. Your role is to coordinate the movement and actions of your section. Do this with respect and fairness, remembering player enjoyment as well as the mission requirements.
 <br />2. Coordinate transport for your members with HQ
-<br />2. Coordinate ground attacks for UAV
-<br />4. If no HQ are online, Pilots take over that respnsibility, if no pilots, you may use the paradrop feature for insersion
+<br />3. If required, coordinate CAS strikes with pilots or UAV. You may not request CAS for targets you are not able to see or in contact with.
+<br />4. If no HQ are online, Pilots take over that responsibility, if no pilots, you may use the paradrop feature for insertion
 <br/>
-<br />If you see a player in violation of the above, contact an admin on Teamspeak (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>) or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
@@ -199,19 +198,20 @@ player createDiaryRecord ["** SERVER RULES **", ["General Rules",
 "
 <font face='PuristaLight' color='#D3D3D3'>
 <br/>
-We want this server to remain friendly and a place folks come to enjoy themselves, therefore our general ruleset is pretty much common sense
+We want this server to remain friendly and a place people come to enjoy themselves, therefore our geneeral rules are largely common sense:
 <br/>
 <br />1. Hacking and mission exploitation
 <br />2. Intentional team-killing
-<br />3. Excessive, unintentional team-killing may result in a kick/ban
+<br />3. Excessive unintentional team-killing
 <br />4. Unnecessary destruction of BLUFOR vehicles
 <br />5. Verbal abuse and bullying
 <br />6. Griefing and obstructive play.
 <br />7. Excessive mic spamming, music playing
-<br />8. Ignroing a server moderator or admin's requests
+<br />8. Ignroing directions from an admin or Community Manager (CM)
 <br />
-<br />If you see a player in violation of the above, contact an admin on Teamspeak (<execute expression=""copyToClipboard 'http://yaina.eu'"">ts.yaina.eu</execute>) or file a player report on our website: <execute expression=""copyToClipboard 'http://yaina.eu'"">yaina.eu</execute>
+<br />Full rules are provided in the <execute expression=""copyToClipboard 'http://http://bit.ly/2o3q935'"">LRG Player Guide</execute>
+<br />
+<br />If you see a player in violation of the above, contact an LRG admin or Community Manager (CM) on TeamSpeak or PM an admin on our forums at <execute expression=""copyToClipboard 'http://lastresortgaming.net'"">lastresortgaming.net</execute>
 </font>
 "
 ]];
-
