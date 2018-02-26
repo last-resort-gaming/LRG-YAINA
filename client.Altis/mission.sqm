@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1011;
+		nextID=1032;
 	};
 	class Camera
 	{
@@ -2998,7 +2998,6 @@ class Mission
 			class Attributes
 			{
 				name="arsenal10";
-				disableSimulation=1;
 			};
 			id=457;
 			type="B_CargoNet_01_ammo_F";
@@ -3059,7 +3058,6 @@ class Mission
 			class Attributes
 			{
 				name="arsenal9";
-				disableSimulation=1;
 			};
 			id=461;
 			type="B_CargoNet_01_ammo_F";
@@ -4152,7 +4150,6 @@ class Mission
 			class Attributes
 			{
 				name="arsenal7";
-				disableSimulation=1;
 			};
 			id=599;
 			type="B_CargoNet_01_ammo_F";
@@ -6560,7 +6557,6 @@ class Mission
 					class Attributes
 					{
 						name="arsenal5";
-						disableSimulation=1;
 					};
 					id=282;
 					type="B_CargoNet_01_ammo_F";
@@ -6621,7 +6617,6 @@ class Mission
 					class Attributes
 					{
 						name="arsenal6";
-						disableSimulation=1;
 					};
 					id=283;
 					type="B_CargoNet_01_ammo_F";
@@ -6931,7 +6926,6 @@ class Mission
 					class Attributes
 					{
 						name="arsenal3";
-						disableSimulation=1;
 					};
 					id=298;
 					type="B_CargoNet_01_ammo_F";
@@ -6991,7 +6985,6 @@ class Mission
 					class Attributes
 					{
 						name="arsenal4";
-						disableSimulation=1;
 					};
 					id=299;
 					type="B_CargoNet_01_ammo_F";
@@ -7304,7 +7297,6 @@ class Mission
 					class Attributes
 					{
 						name="arsenal1";
-						disableSimulation=1;
 					};
 					id=311;
 					type="B_CargoNet_01_ammo_F";
@@ -7365,7 +7357,6 @@ class Mission
 					class Attributes
 					{
 						name="arsenal2";
-						disableSimulation=1;
 					};
 					id=312;
 					type="B_CargoNet_01_ammo_F";
@@ -9218,19 +9209,18 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={9162.6396,15.151464,21686.174};
-								angles[]={0.0013372133,0.023434162,0.0080009829};
+								position[]={9162.6396,15.151556,21686.174};
+								angles[]={0.0013439035,0.023439772,0.0079936078};
 							};
 							side="Empty";
 							flags=4;
 							class Attributes
 							{
 								name="arsenal8";
-								disableSimulation=1;
 							};
 							id=458;
 							type="B_CargoNet_01_ammo_F";
-							atlOffset=-9.059906e-005;
+							atlOffset=9.5367432e-007;
 							class CustomAttributes
 							{
 								class Attribute0
@@ -9479,7 +9469,7 @@ class Mission
 						};
 					};
 					id=1752;
-					atlOffset=0.13179493;
+					atlOffset=0.13180065;
 				};
 				class Item4
 				{
