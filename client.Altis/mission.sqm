@@ -8,7 +8,7 @@ class EditorData
 	toggles=10;
 	class ItemIDProvider
 	{
-		nextID=2169;
+		nextID=2171;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1032;
+		nextID=1053;
 	};
 	class Camera
 	{
-		pos[]={9186.7451,26.849079,21635.184};
-		dir[]={-0.49823251,-0.43728939,0.74885941};
-		up[]={-0.24236414,0.89911234,0.3642824};
-		aside[]={0.83266127,2.4403416e-006,0.55397862};
+		pos[]={9044.876,41.975452,21490.127};
+		dir[]={-0.50099295,-0.45595318,-0.7357685};
+		up[]={-0.25675806,0.88979149,-0.37707943};
+		aside[]={-0.82665819,2.7001079e-006,0.56288898};
 	};
 };
 binarizationWanted=0;
@@ -442,7 +442,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=265;
+		items=267;
 		class Item0
 		{
 			dataType="Object";
@@ -32340,6 +32340,86 @@ class Mission
 								};
 							};
 							value="Data\Billboards\paradropInac.paa";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item265
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9157.3574,15.337942,21686.496};
+				angles[]={0,0.14443533,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=2169;
+			type="Land_LampStreet_F";
+			atlOffset=-5.0994654;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item266
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9034.751,19.712193,21458.877};
+				angles[]={0,5.734889,0};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+			};
+			id=2170;
+			type="Land_LampStreet_F";
+			atlOffset=-3.2373972;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
 						};
 					};
 				};
