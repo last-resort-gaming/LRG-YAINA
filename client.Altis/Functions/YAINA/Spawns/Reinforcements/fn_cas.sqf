@@ -115,7 +115,6 @@ _jet addEventHandler ["Killed",{
     // Keep the bird in the air
     _jet setFuel 1;
 
-
     // Just let the AI know about everyone in the AO to do it's thing
     _units = units _group;
     _pina  = allPlayers select  {
@@ -136,7 +135,19 @@ _jet addEventHandler ["Killed",{
 
         // Pick a random player to go all SAD on
         [_group] call CBAP_fnc_clearWaypoints;
-        [_group, getPos (selectRandom _pina), 20, "SAD", "COMBAT", "RED"] call CBA_fnc_addWaypoint;
+        [_group, getPos (selectRandom _pina), 20, "SAD", "COMBAT", "RED"] call CBAP_fnc_addWaypoint;
+    } else {
+        // We should at least stick around the AO on a loiter
+        _wps = waypoints _group;
+
+        if ( (count _wps) isEqualTo 0 || { (waypointPosition (_wps select 0)) distance2D _pos > 5 } ) then {
+            [_group] call CBAP_fnc_clearWaypoints;
+            _wp = _group addWaypoint [_pos, 0];
+            _wp setWaypointType "LOITER";
+            _wp setWaypointLoiterRadius (_radius * 1.5);
+            _wp setWaypointBehaviour "COMBAT";
+            _wp setWaypointCombatMode "RED";
+        };
     };
 
 }, 30, [_pos, _radius, _group, _jet, 0, [_target, _designator]]] call CBAP_fnc_addPerFrameHandler;
