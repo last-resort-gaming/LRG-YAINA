@@ -39,8 +39,6 @@ _costText ctrlSetTextColor ([[1,1,1,1], [1,0,0,1]] select (_price > YVAR(rewardP
 // Spawn point Occupied ?
 _sp = _class call FNC(getSpawnPoint);
 
-diag_log format ["Spawn POint for class %1: %2 is...triggered? %3", _class, _sp, triggerActivated _sp];
-
 if (triggerActivated _sp) then {
     (_ctrlGroup controlsGroupCtrl 1104) ctrlShow true;
     (_ctrlGroup controlsGroupCtrl 1204) ctrlShow true;

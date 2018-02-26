@@ -5411,7 +5411,7 @@ class Mission
 				name="SP_HELI";
 				sizeA=10;
 				sizeB=10;
-				sizeC=6;
+				sizeC=10;
 				repeatable=1;
 				activationBy="ANY";
 			};
