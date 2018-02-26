@@ -32992,7 +32992,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2290;
 			type="Land_PortableLight_single_F";
@@ -33033,7 +33032,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2291;
 			type="Land_PortableLight_single_F";
@@ -33074,7 +33072,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2292;
 			type="Land_PortableLight_single_F";
@@ -33115,7 +33112,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2293;
 			type="Land_PortableLight_single_F";
@@ -33156,7 +33152,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2294;
 			type="Land_PortableLight_single_F";
@@ -33197,7 +33192,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2295;
 			type="Land_PortableLight_single_F";
@@ -33238,7 +33232,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2296;
 			type="Land_PortableLight_single_F";
@@ -33279,7 +33272,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2297;
 			type="Land_PortableLight_single_F";
@@ -33320,7 +33312,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2298;
 			type="Land_PortableLight_single_F";
@@ -33361,7 +33352,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2299;
 			type="Land_PortableLight_single_F";
@@ -33402,7 +33392,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2300;
 			type="Land_PortableLight_single_F";
@@ -33443,7 +33432,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2301;
 			type="Land_PortableLight_single_F";
@@ -33633,7 +33621,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2318;
 			type="Land_PortableLight_single_F";
@@ -33674,7 +33661,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2320;
 			type="Land_PortableLight_single_F";
@@ -33715,7 +33701,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2322;
 			type="Land_PortableLight_single_F";
@@ -33756,7 +33741,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2324;
 			type="Land_PortableLight_single_F";
@@ -33797,7 +33781,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2326;
 			type="Land_PortableLight_single_F";
