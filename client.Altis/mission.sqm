@@ -33472,7 +33472,6 @@ class Mission
 			flags=5;
 			class Attributes
 			{
-				disableSimulation=1;
 			};
 			id=2302;
 			type="Land_PortableLight_single_F";
