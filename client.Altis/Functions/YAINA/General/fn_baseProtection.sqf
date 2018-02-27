@@ -4,8 +4,20 @@
 	returns: nothing
 */
 
-
 #include "defines.h"
+
+{
+
+    _m = _x;
+    _c = getMarkerPos _x;
+    _s = getMarkerSize _x;
+    _w = (_s select 0) max (_s select 1);
+
+    { _x allowDamage false; nil } count (nearestTerrainObjects [_c, [], _w, false, true] select { _x inArea _m });
+
+    nil;
+} count BASE_PROTECTION_AREAS;
+
 player addEventHandler["FiredMan", {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_veh"];
 
