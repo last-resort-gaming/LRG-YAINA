@@ -116,9 +116,8 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
             // Ensure we have no quad
             if(isNil {_target getVariable "MERT_QUAD_veh"} || { !(alive (_target getVariable "MERT_QUAD_veh")) } ) then {
 
-                _quad = "B_QuadBike_01_F" createVehicle [0,0,0];
+                _quad = "B_QuadBike_01_F" createVehicle (_target getRelPos [7, 180]);
                 _quad setDir (getDir _target);
-                _quad setPos (_target getRelPos [7, 180]);
 
                 // Only allow MERT to drive it...
                 _quad setVariable ["YAINA_VEH_Drivers", ["MERT"], true];

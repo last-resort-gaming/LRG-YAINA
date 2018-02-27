@@ -83,6 +83,11 @@ if(!isServer) exitWith {};
 
                 _nv = createVehicle [_vehType, [0,0,0], [], 0, "NONE"];
 
+                // We disable simulation right now due what seems to be a race between the
+                // vehicle touching the ground under water and dying prior to the setDir a
+                // few lines away... This in turn causes it to effectively never respawn
+                _nv enableSimulation false;
+
                 // reset textures
                 {
                     _nv setObjectTextureGlobal [_forEachIndex, _x];
@@ -94,6 +99,9 @@ if(!isServer) exitWith {};
                 // Then move to intended location
                 _nv setDir _dir;
                 _nv setPosATL _pos;
+
+                // Re-enable simulation
+                _nv enableSimulation true;
 
                 // restore copilot action
                 _nv enableCopilot _coPilotEnabled;
