@@ -179,7 +179,7 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
             _target setVariable["MERT_QUAD_loading", 0, true];
         }] call AIS_Core_fnc_Progress_ShowBar;
 
-    }, [], 6, false, true, "", _checkLoadCode, 5, false] call YFNC(addActionMP);
+    }, [], 6, false, true, "", _checkLoadCode, 10, false] call YFNC(addActionMP);
 
 }, [], true] call YAINA_VEH_fnc_initVehicle;
 
