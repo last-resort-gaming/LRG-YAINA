@@ -188,7 +188,10 @@ GVAR(unitItems) = call {
     _blacklistItems  = [];
 
     if(["PILOT"] call YFNC(testTraits)) then {
-        _permitItems append  ["H_PilotHelmetHeli_B", "H_PilotHelmetHeli_O", "H_PilotHelmetFighter_B", "H_CrewHelmetHeli_B", "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
+        _permitItems append  ["H_PilotHelmetHeli_B", "H_PilotHelmetHeli_O",
+                              "H_PilotHelmetFighter_B", "H_PilotHelmetFighter_O",
+                              "H_CrewHelmetHeli_B", "H_CrewHelmetHeli_O",
+                              "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
     };
 
     // Squad Spotters/Snipers also get NATO Ghillies
@@ -255,35 +258,35 @@ GVAR(unitItems) = call {
 ///////////////////////////////////////////////////////////
 // Backpacks
 ///////////////////////////////////////////////////////////
+//
+// Groups: "B_AssaultPack","B_Kitbag","B_TacticalPack","B_FieldPack",
+//         "B_Carryall","B_Parachute","B_Static","O_Static","I_Static",
+//         "B_UAV","O_UAV","I_UAV","B_Bergen","B_ViperHarness",
+//         "B_ViperLightHarness","B_Messenger","C_UAV",
+//         "B_MedicalUAV","O_MedicalUAV","I_MedicalUAV"
+//         "C_MedicalUAV","B_LegStrapBag"
+
 
 GVAR(unitBackpacks) = call {
 
-    _maxSize = 320; // Carryall, excluding Bergen
-    _minSize = 140; // Remove Messenger bags and msuh
+    _permitGroups = ["B_Parachute", "B_AssaultPack","B_Kitbag","B_TacticalPack","B_FieldPack",
+                     "B_Carryall", "B_ViperHarness", "B_ViperLightHarness", "B_LegStrapBag", "B_Static"];
 
     _retval = [];
-    {
-        if (_x > _minSize && _x <= _maxSize) then {
-            _retval append ((GVAR(carryPacks) select 1) select _forEachIndex);
-        };
-    } forEach (GVAR(carryPacks) select 0);
-
-    // By default we allow parachutes, and BLUFOR static weapons
-    _permit = ["basic", "B_StaticWeapon"];
 
     if (["UAV"] call YFNC(testTraits)) then {
-        _permit pushBack "B_UAV";
+        _permitGroups pushBack "B_UAV";
     };
 
     if (["MERT_UAV"] call YFNC(testTraits)) then {
-        _permit pushBackUnique "B_MedicalUAV";
+        _permitGroups pushBackUnique "B_MedicalUAV";
     };
 
     {
-        _idx = (GVAR(specialPacks) select 0) find _x;
-        if !(_idx isEqualTo -1) then { _retval append ((GVAR(specialPacks) select 1) select _idx) };
+        _idx = (GVAR(carryPacks) select 0) find _x;
+        if !(_idx isEqualTo -1) then { _retval append ((GVAR(carryPacks) select 1) select _idx) };
         true;
-    } count _permit;
+    } count _permitGroups;
 
     _retval - GVAR(globalBlacklist);
 };

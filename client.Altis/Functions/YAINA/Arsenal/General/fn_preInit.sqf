@@ -44,7 +44,6 @@ GVAR(weaponCargo)   = [[],[]];
 GVAR(itemCargo)     = [[],[]];
 GVAR(magazineCargo) = [[],[]];
 GVAR(carryPacks)    = [[],[]];
-GVAR(specialPacks)  = [[],[]];
 
 ///////////////////////////////////////////////////////////
 // CfgWeapons
@@ -153,44 +152,42 @@ GVAR(specialPacks)  = [[],[]];
 
 
 ///////////////////////////////////////////////////////////
-// Backpacks, two arrays, one so one can filter by cap
-// The rest for special packs like static weapons etc.
+// Backpacks, split on type, the mounts etc thrown into
+// static
 ///////////////////////////////////////////////////////////
 
 {
     _class = configName _x;
-    _cap   = getNumber(_x >> "maximumLoad");
 
-    if !(_cap isEqualTo 0) then {
-        [GVAR(carryPacks), _cap, _class] call _addToArray;
-    } else {
-        // Special Packs: UAVs/static weapons etc, these are split by side
-        _elems = _class splitString "_";
-        _side  = _elems select 0;
-        _type  = nil;
+    _elems = _class splitString "_";
+    _side  = _elems select 0;
+    _type  = nil;
 
-        if (_class isEqualTo "B_Parachute") then {
-            _type = "basic";
+    // We split out UAV and Medical UAVs
+    if(_elems select 1 in ["UAV", "IDAP"]) then {
+        if (_elems select 3 isEqualTo "medical") then {
+            _type = "MedicalUAV";
         } else {
-            // We split out UAV and Medical UAVs
-            if(_elems select 1 in ["UAV", "IDAP"]) then {
-                if (_elems select 3 isEqualTo "medical") then {
-                    _type = "MedicalUAV";
-                } else {
-                    _type = "UAV";
-                };
-            } else {
-                _type = "StaticWeapon";
-             };
-            _type = format["%1_%2", _side, _type];
+            _type = "UAV";
         };
-        if (!isNil "_type") then {
-            [GVAR(specialPacks), _type, _class] call _addToArray;
+    } else {
+        if (_class isKindOf "Weapon_Bag_Base") then {
+        _type = "Static";
+        } else {
+        _type = _elems select 1;
+        if(_type in ["HMG", "Mortar"]) then {
+          _type = "Static";
         };
+
+        };
+    };
+    _type = format["%1_%2", _side, _type];
+
+    if (!isNil "_type") then {
+        [GVAR(carryPacks), _type, _class] call _addToArray;
     };
     true;
 } count ("getText (_x >> 'vehicleClass') isEqualTo 'Backpacks' AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configfile >> 'CfgVehicles'));
-
 
 ///////////////////////////////////////////////////////////
 // Magazines
