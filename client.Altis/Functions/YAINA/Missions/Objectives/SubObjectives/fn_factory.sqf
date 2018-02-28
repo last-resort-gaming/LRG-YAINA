@@ -145,7 +145,7 @@ _pfh = {
             if (serverTime > _nextSpawnTime) then {
                 _inAO = { _x distance2D _AOPos < _AOSize } count allPlayers;
                 if (_inAO < 1) then {
-                    _args set [8, serverTime + 120];
+                    _args set [9, serverTime + 120];
                 } else {
                     // We have enough folks to spawn something :)
 
@@ -199,9 +199,9 @@ _pfh = {
 
                     // New sleeptime
                     if (_inAO < 15) then{
-                        _args set [8, serverTime + 480];
+                        _args set [9, serverTime + 480];
                     } else {
-                        _args set [8, serverTime + (480 - floor (_inAO * 4))];
+                        _args set [9, serverTime + (480 - floor (_inAO * 4))];
                     };
 
                 };
@@ -263,7 +263,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];
