@@ -12,8 +12,12 @@ if (isServer) then {
 	publicVariable "ais_mobile_medic_stations";
 };
 
-removeAllMissionEventHandlers "Draw3D";
-removeAllMissionEventHandlers "EachFrame";
+if (!ais_ace_shutDown) then {
 
-call AIS_Core_fnc_initEvents;
-AIS_Core_Interaction_Actions = [];
+    removeAllMissionEventHandlers "Draw3D";
+    removeAllMissionEventHandlers "EachFrame";
+
+    call AIS_Core_fnc_initEvents;
+    AIS_Core_Interaction_Actions = [];
+
+};
