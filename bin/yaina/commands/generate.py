@@ -183,31 +183,23 @@ class List(Command):
 
         # Now write out our config.cpp
         with open(os.path.join(self.build_dir, "config.cpp"), 'w') as fh:
+
+            with open(os.path.join(merge_dir, "config.cpp"), 'r') as cfg:
+                for line in cfg:
+                    fh.write(line)
+
             fh.write(textwrap.dedent('''
-                        class CfgPatches {
-                            class yaina {
-                                name = "YAINA Server Side Includes";
-                                author = "YAINA";
-                                url = "http://yaina.eu";
-
-                                units[] = {};
-                                weapons[] = {};
-                                requiredVersion = 0.1;
-                                requiredAddons[] = {};
-                            };
-                        };
-
-                        class CfgFunctions {
-                            #include "Functions\YAINA\CfgFunctions.hpp"
-
-                            class YAINA_ADDON {
-	                            class General {
-		                            file = "\yaina\\addon";
-		                            class preInit { preInit = 1; };
+                            class CfgFunctions {
+                                #include "Functions\YAINA\CfgFunctions.hpp"
+                                
+                                class YAINA_ADDON {
+                                    class General {
+                                        file = "\yaina\\addon";
+                                        class preInit { preInit = 1; };
+                                    };
                                 };
                             };
-                        };
-                        '''))
+                            '''))
 
         # Now we bundle the output
         server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))

@@ -29,6 +29,7 @@ class YAINA {
 		class loadDB {};
 		class log {};
 		class getAdminLevel {};
+		class getAdminLevelFromGUID {};
 		class addActionMP {};
 		class isUAV {};
 		class killLog {};

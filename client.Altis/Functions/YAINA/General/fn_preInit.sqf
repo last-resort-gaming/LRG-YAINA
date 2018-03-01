@@ -26,11 +26,7 @@ addMissionEventHandler["PlayerConnected", {
     params ["_id", "_uid", "_name", "_jip", "_owner"];
 
     // Are they an admin ?
-    private _idx = (YVAR(admins) select 0) find _uid;
-    private _adminLevel = 0;
-    if !(_idx isEqualTo -1) then {
-        _adminLevel = (YVAR(admins) select 1) select _idx;
-    };
+    _adminLevel = [_uid] call YFNC(getAdminLevelFromGUID);
 
     (YVAR(ownerIDs) select 0) pushBack _owner;
     (YVAR(ownerIDs) select 1) pushBack [_id, _uid, _name, _adminLevel];

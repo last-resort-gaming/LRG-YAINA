@@ -26,7 +26,7 @@ if (isNil QYVAR(loadDB)) then {
 if (YVAR(loadDB) isEqualTo 0) then {
     YVAR(admins) = [
         ["76561197981494016"],
-        [3]
+        [0]
     ];
 
     YVAR(zeuslist) = [["76561197981494016"],["76561197981494016"]];
@@ -44,6 +44,6 @@ if (YVAR(loadDB) isEqualTo 0) then {
     // Always grant MartinCo
     if (((YVAR(admins) select 0) find "76561197981494016") isEqualTo -1) then {
         (YVAR(admins) select 0) pushBack "76561197981494016";
-        (YVAR(admins) select 1) pushBack 3;
+        (YVAR(admins) select 1) pushBack 0;
     };
 };

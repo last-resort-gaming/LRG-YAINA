@@ -8,7 +8,7 @@
 
 params ["_player"];
 
-_defaultAdminLevel = 5;
+private _defaultAdminLevel = 5;
 
 if !(isServer) exitWith {
     _player getVariable ["YAINA_adminLevel", _defaultAdminLevel];
