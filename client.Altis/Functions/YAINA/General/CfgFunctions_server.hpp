@@ -21,5 +21,7 @@ class YAINA {
 		class addActionMP {};
 		class killLog {};
 		class deleteVehicleIn {};
+		class kickSelf {};
+		class playerIntroComplete {};
     };
 };

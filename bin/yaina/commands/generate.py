@@ -184,9 +184,14 @@ class List(Command):
         # Now write out our config.cpp
         with open(os.path.join(self.build_dir, "config.cpp"), 'w') as fh:
 
-            with open(os.path.join(merge_dir, "config.cpp"), 'r') as cfg:
-                for line in cfg:
-                    fh.write(line)
+            try:
+                with open(os.path.join(merge_dir, "config.cpp"), 'r') as cfg:
+                    for line in cfg:
+                        fh.write(line)
+            except:
+                with open(os.path.join(self.yaina.root, "conf", "config.cpp"), 'r') as cfg:
+                    for line in cfg:
+                        fh.write(line)
 
             fh.write(textwrap.dedent('''
                             class CfgFunctions {

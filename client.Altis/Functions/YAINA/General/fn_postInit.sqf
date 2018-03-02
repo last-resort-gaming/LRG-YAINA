@@ -9,6 +9,7 @@
 if (isServer) then {
     YVAR(hiddenTerrainObjects) = [[], []];
     YVAR(deleteVehiclesIn) = [];
+    YVAR(warnings) = [[], []];
 
     [{
         _t = diag_tickTime;

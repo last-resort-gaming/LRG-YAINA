@@ -35,5 +35,7 @@ class YAINA {
 		class killLog {};
 		class deleteVehicleIn {};
 		class inBaseProtectionArea {};
+		class kickSelf {};
+		class playerIntroComplete {};
     };
 };

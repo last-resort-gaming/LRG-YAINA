@@ -14,6 +14,9 @@ if (!hasInterface) exitWith {};
 // groups and allow the zeusConnected handler to sort out the rest
 if (typeOf player isEqualTo "VirtualCurator_F") exitWith {
     ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
+
+    // let server know we're completed our preload
+    [player] remoteExecCall ["YAINA_fnc_playerIntroComplete", 2];
 };
 
 // Channel Management
@@ -98,6 +101,9 @@ INTRO_HANDLE =  addMissionEventHandler ["PreloadFinished", {
         // We have to re-apply earplugs here as establishingShot sets sound to 1
         [] execVM "scripts\YAINA\earplugs.sqf";
         [] execVM "scripts\lrg\intro_msg.sqf";
+
+        // let server know we're completed our preload
+        [player] remoteExecCall ["YAINA_fnc_playerIntroComplete", 2];
     };
 }];
 

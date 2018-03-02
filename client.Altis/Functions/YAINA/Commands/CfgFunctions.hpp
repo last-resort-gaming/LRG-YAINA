@@ -29,6 +29,9 @@ class YAINA_CMD {
         class zeusadd {};
         class zeusdel {};
         class zeuslist {};
+        class warn {};
+        class kick {};
+        class restart {};
     };
 
     class Messages {

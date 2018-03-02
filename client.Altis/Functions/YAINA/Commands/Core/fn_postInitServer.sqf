@@ -1,4 +1,4 @@
-/*
+  /*
 	author: Martin
 	description: none
 	returns: nothing
@@ -19,9 +19,9 @@ if(isServer) then {
         ],
         [
             ["help", "credits", "report"],
-            ["abusemsg", "ffmsg", "helimsg", "hqmsg", "lwmsg", "mertmsg", "pilotmsg", "uavmsg", "ugmsg", "vehmsg"],
+            ["abusemsg", "ffmsg", "helimsg", "hqmsg", "lwmsg", "mertmsg", "pilotmsg", "uavmsg", "ugmsg", "vehmsg", "warn", "kick"],
             ["addcredits", "mmpause", "mmstart","mmlist", "mmstop", "revive", "restart", "30mban"],
-            ["setadmin", "settrait", "zeuslist", "zeusadd", "zeusdel", "24hban", "restarthard", "72hban"],
+            ["setadmin", "settrait", "zeuslist", "zeusadd", "zeusdel", "24hban", "hrestart", "72hban"],
             []
         ]
     ];
@@ -37,7 +37,7 @@ if(isServer) then {
         } count ((GVAR(commandMap) select 1) select _forEachIndex);
     } forEach (GVAR(commandMap) select 0);
 
-    GVAR(becCommands) = ["30mban", "24hban", "72hban", "restarthard"];
+    GVAR(becCommands) = ["30mban", "24hban", "72hban", "hrestart"];
 
     publicVariable QVAR(commands);
     publicVariable QVAR(becCommands);
