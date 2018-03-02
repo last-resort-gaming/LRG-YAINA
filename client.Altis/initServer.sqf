@@ -12,6 +12,9 @@
 CBA_display_ingame_warnings = false;
 publicVariable "CBA_display_ingame_warnings";
 
+// Disallow Execute Code module + Promote to Zeus
+missionNamespace setVariable ["Ares_Allow_Zeus_To_Execute_Code", false, true];
+
 [] execVM "scripts\duda123\fn_advancedUrbanRappellingInit.sqf";
 [] execVM "scripts\duda123\fn_advancedRappellingInit.sqf";
 
