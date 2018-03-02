@@ -61,7 +61,7 @@ if (_argStr isEqualTo "") then {
                 }] remoteExec ["spawn", _player];
 
                 // Let admins know
-                [_caller, format["has been given their %1 (total: %2)", toLower _title, _warn], 4] call FNC(notifyAdmins);
+                [_caller, format["%1 has been given their %2 (total: %3)", name _player, toLower _title, _warn], 4] call FNC(notifyAdmins);
             };
         };
     };
