@@ -34,5 +34,6 @@ class YAINA {
 		class isUAV {};
 		class killLog {};
 		class deleteVehicleIn {};
+		class inBaseProtectionArea {};
     };
 };

@@ -10,7 +10,11 @@ if !(isServer) exitWith {};
 [{
     params ["_delay", "_pos", ["_sub", [0, 10, 5]], ["_method", "Bo_mk82"], ["_preCode", {}], ["_preCodeArgs", []]];
 
-    _preArgs call _preCode;
+    _r = _preCodeArgs call _preCode;
+
+    // Bail if we are requested to
+    if (!(isNil "_r") && { _r isEqualTo false }) exitWith {};
+
     _method createVehicle (_pos vectorAdd [0,0,0.5]);
 
     private _csleep = _sub select 1;
