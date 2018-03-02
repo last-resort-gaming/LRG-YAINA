@@ -37,7 +37,7 @@ class Start(Command):
             '-loadMissionToMemory',
             '-yainaInstance=%s' % instance_name,
             '-bepath=%s' % os.path.join(instance_root, 'battleye'),
-            '-profiles=%s' % profiles_dir,
+            '-profiles=%s' % os.path.join(profiles_dir, 'server'),
             '-config=%s' % os.path.join(instance_root, 'server.cfg'),
             '-A3Log=A3Log-%s.ini' % instance_name,
             '-port=%s' % server_port,
@@ -51,10 +51,13 @@ class Start(Command):
 
         if not yaina.args.nohc:
             for i in range(0, yaina.config.getint('hc', 'count')):
+
+                name = "hc%i" % (i + 1)
+
                 cmd = [
                     yaina.config.get('apps', 'server'),
-                    '-name=hc%i' % (i + 1),
-                    '-profiles=%s' % profiles_dir,
+                    '-name=%s' % name,
+                    '-profiles=%s' % os.path.join(profiles_dir, name),
                     '-yainaInstance=%s' % instance_name,
                     '-nosplash',
                     '-client',
