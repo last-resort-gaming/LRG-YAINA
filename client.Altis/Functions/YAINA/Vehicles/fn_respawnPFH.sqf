@@ -63,7 +63,7 @@ if(!isServer) exitWith {};
             GVAR(respawnList) deleteAt _i;
 
             // Run our respawn code
-            _respawnCodeArgs call _respawnCode;
+            [_veh, _respawnCodeArgs] call _respawnCode;
 
             // If we are not to be respawning, we're done here
             if(_respawnTime isEqualTo -1) exitWith {};

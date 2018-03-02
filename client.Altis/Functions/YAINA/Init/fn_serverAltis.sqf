@@ -176,7 +176,8 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
                     params ["_veh", "_args"];
                     (_args select 0) hideObjectGlobal true;
                 }, [_internalQuad], true, {
-                    params ["_internalQuad"];
+                    params ["_veh", "_args"];
+                    _args params ["_internalQuad"];
                     if (!isNull _internalQuad) then { _internalQuad hideObjectGlobal false; };
                 }, [_internalQuad]] call YAINA_VEH_fnc_initVehicle;
 
@@ -284,7 +285,15 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
 
 
 
-}, [], true] call YAINA_VEH_fnc_initVehicle;
+}, [], true, {
+    // Respawn Code
+    params ["_veh", "_args"];
+
+    if !(isNull _veh) then {
+        deleteVehicle (_veh getVariable "MERT_QUAD_dummy");
+    };
+
+}] call YAINA_VEH_fnc_initVehicle;
 
 
 ///////////////////////////////////////////////////////////
