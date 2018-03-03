@@ -18,7 +18,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	private ["_lastrain", "_rain", "_fog", "_mintime", "_maxtime", "_overcast", "_realtime", "_random","_startingdate", "_startingweather", "_timeforecast", "_daytimeratio", "_nighttimeratio", "_timesync", "_wind"];
+	private ["_lastrain", "_rain", "_fog", "_mintime", "_maxtime", "_overcast", "_realtime", "_random","_startingdate", "_startingweather", "_timeforecast", "_daytimeratio", "_nighttimeratio", "_timesync", "_wind", "_d"];
 	
 	// Real time vs fast time
 	// true: Real time is more realistic weather conditions change slowly (ideal for persistent game)
@@ -47,8 +47,13 @@
 	// shortest time do not improve weather sync
 	_timesync = 60;
 
-	// Mission starting date is 25/09/2013 at 12:00
-	_startingdate = [2018, 02, 05, 09, 23];
+	// Mission starting date, if real_date.dll available, use it, else just go with arma
+	_d = call compile ("real_date" callExtension "GMT");
+	if (isNil "_d") then {
+		_d = date;
+	};
+
+	_startingdate = (_d select [0,3]) + [(round(random(10))*2), 30];
 
 	// Mission starting weather "CLEAR|CLOUDY|RAIN";
 	_startingweather = ["CLEAR", "CLOUDY", "RAIN"] call BIS_fnc_selectRandom;
