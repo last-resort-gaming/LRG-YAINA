@@ -13,6 +13,9 @@ class Stop(Command):
     def parse(self, cmd):
         r = dict()
 
+        if cmd is None:
+            return r
+
         for arg in shlex.split(cmd, False)[1:]:
             try:
                 (k,v) = arg.split("=")
