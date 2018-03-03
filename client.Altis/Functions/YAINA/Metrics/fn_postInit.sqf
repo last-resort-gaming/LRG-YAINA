@@ -8,6 +8,8 @@
 
 if !(isServer || !hasInterface) exitWith {};
 if !(isClass(configFile >> "CfgPatches" >> "a3graphite")) exitWith {};
+if (isNil "A3GRAPHITE_PREFIX") exitWith {};
+
 
 // Every 10 seconds we send metrics
 [{

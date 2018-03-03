@@ -179,7 +179,11 @@ class List(Command):
             if(isServer) then {
                 SERVER_COMMAND_PASSWORD = "%s";
             };
-            ''' % self.yaina.config.get('server', 'serverCommandPassword')))
+            A3GRAPHITE_PREFIX = "%s";
+            ''' % (
+                self.yaina.config.get('server', 'serverCommandPassword'),
+                self.yaina.config.get('server', 'a3graphitePrefix')
+            )))
 
         # Now write out our config.cpp
         with open(os.path.join(self.build_dir, "config.cpp"), 'w') as fh:
