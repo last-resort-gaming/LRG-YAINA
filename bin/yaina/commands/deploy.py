@@ -31,7 +31,7 @@ class Deploy(Command):
         instance_name   = yaina.config.get('common', 'instance')
         instance_root   = os.path.join(yaina.config.get('common', 'root'), instance_name)
         instance_logs   = os.path.join(instance_root, 'logs')
-        instance_server = os.path.join(instance_root, 'profiles', 'Users', 'server')
+        instance_server = os.path.join(instance_root, 'profiles', 'server', 'Users', 'server')
         instance_be     = os.path.join(instance_root, 'battleye')
 
         for d in [instance_server, instance_be, instance_logs]:
