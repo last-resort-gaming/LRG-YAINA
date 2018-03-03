@@ -56,7 +56,7 @@ if (_argStr isEqualTo "") then {
                     params ["_title", "_content"];
                     _result = [_content, _title, "YES", "NO"] call BIS_fnc_guiMessage;
                     if !(_result) then {
-                        [format["Disagreed to their %s", toLower _title]] remoteExecCall ["YAINA_fnc_kickSelf", 2];
+                        [format["Disagreed to their %1", toLower _title]] remoteExecCall ["YAINA_fnc_kickSelf", 2];
                     };
                 }] remoteExec ["spawn", _player];
 

@@ -28,7 +28,7 @@ if (_warn > 2) then {
         params ["_title", "_content"];
         _result = [_content, _title, "YES", "NO"] call BIS_fnc_guiMessage;
         if !(_result) then {
-            [format["Disagreed to their welcome back from ban %s", toLower _title]] remoteExecCall ["YAINA_fnc_kickSelf"];
+            [format["Disagreed to their welcome back from ban %1", toLower _title]] remoteExecCall ["YAINA_fnc_kickSelf"];
         };
     }] remoteExec ["spawn", _player];
 };
