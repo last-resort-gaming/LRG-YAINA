@@ -234,55 +234,49 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
     // SELF DESTRUCT
     ///////////////////////////////////////////////////////
 
-    [_veh, false, 10, 1000, [], {
 
-        params ["_veh", "_args"];
+    // Only condition is that the requestor is MERT, and it's empty
+    // and not already getting some explosives or in the base area
+    _checkCode = "'MERT' call YAINA_fnc_testTraits &&
+                  { !( [_target] call YAINA_fnc_inBaseProtectionArea ) } &&
+                  { ( { alive _x } count (crew _target) ) isEqualTo 0 } &&
+                  { isNil { _target getVariable 'YAINA_planting_explosives' } } &&
+                  { isNil { _target getVariable 'YAINA_explosives' } }";
 
-        // Only condition is that the requestor is MERT, and it's empty
-        // and not already getting some explosives or in the base area
-        _checkCode = "'MERT' call YAINA_fnc_testTraits &&
-                      { !( [_target] call YAINA_fnc_inBaseProtectionArea ) } &&
-                      { ( { alive _x } count (crew _target) ) isEqualTo 0 } &&
-                      { isNil { _target getVariable 'YAINA_planting_explosives' } } &&
-                      { isNil { _target getVariable 'YAINA_explosives' } }";
+    [_veh, "<t color='#ff1111'>Plant Explosives</t>", {
+        params ["_target", "_caller", "_id", "_arguments"];
 
-        [_veh, "<t color='#ff1111'>Plant Explosives</t>", {
-            params ["_target", "_caller", "_id", "_arguments"];
+        // We set serverTime to now, in case of a DC whilst downloading, we
+        // dont want the mission to bug out
+        _target setVariable["YAINA_planting_explosives", true, true];
 
-            // We set serverTime to now, in case of a DC whilst downloading, we
-            // dont want the mission to bug out
-            _target setVariable["YAINA_planting_explosives", true, true];
+        ["Planting Explosives", 5, {
 
-            ["Planting Explosives", 5, {
+            params ["_target", "_caller"];
+            _target setVariable["YAINA_explosives", true, true];
+            _target setVariable["YAINA_planting_explosives", nil, true];
 
+            // Let them know
+            [_caller, "Explosives have been set for 30 seconds"] remoteExecCall ["sideChat"];
+
+            // And start a timer to explode
+            [30, getPos _target vectorAdd [0,1,0.5], [2,1,2], "Bo_mk82", {
                 params ["_target", "_caller"];
-                _target setVariable["YAINA_explosives", true, true];
-                _target setVariable["YAINA_planting_explosives", nil, true];
+                if !( ({ alive _x } count (crew _target) ) isEqualTo 0) exitWith {
+                    // Abort.. not empty
+                    _target setVariable["YAINA_explosives", nil, true];
+                    [_caller, "Destruction Aborted, there are players on board"] remoteExecCall ["sideChat"];
+                    false
+                };
+                true
+            }, [_target, _caller]] remoteExec ["YAINA_MM_fnc_destroy", 2];
 
-                // Let them know
-                [_caller, "Explosives have been set for 30 seconds"] remoteExecCall ["sideChat"];
-
-                // And start a timer to explode
-                [30, getPos _target vectorAdd [0,1,0.5], [2,1,2], "Bo_mk82", {
-                    params ["_target", "_caller"];
-                    if !( ({ alive _x } count (crew _target) ) isEqualTo 0) exitWith {
-                        // Abort.. not empty
-                        _target setVariable["YAINA_explosives", nil, true];
-                        [_caller, "Destruction Aborted, there are players on board"] remoteExecCall ["sideChat"];
-                        false
-                    };
-                    true
-                }, [_target, _caller]] remoteExec ["YAINA_MM_fnc_destroy", 2];
-
-            }, [_target, _caller], {
-                // on Abort;
-                params ["_target", "_caller"];
-                _target setVariable["YAINA_planting_explosives", nil, true];
-            }] call AIS_Core_fnc_Progress_ShowBar;
-        }, [], 1.5, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
-
-    }, [], true] call YAINA_VEH_fnc_initVehicle
-
+        }, [_target, _caller], {
+            // on Abort;
+            params ["_target", "_caller"];
+            _target setVariable["YAINA_planting_explosives", nil, true];
+        }] call AIS_Core_fnc_Progress_ShowBar;
+    }, [], 1.5, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
 
 
 }, [], true, {
