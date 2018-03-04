@@ -15,7 +15,13 @@
 // backpacks with an enemy etc.
 
 GVAR(globalBlacklist) = [
-    "SmokeShellRed"
+    "1Rnd_SmokeRed_Grenade_shell",
+    "3Rnd_SmokeRed_Grenade_shell",
+    "3Rnd_UGL_FlareRed_F",
+    "Chemlight_red",
+    "FlareRed_F",
+    "SmokeShellRed",
+    "UGL_FlareRed_F"
 ];
 
 ///////////////////////////////////////////////////////////
