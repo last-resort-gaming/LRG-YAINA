@@ -304,11 +304,16 @@ _pfh = {
     };
 
     if (_stage isEqualTo 2) then {
-        // If once moved, players are > 500m away, then it's failed
-        private _c =  { _x distance2D _intelObj < 500 } count allPlayers;
-        if (_c isEqualTo 0) then {
-            // Failed
-            _stage = 3; _args set [1,_stage];
+        if (!alive _intelObj || { _intelObj getVariable [QVAR(intelComplete), false] }  ) then {
+            _stage = 3; _args set [1, _stage];
+        } else {
+
+            // If once moved, players are > 500m away, then it's failed
+            private _c =  { _x distance2D _intelObj < 500 } count allPlayers;
+            if (_c isEqualTo 0) then {
+                // Failed
+                _stage = 3; _args set [1,_stage];
+            };
         };
     };
 
