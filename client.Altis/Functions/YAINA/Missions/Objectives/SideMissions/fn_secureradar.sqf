@@ -162,7 +162,7 @@ _groups append _spGroups;
         _ammo = "Box_NATO_AmmoOrd_F" createVehicle _ap;
 
         // Schedule blow up on server for DC protection
-        [30, _ap, nil, nil, { deleteVehicle (_this select 0); }, [_ap]] remoteExec [QFNC(destroy), 2];
+        [30, _ap, nil, nil, { deleteVehicle (_this select 0); }, [_ammo]] remoteExec [QFNC(destroy), 2];
 
     }, [_target, _tower, _ns], {
         // on Abort;
