@@ -187,11 +187,16 @@ GVAR(unitItems) = call {
     _blacklistGroups = [];
     _blacklistItems  = [];
 
-    if(["PILOT"] call YFNC(testTraits)) then {
+    if(["PILOT", "MERT_PILOT"] call YFNC(testTraits)) then {
         _permitItems append  ["H_PilotHelmetHeli_B", "H_PilotHelmetHeli_O",
                               "H_PilotHelmetFighter_B", "H_PilotHelmetFighter_O",
                               "H_CrewHelmetHeli_B", "H_CrewHelmetHeli_O",
                               "U_B_PilotCoveralls", "U_B_HeliPilotCoveralls"];
+    };
+
+    // MERT have heli helmets
+    if(["MERT"] call YFNC(testTraits)) then {
+        _permitItems append ["H_CrewHelmetHeli_B", "H_CrewHelmetHeli_O"];
     };
 
     // Squad Spotters/Snipers also get NATO Ghillies
@@ -250,7 +255,7 @@ GVAR(unitItems) = call {
 
     // DeDupe and return the list
     _retval = [];
-    { if ((_retval find _x) isEqualTo -1) then { _retval pushBack _x; }; true } count _items;
+    { _retval pushBackUnique _x; true } count _items;
 
     _retval - GVAR(globalBlacklist);
 };

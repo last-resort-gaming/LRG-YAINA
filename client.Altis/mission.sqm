@@ -29094,7 +29094,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CAPTAIN";
-						init="[[""Medic"", ""MERT""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];";
+						init="[[""Medic"", ""MERT"", ""MERT_PILOT""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];";
 						description="MERT - Pilot";
 						isPlayable=1;
 						class Inventory
@@ -29267,7 +29267,7 @@ class Mission
 							radio="ItemRadio";
 							gps="B_UavTerminal";
 							hmd="NVGoggles_OPFOR";
-							headgear="H_CrewHelmetHeli_B";
+							headgear="H_CrewHelmetHeli_O";
 						};
 					};
 					id=1787;
@@ -29454,7 +29454,7 @@ class Mission
 							radio="ItemRadio";
 							gps="ItemGPS";
 							hmd="NVGoggles_OPFOR";
-							headgear="H_CrewHelmetHeli_B";
+							headgear="H_CrewHelmetHeli_O";
 						};
 					};
 					id=1788;
