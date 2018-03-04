@@ -113,7 +113,7 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 // Add everything to zeus
 { [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[ _vehicles + _buildings, true] call YFNC(addEditableObjects);
+[ _vehicles, true] call YFNC(addEditableObjects);
 
 ///////////////////////////////////////////////////////////
 // Start Mission
