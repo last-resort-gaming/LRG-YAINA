@@ -35,7 +35,7 @@ class RscTitles {
                 sizeEx = 0.040;
                 style = 0x00;
                 x = (SafeZoneX + 0.015);
-                y = (SafeZoneY + 0.60);
+                y = (SafeZoneY + 0.485);
                 w = 0.4; h = 0.65;
                 colorText[] = {1,1,1,1};
                 lineSpacing = 3;

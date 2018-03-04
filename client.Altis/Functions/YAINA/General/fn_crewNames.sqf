@@ -46,8 +46,6 @@ player addEventHandler ["GetInMan", {
             } forEach crew _vehicle;
 
             _HudNames ctrlSetStructuredText parseText _name;
-            _HudNames ctrlSetPosition [SafeZoneX, 0.5 - (ctrlTextHeight _HudNames * 0.5)];
-
             _HudNames ctrlCommit 0;
 
         };
