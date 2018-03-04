@@ -59,13 +59,13 @@ GVAR(nextPM) = -1;
 
     // Reschedule PM ?
     if (GVAR(nextPM) isEqualTo -1 && { _nPM isEqualTo 0 }) then {
-        GVAR(nextPM) = serverTime + 1500 + (random 600);
+        GVAR(nextPM) = time + 1500 + (random 600);
     };
 
     // What should I create?
     private _start = call {
         if (_nIO < _maxIOs) exitWith { selectRandom GVAR(lIO); };
-        if (_nPM isEqualTo 0 && { !(GVAR(nextPM) isEqualTo -1) } && { serverTime > GVAR(nextPM) } ) exitWith { selectRandom GVAR(lPM); };
+        if (_nPM isEqualTo 0 && { !(GVAR(nextPM) isEqualTo -1) } && { time > GVAR(nextPM) } ) exitWith { selectRandom GVAR(lPM); };
         if (_nAO < _maxAOs) exitWith { selectRandom GVAR(lAO); };
         if (_nSM < _maxSMs) exitWith { selectRandom GVAR(lSM); };
         nil
