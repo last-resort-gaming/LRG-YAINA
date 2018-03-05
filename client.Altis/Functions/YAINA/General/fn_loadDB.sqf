@@ -14,36 +14,21 @@
 
 if !(isServer) exitWith {};
 
-if (isNil QYVAR(loadDB)) then {
-    if (isClass(configFile >> "CfgPatches" >> "inidbi2")) then {
-        YVAR(loadDB) = 1;
-    } else {
-        ["localAdmins: inidbi2 not loaded, dynamic admin levels disabled"] call YFNC(log);
-        YVAR(loadDB) = 0;
-    };
-};
+YVAR(admins)   = [[],[]];
+YVAR(zeuslist) = [[],[]];
 
-if (YVAR(loadDB) isEqualTo 0) then {
-    YVAR(admins) = [
-        ["76561197981494016"],
-        [0]
-    ];
-
-    YVAR(zeuslist) = [["76561197981494016"],["76561197981494016"]];
-} else {
-
+if (isClass(configFile >> "CfgPatches" >> "inidbi2")) then {
     YVAR(inidbi) = ["new", "yaina"] call OO_INIDBI;
     if ("exists" call YVAR(inidbi)) then {
-        YVAR(admins) = ["read", ["general", "admins", [[],[]]]] call YVAR(inidbi);
+        YVAR(admins)   = ["read", ["general", "admins", [[],[]]]] call YVAR(inidbi);
         YVAR(zeuslist) = ["read", ["general", "zeuslist", [[],[]]]] call YVAR(inidbi);
-    } else {
-        YVAR(admins) = [[],[]];
-        YVAR(zeuslist) = [[],[]];
     };
+} else {
+    ["localAdmins: inidbi2 not loaded, dynamic admin levels disabled"] call YFNC(log);
+};
 
-    // Always grant MartinCo
-    if (((YVAR(admins) select 0) find "76561197981494016") isEqualTo -1) then {
-        (YVAR(admins) select 0) pushBack "76561197981494016";
-        (YVAR(admins) select 1) pushBack 0;
-    };
+// If we are a server and interface, then add myself as admin (running in eden/locally)
+if(isServer && hasInterface) then {
+    (YVAR(admins) select 0) pushBack (getPlayerUID player);
+    (YVAR(admins) select 1) pushBack 0;
 };
