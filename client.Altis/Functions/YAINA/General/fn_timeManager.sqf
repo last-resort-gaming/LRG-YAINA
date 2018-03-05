@@ -4,44 +4,48 @@
 	returns: nothing
 */
 
-// Dawn   03:30 - 05:30   3.5 -> 5.5
-// Day    05:30 - 18:30   5.5 -> 18.5
-// Dusk   18:30 - 20:30  18.5 -> 20.5
-// Night  20:30 - 03:30  20.5 -> ...
+#include "defines.h"
+
 if !(isServer) exitWith {};
-
-private _timeManager     = ("TimeManagerEnable" call BIS_fnc_getParamValue);
-private _dawnMultiplier  = ("TimeManagerDawnDuration"  call BIS_fnc_getParamValue) / 10;
-private _dayMultiplier   = ("TimeManagerDayDuration"   call BIS_fnc_getParamValue) / 10;
-private _duskMultiplier  = ("TimeManagerDuskDuration"  call BIS_fnc_getParamValue) / 10;
-private _nightMultiplier = ("TimeManagerNightDuration" call BIS_fnc_getParamValue) / 10;
-
-if (_timeManager isEqualTo 0) exitWith {};
+if !(isNil QVAR(disable_time_manager)) exitWith {};
 
 [{
     params ["_args", "_pfhID"];
-    _args params ["_dawnMultiplier", "_dayMultiplier", "_duskMultiplier", "_nightMultiplier"];
 
-    // Default to night Multiplier
-    _cTime = daytime;
-    _mTime = _nightMultiplier;
+    _sunriseSunsetTime = date call BIS_fnc_sunriseSunsetTime;
 
-    if (_cTime < 20.5) then {
-        if (_cTime > 18.5) then {
-            _mTime = _duskMultiplier;
-        } else {
-            if (_cTime > 5.5) then {
-                _mTime = _dayMultiplier;
-            } else {
-                if (_cTime > 3.5) then {
-                    _mTime = _dawnMultiplier;
-                };
-            };
+    // Duration in minutes of the times of day
+    _dawnTarget  = 60;
+    _dayTarget   = 120;
+    _duskTarget  = 60;
+    _nightTarget = 20;
+
+    _mult = 1;
+
+    // We just use the general day multiplier if we're in a zone that has no
+    // sunrise / sunset times (poles)
+    if (_sunriseSunsetTime in [[-1,0],[0,-1]]) then {
+        _mult = (60*24) / (_dawnTarget + _dayTarget + _duskTarget + _nightTarget);
+    } else {
+
+        _dawnStart  = (_sunriseSunsetTime select 0) - 1;
+        _dawnEnd    = (_sunriseSunsetTime select 0) + 1;
+
+        _duskStart = (_sunriseSunsetTime select 1) - 1;
+        _duskEnd   = (_sunriseSunsetTime select 1) + 1;
+
+        _cTime = daytime;
+
+        _mult = call {
+            if (_cTime < _dawnStart || { _cTime > _duskEnd }) exitWith { (60 * (_dawnStart + (24 - _duskEnd))) / _nightTarget };
+            if (_cTime < _dawnEnd) exitWith { (60 * (_dawnEnd - _dawnStart)) / _dawnTarget };
+            if (_cTime < _duskStart) exitWith { (60 * ( _duskStart - _dawnEnd)) / _dayTarget };
+            (60 * (_duskEnd - _duskStart)) / _duskTarget
         };
     };
 
-    if !(_mTime isEqualTo timeMultiplier) then {
-        setTimeMultiplier _mTime;
+    if !(_mult isEqualTo timeMultiplier) then {
+        setTimeMultiplier _mult;
     };
 
-}, 60, [_dawnMultiplier, _dayMultiplier, _duskMultiplier, _nightMultiplier]] call CBAP_fnc_addPerFrameHandler;
+}, 60, []] call CBAP_fnc_addPerFrameHandler;
