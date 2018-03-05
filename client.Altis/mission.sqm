@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1224;
+		nextID=1248;
 	};
 	class Camera
 	{
-		pos[]={9254.3516,62.183685,21596.928};
+		pos[]={9209.9629,19.395594,21570.977};
 		dir[]={-0.81714398,-0.57268631,0.067446738};
 		up[]={-0.570849,0.81967419,0.047120191};
 		aside[]={0.082276627,-8.3610212e-007,0.99673092};
@@ -5214,8 +5214,8 @@ class Mission
 			class Attributes
 			{
 				name="SA_UJH";
-				condition="_v = (thislist select 0); { _v isKindOf _x } count [""UAV"", ""Plane"", ""Helicopter""] > 0 && { speed _v < 1 } && { isTouchingGround _v };";
-				onActivation="call {" \n "  _v = (thisList select 0);" \n "  if (_v isKindOf ""UAV"") exitWith { [_v] execVM ""Scripts\YAINA\Service\uav.sqf""; };" \n "  [[""Helicopter"", ""Plane""] select (_v isKindOf ""Plane""), _v, 30, 30] execVM ""scripts\YAINA\Service\general.sqf"";" \n "};";
+				condition="_v = (thislist select 0); { _v isKindOf _x } count [""UAV"", ""Plane"", ""Helicopter"", ""LandVehicle""] > 0 && { speed _v < 1 } && { isTouchingGround _v };";
+				onActivation="call { " \n "  _v = (thisList select 0); " \n "  if (_v isKindOf ""UAV"") exitWith { [_v] execVM ""Scripts\YAINA\Service\uav.sqf""; }; " \n "  _type = { if (_v isKindOf _x) exitWith { _x } ; nil } count [""UAV"", ""Plane"", ""Helicopter"", ""LandVehicle""]; " \n "  if (_type isEqualTo 0) exitWith {}; " \n "  [_type, _v, 30, 30] execVM ""scripts\YAINA\Service\general.sqf""; " \n "};";
 				sizeA=10;
 				sizeB=10;
 				sizeC=6;
@@ -9744,18 +9744,21 @@ class Mission
 							dataType="Layer";
 							name="Pad2";
 							id=1739;
+							atlOffset=185.97;
 						};
 						class Item1
 						{
 							dataType="Layer";
 							name="Pad3";
 							id=1738;
+							atlOffset=185.97;
 						};
 						class Item2
 						{
 							dataType="Layer";
 							name="Pad4";
 							id=1737;
+							atlOffset=185.97;
 						};
 						class Item3
 						{
@@ -9934,18 +9937,18 @@ class Mission
 								};
 							};
 							id=1736;
-							atlOffset=0.2670393;
+							atlOffset=0.039012909;
 						};
 						class Item4
 						{
 							dataType="Layer";
 							name="Pad1";
 							id=1740;
-							atlOffset=1.0672693;
+							atlOffset=185.97;
 						};
 					};
 					id=1748;
-					atlOffset=0.70055103;
+					atlOffset=189.5999;
 				};
 				class Item5
 				{
@@ -16195,7 +16198,7 @@ class Mission
 				};
 			};
 			id=1758;
-			atlOffset=-0.99118233;
+			atlOffset=-174.95403;
 		};
 		class Item164
 		{
@@ -32539,7 +32542,7 @@ class Mission
 			};
 			id=2308;
 			type="Land_PortableLight_double_F";
-			atlOffset=-1.6359997;
+			atlOffset=-1.6360006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -32811,7 +32814,7 @@ class Mission
 									};
 									id=2337;
 									type="Land_FloodLight_F";
-									atlOffset=-0.0052309036;
+									atlOffset=-0.0053310394;
 									class CustomAttributes
 									{
 										class Attribute0
@@ -32994,7 +32997,7 @@ class Mission
 									};
 									id=2342;
 									type="Land_FloodLight_F";
-									atlOffset=-0.011398315;
+									atlOffset=-0.011534691;
 									class CustomAttributes
 									{
 										class Attribute0
@@ -33177,7 +33180,7 @@ class Mission
 									};
 									id=2347;
 									type="Land_FloodLight_F";
-									atlOffset=-0.0096216202;
+									atlOffset=-0.0097284317;
 									class CustomAttributes
 									{
 										class Attribute0
@@ -33360,7 +33363,7 @@ class Mission
 									};
 									id=2352;
 									type="Land_FloodLight_F";
-									atlOffset=-0.013075829;
+									atlOffset=-0.013068199;
 									class CustomAttributes
 									{
 										class Attribute0
@@ -33501,7 +33504,7 @@ class Mission
 									};
 									id=2356;
 									type="Land_FloodLight_F";
-									atlOffset=-0.0055265427;
+									atlOffset=-0.0056819916;
 									class CustomAttributes
 									{
 										class Attribute0
@@ -33654,15 +33657,15 @@ class Mission
 								};
 							};
 							id=2335;
-							atlOffset=-0.0071840286;
+							atlOffset=-0.0071935654;
 						};
 					};
 					id=2334;
-					atlOffset=-0.0071840286;
+					atlOffset=-0.0071935654;
 				};
 			};
 			id=2333;
-			atlOffset=-0.0071840286;
+			atlOffset=-0.0071935654;
 		};
 		class Item286
 		{
