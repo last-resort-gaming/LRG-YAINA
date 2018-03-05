@@ -8,7 +8,7 @@ class EditorData
 	toggles=522;
 	class ItemIDProvider
 	{
-		nextID=2368;
+		nextID=2373;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={9209.9629,19.395594,21570.977};
-		dir[]={-0.81714398,-0.57268631,0.067446738};
-		up[]={-0.570849,0.81967419,0.047120191};
-		aside[]={0.082276627,-8.3610212e-007,0.99673092};
+		pos[]={9118.2246,52.582745,21554.816};
+		dir[]={0.76218003,-0.37447089,0.52808762};
+		up[]={0.30781889,0.92723244,0.21327698};
+		aside[]={0.56952494,3.1944364e-007,-0.82198513};
 	};
 };
 binarizationWanted=0;
@@ -5519,7 +5519,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={9032.2852,19.131794,21439.357};
+				position[]={9032.2852,19.131699,21439.359};
 				angles[]={0.026668631,3.9210391,0.0013439035};
 			};
 			side="Empty";
@@ -5529,11 +5529,10 @@ class Mission
 				lock="UNLOCKED";
 				name="JET1";
 				textures="CamoGrey";
-				pylons="PylonMissile_Missile_BIM9X_x1;PylonMissile_Missile_BIM9X_x1;;;PylonRack_Missile_AMRAAM_C_x1;PylonRack_Missile_AMRAAM_C_x1;";
+				pylons="PylonMissile_Missile_BIM9X_x1;PylonMissile_Missile_BIM9X_x1;PylonRack_Missile_BIM9X_x1;PylonRack_Missile_BIM9X_x1;PylonRack_Missile_AMRAAM_C_x2;PylonRack_Missile_AMRAAM_C_x2;";
 			};
 			id=1684;
 			type="I_Plane_Fighter_04_F";
-			atlOffset=4.7683716e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -19933,7 +19932,7 @@ class Mission
 		class Item196
 		{
 			dataType="Marker";
-			position[]={9189.2471,14.998,21617.506};
+			position[]={9182.7852,14.997803,21621.139};
 			name="marker_15";
 			text="2";
 			type="c_air";
@@ -19942,12 +19941,12 @@ class Mission
 			b=0.60000002;
 			angle=325.34491;
 			id=1866;
-			atlOffset=0.0001707077;
+			atlOffset=0.13830566;
 		};
 		class Item197
 		{
 			dataType="Marker";
-			position[]={9206.5127,14.897,21629.514};
+			position[]={9201.0225,14.897,21633.449};
 			name="marker_16";
 			text="1";
 			type="c_air";
@@ -19956,12 +19955,12 @@ class Mission
 			b=0.60000002;
 			angle=325.34491;
 			id=1867;
-			atlOffset=0.00013828278;
+			atlOffset=0.087874413;
 		};
 		class Item198
 		{
 			dataType="Marker";
-			position[]={9172.0195,15.027,21605.51};
+			position[]={9164.4785,15.027283,21608.941};
 			name="marker_17";
 			text="3";
 			type="c_air";
@@ -19970,12 +19969,12 @@ class Mission
 			b=0.60000002;
 			angle=325.34491;
 			id=1868;
-			atlOffset=-0.00028038025;
+			atlOffset=0.058979034;
 		};
 		class Item199
 		{
 			dataType="Marker";
-			position[]={9154.7627,15.155,21593.477};
+			position[]={9146.2402,15.155273,21596.629};
 			name="marker_18";
 			text="4";
 			type="c_air";
@@ -19984,12 +19983,12 @@ class Mission
 			b=0.60000002;
 			angle=325.34491;
 			id=1869;
-			atlOffset=-0.0002784729;
+			atlOffset=-0.078300476;
 		};
 		class Item200
 		{
 			dataType="Marker";
-			position[]={9137.5264,15.101,21581.471};
+			position[]={9127.9658,15.100586,21584.299};
 			name="marker_19";
 			text="5";
 			type="c_air";
@@ -19998,7 +19997,7 @@ class Mission
 			b=0.60000002;
 			angle=325.34491;
 			id=1870;
-			atlOffset=-0.00044250488;
+			atlOffset=0.02809906;
 		};
 		class Item201
 		{
