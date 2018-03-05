@@ -34,10 +34,16 @@ briefing=0;
 debriefing=0;
 saving=0;
 
+// We disable the channels we manage in initPlayerLocal here
+// because it seems to fix an issue with TFAR where group keeps
+// transmitting on respawn/rejoin which is annoying
+
 disableChannels[] = {
     {0,true,true},      // Global
-    {1,false,true},     // Side
+    {1,true,true},      // Side
     {2,true,true},      // Command
+    {3,true,true},      // Group
+    {4,true,true},      // Vehicle
     {6,true,true}       // System
 };
 

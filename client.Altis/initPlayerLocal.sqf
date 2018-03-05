@@ -19,10 +19,6 @@ if (typeOf player isEqualTo "VirtualCurator_F") exitWith {
     [player] remoteExecCall ["YAINA_fnc_playerIntroComplete", 2];
 };
 
-// We always dsiable global/side initially
-0 enableChannel false; // Global
-1 enableChannel false; // Side
-
 // When we have TFAR enabled, we only allow admins on side + direct chat
 // and disable the others
 if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
@@ -39,6 +35,10 @@ if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
     ] call CBAP_fnc_waitUntilAndExecute;
 
 } else {
+
+    // Always enable group/vehicle
+    3 enableChannel true;
+    4 enableChannel true;
 
     // Main Channel Management
     [{
