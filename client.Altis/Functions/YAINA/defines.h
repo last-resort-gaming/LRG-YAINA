@@ -13,6 +13,7 @@
 #define QYFNC(s) Q(YFNC(s))
 
 #define INCR(s) s = (s) + 1
+#define LTIME ([serverTime, time] select isServer)
 
 //////////////////////////////////////////////
 // PREFIXED

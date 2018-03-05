@@ -143,7 +143,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_arty1", "_arty2", "_pfhStart", "_nextStrike"];
+    _args params ["_missionID", "_stage", "_arty1", "_arty2", "_nextStrike"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -156,15 +156,19 @@ _pfh = {
             _stage = 2; _args set [1,_stage];
         } else {
             // We process if we should fire based on _nextStrike, we use
-            if (serverTime > _nextStrike) then {
+            _currTime = LTIME;
+            if (_currTime > _nextStrike) then {
                 // We only fire on folks who are within the paradrop markers of an AO
                 private _aos = (GVAR(paradropMarkers) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] });
                 private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p > 1.5 }  } );
 
                 if !(isNil "_target") then {
                     // We have a target, FIRE
-                    private _targetPos = getPosATL player;
-                    private _targetDir = [_arty1, _targetPos] call BIS_fnc_dirTo;
+
+                    private _mainArty  = ([_arty1, _arty2] select { canFire _x }) select 0;
+
+                    private _targetPos = getPos _target;
+                    private _targetDir = [_mainArty, _targetPos] call BIS_fnc_dirTo;
 
                     if (canFire _arty1) then {
                         _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
@@ -180,24 +184,24 @@ _pfh = {
 
                     // Players get between 30 and 40 seconds to move
                     _warningTime = (random 10) + 30;
-                    _shellETA    = (_arty1 getArtilleryETA [ _targetPos, "32Rnd_155mm_Mo_shells" ]) max (_arty2 getArtilleryETA [ _targetPos, "32Rnd_155mm_Mo_shells" ]);
+                    _shellETA    = (_mainArty getArtilleryETA [ _targetPos, "32Rnd_155mm_Mo_shells" ]) max _arty2ETA;
                     _sleepTime   = floor(_shellETA - _warningTime) max 1;
 
                     // Give a little warning
                     [{ "SmokeShellRed" createVehicle (_this select 0) }, [_targetPos], _sleepTime] call CBAP_fnc_waitAndExecute;
 
-                    // If it's night, we fire a flare above them and hope they see it...
+                    // If it's night, we throw some chemlights down too
                     if (daytime > 20 || { daytime < 4}) then {
-                        [{ _v = "F_20mm_Red" createVehicle (_this select 0); _v setVelocity [0,0,-0.5] }, [_target modelToWorld [-30 + random 60,10 + random 30,160]], _sleepTime] call CBAP_fnc_waitAndExecute;
+                        [{ params ["_tp"]; "Chemlight_red" createVehicle (_tp vectorAdd [1,1,0]); "Chemlight_red" createVehicle (_tp vectorAdd [-1,-1,0]); }, [_targetPos], _sleepTime] call CBAP_fnc_waitAndExecute;
                     };
 
                     // Then we sleep for a long time between fires, between 10 and 20 minutes
                     // If however, an HC failover occurs, then it'll be back to the initial
                     // wait period, which is ok
-                    _args set [5, serverTime + 600 + random 600];
+                    _args set [4, _currTime + 600 + random 600];
                 } else {
                     // No targets found, don't bother checking for another 2 or 3 minutes
-                    _args set [5, serverTime + 120 + random 60];
+                    _args set [4, _currTime + 120 + random 60];
                 };
             };
         };
@@ -229,4 +233,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "PM", 1, "artillery", "", _markers, _groups, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _arty1, _arty2, serverTime, serverTime + 120 + random 60]] call FNC(startMissionPFH);
+[_missionID, "PM", 1, "artillery", "", _markers, _groups, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _arty1, _arty2, LTIME + 120 + random 60]] call FNC(startMissionPFH);
