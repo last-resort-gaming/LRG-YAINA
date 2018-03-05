@@ -294,7 +294,7 @@ GVAR(unitBackpacks) = call {
         _permitGroups pushBackUnique "B_MedicalUAV";
     };
 
-	if (_hasTFAR) then {
+    if (_hasTFAR) then {
         if (["HQ", "SL"] call YFNC(testTraits)) then {
              _permitItems pushBack "tf_rt1523g";
         };
