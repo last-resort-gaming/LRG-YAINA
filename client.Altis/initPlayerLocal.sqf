@@ -19,28 +19,50 @@ if (typeOf player isEqualTo "VirtualCurator_F") exitWith {
     [player] remoteExecCall ["YAINA_fnc_playerIntroComplete", 2];
 };
 
-// Channel Management
-[{
-    _settings = [];
+// We always dsiable global/side initially
+0 enableChannel false; // Global
+1 enableChannel false; // Side
 
-    // Command Channel Management
-    _settings pushBack [1, "HQ" call YAINA_fnc_testTraits || { player getVariable ["YAINA_adminLevel", 0] <= 3 }, true];
-    _settings pushBack [2, leader (group player) isEqualTo player];
+// When we have TFAR enabled, we only allow admins on side + direct chat
+// and disable the others
+if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
 
-    {
-        _x params ["_chan", "_destVoice", "_destChat"];
-        if (isNil "_destChat") then { _destChat = _destVoice; };
+    2 enableChannel false; // Command
+    3 enableChannel [true, false]; // Group
+    4 enableChannel false; // Vehicle
 
-        _destState = [_destChat, _destVoice];
-        _chanState = channelEnabled _chan;
+    // wait until we have our adminLevel set by server before enabling side
+    [
+        {!(isNil { player getVariable "YAINA_adminLevel" }) },
+        { 1 enableChannel (player getVariable ["YAINA_adminLevel", 5] <= 3) },
+        []
+    ] call CBAP_fnc_waitUntilAndExecute;
 
-        if !(_destState isEqualTo _chanState) then {
-            _chan enableChannel _destState;
-        };
-        nil
-    } count _settings;
+} else {
 
-}, 1, []] call CBAP_fnc_addPerFrameHandler;
+    // Main Channel Management
+    [{
+        _settings = [];
+
+        // Command Channel Management
+        _settings pushBack [1, "HQ" call YAINA_fnc_testTraits || { player getVariable ["YAINA_adminLevel", 5] <= 3 }, true];
+        _settings pushBack [2, leader (group player) isEqualTo player];
+
+        {
+            _x params ["_chan", "_destVoice", "_destChat"];
+            if (isNil "_destChat") then { _destChat = _destVoice; };
+
+            _destState = [_destChat, _destVoice];
+            _chanState = channelEnabled _chan;
+
+            if !(_destState isEqualTo _chanState) then {
+                _chan enableChannel _destState;
+            };
+            nil
+        } count _settings;
+
+    }, 1, []] call CBAP_fnc_addPerFrameHandler;
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // DISABLE NEGATIVE RATINGS

@@ -67,6 +67,17 @@ GVAR(carryPacks)    = [[],[]];
 
                 _type = getText (_x >> "cursor");
 
+                // ACE modifies the cursor of some weapons during it's config, LRR/EBR/GM6 (from srifle => arifle)
+                // https://github.com/acemod/ACE3/blob/master/addons/smallarms/CfgWeapons.hpp
+                //
+                // This makes the Lynx / LRR etc. available for regular joes in a normal setup of these restrictions.
+                // So, to avoid this pain downstream in teh restrictions, we force it here where we don't want
+
+                {
+                    if (_class isKindOf [_x, configFile >> "CfgWeapons"]) exitWith { _type = "srifle"; };
+                    nil
+                } count ["EBR_base_F", "LRR_base_F", "GM6_base_F"];
+
                 // However, suffix _gl for those with GL muzzles
                 if (!({ _x in [ "EGLM", "GL_3GL_F" ] } count getArray(_x >> "muzzles") isEqualTo 0)) then {
                     _type = format["%1_gl", _type];

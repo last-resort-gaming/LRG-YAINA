@@ -31,6 +31,9 @@ if (isServer) then {
 
 if (isDedicated) exitWith {};
 
+private _hasACE  = isClass(configFile >> "CfgPatches" >> "ace_main");
+private _hasTFAR = isClass(configFile >> "CfgPatches" >> "task_force_radio");
+
 ///////////////////////////////////////////////////////////
 // Weapons
 // Groups:
@@ -228,6 +231,10 @@ GVAR(unitItems) = call {
         _permitItems pushBack "ToolKit";
     };
 
+    if (_hasTFAR) then {
+        _permitItems append ["tf_microdagr", "tf_anprc152"];
+    };
+
     // Now, add in our permits, and remove blacklists again
     {
         _idx = (GVAR(itemCargo) select 0) find _x;
@@ -277,7 +284,7 @@ GVAR(unitBackpacks) = call {
     _permitGroups = ["B_Parachute", "B_AssaultPack","B_Kitbag","B_TacticalPack","B_FieldPack",
                      "B_Carryall", "B_ViperHarness", "B_ViperLightHarness", "B_LegStrapBag", "B_Static"];
 
-    _retval = [];
+    _permitItems  = [];
 
     if (["UAV"] call YFNC(testTraits)) then {
         _permitGroups pushBack "B_UAV";
@@ -287,12 +294,22 @@ GVAR(unitBackpacks) = call {
         _permitGroups pushBackUnique "B_MedicalUAV";
     };
 
+	if (_hasTFAR) then {
+        if (["HQ", "SL"] call YFNC(testTraits)) then {
+             _permitItems pushBack "tf_rt1523g";
+        };
+    };
+
     {
         _idx = (GVAR(carryPacks) select 0) find _x;
-        if !(_idx isEqualTo -1) then { _retval append ((GVAR(carryPacks) select 1) select _idx) };
+        if !(_idx isEqualTo -1) then { _permitItems append ((GVAR(carryPacks) select 1) select _idx) };
         true;
     } count _permitGroups;
 
+
+    // DeDupe and return the list
+    _retval = [];
+    { _retval pushBackUnique _x; true } count _permitItems;
     _retval - GVAR(globalBlacklist);
 };
 

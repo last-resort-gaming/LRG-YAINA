@@ -15,8 +15,21 @@ private _allowedItems = GVAR(unitItems) + GVAR(unitBackpacks) + GVAR(unitWeapons
 ///////////////////////////////////////////////////////////
 
 private _findCargo = {
-    params ["_cargo", "_item"];
-    !(({ !(_x find _item isEqualTo -1) } count (_cargo select 1)) isEqualTo 0);
+    params ["_cargo", "_items"];
+
+    _found = false;
+
+    {
+      _cargoItems = _x;
+      {
+        if (_x in _cargoItems) exitWith { _found = true; };
+        nil
+      } count _items;
+      if (_found) exitWith {};
+      nil
+    } count (_cargo select 1);
+
+    _found
 };
 
 private _addToArray = {
@@ -35,13 +48,25 @@ private _filterList = {
     params ["_contents"];
     private _rem = [[],[]];
     {
-        if !(_x isEqualTo "" || _x in _allowedItems) then {
+        if !(_x isEqualTo "" || { _x in _allowedItems } ) then {
+            // Just do a quick check of parent here
+            if(isClass (configFile >> "CfgWeapons" >> _x) && { (configName inheritsFrom (configFile >> "CfgWeapons" >> _x)) in _allowedItems } ) exitWith {};
             [_rem, _x] call _addToArray;
             [_x] call FNC(removeItem);
         };
         true;
     } count _contents;
     _rem;
+};
+
+private _itemsInArray = {
+    params ["_items", "_list"];
+    _found = false;
+    {
+        if (_x in _list) exitWith { _found = true; };
+        nil;
+    } count _items;
+    _found;
 };
 
 private _filterBlacklist = {
@@ -94,27 +119,33 @@ if (_item isEqualTo objNull) then {
     private _inBase = !(({ player inArea _x } count BASE_PROTECTION_AREAS) isEqualTo 0);
     private _filteredContainer = _inBase || { _container getVariable [QVAR(filtered), false] };
 
+    // Due to some rather unfortunate cases, such as TFAR substituting items on take (e.g: "tf_anprc152_123")
+    _items = [_item];
+    if(isClass (configFile >> "CfgWeapons" >> _item)) then {
+        _items pushBack (configName inheritsFrom (configFile >> "CfgWeapons" >> _item))
+    };
+
     // What do we filter on, if it's a filtered container (i.e. blufor), we filter against
     // Our unit's entire permit/deny list, if it's not (i.e. looted from the enemy) we only
     // filter against the global blacklist
 
     if (_filteredContainer) then {
         // If it's not a valid item, replace it back into the container and say NO
-        if ([GVAR(itemCargo),_item] call _findCargo) then {
-            if !(_item in GVAR(unitItems)) then { [_item] call FNC(removeItem); _container addItemCargoGlobal [_item, 1];  }
+        if ([GVAR(itemCargo), _items] call _findCargo) then {
+            if !([_items, GVAR(unitItems)] call _itemsInArray) then { [_item] call FNC(removeItem); _container addItemCargoGlobal [_item, 1];  }
             else {
                 if (vest player isEqualTo _item)    then { [vestItems player] call _filterList; };
                 if (uniform player isEqualTo _item) then { [uniformItems player] call _filterList; };
             };
         } else {
-            if ([GVAR(weaponCargo),_item] call _findCargo) then {
-                if !(_item in GVAR(unitWeapons)) then { [_item] call FNC(removeItem); _container addWeaponCargoGlobal [_item, 1];  };
+            if ([GVAR(weaponCargo), _items] call _findCargo) then {
+                if !([_items, GVAR(unitWeapons)] call _itemsInArray) then { [_item] call FNC(removeItem); _container addWeaponCargoGlobal [_item, 1];  };
             } else {
-                if ([GVAR(magazineCargo),_item] call _findCargo) then {
+                if ([GVAR(magazineCargo), _items] call _findCargo) then {
                     if !(_item in GVAR(unitMags)) then { [_item] call FNC(removeItem); _container addMagazineCargoGlobal [_item, 1];  };
                 } else {
-                    if ([GVAR(carryPacks),_item] call _findCargo || [GVAR(specialPacks),_item] call _findCargo) then {
-                        if !(_item in GVAR(unitBackpacks)) then {
+                    if ([GVAR(carryPacks), _items] call _findCargo) then {
+                        if !([_items, GVAR(unitBackpacks)] call _itemsInArray) then {
                             [_item] call FNC(removeItem);
                             _container addBackpackCargoGlobal [_item, 1];
                         } else {
@@ -127,22 +158,22 @@ if (_item isEqualTo objNull) then {
     } else {
         // Much the same function above, but checking inclusion rather than exclusion, again instead of creating a whole
         // new list of all valid items
-        if ([GVAR(itemCargo),_item] call _findCargo) then {
-            if (_item in GVAR(globalBlacklist)) then {
+        if ([GVAR(itemCargo), _items] call _findCargo) then {
+            if ([_items, GVAR(globalBlacklist)] call _itemsInArray) then {
                 [_item] call FNC(removeItem);
             } else {
                 if (vest player isEqualTo _item)    then { [vestItems player]    call _filterBlacklist; };
                 if (uniform player isEqualTo _item) then { [uniformItems player] call _filterBlacklist; };
             };
         } else {
-            if ([GVAR(weaponCargo),_item] call _findCargo) then {
-                if (_item in GVAR(globalBlacklist)) then { [_item] call FNC(removeItem); };
+            if ([GVAR(weaponCargo), _items] call _findCargo) then {
+                if ([_items, GVAR(globalBlacklist)] call _itemsInArray) then { [_item] call FNC(removeItem); };
             } else {
-                if ([GVAR(magazineCargo),_item] call _findCargo) then {
-                    if (_item in GVAR(globalBlacklist)) then { [_item] call FNC(removeItem); };
+                if ([GVAR(magazineCargo), _items] call _findCargo) then {
+                    if ([_items, GVAR(globalBlacklist)] call _itemsInArray) then { [_item] call FNC(removeItem); };
                 } else {
-                    if ([GVAR(carryPacks),_item] call _findCargo || [GVAR(specialPacks),_item] call _findCargo) then {
-                        if (_item in GVAR(globalBlacklist)) then {
+                    if ([GVAR(carryPacks), _items] call _findCargo) then {
+                        if ([_items, GVAR(globalBlacklist)] call _itemsInArray) then {
                             [_item] call FNC(removeItem);
                         } else {
                             [backpackItems _unit] call _filterBlacklist;
