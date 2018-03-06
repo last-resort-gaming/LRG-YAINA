@@ -123,10 +123,7 @@ if(_veh isKindOf "Plane") then {
 };
 
 // Save any pylon weapon loadouts
-_pylonLoadout = [];
-if (_veh isKindOf "UAV") then {
-    _pylonLoadout = GetPylonMagazines _veh;
-};
+_pylonLoadout = getPylonMagazines _veh;
 
 // Add default persist vars
 _persistVars pushBackUnique QVAR(Drivers);

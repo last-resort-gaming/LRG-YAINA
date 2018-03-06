@@ -119,15 +119,15 @@ if(!isServer) exitWith {};
                 // restore lcoked state
                 _nv lock _locked;
 
+                // Clear spawned pylon loadout
+                { _nv removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _nv;
+
+                // Reload the same pylons as before
+                {
+                    _nv setPylonLoadout [_forEachIndex + 1, _x, true, [0]];
+                } forEach _pylonLoadout;
+
                 if ([_nv] call YFNC(isUAV)) then {
-
-                    // Clear spawned loadout
-                    { _nv removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _nv;
-
-                    // Reload the same pylons as before
-                    {
-                        _nv setPylonLoadout [_forEachIndex + 1, _x, true, [0]];
-                    } forEach _pylonLoadout;
 
                     // And lastly add the crew
                     createVehicleCrew _nv;
