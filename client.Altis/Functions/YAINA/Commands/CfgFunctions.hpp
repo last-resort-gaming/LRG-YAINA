@@ -32,6 +32,7 @@ class YAINA_CMD {
         class warn {};
         class kick {};
         class restart {};
+        class stable {};
     };
 
     class Messages {
