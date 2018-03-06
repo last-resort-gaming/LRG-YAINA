@@ -61,7 +61,12 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
     }] call YAINA_VEH_fnc_addGetInHandler;
 
     // We init vehicle last to ensure the handlers / vars are set to copy onto any respawned assets
-    [_x, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
+    [_x, false, 10, 50, [], {
+        params ["_veh", "_args"];
+        _veh animate ['hideturret',1];
+        _veh lockTurret [[0],TRUE];
+        _veh removeWeaponTurret ["LMG_RCWS",[0]];
+    }, [], true] call YAINA_VEH_fnc_initVehicle;
 } forEach [REP1];
 
 ///////////////////////////////////////////////////////////
@@ -130,6 +135,29 @@ _navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
 TM enableCopilot false;
 TM setVariable ["YAINA_VEH_Drivers", ["MERT"], true];
 TM setVariable ["MERT_QUAD_unloading", 0, true];
+
+
+///////////////////////////////////////////////////////
+// ONLY UNCONSIOUS PLAYERS (OR MERT) SHOULD GET IN
+///////////////////////////////////////////////////////
+[TM, {
+    params ["_unit", "_pos", "_veh", "_turret"];
+
+    // We don't care about driver, as that's handled by the normal
+    // vehicle functions, so only the other slots
+
+    if (!(_pos isEqualTo "driver") &&
+        { !(["MERT"] call YAINA_fnc_testTraits) } &&
+        { !(player getVariable ["ais_unconscious", false]) } )  then {
+
+        // Let them know
+        "Only MERT or Unconscious players may board this chopper" call YFNC(hintC);
+
+        moveOut player;
+    };
+
+}] call YAINA_VEH_fnc_addGetInHandler;
+
 [TM, false, 10, 1000, [], {
 
     params ["_veh", "_args"];
@@ -277,27 +305,6 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
             _target setVariable["YAINA_planting_explosives", nil, true];
         }] call AIS_Core_fnc_Progress_ShowBar;
     }, [], 1.5, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
-
-    ///////////////////////////////////////////////////////
-    // ONLY UNCONSIOUS PLAYERS (OR MERT) SHOULD GET IN
-    ///////////////////////////////////////////////////////
-    [_veh, {
-        params ["_unit", "_pos", "_veh", "_turret"];
-
-        // We don't care about driver, as that's handled by the normal
-        // vehicle functions, so only the other slots
-
-        if (!(_pos isEqualTo "driver") &&
-            { !(["MERT"] call YAINA_fnc_testTraits) } &&
-            { !(player getVariable ["ais_unconscious", false]) } )  then {
-
-            // Let them know
-            "Only MERT or Unconscious players may board this chopper" call YFNC(hintC);
-
-            moveOut player;
-        };
-
-    }] call YAINA_VEH_fnc_addGetInHandler;
 
 }, [], true, {
     // Respawn Code
