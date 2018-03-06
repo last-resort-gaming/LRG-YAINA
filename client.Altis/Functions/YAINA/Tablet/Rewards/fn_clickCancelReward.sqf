@@ -15,7 +15,7 @@ if !(isNil "_pfhIds") then {
     _pfhIds params ["_pfhID", "_cancelCode", "_cancelCodeArgs"];
     [_pfhID] call CBAP_fnc_removePerFrameHandler;
 
-    player sideChat format["Reward: %1 has been cancelled", getText (configFile >> "CfgVehicles" >> (_cancelCodeArgs select 0) >> "displayName")];
+    [player, format["Reward: %1 has been cancelled", getText (configFile >> "CfgVehicles" >> (_cancelCodeArgs select 0) >> "displayName")]] remoteExec ["sideChat"];
 
     _cancelCodeArgs call _cancelCode;
     GVAR(orderInProgress) = nil;

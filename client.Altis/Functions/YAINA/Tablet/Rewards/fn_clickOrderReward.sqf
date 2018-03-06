@@ -23,7 +23,7 @@ private _class  = _lb lbData (lbCurSel _lb);
 
 // Get price + build time from rewards publicVariable
 GVAR(rewards) apply { _x select { _x select 0 isEqualTo _class; }; } select { !(_x isEqualTo []) } select 0 select 0
-    params ["_class2", "_price", "_buildTime"];
+    params ["_class2", "_price", "_buildTime", ["_initCode", {}]];
 
 // We immediately remove the credits to work with multiple users, and on cancel, add it to balance
 [-_price, format["%1 ordered", _class]] call YFNC(addRewardPoints);
@@ -56,7 +56,7 @@ _bar ctrlSetPosition _r;
 _bar ctrlCommit _buildTime;
 
 // Let folks know...
-player sideChat format["Reward: %1 has been requested, ETA: %2", getText (configFile >> "CfgVehicles" >> _class >> "displayName"), _buildTime call YFNC(formatDuration)];
+[player, format["Reward: %1 has been requested, ETA: %2", getText (configFile >> "CfgVehicles" >> _class >> "displayName"), _buildTime call YFNC(formatDuration)]] remoteExec ["sideChat"];
 
 // Trigger the progress updater / complete trigger
 _pfh = {
@@ -80,22 +80,13 @@ _pfh = {
 _pfhID = [_pfh, 1, [_bar, _r select 2, _text, {
     params ["_class"];
 
-    private _sp = _class call FNC(getSpawnPoint);
-    private _veh = _class createVehicle getPosATL _sp;
-    _veh setDir (triggerArea _sp select 2);
-    _veh enableCopilot false;
-
-    // We don't respawn, but do give full functionality...
-    [_veh, true, -1] call YAINA_VEH_fnc_initVehicle;
-
-    // Let folks know...
-    player sideChat format["Reward: %1 has been completed", getText (configFile >> "CfgVehicles" >> _class >> "displayName")];
+    [player, _class] remoteExecCall [QFNC(provisionReward), 2];
 
     // And re-enable everything
     GVAR(orderInProgress) = nil;
     call FNC(clickCancelReward);
 
-}, [_class]]] call CBAP_fnc_addPerFrameHandler;
+}, [_class, _initCode]]] call CBAP_fnc_addPerFrameHandler;
 
 // CancelCode
 _cancelCode = {

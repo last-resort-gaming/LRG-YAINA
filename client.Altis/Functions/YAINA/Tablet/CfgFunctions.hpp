@@ -33,6 +33,7 @@ class YAINA_TABLET {
         class clickCancelReward {};
         class rewardsEH { postInit = 1; };
         class getSpawnPoint {};
+        class provisionReward {};
     };
 
     class Message {
