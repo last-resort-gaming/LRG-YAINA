@@ -312,17 +312,6 @@ call {
             _veh setObjectTextureGlobal [0,'\A3\Air_F_EPB\Heli_Light_03\data\Heli_Light_03_base_CO.paa'];
         };
 
-        // Mohawk
-        if (_class isEqualTo "I_Heli_Transport_02_F") exitWith {
-            {
-                _veh setObjectTextureGlobal _x;
-            } count [
-                [1,'Data\Skins\merlin\Merlin0.paa'],
-                [0,'Data\Skins\merlin\Merlin1.paa'],
-                [2,'Data\Skins\merlin\Merlin2.paa']
-            ];
-        };
-
         if (_class isEqualTo "B_Heli_Attack_01_dynamicLoadout_F") exitWith {
 
             _veh call _clearPylons;
