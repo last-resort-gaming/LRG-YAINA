@@ -170,5 +170,17 @@ if (_veh isKindOf "Helicopter" && !(_veh isKindOf "UAV")) then {
 // And we always ensure it's added to zeus
 [[_veh]] call YFNC(addEditableObjects);
 
+// The very last thing we do, is run the getIn handler for any current crew in the vehicle, this lets folks
+// take keys etc. if the vehicle was initialized when there were players in it (such as commandeering an
+// asset from an objective
+// params ["_unit", "_pos", "_veh", "_turret"];
+{
+    _x params ["_unit", "_pos", "_cargoIndex", "_turretPath", "_personTurret"];
+    if (isPlayer _unit) then {
+        [_unit, _pos, _veh, _turretPath] remoteExec [QFNC(getInMan), _unit];
+    };
+    nil;
+} count (fullCrew _veh);
+
 
 true;

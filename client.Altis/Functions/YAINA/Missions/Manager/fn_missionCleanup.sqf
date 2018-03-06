@@ -40,7 +40,16 @@ if (_fail && { not _force } ) exitWith { false; };
 
 // Delete all vehicles
 {
-    if !(isNull _x) then { deleteVehicle _x; };
+    if !(isNull _x) then {
+        // If there is a player in the vehicle, we initialize the vehicle handler
+        // so it can naturally be despawned when it's abandoned
+        if ( ( { alive _x && { isPlayer _x } } count (crew _x)) isEqualTo 0 ) then {
+            deleteVehicle _x;
+        } else {
+            // We just use a shorter abandon distance
+            [_x, true, -1, 500] call YAINA_VEH_fnc_initVehicle;
+        };
+    };
     true;
 } count _vehicles;
 
@@ -113,7 +122,21 @@ if (_fail) exitWith { false; };
     } count ["MineBase", "Grenade", "#crater", "GroundWeaponHolder", "#slop"];
 
     // Now we just remove any zeus-units, vehicles, dead bodies, ammo crates etc. etc.
-    { deleteVehicle _x; true } count (entities [["All"], ["Animal_Base_F", "Logic"], true, false] select { _x distance2D _cp < _sz });
+    {
+        // Given the cleanup size is larger than the area size, there is a chance a vehicle with players
+        // is just outside the completion radios, but within this radius, and dn't want them getting nuked
+        // so...
+
+        if ( ( { alive _x && { isPlayer _x } } count (crew _x)) isEqualTo 0 ) then {
+            deleteVehicle _x;
+        } else {
+            // We just use a shorter abandon distance, as long as it's not a person
+            if !(_x isKindOf "CAManBase") then {
+                [_x, true, -1, 500] call YAINA_VEH_fnc_initVehicle;
+            };
+        };
+        nil;
+    } count (entities [["All"], ["Animal_Base_F", "Logic"], true, false] select { _x distance2D _cp < _sz });
 
     // delete our _markers
     { deleteMarker _x; true; } count _markers;
