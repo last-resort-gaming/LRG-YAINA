@@ -83,7 +83,7 @@ if(!isServer) exitWith {};
                 _args params ["_respawnAfter", "_vehType", "_pos", "_dir", "_respawnArea", "_tex", "_coPilotEnabled", "_locked", "_loadout", "_animationInfo", "_pylonLoadout", "_respawnTime", "_abandonDistance", "_hasKeys", "_persistVars", "_initCode", "_initCodeArgs"];
 
                 // Make sure we've passed the respawn time
-                if (serverTime < _respawnAfter) exitWith {};
+                if (LTIME < _respawnAfter) exitWith {};
 
                 // Wait for area to be empty before proceeding
                 if !(count (entities "AllVehicles" select { _x inArea _respawnArea }) isEqualTo 0) exitWith {};
@@ -168,7 +168,7 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, 10, [serverTime + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBAP_fnc_addPerFrameHandler;
+            }, 10, [LTIME + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBAP_fnc_addPerFrameHandler;
         };
 
     };
