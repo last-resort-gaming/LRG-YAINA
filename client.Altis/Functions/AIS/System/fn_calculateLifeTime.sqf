@@ -31,7 +31,7 @@ _summary_damage = _summary_damage + (damage _unit);
 _calculated_life_time = if (_unit getVariable ["AIS_noBleedOut", false]) then {
 	999999999
 } else {
-	AIS_BLEEDOUT_TIME + ((_ais_variation_factor * (_ais_avg_damage_factor - _summary_damage)) * 10);
+	(AIS_BLEEDOUT_TIME + ((_ais_variation_factor * (_ais_avg_damage_factor - _summary_damage)) * 10)) * AIS_BLEEDOUT_MULTIPLIER;
 };
 
 

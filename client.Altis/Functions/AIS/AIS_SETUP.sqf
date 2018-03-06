@@ -31,6 +31,11 @@ AIS_ACTION_DISTANCE         =   6;              // Max distance for actions (suc
                                                 // counter the slow nature of moving, using the action menu, clicking drag, then moving back to safty (it seems a
                                                 // lot when you consider it outside the game, but its from your center to their center, so it's about right, determine
                                                 // the distance you want in game rather than real life :)
+
+if (isNil "AIS_BLEEDOUT_MULTIPLIER") then {
+    AIS_BLEEDOUT_MULTIPLIER =   1;              // Multiplier that can be externally set to expand bleedout time, useful if you have MERT sections to given them more chance to reach them
+};
+
 //__________________________________________________________________________________________________________________________________________________________________
 //	v v v v v v v v v v v v  --- Visual Settings --- v v v v v v v v v v v v 
 

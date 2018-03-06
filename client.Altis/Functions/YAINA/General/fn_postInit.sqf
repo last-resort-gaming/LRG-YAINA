@@ -23,5 +23,10 @@ if (isServer) then {
                 YVAR(deleteVehiclesIn) deleteAt _i;
             };
         };
+
+        // Set AIS Bleedout Multiplier based on MERT presence
+        AIS_BLEEDOUT_MULTIPLIER = [1,2] select (({ if ([["MERT"], _x] call YFNC(testTraits)) exitWith { 1 }; nil } count allPlayers) isEqualTo 1);
+        publicVariable "AIS_BLEEDOUT_MULTIPLIER";
+
     }, 5, []] call CBAP_fnc_addPerFrameHandler;
 };
