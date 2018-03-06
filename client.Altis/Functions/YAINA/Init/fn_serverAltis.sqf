@@ -9,17 +9,21 @@
 if !(isServer) exitWith {};
 
 ///////////////////////////////////////////////////////////
-// RUNWAY LIGHTING
+// LIGHTING
 ///////////////////////////////////////////////////////////
 
+private _baseSize = getMarkerSize "BASE";
+_baseSize = (_baseSize select 0) max (_baseSize select 1);
+
+// Normal Lamps around base get the distance set to the base size
+private _baseLights =  getMarkerPos "BASE" nearObjects ["Lamps_base_F", _baseSize];
+{ _x setLightFlareMaxDistance _baseSize; _x allowDamage false; } forEach _baseLights;
+
 // Ensure the airstrip lights are visible from afar (whole world)
-_lightViewDistance = 2 * worldSize * sqrt 2;
-_navLights         = getMarkerPos "BASE" nearObjects ["Land_NavigLight", 500];
-
+// Then NavLights get infi-distance
+private _lightViewDistance = 2 * worldSize * sqrt 2;
+private _navLights  = getMarkerPos "BASE" nearObjects ["Land_NavigLight", _baseSize];
 { _x setLightFlareMaxDistance _lightViewDistance; } forEach _navLights;
-
-// And disable damage on them
-{ _x allowDamage false; } forEach _navLights;
 
 ///////////////////////////////////////////////////////////
 // UAV
