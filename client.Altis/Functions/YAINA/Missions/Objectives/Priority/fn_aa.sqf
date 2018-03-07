@@ -10,10 +10,10 @@
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
 
 _markers    = [];
-_groups     = []; // To clean up units + groups at end
+_units      = []; // To clean up units + groups at end
 _vehicles   = []; // To delete at end
 _buildings  = []; // To restore at end, NB: if you're spawning buildings, add them to this
                   // So that they get restored, before your clean up deletes them, as arma
@@ -59,7 +59,7 @@ _vehicles pushBack _AA3;
 _vehicles pushBack _v;
 
 _aagroup = createGroup east;
-_aagroup setGroupIdGlobal [format ["%1_AACrew", _missionID]];
+_aagroup setGroupIdGlobal [format ["aa_crew_%1", _missionID]];
 
 // set a bunch of stuff, including unlimited ammo
 {
@@ -75,12 +75,14 @@ _aagroup setGroupIdGlobal [format ["%1_AACrew", _missionID]];
 
     // Crew
     [_x, _aagroup] call BIS_fnc_spawnCrew;
+
 } forEach [_AA1, _AA2, _AA3];
 
 _aagroup setBehaviour "COMBAT";
 _aagroup setCombatMode "RED";
 _aagroup allowFleeing 0;
-_groups pushBack _aagroup;
+
+_units append (units _aagroup);
 
 ///////////////////////////////////////////////////////////
 // H-Barrier
@@ -104,17 +106,16 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([_missionID, _ObjectPosition, _AOSize/2, east, [0], [3,2], nil, nil, [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([format ["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, east, [0], [3,2], nil, nil, [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
-_groups append _spGroups;
+_units append _spUnits;
 _vehicles append _spVehs;
 
 ///////////////////////////////////////////////////////////
 // Start Mission
 ///////////////////////////////////////////////////////////
 
-{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[ _vehicles + _buildings, true] call YFNC(addEditableObjects);
+[ _units + _vehicles + _buildings, true] call YFNC(addEditableObjects);
 
 // Bring in the Markers
 _markers = [_missionID, _ObjectPosition, _AOSize] call FNC(createMapMarkers);
@@ -203,4 +204,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "PM", 1, "artillery", "", _markers, _groups, _vehicles, _buildings, _pfh, 3, [_missionID, 1, getPosASL _AA1, _aagroup, [_AA1, _AA2, _AA3]]] call FNC(startMissionPFH);
+[_missionID, "PM", 1, "aa", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, getPosASL _AA1, _aagroup, [_AA1, _AA2, _AA3]]] call FNC(startMissionPFH);

@@ -6,10 +6,10 @@ Destroy a prototype Tank
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
 
 _markers    = [];
-_groups     = []; // To clean up units + groups at end
+_units      = []; // To clean up units + groups at end
 _vehicles   = []; // To delete at end
 _buildings  = []; // To restore at end, NB: if you're spawning buildings, add them to this
                   // So that they get restored, before your clean up deletes them, as arma
@@ -89,18 +89,18 @@ _protoTank addEventHandler ["HandleDamage", {
 [_grp1, _ObjectPosition, 200] call bis_fnc_taskPatrol;
 
 _vehicles pushBack _protoTank;
-_groups   pushBack _grp1;
+_units append (units _grp1);
 
 // Spawn SM Forces --------------------------------
 
 // Whilst marjoity indipendants
-([_missionID, _ObjectPosition,300, resistance, [0], [4], [0], [0], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smGroups", "_smVehs"];
-_groups append _smGroups;
+([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, resistance, [0], [4], [0], [0], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
+_units append _smUnits;
 _vehicles append _smVehs;
 
 // We want some AA/AT Teams so add in some easties
-([_missionID, _ObjectPosition,300, east, [0], [0], [2], [2], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_smGroups", "_smVehs"];
-_groups append _smGroups;
+([format["prototypeTank_pa2_%1", _missionID], _ObjectPosition,300, east, [0], [0], [2], [2], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
+_units append _smUnits;
 _vehicles append _smVehs;
 
 
@@ -112,8 +112,7 @@ _vehicles append _smVehs;
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 // Add everything to zeus
-{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[ _vehicles, true] call YFNC(addEditableObjects);
+[ _units + _vehicles, false] call YFNC(addEditableObjects);
 
 // Set the mission in progress
 [
@@ -169,7 +168,6 @@ _pfh = {
     };
 
     if (_stage isEqualTo 3) then {
-        // Initiate default cleanup function to clean up officer group + group
         [_pfhID, _missionID, _stopRequested] call FNC(missionCleanup);
     };
 };
@@ -179,4 +177,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "SM", 1, "prototype tank", "", _markers, _groups, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _protoTank]] call FNC(startMissionPFH);
+[_missionID, "SM", 1, "prototype tank", "", _markers, _units, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _protoTank]] call FNC(startMissionPFH);

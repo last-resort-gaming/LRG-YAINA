@@ -6,10 +6,10 @@
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
 
 _markers    = [];
-_groups     = []; // To clean up units + groups at end
+_units      = []; // To clean up units at end
 _vehicles   = []; // To delete at end
 _buildings  = []; // To restore at end, NB: if you're spawning buildings, add them to this
                   // So that they get restored, before your clean up deletes them, as arma
@@ -78,8 +78,7 @@ if (_CQBuildingInfo isEqualTo []) exitWith {};
 private _CQBuilding = _CQBuildingInfo select 0;
 
 _priorityGroup = createGroup independent;
-_priorityGroup setGroupIdGlobal ['Conquest garrison'];
-_groups pushBack _priorityGroup;
+_priorityGroup setGroupIdGlobal [format['cq_gar1_%1', _missionID]];
 
 _garrisonpos = _CQBuildingInfo select 1;
 _buildingposcount = count _garrisonpos;
@@ -89,14 +88,15 @@ _unittypes = ["I_C_Soldier_Bandit_7_F","I_C_Soldier_Bandit_3_F","I_C_Soldier_Ban
 for "_i" from 1 to _buildingposcount do {
     _unittype = selectrandom _unittypes;
     _unitpos  = selectrandom _garrisonpos;
-    _unit     = _unittype createUnit [_unitpos, _priorityGroup];
+    _unit     = _priorityGroup createUnit [_unittype, _unitpos, [],0,"NONE"];
     _garrisonpos = _garrisonpos - [_unitpos];
+    _units pushBack _unit;
 
     private _returnedUnits = [_CQBuildingInfo select 0,(units _priorityGroup), 100, true, true, 0] call derp_fnc_ZenOccupy;
     { deleteVehicle _x } foreach _returnedUnits;
 };
 
-_priorityGroup setGroupIdGlobal [format ['Conquest Garrison']];
+_priorityGroup setGroupIdGlobal [format['cq_gar2_%1', _missionID]];
 
 private _ConquestInfAmount = 0;
 
@@ -104,13 +104,11 @@ for "_x" from 0 to (4 + (random 2)) do {
     private _randomPos = [[[_CQPosition, 200],[]],["water","out"]] call BIS_fnc_randomPos;
 
     private _ConquestGroup = createGroup INDEPENDENT;
-    _groups pushBack _ConquestGroup;
-
     _ConquestGroup = [_randomPos, INDEPENDENT, (configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> selectRandom _INFTEAMS )] call BIS_fnc_spawnGroup;
-    _groups pushBack _ConquestGroup;
+    _units append (units _ConquestGroup);
 
     _ConquestInfAmount = _ConquestInfAmount + 1;
-    _ConquestGroup setGroupIdGlobal [format ['Conquest Inf %1', _ConquestInfAmount]];
+    _ConquestGroup setGroupIdGlobal [format ['cq_inf%1_%2', _x, _missionID]];
 
     [_ConquestGroup, _CQPosition, 100] call BIS_fnc_taskPatrol;
     [_ConquestGroup, 3] call SFNC(setUnitSkill);
@@ -127,23 +125,23 @@ for "_x" from 0 to (2 + (random 3)) do {
     _vehicles pushBack _vehc;
 
     private _grp1 = createGroup INDEPENDENT;
-    _groups pushBack _grp1;
 
     _ConquestVehAmmount = _ConquestVehAmmount + 1;
-    _grp1 setGroupIdGlobal [format ['Conquest Vic %1', _ConquestVehAmmount]];
+    _grp1 setGroupIdGlobal [format ['cq_veh%1_%2', _x, _missionID]];
 
-    "I_C_Soldier_Bandit_3_F" createUnit [_randomPos, _grp1];
-    "I_C_Soldier_Bandit_1_F" createUnit [_randomPos, _grp1];
-    ((units _grp1) select 0) assignAsDriver _vehc;
-    ((units _grp1) select 0) moveInDriver _vehc;
-    ((units _grp1) select 1) assignAsGunner _vehc;
-    ((units _grp1) select 1) moveInGunner _vehc;
+    _unit = _grp1 createUnit ["I_C_Soldier_Bandit_3_F", _randomPos, [],0,"NONE"];
+    _unit assignAsDriver _vehc;
+    _unit moveInDriver _vehc;
+    _units pushBack _unit;
+
+
+    _unit = _grp1 createUnit ["I_C_Soldier_Bandit_1_F", _randomPos, [],0,"NONE"];
+    _unit assignAsGunner _vehc;
+    _unit moveInGunner _vehc;
+    _units pushBack _unit;
 
     [_grp1, _CQPosition, 100] call BIS_fnc_taskPatrol;
     _grp1 setSpeedMode "LIMITED";
-
-    {_x addCuratorEditableObjects [[_vehc], false];} foreach allCurators;
-    {_x addCuratorEditableObjects [units _grp1, false];} foreach allCurators;
 
 };
 
@@ -156,9 +154,7 @@ for "_x" from 0 to (2 + (random 3)) do {
 _markers = [_missionID, _CQPosition, _AOSize, nil, nil, nil, "ColorGUER"] call FNC(createMapMarkers);
 
 // Add everything to zeus
-{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[_buildings + _vehicles, true] call YFNC(addEditableObjects);
-
+[_units + _buildings + _vehicles, true] call YFNC(addEditableObjects);
 
 // Set the mission in progress
 [
@@ -192,8 +188,7 @@ _pfh = {
     // Now make sure we have claered most the AI
     if (_stage isEqualTo 1 && { not _stopRequested }) then {
 
-        _alive = 0;
-        { _alive = _alive + ({ alive _x } count units _x); } forEach ([_missionID] call FNC(getMissionGroups));
+        _alive = { alive _x } count ([_missionID] call FNC(getMissionUnits));
 
         if (_alive < 10) then {
             _stage = 2; _args set [1,_stage];
@@ -233,4 +228,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "IO", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _hiddenTerrainKey, _CQElements]] call FNC(startMissionPFH);
+[_missionID, "IO", 1, _missionDescription, "", _markers, _units, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _hiddenTerrainKey, _CQElements]] call FNC(startMissionPFH);

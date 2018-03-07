@@ -6,10 +6,10 @@
 #include "..\..\defines.h"
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
 
 _markers    = [];
-_groups     = []; // To clean up units + groups at end
+_units      = []; // To clean up units + groups at end
 _vehicles   = []; // To delete at end
 _buildings  = []; // To restore at end, NB: if you're spawning buildings, add them to this
                   // So that they get restored, before your clean up deletes them, as arma
@@ -76,9 +76,10 @@ _officerPos = call {
 
 // Spawn Officer
 _officerGroup = createGroup east;
+_officerGroup setGroupIdGlobal [format["mainAO_off_%1", _missionID]];
 _officer = _officerGroup createUnit ["O_Officer_F", _officerPos, [],0,"NONE"];
 _officer setPos _officerPos;
-_groups pushBack _officerGroup;
+_units pushBack _officer;
 
 // Add event handler on that officer so we know who dun it
 _officer addEventHandler ["Killed", {
@@ -99,21 +100,22 @@ _officer addEventHandler ["Killed", {
 
 // Garrison Units around HQ
 private _hqg = [_HQPosition, [0,50], east, 3, nil, nil, 6] call SFNC(infantryGarrison);
-{ _groups pushBack _x; _x setGroupIdGlobal [format["%1_hqg%2", _missionID, _forEachIndex]]; } forEach _hqg;
+_units append _hqg;
+[_hqg, format["mainAO_hqg_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand
-([_missionID, _AOPosition, _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
-_groups append _spGroups;
+diag_log _spUnits;
+_units append _spUnits;
 _vehicles append _spVehs;
 
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 // Add everything to zeus
-{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[ _vehicles, true] call YFNC(addEditableObjects);
+[ _units + _vehicles] call YFNC(addEditableObjects);
 
 ///////////////////////////////////////////////////////////
 // Start Mission
@@ -165,7 +167,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_subObjective", "_hiddenTerrainKey", "_HQElements", "_officerGroup", "_HQPosition"];
+    _args params ["_missionID", "_stage", "_subObjective", "_hiddenTerrainKey", "_HQElements", "_officer", "_HQPosition"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -176,7 +178,7 @@ _pfh = {
 
     if (_stage isEqualTo 1) then {
 
-        if (isNull _officerGroup || count ((units _officerGroup) select { alive _x; }) isEqualTo 0) then {
+        if (isNull _officer || { !(alive _officer) } ) then {
             // Whooo officer killed, move to stage 2
 
             // We create a task, to defend the HQ that's really an extension of this task...
@@ -242,8 +244,7 @@ _pfh = {
         };
 
         // Now make sure we have
-        _alive = 0;
-        { _alive = _alive + ({ alive _x } count units _x); } forEach ([_missionID] call FNC(getMissionGroups));
+        _alive = { alive _x } count ([_missionID] call FNC(getMissionUnits));
 
         if (_alive < 20) then {
 
@@ -290,4 +291,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "AO", 1, _missionDescription, "", _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainKey, _HQElements, _officerGroup, _HQPosition]] call FNC(startMissionPFH);
+[_missionID, "AO", 1, _missionDescription, "", _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _subObjective, _hiddenTerrainKey, _HQElements, _officer, _HQPosition]] call FNC(startMissionPFH);

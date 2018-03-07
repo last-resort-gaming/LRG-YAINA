@@ -35,10 +35,10 @@ ___________________________________________________________________________*/
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
 
 _markers    = [];
-_groups     = []; // To clean up units + groups at end
+_units      = []; // To clean up units + groups at end
 _vehicles   = []; // To delete at end
 _buildings  = []; // To restore at end, NB: if you're spawning buildings, add them to this
                   // So that they get restored, before your clean up deletes them, as arma
@@ -75,12 +75,11 @@ _missionID = call FNC(getMissionID);
 //--------- CREATE GROUP, VEHICLE AND UNIT
 
 _aGroup = createGroup east;
+_aGroup setGroupIdGlobal [format["secureintelvehicle_tgta_%1", _missionID]];
 _bGroup = createGroup east;
+_bGroup setGroupIdGlobal [format["secureintelvehicle_tgtb_%1", _missionID]];
 _cGroup = createGroup east;
-
-_groups pushBack _aGroup;
-_groups pushBack _bGroup;
-_groups pushBack _cGroup;
+_cGroup setGroupIdGlobal [format["secureintelvehicle_tgtc_%1", _missionID]];
 
 //--------- OBJ 1
 
@@ -93,6 +92,7 @@ _off = _aGroup createUnit ["O_officer_F", _vpos, [], 5, "NONE"];
 _off assignAsDriver _obj1;
 _off moveInDriver _obj1;
 
+_units pushBack _off;
 _vehicles pushBack _obj1;
 
 //--------- OBJ 2
@@ -106,6 +106,7 @@ _off = _bGroup createUnit ["O_officer_F", _vpos, [], 5, "NONE"];
 _off assignAsDriver _obj2;
 _off moveInDriver _obj2;
 
+_units pushBack _off;
 _vehicles pushBack _obj2;
 //-------- OBJ 3
 
@@ -118,6 +119,7 @@ _off = _cGroup createUnit ["O_Officer_F", _vpos, [], 5, "NONE"];
 _off assignAsDriver _obj3;
 _off moveInDriver _obj3;
 
+_units pushBack _off;
 _vehicles pushBack _obj3;
 ///////////////////////////////////////////////////////////
 // ASSOCIATE INTEL WITH VEH
@@ -202,8 +204,8 @@ for "_x" from 0 to (2 + (random 3)) do {
 	_randomPos = [[[_ObjectPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
 
 	_infteamPatrol = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> ["OIA_InfTeam","OIA_InfTeam_AT","OIA_InfTeam_AA","OI_reconPatrol","OIA_GuardTeam"] call BIS_fnc_selectRandom)] call BIS_fnc_spawnGroup;
-	_infteamPatrol setGroupIdGlobal [format["%1_inf%2", _missionID, _x]];
-	_groups pushBack _infteamPatrol;
+	_infteamPatrol setGroupIdGlobal [format["secureintelvehicle_inf_%1_%2", _x, _missionID]];
+	_units append (units _infteamPatrol);
 
 	[_infteamPatrol, _ObjectPosition, 100] call BIS_fnc_taskPatrol;
 	[_infteamPatrol, 2] call SFNC(setUnitSkill);
@@ -212,8 +214,7 @@ for "_x" from 0 to (2 + (random 3)) do {
 //---------- RANDOM VEHICLE
 
 private _SMvehPatrol = createGroup east;
-_SMvehPatrol setGroupIdGlobal [format["%1_mrap", _missionID]];
-_groups pushBack _SMvehPatrol;
+_SMvehPatrol setGroupIdGlobal [format["secureintelvehicle_mrap_%1", _missionID]];
 
 _randomPos = [[[_ObjectPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
 
@@ -224,6 +225,8 @@ _SMveh lock 3;
 [_SMveh, _SMvehPatrol] call BIS_fnc_spawnCrew;
 [_SMvehPatrol, _ObjectPosition, 150] call BIS_fnc_taskPatrol;
 [_SMvehPatrol, 2] call SFNC(setUnitSkill);
+
+_units append (units _SMvehPatrol);
 
 if (random 1 >= 0.5) then {
 	_SMveh allowCrewInImmobile true;
@@ -239,8 +242,7 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 
 // Add everything to zeus
-{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[ _vehicles, true] call YFNC(addEditableObjects);
+[ _units + _vehicles, false] call YFNC(addEditableObjects);
 
 // Set the mission in progress
 [
@@ -360,7 +362,6 @@ _pfh = {
     };
 
     if (_stage isEqualTo 4) then {
-        // Initiate default cleanup function to clean up officer group + group
         [_pfhID, _missionID, _stopRequested] call FNC(missionCleanup);
     };
 };
@@ -370,4 +371,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "SM", 1, "secure intel (vehicle)", "", _markers, _groups, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _AOPosition, [_aGroup, _bGroup, _cGroup], _intelObj]] call FNC(startMissionPFH);
+[_missionID, "SM", 1, "secure intel (vehicle)", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _AOPosition, [_aGroup, _bGroup, _cGroup], _intelObj]] call FNC(startMissionPFH);

@@ -19,7 +19,7 @@ private _localRunningMissionID = (GVAR(localRunningMissions) select 0) find _mis
 if (_localRunningMissionID isEqualTo -1) exitWith { true; };
 
 // Bring in the params from our local missions
-((GVAR(localRunningMissions) select 1) select _localRunningMissionID) params ["_markers", "_groups", "_vehicles", "_buildings"];
+((GVAR(localRunningMissions) select 1) select _localRunningMissionID) params ["_markers", "_units", "_vehicles", "_buildings"];
 
 // We can only clear up if the area marker exists
 
@@ -38,13 +38,23 @@ if !(_markers isEqualTo []) then {
 // Fail now unless it's forced, in which case we want to delete units/vehicles
 if (_fail && { not _force } ) exitWith { false; };
 
+
+// Delete all units
+{
+    if !(isNull _x) then { deleteVehicle _x; };
+} count _units;
+
 // Delete all vehicles
 {
     if !(isNull _x) then {
         // If there is a player in the vehicle, we initialize the vehicle handler
         // so it can naturally be despawned when it's abandoned
         if ( ( { alive _x && { isPlayer _x } } count (crew _x)) isEqualTo 0 ) then {
-            deleteVehicle _x;
+            // Due to wrecks and you can't delete a dead/civvie/objNull crew, empty it out first
+            // to avoid empty objects floating around
+            _v = _x;
+            { _v deleteVehicleCrew _x ; nil } count (crew _v);
+            deleteVehicle _v;
         } else {
             // We just use a shorter abandon distance
             [_x, true, -1, 500] call YAINA_VEH_fnc_initVehicle;
@@ -53,33 +63,35 @@ if (_fail && { not _force } ) exitWith { false; };
     true;
 } count _vehicles;
 
-// Delete all units in group, then the group itself
-{
-    { if !(isNull _x) then { deleteVehicle _x; }; true; } count units _x;
-    deleteGroup _x;
-} count _groups;
 
 // Delete all reinforcements
 private _idx = (GVAR(reinforcements) select 0) find _missionID;
 if !(_idx isEqualTo -1) then {
     {
-        _x params ["_rgroups", "_rvehs"];
-        // Reinforcement Groups
+        _x params ["_runits", "_rvehs"];
+
+        // Reinforcement Units
         {
-            { if !(isNull _x) then { deleteVehicle _x; }; true; } count units _x;
-            deleteGroup _x;
+            if !(isNull _x) then { deleteVehicle _x; };
             nil
-        } count _rgroups;
+        } count _runits;
 
         // Reinfrocement vehicles
         {
-            if !(isNull _x) then { deleteVehicle _x; };
+            if !(isNull _x) then {
+                _v = _x;
+                { _v deleteVehicleCrew _x ; nil } count (crew _v);
+                deleteVehicle _v;
+            };
             nil
         } count _rvehs;
 
         nil
     } count ((GVAR(reinforcements) select 1) select _idx);
 };
+
+// Do a scan for any empty groups and remove them
+{ deleteGroup _x; true } count (allGroups select { count (units _x) isEqualTo 0; } );
 
 // As we have deleted units, fail as we dont wanna kill buildings with folks in
 if (_fail) exitWith { false; };
@@ -95,8 +107,8 @@ if (_fail) exitWith { false; };
 // Lag out the HC. We do the buildings above, as when this fnc returns true, any
 // terrain objects clear will re-appear and we don't want that to go too badly
 
-[_pfhID, _missionID, _markers, _groups, _vehicles, _buildings, _localRunningMissionID] spawn {
-    params ["_pfhID", "_missionID", "_markers", "_groups", "_vehicles", "_buildings", "_localRunningMissionID"];
+[_pfhID, _missionID, _markers, _units, _vehicles, _buildings] spawn {
+    params ["_pfhID", "_missionID", "_markers", "_units", "_vehicles", "_buildings"];
 
     // cleanup area = 1.5 times the AO size
     _cp = getMarkerPos (_markers select 0);
@@ -141,10 +153,12 @@ if (_fail) exitWith { false; };
     // delete our _markers
     { deleteMarker _x; true; } count _markers;
 
-    // Delete ourselves from our local running missions flag
-    (GVAR(localRunningMissions) select 0) deleteAt _localRunningMissionID;
-    (GVAR(localRunningMissions) select 1) deleteAt _localRunningMissionID;
-
+    // Delete ourselves from our local running missions flag, this may have moved on by now
+    private _localRunningMissionID = (GVAR(localRunningMissions) select 0) find _missionID;
+    if !(_localRunningMissionID isEqualTo -1) then {
+        (GVAR(localRunningMissions) select 0) deleteAt _localRunningMissionID;
+        (GVAR(localRunningMissions) select 1) deleteAt _localRunningMissionID;
+    };
     // Call BIS_fnc_taskDeldete ? We delay this by 2 minutes so the success message
     // goes through and people can see it in the map, if an HC disconnects at this
     // point then it'll never get deleted.

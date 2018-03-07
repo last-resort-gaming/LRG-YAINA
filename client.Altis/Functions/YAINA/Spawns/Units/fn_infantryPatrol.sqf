@@ -29,8 +29,11 @@ if (_patrolRadius > 0) then {
     [_g, _pos, _patrolRadius, (ceil(random 4) + 3), "sad", ["AWARE", "SAFE"] select (random 1 > 0.5), "red", "limited"] call CBAP_fnc_taskPatrol;
 };
 
+// Units
+_u = units _g;
+
 // Add units to zeus
-[units _g] call YFNC(addEditableObjects);
+[_u] call YFNC(addEditableObjects);
 
 // return the group
-_g;
+_u;

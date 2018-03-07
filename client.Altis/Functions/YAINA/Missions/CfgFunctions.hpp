@@ -62,6 +62,7 @@ class YAINA_MM {
         file = "Functions\YAINA\Missions\Utils";
         class createMapMarkers {};
         class getMissionID {};
+        class getMissionUnits {};
         class getMissionGroups {};
         class paraDrop {};
         class setupParadropActions { postInit = 1; };
@@ -70,6 +71,7 @@ class YAINA_MM {
         class destroy {};
         class getAOExclusions {};
         class getFunctions {};
+        class prefixGroups {};
     };
 
 };

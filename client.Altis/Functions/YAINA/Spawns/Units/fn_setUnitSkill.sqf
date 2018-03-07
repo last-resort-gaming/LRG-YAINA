@@ -27,7 +27,8 @@ if (isNil "_skillv") exitWith {};
 
 private _units = call {
     if ((typeName _target) isEqualTo "GROUP") exitWith { units _target };
-    _target;
+    if ((typeName _target) isEqualTo "ARRAY") exitWith { _target };
+    [_target];
 };
 
 {

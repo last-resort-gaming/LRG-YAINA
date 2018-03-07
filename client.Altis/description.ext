@@ -66,10 +66,10 @@ corpseLimit = 1;
 corpseRemovalMinTime = 1800;
 corpseRemovalMaxTime = 1800;
 
-wreckManagerMode = 1;
-wreckLimit = 5;
-wreckRemovalMinTime = 60;
-wreckRemovalMaxTime = 120;
+// Due to the pain of the wreckmanager not removing the units
+// that go to objNull they linger in the air, so just turn it
+// off and manage it ourselves which we are already doing
+wreckManagerMode = 0;
 
 //-------------------------Respawn
 respawn = 3;

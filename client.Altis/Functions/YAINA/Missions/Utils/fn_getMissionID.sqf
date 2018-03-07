@@ -8,10 +8,10 @@
 
 INCR(GVAR(localMissionID));
 
-private _missionProfile = (profileName splitString "-,. ") joinString "";
+private _missionProfile = ((profileName splitString "-,. ") joinString "") select [0, 3];
 
 // Send to server to in case of rejoin
 [_missionProfile, GVAR(localMissionID)] remoteExecCall [QFNC(setMissionID), 2];
 
 // Return Mission ID
-format ["yaina_m_%1_%2", _missionProfile, GVAR(localMissionID)];
+format ["m_%1_%2", _missionProfile, GVAR(localMissionID)];

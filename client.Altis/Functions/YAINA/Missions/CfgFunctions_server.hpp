@@ -61,11 +61,13 @@ class YAINA_MM {
         file = "Functions\YAINA\Missions\Utils";
         class createMapMarkers {};
         class getMissionID {};
+        class getMissionUnits {};
         class getMissionGroups {};
         class findLargestBuilding {};
         class destroy {};
         class getAOExclusions {};
         class getFunctions {};
+        class prefixGroups {};
     };
 
 };

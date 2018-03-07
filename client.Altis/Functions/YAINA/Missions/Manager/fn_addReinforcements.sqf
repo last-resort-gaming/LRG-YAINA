@@ -6,7 +6,7 @@
 
 #include "..\defines.h"
 
-params ["_missionID", "_groups", "_vehs"];
+params ["_missionID", "_units", "_vehs"];
 
 // Send to Server in case of HCDCH, we can reuse this function
 // as it's not got PFHs etc. that need starting and we already
@@ -18,7 +18,7 @@ if (!isServer) then {
 private _idx = (GVAR(reinforcements) select 0) find _missionID;
 if (_idx isEqualTo -1) then {
     (GVAR(reinforcements) select 0) pushBack _missionID;
-    (GVAR(reinforcements) select 1) pushBack [[_groups, _vehs]];
+    (GVAR(reinforcements) select 1) pushBack [[_units, _vehs]];
 } else {
-    ((GVAR(reinforcements) select 1) select _idx) pushBack [_groups, _vehs];
+    ((GVAR(reinforcements) select 1) select _idx) pushBack [_units, _vehs];
 };

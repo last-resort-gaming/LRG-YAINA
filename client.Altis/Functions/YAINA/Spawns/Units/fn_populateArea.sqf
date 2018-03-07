@@ -7,7 +7,7 @@
 #include "..\defines.h"
 
 params [
-        "_missionID", "_center", "_radius",
+        "_grpPrefix", "_center", "_radius",
         ["_side", east],
         ["_garrisons", [1,0,60, "SME", 4, []]],
         ["_inf", [3,3]],
@@ -70,7 +70,7 @@ private ["_x","_g","_pos","_flatPos","_rpos","_v"];
 if (_center isEqualTo [0,0]) exitWith {};
 
 // Prep return values
-private _groups = [];
+private _units = [];
 private _vehicles = [];
 
 ///////////////////////////////////////////////////////////
@@ -78,8 +78,14 @@ private _vehicles = [];
 ///////////////////////////////////////////////////////////
 
 if (_garrisonGroupCount > 0) then {
-    private _garrisonedGroups = ([_center, [_garrisonMinRad, _garrisonMaxRad], _side, _garrisonGroupCount, nil, _garrisonSkill, _garrisonFill, _garrisonExcludes] call FNC(infantryGarrison));
-    { _groups pushBack _x; _x setGroupIdGlobal [format["%1_gar%2", _missionID, _forEachIndex]]; } forEach _garrisonedGroups;
+    private _garrisonedUnits = ([_center, [_garrisonMinRad, _garrisonMaxRad], _side, _garrisonGroupCount, nil, _garrisonSkill, _garrisonFill, _garrisonExcludes] call FNC(infantryGarrison));
+    _units append _garrisonedUnits;
+
+    private _grps = [];
+    { _grps pushBackUnique (group _x); nil } count _units;
+
+    // tag groups
+    { _x setGroupIdGlobal [format["%1_gar%2", _grpPrefix, _forEachIndex]]; } forEach _grps;
 };
 
 ///////////////////////////////////////////////////////////
@@ -89,10 +95,10 @@ if !(_infList isEqualTo []) then {
     for "_x" from 1 to (_infMin + floor(random (_infRand+1))) do {
         _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infList)] call BIS_fnc_spawnGroup;
-        _g setGroupIdGlobal [format["%1_inf%2", _missionID, _x]];
+        _g setGroupIdGlobal [format["%1_inf%2", _grpPrefix, _x]];
         [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _infSkill] call FNC(setUnitSkill);
-        _groups pushBack _g;
+        _units append (units _g);
     };
 };
 
@@ -104,10 +110,10 @@ if !(_infaaList isEqualTo []) then {
     for "_x" from 1 to (_infaaMin + floor(random (_infaaRand+1))) do {
         _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infaaList)] call BIS_fnc_spawnGroup;
-        _g setGroupIdGlobal [format["%1_infaa%2", _missionID, _x]];
+        _g setGroupIdGlobal [format["%1_infaa%2", _grpPrefix, _x]];
         [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _infaaSkill] call FNC(setUnitSkill);
-        _groups pushBack _g;
+        _units append (units _g);
     };
 };
 
@@ -119,10 +125,10 @@ if !(_infatList isEqualTo []) then {
     for "_x" from 1 to (_infatMin + floor(random (_infatRand+1))) do {
         _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infatList)] call BIS_fnc_spawnGroup;
-        _g setGroupIdGlobal [format["%1_infat%2", _missionID, _x]];
+        _g setGroupIdGlobal [format["%1_infat%2", _grpPrefix, _x]];
         [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _infatSkill] call FNC(setUnitSkill);
-        _groups pushBack _g;
+        _units append (units _g);
     };
 };
 
@@ -133,11 +139,11 @@ if !(_sniperList isEqualTo []) then {
     for "_x" from 1 to (_sniperMin + floor(random (_sniperRand+1))) do {
         _rpos = [_center, _radius, 100, 20] call BIS_fnc_findOverwatch;
         _g = [_rpos, _side, _confBase >> (selectRandom _sniperList)] call BIS_fnc_spawnGroup;
-        _g setGroupIdGlobal [format["%1_sniper%2", _missionID, _x]];
+        _g setGroupIdGlobal [format["%1_sniper%2", _grpPrefix, _x]];
         _g setBehaviour "COMBAT";
         _g setCombatMode "RED";
         [_g, _sniperSkill] call FNC(setUnitSkill);
-        _groups pushBack _g;
+        _units append (units _g);
     };
 };
 
@@ -149,7 +155,7 @@ if !(_vehAAList isEqualTo []) then {
     for "_x" from 1 to (_vehaaMin + floor(random (_vehaaRand+1))) do {
 
         _g = createGroup _side;
-        _g setGroupIdGlobal [format ["%1_VehAA%2", _missionID, _x]];
+        _g setGroupIdGlobal [format ["%1_VehAA%2", _grpPrefix, _x]];
 
         _rpos = [[[_center, _radius], []], ["water", "out"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
 
@@ -162,7 +168,7 @@ if !(_vehAAList isEqualTo []) then {
             [_g, _vehaaSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-            _groups pushBack _g;
+            _units append (units _g);
             _vehicles pushBack _v;
         };
     };
@@ -176,7 +182,7 @@ if !(_vehmrapList isEqualTo []) then {
     for "_x" from 1 to (_vehmrapMin + floor(random (_vehmrapRand+1))) do {
 
         _g = createGroup _side;
-        _g setGroupIdGlobal [format ["%1_vehmrap%2", _missionID, _x]];
+        _g setGroupIdGlobal [format ["%1_vehmrap%2", _grpPrefix, _x]];
 
         _rpos = [[[_center, _radius], []], ["water", "out"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
 
@@ -189,7 +195,7 @@ if !(_vehmrapList isEqualTo []) then {
             [_g, _vehmrapSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-            _groups pushBack _g;
+            _units append (units _g);
             _vehicles pushBack _v;
         };
     };
@@ -203,7 +209,7 @@ if (_vehRandList isEqualTo []) then {
     for "_x" from 1 to (_vehrandMin + floor(random (_vehrandRand+1))) do {
 
         _g = createGroup _side;
-        _g setGroupIdGlobal [format ["%1_vehrand%2", _missionID, _x]];
+        _g setGroupIdGlobal [format ["%1_vehrand%2", _grpPrefix, _x]];
 
         _rpos = [[[_center, _radius], []], ["water", "out"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
 
@@ -216,7 +222,7 @@ if (_vehRandList isEqualTo []) then {
             [_g, _vehrandSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-            _groups pushBack _g;
+            _units append (units _g);
             _vehicles pushBack _v;
         };
     };
@@ -230,7 +236,7 @@ if (_vehLightList isEqualTo []) then {
     for "_x" from 1 to (_vehLightMin + floor(random (_vehLightRand+1))) do {
 
         _g = createGroup _side;
-        _g setGroupIdGlobal [format ["%1_vehLight%2", _missionID, _x]];
+        _g setGroupIdGlobal [format ["%1_vehLight%2", _grpPrefix, _x]];
 
         _rpos = [[[_center, _radius], []], ["water", "out"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
 
@@ -243,7 +249,7 @@ if (_vehLightList isEqualTo []) then {
             [_g, _vehLightSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-            _groups pushBack _g;
+            _units append (units _g);
             _vehicles pushBack _v;
         };
     };
@@ -257,7 +263,7 @@ if (_vehHeavyList isEqualTo []) then {
     for "_x" from 1 to (_vehHeavyMin + floor(random (_vehHeavyRand+1))) do {
 
         _g = createGroup _side;
-        _g setGroupIdGlobal [format ["%1_vehHeavy%2", _missionID, _x]];
+        _g setGroupIdGlobal [format ["%1_vehHeavy%2", _grpPrefix, _x]];
 
         _rpos = [[[_center, _radius], []], ["water", "out"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
 
@@ -270,7 +276,7 @@ if (_vehHeavyList isEqualTo []) then {
             [_g, _vehHeavySkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
-            _groups pushBack _g;
+            _units append (units _g);
             _vehicles pushBack _v;
         };
     };
@@ -278,4 +284,4 @@ if (_vehHeavyList isEqualTo []) then {
 
 
 
-[_groups, _vehicles]
+[_units, _vehicles]

@@ -10,10 +10,10 @@
 params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_groups", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
 
 _markers    = [];
-_groups     = []; // To clean up units + groups at end
+_units      = []; // To clean up units + groups at end
 _vehicles   = []; // To delete at end
 _buildings  = []; // To restore at end, NB: if you're spawning buildings, add them to this
                   // So that they get restored, before your clean up deletes them, as arma
@@ -66,10 +66,10 @@ private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 
 // Bring in an engineer to one of the buildings
 private _engineerPos = selectRandom (_factory call BIS_fnc_buildingPositions);
 private _engineerGroup = createGroup east;
-_engineerGroup setGroupIdGlobal [format["%1 eng", _missionID]];
+_engineerGroup setGroupIdGlobal [format["factory_eng_%1", _missionID]];
 private _engineer = _engineerGroup createUnit ["O_V_Soldier_Exp_hex_F", [0,0,0], [],0,"NONE"];
 _engineer setPos _engineerPos;
-_groups pushBack _engineerGroup;
+_units pushBack _engineer;
 
 // Add event handler on that engineer so we know who dun it
 _engineer addEventHandler ["Killed", {
@@ -89,21 +89,21 @@ _engineer addEventHandler ["Killed", {
 
 // Garrison some around the Factory
 private _fgn = [_ObjectPosition, [0,50], east, 1, nil, nil, 6, [_engineerPos]] call SFNC(infantryGarrison);
-{ _groups pushBack _x; _x setGroupIdGlobal [format["%1_fgn%2", _missionID, _forEachIndex]]; } forEach _fgn;
+_units append _fgn;
+[_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([_missionID, _ObjectPosition, 100, east, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, east, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
-_groups append _spGroups;
+_units append _spUnits;
 
 // Add everything to zeus
-{ [units _x] call YFNC(addEditableObjects); true; } count _groups;
-[ _vehicles + _buildings, true] call YFNC(addEditableObjects);
+[ _units + _vehicles + _buildings, false] call YFNC(addEditableObjects);
 
 // Mark the outside units as reinforcements of the main AO, so they move in when the officer is killed, but leaving the garrisoned troops in
-[_parentMissionID, _spGroups, _spVehs] call FNC(addReinforcements);
+[_parentMissionID, _spUnits, _spVehs] call FNC(addReinforcements);
 
 ///////////////////////////////////////////////////////////
 // Start Mission
@@ -129,7 +129,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_engineer", "_factory", "_AOPos", "_AOSize", "_nextSpawnTime"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_engineer", "_factory", "_AOPos", "_AOSize", "_nextSpawnTime", "_spawnCount"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -142,10 +142,10 @@ _pfh = {
 
         if (alive _engineer) then {
             // Do we spawn ?
-            if (serverTime > _nextSpawnTime) then {
+            if (LTIME > _nextSpawnTime) then {
                 _inAO = { _x distance2D _AOPos < _AOSize } count allPlayers;
                 if (_inAO < 1) then {
-                    _args set [9, serverTime + 120];
+                    _args set [9, LTIME + 120];
                 } else {
                     // We have enough folks to spawn something :)
 
@@ -154,13 +154,13 @@ _pfh = {
                         _groupCount = ceil(_inAO / 2);
 
                         // we populate them to the entire AO as a normal pop
-                        (["factory", _AOPos, _AOSize, east, [0], [_groupCount], [0], [0], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spGroups", "_spVehs"];
+                        ([format["factory_spu_%1_%2", _missionID, _spawnCount], _AOPos, _AOSize, east, [0], [_groupCount], [0], [0], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
                         // Add to zeus
-                        { [units _x] call YFNC(addEditableObjects); true; } count _spGroups;
+                        [_spUnits, false] call YFNC(addEditableObjects);
 
                         // Add to reinforcements
-                        [_parentMissionID, _spGroups, []] call FNC(addReinforcements);
+                        [_parentMissionID, _spUnits, []] call FNC(addReinforcements);
 
                     } else {
                         // Vehicle
@@ -176,7 +176,7 @@ _pfh = {
                         if !(_rpos isEqualTo [0,0]) then {
 
                             _grp = createGroup east;
-                            _grp setGroupIdGlobal ["factory veh"];
+                            _grp setGroupIdGlobal [format["factory_spv_%1_%2", _missionID, _spawnCount]];
 
                             _veh = (selectRandom ["O_MBT_02_cannon_F","O_APC_Tracked_02_cannon_F","O_APC_Wheeled_02_rcws_F","O_MRAP_02_gmg_F","O_MRAP_02_hmg_F","O_APC_Tracked_02_AA_F"]) createVehicle _rpos;
                             [_veh, _grp] call BIS_fnc_spawnCrew;
@@ -188,22 +188,26 @@ _pfh = {
                             _grp setBehaviour "COMBAT";
                             _grp setCombatMode "RED";
 
+                            _spunits = units _grp;
+
                             // Add to zeus
-                            [units _grp + [_veh]] call YFNC(addEditableObjects);
+                            [_spunits + [_veh]] call YFNC(addEditableObjects);
 
                             [_grp, 3] call SFNC(setUnitSkill);
 
-                            [_parentMissionID, [_grp], [_veh]] call FNC(addReinforcements);
+                            [_parentMissionID, _spunits, [_veh]] call FNC(addReinforcements);
                         };
                     };
 
                     // New sleeptime
                     if (_inAO < 15) then{
-                        _args set [9, serverTime + 480];
+                        _args set [9, LTIME + 480];
                     } else {
-                        _args set [9, serverTime + (480 - floor (_inAO * 4))];
+                        _args set [9, LTIME + (480 - floor (_inAO * 4))];
                     };
 
+                    // Increment spawn count
+                    _args set[10, _spawnCount + 1];
                 };
             };
         } else {
@@ -263,7 +267,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _groups, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0, 1]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];
