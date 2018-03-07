@@ -19,7 +19,12 @@
 	*/
 
 	private ["_lastrain", "_rain", "_fog", "_mintime", "_maxtime", "_overcast", "_realtime", "_random","_startingdate", "_startingweather", "_timeforecast", "_daytimeratio", "_nighttimeratio", "_timesync", "_wind", "_d"];
-	
+
+	// Real Weather Paused ?
+	if (isNil "real_weather_paused") then {
+	    real_weather_paused = false;
+	};
+
 	// Real time vs fast time
 	// true: Real time is more realistic weather conditions change slowly (ideal for persistent game)
 	// false: fast time give more different weather conditions (ideal for non persistent game) 
@@ -90,25 +95,27 @@
 	if (local player) then {
 		wcweatherstart = true;
 		"wcweather" addPublicVariableEventHandler {
-			// first JIP synchronization
-			if(wcweatherstart) then {
-				wcweatherstart = false;
-				skipTime -24;
-				86400 setRain (wcweather select 0);
-				86400 setfog (wcweather select 1);
-				86400 setOvercast (wcweather select 2);
-				skipTime 24;
-				simulweatherSync;
-				setwind (wcweather select 3);
-				setdate (wcweather select 4);
-			}else{
-				wcweather = _this select 1;
-				60 setRain (wcweather select 0);
-				60 setfog (wcweather select 1);
-				60 setOvercast (wcweather select 2);
-				setwind (wcweather select 3);
-				setdate (wcweather select 4);
-			};
+		    if !(real_weather_paused) then {
+                // first JIP synchronization
+                if(wcweatherstart) then {
+                    wcweatherstart = false;
+                    skipTime -24;
+                    86400 setRain (wcweather select 0);
+                    86400 setfog (wcweather select 1);
+                    86400 setOvercast (wcweather select 2);
+                    skipTime 24;
+                    simulweatherSync;
+                    setwind (wcweather select 3);
+                    setdate (wcweather select 4);
+                }else{
+                    wcweather = _this select 1;
+                    60 setRain (wcweather select 0);
+                    60 setfog (wcweather select 1);
+                    60 setOvercast (wcweather select 2);
+                    setwind (wcweather select 3);
+                    setdate (wcweather select 4);
+                };
+		    }
 		};
 	};
 
@@ -135,16 +142,18 @@
 		_nighttimeratio =  _this select 3;
 
 		while { true } do {
-			wcweather set [4, date];
-			publicvariable "wcweather";
-			if(!_realtime) then { 
-				if((date select 3 > 16) or (date select 3 <6)) then {
-					setTimeMultiplier _nighttimeratio;
-				} else {
-					setTimeMultiplier _daytimeratio;
-				};
-			};
-			sleep _timesync;
+		    if !(real_weather_paused) then {
+                wcweather set [4, date];
+                publicvariable "wcweather";
+                if(!_realtime) then {
+                    if((date select 3 > 16) or (date select 3 <6)) then {
+                        setTimeMultiplier _nighttimeratio;
+                    } else {
+                        setTimeMultiplier _daytimeratio;
+                    };
+                };
+		    };
+            sleep _timesync;
 		};
 	};
 
@@ -153,39 +162,41 @@
 	_overcast = 0;
 
 	while {true} do {
-		_overcast = random 1;
-		if(_overcast > 0.70) then {
-			_rain = random 1;
-		} else {
-			_rain = 0;
-		};
-		if((date select 3 > 2) and (date select 3 <6)) then {
-			if(random 1 > 0.75) then {
-				_fog = 0.4 + (random 0.6);
-			} else {
-				_fog = 0.1 + (random 0.3);
-			};
-		} else {
-			if((_lastrain > 0.6) and (_rain < 0.2)) then {
-				_fog = random 0.3;
-			} else {
-				_fog = 0;
-			};
-		};
-		if(random 1 > 0.95) then {
-			_wind = [random 7, random 7, true];
-		} else {
-			_wind = [random 3, random 3, true];
-		};
-		_lastrain = _rain;
+        if !(real_weather_paused) then {
+            _overcast = random 1;
+            if(_overcast > 0.70) then {
+                _rain = random 1;
+            } else {
+                _rain = 0;
+            };
+            if((date select 3 > 2) and (date select 3 <6)) then {
+                if(random 1 > 0.75) then {
+                    _fog = 0.4 + (random 0.6);
+                } else {
+                    _fog = 0.1 + (random 0.3);
+                };
+            } else {
+                if((_lastrain > 0.6) and (_rain < 0.2)) then {
+                    _fog = random 0.3;
+                } else {
+                    _fog = 0;
+                };
+            };
+            if(random 1 > 0.95) then {
+                _wind = [random 7, random 7, true];
+            } else {
+                _wind = [random 3, random 3, true];
+            };
+            _lastrain = _rain;
 
-		wcweather = [_rain, _fog, _overcast, _wind, date];
-		60 setRain (wcweather select 0);
-		60 setfog (wcweather select 1);
-		60 setOvercast (wcweather select 2);
-		setwind (wcweather select 3);
-		if(_random) then {
-			_timeforecast = _mintime + (random (_maxtime - _mintime));
-		};
-		sleep _timeforecast;
+            wcweather = [_rain, _fog, _overcast, _wind, date];
+            60 setRain (wcweather select 0);
+            60 setfog (wcweather select 1);
+            60 setOvercast (wcweather select 2);
+            setwind (wcweather select 3);
+            if(_random) then {
+                _timeforecast = _mintime + (random (_maxtime - _mintime));
+            };
+	    };
+        sleep _timeforecast;
 	};

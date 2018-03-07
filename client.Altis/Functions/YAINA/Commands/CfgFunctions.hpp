@@ -33,6 +33,7 @@ class YAINA_CMD {
         class kick {};
         class restart {};
         class stable {};
+        class rtpause {};
     };
 
     class Messages {
