@@ -75,7 +75,9 @@ if(!isServer) exitWith {};
             // Run our respawn code
             [_veh, _respawnCodeArgs] call _respawnCode;
 
-            // If we are not to be respawning, we're done here
+            // If we are not to be respawning, we're done here, so delete the vehicle in 2 mintes and bail
+            [_veh, 120] call YFNC(deleteVehicleIn);
+
             if(_respawnTime isEqualTo -1) exitWith {};
 
             [{
