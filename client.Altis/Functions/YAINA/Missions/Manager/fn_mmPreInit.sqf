@@ -18,6 +18,9 @@ publicVariable QVAR(hcMissionID);      // Used by HCs to pick the right mission 
 GVAR(paradropMarkers) = [];            // Paradrop Markers, markers permitted to paradrop onto
 publicVariable QVAR(paradropMarkers);  // Used by clients to overlay on map for paradrop positions
 
+GVAR(missionAreas) = [];               // Used for area exclusions when picking AOs
+publicVariable QVAR(missionAreas);     // worst case scenario, is it's the same as paradrop markers
+
 GVAR(lastPriorityMission) = 0;         // When the last priorty mission was so we can keep folks on their toes
 
 addMissionEventHandler ["HandleDisconnect", {

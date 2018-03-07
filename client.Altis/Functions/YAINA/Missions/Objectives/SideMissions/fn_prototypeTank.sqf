@@ -25,7 +25,7 @@ private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
 while { _ObjectPosition isEqualTo [0,0] } do {
-    _ObjectPosition = [nil, ([] call FNC(getAOExclusions)) + ["water"], {
+    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
         { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.7,10,0,false,objNull] isEqualTo [])
     }] call BIS_fnc_randomPos;
 };

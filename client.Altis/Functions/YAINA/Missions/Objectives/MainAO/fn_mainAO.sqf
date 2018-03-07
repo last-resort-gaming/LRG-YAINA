@@ -20,12 +20,12 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 // Location Scout
 ///////////////////////////////////////////////////////////
 
-private ["_blacklistAreas", "_AOPosition", "_HQPosition", "_blacklistAreas", "_nearestTown"];
+private ["_AOPosition", "_HQPosition", "_blacklistAreas", "_nearestTown"];
 private _AOSize = 600;
 private _HQPosition = [0,0];
 
 while { _HQPosition isEqualTo [0,0] } do {
-    _HQPosition = [nil, ([] call FNC(getAOExclusions)) + ["water"], {
+    _HQPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
         { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
     }] call BIS_fnc_randomPos;
 };

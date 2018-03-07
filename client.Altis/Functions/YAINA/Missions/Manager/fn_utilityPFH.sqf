@@ -14,7 +14,7 @@ GVAR(utilityPFH) = [{
     // Tigris' are a pain in the ass, both in that they stop at waypoints,
     // and they have a tendency to chase units way out of the AOs
 
-    _AOs   = GVAR(paradropMarkers) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] };
+    _AOs   = GVAR(missionAreas) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] };
     _vlist = vehicles select { local _x && { !(side _x in [civilian, west]) } && { typeOf _x isKindOf "Land" } };
 
     {

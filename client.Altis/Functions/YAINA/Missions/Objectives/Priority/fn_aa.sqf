@@ -29,7 +29,7 @@ private _ObjectPosition = [0,0];
 
 while { _ObjectPosition isEqualTo [0,0] } do {
     // pick a random spawn that's 2 * _AOSize away from players + other AOs
-    _ObjectPosition = [nil, ([] call FNC(getAOExclusions)) + ["water"], {
+    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
         { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,-1,0.2,5,0,false] isEqualTo [])
     }] call BIS_fnc_randomPos;
 };

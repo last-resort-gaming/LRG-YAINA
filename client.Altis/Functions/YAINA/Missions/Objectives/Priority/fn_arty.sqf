@@ -28,8 +28,7 @@ private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
 while { _ObjectPosition isEqualTo [0,0] } do {
-    // pick a random spawn that's 2 * _AOSize away from players + other AOs
-    _ObjectPosition = [nil, ([] call FNC(getAOExclusions)) + ["water"], {
+    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
         { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,-1,0.2,5,0,false] isEqualTo [])
     }] call BIS_fnc_randomPos;
 };
@@ -158,7 +157,7 @@ _pfh = {
             _currTime = LTIME;
             if (_currTime > _nextStrike) then {
                 // We only fire on folks who are within the paradrop markers of an AO
-                private _aos = (GVAR(paradropMarkers) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] });
+                private _aos = (GVAR(missionAreas) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] });
                 private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p >= 1.5 }  } );
 
                 if !(isNil "_target") then {

@@ -22,16 +22,12 @@ private _INFTEAMS = ["BanditCombatGroup","BanditFireTeam","BanditShockTeam","Par
 // Location Scout
 ///////////////////////////////////////////////////////////
 
-private ["_blacklistAreas", "_AOPosition", "_CQPosition", "_blacklistAreas", "_nearestTown"];
+private ["_AOPosition", "_CQPosition", "_nearestTown"];
 private _AOSize = 400;
-
-// pick a random MAIN AO spawn that's 2 * _AOSize away from players + other AOs
-_blacklistAreas = BASE_PROTECTION_AREAS + ["water"] + GVAR(paradropMarkers);
 
 _CQPosition = [0,0];
 while { _CQPosition isEqualTo [0,0] } do {
-    // pick a random spawn that's 2 * _AOSize away from players + other AOs
-    _CQPosition = [nil, call FNC(getAOExclusions) + ["water"], {
+    _CQPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
         { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false] isEqualTo [])
     }] call BIS_fnc_randomPos;
 };
