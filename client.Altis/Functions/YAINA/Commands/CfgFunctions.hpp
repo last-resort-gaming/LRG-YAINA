@@ -47,6 +47,6 @@ class YAINA_CMD {
         class uavmsg {};
         class ugmsg {};
         class vehmsg {};
-
+        class micmsg {};
     };
 };
