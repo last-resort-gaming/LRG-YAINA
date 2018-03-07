@@ -159,7 +159,7 @@ _pfh = {
             if (_currTime > _nextStrike) then {
                 // We only fire on folks who are within the paradrop markers of an AO
                 private _aos = (GVAR(paradropMarkers) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] });
-                private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p > 1.5 }  } );
+                private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p >= 1.5 }  } );
 
                 if !(isNil "_target") then {
                     // We have a target, FIRE
