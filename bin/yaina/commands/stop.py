@@ -1,6 +1,9 @@
 from utils import Command
 import wmi
 import shlex
+import os
+import subprocess
+import time
 
 # https://msdn.microsoft.com/en-us/library/aa394372(v=vs.85).aspx
 
@@ -27,6 +30,25 @@ class Stop(Command):
 
     def run(self, yaina):
 
+        # First we try and do it nicely
+        import subprocess
+
+        try:
+            cmd = [
+                'powershell.exe',
+                '-ExecutionPolicy',
+                'Unrestricted',
+                '-File', os.path.join(yaina.root, 'bin', 'stop.ps1'),
+                '-instance', yaina.config.get('common', 'instance')
+            ]
+            subprocess.call(cmd)
+        except Exception,e:
+            yaina.logger.error("Failed to call subprocess: %s" % e.message)
+
+        # wait 3 seconds to let it close
+        time.sleep(3)
+
+        # Then for completeness, and if the above failed, we go with a sledgehammer
         conn = wmi.WMI()
         for p in conn.Win32_Process():
             if p.Name == 'arma3server_x64.exe':
