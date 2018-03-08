@@ -78,7 +78,7 @@ player setVariable [QYVAR(side), playerSide, true];
     };
 
     // Distance
-    _distance = _source distance _unit;
+    _distance = round (_source distance _unit);
 
     // And try and find the weapon, if there is a projectile, else we mark it as driver
     if !(_projectile isEqualTo "") then {
@@ -160,6 +160,11 @@ player setVariable [QYVAR(side), playerSide, true];
     } else {
         if((_sourcePlayer getVariable [QYVAR(side), side _sourcePlayer]) isEqualTo (_unit getVariable [QYVAR(side), side _unit])) then {
             _header = "<t color='#ff0000' size='2' shadow='1' shadowColor='#000000' align='center'>Friendly Fire...</t><br/>";
+
+            // If it were friendly fire and had a projectile, we make a public announcement of it
+            if !(_projectile isEqualTo "") then {
+                format["%1 was killed by %2's %3 from %4 meter%5", name player, name _sourcePlayer, _weapon, _distance, ["s", ""] select (_distance isEqualTo 1)] remoteExec ["systemChat"];
+            };
         };
     };
 
@@ -175,7 +180,7 @@ player setVariable [QYVAR(side), playerSide, true];
         _feedb = _feedb + format[" from their %1", _vs];
     };
 
-    private _rtxt = format["%1 meter%2", round(_distance), ["s", ""] select (_distance isEqualTo 1)];
+    private _rtxt = format["%1 meter%2", _distance, ["s", ""] select (_distance isEqualTo 1)];
     _bodys = _bodys + (["from", _rtxt] call _elem);
     _feedb = _feedb + format[" range %1", _rtxt];
 
