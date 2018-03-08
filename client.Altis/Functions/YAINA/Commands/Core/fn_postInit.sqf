@@ -32,9 +32,12 @@ if (hasInterface) then {
 
                         if (_command in (GVAR(commands) select 0)) then {
                             if !(_command in GVAR(becCommands)) then {
-                                systemChat _message;
                                 [_command, _argument] remoteExecCall [QFNC(exec), 2];
                                 _r = true;
+                            } else {
+                                if !(_command isEqualTo "hrestart") then {
+                                    systemChat "BAN issued: remember to repot !report";
+                                };
                             };
                         } else {
                             systemChat format["Invalid Command: %1", _command];

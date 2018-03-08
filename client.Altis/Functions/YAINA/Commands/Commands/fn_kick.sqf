@@ -53,6 +53,7 @@ if (_argStr isEqualTo "") then {
             };
 
             _log = format["%1 (%2) was kicked", name _player, _playeruid];
+            _ret = format["%1 was kicked - Remember to !report", name _player, _log];
 
             // Let Admins know
             [_caller, format["I have kicked: %1", name _player], 4] call FNC(notifyAdmins);

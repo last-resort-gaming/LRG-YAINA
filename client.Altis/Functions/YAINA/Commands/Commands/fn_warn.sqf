@@ -51,6 +51,7 @@ if (_argStr isEqualTo "") then {
                 _log = format["%1 (%2) exceeded warn limit => %3", name _player, _playeruid, _warn];
                 SERVER_COMMAND_PASSWORD serverCommand format ["#kick %1", _playeruid];
                 [_caller, format["%1 has been kicked for exceeding the warning limit: %2)", name _player, _warn], 4] call FNC(notifyAdmins);
+                _ret = format["%1 has been kicked by !warn - Remember to !report", name _player, _log];
             } else {
                 [[_title, _content], {
                     params ["_title", "_content"];
