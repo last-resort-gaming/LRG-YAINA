@@ -148,19 +148,52 @@ _pfh = {
                     _args set [9, LTIME + 120];
                 } else {
                     // We have enough folks to spawn something :)
+                    _spawned = false;
 
                     if ((random 1) > 0.3) then {
                         // Infantry - 2 AI per player in AI, rounded to nearest 4
                         _groupCount = ceil(_inAO / 2);
 
-                        // we populate them to the entire AO as a normal pop
-                        ([format["factory_spu_%1_%2", _missionID, _spawnCount], _AOPos, _AOSize, east, [0], [_groupCount], [0], [0], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+                        _spUnits = [];
+                        for "_x" from 1 to _groupCount do {
 
-                        // Add to zeus
-                        [_spUnits, false] call YFNC(addEditableObjects);
+                            // Try 3 times before moving on
+                            private _ObjectPosition = [0,0];
+                            private _attempt = 0;
+                            while { _ObjectPosition isEqualTo [0,0] && { _attempt < 3 } } do {
+                                _ObjectPosition = [[[_AOPos, _AOSize]], ["water", "out"], {
+                                    { if(_x distance2D _this < 300) exitWith { 1 }; false; } count allPlayers isEqualTo 0
+                                }] call BIS_fnc_randomPos;
+                                _attempt = _attempt + 1;
+                            };
 
-                        // Add to reinforcements
-                        [_parentMissionID, _spUnits, []] call FNC(addReinforcements);
+                            if !(_ObjectPosition isEqualTo [0,0]) then {
+
+                                _g = [_ObjectPosition, east, configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"])] call BIS_fnc_spawnGroup;
+                                _g setGroupIdGlobal [format["factory_spu_%1_%2_inf%4", _missionID, _spawnCount , _x]];
+
+                                // If the defend mission is up, we set the position to be around the HQ, else we keep them around the AO
+                                _defendTask = format["%1_defend", _parentMissionID];
+                                if (_defendTask call BIS_fnc_taskExists) then {
+                                    [_g, [getPos (leader _g), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+                                } else {
+                                    [_g, _AOPos, _AOSize/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+                                };
+
+                                [_g, 3] call SFNC(setUnitSkill);
+                                _spUnits append (units _g);
+                            }
+                        };
+
+                        if !(_spUnits isEqualTo []) then {
+                            _spawned = true;
+
+                            // Add to zeus
+                            [_spUnits, false] call YFNC(addEditableObjects);
+
+                            // Add to reinforcements
+                            [_parentMissionID, _spUnits, []] call FNC(addReinforcements);
+                        };
 
                     } else {
                         // Vehicle
@@ -168,12 +201,16 @@ _pfh = {
                         _attempts = 4;
                         _rpos = [0,0];
                         while { _rpos isEqualTo [0,0] && { _attempts > 0 } } do {
-                            _rpos = [[[_AOPos, _AOSize], []], ["water", "out"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
+                            _rpos = [[[_AOPos, _AOSize]], ["water", "out"], {
+                                !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) && { { if( _x distance2D _this < 300) exitWith { 1 }; false; } count allPlayers isEqualTo 0 }
+                             }] call BIS_fnc_randomPos;
                             _attempts = _attempts -1;
                             diag_log format["IN A RPOS LOOP %1 (%2)", _rpos, _AOPos];
                         };
 
                         if !(_rpos isEqualTo [0,0]) then {
+
+                            _spawned = true;
 
                             _grp = createGroup east;
                             _grp setGroupIdGlobal [format["factory_spv_%1_%2", _missionID, _spawnCount]];
@@ -184,7 +221,13 @@ _pfh = {
                             _veh lock 3;
                             _veh allowCrewInImmobile true;
 
-                            [_grp, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
+                            _defendTask = format["%1_defend", _parentMissionID];
+                            if (_defendTask call BIS_fnc_taskExists) then {
+                                [_grp, [getPos (leader _grp), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+                            } else {
+                                [_grp, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
+                            };
+
                             _grp setBehaviour "COMBAT";
                             _grp setCombatMode "RED";
 
@@ -199,15 +242,21 @@ _pfh = {
                         };
                     };
 
-                    // New sleeptime
-                    if (_inAO < 15) then{
-                        _args set [9, LTIME + 480];
+                    if !(_spawned) then {
+                        // Try again in 30 seconds if no spawn
+                        _args set [9, LTIME + 30];
                     } else {
-                        _args set [9, LTIME + (480 - floor (_inAO * 4))];
-                    };
 
-                    // Increment spawn count
-                    _args set[10, _spawnCount + 1];
+                        // New sleeptime
+                        if (_inAO < 15) then{
+                            _args set [9, LTIME + 10];
+                        } else {
+                            _args set [9, LTIME + (480 - floor (_inAO * 4))];
+                        };
+
+                        // Increment spawn count
+                        _args set[10, _spawnCount + 1];
+                    };
                 };
             };
         } else {
