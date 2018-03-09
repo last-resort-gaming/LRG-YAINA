@@ -6,7 +6,5 @@
     roulette with initialization ordering
 */
 
-if !(isServer) exitWith {};
-
 // Bring in external settings file
 call compileFinal preprocessFile "settings.sqf";
