@@ -20,7 +20,7 @@ params ["_crate"];
 
         // wait until we are 40m below chopper...
         [
-            { !alive (_this select 1) or (_this select 0) distance (_this select 1) > 40 },
+            { !alive (_this select 1) or (_this select 0) distance (_this select 1) > 45 },
             {
                 params ["_heli", "_crate"];
 
