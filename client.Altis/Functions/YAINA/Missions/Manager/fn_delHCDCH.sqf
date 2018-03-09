@@ -16,6 +16,7 @@ if !(isNil "_AOMarker") then {
     _idx = GVAR(missionAreas) find _AOMarker;
     if !(_idx isEqualTo -1) then {
         GVAR(missionAreas) deleteAt _idx;
+        publicVariable QVAR(missionAreas);
     };
 };
 

@@ -17,4 +17,5 @@ private _AOMarker = (_this select 6) select 0;
 
 if !(getMarkerPos _AOMarker isEqualTo [0,0,0]) then {
     GVAR(missionAreas) pushBack _AOMarker;
+    publicVariable QVAR(missionAreas);
 };
