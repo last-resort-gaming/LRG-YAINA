@@ -23,7 +23,7 @@ if(!isServer) exitWith {};
         } else {
 
             // E.g. UAVs don't have a distance.
-            if !(_abandonDistance isEqualTo 0) then {
+            if (!(_abandonDistance isEqualTo 0) && { yaina_vehicle_abandonment } ) then {
 
                 // If it's less than 5m from start pos, just bail
                 if (_veh distance2D _pos < 5) exitWith {};

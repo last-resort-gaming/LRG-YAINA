@@ -7,11 +7,16 @@
 #include "defines.h"
 
 if !(isServer) exitWith {};
-if !(isNil QVAR(disable_time_manager)) exitWith {};
+
+if (isNil "yaina_time_manager_enabled") then { yaina_time_manager_enabled = true; };
+
+if !(yaina_time_manager_enabled) exitWith {
+    if(isNil "yaina_default_time_multiplier") then { yaina_default_time_multiplier = 1; };
+    setTimeMultiplier yaina_default_time_multiplier;
+};
 
 if (isNil "yaina_time_manager_paused") then {
     yaina_time_manager_paused = false;
-    publicVariable "yaina_time_manager_paused";
 };
 
 [{

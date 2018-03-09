@@ -37,5 +37,6 @@ class YAINA {
 		class inBaseProtectionArea {};
 		class kickSelf {};
 		class playerIntroComplete {};
+		class settings { preInit=1; };
     };
 };

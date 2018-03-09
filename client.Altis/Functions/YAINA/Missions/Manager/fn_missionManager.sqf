@@ -10,7 +10,7 @@
 // we add priority missions from time to time...
 
 // If not a server, we shouldn't be here
-if !(isServer) exitWith {};
+if (!isServer || { yaina_mission_manager_disable } ) exitWith {};
 if !(isNil QVAR(running)) exitWith {};
 
 GVAR(running) = false;

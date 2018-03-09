@@ -23,5 +23,6 @@ class YAINA {
 		class deleteVehicleIn {};
 		class kickSelf {};
 		class playerIntroComplete {};
+		class settings { preInit=1; };
     };
 };
