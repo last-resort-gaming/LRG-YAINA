@@ -249,7 +249,7 @@ _pfh = {
 
                         // New sleeptime
                         if (_inAO < 15) then{
-                            _args set [9, LTIME + 10];
+                            _args set [9, LTIME + 480];
                         } else {
                             _args set [9, LTIME + (480 - floor (_inAO * 4))];
                         };
