@@ -8,6 +8,9 @@ import textwrap
 import re
 from utils import Command
 from yaina.CfgFunctions import CfgFunctions
+import zipfile
+import tempfile
+
 
 class List(Command):
     @classmethod
@@ -20,6 +23,7 @@ class List(Command):
         g.add_argument("-s", "--server", action="store_true", help="Build Server Addon")
         g.add_argument("-c", "--client", action="store_true", help="Build Client PBO")
         g.add_argument("-a", "--all", action="store_true", help="Build both Client PBO and Server Addon (default)")
+        g.add_argument("ZEUSDAY_ZIP", nargs="?", help="zeusday template, mission name as per zip file")
 
         og = p.add_argument_group('Optional Arguments')
         og.add_argument("-m", "--map", help="Package which Map (default: Altis)", default="Altis")
@@ -36,6 +40,15 @@ class List(Command):
         if not os.path.isdir(self.source):
             print "Error: could not find client.%s in yaina rootdir" % yaina.args.map
             sys.exit(1)
+
+        if yaina.args.ZEUSDAY_ZIP:
+            yaina.args.client = True
+            yaina.args.server = False
+
+            if not os.path.exists(yaina.args.ZEUSDAY_ZIP):
+                print "Error: zeusday zip must be a zip archive" % yaina.args.ZEUSDAY_ZIP
+                sys.exit(1)
+
 
         # The client is linked to server
         if yaina.args.client or yaina.args.all:
@@ -250,7 +263,17 @@ class List(Command):
 
         # We start with a complete copy of the client tree
         self.build_dir = os.path.join(self.yaina.tmpdir, os.path.basename(self.source))
+
+        # Copy the tree, if it's a zeusday zip, we delete the data dir, and
+        # merge blat it with the files from the zip
         shutil.copytree(self.source, self.build_dir)
+
+        if self.yaina.args.ZEUSDAY_ZIP:
+            shutil.rmtree(os.path.join(self.build_dir, 'Data'))
+
+            # Now we extract the zip and overwrite the existing files
+            with zipfile.ZipFile(self.yaina.args.ZEUSDAY_ZIP,"r") as zip_ref:
+                zip_ref.extractall(os.path.join(self.build_dir))
 
         # Then we walk through and remove functions that are only intended to be in the server
         func_file =  os.path.join(self.build_dir, "Functions", "YAINA", "CfgFunctions.hpp");
@@ -318,22 +341,25 @@ class List(Command):
         with open(func_file, 'w') as fh:
             fh.write(CfgFunctions.compose(client_cfg))
 
+        if self.yaina.args.ZEUSDAY_ZIP:
+            pbo_name = os.path.splitext(os.path.basename(self.yaina.args.ZEUSDAY_ZIP))[0];
+        else:
+            # Now just PBO it
+            pbo_ver  = self.yaina.getNextVersion(self.yaina.args.map)
+            pbo_name = "client.%s.%s" % (pbo_ver, self.yaina.args.map)
 
-        # Now just PBO it
-        pbo_ver  = self.yaina.getNextVersion(self.yaina.args.map)
-        pbo_name = "client.%s.%s" % (pbo_ver, self.yaina.args.map)
+            # Fix briefing name in mission.sqm
+            for x in ['mission.sqm', 'description.ext']:
+                with open(os.path.join(self.build_dir, x), 'w') as new:
+                    with open(os.path.join(self.source, x)) as orig:
+                        for line in orig:
+                            new.write(line.replace("%VERSION%", pbo_ver))
+
+                            # Add in a commit ref so we always have a ref
 
         server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))
         out_dir = os.path.join(server_dir, "mpmissions")
 
-        # Fix briefing name in mission.sqm
-        for x in ['mission.sqm', 'description.ext']:
-            with open(os.path.join(self.build_dir, x), 'w') as new:
-                with open(os.path.join(self.source, x)) as orig:
-                    for line in orig:
-                        new.write(line.replace("%VERSION%", pbo_ver))
-
-        # Add in a commit ref so we always have a ref
         with open(os.path.join(self.build_dir, "build.txt"), 'w') as fh:
             fh.write(self.yaina.ref)
 
@@ -352,7 +378,38 @@ class List(Command):
         self.logger.info("Running: %s" % " ".join(cmd))
         subprocess.call(cmd)
 
-        # And now that's done, lets update next_*
-        self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'mission', pbo_name)
-        self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'version', pbo_ver)
+        if self.yaina.args.ZEUSDAY_ZIP:
+            print "You can now use: !zeusday %s to start" % pbo_name
+        else:
+            # And now that's done, lets update next_*
+            self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'mission', pbo_name)
+            self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'version', pbo_ver)
+
+            # We also dump out the ZeusDay template
+            tmp_dir = tempfile.mkdtemp(prefix="yaina_")
+
+            # copy data dir as is
+            shutil.copytree(os.path.join(self.source, 'data'), os.path.join(tmp_dir, 'data'))
+
+            # copy the default files
+            for f in ["mission.sqm", "description.ext", "settings.sqf"]:
+                src = os.path.join(self.source, f)
+                dst = os.path.join(tmp_dir, f)
+                try:
+                    os.makedirs(os.path.dirname(dst))
+                except: pass
+                shutil.copyfile(src, dst)
+
+            zip_fn = os.path.join(self.yaina.root, 'Output', 'ZeusTemplate.%s.zip' % self.yaina.args.map)
+            try:
+                os.makedirs(os.path.dirname(zip_fn))
+            except: pass
+
+            # And zip it up into our outputs dir
+            zip_out = zipfile.ZipFile(zip_fn, 'w', zipfile.ZIP_DEFLATED)
+            for root, dirs, files in os.walk(tmp_dir):
+                for file in files:
+                    fqp = os.path.join(root, file)
+                    zip_out.write(fqp, arcname=os.path.relpath(fqp, tmp_dir))
+            zip_out.close()
 
