@@ -182,7 +182,7 @@ _pfh = {
 
                     // Players get between 30 and 40 seconds to move
                     _warningTime = (random 10) + 30;
-                    _shellETA    = (_mainArty getArtilleryETA [ _targetPos, "32Rnd_155mm_Mo_shells" ]) max _arty2ETA;
+                    _shellETA    = _mainArty getArtilleryETA [ _targetPos, "32Rnd_155mm_Mo_shells" ];
                     _sleepTime   = floor(_shellETA - _warningTime) max 1;
 
                     // Give a little warning
