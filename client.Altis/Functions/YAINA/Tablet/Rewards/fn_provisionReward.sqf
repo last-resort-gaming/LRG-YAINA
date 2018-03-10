@@ -11,7 +11,12 @@ params ["_player", "_class"];
 if !(isServer) exitWith {};
 
 private _clearPylons = {
+    // Then Remove the weapons, and works on UAVs nicely so you don't, after removing the
+    // pylons, get the weapon showing up with 0 ammo
     { _this removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _this;
+
+    // Clear any remaining pylon loadouts
+    { _this setPylonLoadOut [_forEachIndex + 1, ""]; } forEach getPylonMagazines _this;
 };
 
 private _sp = _class call FNC(getSpawnPoint);

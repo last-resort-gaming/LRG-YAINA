@@ -121,13 +121,23 @@ if(!isServer) exitWith {};
                 // restore lcoked state
                 _nv lock _locked;
 
-                // Clear spawned pylon loadout
+                // Then Remove the weapons, and works on UAVs nicely so you don't, after removing the
+                // pylons, get the weapon showing up with 0 ammo
                 { _nv removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon"); } forEach getPylonMagazines _nv;
 
+                // Clear any remaining pylon loadouts
+                { _nv setPylonLoadOut [_forEachIndex + 1, ""]; } forEach getPylonMagazines _nv;
+
                 // Reload the same pylons as before
-                {
-                    _nv setPylonLoadout [_forEachIndex + 1, _x, true, [0]];
-                } forEach _pylonLoadout;
+                if (allTurrets _nv isEqualTo []) then {
+                    {
+                        _nv setPylonLoadout [_forEachIndex + 1, _x, true];
+                    } forEach _pylonLoadout;
+                } else {
+                    {
+                        _nv setPylonLoadout [_forEachIndex + 1, _x, true, [0]];
+                    } forEach _pylonLoadout;
+                };
 
                 if ([_nv] call YFNC(isUAV)) then {
 
