@@ -44,7 +44,9 @@ private _hasTFAR = isClass(configFile >> "CfgPatches" >> "task_force_radio");
 GVAR(unitWeapons) = call {
 
     _permitGroups    = ["Binocular","Rangefinder", "arifle", "hgun", "smg"];
-    _blacklistItems  = [];
+    _blacklistItems  = [
+        "arifle_ARX_blk_F", "arifle_ARX_ghex_F", "arifle_ARX_hex_F" // Type 115
+    ];
 
     if (["AT"] call YFNC(testTraits)) then {
         _permitGroups append ["missile", "rocket"];

@@ -78,6 +78,11 @@ GVAR(carryPacks)    = [[],[]];
                     nil
                 } count ["EBR_base_F", "LRR_base_F", "GM6_base_F"];
 
+                // Move the car-95 LSW under MG for now
+                if  (_class isKindOf ["arifle_CTARS_base_F", configFile >> "CfgWeapons"]) then {
+                    _type = "mg";
+                };
+
                 // However, suffix _gl for those with GL muzzles
                 if (!({ _x in [ "EGLM", "GL_3GL_F" ] } count getArray(_x >> "muzzles") isEqualTo 0)) then {
                     _type = format["%1_gl", _type];
