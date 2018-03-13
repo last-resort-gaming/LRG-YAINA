@@ -296,7 +296,7 @@ GVAR(unitBackpacks) = call {
 
     if (_hasTFAR) then {
         if (["HQ", "SL"] call YFNC(testTraits)) then {
-             _permitItems pushBack "tf_rt1523g";
+             _permitGroups pushBack "tf_rt1523g";
         };
     };
 
