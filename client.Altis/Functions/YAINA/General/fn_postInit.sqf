@@ -18,6 +18,7 @@ if (isServer) then {
             if (YVAR(deleteVehiclesIn) select _i select 1 <= _t) then {
                 _v = YVAR(deleteVehiclesIn) select _i select 0;
                 if !(isNull _v) then {
+                    { _v deleteVehicleCrew _x ; nil } count (crew _v);
                     deleteVehicle _v;
                 };
                 YVAR(deleteVehiclesIn) deleteAt _i;

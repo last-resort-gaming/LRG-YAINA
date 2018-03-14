@@ -94,6 +94,9 @@ _jet addEventHandler ["Killed",{
     parseText format["<t align='center'><t size='1.5' align='center' color='#34DB16'>Enemy Jet Destroyed</t><br/>____________________<br/>Nice work! The enemy Jet was taken down by %1. Here's %2 Credits for your efforts.</t>", _name, 100]  call YFNC(globalHint);
     [100, "jet"] call YFNC(addRewardPoints);
 
+    // Delete the jet in 5 minutes
+    [_unit, 300] call YFNC(deleteVehicleIn);
+
 }];
 
 // To let the AI do it's thing, regarding gun runs etc, we just set it to a SAD and periodically reveal targets in the main AO
