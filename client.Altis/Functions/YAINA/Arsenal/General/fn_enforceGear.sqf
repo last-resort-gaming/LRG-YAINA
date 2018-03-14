@@ -50,9 +50,11 @@ private _filterList = {
     {
         if !(_x isEqualTo "" || { _x in _allowedItems } ) then {
             // Just do a quick check of parent here
-            if(isClass (configFile >> "CfgWeapons" >> _x) && { (configName inheritsFrom (configFile >> "CfgWeapons" >> _x)) in _allowedItems } ) exitWith {};
-            [_rem, _x] call _addToArray;
-            [_x] call FNC(removeItem);
+            _p = _x call _getParent;
+            if !( !(isNil "_p") && { _p in _allowedItems }) then {
+                [_rem, _x] call _addToArray;
+                [_x] call FNC(removeItem);
+            };
         };
         true;
     } count _contents;
@@ -82,6 +84,34 @@ private _filterBlacklist = {
     _rem;
 };
 
+private _getParent = {
+
+    // So we start by using BIS_fnc_base{Vehicle,Weapon}, we cant just use inheritsFrom due
+    // to blacklisted NVGogglesB_blk_F (ENVG-II) decending from our permitted NVGoggles
+    _parent = call {
+        if (isClass (configFile >> "CfgWeapons"  >> _this)) exitWith { _this call BIS_fnc_baseWeapon  };
+        if (isClass (configFile >> "CfgVehicles" >> _this)) exitWith { _this call BIS_fnc_baseVehicle };
+        nil
+    };
+
+    // However, that's not enough as TFAR doesn't set base parameters, but instead uses tf_parent
+    // So if that exists, we use that as our primary, interestingly, this only applies to SW radios
+    if (isText (configFile >> "CfgWeapons" >> _this >> "tf_parent")) then {
+        _parent = getText (configFile >> "CfgWeapons" >> _this >> "tf_parent");
+    };
+
+    _parent
+};
+
+/*
+[
+  "tf_anprc152_350" call _getParent,
+  "NVGogglesB_blk_F" call _getParent,
+  "B_Kitbag_rgr_AAR" call _getParent,
+  "dummy" call _getParent
+]
+returns: ["tf_anprc152","NVGogglesB_blk_F","B_Kitbag_rgr",any]
+*/
 
 ///////////////////////////////////////////////////////////
 // Main
@@ -119,10 +149,15 @@ if (_item isEqualTo objNull) then {
     private _inBase = !(({ player inArea _x } count BASE_PROTECTION_AREAS) isEqualTo 0);
     private _filteredContainer = _inBase || { _container getVariable [QVAR(filtered), false] };
 
-    // Due to some rather unfortunate cases, such as TFAR substituting items on take (e.g: "tf_anprc152_123")
+    // Due to some rather unfortunate cases, such as TFAR substituting items on channel change (e.g: "tf_anprc152_123")
+    // or backpack loadouts on EN for say: "B_Kitbag_rgr_AAR", we need to find out the parent arsenal item that
+    // may exist in the allowedItems array.
+
     _items = [_item];
-    if(isClass (configFile >> "CfgWeapons" >> _item)) then {
-        _items pushBack (configName inheritsFrom (configFile >> "CfgWeapons" >> _item))
+
+    _parent = _item call _getParent;
+    if !(isNil "_parent") then {
+        _items pushBack _parent;
     };
 
     // What do we filter on, if it's a filtered container (i.e. blufor), we filter against
