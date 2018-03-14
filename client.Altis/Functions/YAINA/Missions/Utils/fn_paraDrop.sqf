@@ -18,13 +18,6 @@ if (_pCount > 0) exitWith {
     systemChat "Paradrop unavailable, please utilise available pilots";
 };
 
-// Limit paradrop if we've dropped recently
-private _nt = floor(diag_tickTime - GVAR(lastParadrop));
-if (_nt < GVAR(paradropTimeout) and !(GVAR(lastParadrop) isEqualTo 0)) exitWith {
-    _dt = GVAR(paradropTimeout) - _nt;
-    systemChat format ["Paradrop unavailable, please wait %1", _dt call YFNC(formatDuration)];
-};
-
 private _dMrk = [];
 private _aMrk = [];
 private _dCnt = 0;

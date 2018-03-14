@@ -26,7 +26,7 @@ GVAR(rewards) apply { _x select { _x select 0 isEqualTo _class; }; } select { !(
     params ["_class2", "_price", "_buildTime", ["_initCode", {}]];
 
 // We immediately remove the credits to work with multiple users, and on cancel, add it to balance
-[-_price, format["%1 ordered", _class]] call YFNC(addRewardPoints);
+[-_price, format["%1 ordered", _class]] remoteExecCall [QYFNC(addRewardPoints), 2];
 
 // Hide the cancel button, set the scroll bar width to 0.000001 and update until complete
 { (_page controlsGroupCtrl _x) ctrlShow true; } forEach [
@@ -91,7 +91,7 @@ _pfhID = [_pfh, 1, [_bar, _r select 2, _text, {
 // CancelCode
 _cancelCode = {
     params ["_class", "_price"];
-    [_price, format["cancelled reward: %1", _class]] call YFNC(addRewardPoints);
+    [_price, format["cancelled reward: %1", _class]] remoteExecCall [QYFNC(addRewardPoints),2];
 };
 
 GVAR(orderInProgress) = [_pfhID, _cancelCode, [_class, _price]];

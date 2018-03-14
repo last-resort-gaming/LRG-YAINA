@@ -34,6 +34,7 @@ class YAINA_CMD {
         class restart {};
         class stable {};
         class rtpause {};
+        class mission {};
     };
 
     class Messages {

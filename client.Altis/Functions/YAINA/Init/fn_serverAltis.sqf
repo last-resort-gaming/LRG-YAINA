@@ -162,7 +162,7 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
 
 }] call YAINA_VEH_fnc_addGetInHandler;
 
-[TM, false, 10, 1000, [], {
+[TM, false, 10, 3000, [], {
 
     params ["_veh", "_args"];
 
@@ -341,7 +341,7 @@ TM setVariable ["MERT_QUAD_unloading", 0, true];
 ///////////////////////////////////////////////////////////
 
 {
-    [_x, true, 10, 1000] call YAINA_VEH_fnc_initVehicle;
+    [_x, true, 10, 3000] call YAINA_VEH_fnc_initVehicle;
 } forEach [VE1,VE2,VE3];
 
 ///////////////////////////////////////////////////////////

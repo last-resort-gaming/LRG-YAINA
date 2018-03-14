@@ -45,6 +45,3 @@ if (isNil QVAR(paradropSetup)) then {
     };
     GVAR(paradropSetup) = true;
 };
-
-// And they're not falling by default
-GVAR(openChuteInProgress) = false;

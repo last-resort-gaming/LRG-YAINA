@@ -44,7 +44,6 @@ class YAINA_MM {
         class addHCDCH {};
         class delHCDCH {};
         class missionManager {};
-        class mmPostInit { postInit=1; };
         class mmPostInitServer { postInit=1; };
         class mmPreInit  { preInit=1; };
         class setMissionID {};
