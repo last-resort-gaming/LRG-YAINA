@@ -57,7 +57,7 @@ if (_fail && { not _force } ) exitWith { false; };
             deleteVehicle _v;
         } else {
             // We just use a shorter abandon distance
-            [_x, true, -1, 500] call YAINA_VEH_fnc_initVehicle;
+            [_x, true, -1, 1500] call YAINA_VEH_fnc_initVehicle;
         };
     };
     true;
@@ -144,7 +144,7 @@ if (_fail) exitWith { false; };
         } else {
             // We just use a shorter abandon distance, as long as it's not a person
             if !(_x isKindOf "CAManBase") then {
-                [_x, true, -1, 500] call YAINA_VEH_fnc_initVehicle;
+                [_x, true, -1, 1500] call YAINA_VEH_fnc_initVehicle;
             };
         };
         nil;

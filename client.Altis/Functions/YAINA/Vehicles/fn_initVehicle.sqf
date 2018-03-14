@@ -13,7 +13,7 @@ if(!isServer) exitWith {
 params ["_veh",
     ["_hasKeys", true],
     ["_respawnTime", -1],
-    ["_abandonDistance", 1000],
+    ["_abandonDistance", 3000],
     ["_persistVars", []],
     ["_initCode", {}],
     ["_initCodeArgs", []],
