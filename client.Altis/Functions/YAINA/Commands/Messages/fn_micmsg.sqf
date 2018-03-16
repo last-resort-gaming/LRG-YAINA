@@ -10,7 +10,7 @@ params ["_owner", "_caller", "_argStr"];
 
 private _ret = nil;
 private _log = nil;
-private _msg = "%1, welcome to the Last Resort Gaming public server. You are required to be on TeamSpeak and have a microphone to play in your role. Please do so immediately or you will be removed from your slot.";
+private _msg = "%1, welcome to the Last Resort Gaming public server. You are now required to be on TeamSpeak and have a microphone to play in your role. Please do so immediately or you will be removed from your slot.";
 
 if (_argStr isEqualTo "") then {
     // General message, we let everyone know who is in a mic required slot

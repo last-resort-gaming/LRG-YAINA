@@ -9,6 +9,6 @@
 [
     _this,
     "vehmsg",
-    "%1, Do not board vehicles without HQ authorization",
-    "All vehicles are locked by default. You are not allowed to take them without explicit permission by HQ!"
+    "%1, do not board vehicles without permission",
+    "All vehicles are locked by default. You are not allowed to take them without explicit permission from HQ"
 ] call FNC(generalMessage);

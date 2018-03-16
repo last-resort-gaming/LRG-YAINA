@@ -9,5 +9,5 @@
 [
     _this,
     "hqmsg",
-    "%1, welcome to the Last Resort Gaming public server. HQ is required to be on our TeamSpeak server!"
+    "%1, welcome to the Last Resort Gaming public server. As HQ you are required to be on our TeamSpeak server."
 ] call FNC(generalMessage);

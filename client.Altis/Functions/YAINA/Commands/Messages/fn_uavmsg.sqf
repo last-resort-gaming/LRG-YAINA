@@ -9,5 +9,5 @@
 [
     _this,
     "uavmsg",
-    "%1, welcome to the Last Resort Gaming public server. The UAV operator is required to be on our TeamSpeak server!"
+    "%1, welcome to the Last Resort Gaming public server. As UAV operator you are required to be on our TeamSpeak server"
 ] call FNC(generalMessage);

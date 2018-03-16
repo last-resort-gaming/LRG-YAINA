@@ -9,6 +9,6 @@
 [
     _this,
     "helimsg",
-    "%1, Do not board helicopters without permission, You might be ejected from the aircraft mid-flight. Please wait for your section commander to call for transport",
-    "Do not board helicopters without permission! You might be ejected from the aircraft mid-flight. Please wait for your section commander to call for transport"
+    "%1, do not board helicopters without permission, You may be ejected from the aircraft mid-flight. Wait for your section commander to call for transport",
+    "Do not board helicopters without permission! You may be ejected from the aircraft mid-flight. Wait for your section commander to call for transport"
 ] call FNC(generalMessage);
