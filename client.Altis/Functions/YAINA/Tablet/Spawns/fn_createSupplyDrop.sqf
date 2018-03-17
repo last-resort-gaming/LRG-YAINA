@@ -22,12 +22,33 @@ _cargo params ["_items", "_counts"];
 
 if(isNil "_type") then { _type = "B_CargoNet_01_ammo_F"; };
 
+
 // Check position is empty, or bail
 if (triggerActivated SP_CARGO) exitWith { false; };
 
 _crate = _type createVehicle getPosATL SP_CARGO;
 _crate setDir (triggerArea SP_CARGO select 2);
 _crate setVariable ["YAINA_ARSENAL_filtered", true, true];
+_vehicle = false;
+
+// If a vehicle, we need to make a few changes
+if (_type isKindOf "AllVehicles") then {
+    _attachable = false;
+    _droppable = false;
+    _vehicle = true;
+
+    // We only allow group leads to drive the vehicles
+    [_crate, {
+        params ["_unit", "_pos", "_veh", "_turret"];
+
+        if (_pos isEqualTo "driver") then {
+            if !(leader (group _unit) isEqualTo _unit) then {
+                "Only group leaders may drive this vehicle" call YFNC(hintC);
+                moveOut player;
+            };
+        };
+    }] call YAINA_VEH_fnc_addGetInHandler;
+};
 
 if (_attachable) then {
   _crate enableRopeAttach true;
@@ -59,5 +80,8 @@ if(_droppable) then {
 
 // Add to zeeus
 [[_crate]] call YFNC(addEditableObjects);
+
+// We don't respawn, but do give full functionality...
+[_crate, _vehicle] call YAINA_VEH_fnc_initVehicle;
 
 _crate
