@@ -20,7 +20,7 @@ if(isServer) then {
         [
             ["help", "credits", "report"],
             ["abusemsg", "ffmsg", "helimsg", "hqmsg", "lwmsg", "mertmsg", "pilotmsg", "uavmsg", "ugmsg", "vehmsg", "warn", "kick", "60mban", "stable", "micmsg"],
-            ["addcredits", "mmpause", "mmstart","mmlist", "mmstop", "revive", "restart", "24hban", "72hban", "rtpause", "mission"],
+            ["addcredits", "mmpause", "mmstart","mmlist", "mmstop", "revive", "restart", "24hban", "72hban", "rtpause", "mission", "logfps"],
             ["setadmin", "settrait", "zeuslist", "zeusadd", "zeusdel", "hrestart"],
             []
         ]
