@@ -139,7 +139,7 @@ if (_fail) exitWith { false; };
         // is just outside the completion radios, but within this radius, and dn't want them getting nuked
         // so...
 
-        if ( ( { alive _x && { isPlayer _x } } count (crew _x)) isEqualTo 0 ) then {
+        if ( ( { alive _x && { side _x isEqualTo west } } count (crew _x)) isEqualTo 0) then {
             deleteVehicle _x;
         } else {
             // We just use a shorter abandon distance, as long as it's not a person
