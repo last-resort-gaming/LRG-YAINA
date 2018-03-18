@@ -16,7 +16,7 @@ if !(_tablet isEqualTo displayNull) then {
 };
 
 // Simple task that takes our GVAR(loadout) and throws it over to our spawner
-[GVAR(loadout), _type, _attachable, _droppable] call FNC(createSupplyDrop);
+[GVAR(loadout), _type] call FNC(createSupplyDrop);
 
 // And close the tab, back to requests
 [IDC_PAGE_REQUESTS] call FNC(displayPage);

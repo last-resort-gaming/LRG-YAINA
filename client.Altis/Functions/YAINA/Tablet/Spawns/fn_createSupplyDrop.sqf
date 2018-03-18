@@ -11,9 +11,7 @@
 
 params [
     ["_cargo", []],
-    ["_type", "B_CargoNet_01_ammo_F"],
-    ["_attachable", true],
-    ["_droppable", false]
+    ["_type", "B_CargoNet_01_ammo_F"]
 ];
 
 if (_cargo isEqualTo []) exitWith {};
@@ -30,6 +28,9 @@ _crate = _type createVehicle getPosATL SP_CARGO;
 _crate setDir (triggerArea SP_CARGO select 2);
 _crate setVariable ["YAINA_ARSENAL_filtered", true, true];
 _vehicle = false;
+
+_attachable = true;
+_droppable  = true;
 
 // If a vehicle, we need to make a few changes
 if (_type isKindOf "AllVehicles") then {
