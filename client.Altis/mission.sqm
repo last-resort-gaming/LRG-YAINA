@@ -29136,7 +29136,7 @@ class Mission
 						};
 					};
 					id=2067;
-					type="B_Helipilot_F";
+					type="B_recon_medic_F";
 					class CustomAttributes
 					{
 						class Attribute0
