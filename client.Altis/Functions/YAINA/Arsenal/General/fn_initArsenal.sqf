@@ -284,13 +284,10 @@ GVAR(unitItems) = call {
 GVAR(unitBackpacks) = call {
 
     _permitGroups = ["B_Parachute", "B_AssaultPack","B_Kitbag","B_TacticalPack","B_FieldPack",
-                     "B_Carryall", "B_ViperHarness", "B_ViperLightHarness", "B_LegStrapBag", "B_Static"];
+                     "B_Carryall", "B_ViperHarness", "B_ViperLightHarness", "B_LegStrapBag", "B_Static",
+                     "B_UAV"];
 
     _permitItems  = [];
-
-    if (["UAV"] call YFNC(testTraits)) then {
-        _permitGroups pushBack "B_UAV";
-    };
 
     if (["MERT_UAV"] call YFNC(testTraits)) then {
         _permitGroups pushBackUnique "B_MedicalUAV";
