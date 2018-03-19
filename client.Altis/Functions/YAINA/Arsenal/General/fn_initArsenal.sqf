@@ -64,6 +64,10 @@ GVAR(unitWeapons) = call {
         _permitGroups append ["Laserdesignator", "arifle_gl"];
     };
 
+    if (["SPOTTER"] call YFNC(testTraits)) then {
+        _permitGroups pushBack "Laserdesignator";
+    };
+
     if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
 
         _permitGroups append ["Laserdesignator", "srifle"];
