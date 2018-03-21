@@ -241,6 +241,10 @@ GVAR(unitItems) = call {
         _permitItems append ["tf_microdagr", "tf_anprc152"];
     };
 
+    if (_hasACE) then {
+        _permitItems append ["ACE_NVG_Gen4", "ACE_NVG_Wide"];
+    };
+
     // Now, add in our permits, and remove blacklists again
     {
         _idx = (GVAR(itemCargo) select 0) find _x;
