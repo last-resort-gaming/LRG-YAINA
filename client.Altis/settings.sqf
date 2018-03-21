@@ -17,3 +17,7 @@ yaina_vehicle_abandonment = true;
 // Disable the mission manager, this manages the
 // spawning of all of the missions
 yaina_mission_manager_disable = false;
+
+// UAV Limits, set to 0 to disable
+yaina_uav_limit_darters  = 3;
+yaina_uav_limit_pelicans = 1;
