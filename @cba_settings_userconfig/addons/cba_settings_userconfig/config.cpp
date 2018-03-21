@@ -20,17 +20,3 @@ class CfgFunctions {
 		};
 	};
 };
-
-class CfgWeapons {
-  class myNightVision: NVGoggles {
-      scope = 1;
-      modelOptics = "";
-      author = ECSTRING(common,ACETeam);
-      descriptionShort = "Biocular nightvision goggles";
-      displayName = "NV Goggles (Bio)";
-      GVAR(border) = QPATHTOF(data\nvg_mask_binos_4096.paa); // Edge mask for different tube configurations. Three types: mono, bino and quad.
-      GVAR(bluRadius) = 0.13; // Edge blur radius.
-      GVAR(eyeCups) = 1; // Does have eyecups.
-      GVAR(generation) = 4; // Generation 4. Affects image quality.
-  };
-};
