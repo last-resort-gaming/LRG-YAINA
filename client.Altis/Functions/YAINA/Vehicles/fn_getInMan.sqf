@@ -70,6 +70,45 @@ if (_pos isEqualTo "driver") then {
         _veh setVariable [QVAR(hasEjectAction), true];
     };
 
+    // for now, weonly enable turret control on air assets, but not UAVs as they have no driver
+    if ((typeOf _veh) isKindOf "Air" && { !(_veh call YFNC(isUAV)) }) then {
+        if !(_veh getVariable [QVAR(hasTurretControlAction), false]) then {
+            // Get a list of non-empty turrets, non laser-designating for this vehicle
+            if (count (("true" configClasses (configFile >> "CfgVehicles" >> typeOf _veh >> "Turrets") ) apply { getArray (_x >> "weapons") select { !(_x isEqualTo "Laserdesignator_mounted") } } select { !(_x isEqualTo []) }) > 0) then {
+                _veh addAction ["Turret Control", {
+                    params ["_target", "_caller", "_id", "_args"];
+                    GVAR(TURRET_MENU) = [["Turret Control", true]];
+                    {
+                        _x params ["_title", "_weapons"];
+
+                        if !(_weapons isEqualTo []) then {
+
+                            _var = format["YAINA_turret_%1_act", _forEachIndex];
+                            _en  = _target getVariable [_var, true];
+                            _cmd = [
+                                format ["{ [(missionNamespace getVariable '%1'), [_x, [%2]]] remoteExec ['addWeaponTurret',    (missionNamespace getVariable '%1') turretOwner [%2]]; nil } count %3; (missionNamespace getVariable '%1') setVariable [""%4"", true, true];",  _target call BIS_fnc_objectVar, _forEachIndex, _weapons, _var],
+                                format ["{ [(missionNamespace getVariable '%1'), [_x, [%2]]] remoteExec ['removeWeaponTurret', (missionNamespace getVariable '%1') turretOwner [%2]]; nil } count %3; (missionNamespace getVariable '%1') setVariable [""%4"", false, true];", _target call BIS_fnc_objectVar, _forEachIndex, _weapons, _var]
+                            ] select _en;
+
+                            GVAR(TURRET_MENU) pushBack [
+                                format["%1 %2", ["Unlock", "Lock"] select _en, _title],
+                                [0], "", -5, [["expression", _cmd]], "1", "1"
+                            ];
+                        };
+                    } forEach (("true" configClasses (configFile >> "CfgVehicles" >> typeOf _target >> "Turrets") ) apply {
+                        [
+                            getText (_x >> "gunnerName"),
+                            getArray (_x >> "weapons") select { !(_x isEqualTo "Laserdesignator_mounted") }
+                        ]
+                    });
+
+                    showCommandingMenu format["#USER:%1", QVAR(TURRET_MENU)];
+                }, "", 10, false, true, "", 'driver _target isEqualTo _this'];
+            };
+            _veh setVariable [QVAR(hasTurretControlAction), true];
+        };
+    };
+
     // Because addAction is local, we just have an event handler on the
     // vehicle that'll add the actions when a player gets in - this caters
     // for respawned vehicles etc.
