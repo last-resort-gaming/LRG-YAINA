@@ -30,7 +30,7 @@ _veh enableSimulation false;
 // Manage our Loadouts / Animations / Textures
 call {
 
-    if (_class isKindOf "Plane" && { !(_class isKindOf "UAV") } ) exitWith {
+    if (_class isKindOf "Plane" && { !(_class call YFNC(isUAV)) } ) exitWith {
 
         // Gryphon
         if (_class isEqualTo "I_Plane_Fighter_04_F") exitWith {
@@ -228,7 +228,7 @@ call {
         };
     };
 
-    if (_class isKindOf "Helicopter" && { !(_class isKindOf "UAV") } ) exitWith {
+    if (_class isKindOf "Helicopter" && { !(_class call YFNC(isUAV)) } ) exitWith {
 
         // All choppers should have a darter in them
         _veh addBackpackCargoGlobal ["B_UAV_01_backpack_F", 1];
@@ -352,7 +352,7 @@ call {
 
     };
 
-    if (_class isKindOf "UAV") exitWith {
+    if (_class call YFNC(isUAV)) exitWith {
 
         // We always create a crew, trigger our UAV Spawned event
         // for UAV restrictions

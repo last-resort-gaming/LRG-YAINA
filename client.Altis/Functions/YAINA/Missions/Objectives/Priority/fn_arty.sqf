@@ -33,6 +33,9 @@ while { _ObjectPosition isEqualTo [0,0] } do {
     }] call BIS_fnc_randomPos;
 };
 
+// Now find a location for our AO center position fuzz the HQ...
+private _AOPosition = [_ObjectPosition, 0, _AOSize*0.8, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+
 _missionID = call FNC(getMissionID);
 
 ///////////////////////////////////////////////////////////
@@ -115,7 +118,7 @@ _vehicles append _spVehs;
 [ _units + _vehicles + _buildings, true] call YFNC(addEditableObjects);
 
 // Bring in the Markers
-_markers = [_missionID, _ObjectPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 [
     west,
@@ -125,7 +128,7 @@ _markers = [_missionID, _ObjectPosition, _AOSize] call FNC(createMapMarkers);
         "Priority Target: Artillery",
         ""
     ],
-    _ObjectPosition,
+    _AOPosition,
     false,
     0,
     true,

@@ -194,6 +194,38 @@ class KanbanSlot : RscControlsGroup {
   };
 };
 
+class RscXListBox {
+	deletable = 0;
+	fade = 0;
+	idc = -1;
+	type = 42;
+	x = 0.1;
+	y = 0.1;
+	color[] = {1, 1, 1, 0.6};
+	colorActive[] = {1, 1, 1, 1};
+	colorDisabled[] = {1, 1, 1, 0.25};
+	colorSelect[] = {0.95, 0.95, 0.95, 1};
+	colorText[] = {1, 1, 1, 1};
+	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.09, 1};
+	colorPicture[] = {1, 1, 1, 1};
+	colorPictureSelected[] = {1, 1, 1, 1};
+	colorPictudeDisabled[] = {1, 1, 1, 0.25};
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.65};
+	style = "0x400 + 0x02 +	0x10";
+	shadow = 2;
+	arrowEmpty = "\A3\ui_f\data\gui\cfg\slider\arrowEmpty_ca.paa";
+	arrowFull = "\A3\ui_f\data\gui\cfg\slider\arrowFull_ca.paa";
+	border = "\A3\ui_f\data\gui\cfg\slider\border_ca.paa";
+	w = 0.14706;
+	h = 0.039216;
+	font = "PuristaMedium";
+	sizeEx = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	colorPictureDisabled[] = {1, 1, 1, 1};
+};
+
+
 ///////////////////////////////////////////////////////////
 // HQ TABLET START
 ///////////////////////////////////////////////////////////
@@ -570,6 +602,26 @@ class HQTabletDialog {
                     idcLeft  = 1192;
                     idcRight = 1193;
 
+                };
+
+                // REWARD TYPE COMBO
+                class AmmoBoxTypeTitle: RscText {
+                    idc = -1;
+                    text = "Type:";
+                    sizeEx = 0.03;
+                    x = 0.33 * CONTENT_W - 2* pixelW;
+                    y = CONTENT_H - 2.4 * L_GUI_GRID_H ;
+                    w = 0.2 * CONTENT_W;
+                    h = 0.04;
+                };
+
+                class AmmoBoxType: RscXListBox {
+                    idc = 1503;
+                    x = 0.33 * CONTENT_W + ((CONTENT_W/3) * 0.2);
+                    y = CONTENT_H - 2 * L_GUI_GRID_H ;
+                    w = (CONTENT_W/3) * 0.8;
+                    h = 1 * L_GUI_GRID_H;
+                    sizeEx = 0.025;
                 };
 
                 class RscButtonMenuCancel_2700: RscButton {

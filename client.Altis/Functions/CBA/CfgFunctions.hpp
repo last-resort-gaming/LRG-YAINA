@@ -26,6 +26,7 @@ class CBAP {
         class formatNumber {};
         class getGroup {};
         class getPos {};
+        class getTurret {};
     };
 
 	class Hashes {

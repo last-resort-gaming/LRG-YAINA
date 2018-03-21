@@ -10,5 +10,5 @@
     _this,
     "mertmsg",
     nil,
-    "MERT is online, please do not respawn, they want to do their job too"
+    "MERT is now online - DO NOT RESPAWN. Section commanders can request MERT support via the HQ Channel"
 ] call FNC(generalMessage);

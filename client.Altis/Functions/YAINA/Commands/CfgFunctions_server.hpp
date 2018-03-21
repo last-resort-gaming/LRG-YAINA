@@ -33,6 +33,7 @@ class YAINA_CMD {
         class restart {};
         class rtpause {};
         class mission {};
+        class logfps {};
     };
 
     class Messages {

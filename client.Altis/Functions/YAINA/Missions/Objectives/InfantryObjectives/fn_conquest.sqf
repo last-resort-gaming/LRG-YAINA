@@ -147,7 +147,7 @@ for "_x" from 0 to (2 + (random 3)) do {
 ///////////////////////////////////////////////////////////
 
 // Bring in the Markers
-_markers = [_missionID, _CQPosition, _AOSize, nil, nil, nil, "ColorGUER"] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, "ColorGUER"] call FNC(createMapMarkers);
 
 // Add everything to zeus
 [_units + _buildings + _vehicles, true] call YFNC(addEditableObjects);
@@ -161,7 +161,7 @@ _markers = [_missionID, _CQPosition, _AOSize, nil, nil, nil, "ColorGUER"] call F
         format ["Seize Outpost %1 of %2", _nearestTown select 2, text (_nearestTown select 0)],
         ""
     ],
-    _CQPosition,
+    _AOPosition,
     false,
     10,
     true,

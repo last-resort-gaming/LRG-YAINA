@@ -61,6 +61,19 @@ lbClear _lb;
 
 } forEach _allGroupsWithPlayers;
 
+// Fill up the drop types
+_typeBox = _tablet displayCtrl IDC_PAGE_AMMOBOX controlsGroupCtrl 1503;
+lbClear _typeBox;
+{
+    _idx = _typeBox lbAdd getText(configFile >> "CfgVehicles" >> _x >> "displayName");
+    _typeBox lbSetData [_idx, _x];
+} forEach [
+    "B_CargoNet_01_ammo_F",
+    "B_Truck_01_box_F"
+];
+_typeBox lbSetCurSel 0;
+
+
 // Set Remeber position of user when we opened, and then select
 // so the event fires, and we get our user-list
 GVAR(loadout_last_idx) = _currIDX;

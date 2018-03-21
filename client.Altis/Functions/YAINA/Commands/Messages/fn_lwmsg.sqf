@@ -8,9 +8,9 @@
 
 params ["_owner", "_caller", "_argStr"];
 
-// Lonewolfing (near base): <Name>, please do not leave base alone. Lonewolfing is not allowed on this server. Please return to base and line up.
-// Lonewolfing (Ungrouped): <Name>, lonewolfing is not allowed on this server. Please join the section closest to you and rendezvous with them!
-// Lonewolfing (Grouped): <Name>, lonewolfing is not allowed on this server. Please return to your section and follow your section commander’s orders!
+// Lonewolfing (near base): <Name>, do not leave base alone. Lonewolfing is not allowed on this server. Return to base and line up.
+// Lonewolfing (Ungrouped): <Name>, lonewolfing is not allowed on this server. Join the section closest to you and rendezvous with them.
+// Lonewolfing (Grouped): <Name>, lonewolfing is not allowed on this server. Return to your section and follow your section commander’s orders.
 
 _msg = nil;
 _ret = "";
@@ -32,11 +32,11 @@ if !(_argStr isEqualTo "") then {
             _grouped   = ["IsGroupRegistered", [group _p]] call BIS_fnc_dynamicGroups;
 
             _msg = call {
-                if (_grouped && { _p isEqualTo (leader (group _p)) }) exitWith {  "%1, lonewolfing is not allowed on this server. Please return to your section bay and request transport from HQ" };
-                if (_grouped)  exitWith { "%1, lonewolfing is not allowed on this server. Please return to your section and follow your section commander’s orders" };
-                if ({ _p distance2D (getMarkerPos _x) < 500; } count BASE_PROTECTION_AREAS > 0) exitWith { "%1, please do not leave base alone. Lonewolfing is not allowed on this server. Please return to base and line up." };
-                if !(_grouped) exitWith { "%1, lonewolfing is not allowed on this server. Please join the section closest to you and rendezvous with them!" };
-                "%1, lonewolfing is not allowed on this server. Please return to your section bay!"
+                if (_grouped && { _p isEqualTo (leader (group _p)) }) exitWith {  "%1, lonewolfing is not allowed on this server. Return to your section bay and request transport from HQ." };
+                if (_grouped)  exitWith { "%1, lonewolfing is not allowed on this server. Return to your section and follow your section commander’s orders." };
+                if ({ _p distance2D (getMarkerPos _x) < 500; } count BASE_PROTECTION_AREAS > 0) exitWith { "%1, do not leave base alone. Lonewolfing is not allowed on this server. Return to base and line up." };
+                if !(_grouped) exitWith { "%1, lonewolfing is not allowed on this server. Join the section closest to you and rendezvous with them." };
+                "%1, lonewolfing is not allowed on this server. Return to your section bay."
             };
 
             _msg = format[_msg, name _p];

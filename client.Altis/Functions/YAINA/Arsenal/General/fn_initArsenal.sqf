@@ -64,6 +64,10 @@ GVAR(unitWeapons) = call {
         _permitGroups append ["Laserdesignator", "arifle_gl"];
     };
 
+    if (["SPOTTER"] call YFNC(testTraits)) then {
+        _permitGroups pushBack "Laserdesignator";
+    };
+
     if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
 
         _permitGroups append ["Laserdesignator", "srifle"];
@@ -286,11 +290,7 @@ GVAR(unitBackpacks) = call {
     _permitGroups = ["B_Parachute", "B_AssaultPack","B_Kitbag","B_TacticalPack","B_FieldPack",
                      "B_Carryall", "B_ViperHarness", "B_ViperLightHarness", "B_LegStrapBag", "B_Static"];
 
-    _permitItems  = [];
-
-    if (["UAV"] call YFNC(testTraits)) then {
-        _permitGroups pushBack "B_UAV";
-    };
+    _permitItems  = ["B_UAV_01_backpack_F"];
 
     if (["MERT_UAV"] call YFNC(testTraits)) then {
         _permitGroups pushBackUnique "B_MedicalUAV";

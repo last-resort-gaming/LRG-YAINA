@@ -77,9 +77,29 @@ parseText format["<t size='1.5' align='center' color='#FF0808'>Enemy Jet Incomin
 _jet addEventHandler ["Fired",{ (_this select 0) setVehicleAmmo 1; }];
 
 // Killed Hint/Points
+_jet addEventHandler ["HandleDamage", {
+    params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitPart", "_instigator", "_hitPoint"];
+
+    // If we have a last damage source, use it
+    _instigatorReal = _instigator;
+    if (_instigator isEqualTo objNull) then {
+        if (_source call YFNC(isUAV)) then {
+            _instigatorReal = (UAVControl _source) select 0;
+        } else {
+            _instigatorReal = _killer;
+        };
+    };
+
+    if !(isNull _instigatorReal) then {
+        _unit setVariable[QVAR(damage), _instigatorReal];
+    };
+
+}];
+
 _jet addEventHandler ["Killed",{
     params ["_unit", "_killer", "_instigator"];
 
+    // If we have a real killer, use that
     _instigatorReal = _instigator;
     if (_instigator isEqualTo objNull) then {
         if (_killer isKindOf "UAV") then {
@@ -89,7 +109,13 @@ _jet addEventHandler ["Killed",{
         };
     };
 
-    _name =  [name _instigatorReal, "someone"] select (isNull _instigatorReal);
+    // If we weren't killed outright then pick who last damaged us...
+    if (isNull _instigatorReal || { name _instigatorReal isEqualTo "Error: No unit" }) then {
+        _instigatorReal = _unit getVariable [QVAR(damage), objNull];
+    };
+
+    // Finally dispatch who dun it
+    _name =  [name _instigatorReal, "someone"] select (isNull _instigatorReal || { name _instigatorReal isEqualTo "Error: No unit" });
 
     parseText format["<t align='center'><t size='1.5' align='center' color='#34DB16'>Enemy Jet Destroyed</t><br/>____________________<br/>Nice work! The enemy Jet was taken down by %1. Here's %2 Credits for your efforts.</t>", _name, 100]  call YFNC(globalHint);
     [100, "jet"] call YFNC(addRewardPoints);

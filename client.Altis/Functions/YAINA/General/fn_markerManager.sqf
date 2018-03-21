@@ -15,15 +15,15 @@ if (!isServer) exitWith {};
     {
         _markerInfo = (_x select [15] splitString "/");
 
-        // Delete from Global/Side
-        if (_markerInfo select 2 in ["0","1"]) then {
+        // Delete from Global
+        if (_markerInfo select 2 isEqualTo "0") then {
             deleteMarker _x;
         } else {
             // Only continue if alpha isn't already set
             if !((markerAlpha _x) isEqualTo 0.99) then {
 
-                // If it's in command, delete POLYLINES, and prefix rest with owners name
-                if ((_markerInfo select 2) isEqualTo "2") then {
+                // If it's in command or side, delete POLYLINES, and prefix rest with owners name
+                if ((_markerInfo select 2) in ["1", "2"]) then {
 
                     if (markerShape _x isEqualTo "POLYLINE") then {
                         deleteMarker _x;
