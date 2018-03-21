@@ -5222,9 +5222,9 @@ class Mission
 				name="SA_UJH";
 				condition="_v = (thislist select 0); { _v isKindOf _x } count [""UAV"", ""Plane"", ""Helicopter"", ""LandVehicle""] > 0 && { speed _v < 1 } && { isTouchingGround _v };";
 				onActivation="call { " \n "  _v = (thisList select 0); " \n "  if (_v isKindOf ""UAV"") exitWith { [_v] execVM ""Scripts\YAINA\Service\uav.sqf""; }; " \n "  _type = { if (_v isKindOf _x) exitWith { _x } ; nil } count [""UAV"", ""Plane"", ""Helicopter"", ""LandVehicle""]; " \n "  if (_type isEqualTo 0) exitWith {}; " \n "  [_type, _v, 30, 30] execVM ""scripts\YAINA\Service\general.sqf""; " \n "};";
-				sizeA=10;
-				sizeB=10;
-				sizeC=6;
+				sizeA=12;
+				sizeB=12;
+				sizeC=12;
 				repeatable=1;
 				activationBy="WEST";
 			};
