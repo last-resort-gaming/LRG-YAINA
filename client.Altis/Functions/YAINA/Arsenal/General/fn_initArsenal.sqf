@@ -44,6 +44,7 @@ private _hasTFAR = isClass(configFile >> "CfgPatches" >> "task_force_radio");
 GVAR(unitWeapons) = call {
 
     _permitGroups    = ["Binocular","Rangefinder", "arifle", "hgun", "smg"];
+    _permitItems     = [];
     _blacklistItems  = [
         "arifle_ARX_blk_F", "arifle_ARX_ghex_F", "arifle_ARX_hex_F" // Type 115
     ];
@@ -68,6 +69,10 @@ GVAR(unitWeapons) = call {
         _permitGroups pushBack "Laserdesignator";
     };
 
+    if (["MEDIC"] call YFNC(testTraits)) then {
+       _permitItems append ["srifle_DMR_06_olive_F", "srifle_DMR_06_camo_F"];
+    };
+
     if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
 
         _permitGroups append ["Laserdesignator", "srifle"];
@@ -84,6 +89,9 @@ GVAR(unitWeapons) = call {
         if !(_idx isEqualTo -1) then { _retval append ((GVAR(weaponCargo) select 1) select _idx); };
         true;
     } count _permitGroups;
+
+    // Bring in the permitItems
+    { _retval pushBackUnique _x; nil } count _permitItems;
 
     _retval - _blacklistItems - GVAR(globalBlacklist);
 };
