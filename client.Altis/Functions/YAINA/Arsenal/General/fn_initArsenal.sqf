@@ -330,9 +330,12 @@ GVAR(unitBackpacks) = call {
 
 GVAR(unitMags) = call {
 
-    // By defeault, we allow everything except arty (which is really starter pistol flares) and mines
+    // By defeault, we allow except mines
     _permitGroups    = (GVAR(magazineCargo) select 0);
-    _blacklistGroups = ["Artillery", "Mine"];
+    _blacklistGroups = ["Mine"];
+
+    // And we don't want Red Flares, UGLs
+    _blacklistItems  = ["6Rnd_RedSignal_F"];
 
     _items           = [];
 
@@ -365,7 +368,7 @@ GVAR(unitMags) = call {
                         "DemoCharge_Remote_Mag" ];
     };
 
-    _items - GVAR(globalBlacklist)
+    _items - _blacklistItems - GVAR(globalBlacklist)
 };
 
 ///////////////////////////////////////////////////////////
