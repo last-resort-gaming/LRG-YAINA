@@ -34,6 +34,7 @@ class YAINA_CMD {
         class rtpause {};
         class mission {};
         class logfps {};
+        class promote {};
     };
 
     class Messages {
