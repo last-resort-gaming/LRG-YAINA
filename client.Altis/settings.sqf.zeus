@@ -7,7 +7,7 @@
 
 // Disable the mission manager, this manages the
 // spawning of all of the missions
-yaina_mission_manager_disable = false;
+yaina_mission_manager_disable = true;
 
 ///////////////////////////////////////////////////////////
 // TIME AND WEWATHER
@@ -15,14 +15,14 @@ yaina_mission_manager_disable = false;
 
 // Enable dynamic weather system, when set to false, make
 // sure you have set the correct time and day for your op
-real_weather_enabled = true;
+real_weather_enabled = false;
 
 // Enable time manager (variable time acceleration), if
 // you disable this, then it will be set to the value of
 // yaina_default_time_multiplier (1 = realtime, 2 = twice
 // realtime etc.)
 
-yaina_time_manager_enabled = true;
+yaina_time_manager_enabled = false;
 yaina_default_time_multiplier = 1;
 
 ///////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ yaina_uav_limit_pelicans = 1;
 // Enable vehicle abandonment, if set to false then
 // vehicles cannot be abandoned and will only despawn and
 // perhaps, respawn when they are destroyed
-yaina_vehicle_abandonment = true;
+yaina_vehicle_abandonment = false;
 
 ///////////////////////////////////////////////////////////
 // PLAYERS

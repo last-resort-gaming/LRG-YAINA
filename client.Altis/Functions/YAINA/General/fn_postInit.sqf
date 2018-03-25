@@ -30,4 +30,8 @@ if (isServer) then {
         publicVariable "AIS_BLEEDOUT_MULTIPLIER";
 
     }, 5, []] call CBAP_fnc_addPerFrameHandler;
+
+    // By default, we always add all vehicles and units to zeus, there shouldn't be any by default, but for zeus
+    // missions this is quite useful
+    [allUnits + vehicles, true] call YFNC(addEditableObjects);
 };

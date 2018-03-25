@@ -17,4 +17,10 @@ class YAINA_VEH {
         class getInMan {};
         class getMarkers {};
     };
+
+
+    class defaults {
+        file = "Functions\YAINA\Vehicles\defaults";
+        class initHeli {};
+    };
 };

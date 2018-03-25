@@ -10,6 +10,7 @@ from utils import Command
 from yaina.CfgFunctions import CfgFunctions
 import zipfile
 import tempfile
+import ConfigParser
 
 
 class List(Command):
@@ -255,9 +256,24 @@ class List(Command):
         ]
 
         self.logger.info("Running: %s" % " ".join(cmd))
-        subprocess.call(cmd)
+        subprocess.check_call(cmd)
 
     def build_client(self):
+
+        def find_mission_sqm_dir(root):
+            path = None
+
+            for root, dirs, files in os.walk(tmp_dir):
+                if path is not None: break
+                for file in files:
+                    if file == 'mission.sqm':
+                        path = os.path.dirname(os.path.join(root, file))
+                        break
+
+            if path is None:
+                raise Exception('Couldn\'t find mission.sqm from provided template zip')
+
+            return path
 
         self.logger.debug("Building Client from Source: %s" % self.source)
 
@@ -267,13 +283,6 @@ class List(Command):
         # Copy the tree, if it's a zeusday zip, we delete the data dir, and
         # merge blat it with the files from the zip
         shutil.copytree(self.source, self.build_dir)
-
-        if self.yaina.args.ZEUSDAY_ZIP:
-            shutil.rmtree(os.path.join(self.build_dir, 'Data'))
-
-            # Now we extract the zip and overwrite the existing files
-            with zipfile.ZipFile(self.yaina.args.ZEUSDAY_ZIP,"r") as zip_ref:
-                zip_ref.extractall(os.path.join(self.build_dir))
 
         # Then we walk through and remove functions that are only intended to be in the server
         func_file =  os.path.join(self.build_dir, "Functions", "YAINA", "CfgFunctions.hpp");
@@ -341,8 +350,86 @@ class List(Command):
         with open(func_file, 'w') as fh:
             fh.write(CfgFunctions.compose(client_cfg))
 
+
+        # Handle zeusday zip contents
         if self.yaina.args.ZEUSDAY_ZIP:
-            pbo_name = os.path.splitext(os.path.basename(self.yaina.args.ZEUSDAY_ZIP))[0];
+
+            # We always blat Data dir as this is included in full in the template
+            shutil.rmtree(os.path.join(self.build_dir, 'Data'))
+
+            # We extract to a temp dir, find our mission.sqm (to avoid issues with where
+            # the zip decides to add an extra directory etc. etc.
+            tmp_dir = tempfile.mkdtemp(prefix="yaina_")
+
+            # Now we extract the zip and overwrite the existing files
+            with zipfile.ZipFile(self.yaina.args.ZEUSDAY_ZIP,"r") as zip_ref:
+                zip_ref.extractall(tmp_dir)
+
+            zeus_sqm_root = find_mission_sqm_dir(tmp_dir)
+
+            # Now just copy everything across from the root
+            # Find our mission.sqm
+            for root, dirs, files in os.walk(zeus_sqm_root):
+                for file in files:
+
+                    # Build destination path
+                    src = os.path.join(root, file)
+                    relpath = os.path.relpath(os.path.dirname(src), zeus_sqm_root)
+                    dst = os.path.join(self.build_dir, relpath, file)
+
+                    try:
+                        os.makedirs(os.path.dirname(dst))
+                    except: pass
+
+                    shutil.copyfile(os.path.join(root, file), dst)
+
+            # Cleanup extrat dir
+            shutil.rmtree(tmp_dir)
+
+            # Handle our append file
+            ext_file   = os.path.join(self.build_dir, 'description.ext')
+            append_ext = os.path.join(self.build_dir, 'description.append.ext')
+            if os.path.exists(append_ext):
+                with open(ext_file, 'a') as dh:
+                    dh.write('\n\n// Template Extensions')
+                    with open(append_ext) as sh:
+                        for line in sh:
+                            dh.write(line)
+                os.unlink(append_ext)
+
+            # Handle template.ini attributes
+            ini_f = os.path.join(self.build_dir, 'template.ini')
+            if not os.path.exists(ini_f):
+                raise Exception('template.ini file missing')
+
+            # And populate config
+            info = ConfigParser.ConfigParser()
+            info.read(ini_f)
+
+            # Finally, rewrite description.ext
+            dext = os.path.join(self.build_dir, 'description.ext')
+            fh, abs_path = tempfile.mkstemp()
+            with os.fdopen(fh,'w') as nf:
+                with open(dext) as of:
+                    for ln in of:
+                        try:
+                            sp, rest = ln.split("=", 1)
+                            sp = sp.strip()
+                            v  = info.get('general', sp)
+                            nf.write("%s = %s;\n" % (sp, v))
+                            continue
+                        except:
+                            pass
+                        nf.write(ln)
+
+            os.unlink(dext)
+            os.rename(abs_path, dext)
+            os.unlink(ini_f)
+
+            # Our PBO name is always a filtered onLoadName, and we need the map...
+            pbo_name = "%s.%s" % (re.sub('[^a-zA-Z0-9_]', '', info.get('general', 'onLoadName')),
+                                  info.get('general', 'map').strip('"'))
+
         else:
             # Now just PBO it
             pbo_ver  = self.yaina.getNextVersion(self.yaina.args.map)
@@ -356,6 +443,17 @@ class List(Command):
                             new.write(line.replace("%VERSION%", pbo_ver))
 
                             # Add in a commit ref so we always have a ref
+
+        # Lastly, ensure there is a root CfgFunctions.hpp
+        cfg_f = os.path.join(self.build_dir, 'CfgFunctions.hpp')
+        if not os.path.exists(cfg_f):
+            with open(cfg_f, 'w') as fh:
+                pass
+
+        # If we have a settings.sqf.zeus, rmeove
+        try:
+            os.unlink(os.path.join(self.build_dir, 'settings.sqf.zeus'))
+        except: pass
 
         server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))
         out_dir = os.path.join(server_dir, "mpmissions")
@@ -376,30 +474,37 @@ class List(Command):
         ]
 
         self.logger.info("Running: %s" % " ".join(cmd))
-        subprocess.call(cmd)
+        subprocess.check_call(cmd)
 
         if self.yaina.args.ZEUSDAY_ZIP:
-            print "You can now use: !zeusday %s to start" % pbo_name
+            print "You can now use: !mission %s to start" % pbo_name
         else:
             # And now that's done, lets update next_*
             self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'mission', pbo_name)
             self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'version', pbo_ver)
 
             # We also dump out the ZeusDay template
-            tmp_dir = tempfile.mkdtemp(prefix="yaina_")
+            tmp_dir  = tempfile.mkdtemp(prefix="yaina_")
+            zip_name = 'ZeusTemplate.%s' % self.yaina.args.map
+            tmp_tgt = os.path.join(tmp_dir, zip_name)
+
+            # Copy base template files
+            shutil.copytree(os.path.join(self.yaina.root, 'Templates', 'zeus'), tmp_tgt)
 
             # copy data dir as is
-            shutil.copytree(os.path.join(self.source, 'data'), os.path.join(tmp_dir, 'data'))
+            shutil.copytree(os.path.join(self.source, 'data'), os.path.join(tmp_tgt, 'data'))
 
-            # copy the default files
-            for f in ["mission.sqm", "description.ext", "settings.sqf"]:
-                src = os.path.join(self.source, f)
-                dst = os.path.join(tmp_dir, f)
+            # copy the default files from main mission
+            for f in [["mission.sqm", "mission.sqm"], ["settings.sqf.zeus", "settings.sqf"]]:
+
+                src = os.path.join(self.source, f[0])
+                dst = os.path.join(tmp_tgt, f[1])
                 try:
                     os.makedirs(os.path.dirname(dst))
                 except: pass
                 shutil.copyfile(src, dst)
 
+            # And zip it all up
             zip_fn = os.path.join(self.yaina.root, 'Output', 'ZeusTemplate.%s.zip' % self.yaina.args.map)
             try:
                 os.makedirs(os.path.dirname(zip_fn))
