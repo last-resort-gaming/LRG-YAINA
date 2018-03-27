@@ -20652,6 +20652,7 @@ class Mission
 						rank="COLONEL";
 						init="[[""HQ""], this] call YAINA_fnc_setUnitTrait;";
 						description="Zero  -  Headquarters (TS3: ts.LastResortGaming.net)";
+						isPlayer=1;
 						isPlayable=1;
 						class Inventory
 						{
@@ -31336,6 +31337,7 @@ class Mission
 				position[]={1216,0,30208};
 			};
 			name="zeus1mod";
+			init="this setVariable [""showNotification"", false];";
 			id=2147;
 			type="ModuleCurator_F";
 			atlOffset=185.97;
@@ -31428,6 +31430,7 @@ class Mission
 				position[]={1280,0,30208};
 			};
 			name="zeus2mod";
+			init="this setVariable [""showNotification"", false];";
 			id=2149;
 			type="ModuleCurator_F";
 			atlOffset=185.97;

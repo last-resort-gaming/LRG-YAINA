@@ -38,5 +38,6 @@ class YAINA {
 		class kickSelf {};
 		class playerIntroComplete {};
 		class settings { preInit=1; };
+		class getNearestPlayer {};
     };
 };
