@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={9132.3154,32.060707,21481.117};
-		dir[]={-0.67726308,-0.66253763,0.32030314};
-		up[]={-0.59894705,0.74896687,0.28326437};
-		aside[]={0.42758101,2.2130553e-007,0.90411234};
+		pos[]={9225.8164,23.632151,21590.768};
+		dir[]={-0.10651645,-0.69751322,-0.70877647};
+		up[]={-0.10365903,0.71651208,-0.68977219};
+		aside[]={-0.98901564,1.0133954e-007,0.14862505};
 	};
 };
 binarizationWanted=0;
@@ -14523,8 +14523,8 @@ class Mission
 									dataType="Object";
 									class PositionInfo
 									{
-										position[]={9204.5,16.043634,21595};
-										angles[]={0,5.2345219,0};
+										position[]={9204.5,16.296242,21595};
+										angles[]={0.046631888,5.2345219,6.2778587};
 									};
 									side="Empty";
 									flags=4;
@@ -14535,7 +14535,6 @@ class Mission
 									};
 									id=1668;
 									type="Land_runway_edgelight_blue_F";
-									atlOffset=-0.25260735;
 									class CustomAttributes
 									{
 										class Attribute0
