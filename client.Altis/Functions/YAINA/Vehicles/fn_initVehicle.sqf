@@ -107,6 +107,26 @@ if (_hasKeys) then {
     }] call FNC(addGetInHandler);
 };
 
+// If it's a ground vehicle we allow engineers to flip if it falls over
+if (typeOf _veh isKindOf "LandVehicle") then {
+
+    _checkCode = "'ENG' call YAINA_fnc_testTraits &&
+                 { ( { alive _x } count (crew _target) ) isEqualTo 0 } &&
+                 { (vectorUp _target) select 2 < 0.5 }";
+
+    [_veh, "<t color='#ff1111'>Flip Vehicle</t>", {
+        params ["_target", "_caller", "_id", "_arguments"];
+        // Fire it back to server
+        if (local _target) then {
+            [_target] call FNC(flip);
+        } else {
+            // Ask the server who will forward it to right place
+            [_target] remoteExec [QFNC(flip), 2];
+        };
+    }, [], 1.5, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
+};
+
+
 // Setup the loadout
 _loadout =  [
     getBackpackCargo _veh,
