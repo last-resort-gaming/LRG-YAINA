@@ -112,7 +112,7 @@ _units append _spUnits;
 _vehicles append _spVehs;
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize*0.8] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 
 // Add everything to zeus
 [ _units + _vehicles] call YFNC(addEditableObjects);
