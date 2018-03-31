@@ -35,6 +35,7 @@ class YAINA_CMD {
         class mission {};
         class logfps {};
         class promote {};
+        class repair {};
     };
 
     class Messages {
