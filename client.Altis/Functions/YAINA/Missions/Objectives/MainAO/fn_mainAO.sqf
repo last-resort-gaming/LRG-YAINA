@@ -31,14 +31,7 @@ while { _HQPosition isEqualTo [0,0] } do {
 };
 
 // Now find a location for our AO center position fuzz the HQ...
-_AOPosition = [_HQPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
-
-if !((count _AOPosition) isEqualTo 2) exitWith {
-    TRACE_1("findSafePos: Failed to find safe location from", _HQPosition);
-};
-
-// Add in so we don't have to do it everywhere
-_AOPosition pushBack 0;
+_AOPosition = [_HQPosition, 50, _AOSize*0.8] call YFNC(getPosAround);
 
 // Find our nearest town + direction for mission description
 _nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
