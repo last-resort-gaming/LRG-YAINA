@@ -14,6 +14,16 @@ if (hasInterface) then {
     player addEventHandler ["Respawn", {
         [player] remoteExec [QFNC(addAction), 2];
     }];
+
+
+    // Add on laptop
+    {
+        _x addAction ["Open Command Tablet", {
+            call FNC(openTablet);
+        }, [], 1.5, false, true, "", "'PILOT' call YAINA_fnc_testTraits", 5];
+        nil;
+    } count AIR_DEFENCES_TERMINALS;
+
 };
 
 /*
@@ -126,5 +136,6 @@ if (isServer) then {
     publicVariable QVAR(rewards);
 
     GVAR(orderRewardInProgress) = false;
+    GVAR(orderRewardInProgressLocal) = false;
     publicVariable QVAR(orderRewardInProgress);
 };

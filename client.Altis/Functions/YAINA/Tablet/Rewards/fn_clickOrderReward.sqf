@@ -6,13 +6,12 @@
 
 #include "..\defines.h"
 
-diag_log "ORDER REWARD 1";
-
 // UI updates...
 disableSerialization;
 
 // Broadcast Order in Progress
 GVAR(orderRewardInProgress) = true;
+GVAR(orderRewardInProgressLocal) = true;
 publicVariable QVAR(orderRewardInProgress);
 
 // We got an order...find what's selected

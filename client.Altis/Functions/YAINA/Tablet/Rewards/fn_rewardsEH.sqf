@@ -12,9 +12,8 @@ QVAR(orderRewardInProgress) addPublicVariableEventHandler  {
 
     // We re-select the currently selected item, to check area is clear etc.
     // and to ensure the order button state
-    private _rewardsPage = _tablet displayCtrl IDC_PAGE_REWARDS;
-    if (ctrlVisible _rewardsPage) then {
-        call FNC(refreshRewardsPage);
+    if (ctrlVisible IDC_PAGE_REWARDS) then {
+        [] call FNC(refreshRewardsPage);
     };
 
 };

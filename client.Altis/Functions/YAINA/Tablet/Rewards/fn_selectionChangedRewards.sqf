@@ -49,7 +49,9 @@ if (triggerActivated _sp) then {
 
 _orderButton ctrlEnable !(_price > YVAR(rewardPoints) || GVAR(orderRewardInProgress) || triggerActivated _sp);
 
-// Any time we change selection, we cancel existing builds
+// If the order is in progress locally, we can kill it, else, remain greyed out
+
+// Any time we change selection, we cancel existing builds, if it's local
 if !(_internal) then {
     call FNC(clickCancelReward);
 };

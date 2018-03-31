@@ -24,7 +24,7 @@ if !(isNil "_pfhIds") then {
 private _tablet = (findDisplay IDD_TABLET); if(_tablet isEqualTo displayNull) exitWith {};
 private _page   = _tablet displayCtrl IDC_PAGE_REWARDS;
 
-// We hide the progress bar, and cancel button, and ensure the ORDER button is available
+// We hide the progress bar, and cancel button, and ensure the ORDER button is visible
 { (_page controlsGroupCtrl _x) ctrlShow false; } forEach [
     1301,
     1302,
@@ -32,12 +32,13 @@ private _page   = _tablet displayCtrl IDC_PAGE_REWARDS;
     1601
 ];
 
-// Enable the ORDER Button
-(_page controlsGroupCtrl 1600) ctrlShow true;
+if GVAR(orderRewardInProgressLocal) then {
+    GVAR(orderRewardInProgress) = false;
+    GVAR(orderRewardInProgressLocal) = false;
+    publicVariable QVAR(orderRewardInProgress);
+};
 
-// Broadcast that it's available again
-GVAR(orderRewardInProgress) = false;
-publicVariable QVAR(orderRewardInProgress);
+(_page controlsGroupCtrl 1600) ctrlShow true;
 
 // Refresh to be sure if it was clicked from object
 [{ [true] call FNC(refreshRewardsPage) }, [], 0.5] call CBAP_fnc_waitAndExecute;
