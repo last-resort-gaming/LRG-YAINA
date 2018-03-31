@@ -22,7 +22,23 @@ if (_localRunningMissionID isEqualTo -1) exitWith { true; };
 ((GVAR(localRunningMissions) select 1) select _localRunningMissionID) params ["_markers", "_units", "_vehicles", "_buildings"];
 
 // We can only clear up if the area marker exists
+_idx = (GVAR(missionCleanupTimeouts) select 0) find _missionID;
 
+if (_force isEqualTo false) then {
+    if (_idx isEqualTo -1) then {
+        (GVAR(missionCleanupTimeouts) select 0) pushBack _missionID;
+        (GVAR(missionCleanupTimeouts) select 1) pushBack (LTIME + 300);
+        diag_log format ["Mission Cleanup Timer Started for %1", _missionID];
+        _fail = true;
+    } else {
+        if (LTIME < ((GVAR(missionCleanupTimeouts) select 1) select _idx)) then {
+            diag_log format ["Mission Cleanup Timeout not reached for %1", _missionID];
+            _fail = true;
+        };
+    };
+};
+
+// Finall ensure we're out the area
 if !(_markers isEqualTo []) then {
 
     private _areaMarker = _markers select 0;
@@ -30,14 +46,33 @@ if !(_markers isEqualTo []) then {
     // We always set the marker alphas to 0 so they're no longer on the map, shortcut for finding people to bail
     { _x setMarkerAlpha 0; } count _markers;
 
-    // If there are players remaining in the AO, just bail out
-    if !(call { { _x inArea _areaMarker } count allPlayers; } isEqualTo 0) then { _fail = true; };
+    // Check no players in 1.5 * AO Size
+    _area = [getMarkerPos _areaMarker] +
+                (getMarkerSize _areaMarker apply { _x * 1.5 }) +
+                [markerDir _areaMarker, markerShape _areaMarker == "RECTANGLE"];
 
+    // Check the fail just so we don't get extra messages
+    if !(_fail) then {
+        // If there are players remaining in the AO, just bail out
+        if !(call { { _x inArea _area } count allPlayers; } isEqualTo 0) then {
+            _fail = true;
+            diag_log format ["Players in area for %1: %2", _missionID, _areaMarker];
+        } else {
+            diag_log format ["No plaayers in area for %1: %2", _missionID, _areaMarker];
+
+            // As we have no players in the AO, but might be within our min despawn time
+            // we take the opportunity to delette dead units to reduce some load
+            {
+                if !(isNull _x && { !(alive _x) }) then { deleteVehicle _x; };
+            } count _units;
+        };
+    };
 };
 
 // Fail now unless it's forced, in which case we want to delete units/vehicles
 if (_fail && { not _force } ) exitWith { false; };
 
+diag_log format ["Proceeding with cleanup for %1", _missionID];
 
 // Delete all units
 {
@@ -159,6 +194,14 @@ if (_fail) exitWith { false; };
         (GVAR(localRunningMissions) select 0) deleteAt _localRunningMissionID;
         (GVAR(localRunningMissions) select 1) deleteAt _localRunningMissionID;
     };
+
+    // Delete our cleanup timer
+    private _idx = (GVAR(missionCleanupTimeouts) select 0) find _missionID;
+    if !(_idx isEqualTo -1) then {
+        (GVAR(missionCleanupTimeouts) select 0) deleteAt _idx;
+        (GVAR(missionCleanupTimeouts) select 1) deleteAt _idx;
+    };
+
     // Call BIS_fnc_taskDeldete ? We delay this by 2 minutes so the success message
     // goes through and people can see it in the map, if an HC disconnects at this
     // point then it'll never get deleted.
@@ -172,6 +215,7 @@ if (_fail) exitWith { false; };
 
     // Delete our HCDCH
     [profileName, _missionID] remoteExecCall [QFNC(delHCDCH), 2];
+
 
     // Remove pfh
     [_pfhID] call CBAP_fnc_removePerFrameHandler;

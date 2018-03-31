@@ -35,7 +35,7 @@ while { _ObjectPosition isEqualTo [0,0] } do {
 };
 
 // Now find a location for our AO center position fuzz the HQ...
-private _AOPosition = [_ObjectPosition, 0, _AOSize*0.8, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+private _AOPosition = [_ObjectPosition, 0, _AOSize*0.8] call YFNC(getPosAround)
 
 _missionID = call FNC(getMissionID);
 

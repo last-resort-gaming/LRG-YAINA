@@ -41,7 +41,7 @@ while { _ObjectPosition isEqualTo [0,0] } do {
 
 
 // Suitable location for marker
-private _AOPosition = [_ObjectPosition, 0, _AOSize/2, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+private _AOPosition = [_ObjectPosition, 0, _AOSize/2] call YFNC(getPosAround);
 
 // Mission ID Gen
 _missionID = call FNC(getMissionID);
