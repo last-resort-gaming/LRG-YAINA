@@ -24,11 +24,10 @@ if (hasInterface) then {
         _target setVariable [QVAR(occupied), _caller, true];
         _caller setVariable [QVAR(current), _target];
 
-        private _bp = backpackContainer _caller;
-        if !(isNull _bp) then { _caller setVariable [QVAR(bptex), (getObjectTextures (backpackContainer _caller)) select 0]; };
-
-        // Hide Backpack
-        backpackContainer _caller setObjectTextureGlobal [ 0, "" ];
+        private _bp  = backpackContainer _caller;
+        if !(isNull _bp) then {
+            _bp hideObjectGlobal true;
+        };
 
         // Play animation across the network, set our position to chair and insta-animate
         [_caller, "Crew"] remoteExec ["switchMove", 0];
@@ -49,8 +48,11 @@ if (hasInterface) then {
             _target setVariable [QVAR(current), nil];
 
             // Restore Backpack texture (if we have one)
-            _bp = backpackContainer _caller;
-            if !(isNull _bp) then { _bp setObjectTextureGlobal [ 0, _caller getVariable QVAR(bptex) ]; };
+            private _bp = backpackContainer _caller;
+            if !(isNull _bp) then {
+                _bp hideObjectGlobal false;
+            };
+
 
             // Unset my Move so i can get up
             player switchMove "";
