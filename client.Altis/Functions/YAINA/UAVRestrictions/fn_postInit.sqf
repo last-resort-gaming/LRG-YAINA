@@ -38,6 +38,10 @@ player addEventHandler ["WeaponAssembled", {
     };
 
     if (_disassemble isEqualTo false) then {
+
+        // Anything assembled should probably belong in zeus
+        [[_weapon], ture] call YFNC(addEditableObjects);
+
         // Global event in case of being a UAV to ensure the relevent
         // UAV Terminals can connect to it
         if (_weapon call YFNC(isUAV)) then {
