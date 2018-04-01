@@ -32,7 +32,7 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
             GVAR(playerInit) = true;
 
             // If they're one of our special slots, we need to move them to blufor
-            if ((typeOf player) isEqualTo "VirtualCurator_F") then {
+            if ((typeOf _player) isEqualTo "VirtualCurator_F") then {
 
                 // We are allowed, so now we create a group for this zeuser on west, and register the group in groups so
                 // everyone can see they're online, and once they've switched side, we allow them to talk on side + command
