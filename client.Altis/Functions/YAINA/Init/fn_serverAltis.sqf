@@ -105,7 +105,7 @@ if !(isNil "TM") then {
 
 
     ///////////////////////////////////////////////////////
-    // ONLY UNCONSIOUS PLAYERS (OR MERT) SHOULD GET IN
+    // ONLY UNCONSIOUS PLAYERS, PILOTS, OR MERT CAN GET IN
     ///////////////////////////////////////////////////////
     [TM, {
         params ["_unit", "_pos", "_veh", "_turret"];
@@ -114,7 +114,7 @@ if !(isNil "TM") then {
         // vehicle functions, so only the other slots
 
         if (!(_pos isEqualTo "driver") &&
-            { !(["MERT"] call YAINA_fnc_testTraits) } &&
+            { !(["MERT", "PILOT"] call YAINA_fnc_testTraits) } &&
             { !(player getVariable ["ais_unconscious", false]) } )  then {
 
             // Let them know
