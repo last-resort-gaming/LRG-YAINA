@@ -38,6 +38,7 @@ class YAINA_CMD {
         class logfps {};
         class promote {};
         class repair {};
+        class players {};
     };
 
     class Messages {

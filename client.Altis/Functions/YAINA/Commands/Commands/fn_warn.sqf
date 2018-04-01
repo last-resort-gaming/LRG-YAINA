@@ -19,10 +19,10 @@ if (_argStr isEqualTo "") then {
     private _p = [_argStr] call FNC(findPlayer);
 
     if (_p isEqualTo []) then {
-        _ret = format["no player matching %1", _pn];
+        _ret = format["no player matching %1", _argStr];
     } else {
         if !(count _p isEqualTo 1) then {
-            _ret = format ["too many matches for prefix %1", _pn];
+            _ret = format ["too many matches for prefix %1", _argStr];
         } else {
 
             _player    = _p select 0;
