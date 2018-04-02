@@ -24,15 +24,13 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
         // we kick so they really have gone from the slot and can't just abuse idle
         [{  SERVER_COMMAND_PASSWORD serverCommand _this; }, format ["#kick %1", _puid], 15] call CBAP_fnc_waitAndExecute;
 
-        [format ['event: ascention, allowed: false, player: %1, playerguid: %2', name _player, _puid], "ZeusLog"] call YFNC(log)
+        [format ['event: ascention, allowed: false, player: %1, playerguid: %2', name _player, _puid], "ZeusLog"] call YFNC(log);
     } else {
 
-        // First Time ?
-        if (isNil QVAR(playerInit)) then {
-            GVAR(playerInit) = true;
+        // If they're one of our special slots, we need to move them to blufor
 
-            // If they're one of our special slots, we need to move them to blufor
-            if ((typeOf _player) isEqualTo "VirtualCurator_F") then {
+        if ((typeOf _player) isEqualTo "VirtualCurator_F") then {
+            if (isNil { (group _player) getVariable QVAR(playerInit) } ) then {
 
                 // We are allowed, so now we create a group for this zeuser on west, and register the group in groups so
                 // everyone can see they're online, and once they've switched side, we allow them to talk on side + command
@@ -43,6 +41,7 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 };
 
                 _g = createGroup west;
+                _g setVariable [QVAR(playerInit), true];
                 [_player] joinSilent _g;
 
                 ["RegisterGroup", [_g, _player, [nil, _n, false]]] call BIS_fnc_dynamicGroups;
@@ -57,6 +56,9 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 ["CuratorAssign", [_n, name _player]] remoteExec ["bis_fnc_showNotification"];
             };
         };
+
+        // Catch any new units that maybe lurking around from modules that don't add to all curators
+        (getAssignedCuratorLogic _player) addCuratorEditableObjects [allUnits, true];
 
         // Log ascention
         [format ['event: ascention, allowed: true, player: %1, playerguid: %2', name _player, _puid], "ZeusLog"] call YFNC(log);
