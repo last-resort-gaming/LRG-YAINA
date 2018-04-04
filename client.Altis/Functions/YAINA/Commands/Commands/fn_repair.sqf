@@ -22,6 +22,7 @@ if (_p isEqualTo []) then {
 
         if !(_v isEqualTo _p) then {
             _v setDamage 0;
+            _v setFuel 1;
             _ret = format ["%1's vehicle has been repaired", name _p];
         } else {
             _ret = format ["%1 doesn't appear to be in a vehicle", name _p];
