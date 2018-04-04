@@ -25,7 +25,10 @@ if (typeName _this isEqualTo "ARRAY") then {
     _traits = [_this];
 };
 
-// Duplicate to avoid appending every, single, query
+// We always check for "ALL" master trait
+_traits pushBack "all";
+
+// Duplicate to avoid appending to the players varaible every, single, query
 private _pv = (_unit getVariable [QYVAR(TRAITS), []]) + [];
 
 // Append Server Traits

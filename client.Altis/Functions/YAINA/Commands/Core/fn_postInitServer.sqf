@@ -34,11 +34,9 @@ addMissionEventHandler["PlayerConnected", {
     // Now...If a command doesn't exist / isn't a BEC command then it's a TRAIT
     private _serverTraits = [];
     {
-        if !(_x isEqualTo "ALL") then {
-            private _cmd = missionNamespace getVariable format["YAINA_CMD_fnc_%1", _x];
-            if (isNil "_cmd" && { !(_x in GVAR(becCommands)) } ) then {
-                _serverTraits pushBack _x;
-            };
+        private _cmd = missionNamespace getVariable format["YAINA_CMD_fnc_%1", _x];
+        if (isNil "_cmd" && { !(_x in GVAR(becCommands)) } ) then {
+            _serverTraits pushBack toLower(_x);
         };
     } forEach _cmds;
 
