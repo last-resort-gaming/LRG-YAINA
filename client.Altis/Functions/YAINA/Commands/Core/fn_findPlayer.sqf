@@ -6,12 +6,13 @@
 
 params ["_prefix"];
 
+_prefix = toLower(_prefix);
 _pl = count _prefix;
 
-_r = allPlayers select { ((name _x) select [0, _pl]) isEqualTo _prefix };
+_r = allPlayers select { (toLower(name _x) select [0, _pl]) isEqualTo _prefix };
 
 // However a direct match wins
-_d = _r select { (name _x) isEqualTo _prefix };
+_d = _r select { toLower((name _x)) isEqualTo _prefix };
 
 if !(_d isEqualTo []) exitWith { _d };
 
