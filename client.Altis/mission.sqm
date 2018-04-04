@@ -20680,7 +20680,7 @@ class Mission
 						skill=0.60000002;
 						rank="COLONEL";
 						init="[[""HQ""], this] call YAINA_fnc_setUnitTrait;";
-						description="Zero  -  Headquarters (TS3: ts.LastResortGaming.net)";
+						description="Zero  -  Headquarters (TS3: ts.yaina.eu)";
 						isPlayer=1;
 						isPlayable=1;
 						class Inventory
@@ -29609,7 +29609,7 @@ class Mission
 					{
 						skill=0.60000002;
 						init="[[""UAV""], this] call YAINA_fnc_setUnitTrait;";
-						description="Reaper 1-1  -  UAV Operator  (TS3: ts.LastResortGaming.net)";
+						description="Reaper 1-1  -  UAV Operator  (TS3: ts.yaina.eu)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -29714,7 +29714,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Apex 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Apex 1-1  -  Pilot (TS3: ts.yaina.eu)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -29806,7 +29806,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Bandit 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Bandit 1-1  -  Pilot (TS3: ts.yaina.eu)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -29899,7 +29899,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Casino 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Casino 1-1  -  Pilot (TS3: ts.yaina.eu)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -29992,7 +29992,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Dagger 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Dagger 1-1  -  Pilot (TS3: ts.yaina.eu)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -30084,7 +30084,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Echo 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Echo 1-1  -  Pilot (TS3: ts.yaina.eu)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -34158,7 +34158,7 @@ class Mission
 			dataType="Marker";
 			position[]={551.539,7.3920002,31547.246};
 			name="marker_29";
-			text="LRG TeamSpeak: ts.lastresortgaming.net";
+			text="LRG TeamSpeak: ts.yaina.eu";
 			type="b_unknown";
 			colorName="ColorWhite";
 			id=2457;
