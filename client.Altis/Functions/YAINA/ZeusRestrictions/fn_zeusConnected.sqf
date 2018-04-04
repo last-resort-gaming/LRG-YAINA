@@ -13,10 +13,12 @@ params ["_player"];
 
 if ((owner _player) isEqualTo remoteExecutedOwner) then {
     private _puid = getPlayerUID _player;
+
+    // Do they have zeus access ?
     private _idx = (YVAR(zeuslist) select 0) find _puid;
 
     // Whitelisting only affects the virtual slots
-    if ((typeOf _player) isEqualTo "VirtualCurator_F" && { _idx isEqualTo -1 } ) then {
+    if ((typeOf _player) isEqualTo "VirtualCurator_F" && { _idx isEqualTo -1 } && { !([['zeus-whitelist'], _player] call YFNC(testTraits)) } ) then {
 
         // We tell the client to fail, and we schedule a kick
         [{ ["ZeusSlotRestricted", false, 2, false, false] call BIS_fnc_endMission; }] remoteExec["call", remoteExecutedOwner];

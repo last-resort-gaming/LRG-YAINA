@@ -40,7 +40,7 @@ if (hasInterface) then {
 
         // We check our zeus handlers are running for each player when they launch the zeus interface
         _x addEventHandler ["CuratorObjectRegistered", {
-            [player] remoteExecCall [QFNC(zeusConnected), 2];
+            [player] remoteExecCall [QFNC(zeusConnected), 2],
         }];
 
         // And list our deleted objects

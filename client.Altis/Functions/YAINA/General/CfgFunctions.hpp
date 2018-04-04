@@ -25,11 +25,8 @@ class YAINA {
 		class getPosAround {};
 		class crewNames { postInit = 1; };
 		class testTraits {};
-		class setUnitTrait;
-		class loadDB {};
+		class setUnitTrait {};
 		class log {};
-		class getAdminLevel {};
-		class getAdminLevelFromGUID {};
 		class addActionMP {};
 		class isUAV {};
 		class killLog {};
@@ -39,5 +36,6 @@ class YAINA {
 		class playerIntroComplete {};
 		class settings { preInit=1; };
 		class getNearestPlayer {};
+		class getDBKey {};
     };
 };

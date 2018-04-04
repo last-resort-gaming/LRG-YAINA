@@ -7,10 +7,10 @@ class YAINA_CMD {
 		class postInitServer { postInit=1; };
         class log {};
         class exec {};
-        class allowed {};
         class findPlayer {};
         class notifyAdmins {};
         class generalMessage {};
+        class hasCommand {};
     };
 
     class Commands {
@@ -23,7 +23,6 @@ class YAINA_CMD {
         class mmlist {};
         class mmstop {};
         class report {};
-        class setadmin {};
         class settrait {};
         class revive {};
         class zeusadd {};

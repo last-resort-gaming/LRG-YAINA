@@ -4,6 +4,8 @@
 	returns: nothing
 */
 
+#include "defines.h"
+
 // handle the backwards compat
 private _traits = [];
 private _unit = player;
@@ -23,5 +25,12 @@ if (typeName _this isEqualTo "ARRAY") then {
     _traits = [_this];
 };
 
-private _pv = _unit getVariable ["YAINA_TRAITS", []];
+// Duplicate to avoid appending every, single, query
+private _pv = (_unit getVariable [QYVAR(TRAITS), []]) + [];
+
+// Append Server Traits
+if !(isNil QYVAR(GLOBAL_TRAITS)) then {
+    _pv append YVAR(GLOBAL_TRAITS);
+};
+
 !({ !(_pv find (toLower _x) isEqualTo -1); } count _traits isEqualTo 0);

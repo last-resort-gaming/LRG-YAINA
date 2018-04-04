@@ -4,7 +4,6 @@ class YAINA_TABLET {
     class Init {
         file = "functions\YAINA\Tablet\Init";
         class postInit { postInit = 1; };
-        class addAction {};
     };
 
     class General {

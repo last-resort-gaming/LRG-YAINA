@@ -8,12 +8,28 @@
 
 if (hasInterface) then {
 
-    [player] remoteExec [QFNC(addAction), 2];
+    _res = {
+        [
+            { !isNil QYVAR(GLOBAL_TRAITS) },
+            {
+               if ([["HQ", "hq-tablet"]] call YFNC(testTraits)) then {
+                   player addAction [
+                       "Open Command Tablet",
+                       { call FNC(openTablet); },
+                       [],
+                       1.5,
+                       false
+                   ];
+               };
+           },
+           []
+        ] call CBAP_fnc_waitUntilAndExecute;
+    };
+
+    call _res;
 
     // Add for respawn too
-    player addEventHandler ["Respawn", {
-        [player] remoteExec [QFNC(addAction), 2];
-    }];
+    player addEventHandler ["Respawn", _res];
 
 
     // Add on laptop

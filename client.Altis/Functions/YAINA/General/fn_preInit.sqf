@@ -8,9 +8,7 @@
 
 if !(isServer) exitWith {};
 
-// Bring in admins from DB
-call YFNC(loadDB);
-
+YVAR(zeuslist) = [[],[]]; // Temporary Zeus Users
 YVAR(ownerIDs) = [[],[]]; // [[1,2,3,...], [[uid, profileName, _owner ID]]
 YVAR(addActionMPList) = [];
 
@@ -25,11 +23,8 @@ addMissionEventHandler["PlayerConnected", {
 
     params ["_id", "_uid", "_name", "_jip", "_owner"];
 
-    // Are they an admin ?
-    _adminLevel = [_uid] call YFNC(getAdminLevelFromGUID);
-
     (YVAR(ownerIDs) select 0) pushBack _owner;
-    (YVAR(ownerIDs) select 1) pushBack [_id, _uid, _name, _adminLevel];
+    (YVAR(ownerIDs) select 1) pushBack [_id, _uid, _name];
 
     for "_i" from ((count YVAR(addActionMPList))-1) to 0 step -1 do {
         _obj = (YVAR(addActionMPList) select _i) select 0;
@@ -49,12 +44,6 @@ addMissionEventHandler["PlayerConnected", {
 addMissionEventHandler["PlayerDisconnected", {
 
     params ["_id", "_uid", "_name", "_jip", "_owner"];
-
-    private _idx = (YVAR(adminsLogged) select 0) find _uid;
-    if !(_idx isEqualTo -1) then {
-        (YVAR(adminsLogged) select 0) deleteAt _idx;
-        (YVAR(adminsLogged) select 1) deleteAt _idx;
-    };
 
     _idx = (YVAR(ownerIDs) select 0) find _owner;
     if !(_idx isEqualTo -1) then {

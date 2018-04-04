@@ -15,13 +15,12 @@ class YAINA {
 		class addRewardPoints {};
 		class globalHint {};
 		class getPosAround {};
-		class loadDB {};
 		class log {};
-		class getAdminLevelFromGUID {};
 		class addActionMP {};
 		class killLog {};
 		class deleteVehicleIn {};
 		class kickSelf {};
 		class playerIntroComplete {};
+		class getDBKey {};
     };
 };
