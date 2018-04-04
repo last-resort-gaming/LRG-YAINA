@@ -142,6 +142,14 @@ if(_veh isKindOf "Plane") then {
     { _animationInfo pushBack [_x, _veh animationPhase _x]; } forEach _wingFoldAnimationsList;
 };
 
+// Else push back any other element from the animationList
+private _n = -1;
+{
+  _animationInfo pushBack [_x, _veh animationPhase _x];
+  nil;
+} count (getArray (configFile >> "CfgVehicles" >> typeOf _veh >> "animationList") select { _n = _n+1; _n % 2 isEqualTo 0 });
+
+
 // Save any pylon weapon loadouts
 _pylonLoadout = getPylonMagazines _veh;
 
