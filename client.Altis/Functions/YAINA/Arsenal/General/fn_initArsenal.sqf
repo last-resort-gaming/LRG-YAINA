@@ -82,7 +82,13 @@ GVAR(unitWeapons) = call {
             _blacklistItems append ["srifle_GM6_F", "srifle_GM6_camo_F", "srifle_GM6_ghex_F", "srifle_LRR_F", "srifle_LRR_camo_F", "srifle_LRR_tna_F"];
         };
     };
-
+	
+    if (_hasACE) then {
+        if (["ENG"] call YFNC(testTraits)) then {
+       _permitItems append ["ACE_VMH3", "ACE_VMM3"];
+    };
+    };
+	
     _retval = [];
     {
         _idx = (GVAR(weaponCargo) select 0) find _x;
@@ -94,6 +100,7 @@ GVAR(unitWeapons) = call {
     { _retval pushBackUnique _x; nil } count _permitItems;
 
     _retval - _blacklistItems - GVAR(globalBlacklist);
+
 };
 
 ///////////////////////////////////////////////////////////
@@ -309,7 +316,7 @@ GVAR(unitBackpacks) = call {
     };
 
     if (_hasTFAR) then {
-        if (["HQ", "SL"] call YFNC(testTraits)) then {
+        if (["HQ", "SL", "PILOT", "MERT", "SNIPER", "SPOTTER"] call YFNC(testTraits)) then {
              _permitGroups pushBack "tf_rt1523g";
         };
     };
