@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1370;
+		nextID=1396;
 	};
 	class Camera
 	{
-		pos[]={9020.458,33.69191,21446.416};
-		dir[]={0.3951849,-0.24166498,0.88630217};
-		up[]={0.098431036,0.97035229,0.22075547};
-		aside[]={0.91337001,2.3841858e-007,-0.40725935};
+		pos[]={9070.8848,45.061859,21528.859};
+		dir[]={0.60845894,-0.33899683,0.71761048};
+		up[]={0.21925753,0.940777,0.25858936};
+		aside[]={0.76276821,7.4889977e-007,-0.64675468};
 	};
 };
 binarizationWanted=0;
@@ -106,10 +106,10 @@ addons[]=
 	"A3_Weapons_F_Mark_Acc",
 	"A3_Weapons_F_Pistols_Pistol_Heavy_01",
 	"ace_scopes",
-	"A3_Weapons_F_Machineguns_M200",
-	"A3_Weapons_F_Mark_Machineguns_M200",
-	"ace_overheating",
-	"ace_ai",
+	"A3_Weapons_F_Mark_Machineguns_MMG_02",
+	"cba_jr",
+	"ace_reload",
+	"A3_Weapons_F_Items",
 	"A3_Weapons_F_Rifles_MX",
 	"A3_Weapons_F_Launchers_Titan",
 	"ace_javelin",
@@ -119,10 +119,6 @@ addons[]=
 	"A3_Weapons_F_Mark_LongRangeRifles_DMR_03",
 	"A3_Weapons_F_Exp",
 	"A3_Characters_F_Mark",
-	"A3_Weapons_F_Mark_Machineguns_MMG_02",
-	"cba_jr",
-	"ace_reload",
-	"A3_Weapons_F_Items",
 	"A3_Weapons_F_LongRangeRifles_M320",
 	"A3_Weapons_F_Mark_LongRangeRifles_M320",
 	"ace_rangecard",
@@ -130,15 +126,13 @@ addons[]=
 	"A3_Data_F_Curator_Virtual",
 	"ace_goggles",
 	"A3_Characters_F_Exp",
-	"ace_attach",
-	"ace_chemlights",
 	"A3_Drones_F_Weapons_F_Gamma_Items"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=65;
+		items=61;
 		class Item0
 		{
 			className="A3_Structures_F_Mil";
@@ -491,15 +485,15 @@ class AddonsMetaData
 		};
 		class Item50
 		{
-			className="ace_overheating";
-			name="ACE3 - Overheating";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
+			className="cba_jr";
+			name="Community Base Addons - Joint Rails";
+			author="CBA Team";
+			url="https://www.github.com/CBATeam/CBA_A3";
 		};
 		class Item51
 		{
-			className="ace_ai";
-			name="ACE3 - AI";
+			className="ace_reload";
+			name="ACE3 - Reload";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
@@ -540,59 +534,31 @@ class AddonsMetaData
 		};
 		class Item57
 		{
-			className="cba_jr";
-			name="Community Base Addons - Joint Rails";
-			author="CBA Team";
-			url="https://www.github.com/CBATeam/CBA_A3";
-		};
-		class Item58
-		{
-			className="ace_reload";
-			name="ACE3 - Reload";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item59
-		{
 			className="ace_rangecard";
 			name="ACE3 - Range Card";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item60
+		class Item58
 		{
 			className="A3_Data_F_Curator";
 			name="Arma 3 Zeus Update - Main Configuration";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
-		class Item61
+		class Item59
 		{
 			className="ace_goggles";
 			name="ACE3 - Goggles";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item62
+		class Item60
 		{
 			className="A3_Characters_F_Exp";
 			name="Arma 3 Apex - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
-		};
-		class Item63
-		{
-			className="ace_attach";
-			name="ACE3 - Attach";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
-		};
-		class Item64
-		{
-			className="ace_chemlights";
-			name="ace_chemlights";
-			author="ACE-Team";
-			url="http://ace3mod.com/";
 		};
 	};
 };
@@ -24505,7 +24471,7 @@ class Mission
 			dataType="Marker";
 			position[]={551.539,7.3920002,31547.246};
 			name="marker_29";
-			text="LRG TeamSpeak: ts.yaina.eu";
+			text="LRG TeamSpeak: ts.lastresortgaming.net";
 			type="b_unknown";
 			colorName="ColorWhite";
 			id=2457;
@@ -24814,7 +24780,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_black";
 						};
 					};
@@ -25086,7 +25052,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -25396,13 +25362,13 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
 					id=2501;
 					type="B_medic_F";
-					atlOffset=0.37816238;
+					atlOffset=0.37816334;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -25523,19 +25489,25 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="LMG_Mk200_F";
+								name="MMG_02_camo_F";
 								optics="optic_Hamr";
+								muzzle="muzzle_snds_338_black";
 								flashlight="acc_pointer_IR";
-								underBarrel="bipod_01_F_blk";
+								underBarrel="bipod_01_F_mtp";
 								class primaryMuzzleMag
 								{
-									name="200Rnd_65x39_cased_Box_Tracer";
-									ammoLeft=200;
+									name="130Rnd_338_Mag";
+									ammoLeft=130;
 								};
 							};
 							class handgun
 							{
-								name="hgun_P07_F";
+								name="hgun_Pistol_heavy_01_F";
+								class primaryMuzzleMag
+								{
+									name="11Rnd_45ACP_Mag";
+									ammoLeft=11;
+								};
 							};
 							class binocular
 							{
@@ -25547,67 +25519,44 @@ class Mission
 								isBackpack=0;
 								class ItemCargo
 								{
-									items=8;
+									items=1;
 									class Item0
 									{
-										name="ACE_elasticBandage";
+										name="FirstAidKit";
 										count=5;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-									class Item4
-									{
-										name="ACE_microDAGR";
-										count=1;
-									};
-									class Item5
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item6
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_tourniquet";
-										count=2;
 									};
 								};
 							};
 							class vest
 							{
-								typeName="V_PlateCarrierL_CTRG";
+								typeName="V_PlateCarrierH_CTRG";
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
+										name="MiniGrenade";
 										count=1;
-										ammoLeft=200;
+										ammoLeft=1;
 									};
 									class Item1
+									{
+										name="HandGrenade";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item2
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
+									};
+									class Item3
+									{
+										name="130Rnd_338_Mag";
+										count=1;
+										ammoLeft=130;
 									};
 								};
 							};
@@ -25620,9 +25569,9 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
-										count=3;
-										ammoLeft=200;
+										name="130Rnd_338_Mag";
+										count=4;
+										ammoLeft=130;
 									};
 								};
 								class ItemCargo
@@ -25630,7 +25579,7 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="muzzle_snds_H";
+										name="NVGoggles";
 										count=1;
 									};
 								};
@@ -25638,10 +25587,10 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="tf_anprc152_1";
+							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles";
-							headgear="H_HelmetB_light_black";
+							hmd="ACE_NVG_Gen4";
+							headgear="H_HelmetSpecB_paint1";
 						};
 					};
 					id=2502;
@@ -25871,7 +25820,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_sand";
 						};
 					};
@@ -25960,9 +25909,10 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="arifle_MX_GL_Black_F";
+								name="arifle_MX_Black_F";
 								optics="ACE_optic_Hamr_2D";
 								flashlight="ACE_acc_pointer_green";
+								underBarrel="bipod_01_F_blk";
 								class primaryMuzzleMag
 								{
 									name="30Rnd_65x39_caseless_mag_Tracer";
@@ -25975,17 +25925,22 @@ class Mission
 							};
 							class binocular
 							{
-								name="Laserdesignator";
-								class primaryMuzzleMag
-								{
-									name="Laserbatteries";
-									ammoLeft=1;
-								};
+								name="Rangefinder";
 							};
 							class uniform
 							{
 								typeName="U_B_CTRG_3";
 								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Laserbatteries";
+										count=1;
+										ammoLeft=1;
+									};
+								};
 								class ItemCargo
 								{
 									items=10;
@@ -26047,18 +26002,12 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=9;
-										ammoLeft=30;
 									};
 								};
 							};
@@ -26068,7 +26017,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="DemoCharge_Remote_Mag";
@@ -26078,7 +26027,7 @@ class Mission
 									class Item1
 									{
 										name="3Rnd_HE_Grenade_shell";
-										count=2;
+										count=1;
 										ammoLeft=3;
 									};
 									class Item2
@@ -26086,12 +26035,6 @@ class Mission
 										name="3Rnd_Smoke_Grenade_shell";
 										count=2;
 										ammoLeft=3;
-									};
-									class Item3
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -26119,7 +26062,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -26367,7 +26310,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -26555,6 +26498,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetSpecB_paint1";
 						};
 					};
@@ -26790,7 +26734,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_black";
 						};
 					};
@@ -27062,7 +27006,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -27372,7 +27316,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -27499,19 +27443,25 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="LMG_Mk200_F";
+								name="MMG_02_camo_F";
 								optics="optic_Hamr";
+								muzzle="muzzle_snds_338_black";
 								flashlight="acc_pointer_IR";
-								underBarrel="bipod_01_F_blk";
+								underBarrel="bipod_01_F_mtp";
 								class primaryMuzzleMag
 								{
-									name="200Rnd_65x39_cased_Box_Tracer";
-									ammoLeft=200;
+									name="130Rnd_338_Mag";
+									ammoLeft=130;
 								};
 							};
 							class handgun
 							{
-								name="hgun_P07_F";
+								name="hgun_Pistol_heavy_01_F";
+								class primaryMuzzleMag
+								{
+									name="11Rnd_45ACP_Mag";
+									ammoLeft=11;
+								};
 							};
 							class binocular
 							{
@@ -27523,67 +27473,44 @@ class Mission
 								isBackpack=0;
 								class ItemCargo
 								{
-									items=8;
+									items=1;
 									class Item0
 									{
-										name="ACE_elasticBandage";
+										name="FirstAidKit";
 										count=5;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-									class Item4
-									{
-										name="ACE_microDAGR";
-										count=1;
-									};
-									class Item5
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item6
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_tourniquet";
-										count=2;
 									};
 								};
 							};
 							class vest
 							{
-								typeName="V_PlateCarrierL_CTRG";
+								typeName="V_PlateCarrierH_CTRG";
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
+										name="MiniGrenade";
 										count=1;
-										ammoLeft=200;
+										ammoLeft=1;
 									};
 									class Item1
+									{
+										name="HandGrenade";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item2
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
+									};
+									class Item3
+									{
+										name="130Rnd_338_Mag";
+										count=1;
+										ammoLeft=130;
 									};
 								};
 							};
@@ -27596,9 +27523,9 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
-										count=3;
-										ammoLeft=200;
+										name="130Rnd_338_Mag";
+										count=4;
+										ammoLeft=130;
 									};
 								};
 								class ItemCargo
@@ -27606,7 +27533,7 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="muzzle_snds_H";
+										name="NVGoggles";
 										count=1;
 									};
 								};
@@ -27614,10 +27541,10 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="tf_anprc152_1";
+							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles";
-							headgear="H_HelmetB_light_black";
+							hmd="ACE_NVG_Gen4";
+							headgear="H_HelmetSpecB_paint1";
 						};
 					};
 					id=2511;
@@ -27847,7 +27774,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_sand";
 						};
 					};
@@ -27936,9 +27863,10 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="arifle_MX_GL_Black_F";
+								name="arifle_MX_Black_F";
 								optics="ACE_optic_Hamr_2D";
 								flashlight="ACE_acc_pointer_green";
+								underBarrel="bipod_01_F_blk";
 								class primaryMuzzleMag
 								{
 									name="30Rnd_65x39_caseless_mag_Tracer";
@@ -27951,17 +27879,22 @@ class Mission
 							};
 							class binocular
 							{
-								name="Laserdesignator";
-								class primaryMuzzleMag
-								{
-									name="Laserbatteries";
-									ammoLeft=1;
-								};
+								name="Rangefinder";
 							};
 							class uniform
 							{
 								typeName="U_B_CTRG_3";
 								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Laserbatteries";
+										count=1;
+										ammoLeft=1;
+									};
+								};
 								class ItemCargo
 								{
 									items=10;
@@ -28023,18 +27956,12 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=9;
-										ammoLeft=30;
 									};
 								};
 							};
@@ -28044,7 +27971,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="DemoCharge_Remote_Mag";
@@ -28054,7 +27981,7 @@ class Mission
 									class Item1
 									{
 										name="3Rnd_HE_Grenade_shell";
-										count=2;
+										count=1;
 										ammoLeft=3;
 									};
 									class Item2
@@ -28062,12 +27989,6 @@ class Mission
 										name="3Rnd_Smoke_Grenade_shell";
 										count=2;
 										ammoLeft=3;
-									};
-									class Item3
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -28095,7 +28016,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -28343,7 +28264,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -28531,6 +28452,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetSpecB_paint1";
 						};
 					};
@@ -28766,7 +28688,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_black";
 						};
 					};
@@ -29039,7 +28961,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -29350,7 +29272,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -29478,19 +29400,25 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="LMG_Mk200_F";
+								name="MMG_02_camo_F";
 								optics="optic_Hamr";
+								muzzle="muzzle_snds_338_black";
 								flashlight="acc_pointer_IR";
-								underBarrel="bipod_01_F_blk";
+								underBarrel="bipod_01_F_mtp";
 								class primaryMuzzleMag
 								{
-									name="200Rnd_65x39_cased_Box_Tracer";
-									ammoLeft=200;
+									name="130Rnd_338_Mag";
+									ammoLeft=130;
 								};
 							};
 							class handgun
 							{
-								name="hgun_P07_F";
+								name="hgun_Pistol_heavy_01_F";
+								class primaryMuzzleMag
+								{
+									name="11Rnd_45ACP_Mag";
+									ammoLeft=11;
+								};
 							};
 							class binocular
 							{
@@ -29502,67 +29430,44 @@ class Mission
 								isBackpack=0;
 								class ItemCargo
 								{
-									items=8;
+									items=1;
 									class Item0
 									{
-										name="ACE_elasticBandage";
+										name="FirstAidKit";
 										count=5;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-									class Item4
-									{
-										name="ACE_microDAGR";
-										count=1;
-									};
-									class Item5
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item6
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_tourniquet";
-										count=2;
 									};
 								};
 							};
 							class vest
 							{
-								typeName="V_PlateCarrierL_CTRG";
+								typeName="V_PlateCarrierH_CTRG";
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
+										name="MiniGrenade";
 										count=1;
-										ammoLeft=200;
+										ammoLeft=1;
 									};
 									class Item1
+									{
+										name="HandGrenade";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item2
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
+									};
+									class Item3
+									{
+										name="130Rnd_338_Mag";
+										count=1;
+										ammoLeft=130;
 									};
 								};
 							};
@@ -29575,9 +29480,9 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
-										count=3;
-										ammoLeft=200;
+										name="130Rnd_338_Mag";
+										count=4;
+										ammoLeft=130;
 									};
 								};
 								class ItemCargo
@@ -29585,7 +29490,7 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="muzzle_snds_H";
+										name="NVGoggles";
 										count=1;
 									};
 								};
@@ -29593,10 +29498,10 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="tf_anprc152_1";
+							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles";
-							headgear="H_HelmetB_light_black";
+							hmd="ACE_NVG_Gen4";
+							headgear="H_HelmetSpecB_paint1";
 						};
 					};
 					id=2520;
@@ -29826,7 +29731,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_sand";
 						};
 					};
@@ -29916,9 +29821,10 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="arifle_MX_GL_Black_F";
+								name="arifle_MX_Black_F";
 								optics="ACE_optic_Hamr_2D";
 								flashlight="ACE_acc_pointer_green";
+								underBarrel="bipod_01_F_blk";
 								class primaryMuzzleMag
 								{
 									name="30Rnd_65x39_caseless_mag_Tracer";
@@ -29931,17 +29837,22 @@ class Mission
 							};
 							class binocular
 							{
-								name="Laserdesignator";
-								class primaryMuzzleMag
-								{
-									name="Laserbatteries";
-									ammoLeft=1;
-								};
+								name="Rangefinder";
 							};
 							class uniform
 							{
 								typeName="U_B_CTRG_3";
 								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Laserbatteries";
+										count=1;
+										ammoLeft=1;
+									};
+								};
 								class ItemCargo
 								{
 									items=10;
@@ -30003,18 +29914,12 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=9;
-										ammoLeft=30;
 									};
 								};
 							};
@@ -30024,7 +29929,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="DemoCharge_Remote_Mag";
@@ -30034,7 +29939,7 @@ class Mission
 									class Item1
 									{
 										name="3Rnd_HE_Grenade_shell";
-										count=2;
+										count=1;
 										ammoLeft=3;
 									};
 									class Item2
@@ -30042,12 +29947,6 @@ class Mission
 										name="3Rnd_Smoke_Grenade_shell";
 										count=2;
 										ammoLeft=3;
-									};
-									class Item3
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -30075,7 +29974,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -30323,7 +30222,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -30511,6 +30410,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetSpecB_paint1";
 						};
 					};
@@ -30746,7 +30646,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_black";
 						};
 					};
@@ -31019,7 +30919,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -31330,7 +31230,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -31458,19 +31358,25 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="LMG_Mk200_F";
+								name="MMG_02_camo_F";
 								optics="optic_Hamr";
+								muzzle="muzzle_snds_338_black";
 								flashlight="acc_pointer_IR";
-								underBarrel="bipod_01_F_blk";
+								underBarrel="bipod_01_F_mtp";
 								class primaryMuzzleMag
 								{
-									name="200Rnd_65x39_cased_Box_Tracer";
-									ammoLeft=200;
+									name="130Rnd_338_Mag";
+									ammoLeft=130;
 								};
 							};
 							class handgun
 							{
-								name="hgun_P07_F";
+								name="hgun_Pistol_heavy_01_F";
+								class primaryMuzzleMag
+								{
+									name="11Rnd_45ACP_Mag";
+									ammoLeft=11;
+								};
 							};
 							class binocular
 							{
@@ -31482,67 +31388,44 @@ class Mission
 								isBackpack=0;
 								class ItemCargo
 								{
-									items=8;
+									items=1;
 									class Item0
 									{
-										name="ACE_elasticBandage";
+										name="FirstAidKit";
 										count=5;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-									class Item4
-									{
-										name="ACE_microDAGR";
-										count=1;
-									};
-									class Item5
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item6
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_tourniquet";
-										count=2;
 									};
 								};
 							};
 							class vest
 							{
-								typeName="V_PlateCarrierL_CTRG";
+								typeName="V_PlateCarrierH_CTRG";
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
+										name="MiniGrenade";
 										count=1;
-										ammoLeft=200;
+										ammoLeft=1;
 									};
 									class Item1
+									{
+										name="HandGrenade";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item2
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
+									};
+									class Item3
+									{
+										name="130Rnd_338_Mag";
+										count=1;
+										ammoLeft=130;
 									};
 								};
 							};
@@ -31555,9 +31438,9 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
-										count=3;
-										ammoLeft=200;
+										name="130Rnd_338_Mag";
+										count=4;
+										ammoLeft=130;
 									};
 								};
 								class ItemCargo
@@ -31565,7 +31448,7 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="muzzle_snds_H";
+										name="NVGoggles";
 										count=1;
 									};
 								};
@@ -31573,10 +31456,10 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="tf_anprc152_1";
+							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles";
-							headgear="H_HelmetB_light_black";
+							hmd="ACE_NVG_Gen4";
+							headgear="H_HelmetSpecB_paint1";
 						};
 					};
 					id=2529;
@@ -31807,7 +31690,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_sand";
 						};
 					};
@@ -31897,9 +31780,10 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="arifle_MX_GL_Black_F";
+								name="arifle_MX_Black_F";
 								optics="ACE_optic_Hamr_2D";
 								flashlight="ACE_acc_pointer_green";
+								underBarrel="bipod_01_F_blk";
 								class primaryMuzzleMag
 								{
 									name="30Rnd_65x39_caseless_mag_Tracer";
@@ -31912,17 +31796,22 @@ class Mission
 							};
 							class binocular
 							{
-								name="Laserdesignator";
-								class primaryMuzzleMag
-								{
-									name="Laserbatteries";
-									ammoLeft=1;
-								};
+								name="Rangefinder";
 							};
 							class uniform
 							{
 								typeName="U_B_CTRG_3";
 								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Laserbatteries";
+										count=1;
+										ammoLeft=1;
+									};
+								};
 								class ItemCargo
 								{
 									items=10;
@@ -31984,18 +31873,12 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=9;
-										ammoLeft=30;
 									};
 								};
 							};
@@ -32005,7 +31888,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="DemoCharge_Remote_Mag";
@@ -32015,7 +31898,7 @@ class Mission
 									class Item1
 									{
 										name="3Rnd_HE_Grenade_shell";
-										count=2;
+										count=1;
 										ammoLeft=3;
 									};
 									class Item2
@@ -32023,12 +31906,6 @@ class Mission
 										name="3Rnd_Smoke_Grenade_shell";
 										count=2;
 										ammoLeft=3;
-									};
-									class Item3
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -32056,7 +31933,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -32304,7 +32181,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -32493,6 +32370,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetSpecB_paint1";
 						};
 					};
@@ -32728,7 +32606,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_black";
 						};
 					};
@@ -33001,7 +32879,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -33311,7 +33189,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -33439,19 +33317,25 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="LMG_Mk200_F";
+								name="MMG_02_camo_F";
 								optics="optic_Hamr";
+								muzzle="muzzle_snds_338_black";
 								flashlight="acc_pointer_IR";
-								underBarrel="bipod_01_F_blk";
+								underBarrel="bipod_01_F_mtp";
 								class primaryMuzzleMag
 								{
-									name="200Rnd_65x39_cased_Box_Tracer";
-									ammoLeft=200;
+									name="130Rnd_338_Mag";
+									ammoLeft=130;
 								};
 							};
 							class handgun
 							{
-								name="hgun_P07_F";
+								name="hgun_Pistol_heavy_01_F";
+								class primaryMuzzleMag
+								{
+									name="11Rnd_45ACP_Mag";
+									ammoLeft=11;
+								};
 							};
 							class binocular
 							{
@@ -33463,67 +33347,44 @@ class Mission
 								isBackpack=0;
 								class ItemCargo
 								{
-									items=8;
+									items=1;
 									class Item0
 									{
-										name="ACE_elasticBandage";
+										name="FirstAidKit";
 										count=5;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-									class Item4
-									{
-										name="ACE_microDAGR";
-										count=1;
-									};
-									class Item5
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item6
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_tourniquet";
-										count=2;
 									};
 								};
 							};
 							class vest
 							{
-								typeName="V_PlateCarrierL_CTRG";
+								typeName="V_PlateCarrierH_CTRG";
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
+										name="MiniGrenade";
 										count=1;
-										ammoLeft=200;
+										ammoLeft=1;
 									};
 									class Item1
+									{
+										name="HandGrenade";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item2
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
+									};
+									class Item3
+									{
+										name="130Rnd_338_Mag";
+										count=1;
+										ammoLeft=130;
 									};
 								};
 							};
@@ -33536,9 +33397,9 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
-										count=3;
-										ammoLeft=200;
+										name="130Rnd_338_Mag";
+										count=4;
+										ammoLeft=130;
 									};
 								};
 								class ItemCargo
@@ -33546,7 +33407,7 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="muzzle_snds_H";
+										name="NVGoggles";
 										count=1;
 									};
 								};
@@ -33554,15 +33415,15 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="tf_anprc152_1";
+							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles";
-							headgear="H_HelmetB_light_black";
+							hmd="ACE_NVG_Gen4";
+							headgear="H_HelmetSpecB_paint1";
 						};
 					};
 					id=2538;
 					type="B_soldier_AR_F";
-					atlOffset=0.02997303;
+					atlOffset=0.029972076;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -33788,7 +33649,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_sand";
 						};
 					};
@@ -33878,9 +33739,10 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="arifle_MX_GL_Black_F";
+								name="arifle_MX_Black_F";
 								optics="ACE_optic_Hamr_2D";
 								flashlight="ACE_acc_pointer_green";
+								underBarrel="bipod_01_F_blk";
 								class primaryMuzzleMag
 								{
 									name="30Rnd_65x39_caseless_mag_Tracer";
@@ -33893,17 +33755,22 @@ class Mission
 							};
 							class binocular
 							{
-								name="Laserdesignator";
-								class primaryMuzzleMag
-								{
-									name="Laserbatteries";
-									ammoLeft=1;
-								};
+								name="Rangefinder";
 							};
 							class uniform
 							{
 								typeName="U_B_CTRG_3";
 								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Laserbatteries";
+										count=1;
+										ammoLeft=1;
+									};
+								};
 								class ItemCargo
 								{
 									items=10;
@@ -33965,18 +33832,12 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=9;
-										ammoLeft=30;
 									};
 								};
 							};
@@ -33986,7 +33847,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="DemoCharge_Remote_Mag";
@@ -33996,7 +33857,7 @@ class Mission
 									class Item1
 									{
 										name="3Rnd_HE_Grenade_shell";
-										count=2;
+										count=1;
 										ammoLeft=3;
 									};
 									class Item2
@@ -34004,12 +33865,6 @@ class Mission
 										name="3Rnd_Smoke_Grenade_shell";
 										count=2;
 										ammoLeft=3;
-									};
-									class Item3
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -34037,7 +33892,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -34285,7 +34140,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -34474,6 +34329,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetSpecB_paint1";
 						};
 					};
@@ -34709,7 +34565,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_black";
 						};
 					};
@@ -35000,7 +34856,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -35310,7 +35166,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -35437,19 +35293,25 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="LMG_Mk200_F";
+								name="MMG_02_camo_F";
 								optics="optic_Hamr";
+								muzzle="muzzle_snds_338_black";
 								flashlight="acc_pointer_IR";
-								underBarrel="bipod_01_F_blk";
+								underBarrel="bipod_01_F_mtp";
 								class primaryMuzzleMag
 								{
-									name="200Rnd_65x39_cased_Box_Tracer";
-									ammoLeft=200;
+									name="130Rnd_338_Mag";
+									ammoLeft=130;
 								};
 							};
 							class handgun
 							{
-								name="hgun_P07_F";
+								name="hgun_Pistol_heavy_01_F";
+								class primaryMuzzleMag
+								{
+									name="11Rnd_45ACP_Mag";
+									ammoLeft=11;
+								};
 							};
 							class binocular
 							{
@@ -35461,67 +35323,44 @@ class Mission
 								isBackpack=0;
 								class ItemCargo
 								{
-									items=8;
+									items=1;
 									class Item0
 									{
-										name="ACE_elasticBandage";
+										name="FirstAidKit";
 										count=5;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-									class Item4
-									{
-										name="ACE_microDAGR";
-										count=1;
-									};
-									class Item5
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item6
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_tourniquet";
-										count=2;
 									};
 								};
 							};
 							class vest
 							{
-								typeName="V_PlateCarrierL_CTRG";
+								typeName="V_PlateCarrierH_CTRG";
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=4;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
+										name="MiniGrenade";
 										count=1;
-										ammoLeft=200;
+										ammoLeft=1;
 									};
 									class Item1
+									{
+										name="HandGrenade";
+										count=1;
+										ammoLeft=1;
+									};
+									class Item2
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
+									};
+									class Item3
+									{
+										name="130Rnd_338_Mag";
+										count=1;
+										ammoLeft=130;
 									};
 								};
 							};
@@ -35534,9 +35373,9 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="200Rnd_65x39_cased_Box_Tracer";
-										count=3;
-										ammoLeft=200;
+										name="130Rnd_338_Mag";
+										count=4;
+										ammoLeft=130;
 									};
 								};
 								class ItemCargo
@@ -35544,7 +35383,7 @@ class Mission
 									items=1;
 									class Item0
 									{
-										name="muzzle_snds_H";
+										name="NVGoggles";
 										count=1;
 									};
 								};
@@ -35552,10 +35391,10 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="tf_anprc152_1";
+							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles";
-							headgear="H_HelmetB_light_black";
+							hmd="ACE_NVG_Gen4";
+							headgear="H_HelmetSpecB_paint1";
 						};
 					};
 					id=2547;
@@ -35786,7 +35625,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_light_sand";
 						};
 					};
@@ -35876,9 +35715,10 @@ class Mission
 						{
 							class primaryWeapon
 							{
-								name="arifle_MX_GL_Black_F";
+								name="arifle_MX_Black_F";
 								optics="ACE_optic_Hamr_2D";
 								flashlight="ACE_acc_pointer_green";
+								underBarrel="bipod_01_F_blk";
 								class primaryMuzzleMag
 								{
 									name="30Rnd_65x39_caseless_mag_Tracer";
@@ -35891,17 +35731,22 @@ class Mission
 							};
 							class binocular
 							{
-								name="Laserdesignator";
-								class primaryMuzzleMag
-								{
-									name="Laserbatteries";
-									ammoLeft=1;
-								};
+								name="Rangefinder";
 							};
 							class uniform
 							{
 								typeName="U_B_CTRG_3";
 								isBackpack=0;
+								class MagazineCargo
+								{
+									items=1;
+									class Item0
+									{
+										name="Laserbatteries";
+										count=1;
+										ammoLeft=1;
+									};
+								};
 								class ItemCargo
 								{
 									items=10;
@@ -35963,18 +35808,12 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="SmokeShell";
 										count=5;
 										ammoLeft=1;
-									};
-									class Item1
-									{
-										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=9;
-										ammoLeft=30;
 									};
 								};
 							};
@@ -35984,7 +35823,7 @@ class Mission
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=4;
+									items=3;
 									class Item0
 									{
 										name="DemoCharge_Remote_Mag";
@@ -35994,7 +35833,7 @@ class Mission
 									class Item1
 									{
 										name="3Rnd_HE_Grenade_shell";
-										count=2;
+										count=1;
 										ammoLeft=3;
 									};
 									class Item2
@@ -36002,12 +35841,6 @@ class Mission
 										name="3Rnd_Smoke_Grenade_shell";
 										count=2;
 										ammoLeft=3;
-									};
-									class Item3
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -36035,7 +35868,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetB_snakeskin";
 						};
 					};
@@ -36283,7 +36116,7 @@ class Mission
 							watch="tf_microdagr";
 							radio="tf_anprc152_1";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -36471,6 +36304,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_HelmetSpecB_paint1";
 						};
 					};
@@ -36718,7 +36552,7 @@ class Mission
 							watch="ItemWatch";
 							radio="tf_anprc152_2";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -36945,7 +36779,7 @@ class Mission
 							watch="ItemWatch";
 							radio="tf_anprc152_2";
 							gps="ItemGPS";
-							hmd="NVGoggles";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_Booniehat_mcamo";
 						};
 					};
@@ -38088,7 +37922,7 @@ class Mission
 							watch="ItemWatch";
 							radio="ItemRadio";
 							gps="ItemGPS";
-							hmd="NVGoggles_OPFOR";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_PilotHelmetHeli_O";
 						};
 					};
@@ -38281,40 +38115,16 @@ class Mission
 							};
 							class backpack
 							{
-								typeName="B_Carryall_oli";
+								typeName="tf_rt1523g_big";
 								isBackpack=1;
 								class MagazineCargo
 								{
-									items=5;
+									items=1;
 									class Item0
 									{
 										name="30Rnd_65x39_caseless_mag_Tracer";
-										count=13;
+										count=12;
 										ammoLeft=30;
-									};
-									class Item1
-									{
-										name="SmokeShell";
-										count=10;
-										ammoLeft=1;
-									};
-									class Item2
-									{
-										name="B_IR_Grenade";
-										count=5;
-										ammoLeft=1;
-									};
-									class Item3
-									{
-										name="Chemlight_blue";
-										count=5;
-										ammoLeft=1;
-									};
-									class Item4
-									{
-										name="SmokeShellGreen";
-										count=5;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -38330,9 +38140,9 @@ class Mission
 							map="ItemMap";
 							compass="ItemCompass";
 							watch="ItemWatch";
-							radio="ItemRadio";
+							radio="tf_anprc152";
 							gps="ItemGPS";
-							hmd="NVGoggles_OPFOR";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_CrewHelmetHeli_B";
 						};
 					};
@@ -38552,7 +38362,7 @@ class Mission
 							watch="ItemWatch";
 							radio="tf_anprc152";
 							gps="ItemGPS";
-							hmd="NVGoggles_OPFOR";
+							hmd="ACE_NVG_Gen4";
 							headgear="H_CrewHelmetHeli_B";
 						};
 					};
