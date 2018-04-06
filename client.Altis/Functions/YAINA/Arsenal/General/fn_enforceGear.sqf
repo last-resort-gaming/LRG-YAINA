@@ -89,15 +89,16 @@ private _getParent = {
     // So we start by using BIS_fnc_base{Vehicle,Weapon}, we cant just use inheritsFrom due
     // to blacklisted NVGogglesB_blk_F (ENVG-II) decending from our permitted NVGoggles
     _parent = call {
-        if (isClass (configFile >> "CfgWeapons"  >> _this)) exitWith { _this call BIS_fnc_baseWeapon  };
+        if (isClass (configFile >> "CfgWeapons"  >> _this)) exitWith {
+            // However, that's not enough as TFAR doesn't set base parameters, but instead uses tf_parent
+            // So if that exists, we use that as our primary, interestingly, this only applies to SW radios
+            if (isText (configFile >> "CfgWeapons" >> _this >> "tf_parent")) exitWith {
+                getText (configFile >> "CfgWeapons" >> _this >> "tf_parent");
+            };
+            _this call BIS_fnc_baseWeapon
+        };
         if (isClass (configFile >> "CfgVehicles" >> _this)) exitWith { _this call BIS_fnc_baseVehicle };
         nil
-    };
-
-    // However, that's not enough as TFAR doesn't set base parameters, but instead uses tf_parent
-    // So if that exists, we use that as our primary, interestingly, this only applies to SW radios
-    if (isText (configFile >> "CfgWeapons" >> _this >> "tf_parent")) then {
-        _parent = getText (configFile >> "CfgWeapons" >> _this >> "tf_parent");
     };
 
     _parent

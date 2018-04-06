@@ -33,7 +33,7 @@ while { _CQPosition isEqualTo [0,0] } do {
 };
 
 // Now find a location for our AO center position fuzz the HQ...
-_AOPosition = [_CQPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+_AOPosition = [_CQPosition, 20, _AOSize*0.9] call YFNC(getPosAround);
 
 // Find our nearest town + direction for mission description
 _nearestTown = [_AOPosition] call YFNC(dirFromNearestName);

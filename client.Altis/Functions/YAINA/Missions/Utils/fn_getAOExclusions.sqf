@@ -14,5 +14,5 @@ params [["_AOSize", 0]];
 // away, leaving a gap of 1 radius
 _AOSize = _AOSize * 4;
 
-(BASE_PROTECTION_AREAS apply { [getMarkerPos _x, (getMarkerSize _x apply { _x + 3000 + _AOSize }) + [markerDir _x, markerShape _x == "RECTANGLE"] ] } )
-    + (GVAR(missionAreas) apply { [getMarkerPos _x, (getMarkerSize _x apply { _x + _AOSize }) + [markerDir _x, markerShape _x == "RECTANGLE"] ] } );
+(BASE_PROTECTION_AREAS apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x + 3000 + _AOSize }) + [markerDir _x, markerShape _x == "RECTANGLE"] } )
+    + (GVAR(missionAreas) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x + _AOSize }) + [markerDir _x, markerShape _x == "RECTANGLE"] } );

@@ -27,10 +27,9 @@ if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
     3 enableChannel [true, false]; // Group
     4 enableChannel false; // Vehicle
 
-    // wait until we have our adminLevel set by server before enabling side
     [
-        {!(isNil { player getVariable "YAINA_adminLevel" }) },
-        { 1 enableChannel (player getVariable ["YAINA_adminLevel", 5] <= 3) },
+        { !(isNil { "YAINA_GLOBAL_TRAITS" }) },
+        { 1 enableChannel (['HQ', 'side-channel-talk'] call YAINA_fnc_testTraits) },
         []
     ] call CBAP_fnc_waitUntilAndExecute;
 
@@ -45,7 +44,7 @@ if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
         _settings = [];
 
         // Command Channel Management
-        _settings pushBack [1, "HQ" call YAINA_fnc_testTraits || { player getVariable ["YAINA_adminLevel", 5] <= 3 }, true];
+        _settings pushBack [1, ["HQ", "side-channel-talk"] call YAINA_fnc_testTraits, true];
         _settings pushBack [2, leader (group player) isEqualTo player];
 
         {
@@ -122,7 +121,7 @@ INTRO_HANDLE =  addMissionEventHandler ["PreloadFinished", {
             "EventTrack03a_F_Tacops"
         ], -5];
 
-        [intro_base, "Welcome to Last Resort Gaming", 10, 80, 140, 1] call BIS_fnc_establishingShot;
+        [[9175.96,21684,2.13609], "Welcome to Last Resort Gaming", 10, 80, 140, 1] call BIS_fnc_establishingShot;
 
         5 fadeMusic 0;
 

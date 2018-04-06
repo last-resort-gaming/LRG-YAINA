@@ -60,7 +60,7 @@ while { _ObjectPosition isEqualTo [0,0] } do {
 };
 
 // Suitable location for marker
-private _AOPosition = [_ObjectPosition, 0, _AOSize, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+private _AOPosition = [_ObjectPosition, 0, _AOSize*0.9] call YFNC(getPosAround);
 
 private ["_x","_targetTrigger","_aGroup","_bGroup","_cGroup","_objUnit1","_objUnit2","_objUnit3","_obj1","_obj2","_obj3","_off", "_intelObj","_enemiesArray","_randomDir","_poi","_vtype", "_vpos","_position","_accepted","_fuzzyPos","_briefing","_escapeWP"];
 

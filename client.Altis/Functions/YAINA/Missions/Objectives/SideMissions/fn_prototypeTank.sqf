@@ -30,7 +30,7 @@ while { _ObjectPosition isEqualTo [0,0] } do {
     }] call BIS_fnc_randomPos;
 };
 
-private _AOPosition = [_ObjectPosition, 0, 100, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+private _AOPosition = [_ObjectPosition, 0, 100] call YFNC(getPosAround);
 
 // Mission ID Gen
 _missionID = call FNC(getMissionID);

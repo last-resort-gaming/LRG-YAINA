@@ -15,6 +15,7 @@ GVAR(localMissionID) = 0;
 GVAR(localRunningMissions)  = [[], []];   // [Mission ID, Mission ID, ...], [Mission Args, Mission Args, ...]]
 GVAR(reinforcements)        = [[], []];   // [Mission ID, Mission ID, ...], [[[Grps,Veh], [Grps, Veh], ...], [...]]
 GVAR(stopRequests) = []; // List of mission IDs that have been requested for force completion
+GVAR(missionCleanupTimeouts) = [[], []]; // Array for minimum timeout on de-spawn
 
 // General Setup
 call FNC(utilityPFH);

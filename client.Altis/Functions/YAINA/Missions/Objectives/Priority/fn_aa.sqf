@@ -28,16 +28,32 @@ private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
 while { _ObjectPosition isEqualTo [0,0] } do {
-    // pick a random spawn that's 2 * _AOSize away from players + other AOs
-    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,-1,0.2,5,0,false] isEqualTo [])
+
+    // Blacklist areas, 2km around the areas of operations
+    _blacklist = (BASE_PROTECTION_AREAS apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x + 750 }) + [markerDir _x, markerShape _x == "RECTANGLE"] } )
+           + (GVAR(missionAreas) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x + 750 }) + [markerDir _x, markerShape _x == "RECTANGLE"] } );
+
+    // whitelist an area of 3km around said areas
+    _whitelist = _blacklist apply { _r = _x + []; _r set [1, (_x select 1) + 1000]; _r set [2, (_x select 2) + 1000]; _r };
+
+    // Now just find a location 2 AOsizes away from players
+    _ObjectPosition = [_whitelist, _blacklist + ["water"], {
+        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [0,-1,0.4,5,0,false] isEqualTo [])
     }] call BIS_fnc_randomPos;
+
 };
 
 // Now find a location for our AO center position fuzz the HQ...
-private _AOPosition = [_ObjectPosition, 0, _AOSize*0.8, 0, 0, 0, 0, [], []] call BIS_fnc_findSafePos;
+private _AOPosition = [_ObjectPosition, 0, _AOSize*0.8] call YFNC(getPosAround);
 
 _missionID = call FNC(getMissionID);
+
+// Hide any terrain and slam down the HQ
+private _hiddenTerrainKey = format["HT_%1", _missionID];
+[clientOwner, _hiddenTerrainKey, _ObjectPosition, 30] remoteExec [QYFNC(hideTerrainObjects), 2];
+
+// Wait for the server to send us back
+waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 
 ///////////////////////////////////////////////////////////
 // Spawn AA + Crew
@@ -147,7 +163,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_checkPos", "_aagroup", "_aaBattery"];
+    _args params ["_missionID", "_stage", "_hiddenTerrainKey", "_checkPos", "_aagroup", "_aaBattery"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -199,7 +215,9 @@ _pfh = {
 
     if (_stage isEqualTo 3) then {
         // Initiate default cleanup function to clean up officer group + group
-        [_pfhID, _missionID, _stopRequested] call FNC(missionCleanup);
+        if ([_pfhID, _missionID, _stopRequested] call FNC(missionCleanup)) then {
+            [_hiddenTerrainKey] remoteExec [QYFNC(showTerrainObjects), 2];
+        };
     };
 };
 
@@ -207,4 +225,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "PM", 1, "aa", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, getPosASL _AA1, _aagroup, [_AA1, _AA2, _AA3]]] call FNC(startMissionPFH);
+[_missionID, "PM", 1, "aa", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _hiddenTerrainKey, getPosASL _AA1, _aagroup, [_AA1, _AA2, _AA3]]] call FNC(startMissionPFH);

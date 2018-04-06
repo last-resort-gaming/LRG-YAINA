@@ -5,5 +5,7 @@ class YAINA_ZEUS {
         file = "Functions\YAINA\ZeusRestrictions";
         class postInit { postInit = 1; };
         class zeusConnected {};
+        class migrate {};
+        class startPFH {};
     };
 };

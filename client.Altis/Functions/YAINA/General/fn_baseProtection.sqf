@@ -21,6 +21,9 @@
 player addEventHandler["FiredMan", {
     params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_mag", "_projectile", "_veh"];
 
+    // If allowed to fire at base, just ignore this
+    if (yaina_allow_firing_at_base) exitWith {true};
+
     // Permit Flares / zeusing
     if (_weapon in ["CMFlareLauncher", "CMFlareLauncher_Singles", "CMFlareLauncher_Triples"])  exitWith {true};
     if !(cameraOn isEqualTo (vehicle player)) exitWith {true};

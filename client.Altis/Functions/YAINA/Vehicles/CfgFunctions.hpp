@@ -16,5 +16,12 @@ class YAINA_VEH {
         class addGetInHandler {};
         class getInMan {};
         class getMarkers {};
+        class flip {};
+    };
+
+
+    class defaults {
+        file = "Functions\YAINA\Vehicles\defaults";
+        class initHeli {};
     };
 };

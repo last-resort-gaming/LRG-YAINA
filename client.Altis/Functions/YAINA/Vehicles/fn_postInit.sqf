@@ -64,7 +64,7 @@ if(hasInterface) then {
                 if (visibleMap) then {
 
                     // HQ can see everyones vehicle
-                    if ("HQ" call YFNC(testTraits) || { [player] call YFNC(getAdminLevel) <= 4 }) then {
+                    if (["HQ", "veh-lock-markers"] call YFNC(testTraits)) then {
                         _markersFor = allPlayers apply { [_x, [0.25,1] select ((group _x) isEqualTo (group player)) ] };
                     };
 

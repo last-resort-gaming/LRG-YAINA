@@ -39,11 +39,8 @@ if (_argStr isEqualTo "") then {
                     (YVAR(zeuslist) select 0) pushBack _uid;
                     (YVAR(zeuslist) select 1) pushBack (name _newZeus);
 
-                    // Save the DB
-                    ["write", ["general", "zeuslist", YVAR(zeuslist)]] call YVAR(inidbi);
-
                     // And let them know
-                    "You have been grandted access to the zeus slot" remoteExec ["systemChat", owner _newZeus];
+                    "You have been grandted temporary access to the zeus slot" remoteExec ["systemChat", owner _newZeus];
                 };
             };
         };

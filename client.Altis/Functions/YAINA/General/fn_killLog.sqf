@@ -60,4 +60,11 @@ if (!isNil "_vehicle" && { !(_vehicle isEqualTo _killer) }) then {
     _log pushBack format["vehicle=%1", _vs];
 };
 
-[(_log joinString ", "), "KillLog"] call YFNC(log);
+_log = _log joinString ", ";
+
+// If it's zeus, we additionally log to the zeuslog
+if (_kt isEqualTo "ZEUS") then {
+    [format["event=kill, %1", _log], "zeuslog"] call YFNC(log);
+};
+
+[_log, "KillLog"] call YFNC(log);

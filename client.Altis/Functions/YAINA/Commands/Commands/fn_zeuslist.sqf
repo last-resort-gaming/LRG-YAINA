@@ -17,7 +17,7 @@ private _list = [];
 
 // Sort the list and output it
 if (_list isEqualTo []) then {
-    _list pushBack "There are no zeus users currently defined";
+    _list pushBack "There are no zeus users with temporary zeus";
 } else {
     _list sort true;
 };

@@ -6,40 +6,54 @@
 
 #include "..\defines.h"
 
-if(isServer) then {
+if !(isServer) exitWith {};
 
-    // Pretty map of commands, easy to assign, but a pain to check against
-    GVAR(commandMap) = [
-        [
-            5,
-            4,
-            3,
-            2,
-            1
-        ],
-        [
-            ["help", "credits", "report"],
-            ["abusemsg", "ffmsg", "helimsg", "hqmsg", "lwmsg", "mertmsg", "pilotmsg", "uavmsg", "ugmsg", "vehmsg", "warn", "kick", "60mban", "stable", "micmsg"],
-            ["addcredits", "mmpause", "mmstart","mmlist", "mmstop", "revive", "restart", "24hban", "72hban", "rtpause", "mission", "logfps"],
-            ["setadmin", "settrait", "zeuslist", "zeusadd", "zeusdel", "hrestart"],
-            []
-        ]
-    ];
+// Pass Through Commands
+GVAR(becCommands) = ["60mban", "24hban", "72hban", "hrestart"];
+publicVariable QVAR(becCommands);
 
-    // So we format it to just an assoc array
-    GVAR(commands) = [[], []];
+// Mapping of commands to individual owners
+GVAR(commands) = [[], []];
+
+// We dump the commands into the ownerIDs when folks log so to refersh their
+// Commands list they just need to re-log
+addMissionEventHandler["PlayerConnected", {
+
+    params ["_id", "_uid", "_name", "_jip", "_owner"];
+
+    // Already Set ?
+    _cmds = [_uid, 'yaina', ['report', 'credits', 'help'], ['ALL']] call YFNC(getDBKey);
+    _idx  = (GVAR(commands) select 0) find _owner;
+    if (_idx isEqualTo -1) then {
+        (GVAR(commands) select 0) pushBack _owner;
+        (GVAR(commands) select 1) pushBack (_cmds + ['report', 'credits', 'help']);
+    } else {
+        (GVAR(commands) select 1) set [_idx, (_cmds + ['report', 'credits', 'help'])];
+    };
+
+    // Now...If a command doesn't exist / isn't a BEC command then it's a TRAIT
+    private _serverTraits = [];
     {
-        _lvl = _x;
-        {
-            (GVAR(commands) select 0) pushBack _x;
-            (GVAR(commands) select 1) pushBack _lvl;
-            nil
-        } count ((GVAR(commandMap) select 1) select _forEachIndex);
-    } forEach (GVAR(commandMap) select 0);
+        private _cmd = missionNamespace getVariable format["YAINA_CMD_fnc_%1", _x];
+        if (isNil "_cmd" && { !(_x in GVAR(becCommands)) } ) then {
+            _serverTraits pushBack toLower(_x);
+        };
+    } forEach _cmds;
 
-    GVAR(becCommands) = ["60mban", "24hban", "72hban", "hrestart"];
+    // Send the traits to the client
+    YVAR(GLOBAL_TRAITS) = _serverTraits;
+    _owner publicVariableClient QYVAR(GLOBAL_TRAITS);
 
-    publicVariable QVAR(commands);
-    publicVariable QVAR(becCommands);
+}];
 
-};
+addMissionEventHandler["PlayerDisconnected", {
+
+    params ["_id", "_uid", "_name", "_jip", "_owner"];
+
+    _idx  = (GVAR(commands) select 0) find _owner;
+    if (_idx isEqualTo -1) then {
+        (GVAR(commands) select 0) deleteAt _idx;
+        (GVAR(commands) select 1) deleteAt _idx;
+    };
+
+}];

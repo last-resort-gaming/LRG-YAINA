@@ -106,6 +106,7 @@ class CfgFunctions {
     #include "Functions\YAINA\CfgFunctions.hpp"
     #include "Functions\AIS\cfgFunctions.hpp"
     #include "Functions\DERP\CfgFunctions.hpp"
+    #include "CfgFunctions.hpp"
 };
 
 /******************************************************************************

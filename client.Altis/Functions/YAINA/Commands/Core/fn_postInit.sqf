@@ -30,25 +30,21 @@ if (hasInterface) then {
                         private _command = _message select [1, _index - 1];
                         private _argument = _message select [_index + 1];
 
-                        if (_command in (GVAR(commands) select 0)) then {
-                            if !(_command in GVAR(becCommands)) then {
-                                [_command, _argument] remoteExecCall [QFNC(exec), 2];
-                                _r = true;
-                            } else {
-                                if !(_command isEqualTo "hrestart") then {
-                                    systemChat "BAN issued: remember to repot !report";
-                                };
-                            };
-                        } else {
-                            systemChat format["Invalid Command: %1", _command];
+                        if !(_command in GVAR(becCommands)) then {
+                            [_command, _argument] remoteExecCall [QFNC(exec), 2];
                             _r = true;
+                        } else {
+                            if !(_command isEqualTo "hrestart") then {
+                                systemChat "BAN issued: remember to repot !report";
+                            };
                         };
 
                         if(_r) then {
-                            _display closeDisplay 2;
+                            _display closeDisplay 24;
                         };
                     };
                 };
+
                 _r
             }];
             waitUntil {isNull (findDisplay 24)};

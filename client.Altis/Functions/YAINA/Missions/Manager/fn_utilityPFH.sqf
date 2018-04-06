@@ -50,6 +50,23 @@ GVAR(utilityPFH) = [{
             };
 
             if (_assign) then {
+
+                // Already assigned ?
+                _lb = _g getVariable QVAR(lastBehaviour);
+                if (isNil "_lb") then {
+                    // They're stubborn so we force them to behave
+                    _g setVariable [QVAR(lastBehaviour), behaviour _v, true];
+
+                    {
+                        _x disableAI "AUTOCOMBAT";
+                        _x disableAI "AUTOTARGET";
+                        _x disableAI "TARGET";
+                        _x disableAI "FSM";
+                        nil;
+                    } count (units _g);
+                    _g setBehaviour "CARELESS";
+                };
+
                 _v commandWatch objNull;
 
                 // We increment the waypoint here again, to force it to start moving once more
@@ -57,7 +74,23 @@ GVAR(utilityPFH) = [{
                 if (_nw > count _wps) then { _nw = 0 };
                 _g setCurrentWaypoint (_wps select _nw);
             };
+
         } else {
+
+            // And if they're in the AO we put them back to what they were when they were forced to return
+            _lb = _g getVariable QVAR(lastBehaviour);
+            if !(isNil "_lb") then {
+                _g setBehaviour _lb;
+                _g setVariable [QVAR(lastBehaviour), nil, true];
+                {
+                    _x enableAI "AUTOCOMBAT";
+                    _x enableAI "AUTOTARGET";
+                    _x enableAI "TARGET";
+                    _x enableAI "FSM";
+                    nil;
+                } count (units _g);
+            };
+
             // Force Waypoint Completion ? Tigris' don't follow
             if (typeOf _x isKindOf "APC_Tracked_02_base_F") then {
                 // If we're close to the current waypoint, or we're entirely stationary, move to next WP

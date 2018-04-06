@@ -6,23 +6,22 @@ class YAINA_CMD {
 		class postInitServer { postInit=1; };
         class log {};
         class exec {};
-        class allowed {};
         class findPlayer {};
         class notifyAdmins {};
         class generalMessage {};
+        class hasCommand {};
     };
 
     class Commands {
         file = "Functions\YAINA\Commands\Commands";
         class addcredits {};
-        class credits    {};
+        class credits {};
         class help {};
         class mmstart {};
         class mmpause {};
         class mmlist {};
         class mmstop {};
         class report {};
-        class setadmin {};
         class settrait {};
         class revive {};
         class zeusadd {};
@@ -34,6 +33,9 @@ class YAINA_CMD {
         class rtpause {};
         class mission {};
         class logfps {};
+        class promote {};
+        class repair {};
+        class players {};
     };
 
     class Messages {

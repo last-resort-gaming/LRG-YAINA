@@ -44,6 +44,7 @@ private _hasTFAR = isClass(configFile >> "CfgPatches" >> "task_force_radio");
 GVAR(unitWeapons) = call {
 
     _permitGroups    = ["Binocular","Rangefinder", "arifle", "hgun", "smg"];
+    _permitItems     = [];
     _blacklistItems  = [
         "arifle_ARX_blk_F", "arifle_ARX_ghex_F", "arifle_ARX_hex_F" // Type 115
     ];
@@ -68,6 +69,10 @@ GVAR(unitWeapons) = call {
         _permitGroups pushBack "Laserdesignator";
     };
 
+    if (["MEDIC"] call YFNC(testTraits)) then {
+       _permitItems append ["srifle_DMR_06_olive_F", "srifle_DMR_06_camo_F"];
+    };
+
     if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
 
         _permitGroups append ["Laserdesignator", "srifle"];
@@ -84,6 +89,9 @@ GVAR(unitWeapons) = call {
         if !(_idx isEqualTo -1) then { _retval append ((GVAR(weaponCargo) select 1) select _idx); };
         true;
     } count _permitGroups;
+
+    // Bring in the permitItems
+    { _retval pushBackUnique _x; nil } count _permitItems;
 
     _retval - _blacklistItems - GVAR(globalBlacklist);
 };
@@ -241,6 +249,10 @@ GVAR(unitItems) = call {
         _permitItems append ["tf_microdagr", "tf_anprc152"];
     };
 
+    if (_hasACE) then {
+        _permitItems append ["ACE_NVG_Gen4", "ACE_NVG_Wide"];
+    };
+
     // Now, add in our permits, and remove blacklists again
     {
         _idx = (GVAR(itemCargo) select 0) find _x;
@@ -326,9 +338,12 @@ GVAR(unitBackpacks) = call {
 
 GVAR(unitMags) = call {
 
-    // By defeault, we allow everything except arty (which is really starter pistol flares) and mines
+    // By defeault, we allow except mines
     _permitGroups    = (GVAR(magazineCargo) select 0);
-    _blacklistGroups = ["Artillery", "Mine"];
+    _blacklistGroups = ["Mine"];
+
+    // And we don't want Red Flares, UGLs
+    _blacklistItems  = ["6Rnd_RedSignal_F"];
 
     _items           = [];
 
@@ -361,7 +376,7 @@ GVAR(unitMags) = call {
                         "DemoCharge_Remote_Mag" ];
     };
 
-    _items - GVAR(globalBlacklist)
+    _items - _blacklistItems - GVAR(globalBlacklist)
 };
 
 ///////////////////////////////////////////////////////////

@@ -17,7 +17,6 @@ if (_argStr isEqualTo "") then {
 } else {
 
     private _p = [_argStr] call FNC(findPlayer);
-    private _up = false;
 
     if (_p isEqualTo []) then {
         // Then could be a  UID
@@ -25,7 +24,6 @@ if (_argStr isEqualTo "") then {
         if (_idx isEqualTo -1) then {
             _ret = format["no player matching %1", _argStr];
         } else {
-            _up = true;
             _ret = format["%1 has had zeus removed", (YVAR(zeuslist) select 1) deleteAt _idx];
             (YVAR(zeuslist) select 0) deleteAt _idx;
             (YVAR(zeuslist) select 1) deleteAt _idx;
@@ -58,15 +56,9 @@ if (_argStr isEqualTo "") then {
                         SERVER_COMMAND_PASSWORD serverCommand format ['#kick %1', getPLayerUID _oldZeus];
                     };
 
-                    _up = true;
                 };
             };
         };
-    };
-
-    if (_up) then {
-        // Save the DB
-        ["write", ["general", "zeuslist", YVAR(zeuslist)]] call YVAR(inidbi);
     };
 
 };
