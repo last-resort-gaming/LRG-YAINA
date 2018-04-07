@@ -14,8 +14,8 @@ player createDiaryRecord ["LRG Public Server", ["Issues",
 <br/>
 <font face='PuristaLight' color='#D3D3D3'>If you do encounter any bugs, issues or want to leave us feedback feel free to talk to a Community Manager (CM), post on our forums or log an issue on our tracker, all linked below:</font>
 <br/>
-<br/>Teamspeak:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://ts.yaina.eu'"">ts.yaina.eu</execute></font>
-<br/>Forums:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://www.lastresortgaming.net'"">lastresortgaming.net</execute></font>
+<br/>Teamspeak:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute></font>
+<br/>Forums:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">lastresortgaming.net</execute></font>
 <br/>Issue Tracker:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'https://bitbucket.org/lastresortgaming/lrg-yaina/issues/new'"">lastresortgaming.net</execute></font>
 "
 ]];
@@ -80,7 +80,7 @@ player createDiaryRecord ["** SERVER RULES **", ["HQ",
 <br/>
 HQ is a support role, your job is to coordinate the tasking, transport, reinforcement and resupply of players and assets.
 <br/>
-<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.yaina.eu'"">ts.yaina.eu</execute>
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
 <br />2. You should be in a locked group alone, and name it HQ or ZERO to clearly identify yourself and ensure players can contact you.
 <br />3. When directing sections and players such as pilots, consider both the mission and player enjoyment together.
 <br />4. HQ should be fair in directing pilots and section commanders, not ignoring or favouring individuals.
@@ -97,7 +97,7 @@ player createDiaryRecord ["** SERVER RULES **", ["MERT",
 <br />
 Medical Emergency Response Team (MERT) is a support role, your job is to support ground forces with emergency medical aid when their medics are incapacitated or impeded
 <br />
-<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.yaina.eu'"">ts.yaina.eu</execute>
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
 <br />2. You must be in a clearly identified MERT group so section leaders can contact you
 <br />3. Any MERT member can fly the MERT chopper - use this with sensibly
 <br />4. Only insert to safe locatinos, if the section is pinned down, and you are unable to safely appraoch, make use of the medical UAVs
@@ -114,7 +114,7 @@ player createDiaryRecord ["** SERVER RULES **", ["Pilots",
 <br/>
 Pilot is a support role, your job is to provide infantry units with safe, responsible transport, as such you have to maintain our code of conduct to participate in this role.
 <br/>
-<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.yaina.eu'"">ts.yaina.eu</execute>
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
 <br />2. You should be in a locked group alone, clearly identified with a call sign to ensure HQ and other players can contact you.
 <br />3. If no HQ is online, pilots must coordinate transport and resupply directly with section leaders.
 <br />4. If an HQ is online, pilots must obey their instructions and taskings.
@@ -133,7 +133,7 @@ player createDiaryRecord ["** SERVER RULES **", ["UAV Operator",
 <br/>
 UAV Operators are a support role, your job is to provide intelligence of enemy positions and movements, as well as fire support on request only.
 <br/>
-<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.yaina.eu'"">ts.yaina.eu</execute>
+<br />1. You must be on TeamSpeak: <execute expression=""copyToClipboard 'http://ts.lastresortgaming.net'"">ts.lastresortgaming.net</execute>
 <br />2. You should be in a locked group alone, clearly identified with a call sign to ensure HQ and other players can contact you.
 <br />3. You must coordinate your actions with HQ and Section Leaders and not operate unilaterally.
 <br />4. You should mark targets and enemy positions on the map but do not overclutter it so as to obstruct players ability to use it.
