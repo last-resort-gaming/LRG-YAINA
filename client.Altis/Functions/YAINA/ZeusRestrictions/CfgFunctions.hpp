@@ -7,5 +7,6 @@ class YAINA_ZEUS {
         class zeusConnected {};
         class migrate {};
         class startPFH {};
+        class zeusPinged {};
     };
 };
