@@ -187,6 +187,8 @@ if (_item isEqualTo objNull) then {
                         } else {
                             _rem = [backpackItems _unit] call _filterList;
                         };
+                    } else {
+                        [format["player: %1, item: %2, filtered: true, msg: not found in cargo lists", name player, _item], "ArsenalLog"] remoteExec [QYFNC(log), 2];
                     };
                 };
             };
@@ -214,6 +216,8 @@ if (_item isEqualTo objNull) then {
                         } else {
                             [backpackItems _unit] call _filterBlacklist;
                         };
+                    } else {
+                        [format["player: %1, item: %2, filtered: false, msg: not found in cargo lists", name player, _item], "ArsenalLog"] remoteExec [QYFNC(log), 2];
                     };
                 };
             };
