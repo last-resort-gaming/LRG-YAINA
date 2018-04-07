@@ -22,13 +22,17 @@ addMissionEventHandler["PlayerConnected", {
     params ["_id", "_uid", "_name", "_jip", "_owner"];
 
     // Already Set ?
-    _cmds = [_uid, 'yaina', ['report', 'credits', 'help'], ['ALL']] call YFNC(getDBKey);
+    _cmds = [_uid, 'yaina', [], ['ALL']] call YFNC(getDBKey);
+
+    // We always add 'report', 'credits', 'help'
+    { _cmds pushBackUnique _x, nil; } count ['report', 'credits', 'help'];
+
     _idx  = (GVAR(commands) select 0) find _owner;
     if (_idx isEqualTo -1) then {
         (GVAR(commands) select 0) pushBack _owner;
-        (GVAR(commands) select 1) pushBack (_cmds + ['report', 'credits', 'help']);
+        (GVAR(commands) select 1) pushBack _cmds;
     } else {
-        (GVAR(commands) select 1) set [_idx, (_cmds + ['report', 'credits', 'help'])];
+        (GVAR(commands) select 1) set [_idx, _cmds];
     };
 
     // Now...If a command doesn't exist / isn't a BEC command then it's a TRAIT
