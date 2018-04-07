@@ -240,13 +240,6 @@ _pfh = {
         _alive = { alive _x } count ([_missionID] call FNC(getMissionUnits));
 
         if (_alive < 20) then {
-
-            // Complete our dummy task + delete it's marker
-            deleteMarker format ["%1_defend_mrk", _missionID];
-
-            // Just delete the task, main task takes care of it
-            [format ["%1_defend", _missionID]] call BIS_fnc_deleteTask;
-
             // And move on to mission windup, we don't do it here
             // as the PFH resumes until folks are outside the AO
             // and we don't want it to redo this all the time.
@@ -257,6 +250,12 @@ _pfh = {
 
     // Lastly, start our cleanup
     if (_stage isEqualTo 3) then {
+
+        // Complete our dummy task + delete it's marker
+        deleteMarker format ["%1_defend_mrk", _missionID];
+
+        // Just delete the task, main task takes care of it
+        [format ["%1_defend", _missionID]] call BIS_fnc_deleteTask;
 
         // Set Mission Exit State
         [_missionID, 'Succeeded', not _stopRequested] call BIS_fnc_taskSetState;

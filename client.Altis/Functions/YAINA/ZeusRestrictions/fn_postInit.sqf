@@ -28,6 +28,9 @@ if (isServer) then {
         ];
     }, 2, []] call CBAP_fnc_addPerFrameHandler;
 
+    private _zeusGroup = createGroup sideLogic;
+    ZEUS_PING_MODULE = _zeusGroup createunit["ModuleCurator_F", [0, 0, 0], [], 0.5, "NONE"];
+    ZEUS_PING_MODULE addEventHandler ["CuratorPinged",{_this call FNC(zeusPinged)}];
 };
 
 if (hasInterface) then {
