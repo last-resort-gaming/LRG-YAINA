@@ -8,7 +8,7 @@ class EditorData
 	toggles=522;
 	class ItemIDProvider
 	{
-		nextID=2682;
+		nextID=2683;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={9135.4111,28.22751,21512.182};
-		dir[]={-0.617284,-0.63909692,-0.45886871};
-		up[]={-0.51295704,0.76906955,-0.38131323};
-		aside[]={-0.59659988,-3.2328535e-007,0.80256921};
+		pos[]={9232.9922,44.545265,21713.572};
+		dir[]={-0.54684317,-0.7851451,-0.29081029};
+		up[]={-0.69325852,0.61924601,-0.36867172};
+		aside[]={-0.46954513,5.1567622e-007,0.88294387};
 	};
 };
 binarizationWanted=0;
@@ -5684,10 +5684,9 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={9210,14.46299,21687.25};
-			angle=4.1543021;
+			angle=4.1543026;
 			class Attributes
 			{
-				condition="!(({ isPlayer (driver _x) && { !(driver _x isEqualTo _x) } } count thisList) isEqualTo 0)";
 				onActivation="car_gate animate [""Door_1_rot"", 1];" \n "car_gate animate [""Door_2_rot"", 1];";
 				onDeactivation="car_gate animate [""Door_1_rot"", 0];" \n "car_gate animate [""Door_2_rot"", 0];";
 				sizeA=5;
@@ -38836,10 +38835,9 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={9217.8066,14.453575,21701.283};
-			angle=4.1543021;
+			angle=4.1543026;
 			class Attributes
 			{
-				condition="call{!(({ isPlayer (driver _x) && { !(driver _x isEqualTo _x) } } count thisList) isEqualTo 0)}";
 				onActivation="call{veh_gate animate [""Door_1_rot"", 1];" \n "veh_gate animate [""Door_2_rot"", 1];}";
 				onDeactivation="call{veh_gate animate [""Door_1_rot"", 0];" \n "veh_gate animate [""Door_2_rot"", 0];}";
 				sizeA=5;
