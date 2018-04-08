@@ -777,7 +777,7 @@ _QS_fnc_iconUnits = {
 			} else {
 				{
 					if (((side _x) in _as) || {(captive _x)}) then {
-						if (isPlayer _x) then {
+						if (isPlayer _x && { !(typeOf _x isKindOf 'VirtualCurator_F') } ) then {
 							if (_di isEqualTo 2) then {
 								if ((_x distance player) < (_QS_ST_X select 27)) then {
 									if (_x isEqualTo ((crew (vehicle _x)) select 0)) then {
@@ -796,7 +796,7 @@ _QS_fnc_iconUnits = {
 		} else {
 			{
 				if (((side _x) in _as) || {(captive _x)}) then {
-					if (isPlayer _x) then {
+					if (isPlayer _x && { !(typeOf _x isKindOf 'VirtualCurator_F') }) then {
 						if (_di isEqualTo 2) then {
 							if ((_x distance player) < (_QS_ST_X select 27)) then {
 								if (_x isEqualTo ((crew (vehicle _x)) select 0)) then {
@@ -1100,14 +1100,12 @@ _QS_fnc_groupIconType = {
 	};
 	if (_vehicleClass isEqualTo 'Armored') exitWith {
 		if (['APC',_grpVehicle_type,FALSE] call (missionNamespace getVariable 'BIS_fnc_inString')) then {
-			_iconType = _iconTypes select 2; 
+			_iconType = _iconTypes select 2;
 		} else {
 			if ((['arty',_grpVehicle_type,FALSE] call (missionNamespace getVariable 'BIS_fnc_inString')) || {(['mlrs',_grpVehicle_type,FALSE] call (missionNamespace getVariable 'BIS_fnc_inString'))}) then {
 				_iconType = _iconTypes select 9; 
 			} else {
-				if (['MBT',_grpVehicle_type,FALSE] call (missionNamespace getVariable 'BIS_fnc_inString')) then {
-					_iconType = _iconTypes select 3; 
-				};
+                _iconType = _iconTypes select 3;
 			};
 		};
 		_grpVehicle setVariable ['QS_ST_groupVehicleIconType',_iconType,FALSE];
