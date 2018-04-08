@@ -42,6 +42,10 @@ GVAR(loadout) = [
 // Place holder for last selected player
 GVAR(loadout_last_idx) = nil;
 
+// Place holder for animation states
+GVAR(animationControls) = [];
+GVAR(animationControlsText) = [];
+
 ///////////////////////////////////////////////////////////
 // Device
 ///////////////////////////////////////////////////////////

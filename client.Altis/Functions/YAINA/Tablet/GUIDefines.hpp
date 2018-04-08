@@ -155,6 +155,20 @@ class RewardsBG : RscText {
     h = (SLOT_W / 16) * 3;
 };
 
+class GarageAnimation : RscText {
+    text = "";
+    y = 0.01;
+    sizeEx = 0.025;
+    w = SLOT_W;
+    h = 0.03;
+    colorText[] = {0.8, 0.8, 0.8, 1};
+};
+
+class GarageAnimationR : GarageAnimation {
+    style = ST_RIGHT;
+    colorText[] = {0.8, 0.8, 0.8, 1};
+};
+
 class RequestButton : RscButton {
     w = CONTENT_W * 0.23;
     h = CONTENT_H * 0.15;
@@ -371,6 +385,10 @@ class HQTabletDialog {
                     y = 0;
                     w = CONTENT_W;
                     h = CONTENT_H;
+                    colorBackground[] = {0,0,0,0};
+                    sizeEx="0.03";
+                    font="RobotoCondensed";
+
                     class Attributes {
                         align = "center";
                         valign = "middle";
@@ -469,7 +487,7 @@ class HQTabletDialog {
                     idc = 1500;
                     x = 0;
                     y = 0.04;
-                    w = 0.3 * CONTENT_W;
+                    w = 0.29 * CONTENT_W;
                     h = CONTENT_H - 0.04 - 2 * L_GUI_GRID_H ;
                     //colorBackground[] = {0.2,0.2,0.2,1};
 
@@ -489,21 +507,21 @@ class HQTabletDialog {
 
                 // We use BGs as we can't get the color i want without it...works
                 // and it allows me to drop the player button down to be in the middle
-                class PlayerLoadoutButtonBG: LoadoutBG { idc = 50; x = 0.33 * CONTENT_W; };
-                class PrimaryLoadoutButtonBG: LoadoutBG { idc = 51; x = 0.333 * CONTENT_W + 2.4 * L_GUI_GRID_W; };
-                class SecondaryLoadoutButtonBG: LoadoutBG { idc = 52; x = 0.33 * CONTENT_W + 2 *(2.4 * L_GUI_GRID_W); };
-                class HandgunLoadoutButtonBG: LoadoutBG { idc = 53; x = 0.33 * CONTENT_W + 3 *(2.4 * L_GUI_GRID_W); };
-                class GrenadeLoadoutButtonBG: LoadoutBG { idc = 54; x = 0.33 * CONTENT_W + 4 *(2.4 * L_GUI_GRID_W); };
-                class OpticsLoadoutButtonBG: LoadoutBG { idc = 55; x = 0.33 * CONTENT_W + 5 *(2.4 * L_GUI_GRID_W); };
-                class UniformLoadoutButtonBG: LoadoutBG { idc = 56; x = 0.33 * CONTENT_W + 6 *(2.4 * L_GUI_GRID_W); };
-                class VestLoadoutButtonBG: LoadoutBG { idc = 57; x = 0.33 * CONTENT_W + 7 *(2.4 * L_GUI_GRID_W); };
-                class BackpackLoadoutButtonBG: LoadoutBG { idc = 58; x = 0.33 * CONTENT_W + 8 *(2.4 * L_GUI_GRID_W); };
-                class HeadgearLoadoutButtonBG: LoadoutBG { idc = 59; x = 0.33 * CONTENT_W + 9 *(2.4 * L_GUI_GRID_W); };
-                class BinosLoadoutButtonBG: LoadoutBG { idc = 60; x = 0.33 * CONTENT_W + 10 *(2.4 * L_GUI_GRID_W); };
+                class PlayerLoadoutButtonBG: LoadoutBG { idc = 50; x = 0.3 * CONTENT_W; };
+                class PrimaryLoadoutButtonBG: LoadoutBG { idc = 51; x = 0.3 * CONTENT_W + 2.4 * L_GUI_GRID_W; };
+                class SecondaryLoadoutButtonBG: LoadoutBG { idc = 52; x = 0.3 * CONTENT_W + 2 *(2.4 * L_GUI_GRID_W); };
+                class HandgunLoadoutButtonBG: LoadoutBG { idc = 53; x = 0.3 * CONTENT_W + 3 *(2.4 * L_GUI_GRID_W); };
+                class GrenadeLoadoutButtonBG: LoadoutBG { idc = 54; x = 0.3 * CONTENT_W + 4 *(2.4 * L_GUI_GRID_W); };
+                class OpticsLoadoutButtonBG: LoadoutBG { idc = 55; x = 0.3 * CONTENT_W + 5 *(2.4 * L_GUI_GRID_W); };
+                class UniformLoadoutButtonBG: LoadoutBG { idc = 56; x = 0.3 * CONTENT_W + 6 *(2.4 * L_GUI_GRID_W); };
+                class VestLoadoutButtonBG: LoadoutBG { idc = 57; x = 0.3 * CONTENT_W + 7 *(2.4 * L_GUI_GRID_W); };
+                class BackpackLoadoutButtonBG: LoadoutBG { idc = 58; x = 0.3 * CONTENT_W + 8 *(2.4 * L_GUI_GRID_W); };
+                class HeadgearLoadoutButtonBG: LoadoutBG { idc = 59; x = 0.3 * CONTENT_W + 9 *(2.4 * L_GUI_GRID_W); };
+                class BinosLoadoutButtonBG: LoadoutBG { idc = 60; x = 0.3 * CONTENT_W + 10 *(2.4 * L_GUI_GRID_W); };
 
                 class PlayerLoadoutButton: LoadoutButton {
                     idc = 30;
-                    x = 0.33 * CONTENT_W;
+                    x = 0.3 * CONTENT_W;
                     y = 0.045;
                     text = "\A3\ui_f\data\map\vehicleicons\iconMan_ca.paa";
                     tooltip = "Player Loadout";
@@ -511,67 +529,67 @@ class HQTabletDialog {
 
                 class PrimaryLoadoutButton: LoadoutButton {
                     idc = 31;
-                    x = 0.33 * CONTENT_W + 2.4 * L_GUI_GRID_W;
+                    x = 0.3 * CONTENT_W + 2.4 * L_GUI_GRID_W;
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\primaryweapon_ca.paa";
                     tooltip = "Primary Weapons";
                 };
 
                 class SecondaryLoadoutButton: LoadoutButton {
                     idc = 32;
-                    x = 0.33 * CONTENT_W + 2 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 2 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\secondaryweapon_ca.paa";
                     tooltip = "Launchers";
                 };
 
                 class HandgunLoadoutButton: LoadoutButton {
                     idc = 33;
-                    x = 0.33 * CONTENT_W + 3 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 3 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\handgun_ca.paa";
                     tooltip = "Handguns";
                 };
 
                 class GrenadeLoadoutButton: LoadoutButton {
                     idc = 34;
-                    x = 0.33 * CONTENT_W + 4 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 4 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\cargomagall_ca.paa";
                     tooltip = "Magazines";
                 };
                 class OpticsLoadoutButton: LoadoutButton {
                     idc = 35;
-                    x = 0.33 * CONTENT_W + 5 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 5 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\itemoptic_ca.paa";
                     tooltip = "Scopes";
                 };
                 class UniformLoadoutButton: LoadoutButton {
                     idc = 36;
-                    x = 0.33 * CONTENT_W + 6 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 6 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\uniform_ca.paa";
                     tooltip = "Uniforms";
                 };
                 class VestLoadoutButton: LoadoutButton {
                     idc = 37;
-                    x = 0.33 * CONTENT_W + 7 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 7 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\vest_ca.paa";
                     tooltip = "Vests";
                 };
 
                 class BackpackLoadoutButton: LoadoutButton {
                     idc = 38;
-                    x = 0.33 * CONTENT_W + 8 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 8 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\backpack_ca.paa";
                     tooltip = "Backpacks";
                 };
 
                 class HeadgearLoadoutButton: LoadoutButton {
                     idc = 39;
-                    x = 0.33 * CONTENT_W + 9 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 9 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\headgear_ca.paa";
                     tooltip = "Headgear";
                 };
 
                 class BinosLoadoutButton: LoadoutButton {
                     idc = 40;
-                    x = 0.33 * CONTENT_W + 10 * (2.4 * L_GUI_GRID_W);
+                    x = 0.3 * CONTENT_W + 10 * (2.4 * L_GUI_GRID_W);
                     text = "\a3\ui_f\data\gui\Rsc\RscDisplayArsenal\binoculars_ca.paa";
                     tooltip = "Items";
                 };
@@ -582,19 +600,19 @@ class HQTabletDialog {
 
                 class LoadoutNBoxBG: RscFrame {
                     colorText[] = {1,1,1,1};
-                    x = 0.33 * CONTENT_W - 2* pixelW;
+                    x = 0.305 * CONTENT_W - 2* pixelW;
                     y = 0.1 + 1 * L_GUI_GRID_H - pixelH;
-                    w = 0.666 * CONTENT_W + 3 * pixelW;
+                    w = 0.67 * CONTENT_W + 3 * pixelW;
                     h = CONTENT_H - 4 * L_GUI_GRID_H + 3 * pixelH - 0.1;
                 };
 
                 class LoadoutNBox: RscListNBox {
                     idc = 1501;
-                    x = 0.33 * CONTENT_W;
+                    x = 0.305 * CONTENT_W;
                     y = 0.1 + 1 * L_GUI_GRID_H;
-                    w = 0.666 * CONTENT_W;
+                    w = 0.67 * CONTENT_W;
                     h = CONTENT_H - 4 * L_GUI_GRID_H - 0.1;
-
+                    text = "";
                     columns[] = {0.05, 0.8};
                     colorBackground[] = {0.2,0.2,0.2,1};
 
@@ -753,7 +771,7 @@ class HQTabletDialog {
                     text = "";
                     style = ST_PICTURE + ST_KEEP_ASPECT_RATIO + ST_UP;
                     x = CONTENT_W * 0.33333 + 0.02;
-                    y = 0.1;
+                    y = 0.11;
                     w = (CONTENT_W * 0.33333) - 0.04;
                     h = (CONTENT_W * 0.33333) - 0.04;
                 };

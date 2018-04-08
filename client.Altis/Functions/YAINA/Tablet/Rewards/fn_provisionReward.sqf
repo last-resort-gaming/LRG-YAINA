@@ -6,7 +6,7 @@
 
 #include "..\defines.h"
 
-params ["_player", "_class"];
+params ["_player", "_class", ["_animationStates", []]];
 
 if !(isServer) exitWith {};
 
@@ -26,6 +26,28 @@ if (!alive _veh) exitWith {};
 
 // General Start
 _veh enableSimulation false;
+
+// Re-init vehicle with given animationStates
+[_veh, false, _animationStates, true] call BIS_fnc_initVehicle;
+
+// Whilst that works for most things, we need to do lock cargo ourselves as
+// BIS_fnc_initVehicle doesn't work for all cargo locks such as the hummingbird
+// back seats, so we re-apply based on our given _animationStates
+
+for "_i" from 0 to (count _animationStates - 2) step 2 do {
+
+    _cfgBase = configFile >> "CfgVehicles" >> _class >> "AnimationSources" >> (_animationStates select _i);
+    _state   = _animationStates select (_i + 1);
+
+    if (isNumber(_cfgBase >> "lockCargoAnimationPhase")) then {
+        _lock = getNumber(_cfgBase >> "lockCargoAnimationPhase") isEqualTo _state;
+        {
+            _veh lockCargo [_x, _lock];
+            nil;
+        } count (getArray (_cfgBase >> "lockCargo"));
+    };
+    nil
+};
 
 // Manage our Loadouts / Animations / Textures
 call {

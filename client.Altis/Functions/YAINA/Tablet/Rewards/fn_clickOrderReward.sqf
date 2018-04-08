@@ -22,10 +22,7 @@ private _class  = _lb lbData (lbCurSel _lb);
 
 // Get price + build time from rewards publicVariable
 GVAR(rewards) apply { _x select { _x select 0 isEqualTo _class; }; } select { !(_x isEqualTo []) } select 0 select 0
-    params ["_class2", "_price", "_buildTime", ["_initCode", {}]];
-
-// We immediately remove the credits to work with multiple users, and on cancel, add it to balance
-[-_price, format["%1 ordered", _class]] remoteExecCall [QYFNC(addRewardPoints), 2];
+    params ["_class2", "_price", "_buildTime"];
 
 // Hide the cancel button, set the scroll bar width to 0.000001 and update until complete
 { (_page controlsGroupCtrl _x) ctrlShow true; } forEach [
@@ -54,6 +51,21 @@ _r set [2, (ctrlPosition _frame) select 2 - 2 * pixelW];
 _bar ctrlSetPosition _r;
 _bar ctrlCommit _buildTime;
 
+// Collect animation states
+_animationStates = [];
+
+{
+    _checked = cbChecked _x;
+    ((GVAR(animationControls) select 1) select _forEachIndex) params ["_animation", "_addonPrice"];
+    _animationStates append [_animation, [0,1] select _checked];
+    if (_checked) then {
+        _price = _price + _addonPrice;
+    };
+} forEach (GVAR(animationControls) select 0);
+
+// Now remove the credits to work with multiple users, and on cancel, add it to balance
+[-_price, format["%1 ordered", _class]] remoteExecCall [QYFNC(addRewardPoints), 2];
+
 // Let folks know...
 [player, format["Reward: %1 has been requested, ETA: %2", getText (configFile >> "CfgVehicles" >> _class >> "displayName"), _buildTime call YFNC(formatDuration)]] remoteExec ["sideChat"];
 
@@ -77,15 +89,15 @@ _pfh = {
 
 // Start it going
 _pfhID = [_pfh, 1, [_bar, _r select 2, _text, {
-    params ["_class"];
+    params ["_class", "_animationStates"];
 
-    [player, _class] remoteExecCall [QFNC(provisionReward), 2];
+    [player, _class, _animationStates] remoteExecCall [QFNC(provisionReward), 2];
 
     // And re-enable everything
     GVAR(orderInProgress) = nil;
     call FNC(clickCancelReward);
 
-}, [_class, _initCode]]] call CBAP_fnc_addPerFrameHandler;
+}, [_class, _animationStates]]] call CBAP_fnc_addPerFrameHandler;
 
 // CancelCode
 _cancelCode = {
