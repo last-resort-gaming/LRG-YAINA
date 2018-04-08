@@ -52,6 +52,10 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 [[], {
                     1 enableChannel true;
                     2 enableChannel true;
+
+                    // Use CHVD distance if available
+                    setViewDistance ((profileNamespace getVariable ["CHVD_air", viewDistance]) min 12000);
+
                 }] remoteExec ["call", remoteExecutedOwner];
 
                 // Show the assention message to everyone
