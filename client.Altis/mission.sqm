@@ -8,7 +8,7 @@ class EditorData
 	toggles=522;
 	class ItemIDProvider
 	{
-		nextID=2681;
+		nextID=2682;
 	};
 	class MarkerIDProvider
 	{
@@ -20,10 +20,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={9175.5586,22.128658,21706.111};
-		dir[]={-0.84241003,-0.47675574,-0.25114545};
-		up[]={-0.45693329,0.87900674,-0.13622394};
-		aside[]={-0.28570455,-3.0267984e-008,0.95832992};
+		pos[]={9135.4111,28.22751,21512.182};
+		dir[]={-0.617284,-0.63909692,-0.45886871};
+		up[]={-0.51295704,0.76906955,-0.38131323};
+		aside[]={-0.59659988,-3.2328535e-007,0.80256921};
 	};
 };
 binarizationWanted=0;
@@ -5276,7 +5276,7 @@ class Mission
 		class Item144
 		{
 			dataType="Trigger";
-			position[]={9123.6074,16.810404,21503.203};
+			position[]={9123.9053,16.495972,21502.48};
 			angle=2.5167997;
 			class Attributes
 			{
@@ -5290,7 +5290,7 @@ class Mission
 			};
 			id=1278;
 			type="EmptyDetector";
-			atlOffset=0.33773232;
+			atlOffset=-0.02482605;
 		};
 		class Item145
 		{
