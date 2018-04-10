@@ -18,9 +18,13 @@ if !(isNil "_np") exitWith {
     // If you're that close to the ground, you're gonna die
     if ((getPosATL player select 2) < 20) exitWith {};
 
+    // This isn't instant in MP, so, we sleep on it
     if !((vehicle player) isEqualTo player) then {
         moveOut player;
     };
+
+    // We always add a bit of sleep here to add to the delay
+    sleep 0.5;
 
     // Spawn the chute, and get in it
     private _chute = createVehicle ["Steerable_Parachute_F", (getPos player), [], 0, "NONE"];
@@ -42,4 +46,4 @@ if !(isNil "_np") exitWith {
         },
         [player, _chute]
     ] call CBAP_fnc_waitUntilAndExecute;
-}, [], 0.5, 1] call YFNC(fadeOutAndExecute);
+}, [], 0.5, 0.5] call YFNC(fadeOutAndExecute);

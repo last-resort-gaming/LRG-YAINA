@@ -25,6 +25,8 @@ params ["_veh",
 // Dont init more than once
 if (_veh getVariable [QVAR(init), false]) exitWith {};
 
+private _class = typeOf _veh;
+
 // Mark as complete straight away
 _veh setVariable [QVAR(init), true, true];
 
@@ -108,7 +110,7 @@ if (_hasKeys) then {
 };
 
 // If it's a ground vehicle we allow engineers to flip if it falls over
-if (typeOf _veh isKindOf "LandVehicle") then {
+if (_class isKindOf "LandVehicle") then {
 
     _checkCode = "'ENG' call YAINA_fnc_testTraits &&
                  { ( { alive _x } count (crew _target) ) isEqualTo 0 } &&
@@ -124,6 +126,69 @@ if (typeOf _veh isKindOf "LandVehicle") then {
             [_target] remoteExec [QFNC(flip), 2];
         };
     }, [], 1.5, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
+};
+
+// If it's an air asset with transport slots, then add our paradrop action
+if (_class isKindOf "Air" && { !(getNumber (configFile >> "CfgVehicles" >> _class >> "transportSoldier") isEqualTo 0) } ) then {
+
+
+    // Add a get in handler for the driver to control the paradrop
+    [_veh, {
+        params ["_unit", "_pos", "_veh", "_turret"];
+
+
+        if (driver _veh isEqualTo player) then {
+
+            // Do we have an action already ?
+            _action = _veh getVariable QVAR(paraAct);
+            if (!isNil "_action") then { _veh removeAction _action; };
+
+            // Reset Drop Var
+            _veh setVariable [QVAR(paraEnable), false, true];
+
+            // Add action
+            _action = _veh addAction ["Enable Paradrop", {
+                params ["_target", "_caller", "_id", "_arguments"];
+
+                _next = !(_target getVariable QVAR(paraEnable));
+                _target setVariable [QVAR(paraEnable), _next, true];
+
+                _target setUserActionText [_id,
+                    ["Enable Paradrop", "Disable Paradrop"] select _next
+                ];
+
+            }, [], 3, false, true];
+
+            _veh setVariable [QVAR(paraAct), _action];
+
+        };
+    }] call FNC(addGetInHandler);
+
+    // Only allow, if it's green lit
+    // Or if we've lost ATRQ / Main Rot
+    _checkCode = call {
+        // Helicopter ?
+        if (_class isKindOf "Helicopter") exitWith {
+            "!(driver _target isEqualTo player)
+              && { getPosATL _target select 2 > 20 }
+              && {
+                (
+                  _target getVariable ['YAINA_VEH_paraEnable', false] isEqualTo true
+                  || { _target getHitPointDamage 'HitHRotor' >= 0.9 }
+                  || { _target getHitPointDamage 'HitVRotor' >= 0.9 }
+                )
+              }"
+        };
+
+        "!(driver _target isEqualTo player)
+            && { getPosATL _target select 2 > 20 }
+            && { _target getVariable ['YAINA_VEH_paraEnable', false] isEqualTo true }"
+    };
+
+    [_veh, "<t color='#ff1111'>Paradrop</t>",
+        YAINA_MM_fnc_openChute,
+    [], 100, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
+
 };
 
 
