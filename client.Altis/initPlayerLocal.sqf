@@ -23,15 +23,10 @@ if (typeOf player isEqualTo "VirtualCurator_F") exitWith {
 // and disable the others
 if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
 
+    1 enableChannel (['HQ', 'side-channel-talk'] call YAINA_fnc_testTraits); // Side
     2 enableChannel false; // Command
     3 enableChannel [true, false]; // Group
     4 enableChannel false; // Vehicle
-
-    [
-        { !(isNil { "YAINA_GLOBAL_TRAITS" }) },
-        { 1 enableChannel (['HQ', 'side-channel-talk'] call YAINA_fnc_testTraits) },
-        []
-    ] call CBAP_fnc_waitUntilAndExecute;
 
 } else {
 

@@ -6,33 +6,24 @@
 
 #include "..\defines.h"
 
-YAINA_GLOBAL_TRAITS = [];
-
 if (hasInterface) then {
 
     _res = {
-        [
-            { !isNil QYVAR(GLOBAL_TRAITS) },
-            {
-               if ([["HQ", "hq-tablet"]] call YFNC(testTraits)) then {
-                   player addAction [
-                       "Open Command Tablet",
-                       { call FNC(openTablet); },
-                       [],
-                       1.5,
-                       false
-                   ];
-               };
-           },
-           []
-        ] call CBAP_fnc_waitUntilAndExecute;
+        if ([["HQ", "hq-tablet"]] call YFNC(testTraits)) then {
+            player addAction [
+                "Open Command Tablet",
+                { call FNC(openTablet); },
+                [],
+                1.5,
+                false
+            ];
+        };
     };
 
     call _res;
 
     // Add for respawn too
     player addEventHandler ["Respawn", _res];
-
 
     // Add on laptop
     {

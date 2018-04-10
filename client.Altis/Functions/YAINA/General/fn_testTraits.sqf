@@ -29,11 +29,6 @@ if (typeName _this isEqualTo "ARRAY") then {
 _traits pushBack "all";
 
 // Duplicate to avoid appending to the players varaible every, single, query
-private _pv = (_unit getVariable [QYVAR(TRAITS), []]) + [];
-
-// Append Server Traits
-if !(isNil QYVAR(GLOBAL_TRAITS)) then {
-    _pv append YVAR(GLOBAL_TRAITS);
-};
+private _pv  = (_unit getVariable [QYVAR(TRAITS), []]) + (_unit getVariable [QYVAR(ADMIN_TRAITS), []]);
 
 !({ !(_pv find (toLower _x) isEqualTo -1); } count _traits isEqualTo 0);

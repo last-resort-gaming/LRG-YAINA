@@ -35,19 +35,6 @@ addMissionEventHandler["PlayerConnected", {
         (GVAR(commands) select 1) set [_idx, _cmds];
     };
 
-    // Now...If a command doesn't exist / isn't a BEC command then it's a TRAIT
-    private _serverTraits = [];
-    {
-        private _cmd = missionNamespace getVariable format["YAINA_CMD_fnc_%1", _x];
-        if (isNil "_cmd" && { !(_x in GVAR(becCommands)) } ) then {
-            _serverTraits pushBack toLower(_x);
-        };
-    } forEach _cmds;
-
-    // Send the traits to the client
-    YVAR(GLOBAL_TRAITS) = _serverTraits;
-    _owner publicVariableClient QYVAR(GLOBAL_TRAITS);
-
 }];
 
 addMissionEventHandler["PlayerDisconnected", {
