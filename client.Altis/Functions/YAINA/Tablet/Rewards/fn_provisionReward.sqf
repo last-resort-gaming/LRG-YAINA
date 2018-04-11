@@ -1,7 +1,7 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+    author: Martin
+    description: none
+    returns: nothing
 */
 
 #include "..\defines.h"
@@ -469,6 +469,66 @@ call {
             [3, "a3\soft_f_orange\van_02\data\van_body_fia_03_co.paa"]
         ];
     };
+
+    // Rhino
+    if (_class in ["B_APC_Wheeled_01_cannon_F"]) exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\armor_f_beta\apc_wheeled_01\data\apc_wheeled_01_base_co.paa",
+            "a3\armor_f_beta\apc_wheeled_01\data\apc_wheeled_01_adds_co.paa",
+            "a3\armor_f_beta\apc_wheeled_01\data\apc_wheeled_01_tows_co.paa",
+            "a3\armor_f\data\camonet_nato_desert_co.paa","a3\armor_f\data\cage_sand_co.paa"
+        ];
+    };
+
+    // Nyx AA / AT
+    if (_class in ["I_LT_01_AA_F", "I_LT_01_AT_F"]) exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\armor_f_tank\lt_01\data\lt_01_main_olive_co.paa",
+            "a3\armor_f_tank\lt_01\data\lt_01_at_olive_co.paa",
+            "a3\armor_f\data\camonet_aaf_digi_green_co.paa",
+            "a3\armor_f\data\cage_olive_co.paa"
+        ];
+    };
+
+    // Nyx AA / AT
+    if (_class in ["I_LT_01_scout_F"]) exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\armor_f_tank\lt_01\data\lt_01_main_olive_co.paa",
+            "a3\armor_f_tank\lt_01\data\lt_01_radar_olive_co.paa",
+            "a3\armor_f\data\camonet_aaf_digi_green_co.paa",
+            "a3\armor_f\data\cage_olive_co.paa"
+        ];
+    };
+    
+    // Nyx AutoCannon
+    if (_class in ["I_LT_01_cannon_F"]) exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\armor_f_tank\lt_0   1\data\lt_01_main_olive_co.paa",
+            "a3\armor_f_tank\lt_01\data\lt_01_cannon_olive_co.paa",
+            "a3\armor_f\data\camonet_aaf_digi_green_co.paa",
+            "a3\armor_f\data\cage_olive_co.paa"
+        ];
+    };
+
+    // T140 / T140K
+    if (_class in ["O_MBT_04_cannon_F", "O_MBT_04_command_F"]) exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\armor_f_tank\mbt_04\data\mbt_04_exterior_1_co.paa",
+            "a3\armor_f_tank\mbt_04\data\mbt_04_exterior_2_co.paa",
+            "a3\armor_f\data\camonet_csat_stripe_desert_co.paa"
+        ];
+    };
+
 };
 
 // Move to destination Spawn
