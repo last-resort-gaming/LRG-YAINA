@@ -193,7 +193,7 @@ _pfh = {
             if (_ns getVariable [QVAR(explosivesPlanted), false]) then {
                 // Success...
                 [500, "hq coast"] call YFNC(addRewardPoints);
-                parseText format ["<t align='center' size='2.2'>Side Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Secure Radar</t><br/>____________________<br/>Good work out there. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
+                parseText format ["<t align='center' size='2.2'>Side Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Secure Cargo</t><br/>____________________<br/>Good work out there. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
             } else {
                 // Failed...
                 _mState = "Failed";
@@ -225,4 +225,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "SM", 1, "secure intel (vehicle)", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _ns, _hq, _crate]] call FNC(startMissionPFH);
+[_missionID, "SM", 1, "secure cargo", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _ns, _hq, _crate]] call FNC(startMissionPFH);

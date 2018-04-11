@@ -240,4 +240,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "SM", 1, "secure intel (vehicle)", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _hiddenTerrainKey, _ns, _chopper, _laptop]] call FNC(startMissionPFH);
+[_missionID, "SM", 1, "secure chopper", "", _markers, _units, _vehicles, _buildings, _pfh, 3, [_missionID, 1, _hiddenTerrainKey, _ns, _chopper, _laptop]] call FNC(startMissionPFH);

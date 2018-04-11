@@ -257,6 +257,13 @@ _pfh = {
         // Just delete the task, main task takes care of it
         [format ["%1_defend", _missionID]] call BIS_fnc_deleteTask;
 
+        // Award some points
+        if !(_stopRequested) then {
+            // Success...
+            [3000, "hq research"] call YFNC(addRewardPoints);
+            parseText format ["<t align='center' size='2.2'>Main AO</t><br/><t size='1.5' align='center' color='#34DB16'>SUCCESS</t><br/>____________________<br/>Good work out there securing the HQ. You have received %1 credits to compensate your efforts!", 3000] call YFNC(globalHint);
+        };
+
         // Set Mission Exit State
         [_missionID, 'Succeeded', not _stopRequested] call BIS_fnc_taskSetState;
 

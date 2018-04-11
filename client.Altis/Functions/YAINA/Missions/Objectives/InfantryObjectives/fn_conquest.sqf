@@ -196,8 +196,8 @@ _pfh = {
 
         // Give them some points
         if !(_stopRequested) then {
-            [500, "conquest"] call YFNC(addRewardPoints);
-            parseText format ["<t align='center' size='2.2'>Conquest Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Outpost Secured</t><br/>____________________<br/>Good work out there. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
+            [1000, "conquest"] call YFNC(addRewardPoints);
+            parseText format ["<t align='center' size='2.2'>Conquest Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Outpost Secured</t><br/>____________________<br/>Good work out there. You have received %1 credits to compensate your efforts!", 1000] call YFNC(globalHint);
         };
 
         _stage = 3; _args set [1,_stage];
