@@ -529,6 +529,37 @@ call {
         ];
     };
 
+    if (_class isEqualTo "I_C_Offroad_02_AT_F") exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\soft_f_exp\offroad_02\data\offroad_02_ext_olive_co.paa",
+            "a3\soft_f_exp\offroad_02\data\offroad_02_ext_olive_co.paa",
+            "a3\soft_f_exp\offroad_02\data\offroad_02_int_olive_co.paa",
+            "a3\soft_f_exp\offroad_02\data\offroad_02_int_olive_co.paa"
+        ];
+    };
+
+    if (_class isEqualTo "O_LSV_02_AT_F") exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\soft_f_exp\lsv_02\data\csat_lsv_01_black_co.paa",
+            "a3\soft_f_exp\lsv_02\data\csat_lsv_02_black_co.paa",
+            "a3\soft_f_exp\lsv_02\data\csat_lsv_03_black_co.paa",
+            "a3\weapons_f_tank\launchers\vorona\data\vorona_green_f_co.paa",
+            "a3\weapons_f_tank\launchers\vorona\data\vorona_green_f_co.paa"
+        ];
+    };
+
+    if (_class isEqualTo "B_G_Offroad_01_AT_F") exitWith {
+        {
+            _veh setObjectTextureGlobal [_forEachIndex, _x];
+        } forEach [
+            "a3\soft_f_bootcamp\offroad_01\data\offroad_01_ext_ig_07_co.paa",
+            "a3\soft_f_bootcamp\offroad_01\data\offroad_01_ext_ig_07_co.paa"
+        ];
+    };
 };
 
 // Move to destination Spawn

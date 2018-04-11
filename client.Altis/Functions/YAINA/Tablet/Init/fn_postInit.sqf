@@ -136,7 +136,11 @@ if (isServer) then {
             ["B_AFV_Wheeled_01_cannon_F", 6000, 50],
             ["B_AFV_Wheeled_01_up_cannon_F", 7000, 60],
             ["O_MBT_04_cannon_F", 9000, 60],
-            ["O_MBT_04_command_F", 10000, 75]
+            ["O_MBT_04_command_F", 10000, 75],
+            ["B_LSV_01_AT_F", 1000, 20],
+            ["O_LSV_02_AT_F", 1000, 20],
+            ["B_G_Offroad_01_AT_F", 750, 20],
+            ["I_C_Offroad_02_AT_F", 750, 20]
         ],
         [
             ["B_T_UAV_03_dynamicLoadout_F",4500,40],
