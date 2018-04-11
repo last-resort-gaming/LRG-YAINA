@@ -12,9 +12,8 @@ if (GVAR(paradropMarkers) isEqualTo []) exitWith {
     systemChat "No drop points available";
 };
 
-// Limit paradrop if there are pilots online
-private _pCount = { [["PILOT"], _x] call YFNC(testTraits); } count allPlayers;
-if (_pCount > 0) exitWith {
+// Ensure we're allowed
+if !(GVAR(paradropEnabled)) exitWith {
     systemChat "Paradrop unavailable, please utilise available pilots";
 };
 

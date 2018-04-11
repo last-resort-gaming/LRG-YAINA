@@ -36,6 +36,7 @@ class YAINA_CMD {
         class promote {};
         class repair {};
         class players {};
+        class paradrop {};
     };
 
     class Messages {

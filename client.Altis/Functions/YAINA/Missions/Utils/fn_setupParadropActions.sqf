@@ -12,6 +12,11 @@ private _paraDropItems = [
 
 if (isNil QVAR(paradropSetup)) then {
 
+    // Override
+    GVAR(paradropOverride) = 0;
+    GVAR(paradropEnabled)  = false;
+    publicVariable QVAR(paradropEnabled);
+
     {
        _x addAction [
            "Paradrop on AO",
@@ -34,9 +39,22 @@ if (isNil QVAR(paradropSetup)) then {
             params ["_args", "_pfhID"];
             _args params ["_paraDropItems"];
 
-            // Active if we have pilots online, and there is somewhere to drop onto
-            _pActive       = ({ [["PILOT"], _x] call YFNC(testTraits) } count allPlayers isEqualTo 0 && !(GVAR(paradropMarkers) isEqualTo []));
-            _targetTexture = ["Data\Billboards\paradropInac.paa", "Data\Billboards\paradropAct.paa"] select _pActive;
+            _active = (
+                          (
+                              { [["PILOT"], _x] call YFNC(testTraits) } count allPlayers isEqualTo 0
+                              || { LTIME < GVAR(paradropOverride) }
+                          )
+                          && { !(GVAR(paradropMarkers) isEqualTo []) }
+                      );
+
+            // Update clients
+            if !(_active isEqualTo GVAR(paradropEnabled)) then {
+                GVAR(paradropEnabled) = _active;
+                publicVariable QVAR(paradropEnabled);
+            };
+
+            // Always set tex so
+            _targetTexture = ["Data\Billboards\paradropInac.paa", "Data\Billboards\paradropAct.paa"] select _active;
             {
                 _x setObjectTextureGlobal [0, _targetTexture];
             } forEach _paraDropItems;
