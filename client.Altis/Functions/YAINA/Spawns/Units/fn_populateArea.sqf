@@ -96,7 +96,7 @@ if !(_infList isEqualTo []) then {
         _rpos = [[[_center, _radius],[]],["water","out"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_inf%2", _grpPrefix, _x]];
-        [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+        [_g, _center, _radius/1.5, 3 + round (random 2), ["SAD", "MOVE"] select (random 1 > 0.33), ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
         [_g, _infSkill] call FNC(setUnitSkill);
         _units append (units _g);
     };
