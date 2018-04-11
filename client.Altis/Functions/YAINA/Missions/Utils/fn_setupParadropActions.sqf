@@ -41,7 +41,13 @@ if (isNil QVAR(paradropSetup)) then {
 
             _active = (
                           (
-                              { [["PILOT"], _x] call YFNC(testTraits) } count allPlayers isEqualTo 0
+                              {
+                                [["PILOT"], _x] call YFNC(testTraits)
+                                && {
+                                    vehicle _x isEqualTo _x
+                                    || {driver (vehicle _x) isEqualTo _x && { !(getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "transportSoldier") isEqualTo 0) } }
+                                }
+                              } count allPlayers isEqualTo 0
                               || { LTIME < GVAR(paradropOverride) }
                           )
                           && { !(GVAR(paradropMarkers) isEqualTo []) }
