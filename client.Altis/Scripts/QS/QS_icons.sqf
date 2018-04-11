@@ -777,7 +777,7 @@ _QS_fnc_iconUnits = {
 			} else {
 				{
 					if (((side _x) in _as) || {(captive _x)}) then {
-						if (isPlayer _x && { !(typeOf _x isKindOf 'VirtualCurator_F') } ) then {
+						if (isPlayer _x) then {
 							if (_di isEqualTo 2) then {
 								if ((_x distance player) < (_QS_ST_X select 27)) then {
 									if (_x isEqualTo ((crew (vehicle _x)) select 0)) then {
@@ -796,7 +796,7 @@ _QS_fnc_iconUnits = {
 		} else {
 			{
 				if (((side _x) in _as) || {(captive _x)}) then {
-					if (isPlayer _x && { !(typeOf _x isKindOf 'VirtualCurator_F') }) then {
+					if (isPlayer _x) then {
 						if (_di isEqualTo 2) then {
 							if ((_x distance player) < (_QS_ST_X select 27)) then {
 								if (_x isEqualTo ((crew (vehicle _x)) select 0)) then {
@@ -1127,8 +1127,10 @@ _QS_fnc_groupIconType = {
 		_grpVehicle setVariable ['QS_ST_groupVehicleIconType',_iconType,FALSE];
 		_iconType;
 	};
-	_iconType = _iconTypes select 16;
-	_grpVehicle setVariable ['QS_ST_groupVehicleIconType',_iconType,FALSE];
+	if !(isNil "_iconTypes") then {
+        _iconType = _iconTypes select 16;
+        _grpVehicle setVariable ['QS_ST_groupVehicleIconType',_iconType,FALSE];
+	};
 	_iconType;
 };
 _QS_fnc_configGroupIcon = {
@@ -1145,16 +1147,18 @@ _QS_fnc_configGroupIcon = {
 	_grpSize = count (units _grp);
 	_grpSide = side _grpLeader;
 	if (_type isEqualTo 0) then {
-		_grpIconType = [_grp,_grpSize,_grpLeader_vehicle,_grpSide] call (_QS_ST_X select 52);		
-		_grp setVariable ['QS_ST_Group',1,FALSE];
-		_iconID = _grp addGroupIcon [_grpIconType,(_QS_ST_X select 38)];
-		_grp setGroupIcon [_iconID,_grpIconType];
-		_grpIconColor = [_grpLeader,_QS_ST_X] call (_QS_ST_X select 77);
-		_text = [_grp,_QS_ST_X,1] call (_QS_ST_X select 51);
-		_scale = (_QS_ST_X select 37);
-		_visibility = TRUE;
-		_grp setGroupIconParams [_grpIconColor,_text,_scale,_visibility];
-		_grp setVariable ['QS_ST_Group_Icon',[_iconID,_grpIconType,_grpLeader_vType,_grpIconColor,_text,_scale,_visibility],FALSE];
+		_grpIconType = [_grp,_grpSize,_grpLeader_vehicle,_grpSide] call (_QS_ST_X select 52);
+		if !(isNil "_grpIconType") then {
+            _grp setVariable ['QS_ST_Group',1,FALSE];
+            _iconID = _grp addGroupIcon [_grpIconType,(_QS_ST_X select 38)];
+            _grp setGroupIcon [_iconID,_grpIconType];
+            _grpIconColor = [_grpLeader,_QS_ST_X] call (_QS_ST_X select 77);
+            _text = [_grp,_QS_ST_X,1] call (_QS_ST_X select 51);
+            _scale = (_QS_ST_X select 37);
+            _visibility = TRUE;
+            _grp setGroupIconParams [_grpIconColor,_text,_scale,_visibility];
+            _grp setVariable ['QS_ST_Group_Icon',[_iconID,_grpIconType,_grpLeader_vType,_grpIconColor,_text,_scale,_visibility],FALSE];
+		};
 	};
 	if (_type isEqualTo 1) then {
 		_update = FALSE;
@@ -1508,7 +1512,7 @@ if (_QS_ST_X select 2) then {
 										};
 									};
 								} else {
-									if (isPlayer _grpLeader) then {
+									if (isPlayer _grpLeader && !(typeOf _grpLeader isKindOf 'VirtualCurator_F') ) then {
 										if (isNil {_grp getVariable 'QS_ST_Group'}) then {
 											if (!isNull _grp) then {
 												if (!isNull _grpLeader) then {
