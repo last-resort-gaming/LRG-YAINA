@@ -26,6 +26,7 @@ params ["_veh",
 if (_veh getVariable [QVAR(init), false]) exitWith {};
 
 private _class = typeOf _veh;
+private _checkCode = "";
 
 // Mark as complete straight away
 _veh setVariable [QVAR(init), true, true];
@@ -51,6 +52,29 @@ if (_hasKeys) then {
         _owner = missionNamespace getVariable (_veh getVariable QVAR(owner));
         if (!isNil "_owner") then { [_owner, _veh, "remove"] call FNC(updateOwnership); };
     }];
+
+    // HQ Lock/Unlock Action
+    // Store the default locked state, for when HQ disconnects
+    _veh setVariable [QVAR(defaultLock), locked _veh, true];
+    [_veh, {
+        params ["_obj", "_id"];
+        _obj setUserActionText [_id, ["Unlock Vehicle", "Lock Vehicle"] select (locked _obj isEqualTo 0)];
+        _obj setVariable [QVAR(lockActionID), _id];
+    }, "Unlock Vehicle", {
+        params ["_target", "_caller", "_id", "_arguments"];
+
+        _unlocked  = locked _target isEqualTo 0;
+        _newState  = [0, 2] select _unlocked;
+
+        // lock has a local effect
+        [[_target, _newState], {
+            _this remoteExec ["lock", owner (_this select 0)];
+        }] remoteExec ["call", 2];
+
+        // Broadcast VehicleLock event to update the action across players
+        ["VehicleLock", [player, _target, _newState]] call CBAP_fnc_globalEvent;
+
+    }, [], 1.5, false, true, "", "['HQ', 'veh-unlock'] call YAINA_fnc_testTraits && { ( { alive _x } count (crew _target) ) isEqualTo 0 }", 10, false] call YFNC(addActionMP);
 
     // Setup the ejection if it has keys and the driver isn't in the group
     [_veh, {
@@ -116,7 +140,7 @@ if (_class isKindOf "LandVehicle") then {
                  { ( { alive _x } count (crew _target) ) isEqualTo 0 } &&
                  { (vectorUp _target) select 2 < 0.5 }";
 
-    [_veh, "<t color='#ff1111'>Flip Vehicle</t>", {
+    [_veh, {}, "<t color='#ff1111'>Flip Vehicle</t>", {
         params ["_target", "_caller", "_id", "_arguments"];
         // Fire it back to server
         if (local _target) then {
@@ -185,7 +209,7 @@ if (_class isKindOf "Air" && { !(getNumber (configFile >> "CfgVehicles" >> _clas
             && { _target getVariable ['YAINA_VEH_paraEnable', false] isEqualTo true }"
     };
 
-    [_veh, "<t color='#ff1111'>Paradrop</t>",
+    [_veh, {}, "<t color='#ff1111'>Paradrop</t>",
         YAINA_MM_fnc_openChute,
     [], 100, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
 

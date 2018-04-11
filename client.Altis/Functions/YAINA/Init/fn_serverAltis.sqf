@@ -143,7 +143,7 @@ if !(isNil "TM") then {
             { serverTime - (_target getVariable['MERT_QUAD_unloading', 0]) > 12 } &&
             { !(isObjectHidden (_target getVariable 'MERT_QUAD_dummy')) }";
 
-        [_veh, "<t color='#ff1111'>Unload Quadbike</t>", {
+        [_veh, {}, "<t color='#ff1111'>Unload Quadbike</t>", {
             params ["_target", "_caller", "_id", "_arguments"];
 
             // We set serverTime to now, in case of a DC whilst downloading, we
@@ -198,7 +198,7 @@ if !(isNil "TM") then {
             { !(isNil { _target getVariable 'MERT_QUAD_veh' }) && { alive (_target getVariable 'MERT_QUAD_veh') } } &&
             { (_target getVariable 'MERT_QUAD_veh') distance2D _target < 10 }";
 
-        [_veh, "<t color='#ff1111'>Reload Quadbike</t>", {
+        [_veh, {}, "<t color='#ff1111'>Reload Quadbike</t>", {
             params ["_target", "_caller", "_id", "_arguments"];
 
             // We set serverTime to now, in case of a DC whilst downloading, we
@@ -238,7 +238,7 @@ if !(isNil "TM") then {
                       { isNil { _target getVariable 'YAINA_planting_explosives' } } &&
                       { isNil { _target getVariable 'YAINA_explosives' } }";
 
-        [_veh, "<t color='#ff1111'>Plant Explosives</t>", {
+        [_veh, {}, "<t color='#ff1111'>Plant Explosives</t>", {
             params ["_target", "_caller", "_id", "_arguments"];
 
             // We set serverTime to now, in case of a DC whilst downloading, we

@@ -26,18 +26,24 @@ addMissionEventHandler["PlayerConnected", {
     (YVAR(ownerIDs) select 0) pushBack _owner;
     (YVAR(ownerIDs) select 1) pushBack [_id, _uid, _name];
 
-    for "_i" from ((count YVAR(addActionMPList))-1) to 0 step -1 do {
-        _obj = (YVAR(addActionMPList) select _i) select 0;
-        if ( isNull ((YVAR(addActionMPList) select _i) select 0) ) then {
-            YVAR(addActionMPList) deleteAt _i;
-        } else {
-            [YVAR(addActionMPList) select _i, {
-                _obj = _this deleteAt 0;
-                _obj addAction _this;
-            }] remoteExec ["call", _owner];
+    // This only runs on the server, but if we are a server and player, we don't want
+    // to do this, as it results in duplicate items
+
+    if !(_owner isEqualTo clientOwner) then {
+        for "_i" from ((count YVAR(addActionMPList))-1) to 0 step -1 do {
+            _obj = (YVAR(addActionMPList) select _i) select 0;
+            if ( isNull ((YVAR(addActionMPList) select _i) select 0) ) then {
+                YVAR(addActionMPList) deleteAt _i;
+            } else {
+                [YVAR(addActionMPList) select _i, {
+                    _obj  = _this deleteAt 0;
+                    _code = _this deleteAt 0;
+                    _evt  = _obj addAction _this;
+                    [_obj, _evt] call _code;
+                }] remoteExec ["call", _owner];
+            };
         };
     };
-
 }];
 
 

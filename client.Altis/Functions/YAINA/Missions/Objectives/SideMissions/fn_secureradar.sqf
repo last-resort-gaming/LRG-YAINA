@@ -129,7 +129,7 @@ _units append _spUnits;
 // Add Action to plant the explosives...
 // We create an empty vehicle at the origin to act as our namespace
 
-[_laptop, "<t color='#ff1111'>Take Laptop and Set Explosives</t>", {
+[_laptop, {}, "<t color='#ff1111'>Take Laptop and Set Explosives</t>", {
     params ["_target", "_caller", "_id", "_arguments"];
     _arguments params ["_tower", "_ns"];
 

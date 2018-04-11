@@ -128,7 +128,7 @@ _vehicles pushBack _obj3;
 _intelObj = selectRandom [_obj1,_obj2,_obj3];
 _intelObj setVariable [QVAR(missionID), _missionID, true];
 
-[_intelObj, "<t color='#ff1111'>Get Intel</t>", {
+[_intelObj, {}, "<t color='#ff1111'>Get Intel</t>", {
     params ["_target", "_caller", "_id", "_arguments"];
 
     // We set serverTime to now, in case of a DC whilst downloading, we

@@ -13,7 +13,10 @@ if (!isServer) exitWith {
 // Add it for JIP clients
 YVAR(addActionMPList) pushBack _this;
 
-[_this, {
-    _obj = _this deleteAt 0;
-    _obj addAction _this;
+// This is duplicated in onPlayerConnected
+[_this,     {
+    _obj  = _this deleteAt 0;
+    _code = _this deleteAt 0;
+    _evt  = _obj addAction _this;
+    [_obj, _evt] call _code;
 }] remoteExec ["call"];

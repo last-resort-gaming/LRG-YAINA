@@ -135,7 +135,7 @@ _vehicles append _spVehs;
 // Add Action to plant the explosives...
 // We create an empty vehicle at the origin to act as our namespace
 
-[_crate, "<t color='#ff1111'>Secure Cargo and Set Charge</t>", {
+[_crate, {}, "<t color='#ff1111'>Secure Cargo and Set Charge</t>", {
     params ["_target", "_caller", "_id", "_arguments"];
     _arguments params ["_ns"];
 

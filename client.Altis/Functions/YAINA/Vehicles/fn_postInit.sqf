@@ -8,10 +8,64 @@
 
 if(isServer) then {
 
+    // Somewhere to store what's been locked
+    GVAR(vehLocks) = [[], []];
+
     [] call FNC(respawnPFH);
 
     // And unlock all the players vehicles on DC
-    addMissionEventHandler ["HandleDisconnect", { [_this select 0, nil, "remove"] call FNC(updateOwnership) } ];
+    addMissionEventHandler ["HandleDisconnect", {
+        params ["_unit", "_id", "_uid", "_name"];
+
+        [_unit, nil, "remove"] call FNC(updateOwnership);
+
+        // Reset Vehicle Locks ?
+        _idx = (GVAR(vehLocks) select 0) find _uid;
+        if !(_idx isEqualTo -1) then {
+            (GVAR(vehLocks) select 0) deleteAt _idx;
+            _resetList = (GVAR(vehLocks) select 1) deleteAt _idx;
+
+            {
+                // We only reset lock vehicles in the base area, if no players
+                // are currently inside it and it's alive...
+                if (
+                    alive _x
+                    && { _x call YFNC(inBaseProtectionArea) }
+                    && { ( { alive _x } count (crew _x) ) isEqualTo 0 }
+                ) then {
+                    _lock = _x getVariable QVAR(defaultLock);
+                    if !(isNil "_lock") then {
+                        [_x, _lock] remoteExec ["lock", owner _x];
+                    };
+                };
+                nil;
+            } count _resetList;
+        };
+    }];
+
+    // Log locked/unlocked actions by HQ
+    ["VehicleLock", {
+        params ["_by", "_obj", "_newState"];
+
+        _action   = ["locked", "unlocked"] select (_newState isEqualTo 0);
+        _uid      = getPlayerUID _by;
+
+        // If they don't have the veh-unlock action, then it's HQ
+        // If so, we add it to the list for the disconnect handler
+        if !([['veh-unlock'], _by] call YFNC(testTraits)) then {
+            _idx = (GVAR(vehLocks) select 0) find _uid;
+            if (_idx isEqualTo -1) then {
+                (GVAR(vehLocks) select 0) pushBack _uid;
+                (GVAR(vehLocks) select 1) pushBack [_obj];
+            } else {
+                ((GVAR(vehLocks) select 1) select _idx) pushBackUnique _obj;
+            };
+        };
+
+        // Log the event
+        [format["action=PERMIT, command=%1, player=%2, playeruid=%3, vehicle=%4", _action, name _by, _uid, typeOf _obj], "CommandsLog"] call YFNC(log);
+
+    }] call CBAP_fnc_addEventHandler;
 
 };
 
@@ -101,4 +155,13 @@ if(hasInterface) then {
             { deleteMarkerLocal _x; true; } count ([QVAR(mrk)] call FNC(getMarkers));
         };
     }];
+
+    // Lock Event Handler
+    ["VehicleLock", {
+        params ["_by", "_obj", "_newState"];
+        private _id = _obj getVariable QVAR(lockActionID);
+        if !(isNil "_id") then {
+            _obj setUserActionText [_id, ["Unlock Vehicle", "Lock Vehicle"] select (_newState isEqualTo 0)];
+        };
+    }] call CBAP_fnc_addEventHandler;
 };

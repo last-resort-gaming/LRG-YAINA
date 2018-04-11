@@ -28,7 +28,7 @@ _veh enableCopilot false;
                   { isNil { _target getVariable 'YAINA_planting_explosives' } } &&
                   { isNil { _target getVariable 'YAINA_explosives' } }";
 
-    [_veh, "<t color='#ff1111'>Plant Explosives</t>", {
+    [_veh, {}, "<t color='#ff1111'>Plant Explosives</t>", {
         params ["_target", "_caller", "_id", "_arguments"];
 
         // Dont let 2 folks do it at once
