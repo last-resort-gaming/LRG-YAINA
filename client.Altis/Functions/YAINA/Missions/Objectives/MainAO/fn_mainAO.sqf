@@ -98,7 +98,7 @@ _units append _hqg;
 
 // Then the rest of the AO
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand
-([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [3,0], [4,0], [3,0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 diag_log _spUnits;
 _units append _spUnits;

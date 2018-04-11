@@ -45,11 +45,11 @@ _infList      = ["OIA_InfTeam","OI_reconPatrol"];
 _infaaList    = ["OIA_InfTeam_AA"];
 _infatList    = ["OIA_InfTeam_AT"];
 _sniperList   = ["OI_SniperTeam"];
-_vehAAList    = ["O_APC_Tracked_02_AA_F"];                                                                                                   // Tigris
-_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F"]; // Ifrit + gmg + hmg, Quillen, Zamak + covered
-_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F"];                                                                    // BTR-K + Marid
+_vehAAList    = ["O_APC_Tracked_02_AA_F", "I_LT_01_AA_F"];                                                                                   // Tigris + Nyx AA
+_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F", "I_LT_01_cannon_F"]; // Ifrit + gmg + hmg, Quillen, Zamak + covered + Nyx Cannon
+_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F", "I_LT_01_AT_F"];                                                    // BTR-K + Marid + Nyx AT
 _vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];                                                                              // Quillen + Armed Offroad
-_vehHeavyList = ["O_MBT_02_cannon_F"];                                                                                                       // T-100
+_vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];                                                            // T-100, T140, T140K
 
 if (_side isEqualTo resistance) then {
     _confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry";
@@ -61,7 +61,7 @@ if (_side isEqualTo resistance) then {
     _vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];      // Strider + gmg + hmg, Zamak + coverd
     _vehRandList  = ["I_APC_Tracked_C03_cannon_F"];                                                                                 // Mora
     _vehLightList = ["I_G_Offroad_01_armed_F"];                                                                                     // Armed offroad
-    _vehHeavyList = ["I_MBT_03_cannon_F"];                                                                                          // Kuma
+    _vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];                                                      // Kuma, Nyx AT, Nyx AutoCannon
 };
 
 private ["_x","_g","_pos","_flatPos","_rpos","_v"];
@@ -164,7 +164,7 @@ if !(_vehAAList isEqualTo []) then {
             _v lock 2;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
             [_g, _vehaaSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -191,7 +191,7 @@ if !(_vehmrapList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
             [_g, _vehmrapSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -218,7 +218,7 @@ if (_vehRandList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
             [_g, _vehrandSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -245,7 +245,7 @@ if (_vehLightList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
             [_g, _vehLightSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -272,7 +272,7 @@ if (_vehHeavyList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
             [_g, _vehHeavySkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 

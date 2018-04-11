@@ -215,7 +215,18 @@ _pfh = {
                             _grp = createGroup east;
                             _grp setGroupIdGlobal [format["factory_spv_%1_%2", _missionID, _spawnCount]];
 
-                            _veh = (selectRandom ["O_MBT_02_cannon_F","O_APC_Tracked_02_cannon_F","O_APC_Wheeled_02_rcws_F","O_MRAP_02_gmg_F","O_MRAP_02_hmg_F","O_APC_Tracked_02_AA_F"]) createVehicle _rpos;
+                            _veh = (selectRandom [
+                                "O_MBT_02_cannon_F",            // T-100
+                                "O_APC_Tracked_02_cannon_F",    // BTR-K
+                                "O_APC_Wheeled_02_rcws_F",      // Marid
+                                "O_MRAP_02_gmg_F",              // Ifrit GMG
+                                "O_MRAP_02_hmg_F",              // Ifrit HMG
+                                "O_APC_Tracked_02_AA_F",        // Tigris
+                                "I_LT_01_AT_F",                 // Nyx AT
+                                "I_LT_01_AA_F",                 // Nyx AA
+                                "I_LT_01_cannon_F",             // Nyx AutoCannon
+                                "O_MBT_04_cannon_F"             // T-140
+                            ]) createVehicle _rpos;
                             [_veh, _grp] call BIS_fnc_spawnCrew;
 
                             _veh lock 3;
