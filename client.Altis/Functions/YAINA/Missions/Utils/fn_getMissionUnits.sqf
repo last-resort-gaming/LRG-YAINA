@@ -13,7 +13,8 @@ params ["_missionID"];
 private _idx = (GVAR(localRunningMissions) select 0) find _missionID;
 if (_idx isEqualTo -1) exitWith {[]};
 
-_units = ((GVAR(localRunningMissions) select 1) select _idx) select 1;
+// Duplicate the array
+_units = (((GVAR(localRunningMissions) select 1) select _idx) select 1) + [];
 
 // Have we any reinforcements?
 private _idx = (GVAR(reinforcements) select 0) find _missionID;
