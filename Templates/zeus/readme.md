@@ -1,4 +1,4 @@
-# Zeus Mission Build Process
+# Zeusday Mission Build Process
 
 ## Step 1: Preparation (curator)
 
@@ -75,6 +75,7 @@ Handy helpers for 3den enhanced scenario editing:
 * Right click on a placed group or unit, then click attributes:
 * Object: States - Stance: Force AI into a specific stance to prevent them going prone at first sign of contact and become inivsible in the high grass.
 * Object: Disable AI Features - Path: Locks the selected unit in place, making them basically a garrisoned unit, but you get more freedom about placement.
+
 I suggest you use this method to garrison your objectives. If you place down about 5-6 different unit types, set them all to stand up, and disable pathing, then you can simply copy and paste them around the buildings.
 
 ##### Waypoints:
