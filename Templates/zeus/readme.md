@@ -2,7 +2,7 @@
 
 ## Step 1: Preparation (curator)
 
-* Download zeusday template: [Latest Zeusday Template](http://www.lastresortgaming.net/template/ZeusTemplate.Altis.zip)
+* Download zeusday template: [Latest Zeusday Template](https://bitbucket.org/lastresortgaming/lrg-yaina/downloads/ZeusTemplate.Altis.zip)
 * Extract the ZIP to your MP Missions Folder, this is generally located in one of the following locations:
     * C:\Users\<LOGIN NAME>\Documents\Arma 3 - Other Profiles\<PROFILE NAME>\mpmissions
     * C:\Users\<LOGIN NAME>\Documents\Arma 3\mpmissions
@@ -44,9 +44,7 @@ sane defaults, feel free to alter for it to be suitable for your mission.
 ## Step 4: Request Mission (curator)
 
 * Right click on our zeus-template.Altis folder and select "Add to Zip"
-* Get that zip to an admin
-    * CM. MartinCo
-    * CM. Sekwah
+* Get that zip to Angry Salad via this [Google Form](https://goo.gl/forms/8wKrU3Bg7kfjcb2n1)
 
 ## Step 5: Test Mission (admin)
 
@@ -57,17 +55,38 @@ sane defaults, feel free to alter for it to be suitable for your mission.
 * Issue !mission ZeusDayName
 * Ensure mission loads as intended
 
-## Step 5: Deploy Mission (admin)
+## Step 6: Deploy Mission (admin)
 
 * Deploy the zip to the live server
 * Drag the zip to: EU1/Utils/build-zeusday-pbo.bat
 * Ensure successful output and that the ZeusDayName is in the server\mpmissions folder
 
-## Step 6: Start ZeusDay (admin lv.3)
+## Step 7: Start ZeusDay (admin lv.3)
 
 * Once step 5 has been completed, an admin level 3 can start the zeus day by issuing !mission <MissionName>
 
 # Editing FAQ
+
+#### 3den Enhanced 
+
+Handy helpers for 3den enhanced scenario editing:
+
+Units / Groups:
+*Right click on a placed group or unit, then click attributes:
+*Object: States - Stance: Force AI into a specific stance to prevent them going prone at first sign of contact and become inivsible in the high grass.
+*Object: Disable AI Features - Path: Locks the selected unit in place, making them basically a garrisoned unit, but you get more freedom about placement.
+
+Waypoints:
+*Click on a group - Shift+Right Click: Creates a waypoint.
+*Right click on a placed Waypoint, then click attributes: The last waypoint in a series, change it to a "Cycle" waypoint (so it loops the patrol pattern). All other waypoints keep as either "Move", or if you want AI to be more agressive "Seek and Destroy".
+
+Objects / Terrain:
+*Right click on a placed object, then click attributes:
+*Object: Special States - Enable Damage: Disable damage on walls and gates you don't want players to ram / destroy with vehicles.
+*Right dropdown menu - Modules - Environment - Edit Terrain Object: Lets you edit buildings, lock and open doors, set damage on it and other things.
+*Right dropdown menu - Modules - Environment - Hide Terrain Objects: Lets you clear a space of any obstructions such as buildings, rocks, trees and so on. Helpful for building a custom structure inside a city.
+
+Top Toolbar - Toggle vertical mode and surface snapping: Helpful if you want to sink a certain object into the ground, without snapping to the terrain. Experiment with which settings fit for what.
 
 #### Editing images
 
