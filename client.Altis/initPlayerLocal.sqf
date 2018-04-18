@@ -19,45 +19,6 @@ if (typeOf player isEqualTo "VirtualCurator_F") exitWith {
     [player] remoteExecCall ["YAINA_fnc_playerIntroComplete", 2];
 };
 
-// When we have TFAR enabled, we only allow admins on side + direct chat
-// and disable the others
-if (isClass(configFile >> "CfgPatches" >> "task_force_radio")) then {
-
-    1 enableChannel (['HQ', 'side-channel-talk'] call YAINA_fnc_testTraits); // Side
-    2 enableChannel false; // Command
-    3 enableChannel [true, false]; // Group
-    4 enableChannel false; // Vehicle
-
-} else {
-
-    // Always enable group/vehicle
-    3 enableChannel true;
-    4 enableChannel true;
-
-    // Main Channel Management
-    [{
-        _settings = [];
-
-        // Command Channel Management
-        _settings pushBack [1, ["HQ", "side-channel-talk"] call YAINA_fnc_testTraits, true];
-        _settings pushBack [2, leader (group player) isEqualTo player];
-
-        {
-            _x params ["_chan", "_destVoice", "_destChat"];
-            if (isNil "_destChat") then { _destChat = _destVoice; };
-
-            _destState = [_destChat, _destVoice];
-            _chanState = channelEnabled _chan;
-
-            if !(_destState isEqualTo _chanState) then {
-                _chan enableChannel _destState;
-            };
-            nil
-        } count _settings;
-
-    }, 1, []] call CBAP_fnc_addPerFrameHandler;
-};
-
 ////////////////////////////////////////////////////////////////////////////
 // DISABLE NEGATIVE RATINGS
 ////////////////////////////////////////////////////////////////////////////
