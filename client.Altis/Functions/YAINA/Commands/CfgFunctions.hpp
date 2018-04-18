@@ -39,6 +39,7 @@ class YAINA_CMD {
         class repair {};
         class players {};
         class paradrop {};
+        class jet {};
     };
 
     class Messages {

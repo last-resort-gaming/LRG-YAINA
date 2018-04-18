@@ -14,7 +14,7 @@ if !(isServer) exitWith {
     _this remoteExecCall [QFNC(cas), 2];
 };
 
-params ["_pos", "_radius"];
+params ["_pos", "_radius", ["_force", false]];
 private ["_types", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp"];
 
 _type = selectRandom [
@@ -39,7 +39,7 @@ if (isNil QVAR(cas)) then {
     GVAR(cas) = GVAR(cas) select { alive _x };
 };
 
-if (count GVAR(cas) >= _max) exitWith {};
+if (count GVAR(cas) >= _max && { !_force } ) exitWith {};
 
 // Lets spawn us a jet, fly though our calling radio tower position and set up a patrol
 // we use delete on enpty group so we don't need to manage this at all once spawned
