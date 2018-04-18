@@ -65,12 +65,14 @@ GVAR(prefix) = ((name player) splitString "-,. ") joinString "";
     {
         _distance = (_groups select 1) select _forEachIndex;
 
-        // previx the group id with curator
-        _gn = groupId _x;
-        _x setGroupIdGlobal [format ["%1 %2", GVAR(prefix), _gn]];
-
-        // request group moved to HC
-        [_x] remoteExecCall [QFNC(migrate), 2];
+        // Only manage groups with no players in
+        _pc = { isPlayer _x } count (units _x);
+        if (_pc isEqualTo 0) then {
+            // previx the group id with curator
+            _gn = groupId _x;
+            _x setGroupIdGlobal [format ["%1 %2", GVAR(prefix), _gn]];
+            [_x] remoteExecCall [QFNC(migrate), 2];
+        };
 
         // Build Log
         _ut = [[],[]]; // Unit Types
