@@ -52,16 +52,28 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 [[], {
                     1 enableChannel true;
                     2 enableChannel true;
-
                     // Use CHVD distance if available
-                    setViewDistance ((profileNamespace getVariable ["CHVD_air", viewDistance]) min 12000);
-
+                    _vd = ((profileNamespace getVariable ["CHVD_air",   viewDistance]) min 12000);
+                    _vo = ((profileNamespace getVariable ["CHVD_airObj",viewDistance]) min 12000);
+                    diag_log format["setting vd/vo to %1 %2", _vd, _vo];
+                    setViewDistance _vd;
+                    setObjectViewDistance _vo;
                 }] remoteExec ["call", remoteExecutedOwner];
 
                 // Show the assention message to everyone
                 ["CuratorAssign", [_n, name _player]] remoteExec ["bis_fnc_showNotification"];
             };
         };
+
+
+        [[], {
+            // Use CHVD distance if available
+            _vd = ((profileNamespace getVariable ["CHVD_air", viewDistance]) min 12000);
+            _vo = ((profileNamespace getVariable ["CHVD_airObj",viewDistance]) min 12000);
+            setViewDistance _vd;
+            diag_log format["setting vd/vo to %1 %2 part 2", _vd, _vo];
+            setObjectViewDistance _vo;
+        }] remoteExec ["call", remoteExecutedOwner];
 
         // Catch any new units that maybe lurking around from modules that don't add to all curators
         (getAssignedCuratorLogic _player) addCuratorEditableObjects [allUnits, true];
