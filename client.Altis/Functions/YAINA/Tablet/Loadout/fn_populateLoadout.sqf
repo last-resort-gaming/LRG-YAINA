@@ -40,5 +40,8 @@ lbClear _xlb;
 
 } forEach (_cfgItemList);
 
+// Sort our LNBs
+_xlb lnbSort [0, false];
+
 // We also want to deselect what's currently selected so we dont start half way down
 _xlb lnbSetCurSelRow -1;

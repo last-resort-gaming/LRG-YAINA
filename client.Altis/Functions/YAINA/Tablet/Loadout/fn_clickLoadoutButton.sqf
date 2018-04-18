@@ -76,14 +76,26 @@ _items = call {
             configClasses (configFile >> 'CfgWeapons'); };
     if (_enabled isEqualTo 33) exitWith { "getnumber (_x >> 'type') isEqualTo 2 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgWeapons'); };
     if (_enabled isEqualTo 34) exitWith { "!(getnumber (_x >> 'type') isEqualTo 0) AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgMagazines'); };
-    if (_enabled isEqualTo 35) exitWith { "getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 201 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgWeapons'); };
+    if (_enabled isEqualTo 35) exitWith {
+        // Get our scopes 201, and bipods (but can't use type 302 alone as ACE uses this for lots of things
+        // and we don't want them showing under scopes as they do in 3den as it's not the natural place
+        "getnumber (_x >> 'scope') isEqualTo 2
+         AND (
+            (getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 201)
+            OR ((getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 302) AND (getnumber (_x >> 'ItemInfo' >> 'hasBipod') isEqualTo 1))
+         )" configClasses (configFile >> 'CfgWeapons'); };
     if (_enabled isEqualTo 36) exitWith { "getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 801 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgWeapons'); };
     if (_enabled isEqualTo 37) exitWith { "getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 701 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgWeapons'); };
     if (_enabled isEqualTo 38) exitWith { "getText (_x >> 'vehicleClass') isEqualTo 'Backpacks' AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgVehicles'); };
     if (_enabled isEqualTo 39) exitWith { "getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 605 AND getnumber (_x >> 'scope') isEqualTo 2" configClasses (configFile >> 'CfgWeapons'); };
     if (_enabled isEqualTo 40) exitWith {
-        // get all our Binos or FAKs/medikit/toolkit/UAV terms
-        _a = "getnumber (_x >> 'scope') isEqualTo 2 AND ((getnumber (_x >> 'type') isEqualTo 4096) OR (!([401,619,620,621] find getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo -1)))"
+        // get all our Binos or FAKs/medikit/toolkit/UAV terms or Items that aren't bipods
+        _a = "getnumber (_x >> 'scope') isEqualTo 2
+             AND (
+                (getnumber (_x >> 'type') isEqualTo 4096)
+                OR (getnumber (_x >> 'ItemInfo' >> 'Type') in [401,619,620,621])
+                OR ((getnumber (_x >> 'ItemInfo' >> 'Type') isEqualTo 302) AND (getnumber (_x >> 'ItemInfo' >> 'hasBipod') isEqualTo 0))
+             )"
                 configClasses (configFile >> 'CfgWeapons');
         _a + [configFile >> "CfgWeapons" >> "MineDetector"];
     };

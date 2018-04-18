@@ -34,10 +34,19 @@ if (!createDialog "HQTabletDialog") exitWith {};
 private _tablet = findDisplay IDD_TABLET;
 
 // RESET TO BASE LOADOUT
-GVAR(loadout) = [
-    ["FirstAidKit","optic_NVS","optic_MRCO","NVGoggles_OPFOR","1Rnd_HE_Grenade_shell","20Rnd_556x45_UW_mag","20Rnd_762x51_Mag","30Rnd_45ACP_Mag_SMG_01","30Rnd_556x45_Stanag_red","30Rnd_65x39_caseless_mag","7Rnd_408_Mag","B_IR_Grenade","DemoCharge_Remote_Mag","HandGrenade","NLAW_F","SatchelCharge_Remote_Mag","SmokeShell","SmokeShellBlue","Titan_AA","Titan_AP","Titan_AT","UGL_FlareWhite_F","10Rnd_338_Mag","130Rnd_338_Mag","10Rnd_50BW_Mag_F","10Rnd_127x54_Mag","5Rnd_127x108_APDS_Mag","30Rnd_545x39_Mag_F","150Rnd_556x45_Drum_Mag_F","200Rnd_556x45_Box_Red_F","100Rnd_580x42_Mag_F","30Rnd_580x42_Mag_F","100Rnd_65x39_caseless_mag","200Rnd_65x39_cased_Box","20Rnd_650x39_Cased_Mag_F","30Rnd_65x39_caseless_green","150Rnd_762x54_Box","30Rnd_762x39_Mag_Green_F","10Rnd_762x54_Mag","30Rnd_9x21_Mag_SMG_02","10Rnd_93x64_DMR_05_Mag","150Rnd_93x64_Mag","RPG7_F","RPG32_HE_F","RPG32_F"],
-    [20,10,10,10,10,10,10,10,30,60,10,5,5,20,5,5,60,10,5,5,5,5,10,10,5,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,5,5,5]
-];
+if (isClass(configFile >> "CfgPatches" >> "ace_main")) then {
+    GVAR(loadout) = [
+        ["optic_NVS","optic_MRCO","ACE_elasticBandage","ACE_quikclot","ACE_atropine","ACE_fieldDressing","ACE_bloodIV_250","ACE_bloodIV_500","ACE_bloodIV","ACE_EarPlugs","ACE_epinephrine","ACE_morphine","ACE_plasmaIV","ACE_plasmaIV_250","ACE_plasmaIV_500","ACE_salineIV_250","ACE_salineIV","ACE_salineIV_500","ACE_packingBandage","ACE_NVG_Gen4","1Rnd_HE_Grenade_shell","20Rnd_556x45_UW_mag","20Rnd_762x51_Mag","30Rnd_45ACP_Mag_SMG_01","30Rnd_556x45_Stanag_red","30Rnd_65x39_caseless_mag","7Rnd_408_Mag","B_IR_Grenade","DemoCharge_Remote_Mag","HandGrenade","NLAW_F","SatchelCharge_Remote_Mag","SmokeShell","SmokeShellBlue","Titan_AA","Titan_AP","Titan_AT","UGL_FlareWhite_F","10Rnd_338_Mag","130Rnd_338_Mag","10Rnd_50BW_Mag_F","10Rnd_127x54_Mag","5Rnd_127x108_APDS_Mag","30Rnd_545x39_Mag_F","150Rnd_556x45_Drum_Mag_F","200Rnd_556x45_Box_Red_F","100Rnd_580x42_Mag_F","30Rnd_580x42_Mag_F","100Rnd_65x39_caseless_mag","200Rnd_65x39_cased_Box","20Rnd_650x39_Cased_Mag_F","30Rnd_65x39_caseless_green","150Rnd_762x54_Box","30Rnd_762x39_Mag_Green_F","10Rnd_762x54_Mag","30Rnd_9x21_Mag_SMG_02","10Rnd_93x64_DMR_05_Mag","150Rnd_93x64_Mag","RPG7_F","RPG32_HE_F","RPG32_F","Vorona_HE","Vorona_HEAT","MRAWS_HE_F","MRAWS_HEAT_F"],
+        [10,10,60,60,30,30,8,4,2,10,30,6,2,8,4,8,2,2,30,10,10,10,10,10,30,60,10,5,5,20,5,5,60,10,5,5,5,5,10,10,5,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,5,5,5,5,5,5,5]
+    ];
+} else {
+    GVAR(loadout) = [
+        ["FirstAidKit","optic_NVS","optic_MRCO","NVGoggles_OPFOR","1Rnd_HE_Grenade_shell","20Rnd_556x45_UW_mag","20Rnd_762x51_Mag","30Rnd_45ACP_Mag_SMG_01","30Rnd_556x45_Stanag_red","30Rnd_65x39_caseless_mag","7Rnd_408_Mag","B_IR_Grenade","DemoCharge_Remote_Mag","HandGrenade","NLAW_F","SatchelCharge_Remote_Mag","SmokeShell","SmokeShellBlue","Titan_AA","Titan_AP","Titan_AT","UGL_FlareWhite_F","10Rnd_338_Mag","130Rnd_338_Mag","10Rnd_50BW_Mag_F","10Rnd_127x54_Mag","5Rnd_127x108_APDS_Mag","30Rnd_545x39_Mag_F","150Rnd_556x45_Drum_Mag_F","200Rnd_556x45_Box_Red_F","100Rnd_580x42_Mag_F","30Rnd_580x42_Mag_F","100Rnd_65x39_caseless_mag","200Rnd_65x39_cased_Box","20Rnd_650x39_Cased_Mag_F","30Rnd_65x39_caseless_green","150Rnd_762x54_Box","30Rnd_762x39_Mag_Green_F","10Rnd_762x54_Mag","30Rnd_9x21_Mag_SMG_02","10Rnd_93x64_DMR_05_Mag","150Rnd_93x64_Mag","RPG7_F","RPG32_HE_F","RPG32_F","Vorona_HEAT","Vorona_HE","MRAWS_HEAT_F","MRAWS_HE_F"],
+        [20,10,10,10,10,10,10,10,30,60,10,5,5,20,5,5,60,10,5,5,5,5,10,10,5,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,5,5,5,5,5,5,5]
+    ];
+};
+
+
 
 // Place holder for last selected player
 GVAR(loadout_last_idx) = nil;
