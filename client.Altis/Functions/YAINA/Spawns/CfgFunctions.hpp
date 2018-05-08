@@ -8,6 +8,13 @@ class YAINA_SPAWNS {
         class CQ_Falcon {};
     };
 
+    class CV {
+        file = "Functions\YAINA\Spawns\CV";
+        class CQ_Alpha {};
+		class CQ_Bravo {};
+		class CQ_Charlie {};
+    };
+
     class HQ {
         file = "Functions\YAINA\Spawns\HQ";
         class HQ_Courage {};

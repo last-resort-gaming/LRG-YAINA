@@ -8,7 +8,7 @@ class EditorData
 	toggles=514;
 	class ItemIDProvider
 	{
-		nextID=2683;
+		nextID=2684;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1488;
+		nextID=1608;
 	};
 	class Camera
 	{
-		pos[]={9138.5928,69.716911,21457.549};
-		dir[]={-0.31047797,-0.85596514,0.41350961};
-		up[]={-0.51396465,0.5169704,0.68452477};
-		aside[]={0.79970723,1.3145182e-006,0.60044754};
+		pos[]={9231.4463,36.709969,21630.697};
+		dir[]={-0.7026338,-0.51210934,0.49417332};
+		up[]={-0.4189685,0.85884929,0.29467028};
+		aside[]={0.57533318,1.9387808e-006,0.81802285};
 	};
 };
 binarizationWanted=0;
@@ -484,7 +484,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=430;
+		items=431;
 		class Item0
 		{
 			dataType="Object";
@@ -38912,6 +38912,98 @@ class Mission
 			id=2680;
 			type="Land_PortableLight_single_F";
 			atlOffset=-0.00099563599;
+		};
+		class Item430
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={1201.118,0,29871.852};
+			};
+			name="Zeus";
+			id=2683;
+			type="ModuleCurator_F";
+			atlOffset=185.97;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ModuleCurator_F_Owner";
+					expression="_this setVariable ['Owner',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="76561198159966246";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ModuleCurator_F_Forced";
+					expression="_this setVariable ['Forced',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ModuleCurator_F_Name";
+					expression="_this setVariable ['Name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ModuleCurator_F_Addons";
+					expression="_this setVariable ['Addons',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=2;
+						};
+					};
+				};
+				nAttributes=4;
+			};
 		};
 	};
 	class Connections
