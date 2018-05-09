@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1608;
+		nextID=1656;
 	};
 	class Camera
 	{
@@ -484,7 +484,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=431;
+		items=430;
 		class Item0
 		{
 			dataType="Object";
@@ -15667,7 +15667,7 @@ class Mission
 									dataType="Object";
 									class PositionInfo
 									{
-										position[]={9313.0732,13.180721,21604.303};
+										position[]={8911.502,13.180719,21613.84};
 										angles[]={0,5.6026826,0};
 									};
 									side="Empty";
@@ -15679,7 +15679,7 @@ class Mission
 									};
 									id=1438;
 									type="Land_NavigLight";
-									atlOffset=-8.0540829;
+									atlOffset=-29.056414;
 									class CustomAttributes
 									{
 										class Attribute0
@@ -16126,15 +16126,15 @@ class Mission
 								};
 							};
 							id=1735;
-							atlOffset=-4.2971354;
+							atlOffset=-4.2957315;
 						};
 					};
 					id=1746;
-					atlOffset=-1.8011227;
+					atlOffset=-1.8013744;
 				};
 			};
 			id=1758;
-			atlOffset=-175.45004;
+			atlOffset=-175.44749;
 		};
 		class Item162
 		{
@@ -38912,98 +38912,6 @@ class Mission
 			id=2680;
 			type="Land_PortableLight_single_F";
 			atlOffset=-0.00099563599;
-		};
-		class Item430
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={1201.118,0,29871.852};
-			};
-			name="Zeus";
-			id=2683;
-			type="ModuleCurator_F";
-			atlOffset=185.97;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="76561198159966246";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=2;
-						};
-					};
-				};
-				nAttributes=4;
-			};
 		};
 	};
 	class Connections
