@@ -186,7 +186,7 @@ _pfh = {
 
         _alive = { alive _x } count ([_missionID] call FNC(getMissionUnits));
 
-        if (_alive < 10) then {
+        if (_alive < 4) then {
             _stage = 2; _args set [1,_stage];
         };
     };
