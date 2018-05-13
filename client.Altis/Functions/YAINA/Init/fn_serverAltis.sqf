@@ -311,7 +311,7 @@ if !(isNil "TM") then {
     if !(isNil "_x") then {
         [_x, true, 10, 3000] call YAINA_VEH_fnc_initVehicle;
     };
-} forEach ["VE1","VE2","VE3","VE4","VE5","VE6","VE7","VE8","VE9"];
+} forEach ["VE1","VE2","VE3","VE4","VE5","VE6","VE7"];
 
 ///////////////////////////////////////////////////////////
 // GENERAL SETUP FOR BOTH

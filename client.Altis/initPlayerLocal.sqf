@@ -77,7 +77,7 @@ INTRO_HANDLE =  addMissionEventHandler ["PreloadFinished", {
             "EventTrack03a_F_Tacops"
         ], -5];
 
-        [[9175.96,21684,2.13609], "Welcome to Last Resort Gaming", 10, 80, 140, 1] call BIS_fnc_establishingShot;
+        [player, "Welcome to Last Resort Gaming", 50, 80, 140, 1] call BIS_fnc_establishingShot;
 
         5 fadeMusic 0;
 
