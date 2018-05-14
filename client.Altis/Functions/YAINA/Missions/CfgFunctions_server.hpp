@@ -5,6 +5,7 @@ class YAINA_MM_OBJ {
         file = "Functions\YAINA\Missions\Objectives\InfantryObjectives";
         class conquestBandit {};
         class conquestViper {};
+        class conquestAAF {};	
     };
 
     class MainAO {

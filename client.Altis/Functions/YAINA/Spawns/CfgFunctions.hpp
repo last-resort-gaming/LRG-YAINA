@@ -14,6 +14,13 @@ class YAINA_SPAWNS {
 		class CV_Bravo {};
 		class CV_Charlie {};
     };
+	
+    class CA {
+        file = "Functions\YAINA\Spawns\CA";
+        class CA_Alpha {};
+		class CA_Bravo {};
+		class CA_Charlie {};
+    };	
 
     class HQ {
         file = "Functions\YAINA\Spawns\HQ";
