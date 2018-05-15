@@ -116,6 +116,7 @@ for "_x" from 0 to (2 + (random 2)) do {
     private _randomPos = [[[_CQPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
     private _vehc = "I_G_Offroad_01_armed_F" createVehicle _randompos;
 
+	_vehc setObjectTexture [0, "\A3\Soft_F_Bootcamp\Offroad_01\Data\offroad_01_ext_IG_09_CO.paa"];
     _vehc allowCrewInImmobile true;
     _vehc lock 2;
     _vehicles pushBack _vehc;
