@@ -63,6 +63,8 @@ waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 _CQElements  = [_CQPosition, random 360, call _cqFunc] call BIS_fnc_ObjectsMapper;
 _buildings   = _CQElements;
 
+
+
 ///////////////////////////////////////////////////////////
 // Spawn AI
 ///////////////////////////////////////////////////////////
@@ -187,7 +189,7 @@ _pfh = {
 
         _alive = { alive _x } count ([_missionID] call FNC(getMissionUnits));
 
-        if (_alive < 10) then {
+        if (_alive < 4) then {
             _stage = 2; _args set [1,_stage];
         };
     };
