@@ -8,7 +8,7 @@ class EditorData
 	toggles=1546;
 	class ItemIDProvider
 	{
-		nextID=3753;
+		nextID=3741;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2304;
+		nextID=2256;
 	};
 	class Camera
 	{
-		pos[]={11815.142,175.68466,11804.029};
-		dir[]={-0.66753936,-0.5971868,0.44490236};
-		up[]={-0.49692744,0.802082,0.33119372};
-		aside[]={0.55465496,2.8751092e-006,0.83219659};
+		pos[]={11625.151,59.981865,11867.949};
+		dir[]={-0.23944254,-0.38740274,0.89027578};
+		up[]={-0.1006178,0.92191178,0.37410873};
+		aside[]={0.96568716,-1.3969839e-009,0.25972474};
 	};
 };
 binarizationWanted=0;
@@ -534,7 +534,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=579;
+		items=575;
 		class Item0
 		{
 			dataType="Object";
@@ -14084,7 +14084,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={1226.9231,0,30144.074};
+				position[]={1280,0,30144};
 			};
 			name="zeus2";
 			isPlayable=1;
@@ -14191,7 +14191,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={1226.9231,0,30208.074};
+				position[]={1280,0,30208};
 			};
 			name="zeus2mod";
 			init="this setVariable [""showNotification"", false];";
@@ -23247,7 +23247,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={11651.803,23.224556,11773.659};
+				position[]={11651.803,23.228315,11774.86};
 				angles[]={0.0053377044,2.2221997,0.073202357};
 			};
 			side="Empty";
@@ -23259,7 +23259,7 @@ class Mission
 			};
 			id=3025;
 			type="B_Heli_Transport_01_F";
-			atlOffset=0.01341629;
+			atlOffset=-0.00044059753;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -26434,7 +26434,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={11639.315,24.361866,11759.918};
+				position[]={11638.995,24.363239,11760.21};
 				angles[]={6.2605233,2.2221997,0.0039967569};
 			};
 			side="Empty";
@@ -26446,7 +26446,6 @@ class Mission
 			};
 			id=3026;
 			type="B_Heli_Transport_03_F";
-			atlOffset=0.0039653778;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -37868,230 +37867,16 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item575
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={1238.043,0.043945313,30207.891};
-			};
-			name="Zeus3Mod";
-			init="this setVariable [""showNotification"", false];";
-			id=3746;
-			type="ModuleCurator_F";
-			atlOffset=186.01395;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Zeus3";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Zeus 3";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				nAttributes=4;
-			};
-		};
-		class Item576
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={1237.3138,0.024902344,30144.273};
-			};
-			name="Zeus3";
-			isPlayable=1;
-			description="Zeus 3  -  Whitelisted";
-			id=3747;
-			type="VirtualCurator_F";
-			atlOffset=185.9949;
-		};
-		class Item577
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={1249.8917,-0.01171875,30143.709};
-			};
-			name="zeus4";
-			isPlayable=1;
-			description="Zeus 4  -  Whitelisted";
-			id=3748;
-			type="VirtualCurator_F";
-			atlOffset=185.95828;
-		};
-		class Item578
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={1249.8917,-0.01171875,30207.709};
-			};
-			name="zeus4mod";
-			init="this setVariable [""showNotification"", false];";
-			id=3749;
-			type="ModuleCurator_F";
-			atlOffset=185.95828;
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ModuleCurator_F_Owner";
-					expression="_this setVariable ['Owner',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="zeus4";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ModuleCurator_F_Forced";
-					expression="_this setVariable ['Forced',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ModuleCurator_F_Name";
-					expression="_this setVariable ['Name',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="Zeus 4";
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ModuleCurator_F_Addons";
-					expression="_this setVariable ['Addons',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3;
-						};
-					};
-				};
-				nAttributes=4;
-			};
-		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=4;
+			nextID=2;
 		};
 		class Links
 		{
-			items=4;
+			items=2;
 			class Item0
 			{
 				linkID=0;
@@ -38107,26 +37892,6 @@ class Mission
 				linkID=1;
 				item0=2149;
 				item1=2146;
-				class CustomData
-				{
-					type="Sync";
-				};
-			};
-			class Item2
-			{
-				linkID=2;
-				item0=3746;
-				item1=3747;
-				class CustomData
-				{
-					type="Sync";
-				};
-			};
-			class Item3
-			{
-				linkID=3;
-				item0=3749;
-				item1=3748;
 				class CustomData
 				{
 					type="Sync";
