@@ -24,7 +24,9 @@ if (isServer) then {
             nil
         } count [
             [zeus1, zeus1mod],
-            [zeus2, zeus2mod]
+            [zeus2, zeus2mod],
+			[zeus3, zeus3mod],
+			[zeus4, zeus4mod]
         ];
     }, 2, []] call CBAP_fnc_addPerFrameHandler;
 
