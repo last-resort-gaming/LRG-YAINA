@@ -37,12 +37,23 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 // We are allowed, so now we create a group for this zeuser on west, and register the group in groups so
                 // everyone can see they're online, and once they've switched side, we allow them to talk on side + command
 
-                _n = "Zeus 1";
+                _n = "Zeus";
+				
+                if (isPlayer zeus1 && zeus1 isEqualTo _player) then {
+                    _n = "Zeus 1";
+                };
                 if (isPlayer zeus2 && zeus2 isEqualTo _player) then {
                     _n = "Zeus 2";
                 };
-
-                _g = createGroup west;
+                if (isPlayer zeus3 && zeus3 isEqualTo _player) then {
+                    _n = "Zeus 3";
+                };
+                if (isPlayer zeus4 && zeus4 isEqualTo _player) then {
+                    _n = "Zeus 4";
+                };
+		
+								
+				_g = createGroup west;
                 _g setVariable [QVAR(playerInit), true];
                 [_player] joinSilent _g;
 
