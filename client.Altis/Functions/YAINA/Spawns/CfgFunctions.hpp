@@ -1,19 +1,26 @@
 class YAINA_SPAWNS {
 	tag = "YAINA_SPAWNS";
 
-    class CQ {
-        file = "Functions\YAINA\Spawns\CQ";
-        class CQ_Deer {};
-        class CQ_Eagle {};
-        class CQ_Falcon {};
+    class CB {
+        file = "Functions\YAINA\Spawns\CB";
+        class CB_Deer {};
+        class CB_Eagle {};
+        class CB_Falcon {};
     };
 
     class CV {
         file = "Functions\YAINA\Spawns\CV";
-        class CQ_Alpha {};
-		class CQ_Bravo {};
-		class CQ_Charlie {};
+        class CV_Alpha {};
+		class CV_Bravo {};
+		class CV_Charlie {};
     };
+	
+    class CA {
+        file = "Functions\YAINA\Spawns\CA";
+        class CA_Alpha {};
+		class CA_Bravo {};
+		class CA_Charlie {};
+    };	
 
     class HQ {
         file = "Functions\YAINA\Spawns\HQ";
