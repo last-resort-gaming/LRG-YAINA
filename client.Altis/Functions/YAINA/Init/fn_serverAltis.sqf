@@ -87,7 +87,7 @@ private _navLights  = getMarkerPos "BASE" nearObjects ["Land_NavigLight", _baseS
     if !(isNil "_x") then {
         [_x] call YAINA_VEH_fnc_initHeli;
     };
-} forEach ["HE1", "HE2", "HE3", "HE4", "HE5"];
+} forEach ["HE1", "HE2", "HE3", "HE4", "HE5", "BFI", "BFV"];
 
 if !(isNil "JET1") then {
     [JET1, false, 300, 1000, []] call YAINA_VEH_fnc_initVehicle;

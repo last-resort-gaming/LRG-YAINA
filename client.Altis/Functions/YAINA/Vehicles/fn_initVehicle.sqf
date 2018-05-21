@@ -36,6 +36,14 @@ if (_initOnInit) then {
     [_veh, _initCodeArgs] call _initCode;
 };
 
+
+// Ensure all vehicles have sensor system enabled
+if !(vehicleReportOwnPosition _veh) then {
+ _veh setVehicleReportRemoteTargets true;
+ _veh setVehicleReceiveRemoteTargets true;
+ _veh setVehicleReportOwnPosition true;
+};
+
 if (_hasKeys) then {
 
     _veh setVariable [QVAR(hasKeys), true, true];
