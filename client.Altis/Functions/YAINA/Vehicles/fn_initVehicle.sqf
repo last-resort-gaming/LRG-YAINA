@@ -307,5 +307,104 @@ if (_veh isKindOf "Helicopter" && !(_veh isKindOf "UAV")) then {
     nil;
 } count (fullCrew _veh);
 
+_sel2 = selectRandom [1,2];
+_sel3 = selectRandom [1,2,3];
+_sel4 = selectRandom [1,2,3,4];
+
+//=========Mohawk
+
+if (typeOf _veh == "I_Heli_Transport_02_F") then {
+
+	_veh setObjectTextureGlobal [1,'Data\Vehicles\Merlin0.paa'];
+	_veh setObjectTextureGlobal [0,'Data\Vehicles\Merlin1.paa'];
+	_veh setObjectTextureGlobal [2,'Data\Vehicles\Merlin2.paa'];
+	
+	};	
+//=========Ghosthawk
+
+if (typeOf _veh == "B_Heli_Transport_01_F") then {
+
+switch ( _sel4 ) do {
+	
+	case 1 : {
+
+	_veh setObjectTextureGlobal [0,'A3\Air_F_Beta\Heli_Transport_01\Data\Heli_Transport_01_ext01_BLUFOR_CO.paa'];
+	_veh setObjectTextureGlobal [1,'A3\Air_F_Beta\Heli_Transport_01\Data\Heli_Transport_01_ext02_BLUFOR_CO.paa'];
+
+	};
+	
+	case 2 : {
+	
+		_veh setObjectTextureGlobal [0,'A3\Air_F_Beta\Heli_Transport_01\Data\Heli_Transport_01_ext01_CO.paa'];
+		_veh setObjectTextureGlobal [1,'A3\Air_F_Beta\Heli_Transport_01\Data\Heli_Transport_01_ext02_CO.paa'];
+		
+		};
+	
+	case 3 : {
+	
+		_veh setObjectTextureGlobal [0,'A3\Air_F_Exp\Heli_Transport_01\Data\Heli_Transport_01_ext01_tropic_CO.paa'];
+		_veh setObjectTextureGlobal [1,'A3\Air_F_Exp\Heli_Transport_01\Data\Heli_Transport_01_ext02_tropic_CO.paa'];
+		
+		};
+		
+	case 4 : {
+	
+		_veh setObjectTextureGlobal [0,'A3\Air_F_Exp\Heli_Transport_01\Data\Heli_Transport_01_ext01_sand_CO.paa'];
+		_veh setObjectTextureGlobal [1,'A3\Air_F_Exp\Heli_Transport_01\Data\Heli_Transport_01_ext02_sand_CO.paa'];
+		
+		};
+	};
+};
+
+//=========Huron
+
+if (typeOf _veh == "B_Heli_Transport_03_F") then {
+
+switch ( _sel3 ) do {
+	
+	case 1 : {
+
+	_veh setObjectTextureGlobal [0,'a3\air_f_heli\heli_transport_03\data\heli_transport_03_ext01_co.paa'];
+	_veh setObjectTextureGlobal [1,'a3\air_f_heli\heli_transport_03\data\heli_transport_03_ext02_co.paa'];
+
+	};
+	
+	case 2 : {
+
+	_veh setObjectTextureGlobal [0,'a3\air_f_heli\heli_transport_03\data\heli_transport_03_ext01_co.paa'];
+	_veh setObjectTextureGlobal [1,'a3\air_f_heli\heli_transport_03\data\heli_transport_03_ext02_co.paa'];
+
+	};
+	
+	case 3 : {
+	
+	_veh setObjectTextureGlobal [0,'A3\Air_F_Heli\Heli_Transport_03\Data\Heli_Transport_03_ext01_black_CO.paa'];
+	_veh setObjectTextureGlobal [1,'a3\air_f_heli\heli_transport_03\data\heli_transport_03_ext02_black_co.paa'];
+		
+		};
+	
+	};
+};
+
+//=========LittleBird
+
+if (typeOf _veh == "B_Heli_Light_01_F") then {
+
+switch ( _sel2 ) do {
+	
+	case 1 : {
+
+	_veh setObjectTextureGlobal [0,'A3\Air_F\Heli_Light_01\Data\Heli_Light_01_ext_Blufor_CO.paa'];
+
+	};
+	
+	case 2 : {
+
+	_veh setObjectTextureGlobal [0, "\a3\air_f\Heli_Light_01\Data\heli_light_01_ext_ion_co.paa"]; 
+
+		};
+	
+	};
+};
 
 true;
