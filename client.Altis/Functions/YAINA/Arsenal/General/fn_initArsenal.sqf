@@ -57,10 +57,6 @@ GVAR(unitWeapons) = call {
         _permitGroups pushBack "mg";
     };
 
-    if(["ENG"] call YFNC(testTraits)) then {
-        _permitGroups pushBack "MineDetector";
-    };
-
     if (["SL"] call YFNC(testTraits)) then {
         _permitGroups append ["Laserdesignator", "arifle_gl"];
     };
@@ -242,7 +238,7 @@ GVAR(unitItems) = call {
     };
 
     if(["ENG"] call YFNC(testTraits)) then {
-        _permitItems pushBack "ToolKit";
+        _permitItems append ["ToolKit", "MineDetector"];
     };
 
     if (_hasTFAR) then {
