@@ -49,6 +49,9 @@ class YAINA_TABLET {
         file = "functions\YAINA\Tablet\Spawns";
         class createSupplyDrop {};
         class createMedicalContainer {};
+		class createVehicleAmmo {};
+		class createVehicleRepair {};
+		class createFuelContainer {};
         class setDroppable {};
     };
 };

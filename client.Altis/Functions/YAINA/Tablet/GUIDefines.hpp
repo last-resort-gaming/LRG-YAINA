@@ -340,26 +340,47 @@ class HQTabletDialog {
 
             class controls {
 
-                class AmmoDropButton : RequestButton {
+                class AirDefenceButton : RequestButton {
                     idc = 1500;
                     x = 0;
-                    y = 0.01;
-                    text = "Create Ammo Drop";
-                };
-
-                class AirDefenceButton : RequestButton {
-                    idc = 1501;
-                    x = (CONTENT_W * 0.25);
                     y = 0.01;
                     text = "Activate Air Defence";
                 };
 
+                class AmmoDropButton : RequestButton {
+                    idc = 1501;
+                    x = (CONTENT_W * 0.25);
+                    y = 0.01;
+                    text = "Create Ammo Drop";
+                };
+
                 class MedicalContainerButton : RequestButton {
                     idc = 1502;
-                    x = (CONTENT_W * 0.5);
+                    x = (CONTENT_W * 0.50);
                     y = 0.01;
                     text = "Create Medical Container";
                 };
+				
+                class VehicleAmmoButton : RequestButton {
+                    idc = 1503;
+                    x = (CONTENT_W * 0.75);
+                    y = 0.01;
+                    text = "Create Vehicle Resupply";
+                };
+				
+                class VehicleRepairButton : RequestButton {
+                    idc = 1504;
+                    x = 0;
+                    y = (CONTENT_H * 0.2);
+                    text = "Create Vehicle Repair";
+                };
+
+                class FuelContainerButton : RequestButton {
+                    idc = 1505;
+                    x = (CONTENT_W * 0.25);
+                    y = (CONTENT_H * 0.2);
+                    text = "Create Fuel Container";
+                };				
 
             };
         };
