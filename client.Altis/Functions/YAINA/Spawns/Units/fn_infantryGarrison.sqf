@@ -1,5 +1,5 @@
 /*
-	author: Martin
+	author: Martin & Matth
 	description: none
 	returns: nothing
 */

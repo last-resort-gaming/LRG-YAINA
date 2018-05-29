@@ -1,6 +1,6 @@
 /*
    Author:
-      Quiksilver
+      Quiksilver & Matth
       Rarek [AW]
       MartinCo ported to YAINA
 	description: none

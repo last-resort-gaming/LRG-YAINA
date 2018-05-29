@@ -1,5 +1,5 @@
 /*
-	author: Martin
+	author: Martin & Matth
 	description: none
 	returns: [groups, vehicles]
 
@@ -47,9 +47,9 @@ _infList      = ["OIA_InfTeam","OI_reconPatrol"];
 _infaaList    = ["OIA_InfTeam_AA"];
 _infatList    = ["OIA_InfTeam_AT"];
 _sniperList   = ["OI_SniperTeam"];
-_vehAAList    = ["O_APC_Tracked_02_AA_F", "I_LT_01_AA_F"];                                                                                   // Tigris + Nyx AA
-_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F", "I_LT_01_cannon_F"]; // Ifrit + gmg + hmg, Quillen, Zamak + covered + Nyx Cannon
-_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F", "I_LT_01_AT_F"];                                                    // BTR-K + Marid + Nyx AT
+_vehAAList    = ["O_APC_Tracked_02_AA_F"];                                                                                   // Tigris
+_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F"]; // Ifrit + gmg + hmg, Quillen, Zamak + covered
+_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F"];                                                    // BTR-K + Marid
 _vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];                                                                              // Quillen + Armed Offroad
 _vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];                                                            // T-100, T140, T140K
 
@@ -59,7 +59,7 @@ if ((_side isEqualTo resistance) && (_army isEqualTo "AAF")) then {
     _infaaList    = ["HAF_InfTeam_AA"];
     _infatList    = ["HAF_InfTeam_AT"];
     _sniperList   = ["HAF_SniperTeam"];
-    _vehAAList    = ["I_APC_Wheeled_03_cannon_F"];                                                                                  // Gorgon
+    _vehAAList    = ["I_APC_Wheeled_03_cannon_F", "I_LT_01_AA_F"];                                                                // Gorgon + Nyx AA
     _vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];      // Strider + gmg + hmg, Zamak + coverd
     _vehRandList  = ["I_APC_Tracked_C03_cannon_F"];                                                                                 // Mora
     _vehLightList = ["I_G_Offroad_01_armed_F"];                                                                                     // Armed offroad
