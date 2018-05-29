@@ -79,10 +79,12 @@ if(_droppable) then {
     [_crate] call FNC(setDroppable);
 };
 
-// Add to zeeus
+// Add to zeus
 [[_crate]] call YFNC(addEditableObjects);
 
 // We don't respawn, but do give full functionality...
 [_crate, _vehicle] call YAINA_VEH_fnc_initVehicle;
+
+[[west, "HQ"], format["Support Request: Ammo Drop Created"]] remoteExec ["sideChat"];
 
 _crate

@@ -573,4 +573,4 @@ _veh enableCopilot false;
 [_veh] call YAINA_VEH_fnc_initVehicle;
 
 // Let folks know...
-[_player, format["Reward: %1 has been completed", getText (configFile >> "CfgVehicles" >> _class >> "displayName")]] remoteExec ["sideChat"];
+[[west, "HQ"], format["Reward: %1 has been completed", getText (configFile >> "CfgVehicles" >> _class >> "displayName")]] remoteExec ["sideChat"];

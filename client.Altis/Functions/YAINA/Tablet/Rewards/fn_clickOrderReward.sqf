@@ -67,7 +67,7 @@ _animationStates = [];
 [-_price, format["%1 ordered", _class]] remoteExecCall [QYFNC(addRewardPoints), 2];
 
 // Let folks know...
-[player, format["Reward: %1 has been requested, ETA: %2", getText (configFile >> "CfgVehicles" >> _class >> "displayName"), _buildTime call YFNC(formatDuration)]] remoteExec ["sideChat"];
+[[west, "HQ"], format["Reward: %1 has been requested, ETA: %2", getText (configFile >> "CfgVehicles" >> _class >> "displayName"), _buildTime call YFNC(formatDuration)]] remoteExec ["sideChat"];
 
 // Trigger the progress updater / complete trigger
 _pfh = {
