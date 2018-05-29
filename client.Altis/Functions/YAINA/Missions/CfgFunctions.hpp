@@ -25,6 +25,7 @@ class YAINA_MM_OBJ {
         class factory {};
     };
 
+
     class Priority {
         file = "Functions\YAINA\Missions\Objectives\Priority";
         class aa {};
