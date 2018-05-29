@@ -12,17 +12,23 @@ class YAINA_MM_OBJ {
         file = "Functions\YAINA\Missions\Objectives\MainAO";
         class mainAO {};
     };
+	
+    class SubObjectivesAAF {
+        file = "Functions\YAINA\Missions\Objectives\SubObjectivesAAF";
+        class vicDepot {};
+		class heliCAS {};
+    };
 
-    class SubObjectives {
-        file = "Functions\YAINA\Missions\Objectives\SubObjectives";
+    class SubObjectivesCSAT {
+        file = "Functions\YAINA\Missions\Objectives\SubObjectivesCSAT";
         class radioTower {};
         class factory {};
     };
 
     class Priority {
         file = "Functions\YAINA\Missions\Objectives\Priority";
-        class arty {};
         class aa {};
+        class arty {};
     };
 
     class SideMissions {

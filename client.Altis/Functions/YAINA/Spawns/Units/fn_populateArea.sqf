@@ -18,8 +18,10 @@ params [
         ["_vehmrap", [1,0]],
         ["_vehrand", [0,0]],
         ["_vehlight", [0,0]],
-        ["_vehheavy", [0,0]]
+        ["_vehheavy", [0,0]],
+		["_army", "CSAT"]
        ];
+	   
 
 _garrisons params ["_garrisonGroupCount", ["_garrisonMinRad", 0], ["_garrisonMaxRad", 60], ["_garrisonSkill", 2], ["_garrisonFill", 4], ["_garrisonExcludes", []]];
 _inf params ["_infMin", ["_infRand", 0], ["_infSkill", 2]];
@@ -51,7 +53,20 @@ _vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F", "I_LT_0
 _vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];                                                                              // Quillen + Armed Offroad
 _vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];                                                            // T-100, T140, T140K
 
-if (_side isEqualTo resistance) then {
+if ((_side isEqualTo resistance) && (_army isEqualTo "AAF")) then {
+    _confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry";
+    _infList      = ("true" configClasses _confBase) apply { configName _x };
+    _infaaList    = ["HAF_InfTeam_AA"];
+    _infatList    = ["HAF_InfTeam_AT"];
+    _sniperList   = ["HAF_SniperTeam"];
+    _vehAAList    = ["I_APC_Wheeled_03_cannon_F"];                                                                                  // Gorgon
+    _vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];      // Strider + gmg + hmg, Zamak + coverd
+    _vehRandList  = ["I_APC_Tracked_C03_cannon_F"];                                                                                 // Mora
+    _vehLightList = ["I_G_Offroad_01_armed_F"];                                                                                     // Armed offroad
+    _vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];                                                      // Kuma, Nyx AT, Nyx AutoCannon                                                 // Kuma, Nyx AT, Nyx AutoCannon
+};
+
+if ((_side isEqualTo resistance) && (_army isEqualTo "Syndikat")) then {
     _confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry";
     _infList      = ("true" configClasses _confBase) apply { configName _x };
     _infaaList    = [];

@@ -10,11 +10,12 @@ params ["_pos", ["_radius", [0, 30]], "_side", ["_groupCount", 1], ["_AIOB_Posit
 
 if (_units isEqualTo []) then {
 
-    private _groupType = (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad");
-    if (_side isEqualTo resistance) then {
-        _groupType = (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "ParaFireTeam");
+private _groupType = (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad");
+if (_side isEqualTo resistance) then {
+	_groupType = (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad");
     };
-
+	
+	
     for "_x" from 1 to _groupCount do {
         private _g = [_pos, _side, _groupType] call BIS_fnc_spawnGroup;
         _units append (units _g);
