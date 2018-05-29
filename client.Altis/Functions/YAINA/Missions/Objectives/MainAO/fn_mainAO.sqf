@@ -1,5 +1,5 @@
 /*
-	author: Martin
+	author: Martin & Matth
 	description: none
 	returns: nothing
 */
@@ -15,6 +15,31 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // So that they get restored, before your clean up deletes them, as arma
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
+
+///////////////////////////////////////////////////////////
+// Choose Army
+///////////////////////////////////////////////////////////
+_num = selectRandom [1,2];
+private "_army";
+private "_officerClass";
+private "_side";
+private "_sub";
+
+
+if (_num isEqualTo 1) then {
+_army = "CSAT";
+_officerClass = "O_Officer_F";
+_side = east;
+_sub = "SubObjectivesCSAT";
+};
+if (_num isEqualTo 2) then {
+_army = "AAF";
+_officerClass = "I_Officer_F";
+_side = resistance;
+_sub = "SubObjectivesAAF";
+};
+mainAOSide = _side;
+publicVariable "mainAOSide";
 
 ///////////////////////////////////////////////////////////
 // Location Scout
@@ -68,9 +93,9 @@ _officerPos = call {
 };
 
 // Spawn Officer
-_officerGroup = createGroup east;
+_officerGroup = createGroup _side;
 _officerGroup setGroupIdGlobal [format["mainAO_off_%1", _missionID]];
-_officer = _officerGroup createUnit ["O_Officer_F", _officerPos, [],0,"NONE"];
+_officer = _officerGroup createUnit [_officerClass, _officerPos, [],0,"NONE"];
 _officer setPos _officerPos;
 _units pushBack _officer;
 
@@ -90,15 +115,14 @@ _officer addEventHandler ["Killed", {
     parseText format ["<t align='center'><t size='2'>Main Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>Well done %1! You have killed the Officer stationed in the HQ.<br/><br/>Now, move in on the HQ and defend it from the enemy forces that remain in the area!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
 }];
 
-
 // Garrison Units around HQ
-private _hqg = [_HQPosition, [0,50], east, 3, nil, nil, 6] call SFNC(infantryGarrison);
+private _hqg = [_HQPosition, [0,50], _side, 3, nil, _officerPos, 6] call SFNC(infantryGarrison);
 _units append _hqg;
 [_hqg, format["mainAO_hqg_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-// mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand
-([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, east, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+// mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand, army
+([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _side, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [2,1], [2,2], [1,2], [0], [0,1], _army] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 diag_log _spUnits;
 _units append _spUnits;
@@ -119,7 +143,7 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
     west,
     _missionID,
     [
-        format ["OPFOR have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _nearestTown select 2, text (_nearestTown select 0)],
+        format ["%3 have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _nearestTown select 2, text (_nearestTown select 0), _army],
         format ["Clear HQ %1 of %2", _nearestTown select 2, text (_nearestTown select 0)],
         ""
     ],
@@ -135,14 +159,13 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
 // Find Side Mission, Needs to be after Main mission start
 // so that it becomes a child of it
 ///////////////////////////////////////////////////////////
-
 private _idx = 5;
 
 _subObjective = nil;
 
 while { _idx > 0 && isNil "_subObjective" } do {
     _k = format["SO_%1", _missionID];
-    [_k, _AOPosition, _AOSize, _missionID] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call FNC(getFunctions) )));
+    [_k, _AOPosition, _AOSize, _missionID] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", _sub]] call FNC(getFunctions) )));
     waitUntil { !isNil { missionNamespace getVariable _k } };
     _mm = missionNamespace getVariable _k;
     if (_mm isEqualTo false) then {
