@@ -1,6 +1,6 @@
 /*
    Author:
-      Quiksilver
+      Quiksilver & Matth
       Rarek [AW]
       MartinCo
 	description: none
@@ -42,10 +42,25 @@ _missionID = call FNC(getMissionID);
 // Spawn 2 arty + ammo truck
 ///////////////////////////////////////////////////////////
 
-private ["_g", "_rdir", "_arty1", "_arty2", "_v"];
+private ["_g", "_rdir", "_arty1", "_arty2", "_v", "_side", "_army", "_artVic", "_truck"];
+
+if (mainAOSide isEqualTo resistance) then {
+_side = resistance;
+_army = "AAF";
+_artVic = "I_Truck_02_MRL_F";
+_truck = "I_Truck_02_ammo_F";
+};
+if (mainAOSide isEqualTo east) then {
+_side = east;
+_army = "CSAT";
+_artVic = "O_MBT_02_arty_F";
+_truck = "O_Truck_03_ammo_F";
+};
+
+
 private _rdir = random 360;
 
-_arty1 = "O_MBT_02_arty_F" createVehicle (_ObjectPosition vectorAdd [-3,-3,0]);
+_arty1 = _artVic createVehicle (_ObjectPosition vectorAdd [-3,-3,0]);
 _arty1 setDir _rdir;
 _arty1 lock 3;
 _arty1 setFuel 0;
@@ -53,7 +68,7 @@ _arty1 allowCrewInImmobile true;
 _arty1 addEventHandler ["Fired", {(_this select 0) setvehicleammo 1}];
 _vehicles pushBack _arty1;
 
-_arty2 = "O_MBT_02_arty_F" createVehicle (_ObjectPosition vectorAdd [3,3,0]);
+_arty2 = _artVic createVehicle (_ObjectPosition vectorAdd [3,3,0]);
 _arty2 setDir _rdir;
 _arty2 lock 3;
 _arty2 setFuel 0;
@@ -61,7 +76,7 @@ _arty2 allowCrewInImmobile true;
 _arty2 addEventHandler ["Fired", {(_this select 0) setvehicleammo 1}];
 _vehicles pushBack _arty2;
 
-_v = "O_Truck_03_ammo_F" createVehicle (_ObjectPosition vectorAdd [20,random 20,0]);
+_v = _truck createVehicle (_ObjectPosition vectorAdd [20,random 20,0]);
 _v setDir random 360;
 _vehicles pushBack _v;
 
@@ -69,7 +84,7 @@ _vehicles pushBack _v;
 // Arty Crew
 ///////////////////////////////////////////////////////////
 
-_g = createGroup east;
+_g = createGroup _side;
 _g setGroupIdGlobal [format ["arty_crew_%1", _missionID]];
 [_arty1, _g] call BIS_fnc_spawnCrew;
 [_arty2, _g] call BIS_fnc_spawnCrew;
@@ -106,7 +121,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format ["arty_pa_%1", _missionID], _ObjectPosition, _AOSize/2, east, [0], [3,2], nil, nil, [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0], _army] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 _units append _spUnits;
 _vehicles append _spVehs;
@@ -144,7 +159,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_arty1", "_arty2", "_nextStrike"];
+    _args params ["_missionID", "_stage", "_arty1", "_arty2", "_nextStrike", "_side"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -161,8 +176,12 @@ _pfh = {
             if (_currTime > _nextStrike) then {
                 // We only fire on folks who are within the paradrop markers of an AO
                 private _aos = (GVAR(missionAreas) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] });
+				if (_side isEqualTo east) then {
                 private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p >= 1.5 }  } );
-
+				};
+				if (_side isEqualTo resistance) then {
+                private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "12Rnd_230mm_rockets"] } && { resistance knowsAbout _p >= 1.5 }  } );
+				};
                 if !(isNil "_target") then {
                     // We have a target, FIRE
 
@@ -170,16 +189,26 @@ _pfh = {
 
                     private _targetPos = getPos _target;
                     private _targetDir = [_mainArty, _targetPos] call BIS_fnc_dirTo;
-
+					
                     if (canFire _arty1) then {
+						if (_side isEqualTo east) then {
                         _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
+						};
+						if (_side isEqualTo resistance) then {
+                        _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
+						};						
                     };
 
                     // Trigger _arty2 in 5 seconds so the target area is bathed in arty
                     [{
                         params ["_arty2", "_dir", "_target"];
                         if (canFire _arty2) then {
-                            _arty2 commandArtilleryFire [ [_target, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
+							if (_side isEqualTo east) then {
+							_arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
+							};
+							if (_side isEqualTo resistance) then {
+							_arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
+							};
                         };
                     }, [_arty2, _targetDir, _targetPos], 5] call CBAP_fnc_waitAndExecute;
 
@@ -233,4 +262,4 @@ _pfh = {
 [(_markers select 0)] call FNC(setupParadrop);
 
 // For now just start it
-[_missionID, "PM", 1, "arty", "", _markers, _units, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _arty1, _arty2, LTIME + 120 + random 60]] call FNC(startMissionPFH);
+[_missionID, "PM", 1, "arty", "", _markers, _units, _vehicles, _buildings, _pfh, 5, [_missionID, 1, _arty1, _arty2, LTIME + 120 + random 60, _side]] call FNC(startMissionPFH);

@@ -93,8 +93,8 @@ _units append (units _grp1);
 
 // Spawn SM Forces --------------------------------
 
-// Whilst majority independent
-([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, resistance, [0], [4], [0], [0], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
+// Whilst majority independents
+([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, resistance, [0], [4], [0], [0], [0], [2], [3], [1,1], "Syndikat"] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
 _units append _smUnits;
 _vehicles append _smVehs;
 

@@ -48,5 +48,6 @@ class YAINA_SPAWNS {
     class Reinforcements {
         file = "Functions\YAINA\Spawns\Reinforcements";
         class cas {};
+        class helicas {};
     };
 };

@@ -1,6 +1,6 @@
 /*
    Author:
-      Quiksilver
+      Quiksilver & Matth
       Rarek [AW]
       MartinCo ported to YAINA
 	description: none
@@ -58,17 +58,27 @@ waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 ///////////////////////////////////////////////////////////
 // Spawn AA + Crew
 ///////////////////////////////////////////////////////////
-
-private ["_AA1", "_AA2", "_AA3", "_v", "_aagroup"];
-
-private _typeofAAs = ["O_APC_Tracked_02_AA_F","B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
+private ["_AA1", "_AA2", "_AA3", "_v", "_aagroup", "_side", "_army", "_aaVic", "_truck"];
+if (mainAOSide isEqualTo resistance) then {
+_side = resistance;
+_army = "AAF";
+_aaVic = "I_LT_01_AA_F";
+_truck = "I_Truck_02_ammo_F";
+};
+if (mainAOSide isEqualTo east) then {
+_side = east;
+_army = "CSAT";
+_aaVic = "O_APC_Tracked_02_AA_F";
+_truck = "O_Truck_03_ammo_F";
+};
+private _typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
 private _dir = random 360;
 
-_AA1 = createVehicle ["O_APC_Tracked_02_AA_F", _ObjectPosition getPos [10,0], [], 0, "NONE"];
+_AA1 = createVehicle [_aaVic, _ObjectPosition getPos [10,0], [], 0, "NONE"];
 _AA2 = createVehicle [selectRandom _typeofAAs, _ObjectPosition getPos [10,120], [], 0, "NONE"];
 _AA3 = createVehicle [selectRandom _typeofAAs, _ObjectPosition getPos [10,240], [], 0, "NONE"];
 
-_v   = createVehicle ["O_Truck_03_ammo_F",     _ObjectPosition getPos [30,random  360], [], 0, "NONE"];
+_v   = createVehicle [_truck,     _ObjectPosition getPos [30,random  360], [], 0, "NONE"];
 _v setDir _dir;
 _v lock 3;
 
@@ -77,7 +87,7 @@ _vehicles pushBack _AA2;
 _vehicles pushBack _AA3;
 _vehicles pushBack _v;
 
-_aagroup = createGroup east;
+_aagroup = createGroup _side;
 _aagroup setGroupIdGlobal [format ["aa_crew_%1", _missionID]];
 
 // set a bunch of stuff, including unlimited ammo
@@ -125,8 +135,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format ["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, east, [0], [3,2], nil, nil, [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
-
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0], _army] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 _units append _spUnits;
 _vehicles append _spVehs;
 
