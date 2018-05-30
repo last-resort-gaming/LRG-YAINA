@@ -204,10 +204,10 @@ _pfh = {
                         params ["_arty2", "_dir", "_target"];
                         if (canFire _arty2) then {
 							if (_side isEqualTo east) then {
-							_arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
+							_arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
 							};
 							if (_side isEqualTo resistance) then {
-							_arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
+							_arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
 							};
                         };
                     }, [_arty2, _targetDir, _targetPos], 5] call CBAP_fnc_waitAndExecute;
