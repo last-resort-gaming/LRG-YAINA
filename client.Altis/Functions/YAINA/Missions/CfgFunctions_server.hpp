@@ -33,6 +33,7 @@ class YAINA_MM_OBJ {
         class securechopper {};
         class hqcoast {};
         class hqresearch {};
+        class defuse {};
     };
 
 };
