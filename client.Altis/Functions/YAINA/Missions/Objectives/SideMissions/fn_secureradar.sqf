@@ -3,7 +3,7 @@
 Author:
 
 	Quiksilver
-
+	MitchJC - Faction Switching
 Last modified:
 
 	25/04/2014
@@ -15,7 +15,7 @@ _________________________________________________________________________*/
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_side", "_MarkerColour"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -25,6 +25,26 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+_army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
+
+switch (_army) do {
+    case "CSAT": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+    case "AAF": {
+		_side = resistance;
+		_MarkerColour = "ColorGUER";		
+		};
+    case "CSAT Pacific": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";		
+		};
+    default {
+		_side = east;
+		_MarkerColour = "colorOPFOR";		
+		};
+};
 
 ///////////////////////////////////////////////////////////
 // AO Setup
@@ -91,15 +111,15 @@ _ns = _house;
 
 
 // Garrison Units around HQ
-private _hqg = [getPos _house, [0,30], east, nil, nil, nil, 6] call SFNC(infantryGarrison);
+private _hqg = [getPos _house, [0,30], _army, nil, nil, nil, 6] call SFNC(infantryGarrison);
 _units append _hqg;
 [_hqg, format["secureradar_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-([format["secureradar_pa_%1", _missionID], _ObjectPosition, _AOSize/2, east, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["secureradar_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 
 // Add to Zeus
@@ -114,7 +134,7 @@ _units append _spUnits;
     west,
     _missionID,
     [
-        "OPFOR have captured a small radar on the island to support their aircraft. We've marked the position on your map; head over there and secure the site. Take the data and destroy it.",
+        "Hostile Forces have captured a small radar on the island to support their aircraft. We've marked the position on your map; head over there and secure the site. Take the data and destroy it.",
         "Side Mission: Secure Radar",
         ""
     ],

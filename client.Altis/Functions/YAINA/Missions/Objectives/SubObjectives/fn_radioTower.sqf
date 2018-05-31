@@ -1,5 +1,6 @@
 /*
 	author: Martin
+	MitchJC - Faction Switching	
 	description: none
 	returns: nothing
 */
@@ -9,7 +10,7 @@
 params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_MarkerColour"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -18,7 +19,20 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // So that they get restored, before your clean up deletes them, as arma
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
-
+switch (mainAOArmy) do {
+    case "CSAT": {
+		_MarkerColour = "colorOPFOR";
+		};
+    case "AAF": {
+		_MarkerColour = "ColorGUER";
+		};
+    case "CSAT Pacific": {
+		_MarkerColour = "colorOPFOR";
+		};
+    default {
+		_MarkerColour = "colorOPFOR";
+		};
+};
 // Mission ID
 _missionID = call FNC(getMissionID);
 
@@ -89,7 +103,7 @@ for "_x" from 0 to _towerCount do {
     };
 
     // Tower Markers
-    private _mrks = [_missionID, [getPos _tower, 0, 100] call YFNC(getPosAround), 200, "loc_Transmitter", "Border", (_x * 2) + 1] call FNC(createMapMarkers);
+    private _mrks = [_missionID, [getPos _tower, 0, 100] call YFNC(getPosAround), 200, "loc_Transmitter", "Border", (_x * 2) + 1, _MarkerColour] call FNC(createMapMarkers);
     {_markers pushBack _x; true } count _mrks;
 
     // Build our towermarker array for cleanup
@@ -115,8 +129,8 @@ _buildings = _towers;
 [west,
     [_missionID, _parentMissionID],
     [
-        "OPFOR have took control of a few antennas, destroy them or they'll call air support.",
-        "Destroy OPFOR comms towers",
+        "The enemy have took control of a few antennas, destroy them or they'll call air support.",
+        "Destroy the Comms towers",
         ""
     ],
     objNull,
@@ -171,7 +185,7 @@ _pfh = {
             [_points, "radioTowerObjective"] call YFNC(addRewardPoints);
 
             // Let them know
-            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact the OPFORs ability to call in air support as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", _points] call YFNC(globalHint);
+            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact their ability to call in air support as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", _points] call YFNC(globalHint);
         };
 
         // Otherwise, success! go to cleanup

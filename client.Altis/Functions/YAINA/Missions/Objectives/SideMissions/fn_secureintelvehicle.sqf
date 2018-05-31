@@ -3,7 +3,7 @@
 Author:
 
 	Quiksilver
-
+	
 Description:
 
 	Recover intel from a vehicle (add Action)
@@ -45,7 +45,8 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-
+_army = "CSAT";
+_side = east;
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////

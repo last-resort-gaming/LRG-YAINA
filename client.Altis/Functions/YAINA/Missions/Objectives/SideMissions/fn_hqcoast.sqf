@@ -3,7 +3,7 @@
 Author:
 
 	Quiksilver
-
+	MitchJC - Faction Switching
 Last modified:
 
 	25/04/2014
@@ -15,7 +15,7 @@ _________________________________________________________________________*/
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings","_side", "_Boat", "_BoatCrew","_MarkerColour"];
 
 _markers    = [];
 _units     = []; // To clean up units + groups at end
@@ -25,7 +25,40 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+_army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
 
+switch (_army) do {
+    case "CSAT": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";		
+		_Boat = "O_Boat_Armed_01_hmg_F";
+		_BoatCrew = "O_Soldier_F";
+		};
+    case "AAF": {
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		_Boat = "I_Boat_Armed_01_minigun_F";
+		_BoatCrew = "I_Soldier_F";
+		};
+    case "CSAT Pacific": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_Boat = "O_T_Boat_Armed_01_hmg_F";
+		_BoatCrew = "O_T_Soldier_F";
+		};
+    case "Syndikat": {
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		_Boat = "I_Boat_Armed_01_minigun_F";
+		_BoatCrew = "I_C_Soldier_Para_1_F";
+		};
+    default {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_Boat = "O_Boat_Armed_01_hmg_F";
+		_BoatCrew = "O_Soldier_F";
+		};
+};
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////
@@ -60,19 +93,19 @@ _crate setPos (getPos _hq vectorAdd [0,0,5]);
 _vehicles pushBack _crate;
 
 // Boat
-_g = createGroup east;
+_g = createGroup _side;
 _g setGroupIdGlobal [format["hqcoast_bg_%1", _missionID]];
 
 _p = [_ObjectPosition, 50, 150, 10, 2, 1, 0] call BIS_fnc_findSafePos;
-_v = "O_Boat_Armed_01_hmg_F" createVehicle _p;
+_v = _boat createVehicle _p;
 _v setDir (random 360);
 _vehicles pushBack _v;
 
-_u = _g createUnit ["O_diver_TL_F" , _p, [], 0, "NONE"]; _u assignAsCommander _v; _u moveInCommander _v;
-_u = _g createUnit ["O_diver_F", _p, [], 0, "NONE"]; _u assignAsDriver _v; _u moveInDriver _v;
-_u = _g createUnit ["O_diver_F", _p, [], 0, "NONE"]; _u assignAsGunner _v; _u moveInGunner _v;
-_u = _g createUnit ["O_diver_F", _p, [], 0, "NONE"]; _u assignAsCargo _v; _u moveInCargo _v;
-_u = _g createUnit ["O_diver_F", _p, [], 0, "NONE"]; _u assignAsCargo _v; _u moveInCargo _v;
+_u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsCommander _v; _u moveInCommander _v;
+_u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsDriver _v; _u moveInDriver _v;
+_u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsGunner _v; _u moveInGunner _v;
+_u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsCargo _v; _u moveInCargo _v;
+_u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsCargo _v; _u moveInCargo _v;
 
 // Set group skill
 [_g, 2] call SFNC(setUnitSkill);
@@ -98,15 +131,15 @@ _ns = _v;
 //-------------------- SPAWN FORCE PROTECTION
 
 // Garrison Units around HQ
-private _hqg = [getPos _hq, [0,30], east, nil, nil, nil, 6] call SFNC(infantryGarrison);
+private _hqg = [getPos _hq, [0,30], _army, nil, nil, nil, 6] call SFNC(infantryGarrison);
 _units append _hqg;
 [_hqg, format["hqcoast_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-([format["hqcoast_pa_%1", _missionID], _ObjectPosition, _AOSize/2, east, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["hqcoast_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 // Add to Zeus
 _units append _spUnits;
@@ -120,7 +153,7 @@ _vehicles append _spVehs;
     west,
     _missionID,
     [
-        "OPFOR have been smuggling explosives onto the island and hiding them in a Mobile HQ on the coastline.We've marked the building on your map; head over there and secure the current shipment. Keep well back when you blow it, there's a lot of stuff in that building.",
+        "Forces have been smuggling explosives onto the island and hiding them in a Mobile HQ on the coastline.We've marked the building on your map; head over there and secure the current shipment. Keep well back when you blow it, there's a lot of stuff in that building.",
         "Side Mission: Secure Smuggled Explosives",
         ""
     ],
@@ -151,7 +184,7 @@ _vehicles append _spVehs;
         params ["_target", "_ns"];
 
         // We set complete on _ns as our laptop is about to be deleted and we need
-        // to know if it was destoryed by friendlies or by the explosion
+        // to know if it was destroyed by friendlies or by the explosion
         _ns setVariable [QVAR(explosivesPlanted), true, true];
 
         // Let them know detonation in 30 seconds
