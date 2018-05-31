@@ -3,9 +3,7 @@ class YAINA_MM_OBJ {
 
     class InfantryObjectives {
         file = "Functions\YAINA\Missions\Objectives\InfantryObjectives";
-        class conquestBandit {};
-        class conquestViper {};
-        class conquestAAF {};
+        class conquest {};
     };
 
     class MainAO {
@@ -13,15 +11,11 @@ class YAINA_MM_OBJ {
         class mainAO {};
     };
 	
-    class SubObjectivesAAF {
-        file = "Functions\YAINA\Missions\Objectives\SubObjectivesAAF";
+    class SubObjectives {
+        file = "Functions\YAINA\Missions\Objectives\SubObjectives";
         class vicDepot {};
 		class heliCAS {};
-    };
-
-    class SubObjectivesCSAT {
-        file = "Functions\YAINA\Missions\Objectives\SubObjectivesCSAT";
-        class radioTower {};
+		class radioTower {};
         class factory {};
     };
 

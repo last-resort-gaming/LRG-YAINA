@@ -1,12 +1,14 @@
 /*
-Author: BACONMOP, Ported to YAINA by MartinCo
+Author: BACONMOP
+Ported to YAINA by MartinCo,
+MitchJC - Faction Switching
 Destroy a prototype Tank
 */
 
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_side", "_MarkerColour", "_tanktype", "_Textures"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -16,6 +18,50 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+_army = selectRandom ["CSAT","AAF","CSAT Pacific"];
+
+switch (_army) do {
+    case "CSAT": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_tanktype = "O_MBT_04_command_F";
+		_Textures = [
+			[0, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_1_CO.paa"],
+			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
+			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
+			];
+		};
+    case "AAF": {
+		_side = resistance;
+		_MarkerColour = "ColorGUER";	
+		_tanktype = "I_MBT_03_cannon_F";
+		_Textures = [
+			[0, "a3\armor_f_epb\mbt_03\data\mbt_03_ext01_co.paa"],
+			[1, "a3\armor_f_epb\mbt_03\data\mbt_03_ext02_co.paa"],
+			[2, "a3\armor_f_epb\mbt_03\data\mbt_03_rcws_co.paa"],
+			[3, "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa"]
+			];	
+		};
+    case "CSAT Pacific": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_Textures = [
+			[0, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_1_CO.paa"],
+			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
+			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
+			];		
+		};
+    default {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_tanktype = "O_MBT_04_command_F";
+		_Textures = [
+			[0, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_1_CO.paa"],
+			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
+			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
+			];
+		};
+};
 
 ///////////////////////////////////////////////////////////
 // AO Setup
@@ -39,29 +85,15 @@ _missionID = call FNC(getMissionID);
 // Spwan Tank
 ///////////////////////////////////////////////////////////
 
-private _grp1 = createGroup east;
-private _protoTank = createVehicle ["O_MBT_02_cannon_F", _ObjectPosition,[],0,"NONE"];
+private _grp1 = createGroup _side;
+private _protoTank = createVehicle [_tanktype, _ObjectPosition,[],0,"NONE"];
 [_protoTank,_grp1] call BIS_fnc_spawnCrew;
 
-_protoTank removeWeapon ("cannon_125mm");
-_protoTank removeWeapon ("LMG_coax");
-_protoTank removeMagazine "24Rnd_125mm_APFSDS_T_Green";
-_protoTank removeMagazine "12Rnd_125mm_HE_T_Green";
-_protoTank removeMagazine "12Rnd_125mm_HEAT_T_Green";
-_protoTank addWeapon ("rockets_230mm_GAT");
-_protoTank addMagazine "12Rnd_230mm_rockets";
-_protoTank addMagazine "12Rnd_230mm_rockets";
-_protoTank addMagazine "12Rnd_230mm_rockets";
-_protoTank addWeapon ("Gatling_30mm_Plane_CAS_01_F");
-_protoTank addMagazine "1000Rnd_Gatling_30mm_Plane_CAS_01_F";
-_protoTank addMagazine "1000Rnd_Gatling_30mm_Plane_CAS_01_F";
-_protoTank addWeapon ("Missile_AGM_02_Plane_CAS_01_F");
-_protoTank addMagazine "6Rnd_Missile_AGM_02_F";
-_protoTank addWeapon ("Rocket_04_HE_Plane_CAS_01_F");
-_protoTank addMagazine "7Rnd_Rocket_04_HE_F";
-_protoTank addMagazine "7Rnd_Rocket_04_HE_F";
-_protoTank addMagazine "7Rnd_Rocket_04_HE_F";
 
+
+_protoTank animate ["showCamonetHull",1];
+_protoTank animate ["showCamonetTurret",1];
+{_protoTank setObjectTexture _x;} forEach _textures;
 _protoTank lock 3;
 _protoTank allowCrewInImmobile true;
 
@@ -94,22 +126,16 @@ _units append (units _grp1);
 // Spawn SM Forces --------------------------------
 
 // Whilst majority independents
-([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, resistance, [0], [4], [0], [0], [0], [2], [3], [1,1], "Syndikat"] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
+([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, _side, _army, [0], [4], [2], [2], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
 _units append _smUnits;
 _vehicles append _smVehs;
-
-// We want some AA/AT Teams so add in some easties
-([format["prototypeTank_pa2_%1", _missionID], _ObjectPosition,300, east, [0], [0], [2], [2], [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
-_units append _smUnits;
-_vehicles append _smVehs;
-
 
 ///////////////////////////////////////////////////////////
 // Start Mission
 ///////////////////////////////////////////////////////////
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 // Add everything to zeus
 [ _units + _vehicles, false] call YFNC(addEditableObjects);
@@ -119,7 +145,7 @@ _markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
     west,
     _missionID,
     [
-        "We have gotten reports that OpFor have sent a prototype tank to their allies for a field test. Get over there and destroy that thing. Be careful, our operatives have said that has much more armor than standard and carries a wide array of powerful weapons.",
+        "We have gotten reports that hostile forces have sent a prototype tank to their allies for a field test. Get over there and destroy that thing. Be careful, our operatives have said that has much more armor than standard and carries a wide array of powerful weapons.",
         "Side Mission: Prototype Tank",
         ""
     ],

@@ -1,5 +1,6 @@
 /*
 	author: Martin
+	MitchJC - Faction Switching	
 	description:
 	    Mission inspired by Lost Bullet / INA
 	returns: nothing
@@ -10,7 +11,7 @@
 params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_randomveh", "_EngineerType", "_RandomGroup", "_MarkerType"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -20,6 +21,80 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+switch (mainAOArmy) do {
+    case "CSAT": {
+		_randomveh = [
+			"O_APC_Tracked_02_cannon_F",
+			"O_APC_Wheeled_02_rcws_v2_F",
+			"O_MRAP_02_hmg_F",
+			"O_MRAP_02_gmg_F",
+			"O_LSV_02_AT_F",
+			"O_LSV_02_armed_F",
+			"O_APC_Tracked_02_AA_F",
+			"O_MBT_02_cannon_F",
+			"O_MBT_04_cannon_F",
+			"O_MBT_04_command_F"
+			];
+		_EngineerType = "O_engineer_F";
+		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"]);
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+		};
+    case "AAF": {
+		_randomveh = [
+			"I_LT_01_AA_F",
+			"I_APC_Wheeled_03_cannon_F",
+			"I_APC_tracked_03_cannon_F",
+			"I_MRAP_03_gmg_F",
+			"I_MRAP_03_hmg_F",
+			"I_LT_01_AT_F",
+			"I_LT_01_scout_F",
+			"I_LT_01_cannon_F",
+			"I_MBT_03_cannon_F"
+			];
+		_EngineerType = "I_engineer_F";
+		_RandomGroup = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> (selectRandom ["HAF_InfTeam","I_InfTeam_Light"]);
+		_MarkerType = "n_installation";
+		_MarkerColour = "ColorGUER";
+		};
+    case "CSAT Pacific": {
+		_randomveh = [
+			"O_T_APC_Tracked_02_AA_ghex_F",
+			"O_T_APC_Tracked_02_cannon_ghex_F",
+			"O_T_APC_Wheeled_02_rcws_v2_ghex_F",
+			"O_T_MRAP_02_gmg_ghex_F",
+			"O_T_MRAP_02_hmg_ghex_F",
+			"O_T_LSV_02_AT_F",
+			"O_T_LSV_02_armed_F",
+			"O_T_MBT_04_cannon_F",
+			"O_T_MBT_02_cannon_ghex_F",
+			"O_T_MBT_04_command_F"
+			];
+		_EngineerType = "O_T_Engineer_F";
+		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> (selectRandom ["O_T_InfTeam","O_T_reconPatrol"]);
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+		};
+
+    default {
+		_randomveh = [
+			"O_APC_Tracked_02_cannon_F",
+			"O_APC_Wheeled_02_rcws_v2_F",
+			"O_MRAP_02_hmg_F",
+			"O_MRAP_02_gmg_F",
+			"O_LSV_02_AT_F",
+			"O_LSV_02_armed_F",
+			"O_APC_Tracked_02_AA_F",
+			"O_MBT_02_cannon_F",
+			"O_MBT_04_cannon_F",
+			"O_MBT_04_command_F"		
+		];
+		_EngineerType = "O_engineer_F";
+		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"]);
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+		};
+};
 // Mission ID
 _missionID = call FNC(getMissionID);
 
@@ -57,17 +132,16 @@ _factory setDir random 360;
 _factory allowDamage false; //no CAS bombing it until the Engineer inside is killed.
 _buildings pushBack _factory;
 
-// Factory Marekrs
-private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, "o_installation", "Border"] call FNC(createMapMarkers);
+// Factory Markers
+private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, _MarkerType, "Border", nil, _MarkerColour] call FNC(createMapMarkers);
 {_markers pushBack _x; true } count _mrks;
-
 // Spawn Engineer
 
 // Bring in an engineer to one of the buildings
 private _engineerPos = selectRandom (_factory call BIS_fnc_buildingPositions);
-private _engineerGroup = createGroup east;
+private _engineerGroup = createGroup mainAOSide;
 _engineerGroup setGroupIdGlobal [format["factory_eng_%1", _missionID]];
-private _engineer = _engineerGroup createUnit ["O_V_Soldier_Exp_hex_F", [0,0,0], [],0,"NONE"];
+private _engineer = _engineerGroup createUnit [_EngineerType, [0,0,0], [],0,"NONE"];
 _engineer setPos _engineerPos;
 _units pushBack _engineer;
 
@@ -84,16 +158,16 @@ _engineer addEventHandler ["Killed", {
         };
     };
 
-    parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>The OPFOR engineer has been killed by %1. Move in and demo that Factory!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
+    parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>The enemy engineer has been killed by %1. Move in and demo that Factory!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
 }];
 
 // Garrison some around the Factory
-private _fgn = [_ObjectPosition, [0,50], east, 1, nil, nil, 6, [_engineerPos]] call SFNC(infantryGarrison);
+private _fgn = [_ObjectPosition, [0,50], mainAOArmy, 1, nil, nil, 6, [_engineerPos]] call SFNC(infantryGarrison);
 _units append _fgn;
 [_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["factory_pa_%1", _missionID], _ObjectPosition, 100, east, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, mainAOSide, mainAOArmy, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -112,7 +186,7 @@ _units append _spUnits;
 [west,
     [_missionID, _parentMissionID],
     [
-        "The enemies have set up a factory. Enemy reinforcements will keep coming to the AO untill this factory is taken out! Intell suggest that the factory looks like a big industrial shed. First kill the engineer inside then demo that building.",
+        "The enemies have set up a factory. Enemy reinforcements will keep coming to the AO until this factory is taken out! Intel suggest that the factory looks like a big industrial shed. First kill the engineer inside then demo that building.",
         "Sub Objective: Factory",
         ""
     ],
@@ -169,7 +243,7 @@ _pfh = {
 
                             if !(_ObjectPosition isEqualTo [0,0]) then {
 
-                                _g = [_ObjectPosition, east, configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"])] call BIS_fnc_spawnGroup;
+                                _g = [_ObjectPosition, mainAOSide, _RandomGroup] call BIS_fnc_spawnGroup;
                                 _g setGroupIdGlobal [format["factory_spu_%1_%2_inf%4", _missionID, _spawnCount , _x]];
 
                                 // If the defend mission is up, we set the position to be around the HQ, else we keep them around the AO
@@ -212,21 +286,10 @@ _pfh = {
 
                             _spawned = true;
 
-                            _grp = createGroup east;
+                            _grp = createGroup mainAOSide;
                             _grp setGroupIdGlobal [format["factory_spv_%1_%2", _missionID, _spawnCount]];
 
-                            _veh = (selectRandom [
-                                "O_MBT_02_cannon_F",            // T-100
-                                "O_APC_Tracked_02_cannon_F",    // BTR-K
-                                "O_APC_Wheeled_02_rcws_F",      // Marid
-                                "O_MRAP_02_gmg_F",              // Ifrit GMG
-                                "O_MRAP_02_hmg_F",              // Ifrit HMG
-                                "O_APC_Tracked_02_AA_F",        // Tigris
-                                "I_LT_01_AT_F",                 // Nyx AT
-                                "I_LT_01_AA_F",                 // Nyx AA
-                                "I_LT_01_cannon_F",             // Nyx AutoCannon
-                                "O_MBT_04_cannon_F"             // T-140
-                            ]) createVehicle _rpos;
+                            _veh = (selectRandom _Randomveh) createVehicle _rpos;
                             [_veh, _grp] call BIS_fnc_spawnCrew;
 
                             _veh lock 3;
@@ -292,7 +355,7 @@ _pfh = {
         // Give them some points, 100 per tower
         if !(_stopRequested) then {
             [350, "factory"] call YFNC(addRewardPoints);
-            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact the OPFORs ability to call in ground reinforcements as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", 350] call YFNC(globalHint);
+            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact their ability to call in ground reinforcements as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", 350] call YFNC(globalHint);
         };
 
         // Otherwise, success! go to cleanup

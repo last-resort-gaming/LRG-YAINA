@@ -3,7 +3,7 @@
 Author:
 
 	Quiksilver
-
+	MitchJC - Faction Switching
 Last modified:
 
 	25/04/2014
@@ -15,7 +15,7 @@ _________________________________________________________________________*/
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_side", "_MarkerColour", "_RandomVeh"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -25,6 +25,36 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+_army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
+
+switch (_army) do {
+    case "CSAT": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];
+		};
+    case "AAF": {
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		_RandomVeh = ["I_Truck_02_covered_F","I_Truck_02_transport_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_ammo_F","I_MRAP_03_F","C_SUV_01_F","C_Van_01_transport_F"];		
+		};
+    case "CSAT Pacific": {
+		_side = east;
+		_MarkerColour = "colorOPFOR";		
+		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];		
+};
+    case "Syndikat": {
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		_RandomVeh = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F", "I_C_Van_02_vehicle_F", "I_C_Van_02_transport_F", "I_C_Heli_Light_01_civil_F", "C_Truck_02_transport_F", "C_Van_01_box_F","C_Van_01_transport_F"];		
+		};
+		
+    default {
+		_side = east;
+		_MarkerColour = "colorOPFOR";	
+		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];		
+		};
+};
 
 ///////////////////////////////////////////////////////////
 // AO Setup
@@ -66,7 +96,7 @@ _laptop = (selectRandom ["Land_Laptop_device_F", "Land_Laptop_F"]) createVehicle
 [_table,_laptop,[0,0,0.8]] call BIS_fnc_relPosObject;
 _vehicles pushBack _laptop;
 
-_v = (selectRandom ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"]) createVehicle ([_ObjectPosition, 15, 30, 10, 0, 0.5, 0] call BIS_fnc_findSafePos);
+_v = (selectRandom _RandomVeh) createVehicle ([_ObjectPosition, 15, 30, 10, 0, 0.5, 0] call BIS_fnc_findSafePos);
 _v lock 3;
 _vehicles pushBack _v;
 
@@ -76,15 +106,15 @@ _ns = [true] call CBAP_fnc_createNamespace;
 //-------------------- SPAWN FORCE PROTECTION
 
 // Garrison Units around HQ
-private _hqg = [getPos _house, [0,30], east, nil, nil, nil, 6] call SFNC(infantryGarrison);
+private _hqg = [getPos _house, [0,30], _army, nil, nil, nil, 6] call SFNC(infantryGarrison);
 _units append _hqg;
 [_hqg, format["hqresearch_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-([format["hqresearch_pa_%1", _missionID], _ObjectPosition, _AOSize/2, east, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["hqresearch_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -98,7 +128,7 @@ _units append _spUnits;
     west,
     _missionID,
     [
-        "OPFOR are conducting advanced military research on Altis.Find the data and then torch the place!",
+        "Enemy Forces are conducting advanced military research on Altis.Find the data and then torch the place!",
         "Side Mission: Seize Research Data",
         ""
     ],

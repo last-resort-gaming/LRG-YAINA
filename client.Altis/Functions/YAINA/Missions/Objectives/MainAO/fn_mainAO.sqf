@@ -1,12 +1,12 @@
 /*
-	author: Martin & Matth
+	author: Martin, Matth and MitchJC
 	description: none
 	returns: nothing
 */
 #include "..\..\defines.h"
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_side", "_officerClass", "_MarkerColour"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -19,27 +19,35 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 ///////////////////////////////////////////////////////////
 // Choose Army
 ///////////////////////////////////////////////////////////
-_num = selectRandom [1,2];
-private "_army";
-private "_officerClass";
-private "_side";
-private "_sub";
+_army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
 
+switch (_army) do {
+    case "CSAT": {
+		_officerClass = "O_Officer_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+    case "AAF": {
+		_officerClass = "I_Officer_F";
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		};
+    case "CSAT Pacific": {
+		_officerClass = "O_T_Officer_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+    default {
+		_officerClass = "O_Officer_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+};
 
-if (_num isEqualTo 1) then {
-_army = "CSAT";
-_officerClass = "O_Officer_F";
-_side = east;
-_sub = "SubObjectivesCSAT";
-};
-if (_num isEqualTo 2) then {
-_army = "AAF";
-_officerClass = "I_Officer_F";
-_side = resistance;
-_sub = "SubObjectivesAAF";
-};
 mainAOSide = _side;
 publicVariable "mainAOSide";
+mainAOArmy = _army;
+publicVariable "mainAOArmy";
 
 ///////////////////////////////////////////////////////////
 // Location Scout
@@ -116,20 +124,20 @@ _officer addEventHandler ["Killed", {
 }];
 
 // Garrison Units around HQ
-private _hqg = [_HQPosition, [0,50], _side, 3, nil, _officerPos, 6] call SFNC(infantryGarrison);
+private _hqg = [_HQPosition, [0,50], _army, 3, nil, _officerPos, 6] call SFNC(infantryGarrison);
 _units append _hqg;
 [_hqg, format["mainAO_hqg_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand, army
-([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _side, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [2,1], [2,2], [1,2], [0], [0,1], _army] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _side, _army, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 diag_log _spUnits;
 _units append _spUnits;
 _vehicles append _spVehs;
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 // Add everything to zeus
 [ _units + _vehicles] call YFNC(addEditableObjects);
@@ -165,7 +173,7 @@ _subObjective = nil;
 
 while { _idx > 0 && isNil "_subObjective" } do {
     _k = format["SO_%1", _missionID];
-    [_k, _AOPosition, _AOSize, _missionID] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", _sub]] call FNC(getFunctions) )));
+    [_k, _AOPosition, _AOSize, _missionID] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call FNC(getFunctions) )));
     waitUntil { !isNil { missionNamespace getVariable _k } };
     _mm = missionNamespace getVariable _k;
     if (_mm isEqualTo false) then {

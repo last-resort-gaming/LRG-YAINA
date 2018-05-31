@@ -1,5 +1,6 @@
 /*
 	author: Martin
+	MitchJC - Faction Switching	
 	description: none
 	returns: nothing
 */
@@ -15,22 +16,59 @@ if !(isServer) exitWith {
 };
 
 params ["_pos", "_radius", ["_force", false]];
-private ["_types", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp"];
+private ["_type", "_PilotType", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp"];
 
-_type = selectRandom [
-    "I_Plane_Fighter_03_AA_F",      // A-143 Buzzard (AA)
-    "I_Plane_Fighter_03_AA_F",
-    "I_Plane_Fighter_03_CAS_F",     // A-143 Buzzard (CAS)
-    "I_Plane_Fighter_03_CAS_F",
-    "I_Plane_Fighter_03_Cluster_F", // A-143 Buzzard (Cluster)
-    "I_Plane_Fighter_03_Cluster_F",
-    "O_Plane_Fighter_02_F",         // To-201 Shikra
-    "O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
-    "O_Plane_Fighter_02_Cluster_F", // To-201 Shikra (Cluster)
-    "O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
-    "O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
-    "O_Plane_CAS_02_Cluster_F"      // To-199 Neophron (Cluster)
-];
+switch (mainAOArmy) do {
+    case "CSAT": {
+		_type = selectRandom [
+			"O_Plane_Fighter_02_F",         // To-201 Shikra
+			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
+			"O_Plane_Fighter_02_Cluster_F", // To-201 Shikra (Cluster)
+			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
+			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
+			"O_Plane_CAS_02_Cluster_F"      // To-199 Neophron (Cluster)
+		];
+		_PilotType = "O_pilot_F";
+		};
+    case "AAF": {
+		_type = selectRandom [
+			"I_Plane_Fighter_03_AA_F",      // A-143 Buzzard (AA)
+			"I_Plane_Fighter_03_AA_F",		// A-143 Buzzard (AA)
+			"I_Plane_Fighter_03_CAS_F",     // A-143 Buzzard (CAS)
+			"I_Plane_Fighter_03_CAS_F",		// A-143 Buzzard (CAS)
+			"I_Plane_Fighter_03_Cluster_F", // A-143 Buzzard (Cluster)
+			"I_Plane_Fighter_03_Cluster_F",	// A-143 Buzzard (Cluster)
+			"I_Plane_Fighter_04_F"			// A-149 Gryphon
+		];
+		_PilotType = "I_pilot_F";
+		};
+    case "CSAT Pacific": {
+		_type = selectRandom [
+			"O_Plane_Fighter_02_F",         // To-201 Shikra
+			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
+			"O_Plane_Fighter_02_Cluster_F", // To-201 Shikra (Cluster)
+			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
+			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
+			"O_Plane_CAS_02_Cluster_F",     // To-199 Neophron (Cluster)
+			"O_T_VTOL_02_infantry_dynamicLoadout_F",
+			"O_T_VTOL_02_infantry_dynamicLoadout_F"			
+		];
+		_PilotType = "O_T_pilot_F";
+		};
+
+    default {
+		_type = selectRandom [
+			"O_Plane_Fighter_02_F",         // To-201 Shikra
+			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
+			"O_Plane_Fighter_02_Cluster_F", // To-201 Shikra (Cluster)
+			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
+			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
+			"O_Plane_CAS_02_Cluster_F"      // To-199 Neophron (Cluster)
+		];
+		_PilotType = "O_pilot_F";
+		};
+};
+
 
 // We filter any deads here as it's the only time we care about it
 if (isNil QVAR(cas)) then {
@@ -45,10 +83,10 @@ if (count GVAR(cas) >= _max && { !_force } ) exitWith {};
 // we use delete on enpty group so we don't need to manage this at all once spawned
 
 _spawnPos = [_pos] call FNC(getAirSpawnPos);
-_group = createGroup east;
+_group = createGroup MainAOSide;
 
 _jet   = createVehicle [_type, _spawnPos, [], 0, "FLY"];
-_pilot = _group createUnit ["O_pilot_F", [0,0,1000], [], 0, "NONE"];
+_pilot = _group createUnit [_PilotType, [0,0,1000], [], 0, "NONE"];
 _pilot moveInDriver _jet;
 
 _jet flyInHeight (500 + (random 850));

@@ -1,5 +1,7 @@
 /*
-	author: Matth
+	author: Martin
+	Matth - Conversion from fn_cas.sqf
+	MitchJC - Faction Switching	
 	description: none
 	returns: nothing
 */
@@ -15,9 +17,47 @@ if !(isServer) exitWith {
 };
 
 params ["_pos", "_radius", ["_force", false]];
-private ["_types", "_spawnPos", "_group", "_heli", "_pilot", "_speed", "_dir", "_wp"];
+private ["_type", "_PilotType", "_spawnPos", "_group", "_heli", "_pilot", "_copilot", "_speed", "_dir", "_wp"];
 
-_type = "I_Heli_light_03_dynamicLoadout_F";
+switch (mainAOArmy) do {
+    case "CSAT": {
+		_type = selectRandom [
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Attack_02_dynamicLoadout_F"
+		];
+		_PilotType = "O_helipilot_F";
+		};
+    case "AAF": {
+		_type = selectRandom [
+			"I_Heli_light_03_dynamicLoadout_F"
+		];
+		_PilotType = "I_helipilot_F";
+		};
+    case "CSAT Pacific": {
+		_type = selectRandom [
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Attack_02_dynamicLoadout_F"
+		];
+		_PilotType = "O_helipilot_F";
+		};
+
+    default {
+		_type = selectRandom [
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Light_02_dynamicLoadout_F",
+			"O_Heli_Attack_02_dynamicLoadout_F"
+		];
+		_PilotType = "O_helipilot_F";
+		};
+};
 
 // We filter any deads here as it's the only time we care about it
 if (isNil QVAR(cas)) then {
@@ -32,11 +72,14 @@ if (count GVAR(cas) >= _max && { !_force } ) exitWith {};
 // we use delete on enpty group so we don't need to manage this at all once spawned
 
 _spawnPos = [_pos] call FNC(getAirSpawnPos);
-_group = createGroup resistance;
+_group = createGroup MainAOSide;
 
 _heli   = createVehicle [_type, _spawnPos, [], 0, "FLY"];
-_pilot = _group createUnit ["I_helipilot_F", [0,0,1000], [], 0, "NONE"];
+_pilot = _group createUnit [_PilotType, [0,0,1000], [], 0, "NONE"];
 _pilot moveInDriver _heli;
+
+_copilot = _group createUnit [_PilotType, [0,0,1000], [], 0, "NONE"];
+_copilot moveInAny _heli;
 
 _heli flyInHeight (100 + (random 200));
 _heli allowCrewInImmobile true;
@@ -55,7 +98,7 @@ GVAR(cas) pushBack _heli;
 [_group, 3] call FNC(setUnitSkill);
 
 // Add to zeus
-[[_pilot, _heli]] call YFNC(addEditableObjects);
+[[_pilot, _copilot, _heli]] call YFNC(addEditableObjects);
 
 // Let them know a heli has spawned
 parseText format["<t size='1.5' align='center' color='#FF0808'>Enemy heli Incoming</t><br/>____________________<br/>Watch out, an enemy %1 has just entered the area.</t>", getText(configFile >> "CfgVehicles" >> _type >> "DisplayName")]  call YFNC(globalHint);

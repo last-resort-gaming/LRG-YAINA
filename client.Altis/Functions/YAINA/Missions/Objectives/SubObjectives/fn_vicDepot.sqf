@@ -1,5 +1,8 @@
 /*
-	author: Matth
+	author: Martin
+	Matth
+	MitchJC - Faction Switching
+	  
 	description:
 	    Mission inspired by Lost Bullet / INA
 	returns: nothing
@@ -10,7 +13,7 @@
 params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_vehtype", "_crewtype", "_FuelTruck","_MarkerType","_MarkerColour"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -20,6 +23,38 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+switch (mainAOArmy) do {
+    case "CSAT": {
+		_vehtype = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];			  		  
+		_crewtype = "O_crew_F";				  
+		_FuelTruck = "O_Truck_03_fuel_F";
+		_MarkerType = "O_installation";		
+		_MarkerColour = "colorOPFOR";		
+		};
+    case "AAF": {
+		_vehtype = ["I_MBT_03_cannon_F", "I_LT_01_cannon_F", "I_LT_01_AT_F"];		  
+		_crewtype = "I_crew_F";				  
+		_FuelTruck = "I_Truck_02_fuel_F";
+		_MarkerType = "n_installation";		
+		_MarkerColour = "ColorGUER";		
+		};
+    case "CSAT Pacific": {
+		_vehtype = ["O_T_MBT_02_cannon_ghex_F", "O_T_MBT_04_cannon_F", "O_T_MBT_04_command_F"];			  			  
+		_crewtype = "O_T_Crew_F";				  
+		_FuelTruck = "O_T_Truck_03_fuel_ghex_F";
+		_MarkerType = "O_installation";		
+		_MarkerColour = "colorOPFOR";		
+		};
+    default {
+		_vehtype = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];					  
+		_crewtype = "O_crew_F";				  
+		_FuelTruck = "O_Truck_03_fuel_F";
+		_MarkerType = "O_installation";		
+		_MarkerColour = "colorOPFOR";		
+		};
+};				  
+				  
+					  
 // Mission ID
 _missionID = call FNC(getMissionID);
 
@@ -58,26 +93,26 @@ _depot allowDamage false; //Give CAS a challenge if called in
 private _repair = "Land_RepairDepot_01_green_F" createVehicle (_ObjectPosition vectorAdd [-17,18,0]);
 _repair setDir 230;
 _repair lock true;
-private _fuel = "I_truck_02_fuel_F" createVehicle (_ObjectPosition vectorAdd [16,18,0]);
+private _fuel = _FuelTruck createVehicle (_ObjectPosition vectorAdd [16,18,0]);
 _fuel setDir 330;
 private _crate = "Box_ind_ammoveh_F" createVehicle (_ObjectPosition vectorAdd [14,0,0]);
 _crate setDir 330;
 _buildings append [_depot, _repair];
 
 // Depot Markers
-private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, "o_installation", "Border"] call FNC(createMapMarkers);
+private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, _MarkerType, "Border", nil, _MarkerColour] call FNC(createMapMarkers);
 {_markers pushBack _x; true } count _mrks;
 
 // Spawn Vehicles
-private _veh1 = "I_MBT_03_cannon_F" createVehicle (_ObjectPosition vectorAdd [-0.5,17,0]);
+private _veh1 = (selectRandom _vehtype) createVehicle (_ObjectPosition vectorAdd [-0.5,17,0]);
 private _vehPos = getPos _veh1;
 _veh1 lock true;
 _veh1 setDir 1;
-private _veh2 = "I_MBT_03_cannon_F" createVehicle (_ObjectPosition vectorAdd [4,17.2,0]);
+private _veh2 = (selectRandom _vehtype) createVehicle (_ObjectPosition vectorAdd [4,17.2,0]);
 private _vehPos2 = getPos _veh2;
 _veh2 lock true;
 _veh2 setDir 12;
-private _veh3 = "I_MBT_03_cannon_F" createVehicle (_ObjectPosition vectorAdd [-4,17.2,0]);
+private _veh3 = (selectRandom _vehtype) createVehicle (_ObjectPosition vectorAdd [-4,17.2,0]);
 private _vehPos3 = getPos _veh3;
 _veh3 lock true;
 _veh1 setDir 8;
@@ -86,36 +121,36 @@ _vehicles append [_veh1, _veh2, _veh3, _fuel, _crate];
 
 //Spawn Crew
 
-private _vicGroup1 = createGroup resistance;
+private _vicGroup1 = createGroup MainAOSide;
 _vicGroup1 setGroupIdGlobal [format["vic1_crew_%1", _missionID]];
-private _driver1 = _vicGroup1 createUnit ["I_crew_F", (_vehPos vectorAdd [0,-5,0]), [],0,"NONE"];
-private _gunner1 = _vicGroup1 createUnit ["I_crew_F", (_vehPos vectorAdd [0,-5,0]), [],0,"NONE"];
+private _driver1 = _vicGroup1 createUnit [_crewtype, (_vehPos vectorAdd [0,-5,0]), [],0,"NONE"];
+private _gunner1 = _vicGroup1 createUnit [_crewtype, (_vehPos vectorAdd [0,-5,0]), [],0,"NONE"];
 _vicGroup1 setBehaviour "CARELESS";
 _vicGroup1 setCombatMode "BLUE";
 
-private _vicGroup2 = createGroup resistance;
+private _vicGroup2 = createGroup MainAOSide;
 _vicGroup2 setGroupIdGlobal [format["vic2_crew_%1", _missionID]];
-private _driver2 = _vicGroup2 createUnit ["I_crew_F", (_vehPos2 vectorAdd [0,-5,0]), [],0,"NONE"];
-private _gunner2 = _vicGroup2 createUnit ["I_crew_F", (_vehPos2 vectorAdd [0,-5,0]), [],0,"NONE"];
+private _driver2 = _vicGroup2 createUnit [_crewtype, (_vehPos2 vectorAdd [0,-5,0]), [],0,"NONE"];
+private _gunner2 = _vicGroup2 createUnit [_crewtype, (_vehPos2 vectorAdd [0,-5,0]), [],0,"NONE"];
 _vicGroup2 setBehaviour "CARELESS";
 _vicGroup2 setCombatMode "BLUE";
 
-private _vicGroup3 = createGroup resistance;
+private _vicGroup3 = createGroup MainAOSide;
 _vicGroup3 setGroupIdGlobal [format["vic3_crew_%1", _missionID]];
-private _driver3 = _vicGroup3 createUnit ["I_crew_F", (_vehPos3 vectorAdd [0,-5,0]), [],0,"NONE"];
-private _gunner3 = _vicGroup3 createUnit ["I_crew_F", (_vehPos3 vectorAdd [0,-5,0]), [],0,"NONE"];
+private _driver3 = _vicGroup3 createUnit [_crewtype, (_vehPos3 vectorAdd [0,-5,0]), [],0,"NONE"];
+private _gunner3 = _vicGroup3 createUnit [_crewtype, (_vehPos3 vectorAdd [0,-5,0]), [],0,"NONE"];
 _vicGroup3 setBehaviour "CARELESS";
 _vicGroup3 setCombatMode "BLUE";
 
 _units append [_driver1, _driver2, _driver3, _gunner1, _gunner2, _gunner3];
 
 // Garrison some around the Depot
-private _fgn = [_ObjectPosition, [0,50], resistance, 1, nil, nil, 6, _ObjectPosition] call SFNC(infantryGarrison);
+private _fgn = [_ObjectPosition, [0,50], MainAOArmy, 1, nil, nil, 6, _ObjectPosition] call SFNC(infantryGarrison);
 _units append _fgn;
 [_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["factory_pa_%1", _missionID], _ObjectPosition, 100, resistance, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1], "AAF"] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, mainAOSide, mainAOArmy, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -174,7 +209,7 @@ _pfh = {
 						_driver1 moveInDriver _veh1;
 						_gunner1 moveInGunner _veh1;
 						} else {
-						private _driver1B = _vicGroup1 createUnit ["I_crew_F", _ObjectPosition, [],0,"NONE"];
+						private _driver1B = _vicGroup1 createUnit [_crewtype, _ObjectPosition, [],0,"NONE"];
 						_driver1B moveInDriver _veh1;
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
@@ -195,7 +230,7 @@ _pfh = {
 						_driver2 moveInDriver _veh2;
 						_gunner2 moveInGunner _veh2;
 						} else {
-						private _driver2B = _vicGroup2 createUnit ["I_crew_F", _ObjectPosition, [],0,"NONE"];
+						private _driver2B = _vicGroup2 createUnit [_crewtype, _ObjectPosition, [],0,"NONE"];
 						_driver2B moveInDriver _veh2;
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
@@ -215,7 +250,7 @@ _pfh = {
 						_driver3 moveInDriver _veh3;
 						_gunner3 moveInGunner _veh3;
 						} else {
-						private _driver3B = _vicGroup3 createUnit ["I_crew_F", _ObjectPosition, [],0,"NONE"];
+						private _driver3B = _vicGroup3 createUnit [_crewtype, _ObjectPosition, [],0,"NONE"];
 						_driver3B moveInDriver _veh2;
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
@@ -273,7 +308,7 @@ _pfh = {
         // Give them some points, 100 per tower
         if !(_stopRequested) then {
             [350, "vicDepot"] call YFNC(addRewardPoints);
-            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact the AAFs ability to call in ground reinforcements as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", 350] call YFNC(globalHint);
+            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact their ability to call in ground reinforcements as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", 350] call YFNC(globalHint);
         };
 
         // Otherwise, success! go to cleanup

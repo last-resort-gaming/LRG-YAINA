@@ -1,8 +1,9 @@
 /*
    Author:
-      Quiksilver & Matth
+      Quiksilver
       Rarek [AW]
       MartinCo
+	  MitchJC - Faction Switching
 	description: none
 	returns: nothing
 */
@@ -10,7 +11,7 @@
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_g", "_rdir", "_arty1", "_arty2", "_v", "_side", "_artVic", "_truck", "_MarkerColour"];
 
 _markers    = [];
 _units      = []; // To clean up units
@@ -20,6 +21,33 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+
+switch (MainAOArmy) do {
+    case "CSAT": {
+		_artVic = "O_MBT_02_arty_F";
+		_truck = "O_Truck_03_ammo_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+    case "AAF": {
+		_artVic = "I_Truck_02_MRL_F";
+		_truck = "I_Truck_02_ammo_F";
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		};
+    case "CSAT Pacific": {
+		_artVic = "O_T_MBT_02_arty_ghex_F";
+		_truck = "O_T_Truck_03_ammo_ghex_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+    default {
+		_artVic = "O_MBT_02_arty_F";
+		_truck = "O_Truck_03_ammo_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		};
+};
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////
@@ -41,21 +69,6 @@ _missionID = call FNC(getMissionID);
 ///////////////////////////////////////////////////////////
 // Spawn 2 arty + ammo truck
 ///////////////////////////////////////////////////////////
-
-private ["_g", "_rdir", "_arty1", "_arty2", "_v", "_side", "_army", "_artVic", "_truck"];
-
-if (mainAOSide isEqualTo resistance) then {
-_side = resistance;
-_army = "AAF";
-_artVic = "I_Truck_02_MRL_F";
-_truck = "I_Truck_02_ammo_F";
-};
-if (mainAOSide isEqualTo east) then {
-_side = east;
-_army = "CSAT";
-_artVic = "O_MBT_02_arty_F";
-_truck = "O_Truck_03_ammo_F";
-};
 
 
 private _rdir = random 360;
@@ -121,7 +134,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0], _army] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, MainAOArmy, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 _units append _spUnits;
 _vehicles append _spVehs;
@@ -133,13 +146,13 @@ _vehicles append _spVehs;
 [ _units + _vehicles + _buildings, true] call YFNC(addEditableObjects);
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 [
     west,
     _missionID,
     [
-        "OPFOR forces are setting up an artillery battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map. This is a priority target, boys! They're just setting up now; they'll be firing in about five minutes!",
+        "Forces are setting up an artillery battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map. This is a priority target, boys! They're just setting up now; they'll be firing in about five minutes!",
         "Priority Target: Artillery",
         ""
     ],

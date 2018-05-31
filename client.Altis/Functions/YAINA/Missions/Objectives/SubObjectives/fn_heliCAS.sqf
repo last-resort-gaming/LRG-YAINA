@@ -1,5 +1,7 @@
 /*
-	author: Matth
+	author: Martin
+	Matth
+	MitchJC - Faction Switching	
 	description:
 	    Mission inspired by Lost Bullet / INA
 	returns: nothing
@@ -10,7 +12,7 @@
 params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
 
 // We always start with these 4, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_FacType", "_MarkerType", "_MarkerColour"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -19,6 +21,29 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // So that they get restored, before your clean up deletes them, as arma
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
+
+				  switch (mainAOArmy) do {
+    case "CSAT": {
+		_FacType = "O_recon_JTAC_F";
+		_MarkerType = "O_installation";		
+		_MarkerColour = "colorOPFOR";		
+		};
+    case "AAF": {
+		_FacType = "I_soldier_UAV_F";
+		_MarkerType = "n_installation";		
+		_MarkerColour = "ColorGUER";		
+		};
+    case "CSAT Pacific": {
+		_FacType = "O_T_Recon_JTAC_F";
+		_MarkerType = "O_installation";		
+		_MarkerColour = "colorOPFOR";		
+		};
+    default {
+		_FacType = "O_recon_JTAC_F";
+		_MarkerType = "O_installation";		
+		_MarkerColour = "colorOPFOR";		
+		};
+};
 
 // Mission ID
 _missionID = call FNC(getMissionID);
@@ -62,17 +87,17 @@ _tower setDir random 360;
 _tower allowDamage false; //no CAS bombing it until the fac inside is killed.
 _buildings pushBack _tower;
 
-// tower Marekrs
-private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, "o_installation", "Border"] call FNC(createMapMarkers);
+// tower Markers
+private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 200, _MarkerType, "Border", nil, _MarkerColour] call FNC(createMapMarkers);
 {_markers pushBack _x; true } count _mrks;
 
 // Spawn fac
 
 // Bring in an fac to one of the buildings
 private _facPos = selectRandom (_tower call BIS_fnc_buildingPositions);
-private _facGroup = createGroup resistance;
+private _facGroup = createGroup MainAOSide;
 _facGroup setGroupIdGlobal [format["tower_eng_%1", _missionID]];
-private _fac = _facGroup createUnit ["I_Soldier_unarmed_F", [0,0,0], [],0,"NONE"];
+private _fac = _facGroup createUnit [_FacType, [0,0,0], [],0,"NONE"];
 _fac setPos _facPos;
 _units pushBack _fac;
 
@@ -89,16 +114,16 @@ _fac addEventHandler ["Killed", {
         };
     };
 
-    parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>The AAF FAC  has been killed by %1. Move in and demo that tower!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
+    parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>The FAC  has been killed by %1. Move in and demo that tower!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
 }];
 
 // Garrison some around the tower
-private _fgn = [_ObjectPosition, [0,50], resistance, 1, nil, nil, 6, [_facPos]] call SFNC(infantryGarrison);
+private _fgn = [_ObjectPosition, [0,50], mainAOArmy, 1, nil, nil, 6, [_facPos]] call SFNC(infantryGarrison);
 _units append _fgn;
 [_fgn, format["tower_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["tower_pa_%1", _missionID], _ObjectPosition, 100, resistance, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1], "AAF"] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["tower_pa_%1", _missionID], _ObjectPosition, 100, mainAOSide, mainAOArmy, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -117,7 +142,7 @@ _units append _spUnits;
 [west,
     [_missionID, _parentMissionID],
     [
-        "The AAF have built a FAC tower to guide in HeliCAS. First kill the FAC inside then demo that building.",
+        "Enemy Forces have built a FAC tower to guide in HeliCAS. First kill the FAC inside then demo that building.",
         "Sub Objective: HeliCAS Tower",
         ""
     ],
@@ -175,7 +200,7 @@ _pfh = {
         // Give them some points, 100 per tower
         if !(_stopRequested) then {
             [350, "tower"] call YFNC(addRewardPoints);
-            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact the AAF's ability to call in air support as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", 350] call YFNC(globalHint);
+            parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/><br/>Excellent work! That will certainly impact their ability to call in air support as we continue to progress towards the HQ<br/><br/>You have received %1 points.<br/><br/>Now focus on the remaining forces in the main objective area and make it back home safely!", 350] call YFNC(globalHint);
         };
 
         // Otherwise, success! go to cleanup

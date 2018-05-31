@@ -1,5 +1,6 @@
 /*
-	author: Martin & Matth
+	author: Martin
+	MitchJC - Faction Switching	
 	description: none
 	returns: [groups, vehicles]
 
@@ -9,6 +10,7 @@
 params [
         "_grpPrefix", "_center", "_radius",
         ["_side", east],
+		["_army", "CSAT"],
         ["_garrisons", [1,0,60, "SME", 4, []]],
         ["_inf", [3,3]],
         ["_infaa", [1,1]],
@@ -18,8 +20,7 @@ params [
         ["_vehmrap", [1,0]],
         ["_vehrand", [0,0]],
         ["_vehlight", [0,0]],
-        ["_vehheavy", [0,0]],
-		["_army", "CSAT"]
+        ["_vehheavy", [0,0]]
        ];
 	   
 
@@ -38,45 +39,76 @@ _vehheavy params ["_vehheavyMin", ["_vehheavyRand",0], ["_vehheavySkill", 3]];
 // UNIT TYPES
 ///////////////////////////////////////////////////////////
 
-private ["_confBase", "_infList", "_infaaList", "_infatList", "_vehAAList", "_vehMrapList", "_vehRandList", "_vehLightList", "_vehHeavyList"];
+private ["_confBase", "_infList", "_infaaList", "_infatList", "_sniperList", "_vehAAList", "_vehMrapList", "_vehRandList", "_vehLightList", "_vehHeavyList"];
 
 // TODO: UAVs ?
 
-_confBase     = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry";
-_infList      = ["OIA_InfTeam","OI_reconPatrol"];
-_infaaList    = ["OIA_InfTeam_AA"];
-_infatList    = ["OIA_InfTeam_AT"];
-_sniperList   = ["OI_SniperTeam"];
-_vehAAList    = ["O_APC_Tracked_02_AA_F"];                                                                                   // Tigris
-_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F"]; // Ifrit + gmg + hmg, Quillen, Zamak + covered
-_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F"];                                                    // BTR-K + Marid
-_vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];                                                                              // Quillen + Armed Offroad
-_vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];                                                            // T-100, T140, T140K
-
-if ((_side isEqualTo resistance) && (_army isEqualTo "AAF")) then {
-    _confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry";
-    _infList      = ("true" configClasses _confBase) apply { configName _x };
-    _infaaList    = ["HAF_InfTeam_AA"];
-    _infatList    = ["HAF_InfTeam_AT"];
-    _sniperList   = ["HAF_SniperTeam"];
-    _vehAAList    = ["I_APC_Wheeled_03_cannon_F", "I_LT_01_AA_F"];                                                                // Gorgon + Nyx AA
-    _vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];      // Strider + gmg + hmg, Zamak + coverd
-    _vehRandList  = ["I_APC_Tracked_C03_cannon_F"];                                                                                 // Mora
-    _vehLightList = ["I_G_Offroad_01_armed_F"];                                                                                     // Armed offroad
-    _vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];                                                      // Kuma, Nyx AT, Nyx AutoCannon                                                 // Kuma, Nyx AT, Nyx AutoCannon
-};
-
-if ((_side isEqualTo resistance) && (_army isEqualTo "Syndikat")) then {
-    _confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry";
-    _infList      = ("true" configClasses _confBase) apply { configName _x };
-    _infaaList    = [];
-    _infatList    = [];
-    _sniperList   = [];
-    _vehAAList    = ["I_APC_Wheeled_03_cannon_F"];                                                                                  // Gorgon
-    _vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];      // Strider + gmg + hmg, Zamak + coverd
-    _vehRandList  = ["I_APC_Tracked_C03_cannon_F"];                                                                                 // Mora
-    _vehLightList = ["I_G_Offroad_01_armed_F"];                                                                                     // Armed offroad
-    _vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];                                                      // Kuma, Nyx AT, Nyx AutoCannon
+switch (_army) do {
+    case "CSAT": {
+		_side = east;
+		_confBase     = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry";
+		_infList      = ["OIA_InfTeam","OI_reconPatrol"];
+		_infaaList    = ["OIA_InfTeam_AA"];
+		_infatList    = ["OIA_InfTeam_AT"];
+		_sniperList   = ["OI_SniperTeam"];
+		_vehAAList    = ["O_APC_Tracked_02_AA_F"];
+		_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F"];
+		_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F"];
+		_vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];
+		_vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];
+		};
+    case "AAF": {
+		_side = resistance;
+		_confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry";
+		_infList      = ("true" configClasses _confBase) apply { configName _x };
+		_infaaList    = ["HAF_InfTeam_AA"];
+		_infatList    = ["HAF_InfTeam_AT"];
+		_sniperList   = ["HAF_SniperTeam"];
+		_vehAAList    = ["I_APC_Wheeled_03_cannon_F", "I_LT_01_AA_F"];
+		_vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];
+		_vehRandList  = ["I_APC_Tracked_C03_cannon_F"];
+		_vehLightList = ["I_G_Offroad_01_armed_F"];
+		_vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];
+		};
+    case "CSAT Pacific": {
+		_side = east;
+		_confBase = configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry";
+		_infList      = ("true" configClasses _confBase) apply { configName _x };
+		_infaaList    = ["O_T_InfTeam_AA"];
+		_infatList    = ["O_T_InfTeam_AT","O_T_InfTeam_AT_Heavy"];
+		_sniperList   = ["O_T_SniperTeam"];
+		_vehAAList    = ["O_T_APC_Tracked_02_AA_ghex_F"];
+		_vehMrapList  = ["O_T_MRAP_02_ghex_F","O_T_MRAP_02_gmg_ghex_F","O_T_MRAP_02_hmg_ghex_F","O_T_LSV_02_AT_F","O_T_LSV_02_armed_F","O_T_LSV_02_unarmed_F"];
+		_vehRandList  = ["O_T_APC_Tracked_02_cannon_ghex_F","O_T_APC_Wheeled_02_rcws_v2_ghex_F"];
+		_vehLightList = ["O_T_LSV_02_armed_F","O_T_LSV_02_unarmed_F"];
+		_vehHeavyList = ["O_T_MBT_02_cannon_ghex_F","O_T_MBT_04_cannon_F","O_T_MBT_04_command_F"];
+		};
+    case "Syndikat": {
+		_side = resistance;
+		_confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry";
+		_infList      = ("true" configClasses _confBase) apply { configName _x };
+		_infaaList    = [];
+		_infatList    = [];
+		_sniperList   = [];
+		_vehAAList    = ["I_APC_Wheeled_03_cannon_F"];
+		_vehMrapList  = ["I_MRAP_03_F", "I_MRAP_03_gmg_F", "I_MRAP_03_hmg_F", "I_Truck_02_transport_F", "I_Truck_02_transport_F"];
+		_vehRandList  = ["I_APC_Tracked_C03_cannon_F"];
+		_vehLightList = ["I_G_Offroad_01_armed_F"];
+		_vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];
+		};
+    default {
+		_side = east;
+		_confBase     = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry";
+		_infList      = ["OIA_InfTeam","OI_reconPatrol"];
+		_infaaList    = ["OIA_InfTeam_AA"];
+		_infatList    = ["OIA_InfTeam_AT"];
+		_sniperList   = ["OI_SniperTeam"];
+		_vehAAList    = ["O_APC_Tracked_02_AA_F"];
+		_vehMrapList  = ["O_MRAP_02_F", "O_MRAP_02_hmg_F", "O_MRAP_02_gmg_F", "O_LSV_02_armed_F", "O_Truck_03_transport_F", "O_Truck_03_covered_F"];
+		_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F"];
+		_vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];
+		_vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];
+		};
 };
 
 private ["_x","_g","_pos","_flatPos","_rpos","_v"];
@@ -93,7 +125,7 @@ private _vehicles = [];
 ///////////////////////////////////////////////////////////
 
 if (_garrisonGroupCount > 0) then {
-    private _garrisonedUnits = ([_center, [_garrisonMinRad, _garrisonMaxRad], _side, _garrisonGroupCount, nil, _garrisonSkill, _garrisonFill, _garrisonExcludes] call FNC(infantryGarrison));
+    private _garrisonedUnits = ([_center, [_garrisonMinRad, _garrisonMaxRad], _army, _garrisonGroupCount, nil, _garrisonSkill, _garrisonFill, _garrisonExcludes] call FNC(infantryGarrison));
     _units append _garrisonedUnits;
 
     private _grps = [];

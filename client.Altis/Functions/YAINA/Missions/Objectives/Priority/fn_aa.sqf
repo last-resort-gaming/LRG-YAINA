@@ -1,8 +1,9 @@
 /*
    Author:
-      Quiksilver & Matth
+      Quiksilver
       Rarek [AW]
       MartinCo ported to YAINA
+	  MitchJC - Faction Switching
 	description: none
 	returns: nothing
 */
@@ -10,7 +11,7 @@
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission
-private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings"];
+private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_AA1", "_AA2", "_AA3", "_v", "_aagroup", "_side", "_army", "_aaVic", "_truck", "_MarkerColour", "_typeofAAs"];
 
 _markers    = [];
 _units      = []; // To clean up units + groups at end
@@ -19,7 +20,40 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // So that they get restored, before your clean up deletes them, as arma
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
-
+		  
+				  
+switch (MainAOArmy) do {
+    case "CSAT": {
+		_aaVic = "O_APC_Tracked_02_AA_F";
+		_truck = "O_Truck_03_ammo_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
+		};
+    case "AAF": {
+		_aaVic = "I_LT_01_AA_F";
+		_truck = "I_Truck_02_ammo_F";
+		_side = resistance;
+		_MarkerColour = "ColorGUER";
+		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
+		};
+    case "CSAT Pacific": {
+		_aaVic = "O_T_APC_Tracked_02_AA_ghex_F";
+		_truck = "O_Truck_03_ammo_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
+		};
+    default {
+		_aaVic = "O_APC_Tracked_02_AA_F";
+		_truck = "O_Truck_03_ammo_F";
+		_side = east;
+		_MarkerColour = "colorOPFOR";
+		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
+		};
+};				  
+				  
+				  
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////
@@ -58,20 +92,7 @@ waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 ///////////////////////////////////////////////////////////
 // Spawn AA + Crew
 ///////////////////////////////////////////////////////////
-private ["_AA1", "_AA2", "_AA3", "_v", "_aagroup", "_side", "_army", "_aaVic", "_truck"];
-if (mainAOSide isEqualTo resistance) then {
-_side = resistance;
-_army = "AAF";
-_aaVic = "I_LT_01_AA_F";
-_truck = "I_Truck_02_ammo_F";
-};
-if (mainAOSide isEqualTo east) then {
-_side = east;
-_army = "CSAT";
-_aaVic = "O_APC_Tracked_02_AA_F";
-_truck = "O_Truck_03_ammo_F";
-};
-private _typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
+
 private _dir = random 360;
 
 _AA1 = createVehicle [_aaVic, _ObjectPosition getPos [10,0], [], 0, "NONE"];
@@ -135,7 +156,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0], _army] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, MainAOArmy, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 _units append _spUnits;
 _vehicles append _spVehs;
 
@@ -146,13 +167,13 @@ _vehicles append _spVehs;
 [ _units + _vehicles + _buildings, true] call YFNC(addEditableObjects);
 
 // Bring in the Markers
-_markers = [_missionID, _AOPosition, _AOSize] call FNC(createMapMarkers);
+_markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 
 [
     west,
     _missionID,
     [
-        "OPFOR forces are setting up an anti-air battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map. This is a priority target, boys! They're just setting up now",
+        "Forces are setting up an anti-air battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map. This is a priority target, boys! They're just setting up now",
         "Priority Target: Anti-air",
         ""
     ],
