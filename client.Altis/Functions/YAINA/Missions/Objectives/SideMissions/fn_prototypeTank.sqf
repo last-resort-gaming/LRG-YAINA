@@ -115,6 +115,7 @@ _protoTank addEventHandler ["HandleDamage", {
     _olddamage = _gethit select _i;
     _damage = _olddamage + ((_this select 2) - _olddamage) * 0.75;
     _gethit set [_i, _damage];
+    _unit setVariable ["gethit", _gethit];
     _damage;
 }];
 
