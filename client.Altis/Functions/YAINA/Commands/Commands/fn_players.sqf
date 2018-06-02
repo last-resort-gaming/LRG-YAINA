@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_players
+
+Description:
+	Find a given players (or all) and print out information
+    linked to them, such as UID and name.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - Not used
+    _argStr - The name of the player we want to find
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_addActionMP
+
+Description:
+	Add given action to all clients incl. JIP.
+
+Parameters:
+	The action to be added to all players.
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

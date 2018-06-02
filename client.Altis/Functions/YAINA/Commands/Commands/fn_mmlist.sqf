@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_mmlist
+
+Description:
+	Display a list of all currently running missions.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - Not used
+    _argStr - Not used
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

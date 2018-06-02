@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_markerManager
+
+Description:
+	Initializes the marker manager during the postInt phase.
+    Prefixes the creator's name to the marker on command channel,
+    delete user-created markers on the global channel.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

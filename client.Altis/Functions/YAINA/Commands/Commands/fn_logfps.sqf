@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_logfps
+
+Description:
+	Log the player's current FPS to the server log.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - Not used
+    _argStr - Not used
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_owner", "_caller", "_argStr"];

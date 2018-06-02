@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_refreshRewardsPage
+
+Description:
+	This refreshes the rewards page, resetting it back to what it was
+	when we started out.
+
+Parameters:
+	_internal - Unused variable
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 // Default we select helis

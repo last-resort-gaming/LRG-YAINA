@@ -1,9 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
-*/
+Function: YAINA_MM_fnc_startMission
 
+Description:
+  Handles starting a new mission. Sets it up for use with the headless
+  clients, initializes fail-over procedures, and dispatches the mission
+  handling to the applicable HC (or server).
+
+Parameters:
+	_start - Which kind of mission to start
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
 
 #include "..\defines.h"
 

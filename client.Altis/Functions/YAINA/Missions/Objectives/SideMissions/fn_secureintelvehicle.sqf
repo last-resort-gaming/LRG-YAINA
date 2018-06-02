@@ -1,34 +1,27 @@
 /*
-@filename: secureIntelVehicle.sqf
-Author:
+Function: YAINA_MM_OBJ_fnc_secureintelvehicle
 
-	Quiksilver
-	
 Description:
+	Recover intel from a HVT transported in a vehicle. If the driver sees, they will try
+    to get away. If escape is successful, the mission fails. Likewise, if the vehicle and
+    the intel inside is detroyed, the mission also fails.
 
-	Recover intel from a vehicle (add Action)
-		If driver sees you, will attempt escape.
-			If escapes, mission fail.
-		If vehicle destroyed, mission fail.
-		If intel recovered, mission success.
+    If the vehicle is secured and the intel found, mission success.
 
-Last modified:
+Parameters:
+	None
 
-	29/07/2017 by stanhope
-	21/01/2018 by MartinCo - port to YAINA
+Return Values:
+	None
 
-modified:
-	
-	pos finder
-		
-Status:
+Examples:
+    Nothing to see here
 
-	20/04/2014
-	WIP Third pass
-	Open beta
-
-
-___________________________________________________________________________*/
+Author:
+	Quiksilver - Original Mission Idea
+    Stanhope - Mission Updated and Fixed
+    Martin - Ported to YAINA
+*/
 
 #define OBJVEH_TYPES "O_MRAP_02_F","I_MRAP_03_F"
 #define OBJUNIT_TYPES "O_officer_F","O_Soldier_SL_F","O_recon_TL_F","O_diver_TL_F"

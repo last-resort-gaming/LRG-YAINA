@@ -1,10 +1,23 @@
 /*
-	author: Martin
-	description:
-	    Takes an array of ConfigFile elements, to populate the AmmoBox Loadout
-	    ListNBox to manage the quantities in the loadout
-	returns: nothing
+Function: YAINA_TABLET_fnc_populateLoadout
+
+Description:
+	Takes an array of ConfigFile elements, to populate the AmmoBox
+    Loadout	ListBox to manage the quantities in the loadout.
+	
+Parameters:
+	_cfgItemList - Array of ConfigFile elements with which to populate the listbox
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
+
 #include "..\defines.h"
 
 params ["_cfgItemList"];

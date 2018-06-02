@@ -1,8 +1,31 @@
 /*
-	author: Martin
-	MitchJC - Faction Switching
-	description: none
-	returns: nothing
+Function: YAINA_SPAWNS_fnc_infantryGarrison
+
+Description:
+	Garrison buildings in given radius around given position, using
+	units of the passed faction.
+
+Parameters:
+	_pos - Position around which to garrison buildings
+	_radius - Radius around the position in which to garrison buildings
+	_army - The faction which we want to use to populate the garrisons
+	_groupCount - The amount of groups we want to create
+	_AIOB_Positioning - The positioning directive to use (default: 2)
+	_skill - The skill level of the garrisoned units
+	_maxFill - The maximum amount of units in one building
+	_excludes - Exclude buildings in this array from being garrisoned
+	_units - Array of units already in existence which we want to garrison as well
+
+
+Return Values:
+	Array containing the garrisoned units
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin - Original Function
+	MitchJC - Faction Selection
 */
 
 #include "..\defines.h"

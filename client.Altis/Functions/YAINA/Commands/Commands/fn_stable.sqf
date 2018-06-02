@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_stable
+
+Description:
+	Stabilise the targeted player to stop them from bleeding out 
+    while unconscious.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - Not used
+    _argStr - The player we want to stabilise
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

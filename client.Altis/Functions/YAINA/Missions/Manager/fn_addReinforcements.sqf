@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_addReinforcements
+
+Description:
+	Register given units and vehicles as reinforcements for the given
+    mission, referenced by missionID.
+
+Parameters:
+	_missionID - The ID of the mission for which we want to register the reinforcements
+    _units - The units we want to register as reinforcements
+    _vehs - The vehicles we want to register as reinforcements
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_hasCommand
+
+Description:
+	Checks, if given player has access to the given command(s).
+
+Parameters:
+	_player - The player which we want to check against
+	_check - Array of commands which we want to check for
+
+Return Values:
+	true if commands are available to the players, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

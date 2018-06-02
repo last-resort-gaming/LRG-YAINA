@@ -1,7 +1,26 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_killLog
+
+Description:
+	Logs information about an entity's killer, the weapon and projectile used and similar
+    information to the server death log.
+
+Parameters:
+	_killer - The unit that killed the player
+    _projectile - The projectile that killed the player
+    _aisDamageType - The type of damage dealt, as handled by AIS
+    _sourceWeapon - The weapon from which the projectile originated
+    _sourceWeapons - If applicable the complete list of available weapons (for vehicles)
+    _vehicle - The vehicle in which the killer was
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h";

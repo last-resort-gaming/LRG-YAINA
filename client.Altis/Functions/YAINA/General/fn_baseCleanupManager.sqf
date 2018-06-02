@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_baseCleanupManager
+
+Description:
+	Handles initialization of the base cleanup scripts during the 
+    postInit phase. Removes dead bodies, dropped stuff and clears
+    the inventory of the arsenal boxes if no players are nearby.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

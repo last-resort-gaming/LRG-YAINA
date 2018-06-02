@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_addHCDCH
+
+Description:
+	Adds the Headless Clients to the disconnect handling routine.
+	Also extracts a mission's position and pushes that back to AO Exclusions.
+
+Parameters:
+	_this - PFH reference data, see YAINA_MM_fnc_startMissionPFH
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,9 +1,26 @@
 /*
+Function: YAINA_TABLET_fnc_selectionChangedPlayer
+
+Description:
   Player Changed: Called from ammobox creator when
   the player selection in the list is changed.
 
   This then populates the ammo selection available.
+
+Parameters:
+	_lb - The listbox we want to handle
+    _idx - The selected element in the listbox
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
+
 #include "..\defines.h"
 
 params ["_lb", "_idx"];

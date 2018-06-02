@@ -1,11 +1,27 @@
 /*
-	author: Martin
-	description:
-	    Hides terrain objects, similar to that of ModuleHideTerrain_F in 3DEN
-	    And to avoid the issue of exploding buildings re-appearing, we set them
-	    to not take damage.
-	returns:
-	    nil
+Function: YAINA_fnc_hideTerrainObjects
+
+Description:
+	Hides terrain objects, similar to that of 3DEN's ModuleHideTerrain_F.
+    To avoid the issue of exploding buildings re-appearing, we set their damage
+    handling to disabled.
+
+Parameters:
+	_oid - Owner ID of the machine that called this
+    _key - RExec reference key to confirm hiding the objects was done
+    _pos - Position around which we want to hide terrain objects
+    _radius - Radius around given position in which to hide terrain objects
+    _excludes - Objects to exclude from being hidden
+    _types - The types of terrain objects to hide, defaults to the CATEGORIES array
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

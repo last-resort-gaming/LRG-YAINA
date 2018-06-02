@@ -1,7 +1,26 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Script: general.sqf
+
+Description:
+	General purpose servicing script. Able to deal with most vehicles/aircrafts.
+
+Parameters:
+	_kind - The kind of vehicle we are trying to service
+    _veh - The actual vehicle object we are servicing
+    _serviceTime - The time it takes to service the vehicle
+    _serviceRand - Additional max. random service time
+    _sideChat - Announce servicing in side chat?
+    _allowAny - Allow any vehicle to be serviced?
+    _playerDistance - Distance that player needs to be in for servicig to go ahead
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_kind", "_veh", ["_serviceTime", 60], ["_serviceRand", 30], ["_sideChat", true], ["_allowAny", false], ["_playerDistance", 0]];

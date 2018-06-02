@@ -1,17 +1,27 @@
 /*
-@file: destroyRadar.sqf
-Author:
+Function: YAINA_MM_OBJ_fnc_secureradar
 
-	Quiksilver
-	MitchJC - Faction Switching
-Last modified:
-
-	25/04/2014
-    23/01/2018 - MartinCo - rewritten for YAINA
 Description:
-
 	Get radar telemetry from enemy radar site, then destroy it.
-_________________________________________________________________________*/
+    Randomly selects one of the following armies for populating the mission:
+
+    AAF, CSAT, CSAT Pacific
+	
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Quiksilver - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
+*/
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission

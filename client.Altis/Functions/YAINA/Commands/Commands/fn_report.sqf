@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_report
+
+Description:
+	Report an issue, a player or anything else to the server logs 
+    and currently logged in admins.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - The player that called this command
+    _argStr - The player and/or reasons we want to report/for reporting
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

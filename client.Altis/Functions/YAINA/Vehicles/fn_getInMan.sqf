@@ -1,7 +1,25 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_getInMan
+
+Description:
+	The event handler code run when the getInMan event is triggered.
+    Checks player's access to a vehicle and ejects them from the 
+    driver seat, if necessary.
+
+Parameters:
+	_unit - The player that got into a vehicle
+    _pos - The position in the vehicle (the seat) where the player has entered
+    _veh - The vehicle which the player entered
+    _turret - The turret the player is controlling in the vehicle
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

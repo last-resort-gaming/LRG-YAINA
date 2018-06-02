@@ -1,8 +1,25 @@
 /*
-Author: BACONMOP
-Ported to YAINA by MartinCo,
-MitchJC - Faction Switching
-Destroy a prototype Tank
+Function: YAINA_MM_OBJ_fnc_protoypeTank
+
+Description:
+	Destroy a prototype tank before the enemy gets a chance to use it on you.
+    Randomly selects one of the following armies for populating the mission:
+
+    AAF, CSAT, CSAT Pacific
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	BACONMOP - Original Mission
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
 */
 
 #include "..\..\defines.h"
@@ -115,6 +132,7 @@ _protoTank addEventHandler ["HandleDamage", {
     _olddamage = _gethit select _i;
     _damage = _olddamage + ((_this select 2) - _olddamage) * 0.75;
     _gethit set [_i, _damage];
+    _unit setVariable ["gethit", _gethit];
     _damage;
 }];
 

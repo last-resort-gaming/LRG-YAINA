@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_refreshMessagePage
+
+Description:
+	Refreshes the message page. Currently this only show Coming Soon, 
+	but you can always dream, right?
+
+Parameters:
+	_message - The message to show on the page
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h";

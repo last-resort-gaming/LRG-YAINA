@@ -1,5 +1,20 @@
 /*
-	author: MartinCo
+Function: YAINA_TABLET_fnc_setDroppable
+
+Description:
+	Set a crate to be droppable using sling loading system.
+
+Parameters:
+	_crate - The crate we want to set to a droppable vehicle
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_crate"];

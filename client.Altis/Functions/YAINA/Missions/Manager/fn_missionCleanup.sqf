@@ -1,9 +1,27 @@
 /*
-	author: Martin
-	description: none
-	returns:
-	    Boolean - if cleanup went ahead
+Function: YAINA_MM_fnc_missionCleanup
+
+Description:
+	Handles mission cleanup after mission end.
+    Removes markers, units and vehicles and restore buildings and 
+    terrain. Clears out mines and explosives, and Zeus stuff.
+    Also delete the reinforcements, and remove from stop requests.
+
+Parameters:
+	_pfhID - The ID of the per-frame event handler associated with the mission
+    _missionID - ID of the mission we want to run cleanup for
+    _force - Do we want to force cleanup even if there are players nearby
+
+Return Values:
+	true, if cleanup did go ahead, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
+
 #include "..\defines.h"
 
 params ["_pfhID", "_missionID", ["_force", false]];

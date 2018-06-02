@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_clickCancelReward
+
+Description:
+	Runs when a player requests cancellation of a reward. Stops
+    the vehicle from spawning, refunds the credits and does some 
+    messaging stuff.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

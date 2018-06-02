@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_delHCDCH
+
+Description:
+	Deletes a mission from the headless client failover handler.
+    Removes reinforcements, markers and from stop requests.
+
+Parameters:
+	_profileName - The profile name of the headless client
+    _missionID - The ID of the mission we want to remove
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

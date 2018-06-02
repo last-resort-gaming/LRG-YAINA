@@ -1,10 +1,23 @@
 /*
-	author: Martin
-	Matth
-	MitchJC - Faction Switching	
-	description:
-	    Mission inspired by Lost Bullet / INA
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_heliCAS
+
+Description:
+	The enemy has set up a FAC tower to guide their helicopter-powered CAS.
+    Uses the Main AO faction for populating the mission.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Lost Bullet - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
 */
 
 #include "..\..\defines.h"

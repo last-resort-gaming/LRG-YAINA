@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_displayPage
+
+Description:
+	Displays the indicated page with passed arguments on the tablet.
+
+Parameters:
+	_page - The page we want to display
+	_pageArgs - Arguments for displaying the page
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

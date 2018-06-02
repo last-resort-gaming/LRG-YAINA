@@ -1,13 +1,21 @@
 /*
-* Author: unknown
-* Rewrote by: alganthe
-* Display the crew and vehicle heading / target
-*
-* Arguments:
-* Nothing
-*
-* Return Value:
-* Nothing
+Function: YAINA_fnc_crewNames
+
+Description:
+	Display the crew and vehicle heading/target. Initialized during
+    postInit phase.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Unknown, rewritten by Alganthe
 */
 
 player addEventHandler ["GetInMan", {

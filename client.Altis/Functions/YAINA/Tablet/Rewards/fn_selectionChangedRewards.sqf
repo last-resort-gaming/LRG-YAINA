@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_selectionChangedRewards
+
+Description:
+	Runs when the selection changed on the rewards page.
+    Updates the price, spawn delay and similar information.
+
+Parameters:
+	_lb - The listbox containing all the entries
+    _idx - The currently selected element
+    _internal - If we are already building stuff, cancel that build if we change the selection
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

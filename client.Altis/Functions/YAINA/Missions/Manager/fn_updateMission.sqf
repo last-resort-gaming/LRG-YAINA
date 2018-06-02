@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_updateMission
+
+Description:
+	Update the given mission's stage and state.
+
+Parameters:
+	_missionID - The ID of the mission we want to update
+    _stage - The mission's new stage
+    _state - The mission's new state
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

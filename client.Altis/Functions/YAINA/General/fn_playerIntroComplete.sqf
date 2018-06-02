@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_playerIntroComplete
+
+Description:
+	Executes some stuff after the player intro has completed.
+    This display warning messages if rejoining after being kicked or banned.
+
+Parameters:
+	_player - The player for whom we want to run this function
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

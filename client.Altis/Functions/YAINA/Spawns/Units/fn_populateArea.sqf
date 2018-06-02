@@ -1,10 +1,41 @@
 /*
-	author: Martin
-	MitchJC - Faction Switching	
-	description: none
-	returns: [groups, vehicles]
+Function: YAINA_SPAWNS_fnc_populateArea
 
+Description:
+	Populate the given area, mainly used for populating AOs.
+    Has lots of available options to adjust the population routine.
+
+Parameters:
+	_grpPrefix - The prefix for the group IDs
+    _center - The center position of the area we want to populate
+    _radius - The radius of the area we want to populate
+    _side - The side of the units we want to create
+    _army - The faction which we want to use for populating the AO
+    _garrisons - Garrison Parameters, array containing the following information: [Group Count, Minimum Radius, Maximum Radius, Skill Level of Garrisoned Units, Maximum Fill in Buildling, Exclusion List]
+    _inf - Infantry Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _infaa - AA Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _infat - AT Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _sniper - Sniper Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _vehaa - Vehicle-based AA Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _vehmrap - MRAP Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _vehran - Random Vehicles Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _vehlight - Light Vehicles Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _vehheavy - Heavy/Armoured Vehicle Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+
+Return Values:
+	Array containing the following information:
+
+    _units - The newly created AO population (i.e. the spawned units)
+    _vehicles - The newly spawned vehicles in the AO
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin - Original Function
+    MitchJC - Faction Selection
 */
+
 #include "..\defines.h"
 
 params [

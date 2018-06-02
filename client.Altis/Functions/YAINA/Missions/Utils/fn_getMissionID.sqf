@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_getMissionID
+
+Description:
+	Return the next valid unused mission ID to store newly created
+	mission's reference.
+
+Parameters:
+	None
+
+Return Values:
+	The created mission ID
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

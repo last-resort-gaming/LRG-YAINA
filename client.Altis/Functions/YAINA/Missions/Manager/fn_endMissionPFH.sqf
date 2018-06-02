@@ -1,7 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_endMissionPFH
+
+Description:
+	Handles removal of the mission-specific per-frame handler after
+    mission completion.
+    Removes the task, associated modules such as running missions,
+    building restores, reinforcements and mission monitoring by the server.
+
+Parameters:
+	_missionID - The ID of the mission that we want to end
+    _pfhID - The ID of the associated PFH
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

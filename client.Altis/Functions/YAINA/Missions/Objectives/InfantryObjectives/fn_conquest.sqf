@@ -1,9 +1,26 @@
 /*
-	author: MitchJC
-	Ported to YAINA by Martin
-	Compositions by Matth
-	description: none
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_conquest
+
+Description:
+	Conquest Objective. Randomly selects one of the following armies to theme
+    and populate the mission:
+
+    AAF, CSAT, CSAT Pacific, Syndikat
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+    Mokka - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
+    Matth - Compositions
 */
 #include "..\..\defines.h"
 

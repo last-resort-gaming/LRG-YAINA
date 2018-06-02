@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ARSENAL_fnc_enforceGear
+
+Description:
+	
+
+Parameters:
+	_unit - The unit/player which to enforce gear for [Object]
+    _item - The item to check gear restrictions for [Object, defaults to null]
+    _container - If applicable, the container from which the item was taken [Object, defaults to null]
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h";

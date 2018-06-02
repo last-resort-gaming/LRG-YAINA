@@ -1,9 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
-*/
+Function: YAINA_CMD_fnc_paradrop
 
+Description:
+	Override the current paradrop status (optionally for a limited time)
+    and allow players to use the feature even when pilots are online.
+
+Parameters:
+	_owner - Not used
+    _caller - The player that called this command
+    _argStr - Override for given amount of time (minutes)
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
 
 #include "..\defines.h"
 

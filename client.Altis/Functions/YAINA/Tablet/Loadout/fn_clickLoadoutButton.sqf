@@ -1,3 +1,23 @@
+/*
+Function: YAINA_TABLET_fnc_clickLoadoutButton
+
+Description:
+	Handles a click on a button on the loadout page.
+
+Parameters:
+	_elem - The element which has been selected
+    _select - Select or deselect the element?
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
+
 #include "..\defines.h"
 
 disableSerialization;

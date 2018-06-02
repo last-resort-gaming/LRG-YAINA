@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_settrait
+
+Description:
+	Set the targeted player's traits or remove them from him.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - The player that called this command
+    _argStr - The player we want to target and the traits we want to add or remove
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

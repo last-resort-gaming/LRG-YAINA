@@ -1,9 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
-*/
+Function: YAINA_CMD_fnc_mmpause
 
+Description:
+	Pause or resume the mission manager, and thus the mission 
+	life cycle.
+
+Parameters:
+	_owner - Not used
+	_caller - The player that called this command
+	_argStr - Not used
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
 
 #include "..\defines.h"
 

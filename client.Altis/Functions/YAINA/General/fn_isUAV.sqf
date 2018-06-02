@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_isUAV
+
+Description:
+	Check if given object's class is that of an UAV.
+
+Parameters:
+	_type - The class name of the vehicle we're checking
+
+Return Values:
+	true if the class given is an UAV, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_type"];

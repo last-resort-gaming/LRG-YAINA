@@ -1,11 +1,21 @@
-
 /*
+Script: intro_msg.sqf
 
- Author: MitchJC
- Updated: MartinCo
+Description:
+	Displays the intro message to players upon joining.
 
- Last Resort Gaming (LastResortGaming.net)
+Parameters:
+	None
 
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	MitchJC - Original Script
+    Martin - Updated for YAINA1
 */
 
 if (!hasInterface) exitWith {};

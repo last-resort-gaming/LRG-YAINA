@@ -1,9 +1,25 @@
 /*
-	author: Martin
-	Matth - Conversion from fn_cas.sqf
-	MitchJC - Faction Switching	
-	description: none
-	returns: nothing
+Function: YAINA_SPAWNS_fnc_helicas
+
+Description:
+	Randomly selects a helicopter to provide CAS at the Main AO.
+    Uses Main AO faction for selecting the aircraft.
+
+Parameters:
+	_pos - The position where which we want the helicopter to go
+    _radius - Radius around _pos for selecting the helicopter destination
+    _force - Force spawning the helicopter?
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin - Author of YAINA_SPAWNS_fnc_CAS
+    Matth - Ported to helicopters
+    MitchJC - Random Faction Selection
 */
 
 #include "..\defines.h"

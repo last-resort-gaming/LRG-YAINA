@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_postInit
+
+Description:
+	Handles initialization of the vehicle sub-system during the postInit
+    stage. Mainly concerned with setting up the necessary event handlers
+    and variables.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

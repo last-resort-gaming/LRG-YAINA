@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_addRewardPoints
+
+Description:
+	Add or subtract the given amount of reward points to/from
+    the current balance.
+
+Parameters:
+	_count - The amount of points to add or subtract from the current balance
+    _source - The source of where the points came from
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

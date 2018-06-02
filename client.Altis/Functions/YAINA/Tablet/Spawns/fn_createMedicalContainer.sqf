@@ -1,5 +1,21 @@
 /*
-	author: MartinCo
+Function: YAINA_TABLET_fnc_createMedicalContainer
+
+Description:
+	Create a medical container for healing and reviving people in the 
+	field. Crate will be spawned on the SP_CARGO trigger.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

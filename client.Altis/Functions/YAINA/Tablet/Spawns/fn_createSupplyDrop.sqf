@@ -1,10 +1,23 @@
 /*
-	author: MartinCo
-	description:
-	    Creates a list of items from the selected loadout
-	    and passes it to the create ammo drop script.
-    returns:
-        The ammo drop created
+Function: YAINA_TABLET_fnc_createSupplyDrop
+
+Description:
+	Creates a list of items from the selected loadout
+	and passes it to the create ammo drop script.
+	
+
+Parameters:
+	_cargo - The cargo to place into our supply drop
+    _type - The type of crate to spawn for storing our supply drop
+
+Return Values:
+	The created ammo drop
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

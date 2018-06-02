@@ -1,14 +1,18 @@
-/* ----------------------------------------------------------------------------
+/*
 Script: earplugs.sqf
+
 Description:
     Handle the action of a user adding/removing earplugs.
+
 Parameters:
-    _target, _caller, _id, _arguments from event action
-Returns:
+    _target, _caller, _id, _arguments - from event action
+
+Return Values:
     None
+
 Author:
     MartinCo
----------------------------------------------------------------------------- */
+*/
 
 params ["_target", "_caller", "_id", "_arguments"];
 private _nextAction = "Insert";

@@ -1,11 +1,28 @@
 /*
-   Author:
-      Quiksilver
-      Rarek [AW]
-      MartinCo
-	  MitchJC - Faction Switching
-	description: none
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_aa
+
+Description:
+	Priority Target: Artillery. The artillery installation engages BLUFOR targets 
+    once they have been discovered, deploying red smoke on target for range indication and
+    tuning.
+    Randomly selects one of the following armies for the mission (inherited from Main AO):
+
+    AAF, CSAT, CSAT Pacific
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Quiksilver - Original Mission Idea
+    Rarek [AW] - Adapted and updated
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
 */
 
 #include "..\..\defines.h"
