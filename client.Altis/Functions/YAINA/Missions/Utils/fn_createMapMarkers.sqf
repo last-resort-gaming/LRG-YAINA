@@ -1,7 +1,31 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_createMapMarkers
+
+Description:
+	Create the necessary map markers for the given mission.
+    These are the circles indicating the AO itself and the actual
+    icon adapted to the kind of mission.
+
+Parameters:
+	_missionID - The ID of the mission for which we want to create markers
+    _markerPos - The position where we want to make our markers
+    _size - The size of the AO for the circle marker
+    _showSelector - Create a selectable marker on the AO for easy mission assignment
+    _brush - The brushing type for the AO circle marker
+    _startID - The ID for identifying the marker
+    _color - The color of the marker
+
+Return Values:
+	Array containing the following information:
+
+    _mrk1 - If created, the selectable icon marker
+    _mrk2 - The AO circle marker
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

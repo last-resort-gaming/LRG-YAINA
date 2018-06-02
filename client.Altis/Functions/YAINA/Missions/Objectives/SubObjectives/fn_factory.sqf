@@ -1,9 +1,24 @@
 /*
-	author: Martin
-	MitchJC - Faction Switching	
-	description:
-	    Mission inspired by Lost Bullet / INA
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_factory
+
+Description:
+	The enemy has set up a vehicle factory. Take it out before the enemy is able to 
+    reinforce their troops.
+    Uses the Main AO faction for populatin the mission.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Lost Bullet - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
 */
 
 #include "..\..\defines.h"

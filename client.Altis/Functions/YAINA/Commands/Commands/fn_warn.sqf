@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_warn
+
+Description:
+	Warn the targeted player in regards to rule violations.
+    Player is automatically kicked after receiving 3 warnings.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - The player that called this command
+    _argStr - The player we want to warn
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,3 +1,23 @@
+/*
+Function: YAINA_TABLET_fnc_clickLoadoutQuantity
+
+Description:
+	Handles a click on the quantity identifier on the loadouts page.
+
+Parameters:
+	_lb - The listbox element that is currently selected
+    _action - Add or subtract from the current quantity
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
+
 #include "..\defines.h";
 
 params ["_lb", "_action"];

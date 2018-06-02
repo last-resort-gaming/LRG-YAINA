@@ -1,14 +1,15 @@
 /*
-	author: Martin
-	description:
-	    Opens up the HQ tablet, sets any default parameters
-	    for all pages and hooks up our event handlers for
-	    button presses.
-	returns: nothing
+Function: YAINA_TABLET_fnc_openTablet
+
+Description:
+	Opens up the HQ tablet, sets any default parameters
+	for all pages and hooks up our event handlers for
+	button presses.
 
 	Default loadout is most easily authored by creating an
 	ammo box in the editor and running the following:
 
+    (begin code)
     arr = [[], []];
     {
       arr set [0, (arr select 0) + ((_x select 0) select 0)];
@@ -19,9 +20,23 @@
       [getBackpackCargo cursorObject],
       [getMagazineCargo cursorObject]
     ]);
-    copyToClipboard str arr;
 
+    copyToClipboard str arr;
+    (end code)
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
+
 #include "..\defines.h"
 disableSerialization;
 

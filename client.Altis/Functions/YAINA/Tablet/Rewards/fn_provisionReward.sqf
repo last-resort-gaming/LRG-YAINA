@@ -1,7 +1,23 @@
 /*
-    author: Martin
-    description: none
-    returns: nothing
+Function: YAINA_TABLET_fnc_provisionReward
+
+Description:
+	Handles spawning and initializing the bought reward. Does lots
+    of costumization to the vehicles to make them nice and fancy.
+
+Parameters:
+	_player - The player that requested the reward, unused
+    _class - The class name of the requested vehicle
+    _animationStates - The starting animation state of the requested reward
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

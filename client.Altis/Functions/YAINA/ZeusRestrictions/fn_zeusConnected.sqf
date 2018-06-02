@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ZEUS_fnc_zeusConnected
+
+Description:
+	Handles initialization if a Zeus connected to the server,
+    checks if they have access to the slot and sets up the migration.
+
+Parameters:
+	_player - The player that connected
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 //if(!isServer) exitWith {};

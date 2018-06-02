@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_INIT_fnc_serverAltis
+
+Description:
+	Sets up all the modules and objects relevant to the Altis 
+    mission file. These are base lighting, the UAVs, the Repair and
+    Service installations, the helicopters and other aircrafts,
+    the medivac, static medical structures and AA.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

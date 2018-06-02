@@ -1,7 +1,22 @@
-  /*
-	author: Martin
-	description: none
-	returns: nothing
+/*
+Function: YAINA_CMD_fnc_postInitServer
+
+Description:
+	Handled server-side initialization of the commands system.
+    This setup is mainly concerned with initializing the necessary
+    variables and adding the required event handlers.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,10 +1,23 @@
 /*
-	author: Martin
-	description:
-	    Keeps track of the mission IDs for each profile, this is
-	    used for when an HC disconnects / reconnects, it doesn't
-	    start using a potentially conflicting mission ID.
-	returns: nothing
+Function: YAINA_MM_fnc_setMissionID
+
+Description:
+	Keeps track of the mission IDs for each profile, this is
+	used for when an HC disconnects / reconnects, it doesn't
+	start using a potentially conflicting mission ID.
+	
+Parameters:
+	_profileName - Profile name of the HC, used for identification
+	_missionID - ID of the mission which we want to set on the HC
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

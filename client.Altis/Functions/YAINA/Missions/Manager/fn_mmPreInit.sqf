@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_preInit
+
+Description:
+	Handles initialization of the mission manager during the 
+    preInit phase. Mainly concerned with initializing the necessary
+    variables and setting up the headless client fail-over procedures.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

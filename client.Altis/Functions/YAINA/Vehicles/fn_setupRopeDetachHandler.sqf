@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_setupRopeDetachHandler
+
+Description:
+	This initializes the rope detach event handler for given vehicle.
+    Functions pushed to the rddh array of such a vehicle will be
+    executed whenever all ropes are detached.
+
+Parameters:
+	_veh - The vehicle for which we want to set up the RDEH
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

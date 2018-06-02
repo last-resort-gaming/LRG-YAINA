@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_notifyAdmins
+
+Description:
+	Notify active server admins of impeeding doom (or 
+	something along those lines).
+
+Parameters:
+	_caller - The player that wants to notify the admin(s)
+	_msg - The notification to be sent to the admin(s)
+	_level - Not used, possibly intended for the priority of the notification
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

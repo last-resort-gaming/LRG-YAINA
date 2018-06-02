@@ -1,21 +1,24 @@
-
 /*
-	File: taskPatrol.sqf
-	Author: Joris-Jan van 't Land
-	
-	Tweaked by BACONMOP for less restricted positions for waypoints
+Function: YAINA_SPAWNS_fnc_taskPatrol
 
-	Description:
+Description:
 	Create a random patrol of several waypoints around a given position.
 
-	Parameter(s):
-	_this select 0: the group to which to assign the waypoints (Group)
-	_this select 1: the position on which to base the patrol (Array)
-	_this select 2: the maximum distance between waypoints (Number)
-	_this select 3: (optional) blacklist of areas (Array)
+Parameters:
+	_this select 0 - the group to which to assign the waypoints (Group)
+	_this select 1 - the position on which to base the patrol (Array)
+	_this select 2 - the maximum distance between waypoints (Number)
+	_this select 3 - (optional) blacklist of areas (Array)
 	
-	Returns:
-	Boolean - success flag
+Return Values:
+	true, if successfully set the patrol task, false otherwise
+
+Examples:
+	Nothing to see here
+
+Author:
+	Joris-Jan van 't Land - Original Function
+	BACONMOP - Tweaked for less restrictive behaviour
 */
 
 //Validate parameter count

@@ -1,8 +1,25 @@
 /*
-	author: Matth
-	description: none
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_defuse
+
+Description:
+	Defuse a bomb in a limited amount of time, or a bunch of civilians will blown up.
+    Randomly selects one of the following armies for populating the mission:
+
+    AAF, CSAT, CSAT Pacific, Syndikat
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Matth
 */
+
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission

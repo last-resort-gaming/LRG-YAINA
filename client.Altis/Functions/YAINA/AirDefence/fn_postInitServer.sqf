@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_AD_fnc_postInitServer
+
+Description:
+	Handles setting up the Base Air Defence on the server-side.
+    This setup mainly initializes certain variables and modules.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

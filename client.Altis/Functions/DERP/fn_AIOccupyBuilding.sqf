@@ -1,22 +1,26 @@
 /*
- * Author: alganthe
- * Garrison function used to garrison AI inside buildings.
- *
- * Arguments:
- * 0: The building(s) nearest this position are used <POSITION>
- * 1: Limit the building search to those type of building <ARRAY>
- * 2: Units that will be garrisoned <ARRAY>
- * 3: Radius to fill building(s) <SCALAR> default: 50
- * 4: 0: even filling, 1: building by building, 2: random filling <SCALAR> default: 0
- * 5: True to fill building(s) from top to bottom <BOOL> default: false
- * 6: max number of positions to fill in any given building, default 0 (all)
- * Return Value:
- * Array of units not garrisoned
- *
- * Public: Yes
- *
- * Example:
- * [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call ace_common_fnc_garrison
+  Function: derp_fnc_AIOccupyBuilding
+
+  Author: alganthe
+
+  Description:
+    Garrison function used to garrison AI inside buildings.
+ 
+  Arguments:
+    _startingPos - The building(s) nearest this position are used [Position]
+    _buildingTypes - Limit the building search to those type of building [Array]
+    _unitsArray - Units that will be garrisoned [Array]
+    _fillingRadius - Radius to fill building(s) [Scalar, defaults to 50]
+    _fillingType - even filling, 1: building by building, 2: random filling [Scalar, defaults to 0]
+    _topDownFilling - True to fill building(s) from top to bottom [Boolean, defaults to False]
+    _maxFill - max number of positions to fill in any given building, [Scalar, defaults to 0 (all positions)]
+    _excludes - List of positions to exclude [Array]
+  
+  Return Value:
+    Array of units not garrisoned
+ 
+  Example:
+    [position, nil, [unit1, unit2, unit3, unitN], 200, 1, false] call derp_fnc_AIOccupyBuilding
 */
 
 params [["_startingPos",[0,0,0], [[]], 3], ["_buildingTypes", ["Building"], [[]]], ["_unitsArray", [], [[]]], ["_fillingRadius", [0, 50], [[]]], ["_fillingType", 0, [0]], ["_topDownFilling", false, [true]], ["_maxFill", 0, [0]], ["_excludes", [], [[]]]];

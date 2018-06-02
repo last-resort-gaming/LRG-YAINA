@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_preInit
+
+Description:
+	General preInit handler for YAINA. Initializes some global variables, mainly
+    concerned with Zeus and the admin system. Loads the reward points from the database,
+    set-up addActions for players using the Connected EH and set-up player
+    disconnect-handling.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

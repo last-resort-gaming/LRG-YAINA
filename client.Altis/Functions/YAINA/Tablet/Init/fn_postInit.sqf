@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_postInit
+
+Description:
+	Handles initialization of the HQ tablet during the postInit phase.
+    Mainly concerned with initializing the required variables and event
+    handlers.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

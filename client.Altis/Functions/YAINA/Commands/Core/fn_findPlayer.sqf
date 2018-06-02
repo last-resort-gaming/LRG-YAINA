@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: player, null, or
+Function: YAINA_CMD_fnc_findPlayer
+
+Description:
+	Find a player, using supplied prefix.
+
+Parameters:
+	_prefix - The prefix of the wanted player
+
+Return Values:
+	Player object if found, null otherwise.
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_prefix"];

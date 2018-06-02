@@ -1,14 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: String representation of seconds
+Function: YAINA_TABLET_fnc_formatDuration
 
-    Output:
-      4 hours 23 minutes
-      1 minute 30 seconds
-      60 seconds
-      1 minute 1 second
-      etc.
+Description:
+	Takes in a scalar representing seconds and forms this number into a string 
+    representation.
+
+Parameters:
+	_in - The number of seconds we want to form up into a string
+
+Return Values:
+	String representation of the seconds
+
+Examples:
+    Example Output:
+      "4 hours 23 minutes"
+      "1 minute 30 seconds"
+      "43 seconds"
+
+Author:
+	Martin
 */
 
 params ["_in"];

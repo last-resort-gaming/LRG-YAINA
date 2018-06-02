@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_METRICS_fnc_send
+
+Description:
+	Sends the passed information to the a3graphite instance, which
+	then handles transmitting the information to the web server.
+
+Parameters:
+	_metric - Reference of the metric we are sending
+	_value - The value of the metric which we are transmitting
+	_global - Are we handling a global metric?
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

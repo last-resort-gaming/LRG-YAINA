@@ -1,7 +1,25 @@
 /*
-	author: Martin
-	description: none
-	returns: [building, positions] if found, else []
+Function: YAINA_MM_fnc_findLargestBuilding
+
+Description:
+	Find the largest building and the position in the buildung
+	in a certain radius around a given position.
+
+Parameters:
+	_pos - The source position around which to find the largest building
+	_radius - The search radius around the position
+
+Return Values:
+	Array containing the following information:
+
+	_building - The largest building found
+	_positions - The positions inside that building for occupation
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_pos", "_radius"];

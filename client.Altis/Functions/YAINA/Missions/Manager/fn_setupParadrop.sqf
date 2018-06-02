@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_setupParadrop
+
+Description:
+	Sets up the paradrop functionality for a newly created AO, allowing
+    players to deploy to this AO if there are no transport
+    pilots available.
+
+Parameters:
+	_missionMarker - Reference marker of the AO location
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h";

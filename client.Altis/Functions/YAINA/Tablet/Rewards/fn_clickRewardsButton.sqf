@@ -1,3 +1,23 @@
+/*
+Function: YAINA_TABLET_fnc_clickRewardsButton
+
+Description:
+	Initializes the rewards page, populating the page and setting 
+    up the buttons and handlers.
+
+Parameters:
+	_enabled - Is the rewards spawner enabled?
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
+
 #include "..\defines.h"
 
 disableSerialization;

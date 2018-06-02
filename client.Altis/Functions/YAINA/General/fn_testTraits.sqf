@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_testTraits
+
+Description:
+	Checks if the local player has access to the given trait(s).
+    Returns true if that is the case, false otherwise.
+
+Parameters:
+	_this - A trait or an array of traits which we want to check against
+
+Return Values:
+	true if local player has these trait(s) set, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_mmstop
+
+Description:
+	Stop all or a specific (type of) mission(s).
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - The player that called this command
+    _argStr - The mission (type) to be stopped, empty or "all" to stop all
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

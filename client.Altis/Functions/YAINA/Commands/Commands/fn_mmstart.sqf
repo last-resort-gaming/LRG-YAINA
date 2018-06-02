@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_mmstart
+
+Description:
+	Start a new instance of the selected type of mission.
+
+Parameters:
+	_owner - Not used
+	_caller - Not used
+	_argStr - The type (or name of the) mission to be started
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

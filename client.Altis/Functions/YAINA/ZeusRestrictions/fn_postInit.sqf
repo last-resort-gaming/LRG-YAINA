@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ZEUS_fnc_postInit
+
+Description:
+	Handles initialization of the Zeus restrictions during the
+    postInit phase. Mainly concerned with setting up the necessary
+    event handlers and initializing the required variables.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

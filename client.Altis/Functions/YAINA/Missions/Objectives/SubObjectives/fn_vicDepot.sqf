@@ -1,11 +1,23 @@
 /*
-	author: Martin
-	Matth
-	MitchJC - Faction Switching
-	  
-	description:
-	    Mission inspired by Lost Bullet / INA
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_vicDepot
+
+Description:
+	The enemy has set up a vehicle depot. Destroy it before the depot's armament overruns
+    you.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Lost Bullet - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
 */
 
 #include "..\..\defines.h"

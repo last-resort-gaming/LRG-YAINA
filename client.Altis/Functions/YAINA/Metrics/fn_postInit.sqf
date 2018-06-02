@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_METRICS_fnc_postInit
+
+Description:
+	Handles initialization of the metrics system during the postInit
+    phase. Mainly concerned with getting A3Graphite set up and adding
+    the per-frame event handler for sending the required information
+    the graphite.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

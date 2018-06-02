@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ARSENAL_fnc_initArsenal
+
+Description:
+	Inititalizes the given list of containers with the (restricted) arsenal.
+
+Parameters:
+	_arsenals - Array containing all the boxes which shall be initialized with the arsenal [Array]
+
+Return Values:
+	true - if successfully initialized the arsenals
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h";

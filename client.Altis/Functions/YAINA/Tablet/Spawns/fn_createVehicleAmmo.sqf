@@ -1,5 +1,21 @@
 /*
-	author: MitchJC
+Function: YAINA_TABLET_fnc_createVehicleAmmo
+
+Description:
+	Create a crate containing vehicle ammo for rearming vehicles
+	in the field. Ammo crate will be placed on the SP_CARGO trigger.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	MitchJC
 */
 
 #include "..\defines.h"

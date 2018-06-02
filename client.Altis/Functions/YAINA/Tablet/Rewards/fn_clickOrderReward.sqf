@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_clickOrderReward
+
+Description:
+	Runs when a player orders a reward. Handles the progress bar,
+    prepares spawning, update the credits balance and do some messaging.
+    Check if the spawn point is available, and spawn the reward
+    after the delay has expired.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

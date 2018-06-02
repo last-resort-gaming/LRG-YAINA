@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_postInit
+
+Description:
+	General postInit handler for YAINA. This initializes global variables for
+    hidden terrain objects, scheduled vehicle deletions and issued warnings.
+    Starts the scheduled vehicle removal, and adjusts some AIS settings.
+    Also adds all existing units and vehicles to Zeus.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

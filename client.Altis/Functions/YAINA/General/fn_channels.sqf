@@ -1,6 +1,23 @@
 /*
-Handle our channel setup in preInit to see if it sorts out the perma-transmitting on group upon join
-when this was in initPlayerLocal
+Function: YAINA_fnc_channels
+
+Description:
+    Handle our channel setup in preInit to see if it sorts
+    out the perma-transmitting on group upon join
+    when this was in initPlayerLocal.
+    Differs between TFAR and Vanilla radio setups.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 private _tfar = isClass(configFile >> "CfgPatches" >> "task_force_radio");

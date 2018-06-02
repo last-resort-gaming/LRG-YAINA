@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ZEUS_fnc_zeusPinged
+
+Description:
+	Runs whenever a Zeus is pinged. Sanctions are enforced if a
+    player repeatedly pings Zeus.
+
+Parameters:
+	_module - The Zeus module that was pinged, unused
+    _player - The player that pinged Zeus
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

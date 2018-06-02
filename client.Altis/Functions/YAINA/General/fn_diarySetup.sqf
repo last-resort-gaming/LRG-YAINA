@@ -1,7 +1,21 @@
 /*
-	author: Sekwah
-	description: Player and server rules
-	returns: nothing
+Function: YAINA_fnc_diarySetup
+
+Description:
+	Initializes the diary with server rules, information and credits
+	during the postInit phase.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Sekwah
 */
 
 if (!hasInterface) exitWith {};

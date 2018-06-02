@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_rtpause
+
+Description:
+	Pause or resume RealWeather and Time Compression for the time being.
+    Admins will be notified of this.
+
+Parameters:
+	_owner - Not used
+    _caller - The player that called this command
+    _argStr - Not used
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

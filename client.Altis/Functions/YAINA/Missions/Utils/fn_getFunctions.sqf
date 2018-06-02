@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_getFunctions
+
+Description:
+	Return the functions stored in CfgFunctions at a certain path.
+    Used mainly for reading out all existing missions of a certain type.
+
+Parameters:
+	_prefix - The prefix of the config key we're looking at, that is the function prefix (e.g. YAINA_MM_...)
+    _path - The path to the Cfg we want to look through
+
+Return Values:
+	Array containing the functions with the valid prefix found at given path
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 // Takes an array to bundle configClasses

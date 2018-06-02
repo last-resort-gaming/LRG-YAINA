@@ -1,7 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Script: uav.sqf
+
+Description:
+	Handles servicing UAVs. Much like general.sqf
+
+Parameters:
+    _veh - The actual vehicle object we are servicing
+    _serviceTime - The time it takes to service the vehicle
+    _serviceRand - Additional max. random service time
+    _sideChat - Announce servicing in side chat?
+    _playerDistance - Distance that player needs to be in for servicig to go ahead
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_veh", ["_serviceTime", 60], ["_serviceRand", 30], ["_sideChat", true], ["_playerDistance", 0]];

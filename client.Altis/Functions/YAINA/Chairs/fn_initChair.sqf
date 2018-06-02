@@ -1,12 +1,26 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CHAIRS_fnc_initChair
 
-	Inspierd by MacRae's chair script
+Description:
+	Initializes a given chair (object) to make it interactable.
+    Adds an action to the chair which allows players to sit down.
+    Inspired by MacRae's chair script.
 
-    TODO: if a player sits, then takes off their BP we should restore it's original texture
+Todo:
+    If a player sits down, then takes off their BP; 
+    we should restore its original texture
 
+Parameters:
+	_chair - The chair which we want to initialize
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

@@ -1,7 +1,26 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_getDBKey
+
+Description:
+	Returns the value stored in the given key of given database section.
+    Database used is iniDB.
+    For information on sections and keys, see:
+    https://github.com/Uro1/-inidbi
+
+Parameters:
+	_section - The section of the database we want to read from
+    _key  - The key we want to read out
+    _default - The default value to return if key empty or not found
+    _defaultLocal - If running on local server (self-hosted)
+
+Return Values:
+	The value stored in the key, or default value
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"
