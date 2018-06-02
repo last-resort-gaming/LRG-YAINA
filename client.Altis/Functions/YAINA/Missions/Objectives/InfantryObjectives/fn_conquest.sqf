@@ -18,8 +18,8 @@ Examples:
 
 Author:
     Mokka - Original Mission Idea
+    MitchJC - Rewritten for INA
     Martin - Ported to YAINA
-    MitchJC - Random Faction Selection
     Matth - Compositions
 */
 #include "..\..\defines.h"
