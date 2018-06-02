@@ -92,26 +92,18 @@ private _civTypes = ["C_man_polo_1_F", "C_man_1", "C_man_polo_2_F", "C_man_polo_
 private _civGroup = createGroup civilian;
 _civGroup setGroupIdGlobal [format["SMDefuse_civs_%1", _missionID]];
 private _civ1 = _civGroup createUnit [(selectRandom _civTypes), (getPos _hq vectorAdd [2,0,1]), [], 0, "NONE"];
-_civ1 disableAI "MOVE";
-_civ1 setDir 270;
-_civ1 setUnitPos "MIDDLE";
 private _civ2 = _civGroup createUnit [(selectRandom _civTypes), (getPos _hq vectorAdd [2,2,1]), [], 0, "NONE"];
-_civ2 disableAI "MOVE";
-_civ2 setDir 220;
-_civ2 setUnitPos "MIDDLE";
 private _civ3 = _civGroup createUnit [(selectRandom _civTypes), (getPos _hq vectorAdd [2,-2,1]), [], 0, "NONE"];
-_civ3 disableAI "MOVE";
-_civ3 setDir 300;
-_civ3 setUnitPos "MIDDLE";
 private _civ4 = _civGroup createUnit [(selectRandom _civTypes), (getPos _hq vectorAdd [-2,2,1]), [], 0, "NONE"];
-_civ4 disableAI "MOVE";
-_civ4 setDir 110;
-_civ4 setUnitPos "MIDDLE";
 private _civ5 = _civGroup createUnit [(selectRandom _civTypes), (getPos _hq vectorAdd [-2,-2,1]), [], 0, "NONE"];
-_civ5 disableAI "MOVE";
-_civ5 setDir 40;
-_civ5 setUnitPos "MIDDLE";
-_units append [_civ1, _civ2, _civ3, _civ4, _civ5];
+
+{
+_x action ["Surrender", _x];
+_x setDamage 0.8;
+_x setdir random 360;
+_units append [_x];
+} foreach [_civ1, _civ2, _civ3, _civ4, _civ5];
+
 ///////////////////////////////////////////////////////////
 // Spawn Enemies
 ///////////////////////////////////////////////////////////
@@ -133,7 +125,6 @@ _bombObj setVariable [QVAR(missionID), _missionID, true];
 
 [_bombObj, {}, "<t color='#ff1111'>Defuse Bomb</t>", {
     params ["_target", "_caller", "_id", "_arguments"];
-
     // We set serverTime to now, in case of a DC whilst downloading, we
     // dont want the mission to bug out
     _target setVariable[QVAR(defusing), serverTime, true];
@@ -148,7 +139,7 @@ _bombObj setVariable [QVAR(missionID), _missionID, true];
         // Refresh our download time
         _target setVariable [QVAR(defusing), serverTime, true];
 		
-		[[west, "HQ"], format ["%1 has successfully defusing the bomb.", name player]] remoteExec ["sideChat"];
+		[[west, "HQ"], format ["%1 has successfully defused the bomb.", name player]] remoteExec ["sideChat"];
         _target setVariable[QVAR(defused), true, true];
     }, [_target], {
         // on Abort;
@@ -247,8 +238,9 @@ _pfh = {
 
                 if (_bombObj getVariable [QVAR(defused), false]) then {
                     [500, "Defuse"] call YFNC(addRewardPoints);
-					parseText format ["<t align='center' size='2.2'>Side Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Outpost Secured</t><br/>____________________<br/>You have saved the Civilians. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
+					parseText format ["<t align='center' size='2.2'>Side Mission</t><br/><t size='1.5' align='center' color='#34DB16'>Bomb Defused</t><br/>____________________<br/>You have saved the Civilians. You have received %1 credits to compensate your efforts!", 500] call YFNC(globalHint);
                     _mNotify = true;
+					
                 } else {
                     // failure
                     [-500, "Bomb Exploded"] call YFNC(addRewardPoints);
