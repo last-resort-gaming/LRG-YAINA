@@ -6,3 +6,7 @@
 *.swp
 *.iml
 *.pyc
+
+bin/yainadoc/Working Data/
+
+docs/
