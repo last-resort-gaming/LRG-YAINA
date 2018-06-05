@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ZEUS_fnc_migrate
+
+Description:
+	Migrate a unit from the Zeus to a headless client.
+
+Parameters:
+	_target - The unit we want to migrate to a HC.
+
+Return Values:
+	true, if successfully migrated to a HC, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_openChute
+
+Description:
+	Place local player in parachute,force open the chute 
+    for the local player and delete it again once they are on the ground
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h";

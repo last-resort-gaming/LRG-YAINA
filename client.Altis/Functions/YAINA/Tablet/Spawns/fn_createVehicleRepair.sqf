@@ -1,5 +1,21 @@
 /*
-	author: MitchJC
+Function: YAINA_TABLET_fnc_createVehicleRepair
+
+Description:
+	Create a vehicle repair box to repair vehicles in the field.
+	Crate will be spawned on the SP_CARGO trigger.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	MitchJC
 */
 
 #include "..\defines.h"

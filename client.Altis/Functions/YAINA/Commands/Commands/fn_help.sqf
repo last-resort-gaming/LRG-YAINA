@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_help
+
+Description:
+	Displays the list of currently available commands for the caller.
+
+Parameters:
+	_caller - The player that called this command
+    _owner - The owner of the player object that called this command
+    _argStr - Not used
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

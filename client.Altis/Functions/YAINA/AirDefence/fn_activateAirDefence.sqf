@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_AD_fnc_activateAirDefence
+
+Description:
+	Activate the Base Air Defence. Called by interacting with the base laptops.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_postInit
+
+Description:
+	Handles initialization for the commands system.
+    Setup is mainly concerned with handling post-ban messages 
+    and display population.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

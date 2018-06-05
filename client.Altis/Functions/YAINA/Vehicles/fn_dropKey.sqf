@@ -1,7 +1,24 @@
 /*
-	author: MartinCo
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_dropKey
+
+Description:
+	Drops the keys to a vehicle (or all) and reset the ownership 
+    status of the vehicles.
+
+Parameters:
+	_target - The player having their keys dropped
+    _caller - The player that executed this function
+    _id - The key ID for identification, unused
+    _arguments - The arguments passed, unused
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

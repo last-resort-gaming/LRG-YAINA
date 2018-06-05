@@ -1,8 +1,26 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_SPAWNS_fnc_infantryPatrol
+
+Description:
+	Create an infantry patrol of given side with passed skill level
+    at given position patrolling in given radius.
+
+Parameters:
+	_pos - The position at which to place the patrol
+    _patrolRadius - The radius in which to patrol
+    _skill - The skill level of the patrolling units
+    _side - The side of the units we want to create
+
+Return Values:
+	The patrol group newly created
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
+
 #include "..\defines.h"
 
 params ["_pos", ["_patrolRadius", 0], ["_skill", 2], ["_side", EAST]];

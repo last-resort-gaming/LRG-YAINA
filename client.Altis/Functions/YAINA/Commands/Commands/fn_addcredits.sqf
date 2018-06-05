@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_addCredits
+
+Description:
+	Add (or subtract) the given amount of credits from the current
+	stock.
+
+Parameters:
+	_owner - Not used
+	_caller - The player that called this command
+	_argStr - The amount of credits to add or subtract
+
+Return Values:
+	The compiled message, for internal handling.
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 

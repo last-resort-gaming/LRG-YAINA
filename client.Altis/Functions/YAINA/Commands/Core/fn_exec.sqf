@@ -1,9 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
-*/
+Function: YAINA_CMD_fnc_exec
 
+Description:
+	Execute the given command with (optional) supplied arguments.
+	Runs some checks on whether command execution is actually allowed.
+
+Parameters:
+	_command - The command we want to have executed
+	_argument - Arguments for the command
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
 
 #include "..\defines.h"
 

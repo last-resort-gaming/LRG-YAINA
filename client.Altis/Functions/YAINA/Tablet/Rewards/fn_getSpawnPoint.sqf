@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_TABLET_fnc_getSpawnPoint
+
+Description:
+	Returns a spawn point for a desired reward vehicle.
+
+Parameters:
+	_class - Cfg class of the reward vehicle we want a spawn point for.
+
+Return Values:
+	Marker name of the suitable spawn point
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_class"];

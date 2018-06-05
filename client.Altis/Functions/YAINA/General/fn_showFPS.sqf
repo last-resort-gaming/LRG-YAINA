@@ -1,8 +1,22 @@
 /*
-	author: Martin
-	description:
-	    Inspired by liberations FPS meter
-	returns: nothing
+Function: YAINA_fnc_showFPS
+
+Description:
+    Handles initialization of the FPS meter during the postInit phase.
+	Show the current FPS of the headless clients, the server and the player on the map,
+    adding some coloured flair to indicate the smoothness.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin, inspired by Liberation's FPS meter
 */
 
 #include "defines.h"

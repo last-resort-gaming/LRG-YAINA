@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_UAV_fnc_rescan
+
+Description:
+	Rescan for UAVs to keep the list up-to-date, making sure that no
+    unwanted UAVs are made available, eg. the base AA, or MERT drones.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

@@ -1,10 +1,20 @@
 /*
-	author: Martin
-	description:
-	    Finds a place to the edge of the map
-	    from a given position
-	returns:
-	    [x,y] point
+Function: YAINA_SPAWNS_fnc_getAirSpawnPos
+
+Description:
+	Finds a place at the edge of the map closest to a given position.
+
+Parameters:
+	_pos - The position from which we want the edge positions
+
+Return Values:
+	Point at the edge of the map as a 2D position
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_pos"];

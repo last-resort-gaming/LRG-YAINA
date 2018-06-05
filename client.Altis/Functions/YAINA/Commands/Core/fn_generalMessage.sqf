@@ -1,7 +1,30 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_generalMessage
+
+Description:
+	Main formatting module for messages sent using commands.
+    Allows sending messages to all or specfic players.
+    Supplied _args array must contain the following information:
+
+    _owner - The player sending the message to the general public or an individual
+    _caller - The player having called this function (not used)
+    _argStr - The target of the message, in case we are only messaging an individual
+
+Parameters:
+	_args - Arguments array containing meta information (see above)
+    _type - The type of message sent (eg. abusemsg...)
+    _messageIndividual - Message to be sent to one individual (declared in _args)
+    _messageGeneral - Message to be sent to the general public
+
+Return Values:
+	Formatted string for logging, information on the type of 
+    message sent (and to whom).
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_paraDrop
+
+Description:
+	Main function for handling the paradropping system.
+    Checks for available drop points, ensure that dropping is allowed,
+    draws the available paradrop markers, displays them on the map,
+    add the click handler and handle deployment of the chute.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

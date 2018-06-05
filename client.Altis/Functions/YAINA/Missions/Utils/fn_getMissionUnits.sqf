@@ -1,9 +1,21 @@
 /*
-	author: Martin
-	description:
-	    Gets all the units of units + reinforcements for
-	    a given (local) mission ID
-	returns: array of units
+Function: YAINA_MM_fnc_getMissionUnits
+
+Description:
+    Gets all the units of units + reinforcements for
+    a given (local) mission ID
+
+Parameters:
+	_missionID - The ID of the mission which units we want
+
+Return Values:
+	Array of units
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

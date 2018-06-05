@@ -1,8 +1,23 @@
 /*
-	author: Martin
-	MitchJC - Faction Switching	
-	description: none
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_radioTower
+
+Description:
+	The enemy has taken control of a few radio towers to call in jets for CAS.
+    Uses the Main AO faction for populating the mission.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Quiksilver - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
 */
 
 #include "..\..\defines.h"

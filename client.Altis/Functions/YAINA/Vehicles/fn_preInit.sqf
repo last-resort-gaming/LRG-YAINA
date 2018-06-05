@@ -1,3 +1,21 @@
+/*
+Function: YAINA_VEH_fnc_preInit
+
+Description:
+	Handles initialization of required variables during preInit phase.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
 
 #include "defines.h"
 

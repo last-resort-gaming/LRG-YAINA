@@ -1,8 +1,20 @@
 /*
-	author: Martin
-	description:
-	    Handles the main menu clicks (P1 - P3)
-	returns: nothing
+Function: YAINA_TABLET_fnc_clickMainMenu
+
+Description:
+	Handles the main menu clicks, that is page selection.
+
+Parameters:
+	_button - The button that was clicked
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

@@ -1,7 +1,31 @@
 /*
-	author: MartinCo
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_initVehicle
+
+Description:
+	Handles initialization of vehicles with a lot of parameters.
+    These are for example respawning, init code, keys setup and 
+    automatic removal if abandoned.
+
+Parameters:
+	_veh - The vehicle we want to initialize
+    _hasKeys - If the vehicle has keys available for taking
+    _respawnTime - The time it takes for the vehicle to respawn, -1 to disable respawning
+    _abandonDistance - The distance of the vehicle to any player to mark it as abandoned
+    _persistVars - Variables that persist across respawns
+    _initCode - Code run on initialization of the vehicle (also on respawn)
+    _initCodeArgs - Arguments for the init code
+    _initOnInit - Run init code during first init, too?
+    _respawnCode - Code run on vehicle respawn
+    _respawnCodeArgs - Arguments for the respawn code
+
+Return Values:
+	true, if initialization succesful, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

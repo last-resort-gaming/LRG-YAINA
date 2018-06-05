@@ -1,7 +1,20 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ARSENAL_fnc_removeItem
+
+Description:
+	Removes the given item from the player's inventory.
+
+Parameters:
+	_itemClass - The class name of the item that shall be removed
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_itemClass"];

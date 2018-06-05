@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_timeManager
+
+Description:
+	Initializes the time manager during the postInit phase.
+    The time manager is concerned with setting date and time at mission start as well
+    as setting the time acceleration depending on the time of day.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

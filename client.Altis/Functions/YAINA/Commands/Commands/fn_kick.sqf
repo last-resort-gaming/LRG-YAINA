@@ -1,7 +1,25 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_kick
+
+Description:
+	Kick the given player from the server.
+    Has some nice warnings for recurring kicks, all this is handled
+    here as well.
+    Also notifies other admins of the kick.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - The player that called this command
+    _argStr - The player that is supposed to be kicked
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

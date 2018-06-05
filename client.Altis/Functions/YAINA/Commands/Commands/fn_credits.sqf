@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_credits
+
+Description:
+	Inform players of the current credits balance.
+
+Parameters:
+	_owner - Not used
+	_caller - Not used
+	_argStr - Not used
+
+Return Values:
+	The compiled message, for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

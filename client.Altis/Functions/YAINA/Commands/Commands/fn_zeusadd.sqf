@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_zeusadd
+
+Description:
+	Add the given player to the zeus whitelist.
+
+Parameters:
+	_owner - The owner of the player object that called this command
+    _caller - Not used
+    _argStr - The player we want to add to the Zeus list
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"
@@ -12,7 +27,7 @@ private _ret = nil;
 private _log = nil;
 
 if (_argStr isEqualTo "") then {
-    _ret = "Usage: #addzeus <Player Nmae>";
+    _ret = "Usage: #addzeus <Player Name>";
     _log = "invalid syntax";
 } else {
 
@@ -31,7 +46,7 @@ if (_argStr isEqualTo "") then {
             } else {
                 private _uid = getPlayerUID _newZeus;
 
-                _ret = format ["zeus allowed for for %1 (%2)", name _newZeus, _uid];
+                _ret = format ["zeus allowed for %1 (%2)", name _newZeus, _uid];
 
                 // Also update the zeuslist array
                 private _idx = (YVAR(zeuslist) select 0) find _uid;
@@ -40,7 +55,7 @@ if (_argStr isEqualTo "") then {
                     (YVAR(zeuslist) select 1) pushBack (name _newZeus);
 
                     // And let them know
-                    "You have been grandted temporary access to the zeus slot" remoteExec ["systemChat", owner _newZeus];
+                    "You have been granted temporary access to the zeus slot" remoteExec ["systemChat", owner _newZeus];
                 };
             };
         };

@@ -1,20 +1,24 @@
-
 /*
-	File: spawnCrew.sqf
-	Author: Joris-Jan van 't Land
+Function: YAINA_SPAWNS_fnc_createCrew
 
-	Description:
+Description:
 	Function to fill all crew positions in a vehicle, including turrets.
 	In dummy mode no objects are created and the returned array contains only ones.
 	In this mode the function can be used to count the actual crew of an existing vehicle or vehicle type.
 
-	Parameter(s):
-	_this select 0: the vehicle (Object)
-	_this select 1: the crew's group (Group)
-	_this select 2: Faction from units.hpp
+Parameters:
+	_this select 0 - the vehicle (Object)
+	_this select 1 - the crew's group (Group)
+	_this select 2 - Faction from units.hpp
 
-	Returns:
+Return Values:
 	Array of Objects or Scalars - newly created crew or crew count
+
+Examples:
+	Nothing to see here
+
+Author:
+	Joris-Jan van 't Land
 */
 
 //Validate parameter count

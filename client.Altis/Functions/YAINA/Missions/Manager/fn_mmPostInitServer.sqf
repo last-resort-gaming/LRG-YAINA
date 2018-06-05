@@ -1,7 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_mmPostInitServer
+
+Description:
+	Handles initialization of the mission manager during the postInit
+    phase. Mainly concerned with setting up the necessary variables,
+    runs general setup duties for the PFHs, kick-starts the headless
+    clients, start the mission manager life cycle, and initialize
+    the building restoring functionality.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

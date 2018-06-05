@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_respawnPFH
+
+Description:
+	This starts the per-frame event handler that handles respawning
+    and resetting vehicles.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h";

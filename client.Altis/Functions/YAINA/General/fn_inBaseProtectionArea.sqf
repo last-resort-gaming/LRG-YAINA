@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_inBaseProtectionArea
+
+Description:
+	Returns true if the given player or object is inside the base's protection area,
+	false otherwise.
+
+Parameters:
+	_obj - The object or player we want to check for
+
+Return Values:
+	true, if _obj is inside the base protection, false otherwise
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

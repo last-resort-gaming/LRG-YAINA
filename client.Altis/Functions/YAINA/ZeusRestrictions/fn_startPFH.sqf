@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ZEUS_fnc_startPFH
+
+Description:
+	Starts the necessary per-frame event handlers for enforcing
+    the Zeus restrictions and keeping stuff clean.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

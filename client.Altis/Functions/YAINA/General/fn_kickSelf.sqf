@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_kickSelf
+
+Description:
+	Kicks the player on which this command is run from the server,
+	logging the given message to the server.
+
+Parameters:
+	_msg - Message to be displayed in the server log
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

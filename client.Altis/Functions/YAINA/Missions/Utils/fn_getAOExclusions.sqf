@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_getAOExclusions
+
+Description:
+	Get the exclusion zones in form of markers in order to avoid
+	AO collision or squishing. This applies to the base protection zone
+	as well as 3 radii of other existing AOs.
+
+Parameters:
+	_AOSize - The size of the AO we want exclusions for
+
+Return Values:
+	Exclusion markers for the given AO size, array of markers
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

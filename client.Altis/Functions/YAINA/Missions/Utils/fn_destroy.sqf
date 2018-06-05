@@ -1,7 +1,26 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_destroy
+
+Description:
+	Utility function for destroying an objective, that is making
+    explosions happen after they have been "planted" by the players.
+
+Parameters:
+	_delay - The delay in seconds until the explosives go off
+    _pos - The position of the objective about to blow up
+    _sub - Array containing the following information: [Amount of Secondaries, Delay after Main Explosion, Radius around _pos]
+    _method - The type of destruction we want, that is the type of exlosive (Default: Mortar round)
+    _preCode - Code to execute prior to destruction
+    _preCodeArgs - Arguments for the _preCode execution
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 if !(isServer) exitWith {};

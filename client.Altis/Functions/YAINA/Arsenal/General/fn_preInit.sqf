@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_ARSENAL_fnc_preInit
+
+Description:
+	Handles initialization of the arsenals during the preInit phase.
+    The setup is mainly concerned with populating the restriction sets and variables.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h";

@@ -1,7 +1,25 @@
 /*
-	author: MartinCo
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_takeKey
+
+Description:
+	Assume ownership of a vehicle and obtain its keys, if possible.
+	Creates the marker, and allows the player that took the vehicle's
+	keys to (un)lock the vehicle.
+
+Parameters:
+	_target - The player to which the keys shall be given
+	_caller - The player that executed this function
+	_id - The key ID for identification, unused
+	_arguments - Arguments passed, unused
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

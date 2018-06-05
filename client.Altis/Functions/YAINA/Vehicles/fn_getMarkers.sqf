@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_getMarkers
+
+Description:
+	Returns an array of all markers that mark the location of an 
+    owned vehicle that fit the search prefix.
+
+Parameters:
+	_prefix - The search prefix, empty for all
+
+Return Values:
+	Array of markers satisfying the search condition
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_prefix"];

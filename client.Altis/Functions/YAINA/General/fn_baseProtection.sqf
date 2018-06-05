@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_baseProtection
+
+Description:
+	Handles initialization of the base protection during the postInit
+    phase. All terrain objects at base are made invincible, and the
+    conditional projectile removal is added via event handler.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

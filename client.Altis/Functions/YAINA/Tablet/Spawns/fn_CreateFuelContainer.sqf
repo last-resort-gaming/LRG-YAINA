@@ -1,5 +1,21 @@
 /*
-	author: MitchJC
+Function: YAINA_TABLET_fnc_createFuelContainer
+
+Description:
+	Create a fuel container for refueling vehicles in the field.
+	Container will be created on the SP_CARGO trigger.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	MitchJC
 */
 
 #include "..\defines.h"

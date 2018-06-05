@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_AD_fnc_postInit
+
+Description:
+	Sets up the Base Air Defence during the postInit stage.
+    The setup initializes the laptops at base.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

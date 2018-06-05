@@ -1,7 +1,23 @@
 /*
-	author: Martin, Matth and MitchJC
-	description: none
-	returns: nothing
+Function: YAINA_MM_OBJ_fnc_mainAO
+
+Description:
+	The Main AO, primary objective in the mission life cycle.
+    Randomly selects one of the following armies for the mission:
+
+    AAF, CSAT, CSAT Pacific
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin, Matth and MitchJC
 */
 #include "..\..\defines.h"
 

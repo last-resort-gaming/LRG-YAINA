@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_setUnitTraits
+
+Description:
+	Set a unit's traits. The unit modified has to be local, but the effect
+    of adding a trait is global. Traits are also stored in a seperate variable.
+
+Parameters:
+	_traits - The traits we want to add to the given unit
+    _unit - The unit which trait's we want to modify
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_traits", ["_unit", player]];

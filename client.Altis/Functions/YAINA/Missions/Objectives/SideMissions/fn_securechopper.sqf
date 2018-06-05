@@ -1,17 +1,26 @@
 /*
-@file: destroyRadar.sqf
-Author:
+Function: YAINA_MM_OBJ_fnc_securechopper
 
-	Quiksilver
-	MitchJC - Faction Switching
-Last modified:
-
-	25/04/2014
-    23/01/2018 - MartinCo - rewritten for YAINA
 Description:
+	Find and destroy an enemy helicopter before it gets a chance to escape.
+    Randomly selects one of the following factions for populating the mission:
 
-	Get radar telemetry from enemy radar site, then destroy it.
-_________________________________________________________________________*/
+    AAF, CSAT, CSAT Pacific
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Quiksilver - Original Mission Idea
+    Martin - Ported to YAINA
+    MitchJC - Random Faction Selection
+*/
 #include "..\..\defines.h"
 
 // We always start with these 6, as they're in every mission

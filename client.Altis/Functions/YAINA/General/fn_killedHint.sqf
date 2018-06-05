@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_fnc_killedHint
+
+Description:
+	Handles initialization of the hint displaying information about the killer etc.
+    after a player's death, during the postInit phase.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

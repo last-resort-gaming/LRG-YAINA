@@ -1,7 +1,21 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_SPAWNS_fnc_setUnitSkill
+
+Description:
+	Set the given unit's skill level to the desired one.
+
+Parameters:
+	_target - The array of units or the group whose skill level we want to adjust
+    _skillLevel - The skill level which we want to set the units to
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_target", ["_skillLevel", 2]];

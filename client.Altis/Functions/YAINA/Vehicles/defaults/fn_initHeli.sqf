@@ -1,7 +1,24 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_initHeli
+
+Description:
+	Initializes helicopters to enable
+    destroying it and add interaction.
+
+Parameters:
+	_veh - The helicopter we need to initialize
+    _hasKeys - Does the helicopter have keys?
+    _respawnTime - The time it takes the heli to respawn
+    _abandonDistance - Distance to players at which the vehicle is marked as abandoned
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

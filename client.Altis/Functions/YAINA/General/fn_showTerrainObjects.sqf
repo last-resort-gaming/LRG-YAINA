@@ -1,9 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
-*/
+Function: YAINA_fnc_showTerrainObjects
 
+Description:
+	Make previously hidden terrain objects reappear, negating the effect of
+    YAINA_fnc_hideTerrainObjects. Terrain objects supposed to reappear
+    have to be passed as reference keys.
+
+Parameters:
+	_this - An array containing the keys of previous hiding operations which shall be negated
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
+*/
 
 #include "defines.h"
 

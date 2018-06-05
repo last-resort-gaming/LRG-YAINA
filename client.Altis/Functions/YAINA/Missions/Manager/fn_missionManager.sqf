@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_MM_fnc_missionManager
+
+Description:
+	The heart of the mission manager life cycle. Starts missions as 
+    required, launches the occasional priority target and handles the
+    Headless Client madness.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

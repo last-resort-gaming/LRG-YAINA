@@ -1,7 +1,23 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_CMD_fnc_jet
+
+Description:
+	Spawn in CAS on one of the Main AOs. Spawning can be
+    enforced.
+
+Parameters:
+	_owner - The owner of the player that called the command
+    _caller - Not used
+    _argStr - true to force spawning, defaults to false
+
+Return Values:
+	Compiled message for internal handling
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "..\defines.h"

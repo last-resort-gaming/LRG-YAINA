@@ -1,8 +1,24 @@
 /*
-	author: Martin
-	MitchJC - Faction Switching	
-	description: none
-	returns: nothing
+Function: YAINA_SPAWNS_fnc_cas
+
+Description:
+	Spawn a randomly selected jet to provide CAS in the Main AO.
+    Uses the Main AO faction for selecting a fitting aircraft.
+
+Parameters:
+	_pos - The position where which we want the jet to go
+    _radius - Radius around _pos for selecting the jet destination
+    _force - Force spawning the jet?
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin - Main Author
+    Mitch - Random Faction Selection
 */
 
 #include "..\defines.h"

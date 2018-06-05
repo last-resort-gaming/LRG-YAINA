@@ -1,7 +1,20 @@
 /*
-	author: MartinCo
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_flip
+
+Description:
+	Flip the given vehicle to bring it back to its "feet".
+
+Parameters:
+	_veh - The vehicle we want to flip
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

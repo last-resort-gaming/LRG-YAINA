@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_UAV_fnc_postInit
+
+Description:
+	Handles initialization of the UAV submodule during the postInit
+    phase. Mainly concerned with adding the necessary event handlers
+    and setting some variables.
+
+Parameters:
+	None
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"

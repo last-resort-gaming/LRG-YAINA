@@ -1,16 +1,25 @@
 /*
-	author: Martin
-	description:
-	    Return a random position that's above land a suitable distance
-	    from the given location, when you don't really care how messy
-	    it is, and works nicer over larger areas than findSafePos
-	args:
-	    _pos:  position from which to search
-	    _min:  minimum radius from _pos to permit result
-	    _max:  maximum radius from _pos to permit resuls
-	    _code: code to validate position
-	returns:
-	    position
+Function: YAINA_fnc_getPosAround
+
+Description:
+	Return a random position that's above land a suitable distance away from the given
+    position. This does not take terrain or objects into consideration, unless
+    asked to do so using the custom code argument for position validation.
+
+Parameters:
+	_pos - The source position from which to search
+    _min - Minimum distance (i.e. radius) from _pos for a valid position
+    _max - Maximum distance (i.e. radius) from _pos for a valid position
+    _code - Custom position validation code
+
+Return Values:
+	Position around the source position which satisfies our needs
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 params ["_pos", "_min", "_max", "_code"];

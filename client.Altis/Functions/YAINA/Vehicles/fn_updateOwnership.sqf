@@ -1,7 +1,22 @@
 /*
-	author: Martin
-	description: none
-	returns: nothing
+Function: YAINA_VEH_fnc_updateOwnership
+
+Description:
+	Update a player's ownership of given vehicle.
+
+Parameters:
+	_unit - The unit whose ownership we want to update
+    _veh - The vehicle which ownership we wish to update
+    _action - Add or remove ownership to the vehicle
+
+Return Values:
+	None
+
+Examples:
+    Nothing to see here
+
+Author:
+	Martin
 */
 
 #include "defines.h"
