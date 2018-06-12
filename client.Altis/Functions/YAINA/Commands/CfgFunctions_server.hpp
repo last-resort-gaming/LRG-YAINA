@@ -38,6 +38,7 @@ class YAINA_CMD {
         class players {};
         class paradrop {};
         class jet {};
+		class bppause {};
     };
 
     class Messages {
