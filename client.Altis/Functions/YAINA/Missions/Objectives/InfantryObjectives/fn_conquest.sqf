@@ -44,7 +44,7 @@ switch (_army) do {
 		_INFTEAMS = ["HAF_InfSquad","HAF_InfSquad_Weapons","HAF_InfTeam","I_InfTeam_Light"];
 		_CampType = "CA";
 		_unittypes = ["I_Soldier_A_F","I_Soldier_AR_F","I_medic_F","I_Soldier_M_F","I_Soldier_F","I_Soldier_LAT_F","I_Soldier_SL_F","I_Soldier_TL_F"];
-		_ConquestGroupType = (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> selectRandom _INFTEAMS);
+		_ConquestGroupType = (configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> selectRandom _INFTEAMS);
 		_RandomVeh = ["I_G_Offroad_01_armed_F","I_MRAP_03_hmg_F"];
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Comms Station";
