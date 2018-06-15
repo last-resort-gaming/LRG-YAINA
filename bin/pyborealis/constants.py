@@ -23,8 +23,10 @@ INFI_COMMANDS = [
 
 YAINA_COMMANDS = [
   'addcredits',
+  'bppause',
   'credits',
   'help',
+  'jet',
   'kick',
   'logfps',
   'mission',
@@ -32,18 +34,18 @@ YAINA_COMMANDS = [
   'mmpause',
   'mmstart',
   'mmstop',
+  'paradrop',
+  'players',
   'promote',
+  'repair',
   'report',
   'restart',
   'revive',
   'rtpause',
-  'setadmin',
   'settrait',
   'stable',
   'warn',
   'zeusadd',
   'zeusdel',
-  'zeuslist',
-  'repair',
-  'players'
+  'zeuslist'
 ]
