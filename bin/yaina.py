@@ -69,6 +69,11 @@ class yaina(object):
         with open(os.path.join(self.root, "versioninfo"), 'w') as fh:
             fh.write(json.dumps(self.releasemap, sort_keys=True, indent=4, separators=(',', ': ')))
 
+        gitrepo = Repo(self.root)
+        vers = self.getCurrentVersion(self.args.map)
+        gitrepo.create_tag(vers)
+        gitrepo.remotes.originhttps.push(vers)
+
     def getGitRef(self):
         return Repo(self.root).commit().hexsha
 
@@ -110,6 +115,24 @@ class yaina(object):
             release = 0
 
         self.releasemap[vk] = release
+        return "%s.%s" % (self.base_version, release)
+
+
+    def getCurrentVersion(self, map = None):
+
+        self.logger.debug("called")
+
+        if self.reuse_version:
+            return self.base_version
+
+        vk = self.base_version
+        if map is not None:
+            vk += "-%s" % map
+
+        if vk in self.releasemap:
+            release = self.releasemap[vk]
+        else:
+            release = 0
         return "%s.%s" % (self.base_version, release)
 
     def exit(self):
