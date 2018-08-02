@@ -37,33 +37,25 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 ///////////////////////////////////////////////////////////
 _army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
 
-switch (_army) do {
-    case "CSAT": {
+call {
+	if (_army isEqualto "CSAT") exitwith {
 		_officerClass = "O_Officer_F";
 		_side = east;
-		_MarkerColour = "colorOPFOR";
-		};
-    case "AAF": {
+		_MarkerColour = "colorOPFOR";		
+	};
+
+	if (_army isEqualto "AAF") exitwith {
 		_officerClass = "I_Officer_F";
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		};
-    case "CSAT Pacific": {
+	};
+
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_officerClass = "O_T_Officer_F";
 		_side = east;
-		_MarkerColour = "colorOPFOR";
-		};
-    default {
-		_officerClass = "O_Officer_F";
-		_side = east;
-		_MarkerColour = "colorOPFOR";
-		};
+		_MarkerColour = "colorOPFOR";	
+	};	
 };
-
-mainAOSide = _side;
-publicVariable "mainAOSide";
-mainAOArmy = _army;
-publicVariable "mainAOArmy";
 
 ///////////////////////////////////////////////////////////
 // Location Scout
@@ -73,11 +65,7 @@ private ["_AOPosition", "_HQPosition", "_blacklistAreas", "_nearestTown"];
 private _AOSize = 600;
 private _HQPosition = [0,0];
 
-while { _HQPosition isEqualTo [0,0] } do {
-    _HQPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+_HQPosition = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
 
 // Now find a location for our AO center position fuzz the HQ...
 _AOPosition = [_HQPosition, 50, _AOSize*0.8] call YFNC(getPosAround);
@@ -189,7 +177,7 @@ _subObjective = nil;
 
 while { _idx > 0 && isNil "_subObjective" } do {
     _k = format["SO_%1", _missionID];
-    [_k, _AOPosition, _AOSize, _missionID] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call FNC(getFunctions) )));
+    [_k, _AOPosition, _AOSize, _missionID, _army, _side] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call FNC(getFunctions) )));
     waitUntil { !isNil { missionNamespace getVariable _k } };
     _mm = missionNamespace getVariable _k;
     if (_mm isEqualTo false) then {

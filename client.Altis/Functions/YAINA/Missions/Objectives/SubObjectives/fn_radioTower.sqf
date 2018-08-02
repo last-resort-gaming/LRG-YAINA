@@ -22,7 +22,7 @@ Author:
 
 #include "..\..\defines.h"
 
-params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
+params ["_key", "_AOPos", "_AOSize", "_parentMissionID", "_army", "_side"];
 
 // We always start with these 4, as they're in every mission
 private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_MarkerColour"];
@@ -34,20 +34,10 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // So that they get restored, before your clean up deletes them, as arma
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
-switch (mainAOArmy) do {
-    case "CSAT": {
-		_MarkerColour = "colorOPFOR";
-		};
-    case "AAF": {
-		_MarkerColour = "ColorGUER";
-		};
-    case "CSAT Pacific": {
-		_MarkerColour = "colorOPFOR";
-		};
-    default {
-		_MarkerColour = "colorOPFOR";
-		};
-};
+
+	_MarkerColour = "colorOPFOR";			
+	if (_army isEqualto "AAF") then {_MarkerColour = "ColorGUER";};
+
 // Mission ID
 _missionID = call FNC(getMissionID);
 
@@ -189,7 +179,7 @@ _pfh = {
             if (serverTime > _jetSpawnTime) then {
                 // Call in a JET
                 _args set [9, serverTime + 900 + random 300];
-                [_AOPos, _AOSize] remoteExecCall [QSFNC(cas), 2];
+                [_AOPos, _AOSize, _army, _side] remoteExecCall [QSFNC(cas), 2];
             };
 
         };

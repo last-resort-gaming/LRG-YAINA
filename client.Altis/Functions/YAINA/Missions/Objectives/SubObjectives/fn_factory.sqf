@@ -23,7 +23,7 @@ Author:
 
 #include "..\..\defines.h"
 
-params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
+params ["_key", "_AOPos", "_AOSize", "_parentMissionID", "_army", "_side"];
 
 // We always start with these 4, as they're in every mission
 private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_randomveh", "_EngineerType", "_RandomGroup", "_MarkerType"];
@@ -36,8 +36,11 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-switch (mainAOArmy) do {
-    case "CSAT": {
+				  
+				  
+call {
+	_side = east;
+	if (_army isEqualto "CSAT") exitwith {
 		_randomveh = [
 			"O_APC_Tracked_02_cannon_F",
 			"O_APC_Wheeled_02_rcws_v2_F",
@@ -53,9 +56,10 @@ switch (mainAOArmy) do {
 		_EngineerType = "O_engineer_F";
 		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"]);
 		_MarkerType = "O_installation";
-		_MarkerColour = "colorOPFOR";
-		};
-    case "AAF": {
+		_MarkerColour = "colorOPFOR";	
+	};
+
+	if (_army isEqualto "AAF") exitwith {
 		_randomveh = [
 			"I_LT_01_AA_F",
 			"I_APC_Wheeled_03_cannon_F",
@@ -71,8 +75,10 @@ switch (mainAOArmy) do {
 		_RandomGroup = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> (selectRandom ["HAF_InfTeam","I_InfTeam_Light"]);
 		_MarkerType = "n_installation";
 		_MarkerColour = "ColorGUER";
-		};
-    case "CSAT Pacific": {
+		_side = resistance;
+	};
+
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_randomveh = [
 			"O_T_APC_Tracked_02_AA_ghex_F",
 			"O_T_APC_Tracked_02_cannon_ghex_F",
@@ -89,27 +95,9 @@ switch (mainAOArmy) do {
 		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> (selectRandom ["O_T_InfTeam","O_T_reconPatrol"]);
 		_MarkerType = "O_installation";
 		_MarkerColour = "colorOPFOR";
-		};
-
-    default {
-		_randomveh = [
-			"O_APC_Tracked_02_cannon_F",
-			"O_APC_Wheeled_02_rcws_v2_F",
-			"O_MRAP_02_hmg_F",
-			"O_MRAP_02_gmg_F",
-			"O_LSV_02_AT_F",
-			"O_LSV_02_armed_F",
-			"O_APC_Tracked_02_AA_F",
-			"O_MBT_02_cannon_F",
-			"O_MBT_04_cannon_F",
-			"O_MBT_04_command_F"		
-		];
-		_EngineerType = "O_engineer_F";
-		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"]);
-		_MarkerType = "O_installation";
-		_MarkerColour = "colorOPFOR";
-		};
+	};	
 };
+
 // Mission ID
 _missionID = call FNC(getMissionID);
 
@@ -154,7 +142,7 @@ private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 
 
 // Bring in an engineer to one of the buildings
 private _engineerPos = selectRandom (_factory call BIS_fnc_buildingPositions);
-private _engineerGroup = createGroup mainAOSide;
+private _engineerGroup = createGroup _side;
 _engineerGroup setGroupIdGlobal [format["factory_eng_%1", _missionID]];
 private _engineer = _engineerGroup createUnit [_EngineerType, [0,0,0], [],0,"NONE"];
 _engineer setPos _engineerPos;
@@ -177,12 +165,12 @@ _engineer addEventHandler ["Killed", {
 }];
 
 // Garrison some around the Factory
-private _fgn = [_ObjectPosition, [0,50], mainAOArmy, 1, nil, nil, 6, [_engineerPos]] call SFNC(infantryGarrison);
+private _fgn = [_ObjectPosition, [0,50], _army, 1, nil, nil, 6, [_engineerPos]] call SFNC(infantryGarrison);
 _units append _fgn;
 [_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["factory_pa_%1", _missionID], _ObjectPosition, 100, mainAOSide, mainAOArmy, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, _side, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -258,7 +246,7 @@ _pfh = {
 
                             if !(_ObjectPosition isEqualTo [0,0]) then {
 
-                                _g = [_ObjectPosition, mainAOSide, _RandomGroup] call BIS_fnc_spawnGroup;
+                                _g = [_ObjectPosition, _side, _RandomGroup] call BIS_fnc_spawnGroup;
                                 _g setGroupIdGlobal [format["factory_spu_%1_%2_inf%4", _missionID, _spawnCount , _x]];
 
                                 // If the defend mission is up, we set the position to be around the HQ, else we keep them around the AO
@@ -301,7 +289,7 @@ _pfh = {
 
                             _spawned = true;
 
-                            _grp = createGroup mainAOSide;
+                            _grp = createGroup _side;
                             _grp setGroupIdGlobal [format["factory_spv_%1_%2", _missionID, _spawnCount]];
 
                             _veh = (selectRandom _Randomveh) createVehicle _rpos;

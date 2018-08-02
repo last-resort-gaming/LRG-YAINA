@@ -1,5 +1,5 @@
 /*
-Function: YAINA_MM_OBJ_fnc_aa
+Function: YAINA_MM_OBJ_fnc_arty
 
 Description:
 	Priority Target: Artillery. The artillery installation engages BLUFOR targets 
@@ -38,32 +38,29 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
+ _army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
 
-switch (MainAOArmy) do {
-    case "CSAT": {
+call {
+	if (_army isEqualto "CSAT") exitwith {
 		_artVic = "O_MBT_02_arty_F";
 		_truck = "O_Truck_03_ammo_F";
 		_side = east;
-		_MarkerColour = "colorOPFOR";
-		};
-    case "AAF": {
+		_MarkerColour = "colorOPFOR";	
+	};
+
+	if (_army isEqualto "AAF") exitwith {
 		_artVic = "I_Truck_02_MRL_F";
 		_truck = "I_Truck_02_ammo_F";
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		};
-    case "CSAT Pacific": {
+	};
+
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_artVic = "O_T_MBT_02_arty_ghex_F";
 		_truck = "O_T_Truck_03_ammo_ghex_F";
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		};
-    default {
-		_artVic = "O_MBT_02_arty_F";
-		_truck = "O_Truck_03_ammo_F";
-		_side = east;
-		_MarkerColour = "colorOPFOR";
-		};
+	};	
 };
 ///////////////////////////////////////////////////////////
 // AO Setup
@@ -151,7 +148,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, MainAOArmy, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 _units append _spUnits;
 _vehicles append _spVehs;
