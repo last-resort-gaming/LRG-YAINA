@@ -61,26 +61,25 @@ call {
 // Location Scout
 ///////////////////////////////////////////////////////////
 
-private ["_AOPosition", "_HQPosition", "_blacklistAreas", "_nearestTown"];
+private ["_pos", "_AOPosition", "_HQPosition", "_loc"];
 private _AOSize = 600;
-private _HQPosition = [0,0];
 
-_HQPosition = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
+_pos = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
 
-// Now find a location for our AO center position fuzz the HQ...
-_AOPosition = [_HQPosition, 50, _AOSize*0.8] call YFNC(getPosAround);
+_AOPosition = _pos select 0;
 
-// Find our nearest town + direction for mission description
-_nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
+_HQPosition = _pos select 1;
+
+_loc = _pos select 2;
 
 // Mission Description
-private _missionDescription = format["Main AO: %1 of %2", _nearestTown select 2, text (_nearestTown select 0)];
+private _missionDescription = format["Main AO at %1", _loc];
 
 ///////////////////////////////////////////////////////////
 // Spawn Mission
 ///////////////////////////////////////////////////////////
 
-private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer"];
+private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer", "_officerBuilding", "_officerBuildingPositions"];
 
 // Now we have our HQ + Location, bring in the HQ
 _missionID = call FNC(getMissionID);
@@ -155,8 +154,8 @@ _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call
     west,
     _missionID,
     [
-        format ["%3 have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _nearestTown select 2, text (_nearestTown select 0), _army],
-        format ["Clear HQ %1 of %2", _nearestTown select 2, text (_nearestTown select 0)],
+        format ["%2 have setup a HQ at %1, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _loc, _army],
+        format ["Clear HQ at %1", _loc],
         ""
     ],
     _AOPosition,
@@ -214,7 +213,7 @@ _pfh = {
                 WEST,
                 [format ["%1_defend", _missionID], _missionID],
                 [
-                    format ["OPFOR have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _nearestTown select 2, text (_nearestTown select 0)],
+                    format ["OPFOR have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _loc select 2, text (_loc select 0)],
                     "Defend the HQ",
                     ""
                 ],

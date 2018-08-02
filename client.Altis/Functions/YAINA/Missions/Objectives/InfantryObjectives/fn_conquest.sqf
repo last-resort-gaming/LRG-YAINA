@@ -84,20 +84,18 @@ switch (_army) do {
 ///////////////////////////////////////////////////////////
 // Location Scout
 ///////////////////////////////////////////////////////////
-
-private ["_AOPosition", "_CQPosition", "_nearestTown"];
+private ["_AOPosition", "_CQPosition", "_loc", "_pos"];
 private _AOSize = 400;
 
-_CQPosition = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
+_pos = [_AOSize, "LAND"] call YFNC(AOPos);
 
-// Now find a location for our AO center position fuzz the HQ...
-_AOPosition = [_CQPosition, 20, _AOSize*0.9] call YFNC(getPosAround);
+_CQPosition = _pos select 0;
 
-// Find our nearest town + direction for mission description
-_nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
+_AOPosition = _pos select 1;
 
-// Mission Description
-private _missionDescription = format["Conquest: %1 of %2", _nearestTown select 2, text (_nearestTown select 0)];
+_loc = _pos select 2;
+
+private _missionDescription = format["Conquest at %1", _loc];
 
 ///////////////////////////////////////////////////////////
 // Spawn Conquest HQ
@@ -214,7 +212,7 @@ _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call
     _missionID,
     [
         format ["There's an enemy %1 being set up. Move in and take it out.",_MarkerMissionName],
-        format ["Seize the %3 %1 of %2", _nearestTown select 2, text (_nearestTown select 0), _MarkerMissionName],
+        format ["Seize the %2 at %1", _loc, _MarkerMissionName],
         ""
     ],
     _AOPosition,
