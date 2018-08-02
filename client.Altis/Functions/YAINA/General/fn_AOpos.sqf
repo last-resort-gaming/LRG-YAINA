@@ -24,7 +24,6 @@ Examples:
 Author:
 	Matth & Mitch
 */
-if (!isserver) exitwith {};
 
 params ["_size", "_spec", "_min", "_max"];
 
