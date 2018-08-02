@@ -22,7 +22,7 @@ Author:
 
 #include "..\..\defines.h"
 
-params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
+params ["_key", "_AOPos", "_AOSize", "_parentMissionID", "_army", "_side"];
 
 // We always start with these 4, as they're in every mission
 private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_FacType", "_MarkerType", "_MarkerColour"];
@@ -35,27 +35,28 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-				  switch (mainAOArmy) do {
-    case "CSAT": {
+call {
+	
+	_side = east;
+
+	if (_army isEqualto "CSAT") exitwith {
 		_FacType = "O_recon_JTAC_F";
 		_MarkerType = "O_installation";		
 		_MarkerColour = "colorOPFOR";		
-		};
-    case "AAF": {
+	};
+
+	if (_army isEqualto "AAF") exitwith {
 		_FacType = "I_soldier_UAV_F";
 		_MarkerType = "n_installation";		
-		_MarkerColour = "ColorGUER";		
-		};
-    case "CSAT Pacific": {
+		_MarkerColour = "ColorGUER";
+		_side = resistance;
+	};
+
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_FacType = "O_T_Recon_JTAC_F";
 		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";		
-		};
-    default {
-		_FacType = "O_recon_JTAC_F";
-		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";		
-		};
+		_MarkerColour = "colorOPFOR";	
+	};	
 };
 
 // Mission ID
@@ -108,7 +109,7 @@ private _mrks = [_missionID, [_ObjectPosition, 0, 100] call YFNC(getPosAround), 
 
 // Bring in an fac to one of the buildings
 private _facPos = selectRandom (_tower call BIS_fnc_buildingPositions);
-private _facGroup = createGroup MainAOSide;
+private _facGroup = createGroup _side;
 _facGroup setGroupIdGlobal [format["tower_eng_%1", _missionID]];
 private _fac = _facGroup createUnit [_FacType, [0,0,0], [],0,"NONE"];
 _fac setPos _facPos;
@@ -131,12 +132,12 @@ _fac addEventHandler ["Killed", {
 }];
 
 // Garrison some around the tower
-private _fgn = [_ObjectPosition, [0,50], mainAOArmy, 1, nil, nil, 6, [_facPos]] call SFNC(infantryGarrison);
+private _fgn = [_ObjectPosition, [0,50], _army, 1, nil, nil, 6, [_facPos]] call SFNC(infantryGarrison);
 _units append _fgn;
 [_fgn, format["tower_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["tower_pa_%1", _missionID], _ObjectPosition, 100, mainAOSide, mainAOArmy, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["tower_pa_%1", _missionID], _ObjectPosition, 100, _side, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -188,7 +189,7 @@ _pfh = {
 				if ((serverTime > _heliSpawnTime) && !(_heliSpawnTime isEqualTo 0)) then {
                 // Call in a HELI
                 _args set [9, serverTime + 900 + random 300];
-                [_AOPos, _AOSize] remoteExecCall [QSFNC(helicas), 2];
+                [_AOPos, _AOSize, _army, _side] remoteExecCall [QSFNC(helicas), 2];
             };
 
         } else {

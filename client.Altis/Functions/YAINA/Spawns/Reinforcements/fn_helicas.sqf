@@ -32,11 +32,15 @@ if !(isServer) exitWith {
     _this remoteExecCall [QFNC(cas), 2];
 };
 
-params ["_pos", "_radius", ["_force", false]];
+params ["_pos", "_radius", ["_force", false], "_side", "_army"];
 private ["_type", "_PilotType", "_spawnPos", "_group", "_heli", "_pilot", "_copilot", "_speed", "_dir", "_wp"];
 
-switch (mainAOArmy) do {
-    case "CSAT": {
+
+call {
+
+	_side = east;
+
+	if (_army isEqualto "CSAT") exitwith {
 		_type = selectRandom [
 			"O_Heli_Light_02_dynamicLoadout_F",
 			"O_Heli_Light_02_dynamicLoadout_F",
@@ -45,25 +49,17 @@ switch (mainAOArmy) do {
 			"O_Heli_Attack_02_dynamicLoadout_F"
 		];
 		_PilotType = "O_helipilot_F";
-		};
-    case "AAF": {
+	};
+
+	if (_army isEqualto "AAF") exitwith {
 		_type = selectRandom [
 			"I_Heli_light_03_dynamicLoadout_F"
 		];
 		_PilotType = "I_helipilot_F";
-		};
-    case "CSAT Pacific": {
-		_type = selectRandom [
-			"O_Heli_Light_02_dynamicLoadout_F",
-			"O_Heli_Light_02_dynamicLoadout_F",
-			"O_Heli_Light_02_dynamicLoadout_F",
-			"O_Heli_Light_02_dynamicLoadout_F",
-			"O_Heli_Attack_02_dynamicLoadout_F"
-		];
-		_PilotType = "O_helipilot_F";
-		};
+		_side = resistance;
+	};
 
-    default {
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_type = selectRandom [
 			"O_Heli_Light_02_dynamicLoadout_F",
 			"O_Heli_Light_02_dynamicLoadout_F",
@@ -72,8 +68,9 @@ switch (mainAOArmy) do {
 			"O_Heli_Attack_02_dynamicLoadout_F"
 		];
 		_PilotType = "O_helipilot_F";
-		};
+	};	
 };
+
 
 // We filter any deads here as it's the only time we care about it
 if (isNil QVAR(cas)) then {
@@ -88,7 +85,7 @@ if (count GVAR(cas) >= _max && { !_force } ) exitWith {};
 // we use delete on enpty group so we don't need to manage this at all once spawned
 
 _spawnPos = [_pos] call FNC(getAirSpawnPos);
-_group = createGroup MainAOSide;
+_group = createGroup _side;
 
 _heli   = createVehicle [_type, _spawnPos, [], 0, "FLY"];
 _pilot = _group createUnit [_PilotType, [0,0,1000], [], 0, "NONE"];

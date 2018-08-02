@@ -22,7 +22,7 @@ Author:
 
 #include "..\..\defines.h"
 
-params ["_key", "_AOPos", "_AOSize", "_parentMissionID"];
+params ["_key", "_AOPos", "_AOSize", "_parentMissionID", "_army", "_side"];
 
 // We always start with these 4, as they're in every mission
 private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_vehtype", "_crewtype", "_FuelTruck","_MarkerType","_MarkerColour"];
@@ -35,38 +35,35 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-switch (mainAOArmy) do {
-    case "CSAT": {
+
+call {
+	_side = east;
+	if (_army isEqualto "CSAT") exitwith {
 		_vehtype = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];			  		  
 		_crewtype = "O_crew_F";				  
 		_FuelTruck = "O_Truck_03_fuel_F";
 		_MarkerType = "O_installation";		
 		_MarkerColour = "colorOPFOR";		
-		};
-    case "AAF": {
+	};
+
+	if (_army isEqualto "AAF") exitwith {
 		_vehtype = ["I_MBT_03_cannon_F", "I_LT_01_cannon_F", "I_LT_01_AT_F"];		  
 		_crewtype = "I_crew_F";				  
 		_FuelTruck = "I_Truck_02_fuel_F";
 		_MarkerType = "n_installation";		
-		_MarkerColour = "ColorGUER";		
-		};
-    case "CSAT Pacific": {
+		_MarkerColour = "ColorGUER";
+		_side = resistance;
+	};
+
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_vehtype = ["O_T_MBT_02_cannon_ghex_F", "O_T_MBT_04_cannon_F", "O_T_MBT_04_command_F"];			  			  
 		_crewtype = "O_T_Crew_F";				  
 		_FuelTruck = "O_T_Truck_03_fuel_ghex_F";
 		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";		
-		};
-    default {
-		_vehtype = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];					  
-		_crewtype = "O_crew_F";				  
-		_FuelTruck = "O_Truck_03_fuel_F";
-		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";		
-		};
+		_MarkerColour = "colorOPFOR";	
+	};	
 };				  
-				  
-					  
+
 // Mission ID
 _missionID = call FNC(getMissionID);
 
@@ -133,21 +130,21 @@ _vehicles append [_veh1, _veh2, _veh3, _fuel, _crate];
 
 //Spawn Crew
 
-private _vicGroup1 = createGroup MainAOSide;
+private _vicGroup1 = createGroup _side;
 _vicGroup1 setGroupIdGlobal [format["vic1_crew_%1", _missionID]];
 private _driver1 = _vicGroup1 createUnit [_crewtype, (_vehPos vectorAdd [0,-5,0]), [],0,"NONE"];
 private _gunner1 = _vicGroup1 createUnit [_crewtype, (_vehPos vectorAdd [0,-5,0]), [],0,"NONE"];
 _vicGroup1 setBehaviour "CARELESS";
 _vicGroup1 setCombatMode "BLUE";
 
-private _vicGroup2 = createGroup MainAOSide;
+private _vicGroup2 = createGroup _side;
 _vicGroup2 setGroupIdGlobal [format["vic2_crew_%1", _missionID]];
 private _driver2 = _vicGroup2 createUnit [_crewtype, (_vehPos2 vectorAdd [0,-5,0]), [],0,"NONE"];
 private _gunner2 = _vicGroup2 createUnit [_crewtype, (_vehPos2 vectorAdd [0,-5,0]), [],0,"NONE"];
 _vicGroup2 setBehaviour "CARELESS";
 _vicGroup2 setCombatMode "BLUE";
 
-private _vicGroup3 = createGroup MainAOSide;
+private _vicGroup3 = createGroup _side;
 _vicGroup3 setGroupIdGlobal [format["vic3_crew_%1", _missionID]];
 private _driver3 = _vicGroup3 createUnit [_crewtype, (_vehPos3 vectorAdd [0,-5,0]), [],0,"NONE"];
 private _gunner3 = _vicGroup3 createUnit [_crewtype, (_vehPos3 vectorAdd [0,-5,0]), [],0,"NONE"];
@@ -157,12 +154,12 @@ _vicGroup3 setCombatMode "BLUE";
 _units append [_driver1, _driver2, _driver3, _gunner1, _gunner2, _gunner3];
 
 // Garrison some around the Depot
-private _fgn = [_ObjectPosition, [0,50], MainAOArmy, 1, nil, nil, 6, _ObjectPosition] call SFNC(infantryGarrison);
+private _fgn = [_ObjectPosition, [0,50], _army, 1, nil, nil, 6, _ObjectPosition] call SFNC(infantryGarrison);
 _units append _fgn;
 [_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["factory_pa_%1", _missionID], _ObjectPosition, 100, mainAOSide, mainAOArmy, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, _side, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;

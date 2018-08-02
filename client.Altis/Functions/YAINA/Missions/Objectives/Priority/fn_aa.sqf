@@ -37,37 +37,34 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 		  
-				  
-switch (MainAOArmy) do {
-    case "CSAT": {
+ _army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
+
+call {
+	if (_army isEqualto "CSAT") exitwith {
 		_aaVic = "O_APC_Tracked_02_AA_F";
 		_truck = "O_Truck_03_ammo_F";
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
-		};
-    case "AAF": {
+		_typeofAAs = [_aaVic,"O_Radar_System_02_F","O_SAM_System_04_F"];	
+	};
+
+
+	if (_army isEqualto "AAF") exitwith {
 		_aaVic = "I_LT_01_AA_F";
 		_truck = "I_Truck_02_ammo_F";
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
-		};
-    case "CSAT Pacific": {
+		_typeofAAs = [_aaVic];
+	};
+
+	if (_army isEqualto "CSAT Pacific") exitwith {
 		_aaVic = "O_T_APC_Tracked_02_AA_ghex_F";
 		_truck = "O_Truck_03_ammo_F";
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
-		};
-    default {
-		_aaVic = "O_APC_Tracked_02_AA_F";
-		_truck = "O_Truck_03_ammo_F";
-		_side = east;
-		_MarkerColour = "colorOPFOR";
-		_typeofAAs = [_aaVic,"B_AAA_System_01_F","B_SAM_System_01_F","B_SAM_System_02_F"];
-		};
-};				  
+		_typeofAAs = [_aaVic,"O_Radar_System_02_F","O_SAM_System_04_F"];
+	};	
+};
 				  
 				  
 ///////////////////////////////////////////////////////////
@@ -172,7 +169,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, MainAOArmy, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 _units append _spUnits;
 _vehicles append _spVehs;
 

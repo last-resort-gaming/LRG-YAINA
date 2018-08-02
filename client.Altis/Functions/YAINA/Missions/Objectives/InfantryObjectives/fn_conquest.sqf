@@ -88,12 +88,7 @@ switch (_army) do {
 private ["_AOPosition", "_CQPosition", "_nearestTown"];
 private _AOSize = 400;
 
-_CQPosition = [0,0];
-while { _CQPosition isEqualTo [0,0] } do {
-    _CQPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+_CQPosition = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
 
 // Now find a location for our AO center position fuzz the HQ...
 _AOPosition = [_CQPosition, 20, _AOSize*0.9] call YFNC(getPosAround);
