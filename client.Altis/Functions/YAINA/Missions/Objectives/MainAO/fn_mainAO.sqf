@@ -64,7 +64,7 @@ call {
 private ["_pos", "_AOPosition", "_HQPosition", "_loc"];
 private _AOSize = 600;
 
-_pos = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
+_pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
 
 _AOPosition = _pos select 0;
 
@@ -213,7 +213,7 @@ _pfh = {
                 WEST,
                 [format ["%1_defend", _missionID], _missionID],
                 [
-                    format ["OPFOR have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _loc select 2, text (_loc select 0)],
+                    format ["%2 have setup an HQ at %1, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _loc, _army],
                     "Defend the HQ",
                     ""
                 ],

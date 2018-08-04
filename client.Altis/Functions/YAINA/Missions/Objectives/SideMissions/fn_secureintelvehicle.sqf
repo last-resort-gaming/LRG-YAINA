@@ -47,14 +47,12 @@ _side = east;
 private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
-while { _ObjectPosition isEqualTo [0,0] } do {
-    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [8,-1,0.6,30,0,false,objNull] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+private _pos = [_AOSize, "LAND", "FLAT"] call YAINA_fnc_AOPos;
+
+_ObjectPosition = _pos select 0;
 
 // Suitable location for marker
-private _AOPosition = [_ObjectPosition, 0, _AOSize*0.9] call YFNC(getPosAround);
+private _AOPosition = _pos select 1;
 
 private ["_x","_targetTrigger","_aGroup","_bGroup","_cGroup","_objUnit1","_objUnit2","_objUnit3","_obj1","_obj2","_obj3","_off", "_intelObj","_enemiesArray","_randomDir","_poi","_vtype", "_vpos","_position","_accepted","_fuzzyPos","_briefing","_escapeWP"];
 

@@ -87,7 +87,7 @@ switch (_army) do {
 private ["_AOPosition", "_CQPosition", "_loc", "_pos"];
 private _AOSize = 400;
 
-_pos = [_AOSize, "LAND"] call YFNC(AOPos);
+_pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
 
 _CQPosition = _pos select 0;
 
