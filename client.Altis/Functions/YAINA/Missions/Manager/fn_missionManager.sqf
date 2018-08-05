@@ -29,9 +29,9 @@ if (!isServer || { yaina_mission_manager_disable } ) exitWith {};
 if !(isNil QVAR(running)) exitWith {};
 
 GVAR(running) = false;
-GVAR(lAO) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "MainAO"]] call FNC(getFunctions);
-GVAR(lIO) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "InfantryObjectives"]] call FNC(getFunctions);
-GVAR(lSM) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SideMissions"]] call FNC(getFunctions);
+GVAR(lAO) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "MainAO"]] call YFNC(getFunctions);
+GVAR(lIO) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "InfantryObjectives"]] call YFNC(getFunctions);
+GVAR(lSM) = ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SideMissions"]] call YFNC(getFunctions);
 
 // Not all Priority Targets are created equal
 GVAR(lPM) = ["arty", "arty", "arty", "aa"] apply { format["YAINA_MM_OBJ_fnc_%1", _x] };

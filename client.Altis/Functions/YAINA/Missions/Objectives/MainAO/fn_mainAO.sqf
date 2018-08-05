@@ -85,7 +85,7 @@ private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer", "
 _missionID = call FNC(getMissionID);
 
 // Get our random HQ Spawn Function
-_hqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call FNC(getFunctions) ));
+_hqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call YFNC(getFunctions) ));
 
 // Hide any terrain and slam down the HQ
 private _hiddenTerrainKey = format["HT_%1", _missionID];
@@ -176,7 +176,7 @@ _subObjective = nil;
 
 while { _idx > 0 && isNil "_subObjective" } do {
     _k = format["SO_%1", _missionID];
-    [_k, _AOPosition, _AOSize, _missionID, _army, _side] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call FNC(getFunctions) )));
+    [_k, _AOPosition, _AOSize, _missionID, _army, _side] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call YFNC(getFunctions) )));
     waitUntil { !isNil { missionNamespace getVariable _k } };
     _mm = missionNamespace getVariable _k;
     if (_mm isEqualTo false) then {

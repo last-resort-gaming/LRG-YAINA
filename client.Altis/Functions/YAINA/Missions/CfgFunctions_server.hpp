@@ -68,7 +68,6 @@ class YAINA_MM {
         class findLargestBuilding {};
         class destroy {};
         class getAOExclusions {};
-        class getFunctions {};
         class prefixGroups {};
     };
 

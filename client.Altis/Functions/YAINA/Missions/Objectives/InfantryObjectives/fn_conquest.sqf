@@ -107,7 +107,7 @@ private ["_cqFunc", "_CQElements"];
 _missionID = call FNC(getMissionID);
 
 // Get our random HQ Spawn Function
-_cqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", _CampType]] call FNC(getFunctions) ));
+_cqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", _CampType]] call YFNC(getFunctions) ));
 
 // Hide any terrain and slam down the HQ
 private _hiddenTerrainKey = format["HT_%1", _missionID];

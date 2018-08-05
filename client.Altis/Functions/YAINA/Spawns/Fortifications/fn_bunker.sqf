@@ -52,12 +52,8 @@ waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 systemChat "terrain hidden";
 sleep 5;
 
-//_bunkerFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call FNC(getFunctions) ));
-
-// _BunkerElements = [_spawnPos, random 360, call YAINA_SPAWNS_HQ_Courage;] call BIS_fnc_ObjectsMapper;
-
 //Alternate
-_bunkerFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call FNC(getFunctions) ));
+_bunkerFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call YFNC(getFunctions) ));
 
 _BunkerElements = [_spawnPos, random 360, call _bunkerFunc] call BIS_fnc_ObjectsMapper;
 
