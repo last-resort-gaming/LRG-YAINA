@@ -195,6 +195,13 @@ for "_x" from 0 to (2 + (random 3)) do {
 
 };
 
+// Spawn Bunkers
+
+private _bunker = [_AOPosition, _AOSize, _army, _missionID] call SFNC(bunker) params ["_bunits", "_bvehicles", "_bobjects"];
+
+_units append _bunits;
+
+_buildings append _bobjects;
 
 ///////////////////////////////////////////////////////////
 // Start Mission

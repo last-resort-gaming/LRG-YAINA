@@ -50,4 +50,13 @@ class YAINA_SPAWNS {
         class cas {};
         class helicas {};
     };
+	
+	class Fortifications {
+		file = "Functions\YAINA\Spawns\Fortifications";
+		class bunker {};
+	};
+	
+	class Bunkers {
+		file = "Functions\YAINA\Spawns\Bunkers";
+	};
 };
