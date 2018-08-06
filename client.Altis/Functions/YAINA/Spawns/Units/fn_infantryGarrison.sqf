@@ -30,7 +30,7 @@ Author:
 
 #include "..\defines.h"
 
-params ["_pos", ["_radius", [0, 30]], "_army", ["_groupCount", 1], ["_AIOB_Positioning", 2], ["_skill", 2], ["_maxFill", 4], ["_excludes", []], ["_units", []]];
+params ["_pos", ["_radius", [0, 30]], "_army", ["_groupCount", 1], ["_AIOB_Positioning", 2], ["_skill", "LRG Default"], ["_maxFill", 4], ["_excludes", []], ["_units", []]];
 
 if (_units isEqualTo []) then {
 

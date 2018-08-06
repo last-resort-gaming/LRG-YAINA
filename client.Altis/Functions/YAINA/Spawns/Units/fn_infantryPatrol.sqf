@@ -23,7 +23,7 @@ Author:
 
 #include "..\defines.h"
 
-params ["_pos", ["_patrolRadius", 0], ["_skill", 2], ["_side", EAST]];
+params ["_pos", ["_patrolRadius", 0], ["_skill", "LRG Default"], ["_side", EAST]];
 
 private _groupTypes = [];
 private _faction    = "";
