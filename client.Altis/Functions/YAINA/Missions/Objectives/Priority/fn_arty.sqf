@@ -70,7 +70,7 @@ call {
 private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
-private _pos = [_AOSize, "LAND", "FLAT"] call YAINA_fnc_AOPos;
+private _pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
 
 _ObjectPosition = _pos select 0;
 
