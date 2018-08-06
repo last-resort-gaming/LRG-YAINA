@@ -421,17 +421,4 @@ if (_vehHeavyList isEqualTo []) then {
     };
 };
 
-{
-	if !(dynamicSimulationEnabled (group _x)) then {
-		(group _x) enableDynamicSimulation true;
-	};
-	_x 	disableAI "AUTOCOMBAT";
-} forEach _units;
-
-{
-	if !(dynamicSimulationEnabled (group _x)) then {
-		(group _x) enableDynamicSimulation true;
-	};
-} forEach _vehicles;
-
 [_units, _vehicles]

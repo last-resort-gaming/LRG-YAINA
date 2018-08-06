@@ -181,9 +181,9 @@ switch (_fillingType) do {
 };
 
 {
-    _x disableAI "AUTOCOMBAT";
     _x disableAI "PATH";
-    if !(dynamicSimulationEnabled (group _x)) then {(group _x) enableDynamicSimulation true;};
+    [_x, "LRG Default"] call YAINA_SPAWNS_fnc_setUnitSkill;
+
 } forEach _placedUnits;
 
 _origUnits - _placedUnits

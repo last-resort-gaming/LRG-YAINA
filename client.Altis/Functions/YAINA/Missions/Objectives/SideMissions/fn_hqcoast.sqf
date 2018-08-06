@@ -149,20 +149,6 @@ _vehicles append _spVehs;
 // Add everything to zeus
 [ _units + _vehicles + _buildings, false] call YFNC(addEditableObjects);
 
-// Set Dynamic Sim
-{
-	if !(dynamicSimulationEnabled (group _x)) then {
-		(group _x) enableDynamicSimulation true;
-	};
-	_x 	disableAI "AUTOCOMBAT";
-} forEach _units;
-
-{
-	if !(dynamicSimulationEnabled (group _x)) then {
-		(group _x) enableDynamicSimulation true;
-	};
-} forEach _vehicles;
-
 // Set the mission in progress
 [
     west,
