@@ -125,12 +125,10 @@ call {
             } count [
                 [1,"PylonRack_Missile_AGM_02_x1",true,[]],
                 [2,"PylonRack_Missile_AGM_02_x1",true,[]],
-                [3,"PylonRack_Missile_AGM_02_x1",true,[]],
-                [4,"PylonRack_Missile_AGM_02_x1",true,[]],
-                [7,"PylonMissile_1Rnd_BombCluster_01_F",true,[]],
-                [8,"PylonMissile_1Rnd_BombCluster_01_F",true,[]],
-                [11,"PylonMissile_Bomb_GBU12_x1",true,[]],
-                [12,"PylonMissile_Bomb_GBU12_x1",true,[]]
+                [3,"PylonMissile_Bomb_GBU12_x1",true,[]],
+                [4,"PylonMissile_Bomb_GBU12_x1",true,[]],
+                [9,"PylonRack_Bomb_SDB_x4",true,[]],
+                [10,"PylonRack_Bomb_SDB_x4",true,[]]
             ];
         };
 
@@ -146,10 +144,10 @@ call {
                 [1,"PylonRack_Missile_BIM9X_x1",true,[]],
                 [2,"PylonRack_Missile_AMRAAM_D_x1",true,[]],
                 [3,"PylonRack_Missile_AGM_02_x1",true,[]],
-                [4,"PylonMissile_1Rnd_BombCluster_01_F",true,[]],
+                [4,"PylonRack_Bomb_SDB_x4",true,[]],
                 [5,"PylonMissile_Bomb_GBU12_x1",true,[]],
                 [6,"PylonMissile_Bomb_GBU12_x1",true,[]],
-                [7,"PylonMissile_1Rnd_BombCluster_01_F",true,[]],
+                [7,"PylonRack_Bomb_SDB_x4",true,[]],
                 [8,"PylonRack_Missile_AGM_02_x1",true,[]],
                 [9,"PylonRack_Missile_AMRAAM_D_x1",true,[]],
                 [10,"PylonRack_Missile_BIM9X_x1",true,[]]
@@ -409,8 +407,8 @@ call {
                 _veh setPylonLoadout _x;
                 nil;
             } count [
-                [1,"PylonRack_Bomb_GBU12_x2",true,[0]],
-                [2,"PylonMissile_1Rnd_BombCluster_01_F",true,[0]]
+                [1,"PylonRack_Bomb_SDB_x4",true,[0]],
+                [2,"PylonRack_Bomb_SDB_x4",true,[0]]
             ];
         };
 
