@@ -179,6 +179,20 @@ _vehicles append _spVehs;
 
 [ _units + _vehicles + _buildings, true] call YFNC(addEditableObjects);
 
+// Set Dynamic Sim
+{
+	if !(dynamicSimulationEnabled (group _x)) then {
+		(group _x) enableDynamicSimulation true;
+	};
+	_x 	disableAI "AUTOCOMBAT";
+} forEach _units;
+
+{
+	if !(dynamicSimulationEnabled (group _x)) then {
+		(group _x) enableDynamicSimulation true;
+	};
+} forEach _vehicles;
+
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);
 

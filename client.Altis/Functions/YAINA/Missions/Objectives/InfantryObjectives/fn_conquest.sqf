@@ -216,6 +216,20 @@ _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call
 // Add everything to zeus
 [_units + _buildings + _vehicles, true] call YFNC(addEditableObjects);
 
+// Set Dynamic Sim
+{
+	if !(dynamicSimulationEnabled (group _x)) then {
+		(group _x) enableDynamicSimulation true;
+	};
+	_x 	disableAI "AUTOCOMBAT";
+} forEach _units;
+
+{
+	if !(dynamicSimulationEnabled (group _x)) then {
+		(group _x) enableDynamicSimulation true;
+	};
+} forEach _vehicles;
+
 // Set the mission in progress
 [
     west,

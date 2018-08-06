@@ -183,6 +183,7 @@ switch (_fillingType) do {
 {
     _x disableAI "AUTOCOMBAT";
     _x disableAI "PATH";
+    if !(dynamicSimulationEnabled (group _x)) then {(group _x) enableDynamicSimulation true;};
 } forEach _placedUnits;
 
 _origUnits - _placedUnits
