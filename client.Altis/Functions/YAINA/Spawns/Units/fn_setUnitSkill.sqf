@@ -18,7 +18,11 @@ Author:
 	Martin
 */
 
-params ["_target", ["_skillLevel", 2]];
+params [
+    "_target",
+    ["_skillLevel", "LRG Default"],
+    ["_DynamicSim", true]
+    ];
 
 if (typeName _skillLevel isEqualTo "SCALAR") then {
     if (_skillLevel < 1) then { _skillLevel = 1; };
@@ -49,5 +53,17 @@ private _units = call {
 {
     _a = _x;
     _b = _skillv select _forEachIndex;
-    { _x setSkill [_a, _b]; true } count _units;
+    {
+        _x setSkill [_a, _b];
+        _x disableAI "AUTOCOMBAT";
+        if (_DynamicSim) then {(group _x) enableDynamicSimulation true};
+        if (objectParent _x != _x) then {
+            vehicle _x setVehicleReportOwnPosition  true;
+            vehicle _x setVehicleReportRemoteTargets true;
+            vehicle _x setVehicleReceiveRemoteTargets  true;
+            vehicle _x setVehicleRadar 1;
+            };
+        true
+    } count _units;
 } forEach _skillt;
+
