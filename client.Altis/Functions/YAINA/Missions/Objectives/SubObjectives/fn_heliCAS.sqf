@@ -22,7 +22,7 @@ Author:
 
 #include "..\..\defines.h"
 
-params ["_key", "_AOPos", "_AOSize", "_parentMissionID", "_army", "_side"];
+params ["_key", "_AOPos", "_AOSize", "_parentMissionID", "_army"];
 
 // We always start with these 4, as they're in every mission
 private ["_missionID", "_pfh", "_markers", "_units", "_vehicles", "_buildings", "_FacType", "_MarkerType", "_MarkerColour"];
@@ -137,7 +137,7 @@ _units append _fgn;
 [_fgn, format["tower_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["tower_pa_%1", _missionID], _ObjectPosition, 100, _side, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["tower_pa_%1", _missionID], _ObjectPosition, 100, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -203,7 +203,7 @@ _pfh = {
 				if ((serverTime > _heliSpawnTime) && !(_heliSpawnTime isEqualTo 0)) then {
                 // Call in a HELI
                 _args set [9, serverTime + 900 + random 300];
-                [_AOPos, _AOSize, _army, _side] remoteExecCall [QSFNC(helicas), 2];
+                [_AOPos, _AOSize, _army] remoteExecCall [QSFNC(helicas), 2];
             };
 
         } else {

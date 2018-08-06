@@ -31,8 +31,8 @@ if !(isServer) exitWith {
     _this remoteExecCall [QFNC(cas), 2];
 };
 
-params ["_pos", "_radius", ["_force", false], "_side", "_army"];
-private ["_type", "_PilotType", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp"];
+params ["_pos", "_radius", ["_force", false], "_army"];
+private ["_type", "_PilotType", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp", "_side"];
 
 
 call {

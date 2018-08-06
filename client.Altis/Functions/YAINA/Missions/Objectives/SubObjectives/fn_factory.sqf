@@ -170,7 +170,7 @@ _units append _fgn;
 [_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["factory_pa_%1", _missionID], _ObjectPosition, 100, _side, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;

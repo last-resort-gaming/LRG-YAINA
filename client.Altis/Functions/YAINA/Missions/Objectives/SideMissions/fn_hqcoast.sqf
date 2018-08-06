@@ -143,7 +143,7 @@ _units append _hqg;
 [_hqg, format["hqcoast_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-([format["hqcoast_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["hqcoast_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);

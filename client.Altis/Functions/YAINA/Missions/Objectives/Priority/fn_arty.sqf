@@ -147,7 +147,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _army, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 _units append _spUnits;
 _vehicles append _spVehs;

@@ -9,7 +9,6 @@ Parameters:
 	_grpPrefix - The prefix for the group IDs
     _center - The center position of the area we want to populate
     _radius - The radius of the area we want to populate
-    _side - The side of the units we want to create
     _army - The faction which we want to use for populating the AO
     _garrisons - Garrison Parameters, array containing the following information: [Group Count, Minimum Radius, Maximum Radius, Skill Level of Garrisoned Units, Maximum Fill in Buildling, Exclusion List]
     _inf - Infantry Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
