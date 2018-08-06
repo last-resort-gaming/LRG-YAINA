@@ -115,7 +115,7 @@ _u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsCargo _v; _u moveI
 _u = _g createUnit [_BoatCrew, _p, [], 0, "NONE"]; _u assignAsCargo _v; _u moveInCargo _v;
 
 // Set group skill
-[_g, 2] call SFNC(setUnitSkill);
+[_g, "LRG Default"] call SFNC(setUnitSkill);
 _units append (units _g);
 
 //---------- SHIPPING TRAWLER AND INFLATABLE BOAT FOR AMBIENCE

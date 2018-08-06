@@ -200,7 +200,7 @@ for "_x" from 0 to (2 + (random 3)) do {
 	_units append (units _infteamPatrol);
 
 	[_infteamPatrol, _ObjectPosition, 100] call BIS_fnc_taskPatrol;
-	[_infteamPatrol, 2] call SFNC(setUnitSkill);
+	[_infteamPatrol, "LRG Default"] call SFNC(setUnitSkill);
 };
 
 //---------- RANDOM VEHICLE
@@ -216,7 +216,7 @@ _SMveh lock 3;
 
 [_SMveh, _SMvehPatrol] call BIS_fnc_spawnCrew;
 [_SMvehPatrol, _ObjectPosition, 150] call BIS_fnc_taskPatrol;
-[_SMvehPatrol, 2] call SFNC(setUnitSkill);
+[_SMvehPatrol, "LRG Default"] call SFNC(setUnitSkill);
 
 _units append (units _SMvehPatrol);
 

@@ -193,6 +193,9 @@ for "_x" from 0 to (2 + (random 3)) do {
     [_grp1, _CQPosition, 100] call BIS_fnc_taskPatrol;
     _grp1 setSpeedMode "LIMITED";
 
+    [_grp1, "LRG Default"] call SFNC(setUnitSkill);
+    _grp1 enableDynamicSimulation true;
+
 };
 
 // Spawn Bunkers

@@ -257,7 +257,7 @@ _pfh = {
                                     [_g, _AOPos, _AOSize/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
                                 };
 
-                                [_g, 3] call SFNC(setUnitSkill);
+                                [_g, "LRG Default"] call SFNC(setUnitSkill);
                                 _spUnits append (units _g);
                             }
                         };
@@ -313,7 +313,7 @@ _pfh = {
                             // Add to zeus
                             [_spunits + [_veh]] call YFNC(addEditableObjects);
 
-                            [_grp, 3] call SFNC(setUnitSkill);
+                            [_grp, "LRG Default"] call SFNC(setUnitSkill);
 
                             [_parentMissionID, _spunits, [_veh]] call FNC(addReinforcements);
                         };

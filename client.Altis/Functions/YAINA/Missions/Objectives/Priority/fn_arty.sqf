@@ -114,7 +114,7 @@ _g = createGroup _side;
 _g setGroupIdGlobal [format ["arty_crew_%1", _missionID]];
 [_arty1, _g] call BIS_fnc_spawnCrew;
 [_arty2, _g] call BIS_fnc_spawnCrew;
-[_g, 4] call SFNC(setUnitSkill);
+[_g, "LRG Default"] call SFNC(setUnitSkill);
 _units append (units _g);
 
 {

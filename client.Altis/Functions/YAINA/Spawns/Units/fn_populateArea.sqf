@@ -39,44 +39,55 @@ Author:
 #include "..\defines.h"
 
 params [
-        "_grpPrefix", "_center", "_radius",
-        ["_side", east],
-		["_army", "CSAT"],
-        ["_garrisons", [1,0,60, "SME", 4, []]],
-        ["_inf", [3,3]],
-        ["_infaa", [1,1]],
-        ["_infat", [1,1]],
-        ["_sniper", [1,1]],
-        ["_vehaa", [0,0]],
-        ["_vehmrap", [1,0]],
-        ["_vehrand", [0,0]],
-        ["_vehlight", [0,0]],
-        ["_vehheavy", [0,0]]
-       ];
-	   
+	"_grpPrefix", "_center", "_radius",
+	["_army", "CSAT"],
+	["_garrisons", [1,0,60, "LRG Default", 4, []]],
+	["_inf", [3,3]],
+	["_infaa", [0,0]],
+	["_infat", [0,0]],
+	["_sniper", [0,0]],
+	["_vehaa", [0,0]],
+	["_vehmrap", [0,0]],
+	["_vehrand", [0,0]],
+	["_vehlight", [0,0]],
+	["_vehheavy", [0,0]]
+];
+
+_typeNameCenter = typeName _center;
+
+call {
+	if (_typeNameCenter isEqualTo "OBJECT") exitwith { _center = getPos _center;};
+	if (_typeNameCenter isEqualTo "STRING") exitwith { _center = getMarkerPos _center;};
+	if (_typeNameCenter isEqualTo [0, 0, 0]) exitwith {systemchat "AISpawns - Position is invalid";};
+
+};
+
+_center set [2, 0];
 
 _garrisons params ["_garrisonGroupCount", ["_garrisonMinRad", 0], ["_garrisonMaxRad", 60], ["_garrisonSkill", 2], ["_garrisonFill", 4], ["_garrisonExcludes", []]];
-_inf params ["_infMin", ["_infRand", 0], ["_infSkill", 2]];
-_infaa params ["_infaaMin", ["_infaaRand",0], ["_infaaSkill", 2]];
-_infat params ["_infatMin", ["_infatRand",0], ["_infatSkill", 2]];
-_sniper params ["_sniperMin", ["_sniperRand",0], ["_sniperSkill", 2]];
-_vehaa params ["_vehaaMin", ["_vehaaRand",0], ["_vehaaSkill", 3]];
-_vehmrap params ["_vehmrapMin", ["_vehmrapRand",0], ["_vehmrapSkill", 3]];
-_vehrand params ["_vehrandMin", ["_vehrandRand",0], ["_vehrandSkill", 3]];
-_vehlight params ["_vehlightMin", ["_vehlightRand",0], ["_vehlightSkill", 3]];
-_vehheavy params ["_vehheavyMin", ["_vehheavyRand",0], ["_vehheavySkill", 3]];
+_inf params ["_infMin", ["_infRand", 0], ["_infSkill", "LRG Default"]];
+_infaa params ["_infaaMin", ["_infaaRand",0], ["_infaaSkill", "LRG Default"]];
+_infat params ["_infatMin", ["_infatRand",0], ["_infatSkill", "LRG Default"]];
+_sniper params ["_sniperMin", ["_sniperRand",0], ["_sniperSkill", "LRG Default"]];
+_vehaa params ["_vehaaMin", ["_vehaaRand",0], ["_vehaaSkill", "LRG Default"]];
+_vehmrap params ["_vehmrapMin", ["_vehmrapRand",0], ["_vehmrapSkill", "LRG Default"]];
+_vehrand params ["_vehrandMin", ["_vehrandRand",0], ["_vehrandSkill", "LRG Default"]];
+_vehlight params ["_vehlightMin", ["_vehlightRand",0], ["_vehlightSkill", "LRG Default"]];
+_vehheavy params ["_vehheavyMin", ["_vehheavyRand",0], ["_vehheavySkill", "LRG Default"]];
 
 ///////////////////////////////////////////////////////////
 // UNIT TYPES
 ///////////////////////////////////////////////////////////
 
-private ["_confBase", "_infList", "_infaaList", "_infatList", "_sniperList", "_vehAAList", "_vehMrapList", "_vehRandList", "_vehLightList", "_vehHeavyList"];
+private ["_side", "_infList", "_confBase", "_infaaList", "_infatList", "_sniperList", "_vehAAList", "_vehMrapList", "_vehRandList", "_vehLightList", "_vehHeavyList"];
 
 // TODO: UAVs ?
 
-switch (_army) do {
-    case "CSAT": {
-		_side = east;
+call {
+	
+	_side = east;
+	
+	if (_army isEqualto "CSAT") exitwith {
 		_confBase     = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry";
 		_infList      = ["OIA_InfTeam","OI_reconPatrol"];
 		_infaaList    = ["OIA_InfTeam_AA"];
