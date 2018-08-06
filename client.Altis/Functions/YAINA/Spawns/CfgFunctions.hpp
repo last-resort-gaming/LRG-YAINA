@@ -58,5 +58,8 @@ class YAINA_SPAWNS {
 	
 	class Bunkers {
 		file = "Functions\YAINA\Spawns\Bunkers";
+		class Bunker_Alpha {};
+		class Bunker_Bravo {};
+		class Bunker_Charlie {};		
 	};
 };

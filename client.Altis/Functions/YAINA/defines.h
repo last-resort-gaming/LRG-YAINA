@@ -11,6 +11,8 @@
 #define QYVAR(s) Q(YVAR(s))
 #define YFNC(s) YAINA_fnc_##s
 #define QYFNC(s) Q(YFNC(s))
+#define SFNC(s) YAINA_SPAWNS##_fnc_##s
+#define QSFNC(s) Q(SFNC(s))
 
 #define INCR(s) s = (s) + 1
 #define LTIME ([serverTime, time] select isServer)
