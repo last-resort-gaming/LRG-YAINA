@@ -23,6 +23,7 @@ Author:
     Rarek [AW] - Adapted and updated
     Martin - Ported to YAINA
     MitchJC - Random Faction Selection
+	Matt - location function
 */
 
 #include "..\..\defines.h"
@@ -69,14 +70,12 @@ call {
 private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
-while { _ObjectPosition isEqualTo [0,0] } do {
-    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,-1,0.2,5,0,false] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+private _pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
+
+_ObjectPosition = _pos select 0;
 
 // Now find a location for our AO center position fuzz the HQ...
-private _AOPosition = [_ObjectPosition, 0, _AOSize*0.8] call YFNC(getPosAround);
+private _AOPosition = _pos select 1;
 
 _missionID = call FNC(getMissionID);
 
@@ -115,7 +114,7 @@ _g = createGroup _side;
 _g setGroupIdGlobal [format ["arty_crew_%1", _missionID]];
 [_arty1, _g] call BIS_fnc_spawnCrew;
 [_arty2, _g] call BIS_fnc_spawnCrew;
-[_g, 4] call SFNC(setUnitSkill);
+[_g, "LRG Default"] call SFNC(setUnitSkill);
 _units append (units _g);
 
 {
@@ -148,7 +147,7 @@ for "_c" from 1 to 8 do {
 ///////////////////////////////////////////////////////////
 
 // Then the rest of the AO
-([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["aa_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _army, [0], [3,2], nil, nil, [0], [0], [0], [0], [0], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 _units append _spUnits;
 _vehicles append _spVehs;

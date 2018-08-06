@@ -36,28 +36,22 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific"];
 
-switch (_army) do {
-    case "CSAT": {
+call {
+    if (_army isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];
-		};
-    case "AAF": {
+    };
+    if (_army isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_RandomHeli = ["I_Heli_light_03_dynamicLoadout_F","I_Heli_light_03_unarmed_F","I_Heli_Transport_02_F"];		
-		};
-		
-    case "CSAT Pacific": {
+		_RandomHeli = ["I_Heli_light_03_dynamicLoadout_F","I_Heli_light_03_unarmed_F","I_Heli_Transport_02_F"];	
+    };
+    if (_army isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];		
-		};
-    default {
-		_side = east;
-		_MarkerColour = "colorOPFOR";
-		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];		
-		};
+		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];	
+    };
 };
 
 ///////////////////////////////////////////////////////////
@@ -67,14 +61,12 @@ switch (_army) do {
 private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
-while { _ObjectPosition isEqualTo [0,0] } do {
-    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,0,0.2,20,0,false] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+private _pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
+
+_ObjectPosition = _pos select 0;
 
 // Suitable location for marker
-private _AOPosition = [_ObjectPosition, 0, _AOSize/2] call YFNC(getPosAround);
+private _AOPosition = _pos select 1;
 
 // Mission ID Gen
 _missionID = call FNC(getMissionID);
@@ -142,7 +134,7 @@ _units append _hqg;
 [_hqg, format["securechopper_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-([format["securechopper_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["securechopper_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);

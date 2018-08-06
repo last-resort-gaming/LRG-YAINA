@@ -39,5 +39,6 @@ class YAINA {
 		class getDBKey {};
 		class channels { preInit=1; };
 		class AOPos {};
+        class getFunctions {};
     };
 };

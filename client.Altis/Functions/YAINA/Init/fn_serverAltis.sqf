@@ -49,7 +49,7 @@ private _navLights  = getMarkerPos "BASE" nearObjects ["Land_NavigLight", _baseS
     if !(isNil "_uav") then {
         { _uav removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") } forEach getPylonMagazines _uav;
         _uav setPylonLoadOut [1, "PylonRack_Bomb_GBU12_x2", true, [0]];
-        _uav setPylonLoadOut [2, "PylonRack_Bomb_GBU12_x2", true, [0]];
+        _uav setPylonLoadOut [2, "PylonRack_Bomb_SDB_x4", true, [0]];
         [_uav, false, 10, 0] call YAINA_VEH_fnc_initVehicle;
     };
 } forEach ["UAV1", "UAV2"];

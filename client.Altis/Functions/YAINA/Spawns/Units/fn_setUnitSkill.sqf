@@ -18,7 +18,11 @@ Author:
 	Martin
 */
 
-params ["_target", ["_skillLevel", 2]];
+params [
+    "_target",
+    ["_skillLevel", "LRG Default"],
+    ["_DynamicSim", true]
+    ];
 
 if (typeName _skillLevel isEqualTo "SCALAR") then {
     if (_skillLevel < 1) then { _skillLevel = 1; };
@@ -28,6 +32,7 @@ if (typeName _skillLevel isEqualTo "SCALAR") then {
 // We set each unit to be a random skill within the range below table
 private _skillt = ["aimingAccuracy", "aimingShake", "aimingSpeed", "commanding", "courage", "endurance", "general", "reloadSpeed", "spotDistance", "spotTime"];
 private _skillv = call {
+    if (_skillLevel isEqualTo "LRG Default") exitWith { [(0.10 + random 0.20), (0.45 + random 0.30),(0.30 + random 0.20), 1, 1, 1, 1, (0.50 + random 0.50), (0.40 + random 0.30), (0.20 + random 0.40)] };
     if (_skillLevel isEqualTo "SME") exitWith { [0.10, 0.20, 0.20, 1, 1, 1, 1, 0.5, 0.50, 0.2] };
     if (_skillLevel isEqualTo "MAO") exitWith { [0.10, 0.20, 0.20, 1, 1, 1, 1, 0.5, 0.50, 0.2] };
     if (_skillLevel isEqualTo 1)     exitWith { [0.25, 0.65, 0.40, 1, 1, 1, 1, 1.0, 0.75, 0.6] };
@@ -48,5 +53,17 @@ private _units = call {
 {
     _a = _x;
     _b = _skillv select _forEachIndex;
-    { _x setSkill [_a, _b]; true } count _units;
+    {
+        _x setSkill [_a, _b];
+        _x disableAI "AUTOCOMBAT";
+        if (_DynamicSim) then {(group _x) enableDynamicSimulation true};
+        if (objectParent _x != _x) then {
+            vehicle _x setVehicleReportOwnPosition  true;
+            vehicle _x setVehicleReportRemoteTargets true;
+            vehicle _x setVehicleReceiveRemoteTargets  true;
+            vehicle _x setVehicleRadar 1;
+            };
+        true
+    } count _units;
 } forEach _skillt;
+

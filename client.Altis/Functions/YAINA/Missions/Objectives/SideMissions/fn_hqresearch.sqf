@@ -36,33 +36,27 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
 
-switch (_army) do {
-    case "CSAT": {
-		_side = east;
+call {
+    if (_army isEqualTo "CSAT") exitwith {
+        _side = east;
 		_MarkerColour = "colorOPFOR";
 		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];
-		};
-    case "AAF": {
+    };
+    if (_army isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_RandomVeh = ["I_Truck_02_covered_F","I_Truck_02_transport_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_ammo_F","I_MRAP_03_F","C_SUV_01_F","C_Van_01_transport_F"];		
-		};
-    case "CSAT Pacific": {
+		_RandomVeh = ["I_Truck_02_covered_F","I_Truck_02_transport_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_ammo_F","I_MRAP_03_F","C_SUV_01_F","C_Van_01_transport_F"];
+    };
+    if (_army isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";		
-		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];		
-};
-    case "Syndikat": {
+		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];	
+    };
+    if (_army isEqualTo "Syndikat") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_RandomVeh = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F", "I_C_Van_02_vehicle_F", "I_C_Van_02_transport_F", "I_C_Heli_Light_01_civil_F", "C_Truck_02_transport_F", "C_Van_01_box_F","C_Van_01_transport_F"];		
-		};
-		
-    default {
-		_side = east;
-		_MarkerColour = "colorOPFOR";	
-		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];		
-		};
+		_RandomVeh = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F", "I_C_Van_02_vehicle_F", "I_C_Van_02_transport_F", "I_C_Heli_Light_01_civil_F", "C_Truck_02_transport_F", "C_Van_01_box_F","C_Van_01_transport_F"];
+    };
 };
 
 ///////////////////////////////////////////////////////////
@@ -72,14 +66,12 @@ switch (_army) do {
 private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
-while { _ObjectPosition isEqualTo [0,0] } do {
-    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [5,0,0.1,10,0,false] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+private _pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
+
+_ObjectPosition = _pos select 0;
 
 // Suitable location for marker
-private _AOPosition = [_ObjectPosition, 0, _AOSize/2] call YFNC(getPosAround);
+private _AOPosition = _pos select 1;
 
 // Mission ID Gen
 _missionID = call FNC(getMissionID);
@@ -120,7 +112,7 @@ _units append _hqg;
 [_hqg, format["hqresearch_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // Then the rest of the AO
-([format["hqresearch_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _side, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["hqresearch_pa_%1", _missionID], _ObjectPosition, _AOSize/2, _army, [2, 30, 75]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Bring in the Markers
 _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call FNC(createMapMarkers);

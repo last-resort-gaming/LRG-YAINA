@@ -1,5 +1,5 @@
 /*
-Function: YAINA_MM_fnc_getFunctions
+Function: YAINA_fnc_getFunctions
 
 Description:
 	Return the functions stored in CfgFunctions at a certain path.

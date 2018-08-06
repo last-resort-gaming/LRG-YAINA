@@ -35,69 +35,44 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-_army = selectRandom ["AAF","CSAT Pacific","Syndikat"];
+_army = selectRandom ["AAF", "Syndikat", "CSAT Pacific"];
 
-switch (_army) do {
-
-    case "AAF": {
+call {
+    if (_army isEqualTo "AAF") exitWith {
 		_side = resistance;
-		_INFTEAMS = ["HAF_InfSquad","HAF_InfSquad_Weapons","HAF_InfTeam","I_InfTeam_Light"];
 		_CampType = "CA";
-		_unittypes = ["I_Soldier_A_F","I_Soldier_AR_F","I_medic_F","I_Soldier_M_F","I_Soldier_F","I_Soldier_LAT_F","I_Soldier_SL_F","I_Soldier_TL_F"];
-		_ConquestGroupType = (configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> selectRandom _INFTEAMS);
-		_RandomVeh = ["I_G_Offroad_01_armed_F","I_MRAP_03_hmg_F"];
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Comms Station";
-		};
-    case "CSAT Pacific": {
-		_side = east;
-		_INFTEAMS = ["OI_ViperTeam"];
+    };
+    if (_army isEqualTo "CSAT Pacific") exitWith {
+        _side = east;
 		_CampType = "CV";
-		_unittypes = ["O_V_Soldier_hex_F","O_V_Soldier_TL_hex_F","O_V_Soldier_Exp_hex_F","O_V_Soldier_Medic_hex_F","O_V_Soldier_M_hex_F","O_V_Soldier_LAT_hex_F","O_V_Soldier_JTAC_hex_F"];
-		_ConquestGroupType = (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> selectRandom _INFTEAMS) ;
-		_RandomVeh = ["O_T_LSV_02_armed_F", "O_T_MRAP_02_hmg_ghex_F", "O_T_LSV_02_AT_F", "O_T_LSV_02_unarmed_F"];
 		_MarkerColour = "colorOPFOR";
-		_MarkerMissionName = "Viper Camp";
-		};
-    case "Syndikat": {
+		_MarkerMissionName = "CSAT Camp";
+    };
+    if (_army isEqualTo "Syndikat") exitWith {
 		_side = resistance;
-		_INFTEAMS = ["BanditCombatGroup","BanditFireTeam","BanditShockTeam","ParaCombatGroup","ParaFireTeam","ParaShockTeam"];
 		_CampType = "CB";
-		_unittypes = ["I_C_Soldier_Bandit_7_F","I_C_Soldier_Bandit_3_F","I_C_Soldier_Bandit_2_F","I_C_Pilot_F","I_C_Soldier_Bandit_6_F","I_C_Soldier_Bandit_1_F","I_C_Soldier_Bandit_8_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Para_5_F","I_C_Soldier_Para_1_F","I_C_Soldier_Para_8_F","I_C_Soldier_Para_6_F","I_C_Soldier_Para_4_F","I_C_Soldier_Para_3_F","I_C_Soldier_Para_2_F","I_C_Soldier_Para_7_F"];
-		_ConquestGroupType = (configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> selectRandom _INFTEAMS) ;
-		_RandomVeh = ["I_G_Offroad_01_armed_F","I_C_Offroad_02_LMG_F","I_C_Offroad_02_AT_F","I_C_Offroad_02_unarmed_F"];
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Outpost";
-		};
-    default {
-		_side = resistance;
-		_INFTEAMS = ["HAF_InfSquad","HAF_InfSquad_Weapons","HAF_InfTeam","I_InfTeam_Light"];
-		_CampType = "CA";
-		_unittypes = ["O_V_Soldier_hex_F","O_V_Soldier_TL_hex_F","O_V_Soldier_Exp_hex_F","O_V_Soldier_Medic_hex_F","O_V_Soldier_M_hex_F","O_V_Soldier_LAT_hex_F","O_V_Soldier_JTAC_hex_F"];
-		_ConquestGroupType = (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> selectRandom _INFTEAMS);
-		_RandomVeh = ["I_G_Offroad_01_armed_F"];
-		_MarkerColour = "ColorGUER";
-		_MarkerMissionName = "Comms Station";
-		};
+    };
 };
 
 ///////////////////////////////////////////////////////////
 // Location Scout
 ///////////////////////////////////////////////////////////
-
-private ["_AOPosition", "_CQPosition", "_nearestTown"];
+private ["_AOPosition", "_CQPosition", "_loc", "_pos"];
 private _AOSize = 400;
 
-_CQPosition = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
+_pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
 
-// Now find a location for our AO center position fuzz the HQ...
-_AOPosition = [_CQPosition, 20, _AOSize*0.9] call YFNC(getPosAround);
+_CQPosition = _pos select 0;
 
-// Find our nearest town + direction for mission description
-_nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
+_AOPosition = _pos select 1;
 
-// Mission Description
-private _missionDescription = format["Conquest: %1 of %2", _nearestTown select 2, text (_nearestTown select 0)];
+_loc = _pos select 2;
+
+private _missionDescription = format["Conquest at %1", _loc];
 
 ///////////////////////////////////////////////////////////
 // Spawn Conquest HQ
@@ -109,7 +84,7 @@ private ["_cqFunc", "_CQElements"];
 _missionID = call FNC(getMissionID);
 
 // Get our random HQ Spawn Function
-_cqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", _CampType]] call FNC(getFunctions) ));
+_cqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", _CampType]] call YFNC(getFunctions) ));
 
 // Hide any terrain and slam down the HQ
 private _hiddenTerrainKey = format["HT_%1", _missionID];
@@ -125,79 +100,26 @@ _buildings   = _CQElements;
 // Spawn AI
 ///////////////////////////////////////////////////////////
 
-// use the largest building around as our CQ Building
-private _CQBuildingInfo = [_CQPosition, 30] call FNC(findLargestBuilding);
-if (_CQBuildingInfo isEqualTo []) exitWith {};
+// Spawn the Garrison
+private _cg = [_CQPosition, [0,50], _army, 3] call SFNC(infantryGarrison);
+_units append _cg;
+[_cg, format["Conquest_Garrison_%1", _missionID]] call FNC(prefixGroups);
 
-private _CQBuilding = _CQBuildingInfo select 0;
+// Spawn the rest
 
-_priorityGroup = createGroup _side;
-_priorityGroup setGroupIdGlobal [format['cq_gar1_%1', _missionID]];
+([format["Conquest_%1", _missionID], _CQPosition, _AOSize*0.5, _army, [1, 0, _AOSize*0.5, "LRG Default", 6], [4,6, "LRG Default"], [1,0, "LRG Default"], [1,0, "LRG Default"], [1,0, "LRG Default"], [0,0], [1,1], [1,1], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
-_garrisonpos = _CQBuildingInfo select 1;
-_buildingposcount = count _garrisonpos;
+_units append _spUnits;
+_vehicles append _spVehs;
 
-for "_i" from 1 to _buildingposcount do {
-    _unittype = selectrandom _unittypes;
-    _unitpos  = selectrandom _garrisonpos;
-    _unit     = _priorityGroup createUnit [_unittype, _unitpos, [],0,"NONE"];
-    _garrisonpos = _garrisonpos - [_unitpos];
-    _units pushBack _unit;
+// Spawn Bunkers
+/*
+private _bunker = [_AOPosition, _AOSize, _army, _missionID] call SFNC(bunker) params ["_bunits", "_bvehicles", "_bobjects"];
 
-    private _returnedUnits = [_CQBuildingInfo select 0,(units _priorityGroup), 100, true, true, 0] call derp_fnc_ZenOccupy;
-    { deleteVehicle _x } foreach _returnedUnits;
-};
+_units append _bunits;
 
-_priorityGroup setGroupIdGlobal [format['cq_gar2_%1', _missionID]];
-
-private _ConquestInfAmount = 0;
-
-for "_x" from 0 to (4 + (random 2)) do {
-    private _randomPos = [[[_CQPosition, 200],[]],["water","out"]] call BIS_fnc_randomPos;
-
-    private _ConquestGroup = createGroup _side;
-    _ConquestGroup = [_randomPos, _side, _ConquestGroupType] call BIS_fnc_spawnGroup;
-    _units append (units _ConquestGroup);
-
-    _ConquestInfAmount = _ConquestInfAmount + 1;
-    _ConquestGroup setGroupIdGlobal [format ['cq_inf%1_%2', _x, _missionID]];
-
-    [_ConquestGroup, _CQPosition, 100] call BIS_fnc_taskPatrol;
-    [_ConquestGroup, 3] call SFNC(setUnitSkill);
-
-};
-
-private _ConquestVehAmmount = 0;
-for "_x" from 0 to (2 + (random 3)) do {
-    private _randomPos = [[[_CQPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
-    private _vehc = (selectRandom _RandomVeh) createVehicle _randompos;
-
-    _vehc allowCrewInImmobile true;
-    _vehc lock 2;
-    _vehicles pushBack _vehc;
-
-    private _grp1 = createGroup _side;
-
-    _ConquestVehAmmount = _ConquestVehAmmount + 1;
-    _grp1 setGroupIdGlobal [format ['cq_veh%1_%2', _x, _missionID]];
-
-    _unit = _grp1 createUnit [(selectRandom _UnitTypes), _randomPos, [],0,"NONE"];
-    _unit assignAsDriver _vehc;
-    _unit moveInDriver _vehc;
-    _units pushBack _unit;
-
-
-    _unit = _grp1 createUnit [(selectRandom _UnitTypes), _randomPos, [],0,"NONE"];
-    _unit assignAsGunner _vehc;
-    _unit moveInGunner _vehc;
-    _units pushBack _unit;
-
-    [_grp1, _CQPosition, 100] call BIS_fnc_taskPatrol;
-    _grp1 setSpeedMode "LIMITED";
-
-};
-
-
+_buildings append _bobjects;
+*/
 ///////////////////////////////////////////////////////////
 // Start Mission
 ///////////////////////////////////////////////////////////
@@ -214,7 +136,7 @@ _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call
     _missionID,
     [
         format ["There's an enemy %1 being set up. Move in and take it out.",_MarkerMissionName],
-        format ["Seize the %3 %1 of %2", _nearestTown select 2, text (_nearestTown select 0), _MarkerMissionName],
+        format ["Seize the %2 at %1", _loc, _MarkerMissionName],
         ""
     ],
     _AOPosition,

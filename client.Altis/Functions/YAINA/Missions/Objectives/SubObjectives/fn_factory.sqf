@@ -170,7 +170,7 @@ _units append _fgn;
 [_fgn, format["factory_gar_%1", _missionID]] call FNC(prefixGroups);
 
 // And a few to populate the immediate area
-([format["factory_pa_%1", _missionID], _ObjectPosition, 100, _side, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["factory_pa_%1", _missionID], _ObjectPosition, 100, _army, [0], [2,2], [0], [0], [0], [0,1], [0], [0], [0,1], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 // Add to Zeus
 _vehicles append _spVehs;
@@ -257,7 +257,7 @@ _pfh = {
                                     [_g, _AOPos, _AOSize/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
                                 };
 
-                                [_g, 3] call SFNC(setUnitSkill);
+                                [_g, "LRG Default"] call SFNC(setUnitSkill);
                                 _spUnits append (units _g);
                             }
                         };
@@ -313,7 +313,7 @@ _pfh = {
                             // Add to zeus
                             [_spunits + [_veh]] call YFNC(addEditableObjects);
 
-                            [_grp, 3] call SFNC(setUnitSkill);
+                            [_grp, "LRG Default"] call SFNC(setUnitSkill);
 
                             [_parentMissionID, _spunits, [_veh]] call FNC(addReinforcements);
                         };

@@ -61,32 +61,31 @@ call {
 // Location Scout
 ///////////////////////////////////////////////////////////
 
-private ["_AOPosition", "_HQPosition", "_blacklistAreas", "_nearestTown"];
+private ["_pos", "_AOPosition", "_HQPosition", "_loc"];
 private _AOSize = 600;
-private _HQPosition = [0,0];
 
-_HQPosition = [_AOSize, "LAND", 10, 20] call YFNC(AOPos);
+_pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
 
-// Now find a location for our AO center position fuzz the HQ...
-_AOPosition = [_HQPosition, 50, _AOSize*0.8] call YFNC(getPosAround);
+_AOPosition = _pos select 0;
 
-// Find our nearest town + direction for mission description
-_nearestTown = [_AOPosition] call YFNC(dirFromNearestName);
+_HQPosition = _pos select 1;
+
+_loc = _pos select 2;
 
 // Mission Description
-private _missionDescription = format["Main AO: %1 of %2", _nearestTown select 2, text (_nearestTown select 0)];
+private _missionDescription = format["Main AO at %1", _loc];
 
 ///////////////////////////////////////////////////////////
 // Spawn Mission
 ///////////////////////////////////////////////////////////
 
-private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer"];
+private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer", "_officerBuilding", "_officerBuildingPositions"];
 
 // Now we have our HQ + Location, bring in the HQ
 _missionID = call FNC(getMissionID);
 
 // Get our random HQ Spawn Function
-_hqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call FNC(getFunctions) ));
+_hqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "HQ"]] call YFNC(getFunctions) ));
 
 // Hide any terrain and slam down the HQ
 private _hiddenTerrainKey = format["HT_%1", _missionID];
@@ -134,7 +133,7 @@ _units append _hqg;
 
 // Then the rest of the AO
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand, army
-([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _side, _army, [6, 0, _AOSize*0.9, "MAO", 6, _HQElements + [_officerPos]], [10,0, "MAO"], [2,0, "MAO"], [4,0, "MAO"], [2,0, "MAO"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
+([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _army, [6, 0, _AOSize*0.9, "LRG Default", 6, _HQElements + [_officerPos]], [10,0, "LRG Default"], [2,0, "LRG Default"], [4,0, "LRG Default"], [2,0, "LRG Default"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
 diag_log _spUnits;
 _units append _spUnits;
@@ -155,8 +154,8 @@ _markers = [_missionID, _AOPosition, _AOSize, nil, nil, nil, _MarkerColour] call
     west,
     _missionID,
     [
-        format ["%3 have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _nearestTown select 2, text (_nearestTown select 0), _army],
-        format ["Clear HQ %1 of %2", _nearestTown select 2, text (_nearestTown select 0)],
+        format ["%2 have setup a HQ at %1, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _loc, _army],
+        format ["Clear HQ at %1", _loc],
         ""
     ],
     _AOPosition,
@@ -177,7 +176,7 @@ _subObjective = nil;
 
 while { _idx > 0 && isNil "_subObjective" } do {
     _k = format["SO_%1", _missionID];
-    [_k, _AOPosition, _AOSize, _missionID, _army, _side] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call FNC(getFunctions) )));
+    [_k, _AOPosition, _AOSize, _missionID, _army, _side] call (missionNamespace getVariable (selectRandom ( ["YAINA_MM_OBJ_fnc", ["YAINA_MM_OBJ", "SubObjectives"]] call YFNC(getFunctions) )));
     waitUntil { !isNil { missionNamespace getVariable _k } };
     _mm = missionNamespace getVariable _k;
     if (_mm isEqualTo false) then {
@@ -214,7 +213,7 @@ _pfh = {
                 WEST,
                 [format ["%1_defend", _missionID], _missionID],
                 [
-                    format ["OPFOR have setup an HQ %1 from %2, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _nearestTown select 2, text (_nearestTown select 0)],
+                    format ["%2 have setup an HQ at %1, you need to clear it out! Good luck and don't forget to complete the side mission we're assigning you.", _loc, _army],
                     "Defend the HQ",
                     ""
                 ],

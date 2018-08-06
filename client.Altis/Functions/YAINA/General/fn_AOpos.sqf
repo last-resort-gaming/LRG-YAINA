@@ -9,25 +9,28 @@ Description:
 Parameters
 	
 	_size - AO size
-	_spec - specification from "LAND" (or ""), "CITY", "VILLAGE", "MARINE"
-	_min - min distance from centre for objective
-	_max - max distance from centre for objective
+	_spec - specification from "LAND", "CITY", "VILLAGE", "MARINE"
+	_objSpec - specification from "FLAT", "BUILDING", "ROAD", "COAST"
 
 Return Values:
-	_centre - where marker goes over location
-	_obj - objective location
+
+	_AOobj - objective location
+	_AOcentrePos - location position
+	_AOCentreName - location name
+
+		
 	
 Examples:
 
-[500, "LAND", 100, 500] call YAINA_fnc_AOPos;
+[500, "LAND", "FLAT"] call YAINA_fnc_AOPos;
 
 Author:
 	Matth & Mitch
 */
 
-params ["_size", "_spec", "_min", "_max"];
+params ["_size", "_spec", "_objSpec"];
 
-private ["_inc", "_worldcenter", "_worldSize", "_locs", "_AOCentre"];
+private ["_inc", "_worldcenter", "_worldSize", "_locs", "_AOCentre", "_AOCentre", "_AOobj"];
 
 _inc = [];
 
@@ -55,13 +58,47 @@ _worldcenter = getArray (configfile >> "CfgWorlds" >> worldName >> "centerPositi
 _worldsize = getnumber (configfile >> "CfgWorlds" >> worldName >> "mapSize");
 _locs = nearestLocations [_worldcenter, _inc, _worldsize];
 
-_AOCentre = [0,0];
+_AOobj = [0,0];
 
-_nul = while { _AOCentre isEqualTo [0,0] } do {
-
-	_AOCentre = [_locs, ([_size] call YAINA_MM_fnc_getAOExclusions) + ["water"], {
-		{ _x distance2D _this < (_size * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
-  }] call BIS_fnc_randomPos;
+call {
+	if (_objSpec isEqualTo "FLAT") exitWith {
+		_nul = while { _AOobj isEqualTo [0,0] } do {
+			_AOobj = [_locs, ([_size] call YAINA_MM_fnc_getAOExclusions) + ["water"], {
+				{ _x distance2D _this < (_size * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,false,objNull] isEqualTo [])
+		  }] call BIS_fnc_randomPos;
+		};
+	};
+	
+	if (_objSpec isEqualTo "BUILDING") exitWith {
+		_nul = while { _AOobj isEqualTo [0,0] } do {
+			_AOobj = [_locs, ([_size] call YAINA_MM_fnc_getAOExclusions) + ["water"], {
+				{ _x distance2D _this < (_size * 2) } count allPlayers isEqualTo 0
+		  }] call BIS_fnc_randomPos;
+		};
+		_AOobj = getPos (nearestBuilding _AOobj);		
+	};
+	
+	if (_objSpec isEqualTo "ROAD") exitWith {
+		_nul = while { _AOobj isEqualTo [0,0] } do {
+			_AOobj = [_locs, ([_size] call YAINA_MM_fnc_getAOExclusions) + ["water"], {
+				{ _x distance2D _this < (_size * 2) } count allPlayers isEqualTo 0 && (isOnRoad _this)
+		  }] call BIS_fnc_randomPos;
+		};
+	};
+	
+	if (_objSpec isEqualTo "COAST") exitWith {
+		_nul = while { _AOobj isEqualTo [0,0] } do {
+			_AOobj = [_locs, ([_size] call YAINA_MM_fnc_getAOExclusions) + ["water"], {
+				{ _x distance2D _this < (_size * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.25,25,0,true,objNull] isEqualTo [])
+		  }] call BIS_fnc_randomPos;
+		};
+	};
 };
 
-_AOCentre
+_AOCentre = nearestLocations [_AOobj, _inc, _size, _AOobj] select 0;
+
+_AOCentreName = text _AOCentre;
+
+_AOcentrePos = position _AOCentre;
+
+[_AOobj, _AOCentrePos, _AOCentreName]

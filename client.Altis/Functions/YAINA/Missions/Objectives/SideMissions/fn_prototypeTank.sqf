@@ -37,8 +37,8 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific"];
 
-switch (_army) do {
-    case "CSAT": {
+call {
+    if (_army isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_tanktype = "O_MBT_04_command_F";
@@ -46,9 +46,9 @@ switch (_army) do {
 			[0, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_1_CO.paa"],
 			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
 			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
-			];
-		};
-    case "AAF": {
+		];
+    };
+    if (_army isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";	
 		_tanktype = "I_MBT_03_cannon_F";
@@ -57,27 +57,18 @@ switch (_army) do {
 			[1, "a3\armor_f_epb\mbt_03\data\mbt_03_ext02_co.paa"],
 			[2, "a3\armor_f_epb\mbt_03\data\mbt_03_rcws_co.paa"],
 			[3, "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa"]
-			];	
-		};
-    case "CSAT Pacific": {
+		];	
+    };
+    if (_army isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
+        _tanktype = "O_T_MBT_04_command_F";
 		_Textures = [
 			[0, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_1_CO.paa"],
 			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
 			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
-			];		
-		};
-    default {
-		_side = east;
-		_MarkerColour = "colorOPFOR";
-		_tanktype = "O_MBT_04_command_F";
-		_Textures = [
-			[0, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_1_CO.paa"],
-			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
-			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
-			];
-		};
+		];
+    };
 };
 
 ///////////////////////////////////////////////////////////
@@ -87,13 +78,12 @@ switch (_army) do {
 private _AOSize = 400;
 private _ObjectPosition = [0,0];
 
-while { _ObjectPosition isEqualTo [0,0] } do {
-    _ObjectPosition = [nil, ([_AOSize] call FNC(getAOExclusions)) + ["water"], {
-        { _x distance2D _this < (_AOSize * 2) } count allPlayers isEqualTo 0 && !(_this isFlatEmpty [-1,-1,0.7,10,0,false,objNull] isEqualTo [])
-    }] call BIS_fnc_randomPos;
-};
+private _pos = [_AOSize, "LAND", "FLAT"] call YFNC(AOPos);
 
-private _AOPosition = [_ObjectPosition, 0, 100] call YFNC(getPosAround);
+_ObjectPosition = _pos select 0;
+
+// Suitable location for marker
+private _AOPosition = _pos select 1;
 
 // Mission ID Gen
 _missionID = call FNC(getMissionID);
@@ -144,7 +134,7 @@ _units append (units _grp1);
 // Spawn SM Forces --------------------------------
 
 // Whilst majority independents
-([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, _side, _army, [0], [4], [2], [2], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
+([format["prototypeTank_pa1_%1", _missionID], _ObjectPosition,300, _army, [0], [4], [2], [2], [0], [2], [3], [1,1]] call SFNC(populateArea)) params ["_smUnits", "_smVehs"];
 _units append _smUnits;
 _vehicles append _smVehs;
 
