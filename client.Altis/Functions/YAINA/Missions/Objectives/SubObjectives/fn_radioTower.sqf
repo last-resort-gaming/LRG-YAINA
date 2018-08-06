@@ -183,7 +183,7 @@ _pfh = {
             if (serverTime > _jetSpawnTime) then {
                 // Call in a JET
                 _args set [9, serverTime + 900 + random 300];
-                [_AOPos, _AOSize, _army] remoteExecCall [QSFNC(cas), 2];
+                [_AOPos, _AOSize, false,  _army] remoteExecCall [QSFNC(cas), 2];
             };
 
         };

@@ -189,7 +189,7 @@ _pfh = {
 				if ((serverTime > _heliSpawnTime) && !(_heliSpawnTime isEqualTo 0)) then {
                 // Call in a HELI
                 _args set [9, serverTime + 900 + random 300];
-                [_AOPos, _AOSize, _army] remoteExecCall [QSFNC(helicas), 2];
+                [_AOPos, _AOSize, false, _army] remoteExecCall [QSFNC(helicas), 2];
             };
 
         } else {
