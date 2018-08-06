@@ -37,9 +37,8 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["AAF","CSAT Pacific","Syndikat"];
 
-switch (_army) do {
-
-    case "AAF": {
+call {
+    if (_army isEqualTo "AAF") exitWith {
 		_side = resistance;
 		_INFTEAMS = ["HAF_InfSquad","HAF_InfSquad_Weapons","HAF_InfTeam","I_InfTeam_Light"];
 		_CampType = "CA";
@@ -48,9 +47,9 @@ switch (_army) do {
 		_RandomVeh = ["I_G_Offroad_01_armed_F","I_MRAP_03_hmg_F"];
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Comms Station";
-		};
-    case "CSAT Pacific": {
-		_side = east;
+    };
+    if (_army isEqualTo "CSAT Pacific") exitWith {
+        _side = east;
 		_INFTEAMS = ["OI_ViperTeam"];
 		_CampType = "CV";
 		_unittypes = ["O_V_Soldier_hex_F","O_V_Soldier_TL_hex_F","O_V_Soldier_Exp_hex_F","O_V_Soldier_Medic_hex_F","O_V_Soldier_M_hex_F","O_V_Soldier_LAT_hex_F","O_V_Soldier_JTAC_hex_F"];
@@ -58,8 +57,8 @@ switch (_army) do {
 		_RandomVeh = ["O_T_LSV_02_armed_F", "O_T_MRAP_02_hmg_ghex_F", "O_T_LSV_02_AT_F", "O_T_LSV_02_unarmed_F"];
 		_MarkerColour = "colorOPFOR";
 		_MarkerMissionName = "Viper Camp";
-		};
-    case "Syndikat": {
+    };
+    if (_army isEqualTo "Syndikat") exitWith {
 		_side = resistance;
 		_INFTEAMS = ["BanditCombatGroup","BanditFireTeam","BanditShockTeam","ParaCombatGroup","ParaFireTeam","ParaShockTeam"];
 		_CampType = "CB";
@@ -68,17 +67,7 @@ switch (_army) do {
 		_RandomVeh = ["I_G_Offroad_01_armed_F","I_C_Offroad_02_LMG_F","I_C_Offroad_02_AT_F","I_C_Offroad_02_unarmed_F"];
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Outpost";
-		};
-    default {
-		_side = resistance;
-		_INFTEAMS = ["HAF_InfSquad","HAF_InfSquad_Weapons","HAF_InfTeam","I_InfTeam_Light"];
-		_CampType = "CA";
-		_unittypes = ["O_V_Soldier_hex_F","O_V_Soldier_TL_hex_F","O_V_Soldier_Exp_hex_F","O_V_Soldier_Medic_hex_F","O_V_Soldier_M_hex_F","O_V_Soldier_LAT_hex_F","O_V_Soldier_JTAC_hex_F"];
-		_ConquestGroupType = (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "SpecOps" >> selectRandom _INFTEAMS);
-		_RandomVeh = ["I_G_Offroad_01_armed_F"];
-		_MarkerColour = "ColorGUER";
-		_MarkerMissionName = "Comms Station";
-		};
+    };
 };
 
 ///////////////////////////////////////////////////////////
@@ -161,7 +150,7 @@ for "_x" from 0 to (4 + (random 2)) do {
     _ConquestGroup setGroupIdGlobal [format ['cq_inf%1_%2', _x, _missionID]];
 
     [_ConquestGroup, _CQPosition, 100] call BIS_fnc_taskPatrol;
-    [_ConquestGroup, 3] call SFNC(setUnitSkill);
+    [_ConquestGroup, "LRG Default"] call SFNC(setUnitSkill);
 
 };
 

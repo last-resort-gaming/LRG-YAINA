@@ -36,33 +36,27 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
 
-switch (_army) do {
-    case "CSAT": {
-		_side = east;
+call {
+    if (_army isEqualTo "CSAT") exitwith {
+        _side = east;
 		_MarkerColour = "colorOPFOR";
 		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];
-		};
-    case "AAF": {
+    };
+    if (_army isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_RandomVeh = ["I_Truck_02_covered_F","I_Truck_02_transport_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_ammo_F","I_MRAP_03_F","C_SUV_01_F","C_Van_01_transport_F"];		
-		};
-    case "CSAT Pacific": {
+		_RandomVeh = ["I_Truck_02_covered_F","I_Truck_02_transport_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_ammo_F","I_MRAP_03_F","C_SUV_01_F","C_Van_01_transport_F"];
+    };
+    if (_army isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";		
-		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];		
-};
-    case "Syndikat": {
+		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];	
+    };
+    if (_army isEqualTo "Syndikat") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_RandomVeh = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F", "I_C_Van_02_vehicle_F", "I_C_Van_02_transport_F", "I_C_Heli_Light_01_civil_F", "C_Truck_02_transport_F", "C_Van_01_box_F","C_Van_01_transport_F"];		
-		};
-		
-    default {
-		_side = east;
-		_MarkerColour = "colorOPFOR";	
-		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];		
-		};
+		_RandomVeh = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F", "I_C_Van_02_vehicle_F", "I_C_Van_02_transport_F", "I_C_Heli_Light_01_civil_F", "C_Truck_02_transport_F", "C_Van_01_box_F","C_Van_01_transport_F"];
+    };
 };
 
 ///////////////////////////////////////////////////////////

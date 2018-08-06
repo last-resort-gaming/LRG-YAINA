@@ -36,37 +36,31 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
 
-switch (_army) do {
-    case "CSAT": {
+call {
+    if (_army isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";		
 		_Boat = "O_Boat_Armed_01_hmg_F";
 		_BoatCrew = "O_Soldier_F";
-		};
-    case "AAF": {
+    };
+    if (_army isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_Boat = "I_Boat_Armed_01_minigun_F";
 		_BoatCrew = "I_Soldier_F";
-		};
-    case "CSAT Pacific": {
+    };
+    if (_army isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_Boat = "O_T_Boat_Armed_01_hmg_F";
 		_BoatCrew = "O_T_Soldier_F";
-		};
-    case "Syndikat": {
+    };
+    if (_army isEqualTo "Syndikat") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_Boat = "I_Boat_Armed_01_minigun_F";
 		_BoatCrew = "I_C_Soldier_Para_1_F";
-		};
-    default {
-		_side = east;
-		_MarkerColour = "colorOPFOR";
-		_Boat = "O_Boat_Armed_01_hmg_F";
-		_BoatCrew = "O_Soldier_F";
-		};
+    };
 };
 ///////////////////////////////////////////////////////////
 // AO Setup

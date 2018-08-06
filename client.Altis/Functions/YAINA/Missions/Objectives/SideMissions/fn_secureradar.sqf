@@ -35,25 +35,21 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-_army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
+_army = selectRandom ["CSAT","AAF","CSAT Pacific"];
 
-switch (_army) do {
-    case "CSAT": {
+call {
+    if (_army isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		};
-    case "AAF": {
+    };
+    if (_army isEqualTo "AAF") exitwith {
 		_side = resistance;
-		_MarkerColour = "ColorGUER";		
-		};
-    case "CSAT Pacific": {
+		_MarkerColour = "ColorGUER";	
+    };
+    if (_army isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
-		_MarkerColour = "colorOPFOR";		
-		};
-    default {
-		_side = east;
-		_MarkerColour = "colorOPFOR";		
-		};
+		_MarkerColour = "colorOPFOR";
+    };
 };
 
 ///////////////////////////////////////////////////////////

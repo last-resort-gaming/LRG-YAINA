@@ -35,8 +35,12 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-	_MarkerColour = "colorOPFOR";			
-	if (_army isEqualto "AAF") then {_MarkerColour = "ColorGUER";};
+	_MarkerColour = "colorOPFOR";
+    _side = east;
+	if (_army isEqualto "AAF") then {
+        _MarkerColour = "ColorGUER";
+        _side = resistance; 
+        };
 
 // Mission ID
 _missionID = call FNC(getMissionID);
