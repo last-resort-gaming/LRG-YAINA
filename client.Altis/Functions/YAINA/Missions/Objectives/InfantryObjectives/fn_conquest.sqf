@@ -113,13 +113,17 @@ _units append _spUnits;
 _vehicles append _spVehs;
 
 // Spawn Bunkers
-/*
-private _bunker = [_AOPosition, _AOSize, _army, _missionID] call SFNC(bunker) params ["_bunits", "_bvehicles", "_bobjects"];
 
-_units append _bunits;
+for "_x" from 0 to (1 + (random 3)) do {
 
-_buildings append _bobjects;
-*/
+	_bunker = [_AOPosition, _AOSize * 0.75, _army, _missionID] call SFNC(bunker) params ["_bunits", "_bvehicles", "_bobjects"];
+
+	_units append _bunits;
+
+	_buildings append _bobjects;
+
+};
+
 ///////////////////////////////////////////////////////////
 // Start Mission
 ///////////////////////////////////////////////////////////
