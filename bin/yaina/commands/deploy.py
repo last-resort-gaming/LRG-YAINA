@@ -26,8 +26,7 @@ class Deploy(Command):
 
         # Server Dir: A3Log config
         server_dir = os.path.dirname(yaina.config.get('apps', 'server'))
-        mods_dir = os.path.dirname(yaina.config.get('apps', 'mods'))
-        keys_dir = os.path.dirname(yaina.config.get('apps', 'keys'))
+        keys_dir = yaina.config.get('apps', 'keys')
 
         # Instance Dir, server.cfg
         instance_name   = yaina.config.get('common', 'instance')

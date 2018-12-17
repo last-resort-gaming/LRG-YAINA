@@ -226,9 +226,9 @@ class List(Command):
 
         # Now we bundle the output
         server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))
-        mods_dir = os.path.dirname(self.yaina.config.get('apps', 'mods'))
-        addon_path = os.path.join("@yaina")
-        out_dir = os.path.join(mods_dir, addon_path, "addons")
+        mods_dir = self.yaina.config.get('apps', 'mods')
+        addon_path = os.path.join(mods_dir, "@yaina-%s" % pbo_ver)
+        out_dir = os.path.join(addon_path, "addons")
 
         # Just need to set the
         self.yaina.setRunConfig('next', 'serverMod', '%s;%s' %
