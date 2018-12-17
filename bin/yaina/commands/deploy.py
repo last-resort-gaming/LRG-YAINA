@@ -26,6 +26,8 @@ class Deploy(Command):
 
         # Server Dir: A3Log config
         server_dir = os.path.dirname(yaina.config.get('apps', 'server'))
+        mods_dir = os.path.dirname(yaina.config.get('apps', 'mods'))
+        keys_dir = os.path.dirname(yaina.config.get('apps', 'keys'))
 
         # Instance Dir, server.cfg
         instance_name   = yaina.config.get('common', 'instance')
@@ -40,7 +42,7 @@ class Deploy(Command):
             except: pass
 
         # keys
-        for root, dirs, files in os.walk(os.path.join(yaina.root, 'keys')):
+        for root, dirs, files in os.walk(keys_dir):
             for fn in files:
                 if(os.path.splitext(fn)[1] == '.bikey'):
                     try:
