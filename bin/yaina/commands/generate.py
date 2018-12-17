@@ -226,7 +226,7 @@ class List(Command):
 
         # Now we bundle the output
         server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))
-        mods_dir = os.path.dirname(yaina.config.get('apps', 'mods'))
+        mods_dir = os.path.dirname(self.yaina.config.get('apps', 'mods'))
         addon_path = os.path.join("LocalMods", "yaina-%s" % pbo_ver, "@yaina")
         out_dir = os.path.join(mods_dir, addon_path, "addons")
 
