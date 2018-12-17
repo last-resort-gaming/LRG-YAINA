@@ -238,7 +238,7 @@ _pfh = {
                             private _ObjectPosition = [0,0];
                             private _attempt = 0;
                             while { _ObjectPosition isEqualTo [0,0] && { _attempt < 3 } } do {
-                                _ObjectPosition = [[[_AOPos, _AOSize]], ["water", "out"], {
+                                _ObjectPosition = [[[_AOPos, _AOSize]], ["water"], {
                                     { if(_x distance2D _this < 300) exitWith { 1 }; false; } count allPlayers isEqualTo 0
                                 }] call BIS_fnc_randomPos;
                                 _attempt = _attempt + 1;
@@ -278,7 +278,7 @@ _pfh = {
                         _attempts = 4;
                         _rpos = [0,0];
                         while { _rpos isEqualTo [0,0] && { _attempts > 0 } } do {
-                            _rpos = [[[_AOPos, _AOSize]], ["water", "out"], {
+                            _rpos = [[[_AOPos, _AOSize]], ["water"], {
                                 !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) && { { if( _x distance2D _this < 300) exitWith { 1 }; false; } count allPlayers isEqualTo 0 }
                              }] call BIS_fnc_randomPos;
                             _attempts = _attempts -1;
