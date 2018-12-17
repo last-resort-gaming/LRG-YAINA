@@ -193,7 +193,7 @@ _intelObj addEventHandler ["Killed", {
 
 
 for "_x" from 0 to (2 + (random 3)) do {
-	_randomPos = [[[_ObjectPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
+	_randomPos = [[[_ObjectPosition, 300],[]],["water"]] call BIS_fnc_randomPos;
 
 	_infteamPatrol = [_randomPos, EAST, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> ["OIA_InfTeam","OIA_InfTeam_AT","OIA_InfTeam_AA","OI_reconPatrol","OIA_GuardTeam"] call BIS_fnc_selectRandom)] call BIS_fnc_spawnGroup;
 	_infteamPatrol setGroupIdGlobal [format["secureintelvehicle_inf_%1_%2", _x, _missionID]];
@@ -208,7 +208,7 @@ for "_x" from 0 to (2 + (random 3)) do {
 private _SMvehPatrol = createGroup east;
 _SMvehPatrol setGroupIdGlobal [format["secureintelvehicle_mrap_%1", _missionID]];
 
-_randomPos = [[[_ObjectPosition, 300],[]],["water","out"]] call BIS_fnc_randomPos;
+_randomPos = [[[_ObjectPosition, 300],[]],["water"]] call BIS_fnc_randomPos;
 
 private _SMveh = ["O_MRAP_02_gmg_F","O_MRAP_02_hmg_F","O_APC_Tracked_02_cannon_F"] call BIS_fnc_selectRandom createVehicle _randomPos;
 _vehicles pushBack _SMveh;
