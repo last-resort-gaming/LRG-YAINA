@@ -11,6 +11,7 @@ from yaina.CfgFunctions import CfgFunctions
 import zipfile
 import tempfile
 import ConfigParser
+from shutil import copyfile
 
 
 class List(Command):
@@ -225,23 +226,9 @@ class List(Command):
                             '''))
 
         # Now we bundle the output
-        server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))
         mods_dir = self.yaina.config.get('apps', 'mods')
-        addon_path = os.path.join(mods_dir, "@yaina-%s" % pbo_ver)
+        addon_path = os.path.join(mods_dir, "@yaina")
         out_dir = os.path.join(addon_path, "addons")
-
-        # Just need to set the
-        self.yaina.setRunConfig('next', 'serverMod', '%s;%s' %
-            (self.yaina.config.get('server', 'serverMod'), addon_path))
-
-        # If we have hc mods, append, else give it to us
-        try:
-            hc_mod = '%s;%s' % (self.yaina.config.get('hc', 'mod'), addon_path)
-        except:
-            hc_mod = addon_path
-
-        self.yaina.setRunConfig('next', 'hcMod', hc_mod)
-        self.yaina.setRunConfig('next', 'version', pbo_ver)
 
         try:
             os.makedirs(out_dir)
@@ -434,7 +421,7 @@ class List(Command):
         else:
             # Now just PBO it
             pbo_ver  = self.yaina.getNextVersion(self.yaina.args.map)
-            pbo_name = "client.%s.%s" % (pbo_ver, self.yaina.args.map)
+            pbo_name = "YAINA.%s" % (self.yaina.args.map)
 
             # Fix briefing name in mission.sqm
             for x in ['mission.sqm', 'description.ext']:
@@ -456,14 +443,18 @@ class List(Command):
             os.unlink(os.path.join(self.build_dir, 'settings.sqf.zeus'))
         except: pass
 
-        server_dir = os.path.dirname(self.yaina.config.get('apps', 'server'))
-        out_dir = os.path.join(server_dir, "mpmissions")
+        out1_dir = os.path.join(self.yaina.config.get('EU1', 'root'), "mpmissions")
+        out2_dir = os.path.join(self.yaina.config.get('EU2', 'root'), "mpmissions")
 
         with open(os.path.join(self.build_dir, "build.txt"), 'w') as fh:
             fh.write(self.yaina.ref)
 
         try:
-            os.makedirs(out_dir)
+            os.makedirs(out1_dir)
+        except: pass
+
+        try:
+            os.makedirs(out2_dir)
         except: pass
 
         cmd = [
@@ -471,18 +462,20 @@ class List(Command):
             "-P",
             "-X", "thumbs.db,*.cpp,*.bak,*.png,*.dep,*.log",
             self.build_dir,
-            os.path.join(out_dir, pbo_name)
+            os.path.join(out1_dir, pbo_name)
         ]
 
         self.logger.info("Running: %s" % " ".join(cmd))
         subprocess.check_call(cmd)
 
+        copyfile(os.path.join(out1_dir, pbo_name + '.pbo'), os.path.join(out2_dir, pbo_name + '.pbo'))
+
         if self.yaina.args.ZEUSDAY_ZIP:
             print "You can now use: !mission %s to start" % pbo_name
         else:
             # And now that's done, lets update next_*
-            self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'mission', pbo_name)
-            self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'version', pbo_ver)
+            #self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'mission', pbo_name)
+            #self.yaina.setRunConfig('next_%s' % self.yaina.args.map, 'version', pbo_ver)
 
             # We also dump out the ZeusDay template
             tmp_dir  = tempfile.mkdtemp(prefix="yaina_")

@@ -38,32 +38,7 @@ class yaina(object):
         self.config.optionxform=str
         self.config.read([self.conf, self.conf_l])
 
-        # And from this, we get our runtime config
-        self.runconf_file = os.path.join(self.config.get('common', 'root'),
-                                        self.config.get('common', 'instance'), 'runtime.ini')
-
-        self.runconf = ConfigParser.ConfigParser()
-        self.runconf.optionxform=str
-        self.runconf.read(self.runconf_file)
-
-        # Lets create required dirs
-        try:
-            os.makedirs(os.path.dirname(self.runconf_file))
-        except: pass
-
         atexit.register(self.exit)
-
-    def saveRunConfig(self):
-        with open(self.runconf_file, 'w') as fh:
-            self.runconf.write(fh)
-
-    def setRunConfig(self, section, key, value):
-
-        if not self.runconf.has_section(section):
-            self.runconf.add_section(section)
-
-        self.runconf.set(section, key, value)
-        self.saveRunConfig()
 
     def saveVersionInfo(self):
         with open(os.path.join(self.root, "versioninfo"), 'w') as fh:
