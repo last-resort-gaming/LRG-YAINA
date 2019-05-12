@@ -1,0 +1,5 @@
+gitpython
+pypeg2
+wmi
+pypiwin32
+pyqt4

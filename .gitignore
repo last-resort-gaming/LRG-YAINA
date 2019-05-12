@@ -8,5 +8,9 @@
 *.pyc
 
 bin/yainadoc/Working Data/
+bin/venv
 
 docs/
+
+conf/yaina_local.ini
+Output/
