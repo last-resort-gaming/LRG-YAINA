@@ -14,3 +14,4 @@ docs/
 
 conf/yaina_local.ini
 Output/
+.vscode/
