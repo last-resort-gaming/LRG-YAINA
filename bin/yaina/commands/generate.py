@@ -443,18 +443,13 @@ class List(Command):
             os.unlink(os.path.join(self.build_dir, 'settings.sqf.zeus'))
         except: pass
 
-        out1_dir = os.path.join(self.yaina.config.get('EU1', 'root'), "mpmissions")
-        out2_dir = os.path.join(self.yaina.config.get('EU2', 'root'), "mpmissions")
+        out_dir = os.path.join(self.yaina.config.get('server', 'root'), "mpmissions")
 
         with open(os.path.join(self.build_dir, "build.txt"), 'w') as fh:
             fh.write(self.yaina.ref)
 
         try:
-            os.makedirs(out1_dir)
-        except: pass
-
-        try:
-            os.makedirs(out2_dir)
+            os.makedirs(out_dir)
         except: pass
 
         cmd = [
@@ -462,13 +457,11 @@ class List(Command):
             "-P",
             "-X", "thumbs.db,*.cpp,*.bak,*.png,*.dep,*.log",
             self.build_dir,
-            os.path.join(out1_dir, pbo_name)
+            os.path.join(out_dir, pbo_name)
         ]
 
         self.logger.info("Running: %s" % " ".join(cmd))
         subprocess.check_call(cmd)
-
-        copyfile(os.path.join(out1_dir, pbo_name + '.pbo'), os.path.join(out2_dir, pbo_name + '.pbo'))
 
         if self.yaina.args.ZEUSDAY_ZIP:
             print "You can now use: !mission %s to start" % pbo_name
