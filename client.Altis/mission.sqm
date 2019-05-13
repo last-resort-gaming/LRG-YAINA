@@ -1164,7 +1164,7 @@ class Mission
 			{
 				position[]={900.60034,0,29902.596};
 			};
-			name="ZeusSGoldie";
+			name="ZeusMokka";
 			init="this setVariable [""showNotification"", false];";
 			id=1324;
 			type="ModuleCurator_F";
@@ -1186,7 +1186,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="76561198190370642";
+							value="76561198120665981";
 						};
 					};
 				};
@@ -1224,7 +1224,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="SGoldie";
+							value="Mokka";
 						};
 					};
 				};
@@ -4604,7 +4604,7 @@ class Mission
 						skill=0.60000002;
 						rank="COLONEL";
 						init="[[""HQ""], this] call YAINA_fnc_setUnitTrait;";
-						description="Zero  -  Headquarters (TS3: ts.LastResortGaming.net)";
+						description="Zero  -  Headquarters (Discord: discord.lastresortgaming.net)";
 						isPlayer=1;
 						isPlayable=1;
 						class Inventory
@@ -13488,7 +13488,7 @@ class Mission
 					{
 						skill=0.60000002;
 						init="[[""UAV""], this] call YAINA_fnc_setUnitTrait;";
-						description="Reaper 1-1  -  UAV Operator  (TS3: ts.LastResortGaming.net)";
+						description="Reaper 1-1  -  UAV Operator  (Discord: discord.lastresortgaming.net)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -13593,7 +13593,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Apex 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Apex 1-1  -  Pilot (Discord: discord.lastresortgaming.net)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -13685,7 +13685,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Bandit 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Bandit 1-1  -  Pilot (Discord: discord.lastresortgaming.net)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -13777,7 +13777,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Casino 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Casino 1-1  -  Pilot (Discord: discord.lastresortgaming.net)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -13869,7 +13869,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Dagger 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Dagger 1-1  -  Pilot (Discord: discord.lastresortgaming.net)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -13962,7 +13962,7 @@ class Mission
 						skill=0.60000002;
 						rank="CAPTAIN";
 						init="[[""PILOT""], this] call YAINA_fnc_setUnitTrait;";
-						description="Echo 1-1  -  Pilot (TS3: ts.LastResortGaming.net)";
+						description="Echo 1-1  -  Pilot (Discord: discord.lastresortgaming.net)";
 						isPlayable=1;
 						class Inventory
 						{
@@ -16975,7 +16975,7 @@ class Mission
 			dataType="Marker";
 			position[]={551.539,7.3920002,31547.246};
 			name="marker_29";
-			text="LRG TeamSpeak: ts.lastresortgaming.net";
+			text="LRG Discord: discord.lastresortgaming.net";
 			type="b_unknown";
 			colorName="ColorWhite";
 			id=2457;
