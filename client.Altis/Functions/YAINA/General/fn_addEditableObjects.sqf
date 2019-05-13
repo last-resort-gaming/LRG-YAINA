@@ -21,7 +21,7 @@ Author:
 
 #include "defines.h"
 
-params ["_objArr", ["_addCrew", true]];
+params [["_objArr",[],[[]]], ["_addCrew", true]];
 
 if !(isServer) then {
     [_objArr, _addCrew] remoteExecCall [QYFNC(addEditableObjects), 2];
