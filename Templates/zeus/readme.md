@@ -4,8 +4,8 @@
 
 * Download zeusday template: [Latest Zeusday Template](https://bitbucket.org/lastresortgaming/lrg-yaina/downloads/ZeusTemplate.Altis.zip)
 * Extract the ZIP to your MP Missions Folder, this is generally located in one of the following locations:
-    * C:\Users\\\<LOGIN NAME>\Documents\Arma 3 - Other Profiles\\\<PROFILE NAME>\mpmissions
-    * C:\Users\\\<LOGIN NAME>\Documents\Arma 3\mpmissions
+    * `C:/Users/(LOGIN NAME)/Documents/Arma 3 - Other Profiles/(PROFILE NAME)/mpmissions`
+    * `C:/Users/(LOGIN NAME)/Documents/Arma 3/mpmissions`
     * If the profile folder exists, but the mpmissions is missing, just create it
 * You should now have a folder called ZeusTemplate.Altis in your mpmissions folder
 
@@ -14,7 +14,7 @@
 * Start up Arma, ensuring you have either no mods, or at most, any of the following whitelisted mods enabled:
     * [ZEC - Zeus and Eden Templates / Building Compositions](http://steamcommunity.com/sharedfiles/filedetails/?id=642912021)
     * [3den Enhanced](http://steamcommunity.com/sharedfiles/filedetails/?id=623475643)
-* Mods such as CBA / Blastcore alter the required mods lists for clients, and in some 
+* Mods such as Achilles / CBA / Blastcore alter the required mods lists for clients, and in some 
 cases, such as CBA make changes to all the init fields on save of units/groups which can be
 an utter pain to remove
 * Build your mission
