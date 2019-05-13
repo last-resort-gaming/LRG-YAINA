@@ -25,6 +25,11 @@ params ["_owner", "_caller", "_argStr"];
 
 _argStr = toLower _argStr;
 
+if (YAINA_MM_paused) then {
+	YAINA_MM_paused = false;
+	[_caller, "Mission Cycle unpaused."] remoteExecCall ["sideChat"];
+};
+
 if (_argStr isEqualTo "side") then {
     _argStr = selectRandom ([nil, ["YAINA_MM_OBJ", "SideMissions"]] call YAINA_MM_fnc_getFunctions);
 };
