@@ -4,8 +4,8 @@
 
 * Download zeusday template: [Latest Zeusday Template](https://bitbucket.org/lastresortgaming/lrg-yaina/downloads/ZeusTemplate.Altis.zip)
 * Extract the ZIP to your MP Missions Folder, this is generally located in one of the following locations:
-    * C:\Users\<LOGIN NAME>\Documents\Arma 3 - Other Profiles\<PROFILE NAME>\mpmissions
-    * C:\Users\<LOGIN NAME>\Documents\Arma 3\mpmissions
+    * C:\Users\\\<LOGIN NAME>\Documents\Arma 3 - Other Profiles\\\<PROFILE NAME>\mpmissions
+    * C:\Users\\\<LOGIN NAME>\Documents\Arma 3\mpmissions
     * If the profile folder exists, but the mpmissions is missing, just create it
 * You should now have a folder called ZeusTemplate.Altis in your mpmissions folder
 
@@ -29,7 +29,7 @@ an utter pain to remove
 
 ### Edit: template.ini
 
-This file contains information that controls the packaging of your mission within the templateing framework
+This file contains information that controls the packaging of your mission within the templating framework
 
 It is essential you update this accordingly with a minimum of author and mission name
 
@@ -44,12 +44,12 @@ sane defaults, feel free to alter for it to be suitable for your mission.
 ## Step 4: Request Mission (curator)
 
 * Right click on our zeus-template.Altis folder and select "Add to Zip"
-* Get that zip to Angry Salad via this [Google Form](https://goo.gl/forms/8wKrU3Bg7kfjcb2n1)
+* Send that ZIP to any member of the Server Team for them to deploy it
 
 ## Step 5: Test Mission (admin)
 
 * Deploy the zip to the test server
-* Drag the zip to: EU1/Utils/build-zeusday-pbo.bat
+* Drag the zip onto: `EU1/Batch Files/Build Zeusday PBO.bat`
 * Ensure successful output and that the ZeusDayName is in the server\mpmissions folder
 * Connect to test server
 * Issue !mission ZeusDayName
