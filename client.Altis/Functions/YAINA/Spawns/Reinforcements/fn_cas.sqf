@@ -35,11 +35,11 @@ params ["_pos", "_radius", ["_force", false], "_army"];
 private ["_type", "_PilotType", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp", "_side"];
 
 
-call {
+_army call {
 
 	_side = east;
 
-	if (_army isEqualto "CSAT") exitwith {
+	if (_this isEqualto "CSAT") exitwith {
 		_type = selectRandom [
 			"O_Plane_Fighter_02_F",         // To-201 Shikra
 			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
@@ -48,10 +48,11 @@ call {
 			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
 			"O_Plane_CAS_02_Cluster_F"      // To-199 Neophron (Cluster)
 		];
-		_PilotType = "O_pilot_F";	
+		_PilotType = "O_pilot_F";
+        [_type, _PilotType, east];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_type = selectRandom [
 			"I_Plane_Fighter_03_AA_F",      // A-143 Buzzard (AA)
 			"I_Plane_Fighter_03_AA_F",		// A-143 Buzzard (AA)
@@ -62,10 +63,10 @@ call {
 			"I_Plane_Fighter_04_F"			// A-149 Gryphon
 		];
 		_PilotType = "I_pilot_F";
-		_side = resistance;
+		[_type, _PilotType, resistance];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_type = selectRandom [
 			"O_Plane_Fighter_02_F",         // To-201 Shikra
 			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
@@ -74,11 +75,12 @@ call {
 			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
 			"O_Plane_CAS_02_Cluster_F",     // To-199 Neophron (Cluster)
 			"O_T_VTOL_02_infantry_dynamicLoadout_F",
-			"O_T_VTOL_02_infantry_dynamicLoadout_F"			
+			"O_T_VTOL_02_infantry_dynamicLoadout_F"
 		];
-		_PilotType = "O_T_pilot_F";	
-	};	
-};
+		_PilotType = "O_T_pilot_F";
+        [_type, _PilotType, east];
+	};
+} params ["_type", "_PilotType", "_side"];
 
 // We filter any deads here as it's the only time we care about it
 if (isNil QVAR(cas)) then {
