@@ -98,9 +98,16 @@ _HQElements = [_HQPosition, random 360, call _hqFunc] call BIS_fnc_ObjectsMapper
 _buildings  = _HQElements;
 
 // Bring in an officer to one of the buildings
-_officerPos = call {
-    ([_HQPosition, 30] call FNC(findLargestBuilding)) params ["_officerBuilding", "_officerBuildingPositions"];
-    selectRandom _officerBuildingPositions;
+_officerPos = _HQPosition call {
+    ([_this, 30] call FNC(findLargestBuilding)) params ["_officerBuilding", "_officerBuildingPositions"];
+
+    if (isNil "_officerBuildingPositions") then {
+        // If we didn't find a building revert back to the HQ position
+        ["No officer building position found"] call YFNC(log);
+        _this;
+    } else {
+        selectRandom _officerBuildingPositions;
+    };
 };
 
 // Spawn Officer
