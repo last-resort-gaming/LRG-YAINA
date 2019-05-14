@@ -85,7 +85,7 @@ for "_x" from 0 to _towerCount do {
     _spawnPos = [_AOPos, 10, _AOSize, { !(_this isFlatEmpty [8, -1, 0.4, 10, 0, false, objNull] isEqualTo []) }] call YFNC(getPosAround);
 
     if (_spawnPos isEqualTo []) exitWith {
-        diag_log "Unable to find suitable location for tower";
+        ["Unable to find suitable location for tower", "ErrorLog"] call YFNC(log);
     };
 
     _tower = _towerClass createVehicle _spawnPos;

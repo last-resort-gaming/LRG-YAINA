@@ -24,7 +24,7 @@ disableSerialization;
 
 params ["_enabled"];
 
-diag_log format ["ClickRewards with: %1", _this];
+[format ["ClickRewards with: %1", _this]] call YFNC(log);
 
 // Get Enabled Control from IDC given to command
 private _tablet = (findDisplay IDD_TABLET); if(_tablet isEqualTo displayNull) exitWith {};

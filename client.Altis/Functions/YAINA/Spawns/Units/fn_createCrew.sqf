@@ -22,14 +22,14 @@ Author:
 */
 
 //Validate parameter count
-if ((count _this) < 2) exitWith {debugLog "Log: [spawnCrew] Function requires at least 2 parameters!"; []};
+if ((count _this) < 2) exitWith {["Log: [spawnCrew] Function requires at least 2 parameters!", "ErrorLog"] call YAINA_fnc_log; []};
 
 params ["_vehicle", "_grp","_factionDefine"];
 
 //Validate parameters
-if ((typeName _vehicle) != (typeName objNull)) exitWith {debugLog "Log: [spawnCrew] Vehicle (0) must be an Object!"; []};
-if ((typeName _grp) != (typeName grpNull)) exitWith {debugLog "Log: [spawnCrew] Crew group (1) must be a Group!"; []};
-if ((typeName _factionDefine) != (typeName "")) exitWith {debugLog "Log: [spawnCrew] Crew type (4) must be a String!"; []};
+if ((typeName _vehicle) != (typeName objNull)) exitWith {["Log: [spawnCrew] Vehicle (0) must be an Object!", "ErrorLog"] call YAINA_fnc_log; []};
+if ((typeName _grp) != (typeName grpNull)) exitWith {["Log: [spawnCrew] Crew group (1) must be a Group!", "ErrorLog"] call YAINA_fnc_log; []};
+if ((typeName _factionDefine) != (typeName "")) exitWith {["Log: [spawnCrew] Crew type (4) must be a String!", "ErrorLog"] call YAINA_fnc_log; []};
 
 _type = typeOf _vehicle;
 
@@ -48,7 +48,7 @@ _crewTypeArray = _factionDefine call {
 };
 
 if (_crewTypeArray isEqualTo []) exitWith {
-    diag_log format["No crew type for faction; %1", _factionDefine];
+    [format["No crew type for faction; %1", _factionDefine], "ErrorLog"] call YAINA_fnc_log;
 };
 
 //Spawn a driver if needed

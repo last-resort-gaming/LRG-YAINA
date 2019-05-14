@@ -29,11 +29,11 @@ _origUnits  = _unitsArray + [];
 _unitsArray = _unitsArray select {alive _x && {!isPlayer _x}};
 
 if (_startingPos isEqualTo [0,0,0]) exitWith {
-    diag_log "[derp_AIOccupyBuilding] Error: Position provided is invalid";
+    ["[derp_AIOccupyBuilding] Error: Position provided is invalid", "ErrorLog"] call YAINA_fnc_log;
 };
 
 if (count _unitsArray == 0 || {isNull (_unitsArray select 0)}) exitWith {
-    diag_log "[derp_AIOccupyBuilding] Error: No unit provided";
+    ["[derp_AIOccupyBuilding] Error: No unit provided", "ErrorLog"] call YAINA_fnc_log;
 };
 
 private _buildings = [];
@@ -44,7 +44,7 @@ _buildings = nearestObjects [_startingPos, _buildingTypes, _fillingRadius select
 _buildings = _buildings call BIS_fnc_arrayShuffle;
 
 if (count _buildings == 0) exitWith {
-    diag_log "[derp_AIOccupyBuilding] Error: No valid building found";
+    ["[derp_AIOccupyBuilding] Error: No valid building found", "ErrorLog"] call YAINA_fnc_log;
     _unitsArray
 };
 
@@ -92,7 +92,7 @@ private _count = 0;
 {_count = _count + count _x;} forEach _buildingsIndexes;
 private _leftOverAICount = (count _unitsArray) - _count;
 if (_leftOverAICount > 0) then {
-    diag_log "[derp_AIOccupyBuilding] Warning: not enough positions to place all units";
+    ["[derp_AIOccupyBuilding] Warning: not enough positions to place all units"] call YAINA_fnc_log;
 };
 
 private _placedUnits = [];

@@ -285,7 +285,7 @@ _pfh = {
                                 !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) && { { if( _x distance2D _this < 300) exitWith { 1 }; false; } count allPlayers isEqualTo 0 }
                              }] call BIS_fnc_randomPos;
                             _attempts = _attempts -1;
-                            diag_log format["IN A RPOS LOOP %1 (%2)", _rpos, _AOPos];
+                            [format["IN A RPOS LOOP %1 (%2)", _rpos, _AOPos]] call YFNC(log);
                         };
 
                         if !(_rpos isEqualTo [0,0]) then {

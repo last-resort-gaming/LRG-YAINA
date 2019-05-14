@@ -60,7 +60,7 @@ _typeNameCenter = typeName _center;
 } params ["_center"];
 
 if (_center isEqualTo [0, 0, 0]) exitWith {
-    ["AISpawns - Position is invalid"] call YFNC(log);
+    ["AISpawns - Position is invalid", "ErrorLog"] call YFNC(log);
 };
 
 _center set [2, 0];

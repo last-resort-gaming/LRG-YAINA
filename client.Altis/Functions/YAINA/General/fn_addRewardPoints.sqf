@@ -44,7 +44,7 @@ if (isRemoteExecuted && { !(remoteExecutedOwner isEqualTo 0) } ) then {
     };
 };
 
-diag_log format ["RewardPoints: %1 added by %2 for %3 - total: %4", _count, _owner, _source, YVAR(rewardPoints)];
+[format ["RewardPoints: %1 added by %2 for %3 - total: %4", _count, _owner, _source, YVAR(rewardPoints)]] call YFNC(log);
 
 profileNamespace setVariable [QYVAR(rewardPoints), YVAR(rewardPoints)];
 saveProfileNamespace;

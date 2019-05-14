@@ -106,7 +106,7 @@ _officerPos = _HQPosition call {
 
     if (isNil "_officerBuildingPositions") then {
         // If we didn't find a building revert back to the HQ position
-        ["No officer building position found"] call YFNC(log);
+        ["No officer building position found", "ErrorLog"] call YFNC(log);
         _this;
     } else {
         selectRandom _officerBuildingPositions;
@@ -145,7 +145,7 @@ _units append _hqg;
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand, army
 ([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _army, [6, 0, _AOSize*0.9, "LRG Default", 6, _HQElements + [_officerPos]], [10,0, "LRG Default"], [2,0, "LRG Default"], [4,0, "LRG Default"], [2,0, "LRG Default"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
-diag_log _spUnits;
+[str _spUnits] call YFNC(log);
 _units append _spUnits;
 _vehicles append _spVehs;
 

@@ -18,7 +18,7 @@ AR_Advanced_Rappelling_Install = {
 if(!isNil "AR_RAPPELLING_INIT") exitWith {};
 AR_RAPPELLING_INIT = true;
 
-diag_log "Advanced Rappelling Loading...";
+["Advanced Rappelling Loading..."] call YAINA_fnc_log;
 
 AP_RAPPEL_POINTS = [];
 
@@ -948,7 +948,7 @@ if(isServer) then {
 	
 };
 
-diag_log "Advanced Rappelling Loaded";
+["Advanced Rappelling Loaded"] call YAINA_fnc_log;
 
 };
 

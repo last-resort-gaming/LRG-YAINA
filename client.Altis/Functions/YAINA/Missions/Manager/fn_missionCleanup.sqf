@@ -46,11 +46,11 @@ if (_force isEqualTo false) then {
     if (_idx isEqualTo -1) then {
         (GVAR(missionCleanupTimeouts) select 0) pushBack _missionID;
         (GVAR(missionCleanupTimeouts) select 1) pushBack (LTIME + 300);
-        diag_log format ["Mission Cleanup Timer Started for %1", _missionID];
+        [format ["Mission Cleanup Timer Started for %1", _missionID], "CleanupLog"] call YFNC(log);
         _fail = true;
     } else {
         if (LTIME < ((GVAR(missionCleanupTimeouts) select 1) select _idx)) then {
-            diag_log format ["Mission Cleanup Timeout not reached for %1", _missionID];
+            [format ["Mission Cleanup Timeout not reached for %1", _missionID], "CleanupLog"] call YFNC(log);
             _fail = true;
         };
     };
@@ -74,9 +74,9 @@ if !(_markers isEqualTo []) then {
         // If there are players remaining in the AO, just bail out
         if !(call { { _x inArea _area } count allPlayers; } isEqualTo 0) then {
             _fail = true;
-            diag_log format ["Players in area for %1: %2", _missionID, _areaMarker];
+            [format ["Players in area for %1: %2", _missionID, _areaMarker], "CleanupLog"] call YFNC(log);
         } else {
-            diag_log format ["No plaayers in area for %1: %2", _missionID, _areaMarker];
+            [format ["No plaayers in area for %1: %2", _missionID, _areaMarker], "CleanupLog"] call YFNC(log);
 
             // As we have no players in the AO, but might be within our min despawn time
             // we take the opportunity to delette dead units to reduce some load
@@ -90,7 +90,7 @@ if !(_markers isEqualTo []) then {
 // Fail now unless it's forced, in which case we want to delete units/vehicles
 if (_fail && { not _force } ) exitWith { false; };
 
-diag_log format ["Proceeding with cleanup for %1", _missionID];
+[format ["Proceeding with cleanup for %1", _missionID], "CleanupLog"] call YFNC(log);
 
 // Delete all units
 {

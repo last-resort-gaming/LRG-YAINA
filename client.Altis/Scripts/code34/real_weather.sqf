@@ -87,7 +87,7 @@
 		default {
 			// clear
 			wcweather = [0, 0, 0, [random 3, random 3, true], date];
-			diag_log "Real weather: wrong starting weather";
+			["Real weather: wrong starting weather", "ErrorLog"] call YAINA_fnc_log;
 		};
 	};
 

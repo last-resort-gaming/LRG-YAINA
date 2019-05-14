@@ -8,4 +8,4 @@
 
 if (!isServer) exitWith {};
 
-diag_log("ZeusDay postInit");
+["ZeusDay postInit"] call YAINA_fnc_log;

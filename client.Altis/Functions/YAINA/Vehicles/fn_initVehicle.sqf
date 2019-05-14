@@ -56,7 +56,7 @@ private _checkCode = "";
 _veh setVariable [QVAR(init), true, true];
 
 if (_initOnInit) then {
-    diag_log format["Running init on %1", _veh];
+    [format["Running init on %1", _veh]] call YFNC(log);
     [_veh, _initCodeArgs] call _initCode;
 };
 
