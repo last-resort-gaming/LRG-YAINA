@@ -136,7 +136,7 @@ _jet addEventHandler ["HandleDamage", {
         if (_source call YFNC(isUAV)) then {
             _instigatorReal = (UAVControl _source) select 0;
         } else {
-            _instigatorReal = _killer;
+            _instigatorReal = _unit;
         };
     };
 
@@ -180,7 +180,6 @@ _jet addEventHandler ["Killed",{
 [{
     params ["_args", "_pfhID"];
     _args params ["_pos", "_radius", "_group", "_jet"];
-    _desgrp params ["_target", "_designator"];
 
     if (!alive _jet) exitWith {
 
@@ -229,7 +228,7 @@ _jet addEventHandler ["Killed",{
         };
     };
 
-}, 30, [_pos, _radius, _group, _jet, 0, [_target, _designator]]] call CBAP_fnc_addPerFrameHandler;
+}, 30, [_pos, _radius, _group, _jet]] call CBAP_fnc_addPerFrameHandler;
 
 
 

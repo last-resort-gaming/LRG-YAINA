@@ -36,37 +36,40 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // So that they get restored, before your clean up deletes them, as arma
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
-		  
+
  _army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
 
-call {
-	if (_army isEqualto "CSAT") exitwith {
+_army call {
+	if (_this isEqualto "CSAT") exitwith {
 		_aaVic = "O_APC_Tracked_02_AA_F";
 		_truck = "O_Truck_03_ammo_F";
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		_typeofAAs = [_aaVic,"O_Radar_System_02_F","O_SAM_System_04_F"];	
+		_typeofAAs = [_aaVic,"O_Radar_System_02_F","O_SAM_System_04_F"];
+        [_aaVic, _truck, _side, _MarkerColour, _typeofAAs];
 	};
 
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_aaVic = "I_LT_01_AA_F";
 		_truck = "I_Truck_02_ammo_F";
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_typeofAAs = [_aaVic];
+        [_aaVic, _truck, _side, _MarkerColour, _typeofAAs];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_aaVic = "O_T_APC_Tracked_02_AA_ghex_F";
 		_truck = "O_Truck_03_ammo_F";
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_typeofAAs = [_aaVic,"O_Radar_System_02_F","O_SAM_System_04_F"];
-	};	
-};
-				  
-				  
+        [_aaVic, _truck, _side, _MarkerColour, _typeofAAs];
+	};
+} params ["_aaVic", "_truck", "_side", "_MarkerColour", "_typeofAAs"];
+
+
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////

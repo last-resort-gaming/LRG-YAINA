@@ -36,23 +36,26 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific"];
 
-call {
-    if (_army isEqualTo "CSAT") exitwith {
+_army call {
+    if (_this isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];
+        [_side, _MarkerColour, _RandomHeli];
     };
-    if (_army isEqualTo "AAF") exitwith {
+    if (_this isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
-		_RandomHeli = ["I_Heli_light_03_dynamicLoadout_F","I_Heli_light_03_unarmed_F","I_Heli_Transport_02_F"];	
+		_RandomHeli = ["I_Heli_light_03_dynamicLoadout_F","I_Heli_light_03_unarmed_F","I_Heli_Transport_02_F"];
+        [_side, _MarkerColour, _RandomHeli];
     };
-    if (_army isEqualTo "CSAT Pacific") exitwith {
+    if (_this isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];	
+		_RandomHeli = ["O_Heli_Attack_02_black_F","O_Heli_Light_02_unarmed_F","O_Heli_Attack_02_dynamicLoadout_F"];
+        [_side, _MarkerColour, _RandomHeli];
     };
-};
+} params ["_side", "_MarkerColour", "_RandomHeli"];
 
 ///////////////////////////////////////////////////////////
 // AO Setup

@@ -37,26 +37,29 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["AAF", "Syndikat", "CSAT Pacific"];
 
-call {
-    if (_army isEqualTo "AAF") exitWith {
+_army call {
+    if (_this isEqualTo "AAF") exitWith {
 		_side = resistance;
 		_CampType = "CA";
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Comms Station";
+        [_side, _CampType, _MarkerColour, _MarkerMissionName];
     };
-    if (_army isEqualTo "CSAT Pacific") exitWith {
+    if (_this isEqualTo "CSAT Pacific") exitWith {
         _side = east;
 		_CampType = "CV";
 		_MarkerColour = "colorOPFOR";
 		_MarkerMissionName = "CSAT Camp";
+        [_side, _CampType, _MarkerColour, _MarkerMissionName];
     };
-    if (_army isEqualTo "Syndikat") exitWith {
+    if (_this isEqualTo "Syndikat") exitWith {
 		_side = resistance;
 		_CampType = "CB";
 		_MarkerColour = "ColorGUER";
 		_MarkerMissionName = "Outpost";
+        [_side, _CampType, _MarkerColour, _MarkerMissionName];
     };
-};
+} params ["_side", "_CampType", "_MarkerColour", "_MarkerMissionName"];
 
 ///////////////////////////////////////////////////////////
 // Location Scout

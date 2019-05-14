@@ -2,7 +2,7 @@
 Function: YAINA_MM_OBJ_fnc_factory
 
 Description:
-	The enemy has set up a vehicle factory. Take it out before the enemy is able to 
+	The enemy has set up a vehicle factory. Take it out before the enemy is able to
     reinforce their troops.
     Uses the Main AO faction for populatin the mission.
 
@@ -36,11 +36,11 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-				  
-				  
-call {
+
+
+_army call {
 	_side = east;
-	if (_army isEqualto "CSAT") exitwith {
+	if (_this isEqualto "CSAT") exitwith {
 		_randomveh = [
 			"O_APC_Tracked_02_cannon_F",
 			"O_APC_Wheeled_02_rcws_v2_F",
@@ -56,10 +56,11 @@ call {
 		_EngineerType = "O_engineer_F";
 		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> (selectRandom ["OIA_InfTeam","OI_reconPatrol"]);
 		_MarkerType = "O_installation";
-		_MarkerColour = "colorOPFOR";	
+		_MarkerColour = "colorOPFOR";
+        [_randomveh, _EngineerType, _RandomGroup, _MarkerType, _MarkerColour, east];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_randomveh = [
 			"I_LT_01_AA_F",
 			"I_APC_Wheeled_03_cannon_F",
@@ -76,9 +77,10 @@ call {
 		_MarkerType = "n_installation";
 		_MarkerColour = "ColorGUER";
 		_side = resistance;
+        [_randomveh, _EngineerType, _RandomGroup, _MarkerType, _MarkerColour, resistance];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_randomveh = [
 			"O_T_APC_Tracked_02_AA_ghex_F",
 			"O_T_APC_Tracked_02_cannon_ghex_F",
@@ -95,8 +97,9 @@ call {
 		_RandomGroup = configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> (selectRandom ["O_T_InfTeam","O_T_reconPatrol"]);
 		_MarkerType = "O_installation";
 		_MarkerColour = "colorOPFOR";
-	};	
-};
+        [_randomveh, _EngineerType, _RandomGroup, _MarkerType, _MarkerColour, east];
+	};
+} params ["_randomveh", "_EngineerType", "_RandomGroup", "_MarkerType", "_MarkerColour", "_side"];
 
 // Mission ID
 _missionID = call FNC(getMissionID);
@@ -206,7 +209,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_engineer", "_factory", "_AOPos", "_AOSize", "_nextSpawnTime", "_spawnCount"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_engineer", "_factory", "_AOPos", "_AOSize", "_nextSpawnTime", "_spawnCount", "_randomveh", "_side", "_RandomGroup"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
@@ -393,7 +396,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0, 1]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _engineer, _factory, _AOPos, _AOSize, 0, 1, _randomveh, _side, _RandomGroup]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];
