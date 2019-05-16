@@ -18,6 +18,13 @@ missionNamespace setVariable ["Ares_Allow_Zeus_To_Execute_Code", false, true];
 [] execVM "scripts\duda123\fn_advancedUrbanRappellingInit.sqf";
 [] execVM "scripts\duda123\fn_advancedRappellingInit.sqf";
 
+// Start up logging routines
+{
+	["================================================", _x] call YAINA_fnc_log;
+	["          YAINA is starting up....", _x] call YAINA_fnc_log;
+	["================================================", _x] call YAINA_fnc_log;
+} forEach ["GENERAL", "CommandsLog", "CleanupLog", "KillLog", "ErrorLog", "ArsenalLog"];
+
 ///////////////////////////////////////////////////////////
 // MAP SPECIFIC SERVER SETUP
 ///////////////////////////////////////////////////////////

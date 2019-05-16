@@ -24,8 +24,8 @@ if (isNil "CBAP_PFHhandles") then {
 };
 
 if (count CBAP_PFHhandles >= 999999) exitWith {
-    diag_log "Maximum amount of per frame handlers reached!";
-    diag_log _function;
+    ["Maximum amount of per frame handlers reached!", "ErrorLog"] call YAINA_fnc_log;
+    [_function, "ErrorLog"] call YAINA_fnc_log;
     -1
 };
 

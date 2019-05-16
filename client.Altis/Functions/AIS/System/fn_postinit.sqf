@@ -1,5 +1,5 @@
 if (isDedicated || !hasInterface) exitWith {};
-if (ais_ace_shutdown) exitWith {diag_log ["AIS: AIS shutdown itself cause ACE mod was detected. ACE and AIS cant work at the same time."]};
+if (ais_ace_shutdown) exitWith {["AIS: AIS shutdown itself cause ACE mod was detected. ACE and AIS cant work at the same time."] call YAINA_fnc_log};
 /*
 // expample action
 _action = [
