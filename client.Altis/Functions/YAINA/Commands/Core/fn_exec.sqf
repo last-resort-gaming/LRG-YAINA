@@ -29,6 +29,8 @@ if (remoteExecutedOwner isEqualTo 0) exitWith {};
 private _tmp = (allPlayers select { owner _x isEqualTo remoteExecutedOwner } );
 if (_tmp isEqualTo []) exitWith {};
 
+_command = toLower _command;
+
 private _caller = _tmp select 0;
 
 // Find the commands for the given user
@@ -40,7 +42,7 @@ if (_idx isEqualTo -1) exitWith {
 private _cmds = (GVAR(commands) select 1) select _idx;
 
 // Command allowed ?
-if !(_command in _cmds || { 'ALL' in _cmds  }) exitWith {
+if !((_command in _cmds) || ('ALL' in _cmds)) exitWith {
     [_caller, _command, false, "NOT PERMITTED"] call FNC(log);
 };
 

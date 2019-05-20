@@ -40,7 +40,7 @@ addMissionEventHandler["PlayerConnected", {
     _cmds = [_uid, 'yaina', [], ['ALL']] call YFNC(getDBKey);
 
     // We always add 'report', 'credits', 'help'
-    { _cmds pushBackUnique _x, nil; } count ['report', 'credits', 'help'];
+    { _cmds pushBackUnique _x; nil; } count ['report', 'credits', 'help'];
 
     _idx  = (GVAR(commands) select 0) find _owner;
     if (_idx isEqualTo -1) then {
