@@ -82,7 +82,13 @@ _missionID = call FNC(getMissionID);
 // plop down the hangar for now
 private _hangar = createVehicle ["Land_TentHangar_V1_F", [0,0,0], [], 0, "NONE"];
 private _d = [];
-{ _d append (_x select [0,2] apply { abs _x } ); true; } count (boundingBox _hangar);
+{
+    if (typeName _x != "ARRAY") then {
+        [format ["Invalid bounding box: %1, source building: %2", _x, _hangar], "ErrorLog"] call YFNC(log);
+    };
+    _d append ((_x select [0,2]) apply { abs _x } );
+    true;
+} count (boundingBox _hangar);
 
 // Hide any terrain and slam down the hangar
 private _hiddenTerrainKey = format["HT_%1", _missionID];
