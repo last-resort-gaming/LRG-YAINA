@@ -22,5 +22,5 @@ Author:
 [
     _this,
     "pilotmsg",
-    "%1, Welcome to the Last Resort Gaming public server. As a pilot you are required to be on our TeamSpeak server"
+    "%1, Welcome to the Last Resort Gaming public server. As a pilot you are required to be on our Discord server: discord.lastresortgaming.net"
 ] call FNC(generalMessage);
