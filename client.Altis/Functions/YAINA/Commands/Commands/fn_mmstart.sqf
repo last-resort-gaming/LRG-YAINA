@@ -41,9 +41,13 @@ if (_argStr isEqualTo "priority") then {
 private _mission = format["YAINA_MM_OBJ_fnc_%1", _argStr];
 
 if (isNil { missionNamespace getVariable _mission } ) exitWith {
-    format ["Invalid Mission Name: %1", _argStr];
+    _msg = format ["Invalid Mission Name: %1", _argStr];
+	_msg remoteExecCall ["systemChat", _owner];
+	_msg;
 };
 
 [_mission] call YAINA_MM_fnc_startMission;
 
-format ["Started Mission: %1", _argStr];
+_msg = format ["Started Mission: %1", _argStr];
+_msg remoteExecCall ["systemChat", _owner];
+_msg;
