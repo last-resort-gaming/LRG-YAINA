@@ -26,6 +26,14 @@ sleep 10;
 
 private _messages = call {
 
+    if ("MERT" call YAINA_fnc_testTraits) exitWith {
+        [
+            [ "You're part of the Medical Emergency Response Team.", ["That's MERT in long!"]],
+            [ "You provide emergency medical support for sections in the field.", ["Your main priority are other players' lifes"]],
+            [ "Coordinate with Section Medic if possible.", ["He'll tell you who to treat first."]]
+        ]
+    };
+
     if ("HQ" call YAINA_fnc_testTraits) exitWith {
         [
             [ "You're HQ, you MUST be on Discord.", ["discord.lastresortgaming.net"]],
