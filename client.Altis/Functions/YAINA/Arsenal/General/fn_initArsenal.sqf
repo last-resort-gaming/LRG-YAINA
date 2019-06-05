@@ -82,11 +82,11 @@ GVAR(unitWeapons) = call {
        _permitItems append ["srifle_DMR_06_olive_F", "srifle_DMR_06_camo_F"];
     };
 
-    if (["Marksman", "Sniper"] call YFNC(testTraits)) then {
+    if (["Marksman", "Sniper", "SPOTTER"] call YFNC(testTraits)) then {
 
         _permitGroups append ["Laserdesignator", "srifle"];
 
-        if (["Marksman"] call YFNC(testTraits)) then {
+        if (["Marksman", "SPOTTER"] call YFNC(testTraits)) then {
             // Deny the Lynx and 403 main sniper weapons
             _blacklistItems append ["srifle_GM6_F", "srifle_GM6_camo_F", "srifle_GM6_ghex_F", "srifle_LRR_F", "srifle_LRR_camo_F", "srifle_LRR_tna_F"];
         };
@@ -230,7 +230,7 @@ GVAR(unitItems) = call {
         _permitItems append ["U_B_GhillieSuit", "U_B_FullGhillie_lsh", "U_B_FullGhillie_sard", "U_B_FullGhillie_ard"];
     };
 
-    if(["SNIPER", "MARKSMAN"] call YFNC(testTraits)) then {
+    if(["SNIPER", "MARKSMAN", "SPOTTER"] call YFNC(testTraits)) then {
         _permitGroups append ["optic_AMS", "optic_SOS", "optic_DMS", "optic_KHS"];
     };
 
