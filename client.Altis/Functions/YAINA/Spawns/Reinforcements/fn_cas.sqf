@@ -89,7 +89,9 @@ if (isNil QVAR(cas)) then {
     GVAR(cas) = GVAR(cas) select { alive _x };
 };
 
-if (count GVAR(cas) >= _max && { !_force } ) exitWith {};
+if (count GVAR(cas) >= _max && { !_force } ) exitWith {
+    ["Number of active CAS jets exceeded."] call YFNC(log);
+};
 
 // Lets spawn us a jet, fly though our calling radio tower position and set up a patrol
 // we use delete on enpty group so we don't need to manage this at all once spawned
@@ -175,6 +177,9 @@ _jet addEventHandler ["Killed",{
 
 }];
 
+// DEBUG: Log this for the future and to see if issues persist
+[format ["CAS: Jet has been spawned at %1, unit is %2", _spawnPos, _jet]] call YFNC(log);
+
 // To let the AI do it's thing, regarding gun runs etc, we just set it to a SAD and periodically reveal targets in the main AO
 
 [{
@@ -182,6 +187,9 @@ _jet addEventHandler ["Killed",{
     _args params ["_pos", "_radius", "_group", "_jet"];
 
     if (!alive _jet) exitWith {
+
+        // DEBUG: Log this too
+        [format ["Jet %1 has been killed", _jet]] call YFNC(log);
 
         // Delete the pilot/any other crew, followed by the group
         { deleteVehicle _x; } count (units _group);
