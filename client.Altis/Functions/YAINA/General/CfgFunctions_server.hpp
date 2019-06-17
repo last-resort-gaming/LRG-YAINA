@@ -22,6 +22,7 @@ class YAINA {
 		class kickSelf {};
 		class playerIntroComplete {};
 		class getDBKey {};
+		class setDBKey {};
         class getFunctions {};
     };
 };
