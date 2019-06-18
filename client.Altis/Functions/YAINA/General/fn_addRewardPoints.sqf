@@ -28,8 +28,13 @@ if (!isServer) exitWith {
 };
 
 YVAR(rewardPoints) = YVAR(rewardPoints) + _count;
+
+// Clamp the credits between 0 and 75000
 if (YVAR(rewardPoints) < 0) then {
     YVAR(rewardPoints) = 0;
+};
+if (YVAR(rewardPoints) > 75000) then {
+    YVAR(rewardPoints) = 75000;
 };
 
 if(_source isEqualTo "") then { _source = "unknown"; };
@@ -46,7 +51,11 @@ if (isRemoteExecuted && { !(remoteExecutedOwner isEqualTo 0) } ) then {
 
 [format ["RewardPoints: %1 added by %2 for %3 - total: %4", _count, _owner, _source, YVAR(rewardPoints)]] call YFNC(log);
 
-profileNamespace setVariable [QYVAR(rewardPoints), YVAR(rewardPoints)];
-saveProfileNamespace;
+// Sync to DB
+_ret = ["credits", "balance", YVAR(rewardPoints)] call YFNC(setDBKey);
+
+if (not _ret) then {
+    ["There was an error syncing the credits balance to the database", "ErrorLog"] call YFNC(log);
+};
 
 publicVariable QYVAR(rewardPoints);
