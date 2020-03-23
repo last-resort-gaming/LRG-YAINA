@@ -1,7 +1,7 @@
 class YAINA {
 	tag = "YAINA";
 
-	class General {
+	class General_Server {
 		file = "Functions\YAINA\General";
 		class baseCleanupManager { postInit = 1; };
 		class timeManager{ postInit=1; };
