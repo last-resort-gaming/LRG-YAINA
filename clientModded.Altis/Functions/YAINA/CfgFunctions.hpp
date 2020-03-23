@@ -1,6 +1,6 @@
 #include "Missions\CfgFunctions.hpp"
 #include "Vehicles\CfgFunctions.hpp"
-#include "General\CfgFunctions.hpp"
+#include "Main\CfgFunctions.hpp"
 #include "Spawns\CfgFunctions.hpp"
 #include "AirDefence\CfgFunctions.hpp"
 #include "Arsenal\CfgFunctions.hpp"
