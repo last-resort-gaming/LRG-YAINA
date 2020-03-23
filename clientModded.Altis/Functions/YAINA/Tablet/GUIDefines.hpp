@@ -5,7 +5,7 @@
 */
 
 #include "defines.h"
-#include "..\General\a3-ui_f-config.hpp"
+#include "..\Main\a3-ui_f-config.hpp"
 
 ///////////////////////////////////////////////////////////
 // COLORS
