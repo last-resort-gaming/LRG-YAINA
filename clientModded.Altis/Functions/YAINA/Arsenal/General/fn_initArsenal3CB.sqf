@@ -104,16 +104,16 @@ GVAR(unitWeapons) = call {
 						"ACE_VMM3",
 						"ACE_VectorDay",
 						"ACE_Vector",
-						"ACE_Yardage450"];
+						"ACE_Yardage450",
+						"UK3CB_BAF_AT4_CS_AT_Launcher",
+						"UK3CB_BAF_AT4_CS_AP_Launcher"];
 						
     _blacklistItems  = ["arifle_ARX_blk_F", "arifle_ARX_ghex_F", "arifle_ARX_hex_F"
     ];
 
     if (["AT"] call YFNC(testTraits)) then {
         _permitGroups append ["missile", "rocket"];
-		_permitItems append ["UK3CB_BAF_AT4_CS_AT_Launcher",
-						"UK3CB_BAF_AT4_CS_AP_Launcher",
-						"UK3CB_BAF_Javelin_Slung_Tube",
+		_permitItems append ["UK3CB_BAF_Javelin_Slung_Tube",
 						"UK3CB_BAF_Javelin_CLU",
 						"UK3CB_BAF_NLAW_Launcher"];
     };
