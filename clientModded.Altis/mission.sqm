@@ -8,7 +8,7 @@ class EditorData
 	toggles=1537;
 	class ItemIDProvider
 	{
-		nextID=3907;
+		nextID=3908;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2832;
+		nextID=2856;
 	};
 	class Camera
 	{
-		pos[]={11608.15,68.216293,11862.947};
-		dir[]={-0.074321151,-0.60131496,0.79566449};
-		up[]={-0.055925798,0.79897797,0.59873605};
-		aside[]={0.99574935,-7.681956e-008,0.093008071};
+		pos[]={11672.875,96.689613,11947.141};
+		dir[]={-0.47213873,-0.47635978,-0.74174726};
+		up[]={-0.25580043,0.87923902,-0.4018715};
+		aside[]={-0.84360838,-1.0171789e-008,0.53697717};
 	};
 };
 binarizationWanted=0;
@@ -1002,7 +1002,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=611;
+		items=612;
 		class Item0
 		{
 			dataType="Object";
@@ -1144,7 +1144,7 @@ class Mission
 			};
 			id=178;
 			type="Land_Laptop_device_F";
-			atlOffset=0.81536102;
+			atlOffset=0.81538582;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -40224,7 +40224,7 @@ class Mission
 			};
 			id=3572;
 			type="Land_TripodScreen_01_large_F";
-			atlOffset=0.00050163269;
+			atlOffset=0.00066757202;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -40265,6 +40265,7 @@ class Mission
 			};
 			id=3574;
 			type="Land_TripodScreen_01_dual_v1_F";
+			atlOffset=0.00012016296;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -40386,6 +40387,7 @@ class Mission
 			};
 			id=3576;
 			type="Land_TripodScreen_01_dual_v1_F";
+			atlOffset=0.00012779236;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -40445,6 +40447,7 @@ class Mission
 			};
 			id=3577;
 			type="Land_CampingTable_F";
+			atlOffset=6.6757202e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -46833,6 +46836,153 @@ class Mission
 					};
 				};
 				nAttributes=5;
+			};
+		};
+		class Item611
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={1023.47,-185.97,30286.205};
+			};
+			id=3907;
+			type="tfar_ModuleTaskForceRadioEnforceUsage";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_radio_channel_password";
+					expression="_this setVariable ['radio_channel_password',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_RiflemanRadio";
+					expression="_this setVariable ['RiflemanRadio',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_radio_channel_name";
+					expression="_this setVariable ['radio_channel_name',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="EU2 - Task Force Radio";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_same_sw_frequencies_for_side";
+					expression="_this setVariable ['same_sw_frequencies_for_side',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_TeamLeaderRadio";
+					expression="_this setVariable ['TeamLeaderRadio',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_same_lr_frequencies_for_side";
+					expression="_this setVariable ['same_lr_frequencies_for_side',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="tfar_ModuleTaskForceRadioEnforceUsage_terrain_interception_coefficient";
+					expression="_this setVariable ['terrain_interception_coefficient',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=7;
+						};
+					};
+				};
+				nAttributes=7;
 			};
 		};
 	};
