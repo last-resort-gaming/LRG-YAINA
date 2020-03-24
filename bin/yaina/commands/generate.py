@@ -29,18 +29,19 @@ class List(Command):
 
         og = p.add_argument_group('Optional Arguments')
         og.add_argument("-m", "--map", help="Package which Map (default: Altis)", default="Altis")
+        og.add_argument("-v", "--variant", help="Which version to build (Modded or Vanilla)", default="Vanilla")
         og.add_argument("-b", "--base", help="Merge Base Path, Server Side Includes")
         og.add_argument("-h", "--help", action="help", help="show this help message and exit")
-        og.add_argument("-r", "--release", action="store_true", help="releae, tag it in git")
+        og.add_argument("-r", "--release", action="store_true", help="release, tag it in git")
 
     def run(self, yaina):
 
         self.logger = logging.getLogger(__name__)
         self.yaina  = yaina
-        self.source = os.path.join(yaina.root, "client.%s" % yaina.args.map)
+        self.source = os.path.join(yaina.root, "client%s.%s" % (yaina.args.variant, yaina.args.map))
 
         if not os.path.isdir(self.source):
-            print "Error: could not find client.%s in yaina rootdir" % yaina.args.map
+            print "Error: could not find client%s.%s in yaina rootdir" % (yaina.args.variant, yaina.args.map)
             sys.exit(1)
 
         if yaina.args.ZEUSDAY_ZIP:
@@ -178,7 +179,7 @@ class List(Command):
 
 
         pbo_ver  = self.yaina.getNextVersion()
-        pbo_name = "yaina"
+        pbo_name = "yaina_%s" % self.yaina.args.variant
 
         # re-write out the combined CfgFunctions.hpp
         with open(dst_func_file, 'w') as fh:
@@ -227,7 +228,7 @@ class List(Command):
 
         # Now we bundle the output
         mods_dir = self.yaina.config.get('apps', 'mods')
-        addon_path = os.path.join(mods_dir, "@yaina")
+        addon_path = os.path.join(mods_dir, "@yaina_%s" % self.yaina.args.variant)
         out_dir = os.path.join(addon_path, "addons")
 
         try:
@@ -240,7 +241,7 @@ class List(Command):
             "-P",
             "-X", "thumbs.db,*.cpp,*.bak,*.png,*.dep,*.log",
             self.build_dir,
-            os.path.join(out_dir, "yaina")
+            os.path.join(out_dir, "yaina_%s" % self.yaina.args.variant)
         ]
 
         self.logger.info("Running: %s" % " ".join(cmd))
@@ -421,7 +422,7 @@ class List(Command):
         else:
             # Now just PBO it
             pbo_ver  = self.yaina.getNextVersion(self.yaina.args.map)
-            pbo_name = "YAINA.%s" % (self.yaina.args.map)
+            pbo_name = "YAINA_%s.%s" % (self.yaina.args.variant, self.yaina.args.map)
 
             # Fix briefing name in mission.sqm
             for x in ['mission.sqm', 'description.ext']:
@@ -438,7 +439,7 @@ class List(Command):
             with open(cfg_f, 'w') as fh:
                 pass
 
-        # If we have a settings.sqf.zeus, rmeove
+        # If we have a settings.sqf.zeus, remove
         try:
             os.unlink(os.path.join(self.build_dir, 'settings.sqf.zeus'))
         except: pass
@@ -472,7 +473,7 @@ class List(Command):
 
             # We also dump out the ZeusDay template
             tmp_dir  = tempfile.mkdtemp(prefix="yaina_")
-            zip_name = 'ZeusTemplate.%s' % self.yaina.args.map
+            zip_name = 'ZeusTemplate_%s.%s' % (self.yaina.args.variant, self.yaina.args.map)
             tmp_tgt = os.path.join(tmp_dir, zip_name)
 
             # Copy base template files
@@ -492,7 +493,7 @@ class List(Command):
                 shutil.copyfile(src, dst)
 
             # And zip it all up
-            zip_fn = os.path.join(self.yaina.root, 'Output', 'ZeusTemplate.%s.zip' % self.yaina.args.map)
+            zip_fn = os.path.join(self.yaina.root, 'Output', 'ZeusTemplate_%s.%s.zip' % (self.yaina.args.variant, self.yaina.args.map))
             try:
                 os.makedirs(os.path.dirname(zip_fn))
             except: pass
