@@ -102,7 +102,7 @@ _v lock 3;
 _vehicles pushBack _v;
 
 // As the above are all destroyable, create a NS
-_ns = [true] call CBAP_fnc_createNamespace;
+_ns = [true] call CBA_fnc_createNamespace;
 
 //-------------------- SPAWN FORCE PROTECTION
 

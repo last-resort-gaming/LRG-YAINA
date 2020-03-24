@@ -59,5 +59,5 @@ if !(isNil "_np") exitWith {
             deleteVehicle _chute;
         },
         [player, _chute]
-    ] call CBAP_fnc_waitUntilAndExecute;
+    ] call CBA_fnc_waitUntilAndExecute;
 }, [], 0.5, 0.5] call YFNC(fadeOutAndExecute);

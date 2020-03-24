@@ -53,7 +53,7 @@ if (_argStr isEqualTo "") then {
                 // actually closing the dialog and go on a rager
                 [{
                     ["!kick timedout"] remoteExecCall ["YAINA_fnc_kickSelf", 2];
-                }, [], 7] call CBAP_fnc_waitAndExecute;
+                }, [], 7] call CBA_fnc_waitAndExecute;
 
                 _result = [_content, _title, "YES", false] call BIS_fnc_guiMessage;
                 ["Accepted their !kick"] remoteExecCall ["YAINA_fnc_kickSelf", 2];

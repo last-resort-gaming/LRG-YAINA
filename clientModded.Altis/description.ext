@@ -2,6 +2,7 @@
 * UI ELEMENTS
 ******************************************************************************/
 #include "Functions\AIS\Effects\BarDlg.hpp"
+#include "Functions\YAINA\Main\crewNamesTitles.hpp"
 #include "Functions\YAINA\Tablet\GUIDefines.hpp"
 #include "scripts\infistar\infiSTAR_AdminMenu.hpp"
 
@@ -10,7 +11,6 @@
 ******************************************************************************/
 
 class CfgFunctions {
-	#include "Functions\CBA\CfgFunctions.hpp"
     #include "Functions\YAINA\CfgFunctions.hpp"
     #include "Functions\AIS\cfgFunctions.hpp"
     #include "Functions\DERP\CfgFunctions.hpp"

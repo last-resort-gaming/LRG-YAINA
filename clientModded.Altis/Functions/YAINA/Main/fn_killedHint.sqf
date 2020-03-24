@@ -206,4 +206,4 @@ player setVariable [QYVAR(side), playerSide, true];
 
     YVAR(last_killhint_player) = diag_tickTime;
 
-}] call CBAP_fnc_addEventHandler;
+}] call CBA_fnc_addEventHandler;

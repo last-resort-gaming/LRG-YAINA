@@ -218,4 +218,4 @@ GVAR(prefix) = ((name player) splitString "-,. ") joinString "";
         [_us joinString ", ", "zeuslog"] remoteExec [QYFNC(log), 2];
     };
 
-}, 30, []] call CBAP_fnc_addPerFrameHandler;
+}, 30, []] call CBA_fnc_addPerFrameHandler;

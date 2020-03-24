@@ -60,7 +60,7 @@ player addEventHandler ["WeaponAssembled", {
         // Global event in case of being a UAV to ensure the relevent
         // UAV Terminals can connect to it
         if (_weapon call YFNC(isUAV)) then {
-            ["UAVSpawn", [_weapon]] call CBAP_fnc_globalEvent;
+            ["UAVSpawn", [_weapon]] call CBA_fnc_globalEvent;
         };
     } else {
           _unit action ["Disassemble", _weapon];
@@ -92,6 +92,6 @@ player addEventHandler ["Take", {
             player disableUAVConnectability [_uav, true];
         };
     };
-}] call CBAP_fnc_addEventHandler;
+}] call CBA_fnc_addEventHandler;
 
 call FNC(respawn);
