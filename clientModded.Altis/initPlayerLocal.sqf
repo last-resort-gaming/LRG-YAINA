@@ -83,7 +83,3 @@ INTRO_HANDLE =  addMissionEventHandler ["PreloadFinished", {
     };
 }];
 
-player setVariable ["tf_sendingDistanceMultiplicator", 3.5];
-player setVariable ["tf_receivingDistanceMultiplicator", 1];
-player setVariable ["TF_terrain_interception_coefficient", 0.1];
-

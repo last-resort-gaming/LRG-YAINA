@@ -952,7 +952,7 @@ force LRG_Main_ViewDistanceMaxObjectDistance = 10000;
 
 force LRG_Main_ViewDistanceNoGrass = false;
 
-force LRG_Main_VoyagerCompass = false;
+force LRG_Main_VoyagerCompass = true;
 
 
 
