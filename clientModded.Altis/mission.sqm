@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2880;
+		nextID=2904;
 	};
 	class Camera
 	{
-		pos[]={11672.875,96.689613,11947.141};
+		pos[]={11749.603,241.28314,12133.575};
 		dir[]={-0.47213873,-0.47635978,-0.74174726};
 		up[]={-0.25580043,0.87923902,-0.4018715};
 		aside[]={-0.84360838,-1.0171789e-008,0.53697717};
@@ -46854,7 +46854,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="";
+							value="LRGOps";
 						};
 					};
 				};
@@ -46892,7 +46892,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="EU2 - Task Force Radio";
+							value="LRG Operations";
 						};
 					};
 				};
