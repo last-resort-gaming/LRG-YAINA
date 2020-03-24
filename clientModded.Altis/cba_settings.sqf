@@ -942,7 +942,7 @@ force LRG_Main_QSMagRepack = false;
 
 force LRG_Main_TFARTerrainInterference = 0.5;
 
-force LRG_Main_TFARTransmitRange = 2.5;
+force LRG_Main_TFARTransmitRange = 8;
 
 force LRG_Main_VehicleCrewList = true;
 
