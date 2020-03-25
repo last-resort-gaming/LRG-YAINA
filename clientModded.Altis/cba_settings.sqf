@@ -1028,13 +1028,13 @@ force LRG_QS_ST_showOwnGroup = false;
 
 force LRG_Weather_DayTimeAcc = 1;
 
-force LRG_Weather_Master = false;
+force LRG_Weather_Master = true;
 
 force LRG_Weather_MaxTime = 60;
 
 force LRG_Weather_MinTime = 1;
 
-force LRG_Weather_NightTimeAcc = 1;
+force LRG_Weather_NightTimeAcc = 3;
 
 force LRG_Weather_RealTime = true;
 
