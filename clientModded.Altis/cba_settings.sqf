@@ -928,7 +928,7 @@ force LRG_Main_Earplugs = false;
 
 force LRG_Main_FatigueVanilla = false;
 
-force LRG_Main_FlipVehicle = false;
+force LRG_Main_FlipVehicle = true;
 
 force LRG_Main_FPSCounter = true;
 
@@ -940,9 +940,9 @@ force LRG_Main_PilotCheck = false;
 
 force LRG_Main_QSMagRepack = false;
 
-force LRG_Main_TFARTerrainInterference = 0.5;
+force LRG_Main_TFARTerrainInterference = 0.2;
 
-force LRG_Main_TFARTransmitRange = 2.5;
+force LRG_Main_TFARTransmitRange = 4.5;
 
 force LRG_Main_VehicleCrewList = true;
 
