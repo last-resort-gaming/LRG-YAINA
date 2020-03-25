@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3096;
+		nextID=3144;
 	};
 	class Camera
 	{
-		pos[]={11619.84,50.297791,11928.579};
-		dir[]={-0.73212832,-0.485432,0.47809896};
-		up[]={-0.40648109,0.87422115,0.26544312};
-		aside[]={0.54682064,-1.3033423e-006,0.83737689};
+		pos[]={11655.618,56.517479,11915.427};
+		dir[]={-0.76487988,-0.44556504,0.46547356};
+		up[]={-0.3806684,0.89519465,0.23165919};
+		aside[]={0.51991069,-1.2212986e-006,0.85434562};
 	};
 };
 binarizationWanted=0;
@@ -72,12 +72,12 @@ addons[]=
 	"A3_Weapons_F_Mark_Machineguns_MMG_02",
 	"cba_jr",
 	"ace_scopes",
+	"ace_ballistics",
 	"A3_Weapons_F_Acc",
 	"A3_Weapons_F_Mark_Acc",
 	"ace_laserpointer",
 	"A3_Weapons_F_Mark",
 	"ace_reload",
-	"ace_ballistics",
 	"A3_Weapons_F_Pistols_Pistol_Heavy_01",
 	"A3_Weapons_F_Items",
 	"ace_medical_engine",
@@ -440,22 +440,22 @@ class AddonsMetaData
 		};
 		class Item37
 		{
-			className="ace_laserpointer";
-			name="ACE3 - Laser Pointer";
+			className="ace_ballistics";
+			name="ACE3 - Ballistics";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
 		class Item38
 		{
-			className="ace_reload";
-			name="ACE3 - Reload";
+			className="ace_laserpointer";
+			name="ACE3 - Laser Pointer";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
 		class Item39
 		{
-			className="ace_ballistics";
-			name="ACE3 - Ballistics";
+			className="ace_reload";
+			name="ACE3 - Reload";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
@@ -1332,7 +1332,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\Ghost.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Ghost.paa";
 						};
 					};
 				};
@@ -1451,7 +1451,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\Welcome_board.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\Welcome_board.paa";
 						};
 					};
 				};
@@ -2407,7 +2407,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="Data\Billboards\5Section.paa";
+									value="z\LRG Fundamentals\Addons\Media\images\5Section.paa";
 								};
 							};
 						};
@@ -2467,7 +2467,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="Data\Billboards\6Section.paa";
+									value="z\LRG Fundamentals\Addons\Media\images\6Section.paa";
 								};
 							};
 						};
@@ -2969,7 +2969,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="Data\Billboards\3Section.paa";
+									value="z\LRG Fundamentals\Addons\Media\images\3Section.paa";
 								};
 							};
 						};
@@ -3028,7 +3028,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="Data\Billboards\4Section.paa";
+									value="z\LRG Fundamentals\Addons\Media\images\4Section.paa";
 								};
 							};
 						};
@@ -3586,7 +3586,7 @@ class Mission
 											"STRING"
 										};
 									};
-									value="Data\Billboards\2Section.paa";
+									value="z\LRG Fundamentals\Addons\Media\images\2Section.paa";
 								};
 							};
 						};
@@ -22261,7 +22261,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\phoenixtest.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\phoenixtest.paa";
 						};
 					};
 				};
@@ -22320,7 +22320,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\paradropInac.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\paradropInac.paa";
 						};
 					};
 				};
@@ -28741,7 +28741,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\Briefing_Area.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\Briefing_Area.paa";
 						};
 					};
 				};
@@ -29968,7 +29968,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\Helipad_Warning.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\Helipad_Warning.paa";
 						};
 					};
 				};
@@ -37714,7 +37714,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\phoenixtest.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\phoenixtest.paa";
 						};
 					};
 				};
@@ -39973,7 +39973,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="Data\Billboards\phoenixtest.paa";
+							value="z\LRG Fundamentals\Addons\Media\images\Public Server\phoenixtest.paa";
 						};
 					};
 				};
