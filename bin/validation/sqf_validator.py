@@ -19,8 +19,9 @@ def validKeyWordAfterCode(content, index):
             pass
     return False
 
-def check_sqf_syntax(filepath):
+def check_sqf_syntax(filepath, strict):
     bad_count_file = 0
+    warning_count_file = 0
     def pushClosing(t):
         closingStack.append(closing.expr)
         closing << Literal( closingFor[t[0]] )
@@ -149,12 +150,14 @@ def check_sqf_syntax(filepath):
             bad_count_file += 1
         pattern = re.compile('\s*(/\*[\s\S]+?\*/)\s*#include')
         if pattern.match(content):
-            print("ERROR: A found #include after block comment in file {0}".format(filepath))
-            bad_count_file += 1
+            if strict:
+                print("ERROR: A found #include after block comment in file {0}".format(filepath))
+                bad_count_file += 1
+            else:
+                print("WARNING: A found #include after block comment in file {0}".format(filepath))
+                warning_count_file += 1
 
-
-
-    return bad_count_file
+    return bad_count_file, warning_count_file
 
 def main():
 
@@ -162,25 +165,30 @@ def main():
 
     sqf_list = []
     bad_count = 0
+    warn_count = 0
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-m','--module', help='only search specified module addon folder', required=False, default="")
+    parser.add_argument('-r', '--root', help='root for the validator', required=False, default='clientVanilla.Altis')
+    parser.add_argument('-s', '--strict', help='strict mode, treat warnings as errors', action="store_true")
     args = parser.parse_args()
 
     # Allow running from root directory as well as from inside the tools directory
-    rootDir = "../Addons"
-    if (os.path.exists("Addons")):
-        rootDir = "Addons"
+    rootDir = "../" + args.root
+    if (os.path.exists(args.root)):
+        rootDir =  args.root
 
     for root, dirnames, filenames in os.walk(rootDir + '/' + args.module):
       for filename in fnmatch.filter(filenames, '*.sqf'):
         sqf_list.append(os.path.join(root, filename))
 
     for filename in sqf_list:
-        bad_count = bad_count + check_sqf_syntax(filename)
+        _bad_count, _warn_count = check_sqf_syntax(filename, args.strict)
+        bad_count += _bad_count
+        warn_count += _warn_count
 
 
-    print("------\nChecked {0} files\nErrors detected: {1}".format(len(sqf_list), bad_count))
+    print("------\nChecked {0} files\nErrors detected: {1}\nWarnings: {2}".format(len(sqf_list), bad_count, warn_count))
     if (bad_count == 0):
         print("SQF validation PASSED")
     else:

@@ -131,13 +131,14 @@ def main():
     bad_count = 0
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-m','--module', help='only search specified module addon folder', required=False, default="")
+    parser.add_argument('-m', '--module', help='only search specified module addon folder', required=False, default="")
+    parser.add_argument('-r', '--root', help='root for the validator', required=False, default='clientVanilla.Altis')
     args = parser.parse_args()
 
     # Allow running from root directory as well as from inside the tools directory
-    rootDir = "../Addons"
-    if (os.path.exists("Addons")):
-        rootDir = "Addons"
+    rootDir = "../" + args.root
+    if (os.path.exists(args.root)):
+        rootDir =  args.root
 
     for root, dirnames, filenames in os.walk(rootDir + '/' + args.module):
       for filename in fnmatch.filter(filenames, '*.cpp'):
