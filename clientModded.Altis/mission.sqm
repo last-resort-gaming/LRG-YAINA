@@ -8,7 +8,7 @@ class EditorData
 	toggles=1537;
 	class ItemIDProvider
 	{
-		nextID=3937;
+		nextID=3938;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3000;
+		nextID=3024;
 	};
 	class Camera
 	{
-		pos[]={11616.272,34.672092,11908.128};
-		dir[]={-0.9395203,-0.2989575,0.16738048};
-		up[]={-0.29434985,0.95425069,0.052439015};
-		aside[]={0.1754005,-2.8923387e-007,0.98454422};
+		pos[]={11573.868,42.189613,11915.689};
+		dir[]={-0.58407944,-0.65562701,0.47864828};
+		up[]={-0.5071041,0.75507551,0.41556594};
+		aside[]={0.63387471,-6.6368375e-007,0.77349931};
 	};
 };
 binarizationWanted=0;
@@ -173,13 +173,14 @@ addons[]=
 	"A3_Boat_F_Boat_Transport_01",
 	"A3_Boat_F_Beta_SDV_01",
 	"UK3CB_BAF_Units_Desert",
-	"UK3CB_BAF_Vehicles_Warrior_a3"
+	"UK3CB_BAF_Vehicles_Warrior_a3",
+	"LRG_Medical"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=97;
+		items=98;
 		class Item0
 		{
 			className="A3_Structures_F_EPC";
@@ -857,6 +858,13 @@ class AddonsMetaData
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
+		class Item97
+		{
+			className="LRG_Medical";
+			name="LRG Fundamentals";
+			author="Last Resort Gaming";
+			url="https:";
+		};
 	};
 };
 class DynamicSimulation
@@ -985,7 +993,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=612;
+		items=613;
 		class Item0
 		{
 			dataType="Object";
@@ -4613,7 +4621,7 @@ class Mission
 						};
 					};
 					id=1752;
-					atlOffset=0.11238098;
+					atlOffset=0.12747955;
 				};
 				class Item4
 				{
@@ -4877,7 +4885,7 @@ class Mission
 				};
 			};
 			id=1758;
-			atlOffset=191.59576;
+			atlOffset=191.62155;
 		};
 		class Item18
 		{
@@ -48209,16 +48217,27 @@ class Mission
 				nAttributes=2;
 			};
 		};
+		class Item612
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={11545.598,23.977066,11927.763};
+			};
+			id=3937;
+			type="LRG_ModuleMedical";
+			atlOffset=9.5367432e-005;
+		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=4;
+			nextID=5;
 		};
 		class Links
 		{
-			items=4;
+			items=5;
 			class Item0
 			{
 				linkID=0;
@@ -48254,6 +48273,16 @@ class Mission
 				linkID=3;
 				item0=3749;
 				item1=3748;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item4
+			{
+				linkID=4;
+				item0=3937;
+				item1=3182;
 				class CustomData
 				{
 					type="Sync";
