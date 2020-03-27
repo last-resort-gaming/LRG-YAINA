@@ -895,7 +895,7 @@ outlw_MR_showFullSwitch =
 		outlw_MR_doHideFull = true;
 		profileNamespace setVariable ["outlw_MR_doHideFull_profile", true];
 		((uiNamespace getVariable "outlw_MR_Dialog_Main") displayCtrl 9004) ctrlSetStructuredText parseText "Show Full: <t align='right'>Off</t>";
-	}:
+	};
 
 	call outlw_MR_populateMagListBox;
 };
