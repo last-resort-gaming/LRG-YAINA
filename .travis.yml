@@ -1,0 +1,16 @@
+# Travis Build Integration
+# https://docs.travis-ci.com
+dist: trusty
+language: python
+python:
+  - '3.5'
+install: true
+
+script:
+  - python3 bin/validation/sqf_validator.py
+  - python3 bin/validation/config_style_checker.py
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
