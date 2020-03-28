@@ -934,7 +934,7 @@ force LRG_Main_FPSCounter = true;
 
 force LRG_Main_LockCamVehicle = false;
 
-force LRG_Main_Logging = true;
+force LRG_Main_Logging = false;
 
 force LRG_Main_PilotCheck = false;
 
@@ -952,7 +952,7 @@ force LRG_Main_ViewDistanceMaxObjectDistance = 10000;
 
 force LRG_Main_ViewDistanceNoGrass = false;
 
-force LRG_Main_VoyagerCompass = true;
+LRG_Main_VoyagerCompass = true;
 
 
 
