@@ -181,7 +181,7 @@ _heli addEventHandler ["Killed",{
         { deleteVehicle _x; } count (units _group);
         deleteGroup _group;
 
-        _pfhID call CBAP_fnc_removePerFrameHandler;
+        _pfhID call CBA_fnc_removePerFrameHandler;
     };
 
     // Keep the bird in the air
@@ -206,14 +206,14 @@ _heli addEventHandler ["Killed",{
         _group setSpeedMode "FULL";
 
         // Pick a random player to go all SAD on
-        [_group] call CBAP_fnc_clearWaypoints;
-        [_group, getPos (selectRandom _pina), 20, "SAD", "COMBAT", "RED"] call CBAP_fnc_addWaypoint;
+        [_group] call CBA_fnc_clearWaypoints;
+        [_group, getPos (selectRandom _pina), 20, "SAD", "COMBAT", "RED"] call CBA_fnc_addWaypoint;
     } else {
         // We should at least stick around the AO on a loiter
         _wps = waypoints _group;
 
         if ( (count _wps) isEqualTo 0 || { (waypointPosition (_wps select 0)) distance2D _pos > 5 } ) then {
-            [_group] call CBAP_fnc_clearWaypoints;
+            [_group] call CBA_fnc_clearWaypoints;
             _wp = _group addWaypoint [_pos, 0];
             _wp setWaypointType "LOITER";
             _wp setWaypointLoiterRadius (_radius * 1.5);
@@ -222,7 +222,7 @@ _heli addEventHandler ["Killed",{
         };
     };
 
-}, 30, [_pos, _radius, _group, _heli, 0, [_target, _designator]]] call CBAP_fnc_addPerFrameHandler;
+}, 30, [_pos, _radius, _group, _heli, 0, [_target, _designator]]] call CBA_fnc_addPerFrameHandler;
 
 
 

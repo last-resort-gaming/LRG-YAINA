@@ -56,12 +56,12 @@ if !(isServer or hasInterface) then {
             [profileName, GVAR(localMissionID)] remoteExecCall [QFNC(addHC), 2];
         },
         []
-    ] call CBAP_fnc_waitUntilAndExecute;
+    ] call CBA_fnc_waitUntilAndExecute;
 };
 
 if (isServer) then {
     // Start our Mission Manager in 60 seconds to give our HCs time to connect
-    [{ call FNC(missionManager); }, [], 60] call CBAP_fnc_waitAndExecute;
+    [{ call FNC(missionManager); }, [], 60] call CBA_fnc_waitAndExecute;
 
 
     // We need to keep track of building changes to ensure we restore them when a player moves away
@@ -84,7 +84,7 @@ if (isServer) then {
                     { call { { (_this select 0) distance2D _x < 1000 } count allPlayers; } isEqualTo 0 },
                     { (_this select 0) setDamage 0; },
                     [_from]
-                ] call CBAP_fnc_waitUntilAndExecute;
+                ] call CBA_fnc_waitUntilAndExecute;
             };
         };
     }];

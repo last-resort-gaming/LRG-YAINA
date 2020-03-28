@@ -40,7 +40,7 @@ player createDiaryRecord ["LRG Public Server", ["Credits",
 <font face='PuristaLight' color='#D3D3D3'>We would like to thank the following for their contributions to both the community and especially the following projects that have been used to create this mission.</font>
 <br/>
 <br/>alganthe:<br/><font face='PuristaLight' color='#D3D3D3'>    Vehicle Crew HUD, Occupy Building Function</font>
-<br/>CBAP_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    PFH Handlers, Event Handlers</font>
+<br/>CBA_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    PFH Handlers, Event Handlers</font>
 <br/>code34 :<br/><font face='PuristaLight' color='#D3D3D3'>    Real Weather</font>
 <br/>duda :<br/><font face='PuristaLight' color='#D3D3D3'>
     Advanced Towing, Advanced Rappelling,<br/>
@@ -72,7 +72,7 @@ player createDiaryRecord ["LRG Public Server", ["Optional Mods",
 <font face='PuristaLight' color='#D3D3D3'>Please click a mod to copy the URL to your clipboard, alternatively, use the following collection url: <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=1214679552'"">YAINA Approved Mods Collection</execute></font>
 <br/>
 <br/>badbenson:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=333310405'"">Enhanced Movement</execute></font>
-<br/>CBAP_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=450814997'"">CBAP_A3</execute></font>
+<br/>CBA_A3:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=450814997'"">CBA_A3</execute></font>
 <br/>dslyecxi:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=498740884'"">ShackTac User Interface</execute></font>
 <br/>LAxemann:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825179978'"">Enhanced Soundscape</execute>, <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=825181638'"">DynaSound 2</execute></font>
 <br/>LordJarhead:<br/><font face='PuristaLight' color='#D3D3D3'>    <execute expression=""copyToClipboard 'http://steamcommunity.com/sharedfiles/filedetails/?id=861133494'"">JSRS SOUNDMOD</execute></font>

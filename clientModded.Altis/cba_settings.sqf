@@ -928,21 +928,21 @@ force LRG_Main_Earplugs = false;
 
 force LRG_Main_FatigueVanilla = false;
 
-force LRG_Main_FlipVehicle = false;
+force LRG_Main_FlipVehicle = true;
 
 force LRG_Main_FPSCounter = true;
 
 force LRG_Main_LockCamVehicle = false;
 
-force LRG_Main_Logging = true;
+force LRG_Main_Logging = false;
 
 force LRG_Main_PilotCheck = false;
 
 force LRG_Main_QSMagRepack = false;
 
-force LRG_Main_TFARTerrainInterference = 0.5;
+force LRG_Main_TFARTerrainInterference = 0.2;
 
-force LRG_Main_TFARTransmitRange = 8;
+force LRG_Main_TFARTransmitRange = 4.5;
 
 force LRG_Main_VehicleCrewList = true;
 
@@ -952,7 +952,7 @@ force LRG_Main_ViewDistanceMaxObjectDistance = 10000;
 
 force LRG_Main_ViewDistanceNoGrass = false;
 
-force LRG_Main_VoyagerCompass = false;
+LRG_Main_VoyagerCompass = true;
 
 
 
@@ -1028,13 +1028,13 @@ force LRG_QS_ST_showOwnGroup = false;
 
 force LRG_Weather_DayTimeAcc = 1;
 
-force LRG_Weather_Master = false;
+force LRG_Weather_Master = true;
 
 force LRG_Weather_MaxTime = 60;
 
 force LRG_Weather_MinTime = 1;
 
-force LRG_Weather_NightTimeAcc = 1;
+force LRG_Weather_NightTimeAcc = 3;
 
 force LRG_Weather_RealTime = true;
 

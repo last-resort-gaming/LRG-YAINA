@@ -80,7 +80,7 @@ if(isServer) then {
         // Log the event
         [format["action=PERMIT, command=%1, player=%2, playeruid=%3, vehicle=%4", _action, name _by, _uid, typeOf _obj], "CommandsLog"] call YFNC(log);
 
-    }] call CBAP_fnc_addEventHandler;
+    }] call CBA_fnc_addEventHandler;
 
 };
 
@@ -162,10 +162,10 @@ if(hasInterface) then {
                 // Delete any markers that don't belong to our group / given up keys for
                 { if !(_x in _markers) then { deleteMarkerLocal _x; }; true; } count ([QVAR(mrk)] call FNC(getMarkers));
 
-            }, 0, []] call CBAP_fnc_addPerFrameHandler;
+            }, 0, []] call CBA_fnc_addPerFrameHandler;
         } else {
             // Delete our PFH and vehicle markers
-            [GVAR(pfhID)] call CBAP_fnc_removePerFrameHandler;
+            [GVAR(pfhID)] call CBA_fnc_removePerFrameHandler;
             GVAR(pfhID) = nil;
             { deleteMarkerLocal _x; true; } count ([QVAR(mrk)] call FNC(getMarkers));
         };
@@ -178,5 +178,5 @@ if(hasInterface) then {
         if !(isNil "_id") then {
             _obj setUserActionText [_id, ["Unlock Vehicle", "Lock Vehicle"] select (_newState isEqualTo 0)];
         };
-    }] call CBAP_fnc_addEventHandler;
+    }] call CBA_fnc_addEventHandler;
 };

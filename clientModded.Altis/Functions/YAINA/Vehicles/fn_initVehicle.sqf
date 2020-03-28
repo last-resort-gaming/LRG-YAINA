@@ -104,7 +104,7 @@ if (_hasKeys) then {
         }] remoteExec ["call", 2];
 
         // Broadcast VehicleLock event to update the action across players
-        ["VehicleLock", [player, _target, _newState]] call CBAP_fnc_globalEvent;
+        ["VehicleLock", [player, _target, _newState]] call CBA_fnc_globalEvent;
 
     }, [], 1.5, false, true, "", "['HQ', 'veh-unlock'] call YAINA_fnc_testTraits && { ( { alive _x } count (crew _target) ) isEqualTo 0 }", 10, false] call YFNC(addActionMP);
 
@@ -118,7 +118,7 @@ if (_hasKeys) then {
 
             // We delete the pfh if we are no longer the driver
             if !(driver _veh isEqualTo player) then {
-                [_pfhID] call CBAP_fnc_removePerFrameHandler;
+                [_pfhID] call CBA_fnc_removePerFrameHandler;
             };
 
             // Otherwise, return if no owner set
@@ -131,7 +131,7 @@ if (_hasKeys) then {
 
             if !((group _owner) isEqualTo (group player)) then {
                 // So we can remove this PFH to stop it firing
-                [_pfhID] call CBAP_fnc_removePerFrameHandler;
+                [_pfhID] call CBA_fnc_removePerFrameHandler;
 
                 0 = [] spawn {
                     _veh = vehicle player;
@@ -160,28 +160,9 @@ if (_hasKeys) then {
                 };
             };
 
-        }, 1, [_veh]] call CBAP_fnc_addPerFrameHandler;
+        }, 1, [_veh]] call CBA_fnc_addPerFrameHandler;
 
     }] call FNC(addGetInHandler);
-};
-
-// If it's a ground vehicle we allow engineers to flip if it falls over
-if (_class isKindOf "LandVehicle") then {
-
-    _checkCode = "'ENG' call YAINA_fnc_testTraits &&
-                 { ( { alive _x } count (crew _target) ) isEqualTo 0 } &&
-                 { (vectorUp _target) select 2 < 0.5 }";
-
-    [_veh, {}, "<t color='#ff1111'>Flip Vehicle</t>", {
-        params ["_target", "_caller", "_id", "_arguments"];
-        // Fire it back to server
-        if (local _target) then {
-            [_target] call FNC(flip);
-        } else {
-            // Ask the server who will forward it to right place
-            [_target] remoteExec [QFNC(flip), 2];
-        };
-    }, [], 1.5, false, true, "", _checkCode, 10, false] call YFNC(addActionMP);
 };
 
 // If it's an air asset with transport slots, then add our paradrop action
@@ -339,9 +320,9 @@ _sel4 = selectRandom [1,2,3,4];
 
 if (typeOf _veh == "I_Heli_Transport_02_F") then {
 
-	_veh setObjectTextureGlobal [1,'Data\Vehicles\Merlin0.paa'];
-	_veh setObjectTextureGlobal [0,'Data\Vehicles\Merlin1.paa'];
-	_veh setObjectTextureGlobal [2,'Data\Vehicles\Merlin2.paa'];
+	_veh setObjectTextureGlobal [1,'z\LRG Fundamentals\Addons\Media\images\Textures\Merlin0.paa'];
+	_veh setObjectTextureGlobal [0,'z\LRG Fundamentals\Addons\Media\images\Textures\Merlin1.paa'];
+	_veh setObjectTextureGlobal [2,'z\LRG Fundamentals\Addons\Media\images\Textures\Merlin2.paa'];
 	
 	};	
 //=========Ghosthawk

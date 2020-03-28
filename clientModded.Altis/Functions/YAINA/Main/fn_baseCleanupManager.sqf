@@ -60,4 +60,4 @@ if(!isServer) exitWith {};
             nil
         } count BASE_PROTECTION_AREAS;
     };
-}, 30, []] call CBAP_fnc_addPerFrameHandler;
+}, 30, []] call CBA_fnc_addPerFrameHandler;
