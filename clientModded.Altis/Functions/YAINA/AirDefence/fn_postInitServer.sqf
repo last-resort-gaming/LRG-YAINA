@@ -41,6 +41,6 @@ if (isServer) then {
     // Hint to let them know when it's available
     [{
         "Air defense network is now available" remoteExecCall ["hint", 0];
-    }, [], 300] call CBAP_fnc_waitAndExecute;
+    }, [], 300] call CBA_fnc_waitAndExecute;
 
 };

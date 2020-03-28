@@ -252,9 +252,9 @@ _pfh = {
                                 // If the defend mission is up, we set the position to be around the HQ, else we keep them around the AO
                                 _defendTask = format["%1_defend", _parentMissionID];
                                 if (_defendTask call BIS_fnc_taskExists) then {
-                                    [_g, [getPos (leader _g), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+                                    [_g, [getPos (leader _g), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                                 } else {
-                                    [_g, _AOPos, _AOSize/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+                                    [_g, _AOPos, _AOSize/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
                                 };
 
                                 [_g, "LRG Default"] call SFNC(setUnitSkill);
@@ -300,7 +300,7 @@ _pfh = {
 
                             _defendTask = format["%1_defend", _parentMissionID];
                             if (_defendTask call BIS_fnc_taskExists) then {
-                                [_grp, [getPos (leader _grp), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+                                [_grp, [getPos (leader _grp), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                             } else {
                                 [_grp, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                             };

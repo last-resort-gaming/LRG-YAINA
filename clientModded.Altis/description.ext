@@ -1,92 +1,4 @@
 /******************************************************************************
-* MISSION INFO
-******************************************************************************/
-
-author = Last Resort Gaming;
-onLoadName = "LRG Invade and Annex %VERSION%";
-OnLoadMission = "Welcome to the Last Resort Gaming Invade and Annex Public Server. Powered by YAINA";
-loadScreen = "Data\Billboards\billboard.paa";
-overviewPicture = "Data\Billboards\billboard.paa";
-
-onLoadIntro = "";       // Displays a message while the intro is loading.
-onLoadIntroTime = 0;    // Time and date displayed while the intro loads. 1 visible, 0 hidden.
-onLoadMissionTime = 0;  // Time and date displayed while the mission loads. 1 visible, 0 hidden.
-
-class Header {
-    gameType = COOP;    // Unknown, COOP, DM, TDM, CTF, SC, CTI, RPG, Sandbox, Seize, Defend.
-    minPlayers = 1;     // Min # of players the MISSION supports
-    maxPlayers = 64;    // Max # of players the MISSION supports, not server slots. Make sure # is greater than server slots.
-};
-
-/******************************************************************************
-* STOCK PARAMS  https://community.bistudio.com/wiki/Description.ext
-******************************************************************************/
-
-	
-//------------------------- Admin
-
-enableDebugConsole = 1;
-allowFunctionsLog = 1; // LOG functions
-
-//------------------------- Misc
-
-briefing=0;
-debriefing=0;
-saving=0;
-
-// We disable the channels we manage in initPlayerLocal here
-// because it seems to fix an issue with TFAR where group keeps
-// transmitting on respawn/rejoin which is annoying
-
-disableChannels[] = {
-    {0,true,true},      // Global
-    {1,true,true},      // Side
-    {2,true,true},      // Command
-    {3,true,true},      // Group
-    {4,true,true},      // Vehicle
-    {6,true,true}       // System
-};
-
-disabledAI = 1;	
-aiKills = 0;
-enableItemsDropping = 0;
-joinUnassigned = 1;
-showUAVFeed = 1;
-showMap = 0;
-showNotePad = 0;
-showPad = 0;
-showSquadRadar = 1;
-
-//------------------------- Garbage collector
-
-minPlayerDistance = 0;
-
-corpseManagerMode = 1;
-corpseLimit = 1;
-corpseRemovalMinTime = 1800;
-corpseRemovalMaxTime = 1800;
-
-// Due to the pain of the wreckmanager not removing the units
-// that go to objNull they linger in the air, so just turn it
-// off and manage it ourselves which we are already doing
-wreckManagerMode = 0;
-
-//-------------------------Respawn
-respawn = 3;
-respawnDelay = 10;
-respawnOnStart = 0;
-respawnDialog=0;
-
-/******************************************************************************
-* SCRIPT ADDITIONS
-******************************************************************************/
-
-
-/******************************************************************************
-* BASIC CUSTOM PARAMS
-******************************************************************************/
-
-/******************************************************************************
 * UI ELEMENTS
 ******************************************************************************/
 #include "Functions\AIS\Effects\BarDlg.hpp"
@@ -99,12 +11,10 @@ respawnDialog=0;
 ******************************************************************************/
 
 class CfgFunctions {
-	#include "Functions\CBA\CfgFunctions.hpp"
     #include "Functions\YAINA\CfgFunctions.hpp"
     #include "Functions\AIS\cfgFunctions.hpp"
     #include "Functions\DERP\CfgFunctions.hpp"
     #include "CfgFunctions.hpp"
-	#include "Functions\LRG\CfgFunctions.hpp"
 };
 
 /******************************************************************************

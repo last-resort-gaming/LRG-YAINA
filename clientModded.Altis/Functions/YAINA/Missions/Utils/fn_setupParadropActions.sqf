@@ -74,12 +74,12 @@ if (isNil QVAR(paradropSetup)) then {
             };
 
             // Always set tex so
-            _targetTexture = ["Data\Billboards\paradropInac.paa", "Data\Billboards\paradropAct.paa"] select _active;
+            _targetTexture = ["P:\z\LRG Fundamentals\Addons\Media\images\Public Server\paradropInac.paa", "P:\z\LRG Fundamentals\Addons\Media\images\Public Server.paa"] select _active;
             {
                 _x setObjectTextureGlobal [0, _targetTexture];
             } forEach _paraDropItems;
 
-        }, 10, [_paraDropItems]] call CBAP_fnc_addPerFrameHandler;
+        }, 10, [_paraDropItems]] call CBA_fnc_addPerFrameHandler;
     };
     GVAR(paradropSetup) = true;
 };

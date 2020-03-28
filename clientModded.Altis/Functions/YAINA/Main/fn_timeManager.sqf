@@ -75,4 +75,4 @@ if (isNil "yaina_time_manager_paused") then {
         setTimeMultiplier _mult;
     };
 
-}, 60, []] call CBAP_fnc_addPerFrameHandler;
+}, 60, []] call CBA_fnc_addPerFrameHandler;

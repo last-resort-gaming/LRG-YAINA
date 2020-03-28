@@ -126,7 +126,7 @@ openMap true;
         { if !(isNil "_x") then { deleteMarkerLocal _x; }; } forEach _dMrk;
         { if !(isNil "_x") then { deleteMarkerLocal _x; }; } forEach _aMrk;
         [QVAR(paradropClickHandlerID), "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
-        [_pfhID] call CBAP_fnc_removePerFrameHandler;
+        [_pfhID] call CBA_fnc_removePerFrameHandler;
     };
-}, 0, [_dMrk, _aMrk]] call CBAP_fnc_addPerFrameHandler;
+}, 0, [_dMrk, _aMrk]] call CBA_fnc_addPerFrameHandler;
 

@@ -45,7 +45,7 @@ if (isServer) then {
         AIS_BLEEDOUT_MULTIPLIER = [1,2] select (({ if ([["MERT"], _x] call YFNC(testTraits)) exitWith { 1 }; nil } count allPlayers) isEqualTo 1);
         publicVariable "AIS_BLEEDOUT_MULTIPLIER";
 
-    }, 5, []] call CBAP_fnc_addPerFrameHandler;
+    }, 5, []] call CBA_fnc_addPerFrameHandler;
 
     // By default, we always add all vehicles and units to zeus, there shouldn't be any by default, but for zeus
     // missions this is quite useful

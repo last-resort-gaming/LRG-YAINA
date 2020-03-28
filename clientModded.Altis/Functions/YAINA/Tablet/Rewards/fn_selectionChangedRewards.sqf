@@ -99,7 +99,7 @@ if !(_refresh) then {
         if !(_optCost isEqualTo 0) then {
             _optCostCtrl = _display ctrlCreate ["GarageAnimationR", -1, _ctrlGroup];
             _optCostCtrl ctrlSetPosition [((_ctrlGroupS select 2) / 3), _p select 1];
-            _optCostCtrl ctrlSetText (format ["+%1 credits", [_optCost,0,0,true] call CBAP_fnc_formatNumber]);
+            _optCostCtrl ctrlSetText (format ["+%1 credits", [_optCost,0,0,true] call CBA_fnc_formatNumber]);
             _optCostCtrl ctrlCommit 0;
 
 
@@ -136,11 +136,11 @@ if !(_refresh) then {
 };
 
 // Set Available Creds / Build Time
-(_ctrlGroup controlsGroupCtrl 1201) ctrlSetText ([YVAR(rewardPoints),0,0,true] call CBAP_fnc_formatNumber);
+(_ctrlGroup controlsGroupCtrl 1201) ctrlSetText ([YVAR(rewardPoints),0,0,true] call CBA_fnc_formatNumber);
 (_ctrlGroup controlsGroupCtrl 1203) ctrlSetText (_buildTime call FNC(formatDuration));
 
 // Cost Color
-_costText ctrlSetText ([_price,0,0,true] call CBAP_fnc_formatNumber);
+_costText ctrlSetText ([_price,0,0,true] call CBA_fnc_formatNumber);
 _costText ctrlSetTextColor ([[1,1,1,1], [1,0,0,1]] select (_price > YVAR(rewardPoints)));
 
 // Spawn point Occupied ?

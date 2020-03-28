@@ -43,7 +43,7 @@ if !(isServer) exitWith {};
         for "_x" from 2 to ((_sub select 0)+1) do {
             private _m = _x % 2;
             private _s = 0; if (_m isEqualTo 1) then { _s = 0.25 + (random 0.75); };
-            [{ "SmallSecondary" createVehicle _this }, [_pos, floor(_x / 2) * (_sub select 2), random 360] call BIS_fnc_relPos, _csleep + _s] call CBAP_fnc_waitAndExecute;
+            [{ "SmallSecondary" createVehicle _this }, [_pos, floor(_x / 2) * (_sub select 2), random 360] call BIS_fnc_relPos, _csleep + _s] call CBA_fnc_waitAndExecute;
             if (_m isEqualTo 1) then {
                 _nsleep = _nsleep / 2;
                 _csleep = _csleep + (_nsleep / 2);
@@ -51,4 +51,4 @@ if !(isServer) exitWith {};
         };
     };
 
-}, _this, _this select 0] call CBAP_fnc_waitAndExecute;
+}, _this, _this select 0] call CBA_fnc_waitAndExecute;
