@@ -8,7 +8,7 @@ class EditorData
 	toggles=1537;
 	class ItemIDProvider
 	{
-		nextID=3932;
+		nextID=3933;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3168;
+		nextID=3192;
 	};
 	class Camera
 	{
-		pos[]={11587.267,31.012436,11951.334};
-		dir[]={-0.76008999,-0.32859352,0.5608319};
-		up[]={-0.26447561,0.944417,0.19514453};
-		aside[]={0.5937863,-1.6076956e-007,0.80476528};
+		pos[]={11648.566,66.372719,11924.324};
+		dir[]={0.12241384,-0.39514399,-0.91055954};
+		up[]={0.05265785,0.91856223,-0.39169243};
+		aside[]={-0.99119914,-6.6457142e-007,-0.13326371};
 	};
 };
 binarizationWanted=0;
@@ -173,13 +173,14 @@ addons[]=
 	"A3_Boat_F_Boat_Transport_01",
 	"A3_Boat_F_Beta_SDV_01",
 	"UK3CB_BAF_Units_Desert",
-	"UK3CB_BAF_Vehicles_Warrior_a3"
+	"UK3CB_BAF_Vehicles_Warrior_a3",
+	"LRG_Medical"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=97;
+		items=98;
 		class Item0
 		{
 			className="A3_Structures_F_EPC";
@@ -857,6 +858,13 @@ class AddonsMetaData
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
+		class Item97
+		{
+			className="LRG_Medical";
+			name="LRG Fundamentals";
+			author="Last Resort Gaming";
+			url="https:";
+		};
 	};
 };
 class DynamicSimulation
@@ -1014,7 +1022,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=609;
+		items=610;
 		class Item0
 		{
 			dataType="Object";
@@ -5634,7 +5642,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11577.654,23.917606,11958.423};
-						angles[]={-0,2.0543923,-0};
+						angles[]={0,2.0543923,0};
 					};
 					side="West";
 					flags=4;
@@ -5913,7 +5921,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11577.011,23.916317,11959.552};
-						angles[]={-0,2.1226134,-0};
+						angles[]={0,2.1226134,0};
 					};
 					side="West";
 					flags=4;
@@ -6192,7 +6200,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11578.148,23.912863,11959.708};
-						angles[]={-0,2.1595311,-0};
+						angles[]={0,2.1595311,0};
 					};
 					side="West";
 					flags=4;
@@ -6473,7 +6481,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11577.604,23.911558,11960.74};
-						angles[]={-0,2.1037102,-0};
+						angles[]={0,2.1037102,0};
 					};
 					side="West";
 					flags=4;
@@ -6592,7 +6600,7 @@ class Mission
 					};
 					id=2014;
 					type="B_HeavyGunner_F";
-					atlOffset=0.248909;
+					atlOffset=0.24890709;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -6661,7 +6669,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11578.661,23.90888,11960.996};
-						angles[]={-0,2.2245345,-0};
+						angles[]={0,2.2245345,0};
 					};
 					side="West";
 					flags=4;
@@ -6960,7 +6968,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11578.314,23.907896,11962.08};
-						angles[]={-0,2.2423911,-0};
+						angles[]={0,2.2423911,0};
 					};
 					side="West";
 					class Attributes
@@ -7245,7 +7253,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11579.362,23.906437,11962.13};
-						angles[]={-0,2.2031145,-0};
+						angles[]={0,2.2031145,0};
 					};
 					side="West";
 					class Attributes
@@ -9844,7 +9852,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11564.968,23.924564,11965.047};
-						angles[]={-0,2.0613735,-0};
+						angles[]={0,2.0613735,0};
 					};
 					side="West";
 					flags=6;
@@ -10146,7 +10154,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11566.097,23.92314,11965.116};
-						angles[]={-0,2.0543895,-0};
+						angles[]={0,2.0543895,0};
 					};
 					side="West";
 					flags=4;
@@ -10425,7 +10433,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11565.453,23.922491,11966.246};
-						angles[]={-0,2.1226144,-0};
+						angles[]={0,2.1226144,0};
 					};
 					side="West";
 					flags=4;
@@ -10704,7 +10712,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11566.591,23.92078,11966.402};
-						angles[]={-0,2.1595278,-0};
+						angles[]={0,2.1595278,0};
 					};
 					side="West";
 					flags=4;
@@ -10985,7 +10993,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11566.047,23.920784,11967.434};
-						angles[]={-0,2.1037121,-0};
+						angles[]={0,2.1037121,0};
 					};
 					side="West";
 					flags=4;
@@ -11266,7 +11274,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11567.104,23.92078,11967.689};
-						angles[]={-0,2.2245412,-0};
+						angles[]={0,2.2245412,0};
 					};
 					side="West";
 					flags=4;
@@ -11565,7 +11573,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11566.757,23.920132,11968.775};
-						angles[]={-0,2.2423964,-0};
+						angles[]={0,2.2423964,0};
 					};
 					side="West";
 					flags=4;
@@ -11851,7 +11859,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={11567.805,23.918671,11968.824};
-						angles[]={-0,2.2031088,-0};
+						angles[]={0,2.2031088,0};
 					};
 					side="West";
 					class Attributes
@@ -41572,16 +41580,27 @@ class Mission
 				nAttributes=3;
 			};
 		};
+		class Item609
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={11558.105,23.728453,11940.553};
+				angles[]={0.0013372133,0,6.2818484};
+			};
+			id=3932;
+			type="LRG_ModuleMedical";
+		};
 	};
 	class Connections
 	{
 		class LinkIDProvider
 		{
-			nextID=4;
+			nextID=5;
 		};
 		class Links
 		{
-			items=4;
+			items=5;
 			class Item0
 			{
 				linkID=0;
@@ -41617,6 +41636,16 @@ class Mission
 				linkID=3;
 				item0=3749;
 				item1=3748;
+				class CustomData
+				{
+					type="Sync";
+				};
+			};
+			class Item4
+			{
+				linkID=4;
+				item0=3932;
+				item1=3182;
 				class CustomData
 				{
 					type="Sync";
