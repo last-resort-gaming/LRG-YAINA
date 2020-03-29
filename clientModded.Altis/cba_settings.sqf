@@ -1032,7 +1032,7 @@ force LRG_Weather_Master = true;
 
 force LRG_Weather_MaxTime = 60;
 
-force LRG_Weather_MinTime = 1;
+force LRG_Weather_MinTime = 30;
 
 force LRG_Weather_NightTimeAcc = 3;
 
