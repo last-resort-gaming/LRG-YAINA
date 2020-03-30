@@ -339,9 +339,9 @@ _sel4 = selectRandom [1,2,3,4];
 
 if (typeOf _veh == "I_Heli_Transport_02_F") then {
 
-	_veh setObjectTextureGlobal [1,'Data\Vehicles\Merlin0.paa'];
-	_veh setObjectTextureGlobal [0,'Data\Vehicles\Merlin1.paa'];
-	_veh setObjectTextureGlobal [2,'Data\Vehicles\Merlin2.paa'];
+	_veh setObjectTextureGlobal [1,'z\LRG Fundamentals\Addons\Media\images\Textures\Merlin0.paa'];
+	_veh setObjectTextureGlobal [0,'z\LRG Fundamentals\Addons\Media\images\Textures\Merlin1.paa'];
+	_veh setObjectTextureGlobal [2,'z\LRG Fundamentals\Addons\Media\images\Textures\Merlin2.paa'];
 	
 	};	
 //=========Ghosthawk
