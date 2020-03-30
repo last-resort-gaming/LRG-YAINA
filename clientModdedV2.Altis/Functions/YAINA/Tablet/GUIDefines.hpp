@@ -254,7 +254,7 @@ class HQTabletDialog {
         // Bring on the device...
         class DeviceBG: RscPicture {
             idc = -1;
-            text = "Data\Comms\x10gxx.paa";
+            text = "z\LRG Fundamentals\Addons\Media\images\Comms\x10gxx.paa";
             colorBackground[] = {0,0,0,1};
             h = 0.8  * safezoneH;
             w = 1.35 * safezoneH;
@@ -264,20 +264,20 @@ class HQTabletDialog {
 
         class NavButtonP1BG : NavButton {
             idc  = 11;
-            text = "Data\Comms\button2.paa";
+            text = "z\LRG Fundamentals\Addons\Media\images\Comms\button2.paa";
             x = SCREEN_X;
             default = true;
         };
 
         class NavButtonP2BG : NavButton {
             idc  = 12;
-            text = "Data\Comms\button2.paa";
+            text = "z\LRG Fundamentals\Addons\Media\images\Comms\button2.paa";
             x = SCREEN_X + (SCREEN_W * 0.333333);
         };
 
         class NavButtonP3BG : NavButton {
             idc  = 13;
-            text = "Data\Comms\button2.paa";
+            text = "z\LRG Fundamentals\Addons\Media\images\Comms\button2.paa";
             x = SCREEN_X + 2*(SCREEN_W * 0.333333);
         };
 
@@ -317,7 +317,7 @@ class HQTabletDialog {
 
         class NavLine : RscPicture {
             style = ST_TILE_PICTURE;
-            text = "Data\Comms\line.paa";
+            text = "z\LRG Fundamentals\Addons\Media\images\Comms\line.paa";
             x = SCREEN_X;
             y = SCREEN_Y + 0.04 + 5 * pixelH;
             w = SCREEN_W;
@@ -430,7 +430,7 @@ class HQTabletDialog {
             class controls {
                 class KanbanLine1 : RscPicture {
                     style = ST_TILE_PICTURE;
-                    text = "Data\Comms\linev.paa";
+                    text = "z\LRG Fundamentals\Addons\Media\images\Comms\linev.paa";
                     x = CONTENT_W / 3;
                     y = 0.005;
                     w = 2 * pixelW;
@@ -440,7 +440,7 @@ class HQTabletDialog {
                 };
                 class KanbanLine2 : RscPicture {
                     style = ST_TILE_PICTURE;
-                    text = "Data\Comms\linev.paa";
+                    text = "z\LRG Fundamentals\Addons\Media\images\Comms\linev.paa";
                     x = (2 * CONTENT_W) / 3;
                     y = 0.005;
                     w = 2 * pixelW;
@@ -758,7 +758,7 @@ class HQTabletDialog {
 
                 class RewardsVLineA : RscPicture {
                     style = ST_TILE_PICTURE;
-                    text = "Data\Comms\linev.paa";
+                    text = "z\LRG Fundamentals\Addons\Media\images\Comms\linev.paa";
                     x = CONTENT_W * 0.33333;
                     y = 0.005;
                     w = 1 * pixelW;
@@ -799,7 +799,7 @@ class HQTabletDialog {
 
                 class RewardsVLineB : RscPicture {
                     style = ST_TILE_PICTURE;
-                    text = "Data\Comms\linev.paa";
+                    text = "z\LRG Fundamentals\Addons\Media\images\Comms\linev.paa";
                     x = CONTENT_W * 0.66666;
                     y = 0.005;
                     w = pixelW;
