@@ -77,7 +77,7 @@ if (isNil QVAR(paradropSetup)) then {
             };
 
             // Always set tex so
-            _targetTexture = ["Data\Billboards\paradropInac.paa", "Data\Billboards\paradropAct.paa"] select _active;
+            _targetTexture = ["z\LRG Fundamentals\Addons\Media\images\Public Server\paradropInac.paa", "z\LRG Fundamentals\Addons\Media\images\Public Server\paradropAct.paa"] select _active;
             {
                 _x setObjectTextureGlobal [0, _targetTexture];
             } forEach _paraDropItems;
