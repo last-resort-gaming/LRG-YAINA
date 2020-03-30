@@ -1,4 +1,4 @@
-diag_log format ["############## %1 ############## - AIS init started", missionName];
+[format ["############## %1 ############## - AIS init started", missionName]] call YAINA_fnc_log;
 
 ais_ace_shutDown = false;
 if (isClass (configFile >> "CfgPatches" >> "ace_main")) then {

@@ -6,7 +6,7 @@ Description:
     Randomly selects one of the following armies for populating the mission:
 
     AAF, CSAT, CSAT Pacific
-	
+
 
 Parameters:
 	None
@@ -37,20 +37,23 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific"];
 
-call {
-    if (_army isEqualTo "CSAT") exitwith {
+_army call {
+    if (_this isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
+        [_side, _MarkerColour];
     };
-    if (_army isEqualTo "AAF") exitwith {
+    if (_this isEqualTo "AAF") exitwith {
 		_side = resistance;
-		_MarkerColour = "ColorGUER";	
+		_MarkerColour = "ColorGUER";
+        [_side, _MarkerColour];
     };
-    if (_army isEqualTo "CSAT Pacific") exitwith {
+    if (_this isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
+        [_side, _MarkerColour];
     };
-};
+} params ["_side", "_MarkerColour"];
 
 ///////////////////////////////////////////////////////////
 // AO Setup

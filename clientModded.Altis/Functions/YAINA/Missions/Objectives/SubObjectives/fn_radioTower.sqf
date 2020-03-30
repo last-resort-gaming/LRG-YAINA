@@ -35,12 +35,12 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-	_MarkerColour = "colorOPFOR";
-    _side = east;
-	if (_army isEqualto "AAF") then {
-        _MarkerColour = "ColorGUER";
-        _side = resistance; 
-        };
+_MarkerColour = "colorOPFOR";
+_side = east;
+if (_army isEqualto "AAF") then {
+    _MarkerColour = "ColorGUER";
+    _side = resistance; 
+};
 
 // Mission ID
 _missionID = call FNC(getMissionID);
@@ -85,7 +85,7 @@ for "_x" from 0 to _towerCount do {
     _spawnPos = [_AOPos, 10, _AOSize, { !(_this isFlatEmpty [8, -1, 0.4, 10, 0, false, objNull] isEqualTo []) }] call YFNC(getPosAround);
 
     if (_spawnPos isEqualTo []) exitWith {
-        diag_log "Unable to find suitable location for tower";
+        ["Unable to find suitable location for tower", "ErrorLog"] call YFNC(log);
     };
 
     _tower = _towerClass createVehicle _spawnPos;
@@ -96,7 +96,7 @@ for "_x" from 0 to _towerCount do {
     _tbbr = boundingBoxReal _tower;
     _r    = ((_tbbr select 0) distance2D (_tbbr select 1)) / 2;
 
-    [clientOwner, _hideKey, _spawnPos, _r, _towers] remoteExec [QYFNC(YhideTerrainObjects), 2];
+    [clientOwner, _hideKey, _spawnPos, _r, _towers] remoteExec [QYFNC(hideTerrainObjects), 2];
     waitUntil { !isNil {  missionNamespace getVariable _hideKey } };
     missionNamespace setVariable [_hideKey, nil];
 
@@ -155,7 +155,7 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hideKey", "_mines", "_towerMarkers", "_AOPos", "_AOSize", "_jetSpawnTime"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_towers", "_hideKey", "_mines", "_towerMarkers", "_AOPos", "_AOSize", "_jetSpawnTime", "_army"];
 
 
     // Stop requested ?
@@ -183,7 +183,7 @@ _pfh = {
             if (serverTime > _jetSpawnTime) then {
                 // Call in a JET
                 _args set [9, serverTime + 900 + random 300];
-                [_AOPos, _AOSize, false,  _army] remoteExecCall [QSFNC(cas), 2];
+                [_AOPos, _AOSize, false, _army] remoteExecCall [QSFNC(cas), 2];
             };
 
         };
@@ -229,7 +229,7 @@ _pfh = {
     }
 };
 
-[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hideKey, _mines, _towerMarkers, _AOPos, _AOSize, serverTime + random 300]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["radioTower subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _towers, _hideKey, _mines, _towerMarkers, _AOPos, _AOSize, serverTime + random 300, _army]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];

@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=4763;
+		nextID=4934;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3416;
+		nextID=3566;
 	};
 	class Camera
 	{
-		pos[]={14617.45,29.447483,16741.246};
-		dir[]={-0.68753952,-0.58602029,-0.4290815};
-		up[]={-0.49719557,0.81021959,-0.31029037};
-		aside[]={-0.52950865,6.131595e-007,0.84847981};
+		pos[]={14761.347,125.05942,16636.09};
+		dir[]={-0.56189084,-0.59925175,0.57028902};
+		up[]={-0.42063826,0.80049449,0.42692468};
+		aside[]={0.71234918,-1.6603735e-008,0.70186019};
 	};
 };
 binarizationWanted=0;
@@ -1157,7 +1157,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={14604.817,17.787714,16910.492};
-			angle=3.9063175;
+			angle=3.9063165;
 			class Attributes
 			{
 				name="SP_VEH";
@@ -5764,7 +5764,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={14428.945,17.750038,16174.068};
-			angle=2.3195691;
+			angle=2.3166952;
 			class Attributes
 			{
 				name="SP_UAV";
@@ -6259,7 +6259,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={14445.991,17.896,16199.879};
-			angle=2.3240368;
+			angle=2.3644426;
 			class Attributes
 			{
 				name="SP_HELI";
@@ -6277,7 +6277,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={14400.841,17.743284,16158.231};
-			angle=2.2561553;
+			angle=2.3712437;
 			class Attributes
 			{
 				name="SP_CARGO";

@@ -59,7 +59,10 @@ if (isNil QVAR(paradropSetup)) then {
                                 [["PILOT"], _x] call YFNC(testTraits)
                                 && {
                                     vehicle _x isEqualTo _x
-                                    || {driver (vehicle _x) isEqualTo _x && { !(getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "transportSoldier") isEqualTo 0) } }
+                                    || {
+                                        driver (vehicle _x) isEqualTo _x
+                                        && { !(getNumber (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "transportSoldier") isEqualTo 0) }
+                                    }
                                 }
                               } count allPlayers isEqualTo 0
                               || { LTIME < GVAR(paradropOverride) }
@@ -74,7 +77,7 @@ if (isNil QVAR(paradropSetup)) then {
             };
 
             // Always set tex so
-            _targetTexture = ["P:\z\LRG Fundamentals\Addons\Media\images\Public Server\paradropInac.paa", "P:\z\LRG Fundamentals\Addons\Media\images\Public Server\paradropAct.paa"] select _active;
+            _targetTexture = ["z\LRG Fundamentals\Addons\Media\images\Public Server\paradropInac.paa", "z\LRG Fundamentals\Addons\Media\images\Public Server\paradropAct.paa"] select _active;
             {
                 _x setObjectTextureGlobal [0, _targetTexture];
             } forEach _paraDropItems;

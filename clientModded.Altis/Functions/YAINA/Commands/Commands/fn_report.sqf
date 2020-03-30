@@ -28,7 +28,7 @@ private _ret = "";
 private _log = "";
 
 if (_argStr isEqualTo "") then {
-    _ret = "Please let us know what's wrong, e.g: #report Player Name - deliberate teamkilling";
+    _ret = "Please let us know what's wrong, e.g: !report Player Name - deliberate teamkilling";
     _log = "missing reason";
 } else {
     // Let the user know

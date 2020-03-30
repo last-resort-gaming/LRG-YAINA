@@ -33,7 +33,7 @@ private _idx = (GVAR(reinforcements) select 0) find _missionID;
 if !(_idx isEqualTo -1) then {
     {
         _units append (_x select 0);
-    } count ((GVAR(reinforcements) select 1) select _idx);
+    } forEach ((GVAR(reinforcements) select 1) select _idx);
 };
 
 _units;

@@ -12,9 +12,6 @@
 CBA_display_ingame_warnings = false;
 publicVariable "CBA_display_ingame_warnings";
 
-[] execVM "scripts\duda123\fn_advancedUrbanRappellingInit.sqf";
-[] execVM "scripts\duda123\fn_advancedRappellingInit.sqf";
-
 ///////////////////////////////////////////////////////////
 // MAP SPECIFIC SERVER SETUP
 ///////////////////////////////////////////////////////////

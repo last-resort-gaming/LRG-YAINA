@@ -5,7 +5,7 @@
 */
 
 #include "defines.h"
-#include "..\Main\a3-ui_f-config.hpp"
+#include "..\General\a3-ui_f-config.hpp"
 
 ///////////////////////////////////////////////////////////
 // COLORS
@@ -865,7 +865,7 @@ class HQTabletDialog {
                     style = ST_RIGHT;
                     x = CONTENT_W - 0.3;
                     y = 0.1;
-                    w = 0.3;
+                    w = 0.25;
                     h = 0.04;
                 };
 
@@ -876,7 +876,7 @@ class HQTabletDialog {
                     style = ST_RIGHT;
                     x = CONTENT_W - 0.3;
                     y = 0.135;
-                    w = 0.3;
+                    w = 0.25;
                     h = 0.04;
                 };
 
@@ -887,7 +887,7 @@ class HQTabletDialog {
                     style = ST_RIGHT;
                     x = CONTENT_W - 0.3;
                     y = 0.17;
-                    w = 0.3;
+                    w = 0.25;
                     h = 0.04;
                 };
 
@@ -899,7 +899,7 @@ class HQTabletDialog {
                     style = ST_RIGHT;
                     x = CONTENT_W - 0.3;
                     y = 0.205;
-                    w = 0.3;
+                    w = 0.25;
                     h = 0.04;
                 };
 

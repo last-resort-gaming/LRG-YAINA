@@ -22,14 +22,14 @@ Author:
 */
 
 //Validate parameter count
-if ((count _this) < 2) exitWith {debugLog "Log: [spawnCrew] Function requires at least 2 parameters!"; []};
+if ((count _this) < 2) exitWith {["Log: [spawnCrew] Function requires at least 2 parameters!", "ErrorLog"] call YAINA_fnc_log; []};
 
 params ["_vehicle", "_grp","_factionDefine"];
 
 //Validate parameters
-if ((typeName _vehicle) != (typeName objNull)) exitWith {debugLog "Log: [spawnCrew] Vehicle (0) must be an Object!"; []};
-if ((typeName _grp) != (typeName grpNull)) exitWith {debugLog "Log: [spawnCrew] Crew group (1) must be a Group!"; []};
-if ((typeName _factionDefine) != (typeName "")) exitWith {debugLog "Log: [spawnCrew] Crew type (4) must be a String!"; []};
+if ((typeName _vehicle) != (typeName objNull)) exitWith {["Log: [spawnCrew] Vehicle (0) must be an Object!", "ErrorLog"] call YAINA_fnc_log; []};
+if ((typeName _grp) != (typeName grpNull)) exitWith {["Log: [spawnCrew] Crew group (1) must be a Group!", "ErrorLog"] call YAINA_fnc_log; []};
+if ((typeName _factionDefine) != (typeName "")) exitWith {["Log: [spawnCrew] Crew type (4) must be a String!", "ErrorLog"] call YAINA_fnc_log; []};
 
 _type = typeOf _vehicle;
 
@@ -40,15 +40,15 @@ private ["_hasDriver"];
 _hasDriver = getNumber (_entry >> "hasDriver");
 
 // Get Faction approprate units
-_crewTypeArray = call {
-    if (_factionDefine isEqualTo "AAF") exitWith { ["I_Soldier_A_F", "I_Soldier_AAR_F", "I_Soldier_AAA_F", "I_Soldier_AAT_F", "I_Soldier_AR_F", "I_medic_F", "I_engineer_F",
+_crewTypeArray = _factionDefine call {
+    if (_this isEqualTo "AAF") exitWith { ["I_Soldier_A_F", "I_Soldier_AAR_F", "I_Soldier_AAA_F", "I_Soldier_AAT_F", "I_Soldier_AR_F", "I_medic_F", "I_engineer_F",
                                                     "I_Soldier_exp_F", "I_Soldier_GL_F", "I_Soldier_M_F", "I_Soldier_AA_F", "I_Soldier_AT_F", "I_officer_F", "I_Soldier_repair_F",
                                                     "I_soldier_F", "I_Soldier_LAT_F", "I_Soldier_lite_F", "I_Soldier_SL_F", "I_Soldier_TL_F" ] };
     []
 };
 
 if (_crewTypeArray isEqualTo []) exitWith {
-    diag_log format["No crew type for faction; %1", _factionDefine];
+    [format["No crew type for faction; %1", _factionDefine], "ErrorLog"] call YAINA_fnc_log;
 };
 
 //Spawn a driver if needed
@@ -67,11 +67,8 @@ _turrets = [_entry >> "turrets"] call BIS_fnc_returnVehicleTurrets;
 //All turrets were found, now spawn crew for them
 _funcSpawnTurrets =
 {
+	params ["_crewTypeArray", "_vehicle", "_grp", "_crew", "_turrets", "_path"];
     _crewType = _crewTypeArray call BIS_fnc_selectRandom;
-	private ["_turrets", "_path"];
-	_turrets = _this select 0;
-	_path = _this select 1;
-
 	private ["_i"];
 	_i = 0;
 	while {_i < (count _turrets)} do
@@ -96,7 +93,7 @@ _funcSpawnTurrets =
 	};
 };
 
-[_turrets, []] call _funcSpawnTurrets;
+[_crewTypeArray, _vehicle, _grp, _crew, _turrets, []] call _funcSpawnTurrets;
 [_vehicle,"LIEUTENANT"] call bis_fnc_setRank;
 
 _crew

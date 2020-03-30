@@ -3,7 +3,7 @@ class DERP {
 
     class General {
         file = "Functions\DERP";
-        class YAIOccupyBuilding {};
+        class AIOccupyBuilding {};
         class randomPos {};
         class ZenOccupy {};
     };
