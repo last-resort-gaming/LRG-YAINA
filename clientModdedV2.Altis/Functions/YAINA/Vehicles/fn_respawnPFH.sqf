@@ -105,7 +105,7 @@ if(!isServer) exitWith {};
                 if !(count (entities "AllVehicles" select { _x inArea _respawnArea }) isEqualTo 0) exitWith {};
 
                 // And stop this PFH, and respawn
-                [_pfhID] call CBAP_fnc_removePerFrameHandler;
+                [_pfhID] call CBA_fnc_removePerFrameHandler;
 
                 _nv = createVehicle [_vehType, [0,0,0], [], 0, "NONE"];
 
@@ -158,7 +158,7 @@ if(!isServer) exitWith {};
                     // And lastly add the crew
                     createVehicleCrew _nv;
 
-                    ["UAVSpawn", _nv] call CBAP_fnc_globalEvent;
+                    ["UAVSpawn", _nv] call CBA_fnc_globalEvent;
                 };
 
                 // restore provided persistant vars, and default persistants
@@ -194,8 +194,8 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, 10, [LTIME + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBAP_fnc_addPerFrameHandler;
+            }, 10, [LTIME + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBA_fnc_addPerFrameHandler;
         };
 
     };
-}, 10, []] call CBAP_fnc_addPerFrameHandler;
+}, 10, []] call CBA_fnc_addPerFrameHandler;

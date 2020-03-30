@@ -393,7 +393,7 @@ call {
         // We always create a crew, trigger our UAV Spawned event
         // for UAV restrictions
         createVehicleCrew _veh;
-        ["UAVSpawn", _veh] call CBAP_fnc_globalEvent;
+        ["UAVSpawn", _veh] call CBA_fnc_globalEvent;
 
         // Sentinel
         if (_class isEqualTo "B_UAV_05_F") exitWith {

@@ -57,4 +57,4 @@ if (_tfar) then {
         nil
     } count _settings;
 
-}, 1, []] call CBAP_fnc_addPerFrameHandler;
+}, 1, []] call CBA_fnc_addPerFrameHandler;

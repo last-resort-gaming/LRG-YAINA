@@ -31,7 +31,7 @@ if ( isServer ) then {
 
     // if we have not got our map display yet, retry when we do
     if(isNull (findDisplay 12)) exitWith {
-        [{!isNull (findDisplay 12)}, {call YFNC(showFPS)}, []] call CBAP_fnc_waitUntilAndExecute;
+        [{!isNull (findDisplay 12)}, {call YFNC(showFPS)}, []] call CBA_fnc_waitUntilAndExecute;
     };
 
     if (hasInterface) then {
@@ -70,7 +70,7 @@ if (_source != "") then {
 
             _myfpsmarker setMarkerTextLocal format [ "%1: %2 fps, %3 units, %4 groups, %5 vehicles", _source, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localgroups, _localvehicles ];
 
-        }, 5, [_source, _myfpsmarker]] call CBAP_fnc_addPerFrameHandler;
+        }, 5, [_source, _myfpsmarker]] call CBA_fnc_addPerFrameHandler;
 
     } else {
         _myfpsmarker = createMarker [ format ["fpsmarker%1", _source ], [ 500, 500 + (500 * _position) ] ];
@@ -94,7 +94,7 @@ if (_source != "") then {
 
             _myfpsmarker setMarkerText format [ "%1: %2 fps, %3 units, %4 groups, %5 vehicles", _source, ( round ( _myfps * 100.0 ) ) / 100.0 , _localunits, _localgroups, _localvehicles ];
 
-        }, 5, [_source, _myfpsmarker]] call CBAP_fnc_addPerFrameHandler;
+        }, 5, [_source, _myfpsmarker]] call CBA_fnc_addPerFrameHandler;
     };
 
 };

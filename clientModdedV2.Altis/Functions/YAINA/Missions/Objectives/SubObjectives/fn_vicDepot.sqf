@@ -227,7 +227,7 @@ _pfh = {
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
                         if (_defendTask call BIS_fnc_taskExists) then {
-							[_vicGroup1, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+							[_vicGroup1, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                         } else {
                             [_vicGroup1, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                         };
@@ -248,7 +248,7 @@ _pfh = {
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
                         if (_defendTask call BIS_fnc_taskExists) then {
-							[_vicGroup2, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+							[_vicGroup2, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                         } else {
                             [_vicGroup2, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                         };
@@ -268,7 +268,7 @@ _pfh = {
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
                         if (_defendTask call BIS_fnc_taskExists) then {
-							[_vicGroup3, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+							[_vicGroup3, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                         } else {
                             [_vicGroup3, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                         };

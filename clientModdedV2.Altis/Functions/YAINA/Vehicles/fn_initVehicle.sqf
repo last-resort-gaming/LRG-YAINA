@@ -104,7 +104,7 @@ if (_hasKeys) then {
         }] remoteExec ["call", 2];
 
         // Broadcast VehicleLock event to update the action across players
-        ["VehicleLock", [player, _target, _newState]] call CBAP_fnc_globalEvent;
+        ["VehicleLock", [player, _target, _newState]] call CBA_fnc_globalEvent;
 
     }, [], 1.5, false, true, "", "['HQ', 'veh-unlock'] call YAINA_fnc_testTraits && { ( { alive _x } count (crew _target) ) isEqualTo 0 }", 10, false] call YFNC(addActionMP);
 
@@ -118,7 +118,7 @@ if (_hasKeys) then {
 
             // We delete the pfh if we are no longer the driver
             if !(driver _veh isEqualTo player) then {
-                [_pfhID] call CBAP_fnc_removePerFrameHandler;
+                [_pfhID] call CBA_fnc_removePerFrameHandler;
             };
 
             // Otherwise, return if no owner set
@@ -131,7 +131,7 @@ if (_hasKeys) then {
 
             if !((group _owner) isEqualTo (group player)) then {
                 // So we can remove this PFH to stop it firing
-                [_pfhID] call CBAP_fnc_removePerFrameHandler;
+                [_pfhID] call CBA_fnc_removePerFrameHandler;
 
                 0 = [] spawn {
                     _veh = vehicle player;
@@ -160,7 +160,7 @@ if (_hasKeys) then {
                 };
             };
 
-        }, 1, [_veh]] call CBAP_fnc_addPerFrameHandler;
+        }, 1, [_veh]] call CBA_fnc_addPerFrameHandler;
 
     }] call FNC(addGetInHandler);
 };

@@ -239,7 +239,7 @@ _pfh = {
 							    _arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
 							};
                         };
-                    }, [_arty2, _targetDir, _targetPos, _side, _targetPos], 5] call CBAP_fnc_waitAndExecute;
+                    }, [_arty2, _targetDir, _targetPos, _side, _targetPos], 5] call CBA_fnc_waitAndExecute;
 
                     // Players get between 30 and 40 seconds to move
                     _warningTime = (random 10) + 30;
@@ -247,11 +247,11 @@ _pfh = {
                     _sleepTime   = floor(_shellETA - _warningTime) max 1;
 
                     // Give a little warning
-                    [{ "SmokeShellRed" createVehicle (_this select 0) }, [_targetPos], _sleepTime] call CBAP_fnc_waitAndExecute;
+                    [{ "SmokeShellRed" createVehicle (_this select 0) }, [_targetPos], _sleepTime] call CBA_fnc_waitAndExecute;
 
                     // If it's night, we throw some chemlights down too
                     if (daytime > 20 || { daytime < 4}) then {
-                        [{ params ["_tp"]; "Chemlight_red" createVehicle (_tp vectorAdd [1,1,0]); "Chemlight_red" createVehicle (_tp vectorAdd [-1,-1,0]); }, [_targetPos], _sleepTime] call CBAP_fnc_waitAndExecute;
+                        [{ params ["_tp"]; "Chemlight_red" createVehicle (_tp vectorAdd [1,1,0]); "Chemlight_red" createVehicle (_tp vectorAdd [-1,-1,0]); }, [_targetPos], _sleepTime] call CBA_fnc_waitAndExecute;
                     };
 
                     // Then we sleep for a long time between fires, between 10 and 20 minutes

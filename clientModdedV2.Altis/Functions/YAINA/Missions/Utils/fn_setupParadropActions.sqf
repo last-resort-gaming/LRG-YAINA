@@ -82,7 +82,7 @@ if (isNil QVAR(paradropSetup)) then {
                 _x setObjectTextureGlobal [0, _targetTexture];
             } forEach _paraDropItems;
 
-        }, 10, [_paraDropItems]] call CBAP_fnc_addPerFrameHandler;
+        }, 10, [_paraDropItems]] call CBA_fnc_addPerFrameHandler;
     };
     GVAR(paradropSetup) = true;
 };

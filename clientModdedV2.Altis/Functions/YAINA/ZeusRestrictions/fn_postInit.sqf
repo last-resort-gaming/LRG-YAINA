@@ -43,7 +43,7 @@ if (isServer) then {
 			[zeus3, zeus3mod],
 			[zeus4, zeus4mod]
         ];
-    }, 2, []] call CBAP_fnc_addPerFrameHandler;
+    }, 2, []] call CBA_fnc_addPerFrameHandler;
 
     private _zeusGroup = createGroup sideLogic;
     ZEUS_PING_MODULE = _zeusGroup createunit["ModuleCurator_F", [0, 0, 0], [], 0.5, "NONE"];

@@ -223,7 +223,7 @@ if (_fail) exitWith { false; };
     // Call BIS_fnc_taskDeldete ? We delay this by 2 minutes so the success message
     // goes through and people can see it in the map, if an HC disconnects at this
     // point then it'll never get deleted.
-    [{ _this call BIS_fnc_deleteTask; }, [_missionID], 120] call CBAP_fnc_waitAndExecute;
+    [{ _this call BIS_fnc_deleteTask; }, [_missionID], 120] call CBA_fnc_waitAndExecute;
 
     // Remove from stopRequests
     _idx = GVAR(stopRequests) find _missionID;
@@ -236,7 +236,7 @@ if (_fail) exitWith { false; };
 
 
     // Remove pfh
-    [_pfhID] call CBAP_fnc_removePerFrameHandler;
+    [_pfhID] call CBA_fnc_removePerFrameHandler;
 
 };
 
