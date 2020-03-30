@@ -28,11 +28,8 @@ YVAR(zeuslist) = [[],[]]; // Temporary Zeus Users
 YVAR(ownerIDs) = [[],[]]; // [[1,2,3,...], [[uid, profileName, _owner ID]]
 YVAR(addActionMPList) = [];
 
-// Load reward Points
-YVAR(rewardPoints) = profileNamespace getVariable QYVAR(rewardPoints);
-if (isNil QYVAR(rewardPoints)) then {
-    YVAR(rewardPoints) = 0;
-};
+// Load reward Points from database
+YVAR(rewardPoints) = ["credits", "balance", 0, 0] call YFNC(getDBKey);
 publicVariable QYVAR(rewardPoints);
 
 addMissionEventHandler["PlayerConnected", {

@@ -13,7 +13,7 @@ if (isServer) then {
 		if (_ais_revive_units isEqualTo "allunitsopfor") exitWith {allUnits select {(side _x) isEqualTo opfor}};
 		if (_ais_revive_units isEqualTo "allunitsindfor") exitWith {allUnits select {(side _x) isEqualTo resistance}};
 		if (_ais_revive_units isEqualTo "allunitscivilian") exitWith {allUnits select {(side _x) isEqualTo civilian}};
-		diag_log "AIS ERROR: Issue in Setup-File found! Parameter AIS_REVIVE_UNITS wrong defined."; []
+		["AIS ERROR: Issue in Setup-File found! Parameter AIS_REVIVE_UNITS wrong defined.", "ErrorLog"] call YAINA_fnc_log; []
 	};
 
 	// run the init for all units present by game/mission start

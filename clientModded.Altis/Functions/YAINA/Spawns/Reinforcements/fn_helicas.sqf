@@ -68,7 +68,7 @@ call {
 			"O_Heli_Attack_02_dynamicLoadout_F"
 		];
 		_PilotType = "O_helipilot_F";
-	};	
+	};
 };
 
 
@@ -129,7 +129,7 @@ _heli addEventHandler ["HandleDamage", {
         if (_source call YFNC(isUAV)) then {
             _instigatorReal = (UAVControl _source) select 0;
         } else {
-            _instigatorReal = _killer;
+            _instigatorReal = _unit;
         };
     };
 
@@ -173,7 +173,6 @@ _heli addEventHandler ["Killed",{
 [{
     params ["_args", "_pfhID"];
     _args params ["_pos", "_radius", "_group", "_heli"];
-    _desgrp params ["_target", "_designator"];
 
     if (!alive _heli) exitWith {
 

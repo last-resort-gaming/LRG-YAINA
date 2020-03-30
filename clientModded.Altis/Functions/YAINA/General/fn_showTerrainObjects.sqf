@@ -3,7 +3,7 @@ Function: YAINA_fnc_showTerrainObjects
 
 Description:
 	Make previously hidden terrain objects reappear, negating the effect of
-    YAINA_fnc_YhideTerrainObjects. Terrain objects supposed to reappear
+    YAINA_fnc_hideTerrainObjects. Terrain objects supposed to reappear
     have to be passed as reference keys.
 
 Parameters:

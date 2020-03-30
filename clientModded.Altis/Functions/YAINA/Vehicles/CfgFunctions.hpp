@@ -16,6 +16,7 @@ class YAINA_VEH {
         class addGetInHandler {};
         class getInMan {};
         class getMarkers {};
+        class flip {};
     };
 
 

@@ -1,8 +1,8 @@
 class YAINA {
 	tag = "YAINA";
 
-	class Main {
-		file = "Functions\YAINA\Main";
+	class General {
+		file = "Functions\YAINA\General";
 		class diarySetup { postInit = 1; };
 		class addEditableObjects {};
 		class killedHint { postInit = 1; };
@@ -12,7 +12,7 @@ class YAINA {
 		class baseCleanupManager { postInit = 1; };
 		class hintC {};
 		class timeManager{ postInit=1; };
-		class YhideTerrainObjects{};
+		class hideTerrainObjects{};
 		class showTerrainObjects{};
 		class getPointBetween {};
 		class postInit { postInit = 1; };
@@ -37,6 +37,7 @@ class YAINA {
 		class settings { preInit=1; };
 		class getNearestPlayer {};
 		class getDBKey {};
+		class setDBKey {};
 		class AOPos {};
         class getFunctions {};
     };

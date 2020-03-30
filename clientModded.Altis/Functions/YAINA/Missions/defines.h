@@ -1,5 +1,5 @@
 
-#define PREFIX  YAINA_MM
+#define PREFIX YAINA_MM
 
 #define OFNC(s) ##PREFIX##_OBJ_fnc_##s
 #define QOFNC(s) Q(OFNC(s))

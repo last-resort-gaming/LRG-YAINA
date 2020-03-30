@@ -47,7 +47,7 @@ addMissionEventHandler ["HandleDisconnect", {
 
         GVAR(hcList) deleteAt _hcID;
 
-        diag_log format ["HC Disconnect: %1", _name];
+        [format ["HC Disconnect: %1", _name]] call YFNC(log);
 
         // loop through handlers, and migrate to server
         {
@@ -72,7 +72,7 @@ addMissionEventHandler ["HandleDisconnect", {
                 (GVAR(hcDCH) select _forEachIndex) set [0, profileName];
 
                 // Log
-                diag_log format ["HC Mission Migrated to Server: %1 from %2", _missionID, _name];
+                [format ["HC Mission Migrated to Server: %1 from %2", _missionID, _name]] call YFNC(log);
             };
 
         } forEach GVAR(hcDCH);

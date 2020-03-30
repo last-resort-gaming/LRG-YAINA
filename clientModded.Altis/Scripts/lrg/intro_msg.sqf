@@ -26,9 +26,17 @@ sleep 10;
 
 private _messages = call {
 
+    if ("MERT" call YAINA_fnc_testTraits) exitWith {
+        [
+            [ "You're part of the Medical Emergency Response Team.", ["That's MERT in long!"]],
+            [ "You provide emergency medical support for sections in the field.", ["Your main priority are other players' lifes"]],
+            [ "Coordinate with Section Medic if possible.", ["He'll tell you who to treat first."]]
+        ]
+    };
+
     if ("HQ" call YAINA_fnc_testTraits) exitWith {
         [
-            [ "You're HQ, you MUST be on Teamspeak.", ["TS.LastResortGaming.net"]],
+            [ "You're HQ, you MUST be on Discord.", ["discord.lastresortgaming.net"]],
             [ "You can purchase Mission rewards from the laptop.", ["ONLY approve sensible requests!"]],
             [ "Organise transport for each Section.", ["Approve and coordinate CAS."]]
         ]
@@ -36,7 +44,7 @@ private _messages = call {
 
     if ("PILOT" call YAINA_fnc_testTraits) exitWith {
         [
-            ["You're a Pilot, you MUST be on Teamspeak.", ["TS.LastResortGaming.net"]],
+            ["You're a Pilot, you MUST be on Discord.", ["discord.lastresortgaming.net"]],
             ["Create your own group.", ["Press 'U' and click 'Create.'"]],
             ["Listen to HQ and Section Commanders.", ["CAS is by request ONLY."]]
         ]
@@ -44,7 +52,7 @@ private _messages = call {
 
     if ("UAV" call YAINA_fnc_testTraits) exitWith {
         [
-            ["You're UAV, you MUST be on Teamspeak.", ["TS.LastResortGaming.net"]],
+            ["You're UAV, you MUST be on Discord.", ["discord.lastresortgaming.net"]],
             ["Create your own group.", ["Press 'U' and click 'Create.'"]],
             ["Assist Sections on the Ground", ["CAS is by request ONLY"]]
         ]

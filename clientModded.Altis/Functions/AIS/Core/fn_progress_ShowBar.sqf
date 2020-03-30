@@ -30,7 +30,7 @@ _affectingObject = if (typeName _arguments == "ARRAY") then {_arguments select 0
 
 if (typeName _affectingObject == "OBJECT") then {
     if (_affectingObject getVariable ["AIS_Core_Progress_inUse", false]) exitWith {
-		["Object in use" call XOrangeText] call AIS_Core_fnc_dynamicText;
+		["Object in use"] call AIS_Core_fnc_dynamicText;
     };
 
     _affectingObject setVariable ["AIS_Core_Progress_inUse", true, true];

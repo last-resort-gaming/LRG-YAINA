@@ -1,11 +1,11 @@
 class YAINA {
 	tag = "YAINA";
 
-	class Main {
-		file = "Functions\YAINA\Main";
+	class General {
+		file = "Functions\YAINA\General";
 		class baseCleanupManager { postInit = 1; };
 		class timeManager{ postInit=1; };
-		class YhideTerrainObjects{};
+		class hideTerrainObjects{};
 		class showTerrainObjects{};
 		class getPointBetween {};
 		class postInit { postInit = 1; };
@@ -22,6 +22,7 @@ class YAINA {
 		class kickSelf {};
 		class playerIntroComplete {};
 		class getDBKey {};
+		class setDBKey {};
         class getFunctions {};
     };
 };
