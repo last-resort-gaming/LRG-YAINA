@@ -28,7 +28,7 @@ force ace_advanced_fatigue_performanceFactor = 5;
 
 force ace_advanced_fatigue_recoveryFactor = 5;
 
-force ace_advanced_fatigue_swayFactor = 0.5;
+force ace_advanced_fatigue_swayFactor = 0.1;
 
 force ace_advanced_fatigue_terrainGradientFactor = 0.2;
 
@@ -942,7 +942,7 @@ force LRG_Main_QSMagRepack = false;
 
 force LRG_Main_TFARTerrainInterference = 0.2;
 
-force LRG_Main_TFARTransmitRange = 4.5;
+force LRG_Main_TFARTransmitRange = 8;
 
 force LRG_Main_VehicleCrewList = true;
 
