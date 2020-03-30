@@ -479,9 +479,6 @@ class List(Command):
             # Copy base template files
             shutil.copytree(os.path.join(self.yaina.root, 'Templates', 'zeus'), tmp_tgt)
 
-            # copy data dir as is
-            shutil.copytree(os.path.join(self.source, 'data'), os.path.join(tmp_tgt, 'data'))
-
             # copy the default files from main mission
             for f in [["mission.sqm", "mission.sqm"], ["settings.sqf.zeus", "settings.sqf"]]:
 
