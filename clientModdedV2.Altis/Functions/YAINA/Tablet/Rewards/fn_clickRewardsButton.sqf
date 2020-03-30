@@ -58,7 +58,7 @@ lbClear _lb;
 } forEach (GVAR(rewards) select (_enabled -30));
 
 // Sort it
-lbSort _lb;
+//lbSort _lb;
 
 // We also just select first item currently so we dont start half way down
 // it also triggers the generation of the buy pane...
