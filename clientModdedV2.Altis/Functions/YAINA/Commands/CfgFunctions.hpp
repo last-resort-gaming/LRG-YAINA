@@ -56,5 +56,6 @@ class YAINA_CMD {
         class ugmsg {};
         class vehmsg {};
         class micmsg {};
+		class tfarmsg {};
     };
 };
