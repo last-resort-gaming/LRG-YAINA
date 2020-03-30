@@ -38,7 +38,6 @@ class YAINA {
 		class getNearestPlayer {};
 		class getDBKey {};
 		class setDBKey {};
-		class channels { preInit=1; };
 		class AOPos {};
         class getFunctions {};
     };
