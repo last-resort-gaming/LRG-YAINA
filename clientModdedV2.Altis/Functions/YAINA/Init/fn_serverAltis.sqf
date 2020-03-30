@@ -131,7 +131,7 @@ if !(isNil "TM") then {
 
         if (!(_pos isEqualTo "driver") &&
             { !(["MERT", "PILOT"] call YAINA_fnc_testTraits) } &&
-            { !(player getVariable ["ais_unconscious", false]) } )  then {
+            { !(player getVariable ["ACE_isUnconscious", true]) } )  then {
 
             // Let them know
             "Only MERT or Unconscious players may board this chopper" call YFNC(hintC);
@@ -147,7 +147,7 @@ if !(isNil "TM") then {
 
         _internalQuad = "B_QuadBike_01_F" createVehicle [0,0,0];
         _internalQuad enableSimulationGlobal false;
-        _internalQuad attachTo [_veh, [0,-1,0]];
+        _internalQuad attachTo [_veh, [0.2,0.5,-0.65]];
         _veh setVariable ["MERT_QUAD_dummy", _internalQuad, true];
 
         ///////////////////////////////////////////////////////
@@ -327,7 +327,7 @@ if !(isNil "TM") then {
     if !(isNil "_x") then {
         [_x, true, 10, 3000] call YAINA_VEH_fnc_initVehicle;
     };
-} forEach ["VE1","VE2","VE3","VE4","VE5","VE6","VE7","BT1","BT2","BT3","BT4","BT5","BT6"];
+} forEach ["VE1","VE2","VE3","VE4","VE5","VE6","VE7","VE8","VE9","VE10","VE11","VE12","VE13","VE14","VE15","VE16","BT1","BT2","BT3","BT4","BT5","BT6"];
 
 ///////////////////////////////////////////////////////////
 // GENERAL SETUP FOR BOTH
