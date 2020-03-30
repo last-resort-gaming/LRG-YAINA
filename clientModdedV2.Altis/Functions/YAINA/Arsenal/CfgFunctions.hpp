@@ -4,6 +4,7 @@ class YAINA_ARSENAL {
     class General {
         file = "Functions\YAINA\Arsenal\General";
         class initArsenal {};
+		class initArsenal3CB {};
         class preInit { preInit = 1; };
         class postInit { postInit = 1; };
         class enforceGear {};

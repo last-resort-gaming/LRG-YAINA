@@ -24,7 +24,14 @@ Author:
 
 private _arsenals = [];
 
-[ARSENALS] call FNC(initArsenal);
+if (isClass(configfile >> "CfgPatches" >> "UK3CB_BAF_Equipment")) then {
+	
+	[ARSENALS] call FNC(initArsenal3CB);
+
+} else {
+	
+	[ARSENALS] call FNC(initArsenal);	
+};
 
 // Player take handler, if the weapon hold is BLUFOR then we enforce weapon restrictions
 
