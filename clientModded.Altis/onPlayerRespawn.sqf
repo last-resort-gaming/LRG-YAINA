@@ -7,7 +7,6 @@
 params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
 enableSentences false;
-player enableFatigue false;
 
 if !(isNull _oldUnit) then {
     [_oldUnit, 5] remoteExec ["YAINA_fnc_deleteVehicleIn", 2];
