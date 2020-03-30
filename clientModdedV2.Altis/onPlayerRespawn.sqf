@@ -7,20 +7,10 @@
 params ["_newUnit", "_oldUnit", "_respawn", "_respawnDelay"];
 
 enableSentences false;
-player enableFatigue false;
 
 if !(isNull _oldUnit) then {
     [_oldUnit, 5] remoteExec ["YAINA_fnc_deleteVehicleIn", 2];
 };
-
-[] execVM "scripts\YAINA\earplugs.sqf";
-
-// Re-add repack mag actiong
-player addAction [
-    "Repack Magazines",
-    { call outlw_MR_createDialog; },
-    "",-99, false
-];
 
 // readd players to zeus
 [[player], false] call YAINA_fnc_addEditableObjects;
