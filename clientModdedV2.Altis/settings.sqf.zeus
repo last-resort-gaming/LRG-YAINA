@@ -13,6 +13,10 @@ yaina_mission_manager_disable = true;
 // TIME AND WEWATHER
 ///////////////////////////////////////////////////////////
 
+// Enable dynamic weather system, when set to false, make
+// sure you have set the correct time and day for your op
+real_weather_enabled = false;
+
 // Enable time manager (variable time acceleration), if
 // you disable this, then it will be set to the value of
 // yaina_default_time_multiplier (1 = realtime, 2 = twice
