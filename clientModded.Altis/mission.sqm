@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3291;
+		nextID=3316;
 	};
 	class Camera
 	{
-		pos[]={14617.901,23.90694,16923.494};
-		dir[]={-0.7567808,-0.34209925,-0.55710781};
-		up[]={-0.27553594,0.9396435,-0.2028372};
-		aside[]={-0.59287506,-6.4246706e-007,0.80537254};
+		pos[]={14631.422,50.382713,16751.266};
+		dir[]={-0.70143396,-0.34401742,-0.62441748};
+		up[]={-0.25701261,0.93891883,-0.22879098};
+		aside[]={-0.66499215,1.5716068e-007,0.74702454};
 	};
 };
 binarizationWanted=0;
@@ -121,7 +121,6 @@ addons[]=
 	"ace_attach",
 	"ace_medical_treatment",
 	"UK3CB_BAF_Equipment_NVG",
-	"A3_Drones_F_Weapons_F_Gamma_Items",
 	"UK3CB_BAF_Equipment_ACE",
 	"ace_minedetector",
 	"ace_optics",
@@ -139,6 +138,7 @@ addons[]=
 	"ace_vector",
 	"UK3CB_BAF_Weapons_SmallArms",
 	"ace_yardage450",
+	"A3_Drones_F_Weapons_F_Gamma_Items",
 	"UK3CB_BAF_Weapons_L115",
 	"RKSL_PMII_525",
 	"ace_tripod",
@@ -158,7 +158,6 @@ addons[]=
 	"A3_Structures_F_Exp_Commercial_Warehouses",
 	"A3_Characters_F",
 	"A3_Data_F_Curator_Virtual",
-	"UK3CB_BAF_Equipment_Boonies",
 	"UK3CB_BAF_Vehicles_LandRover",
 	"UK3CB_BAF_Vehicles_Warrior_a3",
 	"UK3CB_BAF_Vehicles_Coyote_Jackal",
@@ -169,7 +168,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=94;
+		items=93;
 		class Item0
 		{
 			className="A3_Structures_F_EPC";
@@ -584,115 +583,115 @@ class AddonsMetaData
 		};
 		class Item59
 		{
-			className="A3_Drones_F";
-			name="Arma 3 Beta - Drones";
-			author="Bohemia Interactive";
-			url="https://www.arma3.com";
-		};
-		class Item60
-		{
 			className="UK3CB_BAF_Equipment_ACE";
 			name="3CB BAF Equipment - Ace3";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item61
+		class Item60
 		{
 			className="ace_minedetector";
 			name="ACE3 - Mine Detector";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item62
+		class Item61
 		{
 			className="ace_optics";
 			name="ACE3 - Optics";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item63
+		class Item62
 		{
 			className="ace_explosives";
 			name="ACE3 - Explosives";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item64
+		class Item63
 		{
 			className="UK3CB_BAF_Weapons_L110";
 			name="3CB BAF Weapons - L110";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item65
+		class Item64
 		{
 			className="UK3CB_BAF_Weapons_L129";
 			name="3CB BAF Weapons - L129";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item66
+		class Item65
 		{
 			className="ace_trenches";
 			name="ACE3 - Trenches";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item67
+		class Item66
 		{
 			className="ace_rangecard";
 			name="ACE3 - Range Card";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item68
+		class Item67
 		{
 			className="ace_logistics_wirecutter";
 			name="ACE3 - Logistics Wire Cutter";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item69
+		class Item68
 		{
 			className="UK3CB_BAF_Weapons_L85A3";
 			name="3CB BAF Weapons - L85A3";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item70
+		class Item69
 		{
 			className="UK3CB_BAF_Units_Temperate";
 			name="3CB BAF Units - Temperate";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item71
+		class Item70
 		{
 			className="UK3CB_BAF_Weapons_Launchers";
 			name="3CB BAF Weapons - Launchers";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item72
+		class Item71
 		{
 			className="ace_vector";
 			name="ACE3 - Vector";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
 		};
-		class Item73
+		class Item72
 		{
 			className="UK3CB_BAF_Weapons_SmallArms";
 			name="3CB BAF Weapons - Small Arms";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item74
+		class Item73
 		{
 			className="ace_yardage450";
 			name="ACE3 - Yardage 450";
 			author="ACE-Team";
 			url="http://ace3mod.com/";
+		};
+		class Item74
+		{
+			className="A3_Drones_F";
+			name="Arma 3 Beta - Drones";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
 		};
 		class Item75
 		{
@@ -783,40 +782,33 @@ class AddonsMetaData
 		};
 		class Item88
 		{
-			className="UK3CB_BAF_Equipment_Boonies";
-			name="3CB BAF Equipment - Boonies";
-			author="3 Commando Brigade";
-			url="www.3commandobrigade.com";
-		};
-		class Item89
-		{
 			className="UK3CB_BAF_Vehicles_LandRover";
 			name="3CB BAF Vehicles - Land Rover";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item90
+		class Item89
 		{
 			className="UK3CB_BAF_Vehicles_Warrior_a3";
 			name="3CB BAF Vehicles - Warrior";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item91
+		class Item90
 		{
 			className="UK3CB_BAF_Vehicles_Coyote_Jackal";
 			name="3CB BAF Vehicles - Coyote and Jackal";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item92
+		class Item91
 		{
 			className="UK3CB_BAF_Vehicles_Husky";
 			name="3CB BAF Vehicles - Husky";
 			author="3 Commando Brigade";
 			url="www.3commandobrigade.com";
 		};
-		class Item93
+		class Item92
 		{
 			className="UK3CB_BAF_Vehicles_Panther";
 			name="3CB BAF Vehicles - Panther";
@@ -865,7 +857,7 @@ class ScenarioData
 };
 class CustomAttributes
 {
-	class Category0
+	class Category1
 	{
 		name="Multiplayer";
 		class Attribute0
@@ -906,7 +898,7 @@ class CustomAttributes
 		};
 		nAttributes=1;
 	};
-	class Category1
+	class Category2
 	{
 		name="Scenario";
 		class Attribute0
@@ -980,7 +972,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=612;
+		items=611;
 		class Item0
 		{
 			dataType="Object";
@@ -1165,7 +1157,7 @@ class Mission
 		{
 			dataType="Trigger";
 			position[]={14604.817,17.787714,16910.492};
-			angle=3.9063199;
+			angle=3.9063196;
 			class Attributes
 			{
 				name="SP_VEH";
@@ -2396,8 +2388,8 @@ class Mission
 							dataType="Object";
 							class PositionInfo
 							{
-								position[]={14704.883,21.646605,16769.453};
-								angles[]={0,5.5006495,0};
+								position[]={14705.247,21.646605,16769.695};
+								angles[]={-0,5.5006495,0};
 							};
 							side="Empty";
 							flags=4;
@@ -6974,7 +6966,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14604.785,18.161249,16904.268};
-				angles[]={-0,0.77092981,0.0039967569};
+				angles[]={0,0.77092981,0.0039967569};
 			};
 			side="Empty";
 			flags=4;
@@ -18006,7 +17998,7 @@ class Mission
 								};
 								class ItemCargo
 								{
-									items=10;
+									items=9;
 									class Item0
 									{
 										name="ACE_elasticBandage";
@@ -18051,11 +18043,6 @@ class Mission
 									{
 										name="ACE_fieldDressing";
 										count=30;
-									};
-									class Item9
-									{
-										name="tfw_rf3080Item";
-										count=1;
 									};
 								};
 							};
@@ -18306,7 +18293,7 @@ class Mission
 								isBackpack=0;
 								class MagazineCargo
 								{
-									items=3;
+									items=2;
 									class Item0
 									{
 										name="UK3CB_BAF_SmokeShell";
@@ -18318,12 +18305,6 @@ class Mission
 										name="UK3CB_BAF_9_17Rnd";
 										count=1;
 										ammoLeft=17;
-									};
-									class Item2
-									{
-										name="Laserbatteries";
-										count=1;
-										ammoLeft=1;
 									};
 								};
 								class ItemCargo
@@ -18415,7 +18396,7 @@ class Mission
 									class Item0
 									{
 										name="Laserbatteries";
-										count=2;
+										count=3;
 										ammoLeft=1;
 									};
 									class Item1
@@ -18433,7 +18414,7 @@ class Mission
 								};
 								class ItemCargo
 								{
-									items=10;
+									items=9;
 									class Item0
 									{
 										name="ACE_elasticBandage";
@@ -18478,11 +18459,6 @@ class Mission
 									{
 										name="ACE_fieldDressing";
 										count=30;
-									};
-									class Item9
-									{
-										name="tfw_rf3080Item";
-										count=1;
 									};
 								};
 							};
@@ -18903,7 +18879,7 @@ class Mission
 							compass="ItemCompass";
 							watch="tf_microdagr";
 							radio="tf_anprc152";
-							gps="B_UavTerminal";
+							gps="ItemGPS";
 							headgear="UK3CB_BAF_H_Mk7_Net_A";
 						};
 					};
@@ -30874,7 +30850,7 @@ class Mission
 					flags=6;
 					class Attributes
 					{
-						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot"",""UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="Jigsaw @909 EAW";
 						isPlayable=1;
 						class Inventory
@@ -31021,15 +30997,10 @@ class Mission
 								isBackpack=1;
 								class ItemCargo
 								{
-									items=2;
+									items=1;
 									class Item0
 									{
 										name="ToolKit";
-										count=1;
-									};
-									class Item1
-									{
-										name="tfw_rf3080Item";
 										count=1;
 									};
 								};
@@ -31038,7 +31009,7 @@ class Mission
 							compass="ItemCompass";
 							watch="ItemWatch";
 							radio="tf_anprc152";
-							gps="ItemGPS";
+							gps="B_UavTerminal";
 							headgear="UK3CB_BAF_H_PilotHelmetHeli_A";
 						};
 					};
@@ -31252,7 +31223,7 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot"",""UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31411,7 +31382,7 @@ class Mission
 							compass="ItemCompass";
 							watch="ItemWatch";
 							radio="tf_anprc152";
-							gps="ItemGPS";
+							gps="B_UavTerminal";
 							headgear="UK3CB_BAF_H_PilotHelmetHeli_A";
 						};
 					};
@@ -31625,7 +31596,7 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot"",""UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="Pilot";
 						isPlayable=1;
 						class Inventory
@@ -31784,7 +31755,7 @@ class Mission
 							compass="ItemCompass";
 							watch="ItemWatch";
 							radio="tf_anprc152";
-							gps="ItemGPS";
+							gps="B_UavTerminal";
 							headgear="UK3CB_BAF_H_PilotHelmetHeli_A";
 						};
 					};
@@ -31998,7 +31969,7 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot"",""UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32157,7 +32128,7 @@ class Mission
 							compass="ItemCompass";
 							watch="ItemWatch";
 							radio="tf_anprc152";
-							gps="ItemGPS";
+							gps="B_UavTerminal";
 							headgear="UK3CB_BAF_H_PilotHelmetHeli_A";
 						};
 					};
@@ -32371,7 +32342,7 @@ class Mission
 					flags=4;
 					class Attributes
 					{
-						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
+						init="call{[[""Medic"", ""MERT"", ""MERT_PILOT"", ""Pilot"",""UAV""], this] call YAINA_fnc_setUnitTrait;" \n "this setVariable [""AIS_REQUIRE_MEDIKIT"", false];}";
 						description="Pilot";
 						isPlayable=1;
 						class Inventory
@@ -32530,7 +32501,7 @@ class Mission
 							compass="ItemCompass";
 							watch="ItemWatch";
 							radio="tf_anprc152";
-							gps="ItemGPS";
+							gps="B_UavTerminal";
 							headgear="UK3CB_BAF_H_PilotHelmetHeli_A";
 						};
 					};
@@ -44597,6 +44568,7 @@ class Mission
 			};
 			id=4663;
 			type="Land_TentHangar_V1_F";
+			atlOffset=-1.9073486e-006;
 		};
 		class Item591
 		{
@@ -44893,192 +44865,6 @@ class Mission
 		};
 		class Item595
 		{
-			dataType="Group";
-			side="West";
-			class Entities
-			{
-				items=1;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={14508.075,21.31683,16357.22};
-						angles[]={0.0012918708,5.4707799,0.001381068};
-					};
-					side="West";
-					flags=6;
-					class Attributes
-					{
-						skill=0.60000002;
-						init="[[""UAV""], this] call YAINA_fnc_setUnitTrait;";
-						description="Reaper 1-1  -  UAV Operator  (Discord: discord.lastresortgaming.net) @UAV";
-						isPlayable=1;
-						class Inventory
-						{
-							class uniform
-							{
-								typeName="UK3CB_BAF_U_CombatUniform_MTP_TShirt";
-								isBackpack=0;
-								class ItemCargo
-								{
-									items=4;
-									class Item0
-									{
-										name="ACE_CableTie";
-										count=1;
-									};
-									class Item1
-									{
-										name="ACE_EarPlugs";
-										count=1;
-									};
-									class Item2
-									{
-										name="ACE_Flashlight_XL50";
-										count=1;
-									};
-									class Item3
-									{
-										name="ACE_MapTools";
-										count=1;
-									};
-								};
-							};
-							class vest
-							{
-								typeName="UK3CB_BAF_V_Osprey_Belt_A";
-								isBackpack=0;
-							};
-							class backpack
-							{
-								typeName="UK3CB_BAF_B_Bergen_MTP_JTAC_L_A";
-								isBackpack=1;
-								class ItemCargo
-								{
-									items=8;
-									class Item0
-									{
-										name="ACE_fieldDressing";
-										count=20;
-									};
-									class Item1
-									{
-										name="ACE_epinephrine";
-										count=5;
-									};
-									class Item2
-									{
-										name="ACE_morphine";
-										count=5;
-									};
-									class Item3
-									{
-										name="ACE_packingBandage";
-										count=5;
-									};
-									class Item4
-									{
-										name="ACE_tourniquet";
-										count=8;
-									};
-									class Item5
-									{
-										name="UK3CB_BAF_HMNVS";
-										count=1;
-									};
-									class Item6
-									{
-										name="ACE_elasticBandage";
-										count=5;
-									};
-									class Item7
-									{
-										name="ACE_quikclot";
-										count=5;
-									};
-								};
-							};
-							map="ItemMap";
-							compass="ItemCompass";
-							watch="tf_microdagr";
-							radio="tf_anprc152";
-							gps="B_UavTerminal";
-							headgear="UK3CB_BAF_H_Boonie_MTP_PRR";
-						};
-					};
-					id=4669;
-					type="B_soldier_UAV_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="QUOTE(LRG_Group_Preset)";
-							expression="[_this, _value] call LR_fnc_ConfigPlayer;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=4;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="speaker";
-							expression="_this setspeaker _value;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="Male05ENG";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="pitch";
-							expression="_this setpitch _value;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0.98000002;
-								};
-							};
-						};
-						nAttributes=3;
-					};
-				};
-			};
-			class Attributes
-			{
-			};
-			id=4668;
-		};
-		class Item596
-		{
 			dataType="Object";
 			class PositionInfo
 			{
@@ -45247,7 +45033,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item597
+		class Item596
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45263,7 +45049,7 @@ class Mission
 			id=4685;
 			type="Land_JumpTarget_F";
 		};
-		class Item598
+		class Item597
 		{
 			dataType="Marker";
 			position[]={14790.6,3347.7881,16612.709};
@@ -45275,7 +45061,7 @@ class Mission
 			id=4686;
 			atlOffset=3329.8796;
 		};
-		class Item599
+		class Item598
 		{
 			dataType="Marker";
 			position[]={14571.033,3347.7803,16350.315};
@@ -45287,7 +45073,7 @@ class Mission
 			id=4687;
 			atlOffset=3329.8801;
 		};
-		class Item600
+		class Item599
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45516,7 +45302,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item601
+		class Item600
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45744,7 +45530,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item602
+		class Item601
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45806,7 +45592,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item603
+		class Item602
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45869,7 +45655,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item604
+		class Item603
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45932,7 +45718,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item605
+		class Item604
 		{
 			dataType="Object";
 			class PositionInfo
@@ -45995,7 +45781,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item606
+		class Item605
 		{
 			dataType="Object";
 			class PositionInfo
@@ -46058,7 +45844,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item607
+		class Item606
 		{
 			dataType="Object";
 			class PositionInfo
@@ -46121,7 +45907,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item608
+		class Item607
 		{
 			dataType="Object";
 			class PositionInfo
@@ -46184,7 +45970,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item609
+		class Item608
 		{
 			dataType="Object";
 			class PositionInfo
@@ -46247,7 +46033,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item610
+		class Item609
 		{
 			dataType="Object";
 			class PositionInfo
@@ -46309,7 +46095,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item611
+		class Item610
 		{
 			dataType="Object";
 			class PositionInfo
