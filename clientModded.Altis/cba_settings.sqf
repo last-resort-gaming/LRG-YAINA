@@ -940,9 +940,9 @@ force LRG_Main_PilotCheck = false;
 
 force LRG_Main_QSMagRepack = false;
 
-force LRG_Main_TFARTerrainInterference = 0.2;
+force LRG_Main_TFARTerrainInterference = 0.5;
 
-force LRG_Main_TFARTransmitRange = 4.0;
+force LRG_Main_TFARTransmitRange = 9;
 
 force LRG_Main_VehicleCrewList = true;
 
