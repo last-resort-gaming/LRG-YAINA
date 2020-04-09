@@ -1,7 +1,0 @@
-/*
-
-This file is only to be used in zeus templates
-
-DO NOT ADD ANYTHING TO IT HERE
-
-*/
