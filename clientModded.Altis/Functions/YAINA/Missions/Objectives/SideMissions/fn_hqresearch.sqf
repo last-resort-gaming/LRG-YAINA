@@ -36,28 +36,32 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
 
-call {
-    if (_army isEqualTo "CSAT") exitwith {
+_army call {
+    if (_this isEqualTo "CSAT") exitwith {
         _side = east;
 		_MarkerColour = "colorOPFOR";
 		_RandomVeh = ["O_MRAP_02_F","O_Truck_03_covered_F","O_Truck_03_transport_F","O_Heli_Light_02_unarmed_F","O_Truck_02_transport_F","O_Truck_02_covered_F","C_SUV_01_F","C_Van_01_transport_F"];
+        [_side, _MarkerColour, _RandomVeh];
     };
-    if (_army isEqualTo "AAF") exitwith {
+    if (_this isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_RandomVeh = ["I_Truck_02_covered_F","I_Truck_02_transport_F","I_Truck_02_box_F","I_Truck_02_fuel_F","I_Truck_02_ammo_F","I_MRAP_03_F","C_SUV_01_F","C_Van_01_transport_F"];
+        [_side, _MarkerColour, _RandomVeh];
     };
-    if (_army isEqualTo "CSAT Pacific") exitwith {
+    if (_this isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
-		_MarkerColour = "colorOPFOR";		
-		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];	
+		_MarkerColour = "colorOPFOR";
+		_RandomVeh = ["O_T_Truck_03_device_ghex_F","O_T_Truck_03_ammo_ghex_F","O_T_Truck_03_fuel_ghex_F","O_T_Truck_03_repair_ghex_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F","O_T_MRAP_02_ghex_F"];
+        [_side, _MarkerColour, _RandomVeh];
     };
-    if (_army isEqualTo "Syndikat") exitwith {
+    if (_this isEqualTo "Syndikat") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_RandomVeh = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F", "I_C_Van_02_vehicle_F", "I_C_Van_02_transport_F", "I_C_Heli_Light_01_civil_F", "C_Truck_02_transport_F", "C_Van_01_box_F","C_Van_01_transport_F"];
+        [_side, _MarkerColour, _RandomVeh];
     };
-};
+} params ["_side", "_MarkerColour", "_RandomVeh"];
 
 ///////////////////////////////////////////////////////////
 // AO Setup
@@ -102,7 +106,7 @@ _v lock 3;
 _vehicles pushBack _v;
 
 // As the above are all destroyable, create a NS
-_ns = [true] call CBAP_fnc_createNamespace;
+_ns = [true] call CBA_fnc_createNamespace;
 
 //-------------------- SPAWN FORCE PROTECTION
 

@@ -38,7 +38,7 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
         [{ ["ZeusSlotRestricted", false, 2, false, false] call BIS_fnc_endMission; }] remoteExec["call", remoteExecutedOwner];
 
         // we kick so they really have gone from the slot and can't just abuse idle
-        [{  SERVER_COMMAND_PASSWORD serverCommand _this; }, format ["#kick %1", _puid], 15] call CBAP_fnc_waitAndExecute;
+        [{  SERVER_COMMAND_PASSWORD serverCommand _this; }, format ["#kick %1", _puid], 15] call CBA_fnc_waitAndExecute;
 
         [format ['event: ascention, allowed: false, player: %1, playerguid: %2', name _player, _puid], "ZeusLog"] call YFNC(log);
     } else {
@@ -52,7 +52,7 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 // everyone can see they're online, and once they've switched side, we allow them to talk on side + command
 
                 _n = "Zeus";
-				
+
                 if (isPlayer zeus1 && zeus1 isEqualTo _player) then {
                     _n = "Zeus 1";
                 };
@@ -65,8 +65,8 @@ if ((owner _player) isEqualTo remoteExecutedOwner) then {
                 if (isPlayer zeus4 && zeus4 isEqualTo _player) then {
                     _n = "Zeus 4";
                 };
-		
-								
+
+
 				_g = createGroup west;
                 _g setVariable [QVAR(playerInit), true];
                 [_player] joinSilent _g;

@@ -2,7 +2,7 @@
 Function: YAINA_MM_OBJ_fnc_arty
 
 Description:
-	Priority Target: Artillery. The artillery installation engages BLUFOR targets 
+	Priority Target: Artillery. The artillery installation engages BLUFOR targets
     once they have been discovered, deploying red smoke on target for range indication and
     tuning.
     Randomly selects one of the following armies for the mission (inherited from Main AO):
@@ -41,28 +41,31 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
  _army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
 
-call {
-	if (_army isEqualto "CSAT") exitwith {
+_army call {
+	if (_this isEqualto "CSAT") exitwith {
 		_artVic = "O_MBT_02_arty_F";
 		_truck = "O_Truck_03_ammo_F";
 		_side = east;
-		_MarkerColour = "colorOPFOR";	
+		_MarkerColour = "colorOPFOR";
+        [_artVic, _truck, _side, _MarkerColour];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_artVic = "I_Truck_02_MRL_F";
 		_truck = "I_Truck_02_ammo_F";
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
+        [_artVic, _truck, _side, _MarkerColour];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_artVic = "O_T_MBT_02_arty_ghex_F";
 		_truck = "O_T_Truck_03_ammo_ghex_F";
 		_side = east;
 		_MarkerColour = "colorOPFOR";
-	};	
-};
+        [_artVic, _truck, _side, _MarkerColour];
+	};
+} params ["_artVic", "_truck", "_side", "_MarkerColour"];
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////
@@ -194,7 +197,7 @@ _pfh = {
 
     // Now make sure the prototype tank is dead
     if (_stage isEqualTo 1 && { not _stopRequested }) then {
-        if (!canFire _arty1 && !canFire _arty2) then {
+        if ((!canFire _arty1) && (!canFire _arty2)) then {
             _stage = 2; _args set [1,_stage];
         } else {
             // We process if we should fire based on _nextStrike, we use
@@ -203,10 +206,10 @@ _pfh = {
                 // We only fire on folks who are within the paradrop markers of an AO
                 private _aos = (GVAR(missionAreas) apply { [getMarkerPos _x] + (getMarkerSize _x apply { _x * 1.5 }) + [0,false] });
 				if (_side isEqualTo east) then {
-                private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p >= 1.5 }  } );
+                    _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "32Rnd_155mm_Mo_shells"] } && { east knowsAbout _p >= 1.5 }  } );
 				};
 				if (_side isEqualTo resistance) then {
-                private _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "12Rnd_230mm_rockets"] } && { resistance knowsAbout _p >= 1.5 }  } );
+                    _target = selectRandom (allPlayers select { _p = _x; side _x isEqualTo west && { !(({ _p inArea _x } count _aos) isEqualTo 0) } && { (getPos _p) inRangeOfArtillery [[_arty1, _arty2], "12Rnd_230mm_rockets"] } && { resistance knowsAbout _p >= 1.5 }  } );
 				};
                 if !(isNil "_target") then {
                     // We have a target, FIRE
@@ -215,28 +218,28 @@ _pfh = {
 
                     private _targetPos = getPos _target;
                     private _targetDir = [_mainArty, _targetPos] call BIS_fnc_dirTo;
-					
+
                     if (canFire _arty1) then {
 						if (_side isEqualTo east) then {
-                        _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 1) + 1];
+                            _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
 						};
 						if (_side isEqualTo resistance) then {
-                        _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
-						};						
+                            _arty1 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
+						};
                     };
 
                     // Trigger _arty2 in 5 seconds so the target area is bathed in arty
                     [{
-                        params ["_arty2", "_dir", "_target"];
+                        params ["_arty2", "_dir", "_target", "_side", "_targetPos"];
                         if (canFire _arty2) then {
 							if (_side isEqualTo east) then {
-							_arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 1) + 1];
+							    _arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "32Rnd_155mm_Mo_shells", floor(random 5) + 2];
 							};
 							if (_side isEqualTo resistance) then {
-							_arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
+							    _arty2 commandArtilleryFire [ [_targetPos, 30] call BIS_fnc_randomPosTrigger, "12Rnd_230mm_rockets", 1];
 							};
                         };
-                    }, [_arty2, _targetDir, _targetPos], 5] call CBAP_fnc_waitAndExecute;
+                    }, [_arty2, _targetDir, _targetPos, _side, _targetPos], 5] call CBA_fnc_waitAndExecute;
 
                     // Players get between 30 and 40 seconds to move
                     _warningTime = (random 10) + 30;
@@ -244,11 +247,11 @@ _pfh = {
                     _sleepTime   = floor(_shellETA - _warningTime) max 1;
 
                     // Give a little warning
-                    [{ "SmokeShellRed" createVehicle (_this select 0) }, [_targetPos], _sleepTime] call CBAP_fnc_waitAndExecute;
+                    [{ "SmokeShellRed" createVehicle (_this select 0) }, [_targetPos], _sleepTime] call CBA_fnc_waitAndExecute;
 
                     // If it's night, we throw some chemlights down too
                     if (daytime > 20 || { daytime < 4}) then {
-                        [{ params ["_tp"]; "Chemlight_red" createVehicle (_tp vectorAdd [1,1,0]); "Chemlight_red" createVehicle (_tp vectorAdd [-1,-1,0]); }, [_targetPos], _sleepTime] call CBAP_fnc_waitAndExecute;
+                        [{ params ["_tp"]; "Chemlight_red" createVehicle (_tp vectorAdd [1,1,0]); "Chemlight_red" createVehicle (_tp vectorAdd [-1,-1,0]); }, [_targetPos], _sleepTime] call CBA_fnc_waitAndExecute;
                     };
 
                     // Then we sleep for a long time between fires, between 10 and 20 minutes

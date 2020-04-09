@@ -47,7 +47,7 @@ if (isNil "A3GRAPHITE_PREFIX") exitWith {};
     ["scripts.execVM", _s select 1] call FNC(send);
     ["scripts.exec", _s select 2] call FNC(send);
     ["scripts.execFSM", _s select 3] call FNC(send);
-    ["scripts.pfh", count CBAP_perFrameHandlerArray] call FNC(send);
+    ["scripts.pfh", count CBA_perFrameHandlerArray] call FNC(send);
 
     // Globals if server
     if (isServer) then {
@@ -58,4 +58,4 @@ if (isNil "A3GRAPHITE_PREFIX") exitWith {};
         ["count.players", count allPlayers, true] call FNC(send);
     };
 
-}, 10, []] call CBAP_fnc_addPerFrameHandler;
+}, 10, []] call CBA_fnc_addPerFrameHandler;

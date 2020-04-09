@@ -16,21 +16,21 @@ force ace_advanced_ballistics_simulationInterval = 0.05;
 
 // ACE Advanced Fatigue
 
-force ace_advanced_fatigue_enabled = false;
+force ace_advanced_fatigue_enabled = true;
 
-force ace_advanced_fatigue_enableStaminaBar = false;
+force ace_advanced_fatigue_enableStaminaBar = true;
 
 force ace_advanced_fatigue_fadeStaminaBar = true;
 
-force ace_advanced_fatigue_loadFactor = 0.5;
+force ace_advanced_fatigue_loadFactor = 0.1;
 
 force ace_advanced_fatigue_performanceFactor = 5;
 
 force ace_advanced_fatigue_recoveryFactor = 5;
 
-force ace_advanced_fatigue_swayFactor = 0.5;
+force ace_advanced_fatigue_swayFactor = 0.1;
 
-force ace_advanced_fatigue_terrainGradientFactor = 0.2;
+force ace_advanced_fatigue_terrainGradientFactor = 0.1;
 
 
 
@@ -396,9 +396,9 @@ force ace_medical_painCoefficient = 1;
 
 force ace_medical_playerDamageThreshold = 2;
 
-force ace_medical_spontaneousWakeUpChance = 0.2;
+force ace_medical_spontaneousWakeUpChance = 0.3;
 
-force ace_medical_spontaneousWakeUpEpinephrineBoost = 4;
+force ace_medical_spontaneousWakeUpEpinephrineBoost = 30;
 
 force ace_medical_statemachine_AIUnconsciousness = false;
 
@@ -424,7 +424,7 @@ force ace_medical_treatment_allowSelfStitch = 1;
 
 force ace_medical_treatment_allowSharedEquipment = 1;
 
-force ace_medical_treatment_clearTraumaAfterBandage = false;
+force ace_medical_treatment_clearTraumaAfterBandage = true;
 
 force ace_medical_treatment_consumePAK = 0;
 
@@ -432,7 +432,7 @@ force ace_medical_treatment_consumeSurgicalKit = 0;
 
 force ace_medical_treatment_convertItems = 0;
 
-force ace_medical_treatment_cprSuccessChance = 0.20;
+force ace_medical_treatment_cprSuccessChance = 0.30;
 
 force ace_medical_treatment_holsterRequired = 0;
 
@@ -928,13 +928,13 @@ force LRG_Main_Earplugs = false;
 
 force LRG_Main_FatigueVanilla = false;
 
-force LRG_Main_FlipVehicle = false;
+force LRG_Main_FlipVehicle = true;
 
 force LRG_Main_FPSCounter = true;
 
 force LRG_Main_LockCamVehicle = false;
 
-force LRG_Main_Logging = true;
+force LRG_Main_Logging = false;
 
 force LRG_Main_PilotCheck = false;
 
@@ -942,7 +942,7 @@ force LRG_Main_QSMagRepack = false;
 
 force LRG_Main_TFARTerrainInterference = 0.5;
 
-force LRG_Main_TFARTransmitRange = 8;
+force LRG_Main_TFARTransmitRange = 9;
 
 force LRG_Main_VehicleCrewList = true;
 
@@ -952,7 +952,7 @@ force LRG_Main_ViewDistanceMaxObjectDistance = 10000;
 
 force LRG_Main_ViewDistanceNoGrass = false;
 
-force LRG_Main_VoyagerCompass = false;
+LRG_Main_VoyagerCompass = true;
 
 
 
@@ -1028,13 +1028,13 @@ force LRG_QS_ST_showOwnGroup = false;
 
 force LRG_Weather_DayTimeAcc = 1;
 
-force LRG_Weather_Master = false;
+force LRG_Weather_Master = true;
 
 force LRG_Weather_MaxTime = 60;
 
-force LRG_Weather_MinTime = 1;
+force LRG_Weather_MinTime = 30;
 
-force LRG_Weather_NightTimeAcc = 1;
+force LRG_Weather_NightTimeAcc = 3;
 
 force LRG_Weather_RealTime = true;
 

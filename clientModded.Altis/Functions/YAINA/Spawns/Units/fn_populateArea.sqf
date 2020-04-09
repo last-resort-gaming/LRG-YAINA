@@ -17,7 +17,7 @@ Parameters:
     _sniper - Sniper Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
     _vehaa - Vehicle-based AA Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
     _vehmrap - MRAP Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
-    _vehran - Random Vehicles Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
+    _vehrand - Random Vehicles Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
     _vehlight - Light Vehicles Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
     _vehheavy - Heavy/Armoured Vehicle Parameters, array containing the following information: [Minimum Amount of Groups, Random Upper Bound of Groups, Skill Level of the units]
 
@@ -54,11 +54,13 @@ params [
 
 _typeNameCenter = typeName _center;
 
-call {
-	if (_typeNameCenter isEqualTo "OBJECT") exitwith { _center = getPos _center;};
-	if (_typeNameCenter isEqualTo "STRING") exitwith { _center = getMarkerPos _center;};
-	if (_typeNameCenter isEqualTo [0, 0, 0]) exitwith {systemchat "AISpawns - Position is invalid";};
+[_typeNameCenter, _center] call {
+	if ((_this select 0) isEqualTo "OBJECT") exitwith { _center = getPos (_this select 1); _center;};
+	if ((_this select 0) isEqualTo "STRING") exitwith { _center = getMarkerPos (_this select 1); _center;};
+} params ["_center"];
 
+if (_center isEqualTo [0, 0, 0]) exitWith {
+    ["AISpawns - Position is invalid", "ErrorLog"] call YFNC(log);
 };
 
 _center set [2, 0];
@@ -82,11 +84,11 @@ private ["_side", "_infList", "_confBase", "_infaaList", "_infatList", "_sniperL
 
 // TODO: UAVs ?
 
-call {
-	
+_army call {
+
 	_side = east;
-	
-	if (_army isEqualto "CSAT") exitwith {
+
+	if (_this isEqualto "CSAT") exitwith {
 		_confBase     = configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry";
 		_infList      = ["OIA_InfTeam","OI_reconPatrol"];
 		_infaaList    = ["OIA_InfTeam_AA"];
@@ -97,9 +99,10 @@ call {
 		_vehRandList  = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F"];
 		_vehLightList = ["O_LSV_02_armed_F", "O_G_Offroad_01_armed_F"];
 		_vehHeavyList = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-		
-	if (_army isEqualto "CSAT Pacific") exitwith {
+
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_confBase = configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry";
 		_infList = ("true" configClasses _confBase) apply { configName _x };
 		_infaaList    = ["O_T_InfTeam_AA"];
@@ -110,9 +113,10 @@ call {
 		_vehRandList  = ["O_T_APC_Tracked_02_cannon_ghex_F","O_T_APC_Wheeled_02_rcws_v2_ghex_F"];
 		_vehLightList = ["O_T_LSV_02_armed_F","O_T_LSV_02_unarmed_F"];
 		_vehHeavyList = ["O_T_MBT_02_cannon_ghex_F","O_T_MBT_04_cannon_F","O_T_MBT_04_command_F"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_side = resistance;
 		_confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry";
 		_infList = ("true" configClasses _confBase) apply { configName _x };
@@ -124,9 +128,10 @@ call {
 		_vehRandList  = ["I_APC_Tracked_C03_cannon_F"];
 		_vehLightList = ["I_G_Offroad_01_armed_F"];
 		_vehHeavyList = ["I_MBT_03_cannon_F", "I_LT_01_AT_F", "I_LT_01_cannon_F"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-	
-	if (_army isEqualto "Syndikat") exitwith {
+
+	if (_this isEqualto "Syndikat") exitwith {
 		_side = resistance;
 		_confBase = configfile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry";
 		_infList = ("true" configClasses _confBase) apply { configName _x };
@@ -138,9 +143,10 @@ call {
 		_vehRandList  = ["I_C_Offroad_02_unarmed_F", "I_C_Van_01_transport_F"];
 		_vehLightList = ["I_C_Offroad_02_AT_F", "I_C_Offroad_02_LMG_F"];
 		_vehHeavyList = [];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-	
-	if (_army isEqualto "TM") exitwith {
+
+	if (_this isEqualto "TM") exitwith {
 		_confBase = configfile >> "CfgGroups" >> "East" >> "CUP_O_TK_MILITIA" >> "Infantry";
 		_infList = ("true" configClasses _confBase) apply { configName _x };
 		_infaaList    = ["CUP_O_TK_INS_Soldier_AA"];
@@ -151,9 +157,10 @@ call {
 		_vehRandList  = ["CUP_O_LR_MG_TKM","CUP_O_LR_SPG9_TKM","CUP_O_LR_Transport_TKM","CUP_O_V3S_Open_TKM","CUP_O_V3S_Covered_TKM"];
 		_vehLightList = ["CUP_O_LR_MG_TKM","CUP_O_LR_SPG9_TKM","CUP_O_LR_Transport_TKM","CUP_O_V3S_Open_TKM","CUP_O_V3S_Covered_TKM"];
 		_vehHeavyList = [];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-	
-	if (_army isEqualto "CRS") exitwith {
+
+	if (_this isEqualto "CRS") exitwith {
 		_confBase = configfile >> "CfgGroups" >> "East" >> "CUP_O_ChDKZ" >> "Infantry";
 		_infList = ("true" configClasses _confBase) apply { configName _x };
 		_infaaList    = ["CUP_O_INS_Soldier_AA"];
@@ -164,9 +171,10 @@ call {
 		_vehRandList  = ["CUP_O_UAZ_SPG9_CHDKZ","CUP_O_UAZ_MG_CHDKZ"];
 		_vehLightList = ["CUP_O_Datsun_PK","CUP_O_Datsun_PK_Random","CUP_O_UAZ_METIS_CHDKZ","CUP_O_UAZ_SPG9_CHDKZ","CUP_O_UAZ_MG_CHDKZ"];
 		_vehHeavyList = ["CUP_O_T72_CHDKZ"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-	
-	if (_army isEqualto "CUP AFRF") exitwith {
+
+	if (_this isEqualto "CUP AFRF") exitwith {
 		_confBase		= configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry";
 		_infList 		= ["CUP_O_RU_InfSection","CUP_O_RU_InfSection_EMR","CUP_O_RU_InfSection_MG","CUP_O_RU_InfSection_MG_EMR","CUP_O_RU_InfSection_MG_VDV","CUP_O_RU_InfSection_MG_VDV_EMR","CUP_O_RU_InfSection_VDV","CUP_O_RU_InfSection_VDV_EMR","CUP_O_RU_InfSquad","CUP_O_RU_InfSquad_EMR","CUP_O_RU_InfSquad_VDV","CUP_O_RU_InfSquad_VDV_EMR"];
 		_infaaList		= ["CUP_O_RU_Soldier_AA_EMR","CUP_O_RU_Soldier_AA"];
@@ -177,9 +185,10 @@ call {
 		_vehRandList  	= ["CUP_O_UAZ_MG_RU","CUP_O_GAZ_Vodnik_BPPU_RU","CUP_O_BRDM2_RUS","CUP_O_BMP2_RU"];
 		_vehLightList	= ["CUP_O_UAZ_Unarmed_RU","CUP_O_UAZ_MG_RU","CUP_O_UAZ_AMB_RU","CUP_O_UAZ_METIS_RU","CUP_O_UAZ_Open_RU","CUP_O_UAZ_SPG9_RU","CUP_O_Ural_RU","CUP_O_Ural_Open_RU"];
 		_vehHeavyList 	= ["CUP_O_T72_RU","CUP_O_T90_RU"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-	
-	if (_army isEqualto "SLA") exitwith {
+
+	if (_this isEqualto "SLA") exitwith {
 		_confBase     = configfile >> "CfgGroups" >> "East" >> "CUP_O_SLA" >> "Infantry";
 		_infList      = ("true" configClasses _confBase) apply { configName _x };
 		_infaaList    = ["CUP_O_sla_Soldier_AA", "CUP_O_sla_Soldier_AA_desert"];
@@ -190,9 +199,10 @@ call {
 		_vehRandList  = ["CUP_O_UAZ_MG_SLA", "CUP_O_UAZ_METIS_SLA", "CUP_O_BTR60_SLA"];
 		_vehLightList = ["CUP_O_UAZ_Unarmed_SLA", "CUP_O_UAZ_MG_SLA", "CUP_O_UAZ_METIS_SLA", "CUP_O_UAZ_Militia_SLA", "CUP_O_UAZ_SPG9_SLA", "CUP_O_Ural_SLA", "CUP_O_Ural_Open_SLA"];
 		_vehHeavyList = ["CUP_O_T55_SLA", "CUP_O_T72_SLA"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-	
-	if (_army isEqualto "TA") exitwith {
+
+	if (_this isEqualto "TA") exitwith {
 		_confBase = configfile >> "CfgGroups" >> "East" >> "CUP_O_TK" >> "Infantry" ;
 		_infList = ("true" configClasses _confBase) apply { configName _x };
 		_infaaList    = ["CUP_O_TK_Soldier_AA"];
@@ -203,8 +213,9 @@ call {
 		_vehRandList  = ["CUP_O_LR_MG_TKA", "CUP_O_LR_SPG9_TKA", "CUP_O_BMP1_TKA", "CUP_O_BMP1P_TKA"];
 		_vehLightList = ["CUP_O_LR_MG_TKA", "CUP_O_LR_SPG9_TKA", "CUP_O_LR_Transport_TKA", "CUP_O_V3S_Open_TKA", "CUP_O_V3S_Covered_TKA", "CUP_O_UAZ_Unarmed_TKA", "CUP_O_UAZ_MG_TKA", "CUP_O_UAZ_METIS_TKA", "CUP_O_UAZ_Open_TKA", "CUP_O_Ural_TKA"];
 		_vehHeavyList = ["CUP_O_T72_TKA", "CUP_O_T55_TK", "CUP_O_T34_TKA"];
+        [_confBase, _infList, _infaaList, _infatList, _sniperList, _vehAAList, _vehMrapList, _vehRandList, _vehLightList, _vehHeavyList, _side];
 	};
-};
+} params ["_confBase", "_infList", "_infaaList", "_infatList", "_sniperList", "_vehAAList", "_vehMrapList", "_vehRandList", "_vehLightList", "_vehHeavyList", "_side"];
 
 private ["_x","_g","_pos","_flatPos","_rpos","_v"];
 
@@ -235,7 +246,7 @@ if !(_infList isEqualTo []) then {
         _rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_inf%2", _grpPrefix, _x]];
-        [_g, _center, _radius/1.5, 3 + round (random 2), ["SAD", "MOVE"] select (random 1 > 0.33), ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+        [_g, _center, _radius/1.5, 3 + round (random 2), ["SAD", "MOVE"] select (random 1 > 0.33), ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
         [_g, _infSkill] call FNC(setUnitSkill);
         _units append (units _g);
     };
@@ -250,7 +261,7 @@ if !(_infaaList isEqualTo []) then {
         _rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infaaList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_infaa%2", _grpPrefix, _x]];
-        [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+        [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
         [_g, _infaaSkill] call FNC(setUnitSkill);
         _units append (units _g);
     };
@@ -265,7 +276,7 @@ if !(_infatList isEqualTo []) then {
         _rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
         _g = [_rpos, _side, _confBase >> (selectRandom _infatList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_infat%2", _grpPrefix, _x]];
-        [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+        [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
         [_g, _infatSkill] call FNC(setUnitSkill);
         _units append (units _g);
     };
@@ -303,7 +314,7 @@ if !(_vehAAList isEqualTo []) then {
             _v lock 2;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehaaSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -330,7 +341,7 @@ if !(_vehmrapList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehmrapSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -344,7 +355,7 @@ if !(_vehmrapList isEqualTo []) then {
 // RANDOM VEHS
 ///////////////////////////////////////////////////////////
 
-if (_vehRandList isEqualTo []) then {
+if !(_vehRandList isEqualTo []) then {
     for "_x" from 1 to (_vehrandMin + floor(random (_vehrandRand+1))) do {
 
         _g = createGroup _side;
@@ -357,7 +368,7 @@ if (_vehRandList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehrandSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -371,7 +382,7 @@ if (_vehRandList isEqualTo []) then {
 // LIGHT VEHS
 ///////////////////////////////////////////////////////////
 
-if (_vehLightList isEqualTo []) then {
+if !(_vehLightList isEqualTo []) then {
     for "_x" from 1 to (_vehLightMin + floor(random (_vehLightRand+1))) do {
 
         _g = createGroup _side;
@@ -384,7 +395,7 @@ if (_vehLightList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehLightSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 
@@ -395,10 +406,10 @@ if (_vehLightList isEqualTo []) then {
 };
 
 ///////////////////////////////////////////////////////////
-// RANDOM VEHS
+// HEAVY VEHS
 ///////////////////////////////////////////////////////////
 
-if (_vehHeavyList isEqualTo []) then {
+if !(_vehHeavyList isEqualTo []) then {
     for "_x" from 1 to (_vehHeavyMin + floor(random (_vehHeavyRand+1))) do {
 
         _g = createGroup _side;
@@ -411,7 +422,7 @@ if (_vehHeavyList isEqualTo []) then {
             _v lock 3;
 
             [_v, _g] call BIS_fnc_spawnCrew;
-            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBAP_fnc_taskPatrol;
+            [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehHeavySkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
 

@@ -24,7 +24,7 @@ params ["_owner", "_caller", "_argStr"];
 
 {
     [[], {
-        format["fps: %1: %2", profileName, diag_fps] remoteExec ["diag_log", 2];
+        [format["fps: %1: %2", profileName, diag_fps]] remoteExec ["YAINA_fnc_log", 2];
     }] remoteExec ["call", _x];
     nil;
 } count allPlayers;

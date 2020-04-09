@@ -42,5 +42,6 @@ publicVariable "real_weather_paused";
 
 // Let Admins know
 [_caller, _msg, 3] call FNC(notifyAdmins);
+_msg remoteExecCall ["systemChat", _owner];
 
 _msg

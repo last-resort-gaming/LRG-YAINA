@@ -29,7 +29,7 @@ private _avail = [];
 // Grab list of their commands
 _idx = (GVAR(commands) select 0) find _owner;
 if (_idx isEqualTo -1) exitWith {
-    diag_log format['FAILED TO FIND COMMANDS FOR %1', name _caller];
+    [format['FAILED TO FIND COMMANDS FOR %1', name _caller], "ErrorLog"] call YFNC(log);
 };
 
 _avail = ((GVAR(commands) select 1) select _idx) + [];

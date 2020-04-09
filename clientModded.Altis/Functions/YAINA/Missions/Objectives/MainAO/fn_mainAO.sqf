@@ -37,25 +37,28 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 ///////////////////////////////////////////////////////////
 _army = selectRandom ["AAF", "CSAT", "AAF", "CSAT Pacific"];
 
-call {
-	if (_army isEqualto "CSAT") exitwith {
+_army call {
+	if (_this isEqualto "CSAT") exitwith {
 		_officerClass = "O_Officer_F";
 		_side = east;
-		_MarkerColour = "colorOPFOR";		
+		_MarkerColour = "colorOPFOR";
+        [_officerClass, _side, _MarkerColour];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_officerClass = "I_Officer_F";
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
+        [_officerClass, _side, _MarkerColour];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_officerClass = "O_T_Officer_F";
 		_side = east;
-		_MarkerColour = "colorOPFOR";	
-	};	
-};
+		_MarkerColour = "colorOPFOR";
+        [_officerClass, _side, _MarkerColour];
+	};
+} params ["_officerClass", "_side", "_MarkerColour"];
 
 ///////////////////////////////////////////////////////////
 // Location Scout
@@ -79,7 +82,7 @@ private _missionDescription = format["Main AO at %1", _loc];
 // Spawn Mission
 ///////////////////////////////////////////////////////////
 
-private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer", "_officerBuilding", "_officerBuildingPositions", "_possPos"];
+private ["_hqFunc", "_officerGroup", "_HQElements", "_officerPos", "_officer", "_officerBuilding", "_officerBuildingPositions"];
 
 // Now we have our HQ + Location, bring in the HQ
 _missionID = call FNC(getMissionID);
@@ -89,7 +92,7 @@ _hqFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YA
 
 // Hide any terrain and slam down the HQ
 private _hiddenTerrainKey = format["HT_%1", _missionID];
-[clientOwner, _hiddenTerrainKey, _HQPosition, 30] remoteExec [QYFNC(YhideTerrainObjects), 2];
+[clientOwner, _hiddenTerrainKey, _HQPosition, 30] remoteExec [QYFNC(hideTerrainObjects), 2];
 
 // Wait for the server to send us back
 waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
@@ -97,46 +100,18 @@ waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 _HQElements = [_HQPosition, random 360, call _hqFunc] call BIS_fnc_ObjectsMapper;
 _buildings  = _HQElements;
 
-/*
 // Bring in an officer to one of the buildings
-_officerPos = call {
-    ([_HQPosition, 30] call FNC(findLargestBuilding)) params ["_officerBuilding", "_officerBuildingPositions"];
-    selectRandom _officerBuildingPositions;
+_officerPos = _HQPosition call {
+    ([_this, 30] call FNC(findLargestBuilding)) params ["_officerBuilding", "_officerBuildingPositions"];
+
+    if (isNil "_officerBuildingPositions") then {
+        // If we didn't find a building revert back to the HQ position
+        ["No officer building position found", "ErrorLog"] call YFNC(log);
+        _this;
+    } else {
+        selectRandom _officerBuildingPositions;
+    };
 };
-*/
-
-/*
-systemChat format ["_buildings = %1", str (_buildings)];
-
-private _possBuildings = [];
-
-{
-	if ((_x isKindOf "BUILDING") OR (_x isKindOf "HOUSE")) then {
-		
-		_possBuildings pushBack _x;
-	};
-} forEach _buildings;
-
-systemChat format ["_possBuildings = %1", str (_possBuildings)];
-
-_officerBuilding = selectRandom _possBuildings;
-
-systemChat format ["_officerBuilding = %1", str (_officerBuilding)];
-
-	
-// Works!
-
-_possPos = [_officerBuilding] call BIS_fnc_buildingPositions;
-
-systemChat format ["_possPos = %1", str (_possPos)];
-
-_officerPos = selectRandom _possPos;
-
-systemChat format ["_OfficerPos = %1", str (_officerPos)];
-
-*/
-
-_officerPos = _HQPosition;
 
 // Spawn Officer
 _officerGroup = createGroup _side;
@@ -170,7 +145,7 @@ _units append _hqg;
 // mission, center, size, garrisons, inf, inf aa, inf at, snipers, Veh AA, Veh MRAP, Veh Rand, army
 ([format["mainAO_pa_%1", _missionID], _AOPosition, _AOSize*0.9, _army, [6, 0, _AOSize*0.9, "LRG Default", 6, _HQElements + [_officerPos]], [10,0, "LRG Default"], [2,0, "LRG Default"], [4,0, "LRG Default"], [2,0, "LRG Default"], [2,1], [2,2], [1,2], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 
-diag_log _spUnits;
+[str _spUnits] call YFNC(log);
 _units append _spUnits;
 _vehicles append _spVehs;
 
@@ -288,7 +263,7 @@ _pfh = {
                 // Instead of adding a waypoint on the HQ position, we set one between 20-50 meters away, and put them in a
                 // smaller patrol pattern
 
-                [_x, [getPos (leader _x), _HQPosition, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+                [_x, [getPos (leader _x), _HQPosition, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
 
             } forEach ([_missionID] call FNC(getMissionGroups));
         };

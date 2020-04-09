@@ -29,7 +29,7 @@ if (isServer) then {
 
             // they're fucked, so we have to free up our dedicated curator
             if(isPlayer _player && { isNull getAssignedCuratorLogic _player } ) then {
-                // If it thinks it assigned, unassig
+                // If it thinks it assigned, unassign
                 if !(isNull (getAssignedCuratorUnit _mod)) then {
                     unassignCurator _mod;
                 } else {
@@ -43,11 +43,26 @@ if (isServer) then {
 			[zeus3, zeus3mod],
 			[zeus4, zeus4mod]
         ];
-    }, 2, []] call CBAP_fnc_addPerFrameHandler;
+    }, 2, []] call CBA_fnc_addPerFrameHandler;
 
     private _zeusGroup = createGroup sideLogic;
     ZEUS_PING_MODULE = _zeusGroup createunit["ModuleCurator_F", [0, 0, 0], [], 0.5, "NONE"];
     ZEUS_PING_MODULE addEventHandler ["CuratorPinged",{_this call FNC(zeusPinged)}];
+
+    // Unassign curator when player disconnects
+    addMissionEventHandler ["HandleDisconnect", {
+        params ["_unit", "_id", "_uid", "_name"];
+
+        {
+            if (_unit isEqualTo (getAssignedCuratorLogic _x)) then {
+                unassignCurator _x;
+            };
+            nil
+        } count [zeus1mod, zeus2mod, zeus3mod, zeus4mod];
+
+        false;
+    }];
+
 };
 
 if (hasInterface) then {
@@ -60,7 +75,7 @@ if (hasInterface) then {
 
         // We check our zeus handlers are running for each player when they launch the zeus interface
         _x addEventHandler ["CuratorObjectRegistered", {
-            [player] remoteExecCall [QFNC(zeusConnected), 2],
+            [player] remoteExecCall [QFNC(zeusConnected), 2];
         }];
 
         // And list our deleted objects

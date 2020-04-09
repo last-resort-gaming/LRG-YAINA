@@ -32,7 +32,7 @@ if(!isServer) exitWith {};
 
         _respawn = false;
         if (!alive _veh || isNull _veh) then {
-            diag_log format["RESPAWNING: %1 (%2), not alive", _veh, typeOf _veh];
+            [format["RESPAWNING: %1 (%2), not alive", _veh, typeOf _veh]] call YFNC(log);
             _respawn = true;
         } else {
 
@@ -60,12 +60,12 @@ if(!isServer) exitWith {};
                 }) exitWith {};
 
                 // Log it
-                diag_log format["WOULD RESPAWN: %1, abandon distance: %2, alive crew: %3", _veh, _abandonDistance, crew _veh select { alive _x }];
+                [format["WOULD RESPAWN: %1, abandon distance: %2, alive crew: %3", _veh, _abandonDistance, crew _veh select { alive _x }]] call YFNC(log);
 
                 // Ensure no alive crew players in it
                 if !(({alive _x } count (crew _veh)) isEqualTo 0) exitWith {};
 
-                diag_log format["RESPAWNING: %1 (%2), abandon distance: %3, alive crew: %4", _veh, typeOf _veh, _abandonDistance, crew _veh select { alive _x }];
+                [format["RESPAWNING: %1 (%2), abandon distance: %3, alive crew: %4", _veh, typeOf _veh, _abandonDistance, crew _veh select { alive _x }]] call YFNC(log);
 
                 // Else we are abandoned, delete this and respawn
                 deleteVehicle _veh;
@@ -75,7 +75,7 @@ if(!isServer) exitWith {};
 
             // If it's a land base vehicle, and it's underwater, then may as well go ahead and respawn
             if (underwater _veh && !(_vehType isKindOf "Submarine")) then {
-                diag_log format["WOULD RESPAWN: %1, underwater, crew: %2", _veh, crew _veh select { alive _x }];
+                [format["WOULD RESPAWN: %1, underwater, crew: %2", _veh, crew _veh select { alive _x }]] call YFNC(log);
                 //deleteVehicle _veh;
                 //_respawn = true;
             };
@@ -105,7 +105,7 @@ if(!isServer) exitWith {};
                 if !(count (entities "AllVehicles" select { _x inArea _respawnArea }) isEqualTo 0) exitWith {};
 
                 // And stop this PFH, and respawn
-                [_pfhID] call CBAP_fnc_removePerFrameHandler;
+                [_pfhID] call CBA_fnc_removePerFrameHandler;
 
                 _nv = createVehicle [_vehType, [0,0,0], [], 0, "NONE"];
 
@@ -158,7 +158,7 @@ if(!isServer) exitWith {};
                     // And lastly add the crew
                     createVehicleCrew _nv;
 
-                    ["UAVSpawn", _nv] call CBAP_fnc_globalEvent;
+                    ["UAVSpawn", _nv] call CBA_fnc_globalEvent;
                 };
 
                 // restore provided persistant vars, and default persistants
@@ -194,8 +194,8 @@ if(!isServer) exitWith {};
 
                 true;
 
-            }, 10, [LTIME + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBAP_fnc_addPerFrameHandler;
+            }, 10, [LTIME + _respawnTime, _vehType, _pos, _dir, _respawnArea, _tex, _coPilotEnabled, _locked, _loadout, _animationInfo, _pylonLoadout, _respawnTime, _abandonDistance, _hasKeys, _persistVars, _initCode, _initCodeArgs]] call CBA_fnc_addPerFrameHandler;
         };
 
     };
-}, 10, []] call CBAP_fnc_addPerFrameHandler;
+}, 10, []] call CBA_fnc_addPerFrameHandler;

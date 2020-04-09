@@ -342,6 +342,9 @@ GVAR(unitItems) = call {
 						"optic_NVS",
 						"UK3CB_BAF_Eotech",
 						"UK3CB_BAF_SpecterLDS",
+						"UK3CB_BAF_SpecterLDS_3D",
+						"UK3CB_BAF_SpecterLDS_Dot",
+						"UK3CB_BAF_SpecterLDS_Dot_3D",
 						"UK3CB_BAF_SUIT",
 						"UK3CB_BAF_SUSAT",
 						"UK3CB_BAF_TA31F",
@@ -373,7 +376,17 @@ GVAR(unitItems) = call {
 						"UK3CB_BAF_H_Headset_PRR",
 						"UK3CB_BAF_H_Mk7_HiVis",
 						"UK3CB_BAF_V_Osprey_HiVis",
-						"UK3CB_BAF_V_HiVis"
+						"UK3CB_BAF_V_HiVis",
+						"UK3CB_underbarrel_acc_afg",
+						"UK3CB_underbarrel_acc_afg_d",
+						"UK3CB_underbarrel_acc_afg_g",
+						"UK3CB_underbarrel_acc_afg_t",
+						"UK3CB_underbarrel_acc_afg_w",
+						"UK3CB_underbarrel_acc_grippod",
+						"UK3CB_underbarrel_acc_grippod_d",
+						"UK3CB_underbarrel_acc_grippod_g",
+						"UK3CB_underbarrel_acc_grippod_t",
+						"UK3CB_underbarrel_acc_grippod_w"					
 				];
 
     // These items are included by the permit groups, but by default aren't permitted by everyone and will be added

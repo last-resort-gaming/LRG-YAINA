@@ -118,4 +118,4 @@ GVAR(utilityPFH) = [{
 
         nil
     } count _vlist;
-}, 2, []] call CBAP_fnc_addPerFrameHandler;
+}, 2, []] call CBA_fnc_addPerFrameHandler;

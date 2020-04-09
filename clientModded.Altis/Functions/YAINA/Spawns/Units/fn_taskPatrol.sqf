@@ -22,7 +22,7 @@ Author:
 */
 
 //Validate parameter count
-if ((count _this) < 3) exitWith {debugLog "Log: [taskPatrol] Function requires at least 3 parameters!"; false};
+if ((count _this) < 3) exitWith {["Log: [taskPatrol] Function requires at least 3 parameters!", "ErrorLog"] call YAINA_fnc_log; false};
 
 private ["_grp", "_pos", "_maxDist", "_blacklist"];
 _grp = _this select 0;
@@ -33,10 +33,10 @@ _blacklist = [];
 if ((count _this) > 3) then {_blacklist = _this select 3};
 
 //Validate parameters
-if ((typeName _grp) != (typeName grpNull)) exitWith {debugLog "Log: [taskPatrol] Group (0) must be a Group!"; false};
-if ((typeName _pos) != (typeName [])) exitWith {debugLog "Log: [taskPatrol] Position (1) must be an Array!"; false};
-if ((typeName _maxDist) != (typeName 0)) exitWith {debugLog "Log: [taskPatrol] Maximum distance (2) must be a Number!"; false};
-if ((typeName _blacklist) != (typeName [])) exitWith {debugLog "Log: [taskPatrol] Blacklist (3) must be an Array!"; false};
+if ((typeName _grp) != (typeName grpNull)) exitWith {["Log: [taskPatrol] Group (0) must be a Group!", "ErrorLog"] call YAINA_fnc_log; false};
+if ((typeName _pos) != (typeName [])) exitWith {["Log: [taskPatrol] Position (1) must be an Array!", "ErrorLog"] call YAINA_fnc_log; false};
+if ((typeName _maxDist) != (typeName 0)) exitWith {["Log: [taskPatrol] Maximum distance (2) must be a Number!", "ErrorLog"] call YAINA_fnc_log; false};
+if ((typeName _blacklist) != (typeName [])) exitWith {["Log: [taskPatrol] Blacklist (3) must be an Array!", "ErrorLog"] call YAINA_fnc_log; false};
 
 _grp setBehaviour "SAFE";
 
