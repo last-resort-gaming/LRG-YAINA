@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3716;
+		nextID=3741;
 	};
 	class Camera
 	{
-		pos[]={14672.439,70.766762,16732.887};
-		dir[]={-0.50162381,-0.72927845,0.46554804};
-		up[]={-0.53461176,0.684089,0.49616131};
-		aside[]={0.68032211,-3.4691766e-007,0.73304045};
+		pos[]={14480.914,34.783913,16285.719};
+		dir[]={0.80053866,-0.53258091,0.27485123};
+		up[]={0.50372767,0.84637058,0.17294641};
+		aside[]={0.32473525,-6.7375368e-008,-0.94583201};
 	};
 };
 binarizationWanted=0;
@@ -6703,8 +6703,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={14520.682,20.016697,16295.77};
-				angles[]={6.2578607,5.4838419,6.2725215};
+				position[]={14520.682,20.068697,16295.77};
+				angles[]={6.2578607,5.5152402,6.2725215};
 			};
 			side="Empty";
 			flags=4;
@@ -6716,7 +6716,7 @@ class Mission
 			};
 			id=3022;
 			type="B_Heli_Light_01_F";
-			atlOffset=-0.0020008087;
+			atlOffset=0.049999237;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14550,7 +14550,7 @@ class Mission
 			};
 			id=3622;
 			type="Land_Bandage_F";
-			atlOffset=1.3044529;
+			atlOffset=1.3263569;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14592,7 +14592,7 @@ class Mission
 			};
 			id=3625;
 			type="Land_Bandage_F";
-			atlOffset=1.3039188;
+			atlOffset=1.3258228;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14634,7 +14634,7 @@ class Mission
 			};
 			id=3626;
 			type="Land_Bandage_F";
-			atlOffset=1.3038464;
+			atlOffset=1.3257504;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14676,7 +14676,7 @@ class Mission
 			};
 			id=3627;
 			type="Land_Bandage_F";
-			atlOffset=1.3036919;
+			atlOffset=1.3255959;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14718,7 +14718,7 @@ class Mission
 			};
 			id=3628;
 			type="Land_Bandage_F";
-			atlOffset=1.3035717;
+			atlOffset=1.3254757;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14760,7 +14760,7 @@ class Mission
 			};
 			id=3629;
 			type="Land_Bandage_F";
-			atlOffset=1.3034458;
+			atlOffset=1.3253498;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -17576,7 +17576,7 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={1100.1133,0,29800.059};
+				position[]={1100.113,0,29800.061};
 			};
 			name="ZeusJakes";
 			init="this setVariable [""showNotification"", false];";
@@ -17619,7 +17619,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="76561198036914426";
+							value="76561199043324495";
 						};
 					};
 				};
