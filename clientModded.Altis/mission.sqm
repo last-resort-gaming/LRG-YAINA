@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3691;
+		nextID=3716;
 	};
 	class Camera
 	{
-		pos[]={14691.159,20.288055,16804.1};
-		dir[]={0.70610583,-0.46753427,0.53199267};
-		up[]={0.37355152,0.88386601,0.28144124};
-		aside[]={0.60179716,1.7415732e-007,-0.79875714};
+		pos[]={14672.439,70.766762,16732.887};
+		dir[]={-0.50162381,-0.72927845,0.46554804};
+		up[]={-0.53461176,0.684089,0.49616131};
+		aside[]={0.68032211,-3.4691766e-007,0.73304045};
 	};
 };
 binarizationWanted=0;
@@ -3447,7 +3447,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14509.894,18.744318,16313.001};
-										angles[]={-0,3.0624259,6.2738566};
+										angles[]={0,3.0624259,6.2738566};
 									};
 									side="Empty";
 									flags=4;
@@ -3803,7 +3803,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14417.113,17.860001,16147.321};
-										angles[]={-0,6.2301164,0};
+										angles[]={0,6.2301164,0};
 									};
 									side="Empty";
 									flags=4;
@@ -3845,7 +3845,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14422.203,17.857635,16152.432};
-										angles[]={-0,6.2301164,0.0079935296};
+										angles[]={0,6.2301164,0.0079935296};
 									};
 									side="Empty";
 									flags=4;
@@ -3887,7 +3887,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14412,17.860001,16142.227};
-										angles[]={-0,6.2301164,0};
+										angles[]={0,6.2301164,0};
 									};
 									side="Empty";
 									flags=4;
@@ -3929,7 +3929,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14406.689,17.861938,16136.525};
-										angles[]={-0,6.2301164,6.2818937};
+										angles[]={0,6.2301164,6.2818937};
 									};
 									side="Empty";
 									flags=4;
@@ -4142,7 +4142,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14431.362,17.858181,16161.561};
-										angles[]={-0,6.2085066,6.2818937};
+										angles[]={0,6.2085066,6.2818937};
 									};
 									side="Empty";
 									flags=4;
@@ -4185,7 +4185,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14436.546,17.842375,16167.372};
-										angles[]={-0,6.2085066,0.0079935296};
+										angles[]={0,6.2085066,0.0079935296};
 									};
 									side="Empty";
 									flags=4;
@@ -4228,7 +4228,7 @@ class Mission
 									class PositionInfo
 									{
 										position[]={14441.319,17.844906,16171.995};
-										angles[]={-0,6.2085066,6.2818937};
+										angles[]={0,6.2085066,6.2818937};
 									};
 									side="Empty";
 									flags=4;
@@ -14119,7 +14119,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14693.193,18.647366,16804.42};
-				angles[]={-0,0.29634848,0};
+				angles[]={0,0.29634848,0};
 			};
 			side="Empty";
 			flags=4;
@@ -14161,7 +14161,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14693.845,18.810925,16803.75};
-				angles[]={-0,2.3731401,0};
+				angles[]={0,2.3731401,0};
 			};
 			side="Empty";
 			flags=4;
@@ -14203,7 +14203,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14693.671,18.810925,16803.92};
-				angles[]={-0,2.3731401,0};
+				angles[]={0,2.3731401,0};
 			};
 			side="Empty";
 			flags=4;
@@ -14245,7 +14245,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14693.514,18.810925,16804.092};
-				angles[]={-0,2.3731401,0};
+				angles[]={0,2.3731401,0};
 			};
 			side="Empty";
 			flags=4;
@@ -14550,7 +14550,7 @@ class Mission
 			};
 			id=3622;
 			type="Land_Bandage_F";
-			atlOffset=1.3263569;
+			atlOffset=1.3044529;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14592,7 +14592,7 @@ class Mission
 			};
 			id=3625;
 			type="Land_Bandage_F";
-			atlOffset=1.3258228;
+			atlOffset=1.3039188;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14634,7 +14634,7 @@ class Mission
 			};
 			id=3626;
 			type="Land_Bandage_F";
-			atlOffset=1.3257504;
+			atlOffset=1.3038464;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14676,7 +14676,7 @@ class Mission
 			};
 			id=3627;
 			type="Land_Bandage_F";
-			atlOffset=1.3255959;
+			atlOffset=1.3036919;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14718,7 +14718,7 @@ class Mission
 			};
 			id=3628;
 			type="Land_Bandage_F";
-			atlOffset=1.3254757;
+			atlOffset=1.3035717;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -14760,7 +14760,7 @@ class Mission
 			};
 			id=3629;
 			type="Land_Bandage_F";
-			atlOffset=1.3253498;
+			atlOffset=1.3034458;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -18467,6 +18467,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -18484,7 +18503,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -18503,7 +18522,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -18522,7 +18541,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -18541,7 +18560,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -18560,7 +18579,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -18579,7 +18598,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -18598,7 +18617,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -18617,7 +18636,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=9;
+						class Attribute10
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=11;
 					};
 				};
 				class Item1
@@ -18888,6 +18926,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -18905,7 +18962,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -18924,7 +18981,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -18943,7 +19000,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -18962,7 +19019,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -18981,7 +19038,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -19000,7 +19057,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -19019,7 +19076,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -19038,7 +19095,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=9;
+						class Attribute10
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=11;
 					};
 				};
 				class Item2
@@ -19308,8 +19384,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -19318,17 +19394,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -19337,10 +19413,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male02ENGB";
+									value=0;
 								};
 							};
 						};
@@ -19365,8 +19441,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -19382,7 +19496,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 			};
@@ -19661,8 +19775,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -19671,17 +19785,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -19690,10 +19804,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -19718,8 +19832,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -19735,7 +19887,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -19964,6 +20116,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -19981,7 +20152,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -20000,7 +20171,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -20019,7 +20190,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -20038,7 +20209,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -20057,7 +20228,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -20076,7 +20247,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item2
@@ -20319,8 +20509,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -20329,17 +20519,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -20348,10 +20538,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male03ENGB";
+									value=0;
 								};
 							};
 						};
@@ -20376,8 +20566,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -20393,7 +20621,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -20644,8 +20872,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -20654,17 +20882,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -20673,10 +20901,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -20701,8 +20929,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -20718,7 +20984,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item4
@@ -20953,6 +21219,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -20970,7 +21255,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -20989,7 +21274,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -21008,7 +21293,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -21027,7 +21312,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -21046,7 +21331,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -21065,7 +21350,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item5
@@ -21322,6 +21626,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -21339,7 +21662,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -21358,7 +21681,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute4
+						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 				class Item6
@@ -21627,8 +21969,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -21637,17 +21979,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -21656,10 +21998,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -21684,8 +22026,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -21701,7 +22081,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item7
@@ -21930,6 +22310,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -21947,7 +22346,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -21966,7 +22365,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -21985,7 +22384,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -22004,7 +22403,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -22023,7 +22422,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -22042,7 +22441,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item8
@@ -22285,8 +22703,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -22295,17 +22713,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -22314,10 +22732,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male03ENGB";
+									value=0;
 								};
 							};
 						};
@@ -22342,8 +22760,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -22359,7 +22815,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item9
@@ -22605,8 +23061,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -22615,17 +23071,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -22634,10 +23090,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -22662,8 +23118,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -22679,7 +23173,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item10
@@ -22920,6 +23414,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -22937,7 +23450,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -22956,7 +23469,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -22975,7 +23488,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -22994,7 +23507,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -23013,7 +23526,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -23032,7 +23545,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item11
@@ -23289,6 +23821,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -23306,7 +23857,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -23325,7 +23876,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute4
+						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 			};
@@ -23603,8 +24173,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -23613,17 +24183,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -23632,10 +24202,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -23660,8 +24230,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -23677,7 +24285,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -23906,6 +24514,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -23923,7 +24550,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -23942,7 +24569,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -23961,7 +24588,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -23980,7 +24607,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -23999,7 +24626,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -24018,7 +24645,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item2
@@ -24261,8 +24907,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -24271,17 +24917,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -24290,10 +24936,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male03ENGB";
+									value=0;
 								};
 							};
 						};
@@ -24318,8 +24964,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -24335,7 +25019,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -24586,8 +25270,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -24596,17 +25280,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -24615,10 +25299,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -24643,8 +25327,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -24660,7 +25382,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item4
@@ -24901,6 +25623,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -24918,7 +25659,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -24937,7 +25678,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -24956,7 +25697,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -24975,7 +25716,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -24994,7 +25735,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -25013,7 +25754,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item5
@@ -25270,6 +26030,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -25287,7 +26066,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -25306,7 +26085,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute4
+						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 				class Item6
@@ -25575,8 +26373,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -25585,17 +26383,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -25604,10 +26402,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -25632,8 +26430,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -25649,7 +26485,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item7
@@ -25878,6 +26714,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -25895,7 +26750,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -25914,7 +26769,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -25933,7 +26788,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -25952,7 +26807,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -25971,7 +26826,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -25990,7 +26845,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item8
@@ -26233,8 +27107,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -26243,17 +27117,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -26262,10 +27136,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male03ENGB";
+									value=0;
 								};
 							};
 						};
@@ -26290,8 +27164,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -26307,7 +27219,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item9
@@ -26553,8 +27465,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -26563,17 +27475,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -26582,10 +27494,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -26610,8 +27522,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -26627,7 +27577,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item10
@@ -26868,6 +27818,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -26885,7 +27854,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -26904,7 +27873,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -26923,7 +27892,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -26942,7 +27911,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -26961,7 +27930,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -26980,7 +27949,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item11
@@ -27237,6 +28225,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -27254,7 +28261,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -27273,7 +28280,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute4
+						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 			};
@@ -27551,8 +28577,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -27561,17 +28587,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -27580,10 +28606,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -27608,8 +28634,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -27625,7 +28689,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -27854,6 +28918,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -27871,7 +28954,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -27890,7 +28973,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -27909,7 +28992,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -27928,7 +29011,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -27947,7 +29030,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -27966,7 +29049,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item2
@@ -28209,8 +29311,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -28219,17 +29321,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -28238,10 +29340,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male03ENGB";
+									value=0;
 								};
 							};
 						};
@@ -28266,8 +29368,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -28283,7 +29423,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -28534,8 +29674,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -28544,17 +29684,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -28563,10 +29703,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -28591,8 +29731,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -28608,7 +29786,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item4
@@ -28849,6 +30027,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -28866,7 +30063,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -28885,7 +30082,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -28904,7 +30101,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -28923,7 +30120,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -28942,7 +30139,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -28961,7 +30158,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item5
@@ -29218,6 +30434,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -29235,7 +30470,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -29254,7 +30489,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute4
+						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 				class Item6
@@ -29523,8 +30777,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -29533,17 +30787,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -29552,10 +30806,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -29580,8 +30834,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -29597,7 +30889,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item7
@@ -29826,6 +31118,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -29843,7 +31154,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -29862,7 +31173,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -29881,7 +31192,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -29900,7 +31211,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -29919,7 +31230,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -29938,7 +31249,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item8
@@ -30181,8 +31511,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -30191,17 +31521,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -30210,10 +31540,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male03ENGB";
+									value=0;
 								};
 							};
 						};
@@ -30238,8 +31568,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -30255,7 +31623,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item9
@@ -30501,8 +31869,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -30511,17 +31879,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -30530,10 +31898,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -30558,8 +31926,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -30575,7 +31981,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item10
@@ -30816,6 +32222,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
@@ -30833,7 +32258,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -30852,7 +32277,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -30871,7 +32296,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -30890,7 +32315,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -30909,7 +32334,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -30928,7 +32353,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=7;
+						class Attribute8
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=9;
 					};
 				};
 				class Item11
@@ -31185,6 +32629,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="speaker";
 							expression="_this setspeaker _value;";
 							class Value
@@ -31202,7 +32665,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -31221,7 +32684,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=3;
+						class Attribute4
+						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=5;
 					};
 				};
 			};
@@ -31437,6 +32919,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -31454,7 +32955,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -31473,7 +32974,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -31492,7 +32993,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -31511,7 +33012,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -31530,7 +33031,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -31549,7 +33050,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -31568,7 +33069,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -31587,7 +33088,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -31606,7 +33107,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 				class Item1
@@ -31810,6 +33330,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -31827,7 +33366,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -31846,7 +33385,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -31865,7 +33404,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -31884,7 +33423,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -31903,7 +33442,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -31922,7 +33461,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -31941,7 +33480,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -31960,7 +33499,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -31979,7 +33518,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 				class Item2
@@ -32183,6 +33741,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -32200,7 +33777,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -32219,7 +33796,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -32238,7 +33815,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -32257,7 +33834,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -32276,7 +33853,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -32295,7 +33872,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -32314,7 +33891,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -32333,7 +33910,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -32352,7 +33929,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 				class Item3
@@ -32556,6 +34152,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -32573,7 +34188,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -32592,7 +34207,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -32611,7 +34226,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -32630,7 +34245,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -32649,7 +34264,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -32668,7 +34283,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -32687,7 +34302,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -32706,7 +34321,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -32725,7 +34340,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 				class Item4
@@ -32929,6 +34563,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -32946,7 +34599,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -32965,7 +34618,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -32984,7 +34637,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -33003,7 +34656,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -33022,7 +34675,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -33041,7 +34694,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -33060,7 +34713,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -33079,7 +34732,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -33098,7 +34751,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 				class Item5
@@ -33323,6 +34995,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -33340,7 +35031,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -33359,7 +35050,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -33378,7 +35069,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -33397,7 +35088,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -33416,7 +35107,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -33435,7 +35126,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -33454,7 +35145,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -33473,7 +35164,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -33492,7 +35183,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 				class Item6
@@ -33717,6 +35427,25 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
 							property="QUOTE(LRG_Pilot)";
 							expression="_this setUnitTrait ['Pilot', _value, true];";
 							class Value
@@ -33734,7 +35463,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
+						class Attribute3
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleSurrender}";
@@ -33753,7 +35482,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
 							property="QUOTE(LRG_DefaultLoadout)";
 							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
@@ -33772,7 +35501,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
 							property="ace_isEngineer";
 							expression="if !(_value == ([0,1] select (_this getUnitTrait 'engineer'))|| {_value == -1}) then {_this setVariable ['ace_isEngineer', _value, true]}";
@@ -33791,7 +35520,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
+						class Attribute6
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull, [_this], true] call ace_captives_fnc_moduleHandcuffed}";
@@ -33810,7 +35539,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute6
+						class Attribute7
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -33829,7 +35558,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
+						class Attribute8
 						{
 							property="speaker";
 							expression="_this setspeaker _value;";
@@ -33848,7 +35577,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute8
+						class Attribute9
 						{
 							property="ace_isMedic";
 							expression="if (_value != -1 && {_value != (parseNumber (_this getUnitTrait 'medic'))}) then {_this setVariable [""ace_medical_medicClass"", _value, true]}";
@@ -33867,7 +35596,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute9
+						class Attribute10
 						{
 							property="ace_advanced_fatigue_performanceFactor";
 							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
@@ -33886,7 +35615,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=10;
+						class Attribute11
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=12;
 					};
 				};
 			};
@@ -34159,8 +35907,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -34169,17 +35917,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -34188,10 +35936,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male01ENGB";
+									value=0;
 								};
 							};
 						};
@@ -34216,8 +35964,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -34233,7 +36019,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 				class Item1
@@ -34484,8 +36270,8 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="ace_advanced_fatigue_performanceFactor";
-							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							property="uk3cb_enable_randomisation";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_randomize; };";
 							class Value
 							{
 								class data
@@ -34494,17 +36280,17 @@ class Mission
 									{
 										type[]=
 										{
-											"SCALAR"
+											"BOOL"
 										};
 									};
-									value=2;
+									value=0;
 								};
 							};
 						};
 						class Attribute2
 						{
-							property="speaker";
-							expression="_this setspeaker _value;";
+							property="QUOTE(LRG_DefaultLoadout)";
+							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
 							class Value
 							{
 								class data
@@ -34513,10 +36299,10 @@ class Mission
 									{
 										type[]=
 										{
-											"STRING"
+											"BOOL"
 										};
 									};
-									value="Male04ENGB";
+									value=0;
 								};
 							};
 						};
@@ -34541,8 +36327,46 @@ class Mission
 						};
 						class Attribute4
 						{
-							property="QUOTE(LRG_DefaultLoadout)";
-							expression="if (_value IsEqualTo true) then { [_this] call LR_fnc_Loadouts;}";
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04ENGB";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="ace_advanced_fatigue_performanceFactor";
+							expression="_this setVariable [""ace_advanced_fatigue_performanceFactor"",_value,true]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=2;
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="uk3cb_enable_loadout";
+							expression="if !(_value) then { _this call uk3cb_baf_units_common_fnc_disable_loadout; };";
 							class Value
 							{
 								class data
@@ -34558,7 +36382,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=5;
+						nAttributes=7;
 					};
 				};
 			};
@@ -34894,7 +36718,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14683.125,17.953634,16718.037};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -34934,7 +36758,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14678.769,17.953634,16722.307};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -34974,7 +36798,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14674.997,17.953634,16725.936};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35096,7 +36920,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14666.662,17.91,16741.822};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35136,7 +36960,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14666.7,17.91,16725.895};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35176,7 +37000,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14674.687,17.91,16733.955};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35216,7 +37040,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14658.764,17.91,16733.781};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35256,7 +37080,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14703.36,17.91,16779.254};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35296,7 +37120,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14695.722,17.91,16771.551};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35336,7 +37160,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14711.224,17.91,16771.734};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35376,7 +37200,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14703.479,17.91,16763.891};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35416,7 +37240,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14664.817,17.953634,16699.221};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35456,7 +37280,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14660.461,17.953634,16703.49};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35496,7 +37320,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14656.689,17.953634,16707.119};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35577,7 +37401,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14648.354,17.91,16723.006};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35617,7 +37441,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14648.393,17.91,16707.078};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35657,7 +37481,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14656.379,17.91,16715.139};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35697,7 +37521,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14640.456,17.91,16714.965};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35737,7 +37561,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14646.247,17.953634,16680.234};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35777,7 +37601,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14641.891,17.953634,16684.504};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35817,7 +37641,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14638.119,17.953634,16688.133};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35898,7 +37722,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14629.784,17.91,16704.02};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -35978,7 +37802,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14637.809,17.91,16696.152};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36018,7 +37842,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14621.886,17.91,16695.979};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36058,7 +37882,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14701.699,17.953634,16736.771};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36098,7 +37922,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14697.343,17.953634,16741.041};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36138,7 +37962,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14693.571,17.953634,16744.67};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36219,7 +38043,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14685.236,17.91,16760.557};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36259,7 +38083,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14685.274,17.91,16744.629};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36299,7 +38123,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14693.261,17.91,16752.689};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36339,7 +38163,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14677.338,17.91,16752.516};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36379,7 +38203,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14719.521,17.953634,16756.012};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36419,7 +38243,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14715.164,17.953634,16760.281};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -36459,7 +38283,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14711.393,17.953634,16763.91};
-				angles[]={-0,2.3561945,0};
+				angles[]={0,2.3561945,0};
 			};
 			side="Empty";
 			flags=4;
@@ -44086,7 +45910,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14591.841,17.805788,16353.418};
-				angles[]={-0,1.4627974,0.0012918708};
+				angles[]={0,1.4627974,0.0012918708};
 			};
 			id=4666;
 			type="UK3CB_BAF_Vehicles_Servicing_Aircraft_Module";
@@ -47576,6 +49400,7 @@ class Mission
 			};
 			id=4934;
 			type="Land_DieselGroundPowerUnit_01_F";
+			atlOffset=-0.0004234314;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -47606,7 +49431,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14594.09,18.973066,16353.335};
-				angles[]={-0,5.4124336,0.0012918708};
+				angles[]={0,5.4124336,0.0012918708};
 			};
 			side="Empty";
 			flags=4;
@@ -47617,6 +49442,7 @@ class Mission
 			};
 			id=4935;
 			type="Land_JetEngineStarter_01_F";
+			atlOffset=-0.00024223328;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -47657,6 +49483,7 @@ class Mission
 			};
 			id=4936;
 			type="Land_Missle_Trolley_02_F";
+			atlOffset=-8.9645386e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -47687,7 +49514,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14589.104,18.470943,16356.736};
-				angles[]={-0,2.0065947,0.0012918708};
+				angles[]={0,2.0065947,0.0012918708};
 			};
 			side="Empty";
 			flags=4;
@@ -47698,6 +49525,7 @@ class Mission
 			};
 			id=4937;
 			type="Land_DeckTractor_01_F";
+			atlOffset=-0.00018119812;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -47737,6 +49565,7 @@ class Mission
 			};
 			id=4938;
 			type="Land_Bomb_Trolley_01_F";
+			atlOffset=-0.00059890747;
 		};
 		class Item657
 		{
@@ -47755,6 +49584,7 @@ class Mission
 			};
 			id=4939;
 			type="Land_DieselGroundPowerUnit_01_F";
+			atlOffset=-5.3405762e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -47794,6 +49624,7 @@ class Mission
 			};
 			id=4941;
 			type="UK3CB_BAF_Vehicles_Servicing_Aircraft_Point";
+			atlOffset=-8.9645386e-005;
 		};
 		class Item659
 		{
@@ -47853,6 +49684,7 @@ class Mission
 			};
 			id=4944;
 			type="Land_DieselGroundPowerUnit_01_F";
+			atlOffset=-5.7220459e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -47924,7 +49756,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14642.124,30.454052,16805.422};
-				angles[]={-0,2.3365595,-0};
+				angles[]={0,2.3365595,0};
 			};
 			side="Empty";
 			flags=4;
@@ -47964,7 +49796,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={14590.589,30.454052,16753.814};
-				angles[]={-0,2.3365595,-0};
+				angles[]={0,2.3365595,0};
 			};
 			side="Empty";
 			flags=4;
