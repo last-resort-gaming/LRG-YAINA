@@ -394,9 +394,9 @@ force ace_medical_limping = 1;
 
 force ace_medical_painCoefficient = 1;
 
-force ace_medical_playerDamageThreshold = 2;
+force ace_medical_playerDamageThreshold = 2.5;
 
-force ace_medical_spontaneousWakeUpChance = 0.3;
+force ace_medical_spontaneousWakeUpChance = 0.7;
 
 force ace_medical_spontaneousWakeUpEpinephrineBoost = 30;
 
@@ -940,7 +940,7 @@ force LRG_Main_PilotCheck = false;
 
 force LRG_Main_QSMagRepack = false;
 
-force LRG_Main_TFARTerrainInterference = 0.5;
+force LRG_Main_TFARTerrainInterference = 0.2;
 
 force LRG_Main_TFARTransmitRange = 9;
 
