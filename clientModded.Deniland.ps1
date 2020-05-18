@@ -13,4 +13,9 @@ $ClientMods = 'C:\ModsGenerated\450814997;C:\ModsGenerated\1661066023;C:\ModsGen
 $ServerMods = 'C:\ModsGenerated\713709341;C:\ModsGenerated\615007497;C:\ModsGenerated\639837898;C:\ModsGenerated\730310357;C:\Mods\@a3graphite;C:\Mods\@A3Log;C:\Mods\@asct;C:\Mods\@infiSTAR_A3;C:\Mods\@inidbi2;C:\Mods\@yaina_Modded'
 $OptionalMods = 'C:\ModsGenerated\450814997;C:\ModsGenerated\1779063631;C:\ModsGenerated\1251859358;C:\ModsGenerated\642912021;C:\ModsGenerated\498740884;C:\ModsGenerated\1480333388;C:\ModsGenerated\825179978;C:\ModsGenerated\333310405;C:\ModsGenerated\825181638;C:\ModsGenerated\820924072;C:\ModsGenerated\723217262;C:\ModsGenerated\767380317;C:\ModsGenerated\861133494'
 
+git fetch
+git pull --recurse-submodules
+git submodule update --remote
+Start-Process -NoNewWindow -Wait -Filepath "src\bin\yaina.bat" -ArgumentList "generate -a -v Deniland"
+
 D:\LoginDetails.ps1 $Server $verifySignatures $EnableVON $EnableBattleye $Headless_Clients $Enable3rdPerson $Password $MissionFolder $ClientMods $ServerMods $OptionalMods
