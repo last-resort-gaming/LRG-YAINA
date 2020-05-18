@@ -18,6 +18,4 @@ git pull --recurse-submodules
 git submodule update --remote
 Start-Process -NoNewWindow -Wait -Filepath "bin\yaina.bat" -ArgumentList "generate -a -v Modded"
 
-pause
-
 D:\LoginDetails.ps1 $Server $verifySignatures $EnableVON $EnableBattleye $Headless_Clients $Enable3rdPerson $Password $MissionFolder $ClientMods $ServerMods $OptionalMods
