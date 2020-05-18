@@ -4,5 +4,6 @@ class YAINA_INIT {
     class Vehicles {
         file = "Functions\YAINA\Init";
         class serverAltis {};
+		class serverDeniland {};
     };
 };
