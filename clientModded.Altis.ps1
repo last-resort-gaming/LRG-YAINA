@@ -16,6 +16,8 @@ $OptionalMods = 'C:\ModsGenerated\450814997;C:\ModsGenerated\1779063631;C:\ModsG
 git fetch
 git pull --recurse-submodules
 git submodule update --remote
-Start-Process -NoNewWindow -Wait -Filepath "src\bin\yaina.bat" -ArgumentList "generate -a -v Modded"
+Start-Process -NoNewWindow -Wait -Filepath "bin\yaina.bat" -ArgumentList "generate -a -v Modded"
+
+pause
 
 D:\LoginDetails.ps1 $Server $verifySignatures $EnableVON $EnableBattleye $Headless_Clients $Enable3rdPerson $Password $MissionFolder $ClientMods $ServerMods $OptionalMods
