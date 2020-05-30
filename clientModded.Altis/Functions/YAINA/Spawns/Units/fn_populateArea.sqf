@@ -42,14 +42,14 @@ params [
 	["_army", "CSAT"],
 	["_garrisons", [1,0,60, "LRG Default", 4, []]],
 	["_inf", [3,3]],
-	["_infaa", [0,0]],
-	["_infat", [0,0]],
-	["_sniper", [0,0]],
-	["_vehaa", [0,0]],
-	["_vehmrap", [0,0]],
-	["_vehrand", [0,0]],
-	["_vehlight", [0,0]],
-	["_vehheavy", [0,0]]
+	["_infaa", [0,0,0]],
+	["_infat", [0,0,0]],
+	["_sniper", [0,0,0]],
+	["_vehaa", [0,0,0]],
+	["_vehmrap", [0,0,0]],
+	["_vehrand", [0,0,0]],
+	["_vehlight", [0,0,0]],
+	["_vehheavy", [0,0,0]]
 ];
 
 _typeNameCenter = typeName _center;
@@ -243,7 +243,10 @@ if (_garrisonGroupCount > 0) then {
 ///////////////////////////////////////////////////////////
 if !(_infList isEqualTo []) then {
     for "_x" from 1 to (_infMin + floor(random (_infRand+1))) do {
-        _rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
+		};
         _g = [_rpos, _side, _confBase >> (selectRandom _infList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_inf%2", _grpPrefix, _x]];
         [_g, _center, _radius/1.5, 3 + round (random 2), ["SAD", "MOVE"] select (random 1 > 0.33), ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
@@ -258,7 +261,10 @@ if !(_infList isEqualTo []) then {
 
 if !(_infaaList isEqualTo []) then {
     for "_x" from 1 to (_infaaMin + floor(random (_infaaRand+1))) do {
-        _rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
+		};
         _g = [_rpos, _side, _confBase >> (selectRandom _infaaList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_infaa%2", _grpPrefix, _x]];
         [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
@@ -273,7 +279,10 @@ if !(_infaaList isEqualTo []) then {
 
 if !(_infatList isEqualTo []) then {
     for "_x" from 1 to (_infatMin + floor(random (_infatRand+1))) do {
-        _rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius],[]],["water"]] call BIS_fnc_randomPos;
+		};
         _g = [_rpos, _side, _confBase >> (selectRandom _infatList)] call BIS_fnc_spawnGroup;
         _g setGroupIdGlobal [format["%1_infat%2", _grpPrefix, _x]];
         [_g, _center, _radius/1.5, 3 + round (random 2), "SAD", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
@@ -303,21 +312,19 @@ if !(_sniperList isEqualTo []) then {
 
 if !(_vehAAList isEqualTo []) then {
     for "_x" from 1 to (_vehaaMin + floor(random (_vehaaRand+1))) do {
-
         _g = createGroup _side;
-        _g setGroupIdGlobal [format ["%1_VehAA%2", _grpPrefix, _x]];
-
-        _rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
-
-        if !(_rpos isEqualTo [0,0]) then {
+        _g setGroupIdGlobal [format ["%1_VehAA%2", _grpPrefix, _x]];	
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
+		};
+        if !(_rpos isEqualTo [0,0,0]) then {
             _v = (selectRandom _vehAAList) createVehicle _rpos ;
             _v lock 2;
-
             [_v, _g] call BIS_fnc_spawnCrew;
             [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehaaSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
-
             _units append (units _g);
             _vehicles pushBack _v;
         };
@@ -330,21 +337,19 @@ if !(_vehAAList isEqualTo []) then {
 
 if !(_vehmrapList isEqualTo []) then {
     for "_x" from 1 to (_vehmrapMin + floor(random (_vehmrapRand+1))) do {
-
         _g = createGroup _side;
         _g setGroupIdGlobal [format ["%1_vehmrap%2", _grpPrefix, _x]];
-
-        _rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
-
-        if !(_rpos isEqualTo [0,0]) then {
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
+		};
+        if !(_rpos isEqualTo [0,0,0]) then {
             _v = (selectRandom _vehmrapList) createVehicle _rpos ;
             _v lock 3;
-
             [_v, _g] call BIS_fnc_spawnCrew;
             [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehmrapSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
-
             _units append (units _g);
             _vehicles pushBack _v;
         };
@@ -357,21 +362,19 @@ if !(_vehmrapList isEqualTo []) then {
 
 if !(_vehRandList isEqualTo []) then {
     for "_x" from 1 to (_vehrandMin + floor(random (_vehrandRand+1))) do {
-
         _g = createGroup _side;
         _g setGroupIdGlobal [format ["%1_vehrand%2", _grpPrefix, _x]];
-
-        _rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
-
-        if !(_rpos isEqualTo [0,0]) then {
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
+		};
+        if !(_rpos isEqualTo [0,0,0]) then {
             _v = (selectRandom _vehRandList) createVehicle _rpos ;
             _v lock 3;
-
             [_v, _g] call BIS_fnc_spawnCrew;
             [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehrandSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
-
             _units append (units _g);
             _vehicles pushBack _v;
         };
@@ -384,21 +387,19 @@ if !(_vehRandList isEqualTo []) then {
 
 if !(_vehLightList isEqualTo []) then {
     for "_x" from 1 to (_vehLightMin + floor(random (_vehLightRand+1))) do {
-
         _g = createGroup _side;
         _g setGroupIdGlobal [format ["%1_vehLight%2", _grpPrefix, _x]];
-
-        _rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
-
-        if !(_rpos isEqualTo [0,0]) then {
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
+		};
+        if !(_rpos isEqualTo [0,0,0]) then {
             _v = (selectRandom _vehLightList) createVehicle _rpos ;
             _v lock 3;
-
             [_v, _g] call BIS_fnc_spawnCrew;
             [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehLightSkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
-
             _units append (units _g);
             _vehicles pushBack _v;
         };
@@ -414,18 +415,17 @@ if !(_vehHeavyList isEqualTo []) then {
 
         _g = createGroup _side;
         _g setGroupIdGlobal [format ["%1_vehHeavy%2", _grpPrefix, _x]];
-
-        _rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
-
-        if !(_rpos isEqualTo [0,0]) then {
+		_rpos = [0,0,0];
+		_nul = while { _rpos isEqualTo [0,0,0] } do {
+			_rpos = [[[_center, _radius], []], ["water"], { !(_this isFlatEmpty [2,-1,0.5,1,0,false,objNull] isEqualTo []) }] call BIS_fnc_randomPos;
+		};
+        if !(_rpos isEqualTo [0,0,0]) then {
             _v = (selectRandom _vehHeavyList) createVehicle _rpos ;
             _v lock 3;
-
             [_v, _g] call BIS_fnc_spawnCrew;
             [_g, _center, _radius / 2, 3 + round (random 2), "MOVE", ["AWARE", "SAFE"] select (random 1 > 0.5), ["red", "white"] select (random 1 > 0.2), ["limited", "normal"] select (random 1 > 0.5)] call CBA_fnc_taskPatrol;
             [_g, _vehHeavySkill] call FNC(setUnitSkill);
             if (random 1 >= 0.5) then { _v allowCrewInImmobile true; };
-
             _units append (units _g);
             _vehicles pushBack _v;
         };
