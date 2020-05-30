@@ -35,29 +35,31 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // replaces objects, if you don't restore them, then the destroyed version
                   // will persist.
 
-call {
-	
+_army call {
+
 	_side = east;
 
-	if (_army isEqualto "CSAT") exitwith {
+	if (_this isEqualto "CSAT") exitwith {
 		_FacType = "O_recon_JTAC_F";
-		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";		
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+        [_FacType, _MarkerType, _MarkerColour, east];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_FacType = "I_soldier_UAV_F";
-		_MarkerType = "n_installation";		
+		_MarkerType = "n_installation";
 		_MarkerColour = "ColorGUER";
-		_side = resistance;
+        [_FacType, _MarkerType, _MarkerColour, resistance];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_FacType = "O_T_Recon_JTAC_F";
-		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";	
-	};	
-};
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+        [_FacType, _MarkerType, _MarkerColour, east];
+	};
+} params ["_FacType", "_MarkerType", "_MarkerColour", "_side"];
 
 // Mission ID
 _missionID = call FNC(getMissionID);
@@ -85,7 +87,7 @@ while { _ObjectPosition isEqualTo [0,0] } do {
 
 // Clear some are around it
 private _hideKey = format["HT_%1", _missionID];
-[clientOwner, _hideKey, _ObjectPosition, 20] remoteExec [QYFNC(YhideTerrainObjects), 2];
+[clientOwner, _hideKey, _ObjectPosition, 20] remoteExec [QYFNC(hideTerrainObjects), 2];
 waitUntil { !isNil {  missionNamespace getVariable _hideKey } };
 missionNamespace setVariable [_hideKey, nil];
 
@@ -185,7 +187,7 @@ _pfh = {
     if (_stage isEqualTo 1) then {
 
         if (alive _fac) then {
-		
+
 				if ((serverTime > _heliSpawnTime) && !(_heliSpawnTime isEqualTo 0)) then {
                 // Call in a HELI
                 _args set [9, serverTime + 900 + random 300];

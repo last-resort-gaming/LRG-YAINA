@@ -57,13 +57,13 @@ params ["_crate"];
                             private _crate = _this select 0;
                             detach _crate;
                             _chute setVelocity [0,0,0];
-                            [ { deleteVehicle (_this select 0); }, [_this select 1], 4] call CBAP_fnc_waitAndExecute;
+                            [ { deleteVehicle (_this select 0); }, [_this select 1], 4] call CBA_fnc_waitAndExecute;
                         },
                         [ _crate, _chute1 ]
-                    ] call CBAP_fnc_waitUntilAndExecute;
+                    ] call CBA_fnc_waitUntilAndExecute;
                 };
             },
             [ _heli, _crate ]
-        ] call CBAP_fnc_waitUntilAndExecute;
+        ] call CBA_fnc_waitUntilAndExecute;
     };
 }] call YAINA_VEH_fnc_addRopeDetachHandler;

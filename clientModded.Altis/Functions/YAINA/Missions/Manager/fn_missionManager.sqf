@@ -90,5 +90,5 @@ GVAR(nextPM) = -1;
         [_start] call FNC(startMission);
     };
 
-}, 30, []] call CBAP_fnc_addPerFrameHandler;
+}, 30, []] call CBA_fnc_addPerFrameHandler;
 

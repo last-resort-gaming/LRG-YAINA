@@ -2,7 +2,7 @@
 Function: YAINA_MM_fnc_findLargestBuilding
 
 Description:
-	Find the largest building and the position in the buildung
+	Find the largest building and the positions in the building
 	in a certain radius around a given position.
 
 Parameters:

@@ -50,7 +50,8 @@ if (hasInterface) then {
                             _r = true;
                         } else {
                             if !(_command isEqualTo "hrestart") then {
-                                systemChat "BAN issued: remember to repot !report";
+                                systemChat "BAN issued: remember to report !report";
+                                [name player, _command, "BEC", _argument] remoteExecCall [QFNC(log), 2];
                             };
                         };
 

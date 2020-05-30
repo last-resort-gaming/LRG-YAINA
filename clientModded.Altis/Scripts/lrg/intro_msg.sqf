@@ -28,15 +28,15 @@ private _messages = call {
 
     if ("HQ" call YAINA_fnc_testTraits) exitWith {
         [
-            [ "You're HQ, you MUST be on Teamspeak.", ["TS.LastResortGaming.net"]],
-            [ "You can purchase Mission rewards from the laptop.", ["ONLY approve sensible requests!"]],
-            [ "Organise transport for each Section.", ["Approve and coordinate CAS."]]
+            [ "You're HQ, you MUST be on Teamspeak with TFAR enabled.", ["TS.lastresortgaming.net"]],
+            [ "You can purchase Mission rewards from the Command Tablet.", ["ONLY approve sensible requests!"]],
+            [ "Organise each Section on the battlefield!", ["Approve and coordinate CAS."]]
         ]
     };
 
     if ("PILOT" call YAINA_fnc_testTraits) exitWith {
         [
-            ["You're a Pilot, you MUST be on Teamspeak.", ["TS.LastResortGaming.net"]],
+            ["You're a Pilot, you MUST be on Teamspeak with TFAR enabled.", ["TS.lastresortgaming.net"]],
             ["Create your own group.", ["Press 'U' and click 'Create.'"]],
             ["Listen to HQ and Section Commanders.", ["CAS is by request ONLY."]]
         ]
@@ -44,20 +44,21 @@ private _messages = call {
 
     if ("UAV" call YAINA_fnc_testTraits) exitWith {
         [
-            ["You're UAV, you MUST be on Teamspeak.", ["TS.LastResortGaming.net"]],
+            ["You're UAV, you MUST be on Teamspeak with TFAR enabled.", ["TS.lastresortgaming.net"]],
             ["Create your own group.", ["Press 'U' and click 'Create.'"]],
             ["Assist Sections on the Ground", ["CAS is by request ONLY"]]
         ]
     };
 
     [
+		[ "You MUST be on Teamspeak with TFAR enabled.", ["TS.lastresortgaming.net"]],
         [ "You MUST be in a Section.", ["Press 'U' to create or join one."] ],
-        [ "Wait in your Section Area and request transport.", ["Don't board choppers without HQ Permission."] ],
+        [ "Wait in your Section Area and request transport.", ["Don't board choppers without Pilot Permission."] ],
         [ "Work as a team.", ["No Teamkilling or shooting at base."] ]
     ];
 };
 
-_messages pushBack [ "Any bugs or suggestions?", ["Report them at LastResortGaming.net"] ];
+_messages pushBack [ "Any bugs or suggestions?", ["Report them at Discord.LastResortGaming.net"] ];
 
 {
     _x params ["_heading", "_lines"];

@@ -36,33 +36,37 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
                   // will persist.
 
 
-call {
-	_side = east;
-	if (_army isEqualto "CSAT") exitwith {
-		_vehtype = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];			  		  
-		_crewtype = "O_crew_F";				  
+_army call {
+	if (_this isEqualto "CSAT") exitwith {
+		_vehtype = ["O_MBT_02_cannon_F", "O_MBT_04_cannon_F", "O_MBT_04_command_F"];
+		_crewtype = "O_crew_F";
 		_FuelTruck = "O_Truck_03_fuel_F";
-		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";		
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+	    _side = east;
+        [_vehtype, _crewtype, _FuelTruck, _MarkerType, _MarkerColour, _side];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
-		_vehtype = ["I_MBT_03_cannon_F", "I_LT_01_cannon_F", "I_LT_01_AT_F"];		  
-		_crewtype = "I_crew_F";				  
+	if (_this isEqualto "AAF") exitwith {
+		_vehtype = ["I_MBT_03_cannon_F", "I_LT_01_cannon_F", "I_LT_01_AT_F"];
+		_crewtype = "I_crew_F";
 		_FuelTruck = "I_Truck_02_fuel_F";
-		_MarkerType = "n_installation";		
+		_MarkerType = "n_installation";
 		_MarkerColour = "ColorGUER";
 		_side = resistance;
+        [_vehtype, _crewtype, _FuelTruck, _MarkerType, _MarkerColour, _side];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
-		_vehtype = ["O_T_MBT_02_cannon_ghex_F", "O_T_MBT_04_cannon_F", "O_T_MBT_04_command_F"];			  			  
-		_crewtype = "O_T_Crew_F";				  
+	if (_this isEqualto "CSAT Pacific") exitwith {
+		_vehtype = ["O_T_MBT_02_cannon_ghex_F", "O_T_MBT_04_cannon_F", "O_T_MBT_04_command_F"];
+		_crewtype = "O_T_Crew_F";
 		_FuelTruck = "O_T_Truck_03_fuel_ghex_F";
-		_MarkerType = "O_installation";		
-		_MarkerColour = "colorOPFOR";	
-	};	
-};				  
+		_MarkerType = "O_installation";
+		_MarkerColour = "colorOPFOR";
+	    _side = east;
+        [_vehtype, _crewtype, _FuelTruck, _MarkerType, _MarkerColour, _side];
+	};
+} params ["_vehtype", "_crewtype", "_FuelTruck", "_MarkerType", "_MarkerColour", "_side"];
 
 // Mission ID
 _missionID = call FNC(getMissionID);
@@ -91,7 +95,7 @@ while { _ObjectPosition isEqualTo [0,0] } do {
 
 // Clear some are around it
 private _hideKey = format["HT_%1", _missionID];
-[clientOwner, _hideKey, _ObjectPosition, 30] remoteExec [QYFNC(YhideTerrainObjects), 2];
+[clientOwner, _hideKey, _ObjectPosition, 30] remoteExec [QYFNC(hideTerrainObjects), 2];
 waitUntil { !isNil {  missionNamespace getVariable _hideKey } };
 missionNamespace setVariable [_hideKey, nil];
 
@@ -195,14 +199,14 @@ _pfh = {
     scopeName "mainPFH";
 
     params ["_args", "_pfhID"];
-    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_AOPos", "_AOSize", "_nextSpawnTime", "_spawnCount", "_bracket", "_veh1", "_veh2", "_veh3", "_driver1", "_driver2", "_driver3", "_gunner1", "_gunner2", "_gunner3", "_vicGroup1", "_vicGroup2", "_vicGroup3"];
+    _args params ["_missionID", "_stage", "_parentMissionID", "_hideKey", "_markers", "_AOPos", "_AOSize", "_nextSpawnTime", "_spawnCount", "_bracket", "_veh1", "_veh2", "_veh3", "_driver1", "_driver2", "_driver3", "_gunner1", "_gunner2", "_gunner3", "_vicGroup1", "_vicGroup2", "_vicGroup3", "_crewtype", "_ObjectPosition"];
 
     // Stop requested ?
     _stopRequested = _missionID in GVAR(stopRequests);
     if (_stopRequested && { _stage < 3 } ) then {
         _stage = 3;
     };
-	
+
     // Wait for crew killed or vehicles killed or all deployed
     if (_stage isEqualTo 1) then {
 		if (((alive _veh1) || (alive _veh2) || (alive _veh3)) && ((alive _driver1) || (alive _driver2) || (alive _driver3)) && !(_spawnCount isEqualTo 3)) then {
@@ -223,13 +227,13 @@ _pfh = {
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
                         if (_defendTask call BIS_fnc_taskExists) then {
-							[_vicGroup1, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+							[_vicGroup1, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                         } else {
                             [_vicGroup1, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                         };
 						_vicGroup1 setBehaviour "COMBAT";
 						_vicGroup1 setCombatMode "WHITE";
-						
+
 						_spawned = true;
 						_args set [8, 1];
 						_args set [9,1];
@@ -244,7 +248,7 @@ _pfh = {
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
                         if (_defendTask call BIS_fnc_taskExists) then {
-							[_vicGroup2, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+							[_vicGroup2, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                         } else {
                             [_vicGroup2, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                         };
@@ -264,7 +268,7 @@ _pfh = {
 						};
                         _defendTask = format["%1_defend", _parentMissionID];
                         if (_defendTask call BIS_fnc_taskExists) then {
-							[_vicGroup3, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBAP_fnc_taskPatrol;
+							[_vicGroup3, [getPos (leader _vicGroup1), _defendTask call BIS_fnc_taskDestination, (20 + random 30)] call YFNC(getPointBetween), 40, 3] call CBA_fnc_taskPatrol;
                         } else {
                             [_vicGroup3, _AOPos, _AOSize/2] call BIS_fnc_taskPatrol;
                         };
@@ -273,7 +277,7 @@ _pfh = {
 						_spawned = true;
 						_args set [8, 3];
 						_args set [9,3];
-						parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>All deployable vehicles from the Depot have been released. Hunt and kill all the tanks!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);					
+						parseText format ["<t align='center'><t size='2'>Sub Objective</t><br/><t size='1.5' color='#08b000'>PROGRESS</t><br/>____________________<br/><br/>All deployable vehicles from the Depot have been released. Hunt and kill all the tanks!", [name _instigatorReal, "someone"] select (isNull _instigatorReal)] call YFNC(globalHint);
 					};
 
                     if !(_spawned) then {
@@ -303,7 +307,7 @@ _pfh = {
            _stage = 3; _args set [1,_stage];
         };
     };
-	
+
     // Check if vehicles alive
     if (_stage isEqualTo 2) then {
         if (!(alive _veh1) && !(alive _veh2) && !(alive _veh3)) then {
@@ -352,7 +356,7 @@ _pfh = {
     };
 };
 
-[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _AOPos, _AOSize, 0, 1, 0, _veh1, _veh2, _veh3, _driver1, _driver2, _driver3, _gunner1, _gunner2, _gunner3, _vicGroup1, _vicGroup2, _vicGroup3]] call FNC(startMissionPFH);
+[_missionID, "SO", 1, format["factory subobj of %1", _parentMissionID], _parentMissionID, _markers, _units, _vehicles, _buildings, _pfh, 10, [_missionID, 1, _parentMissionID, _hideKey, _markers, _AOPos, _AOSize, 0, 1, 0, _veh1, _veh2, _veh3, _driver1, _driver2, _driver3, _gunner1, _gunner2, _gunner3, _vicGroup1, _vicGroup2, _vicGroup3, _crewtype, _ObjectPosition]] call FNC(startMissionPFH);
 
 // Return that we were successful in starting the mission
 missionNamespace setVariable [_key, _missionID];

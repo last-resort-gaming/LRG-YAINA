@@ -37,7 +37,7 @@ _spawnPos = [_AOPos, 10, _AOSize, { !(_this isFlatEmpty [4, -1, 0.4, 10, 0, fals
 
 
 _hiddenTerrainKey = format["HT_%1", _parentMissionID];
-[clientOwner, _hiddenTerrainKey, _spawnPos, 20] remoteExec [QYFNC(YhideTerrainObjects), 2];
+[clientOwner, _hiddenTerrainKey, _spawnPos, 20] remoteExec [QYFNC(hideTerrainObjects), 2];
 waitUntil { !isNil {  missionNamespace getVariable _hiddenTerrainKey } };
 
 _bunkerFunc = missionNamespace getVariable (selectRandom ( ["YAINA_SPAWNS_fnc", ["YAINA_SPAWNS", "Bunkers"]] call YFNC(getFunctions) ));

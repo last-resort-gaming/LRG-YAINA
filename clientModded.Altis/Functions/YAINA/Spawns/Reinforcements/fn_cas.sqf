@@ -35,11 +35,11 @@ params ["_pos", "_radius", ["_force", false], "_army"];
 private ["_type", "_PilotType", "_spawnPos", "_group", "_jet", "_pilot", "_speed", "_dir", "_wp", "_side"];
 
 
-call {
+_army call {
 
 	_side = east;
 
-	if (_army isEqualto "CSAT") exitwith {
+	if (_this isEqualto "CSAT") exitwith {
 		_type = selectRandom [
 			"O_Plane_Fighter_02_F",         // To-201 Shikra
 			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
@@ -48,10 +48,11 @@ call {
 			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
 			"O_Plane_CAS_02_Cluster_F"      // To-199 Neophron (Cluster)
 		];
-		_PilotType = "O_pilot_F";	
+		_PilotType = "O_pilot_F";
+        [_type, _PilotType, east];
 	};
 
-	if (_army isEqualto "AAF") exitwith {
+	if (_this isEqualto "AAF") exitwith {
 		_type = selectRandom [
 			"I_Plane_Fighter_03_AA_F",      // A-143 Buzzard (AA)
 			"I_Plane_Fighter_03_AA_F",		// A-143 Buzzard (AA)
@@ -62,10 +63,10 @@ call {
 			"I_Plane_Fighter_04_F"			// A-149 Gryphon
 		];
 		_PilotType = "I_pilot_F";
-		_side = resistance;
+		[_type, _PilotType, resistance];
 	};
 
-	if (_army isEqualto "CSAT Pacific") exitwith {
+	if (_this isEqualto "CSAT Pacific") exitwith {
 		_type = selectRandom [
 			"O_Plane_Fighter_02_F",         // To-201 Shikra
 			"O_Plane_Fighter_02_Stealth_F", // To-201 Shikra (Stealth)
@@ -74,11 +75,12 @@ call {
 			"O_Plane_CAS_02_F",             // To-199 Neophron (CAS)
 			"O_Plane_CAS_02_Cluster_F",     // To-199 Neophron (Cluster)
 			"O_T_VTOL_02_infantry_dynamicLoadout_F",
-			"O_T_VTOL_02_infantry_dynamicLoadout_F"			
+			"O_T_VTOL_02_infantry_dynamicLoadout_F"
 		];
-		_PilotType = "O_T_pilot_F";	
-	};	
-};
+		_PilotType = "O_T_pilot_F";
+        [_type, _PilotType, east];
+	};
+} params ["_type", "_PilotType", "_side"];
 
 // We filter any deads here as it's the only time we care about it
 if (isNil QVAR(cas)) then {
@@ -87,7 +89,9 @@ if (isNil QVAR(cas)) then {
     GVAR(cas) = GVAR(cas) select { alive _x };
 };
 
-if (count GVAR(cas) >= _max && { !_force } ) exitWith {};
+if (count GVAR(cas) >= _max && { !_force } ) exitWith {
+    ["Number of active CAS jets exceeded."] call YFNC(log);
+};
 
 // Lets spawn us a jet, fly though our calling radio tower position and set up a patrol
 // we use delete on enpty group so we don't need to manage this at all once spawned
@@ -134,7 +138,7 @@ _jet addEventHandler ["HandleDamage", {
         if (_source call YFNC(isUAV)) then {
             _instigatorReal = (UAVControl _source) select 0;
         } else {
-            _instigatorReal = _killer;
+            _instigatorReal = _unit;
         };
     };
 
@@ -173,20 +177,25 @@ _jet addEventHandler ["Killed",{
 
 }];
 
+// DEBUG: Log this for the future and to see if issues persist
+[format ["CAS: Jet has been spawned at %1, unit is %2", _spawnPos, _jet]] call YFNC(log);
+
 // To let the AI do it's thing, regarding gun runs etc, we just set it to a SAD and periodically reveal targets in the main AO
 
 [{
     params ["_args", "_pfhID"];
     _args params ["_pos", "_radius", "_group", "_jet"];
-    _desgrp params ["_target", "_designator"];
 
     if (!alive _jet) exitWith {
+
+        // DEBUG: Log this too
+        [format ["Jet %1 has been killed", _jet]] call YFNC(log);
 
         // Delete the pilot/any other crew, followed by the group
         { deleteVehicle _x; } count (units _group);
         deleteGroup _group;
 
-        _pfhID call CBAP_fnc_removePerFrameHandler;
+        _pfhID call CBA_fnc_removePerFrameHandler;
     };
 
     // Keep the bird in the air
@@ -211,14 +220,14 @@ _jet addEventHandler ["Killed",{
         _group setSpeedMode "FULL";
 
         // Pick a random player to go all SAD on
-        [_group] call CBAP_fnc_clearWaypoints;
-        [_group, getPos (selectRandom _pina), 20, "SAD", "COMBAT", "RED"] call CBAP_fnc_addWaypoint;
+        [_group] call CBA_fnc_clearWaypoints;
+        [_group, getPos (selectRandom _pina), 20, "SAD", "COMBAT", "RED"] call CBA_fnc_addWaypoint;
     } else {
         // We should at least stick around the AO on a loiter
         _wps = waypoints _group;
 
         if ( (count _wps) isEqualTo 0 || { (waypointPosition (_wps select 0)) distance2D _pos > 5 } ) then {
-            [_group] call CBAP_fnc_clearWaypoints;
+            [_group] call CBA_fnc_clearWaypoints;
             _wp = _group addWaypoint [_pos, 0];
             _wp setWaypointType "LOITER";
             _wp setWaypointLoiterRadius (_radius * 1.5);
@@ -227,7 +236,7 @@ _jet addEventHandler ["Killed",{
         };
     };
 
-}, 30, [_pos, _radius, _group, _jet, 0, [_target, _designator]]] call CBAP_fnc_addPerFrameHandler;
+}, 30, [_pos, _radius, _group, _jet]] call CBA_fnc_addPerFrameHandler;
 
 
 

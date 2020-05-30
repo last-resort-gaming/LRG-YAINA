@@ -36,50 +36,58 @@ if (_units isEqualTo []) then {
 
 private ["_groupType", "_side"];
 
-	call {
+	_army call {
 
 		_side = east;
 
-		if (_army isEqualto "CSAT") exitWith {
+		if (_this isEqualto "CSAT") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "OPF_F" >> "UInfantry" >> "OIA_GuardSquad");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "CSAT Pacific") exitWith {
+		if (_this isEqualto "CSAT Pacific") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> "O_T_InfSquad");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "AAF") exitWith {
+		if (_this isEqualto "AAF") exitWith {
 			_side = resistance;
 			_groupType = (configFile >> "CfgGroups" >> "Indep" >> "IND_F" >> "Infantry" >> "HAF_InfSquad");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "Syndikat") exitWith {
+		if (_this isEqualto "Syndikat") exitWith {
 			_side = resistance;
 			_groupType = (configFile >> "CfgGroups" >> "Indep" >> "IND_C_F" >> "Infantry" >> "BanditCombatGroup");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "TM") exitWith {
+		if (_this isEqualto "TM") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "CUP_O_TK_MILITIA" >> "Infantry" >> "CUP_O_TK_MILITIA_Group");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "CRS") exitWith {
+		if (_this isEqualto "CRS") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "CUP_O_ChDKZ" >> "Infantry" >> "CUP_O_ChDKZ_InfSquad");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "CUP AFRF") exitWith {
+		if (_this isEqualto "CUP AFRF") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad_EMR");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "SLA") exitWith {
+		if (_this isEqualto "SLA") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "CUP_O_SLA" >> "Infantry_Urban" >> "CUP_O_SLA_InfantrySquad_Urban");
+			[_groupType, _side];
 		};
 
-		if (_army isEqualto "TA") exitWith {
+		if (_this isEqualto "TA") exitWith {
 			_groupType = (configFile >> "CfgGroups" >> "East" >> "CUP_O_TK" >> "Infantry" >> "CUP_O_TK_InfantrySquad");
+			[_groupType, _side];
 		};
-	};
+	} params ["_groupType", "_side"];
 
-		
     for "_x" from 1 to _groupCount do {
         private _g = [_pos, _side, _groupType] call BIS_fnc_spawnGroup;
         _units append (units _g);
@@ -88,7 +96,7 @@ private ["_groupType", "_side"];
 
 if (_units isEqualTo []) exitWith { [] };
 
-private _failed = [_pos, nil, _units, _radius, _AIOB_Positioning, true, _maxFill, _excludes] call DERP_fnc_YAIOccupyBuilding;
+private _failed = [_pos, nil, _units, _radius, _AIOB_Positioning, true, _maxFill, _excludes] call DERP_fnc_AIOccupyBuilding;
 
 // Remove any non-garrisoned units
 { deleteVehicle _x; } forEach _failed;

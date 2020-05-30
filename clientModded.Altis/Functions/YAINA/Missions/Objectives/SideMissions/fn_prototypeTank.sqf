@@ -37,8 +37,8 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific"];
 
-call {
-    if (_army isEqualTo "CSAT") exitwith {
+_army call {
+    if (_this isEqualTo "CSAT") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_tanktype = "O_MBT_04_command_F";
@@ -47,19 +47,21 @@ call {
 			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
 			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
 		];
+        [_side, _MarkerColour, _tanktype, _Textures];
     };
-    if (_army isEqualTo "AAF") exitwith {
+    if (_this isEqualTo "AAF") exitwith {
 		_side = resistance;
-		_MarkerColour = "ColorGUER";	
+		_MarkerColour = "ColorGUER";
 		_tanktype = "I_MBT_03_cannon_F";
 		_Textures = [
 			[0, "a3\armor_f_epb\mbt_03\data\mbt_03_ext01_co.paa"],
 			[1, "a3\armor_f_epb\mbt_03\data\mbt_03_ext02_co.paa"],
 			[2, "a3\armor_f_epb\mbt_03\data\mbt_03_rcws_co.paa"],
 			[3, "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa"]
-		];	
+		];
+        [_side, _MarkerColour, _tanktype, _Textures];
     };
-    if (_army isEqualTo "CSAT Pacific") exitwith {
+    if (_this isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
         _tanktype = "O_T_MBT_04_command_F";
@@ -68,8 +70,9 @@ call {
 			[1, "a3\Armor_F_Tank\MBT_04\Data\MBT_04_exterior_2_CO.paa"],
 			[2, "A3\Armor_F\Data\camonet_CSAT_Stripe_desert_CO.paa"]
 		];
+        [_side, _MarkerColour, _tanktype, _Textures];
     };
-};
+} params ["_side", "_MarkerColour", "_tanktype", "_Textures"];
 
 ///////////////////////////////////////////////////////////
 // AO Setup

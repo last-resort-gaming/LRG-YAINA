@@ -36,32 +36,36 @@ _buildings  = []; // To restore at end, NB: if you're spawning buildings, add th
 
 _army = selectRandom ["CSAT","AAF","CSAT Pacific","Syndikat"];
 
-call {
-    if (_army isEqualTo "CSAT") exitwith {
+_army call {
+    if (_this isEqualTo "CSAT") exitwith {
 		_side = east;
-		_MarkerColour = "colorOPFOR";		
+		_MarkerColour = "colorOPFOR";
 		_Boat = "O_Boat_Armed_01_hmg_F";
 		_BoatCrew = "O_Soldier_F";
+        [_side, _MarkerColour, _Boat, _BoatCrew];
     };
-    if (_army isEqualTo "AAF") exitwith {
+    if (_this isEqualTo "AAF") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_Boat = "I_Boat_Armed_01_minigun_F";
 		_BoatCrew = "I_Soldier_F";
+        [_side, _MarkerColour, _Boat, _BoatCrew];
     };
-    if (_army isEqualTo "CSAT Pacific") exitwith {
+    if (_this isEqualTo "CSAT Pacific") exitwith {
 		_side = east;
 		_MarkerColour = "colorOPFOR";
 		_Boat = "O_T_Boat_Armed_01_hmg_F";
 		_BoatCrew = "O_T_Soldier_F";
+        [_side, _MarkerColour, _Boat, _BoatCrew];
     };
-    if (_army isEqualTo "Syndikat") exitwith {
+    if (_this isEqualTo "Syndikat") exitwith {
 		_side = resistance;
 		_MarkerColour = "ColorGUER";
 		_Boat = "I_Boat_Armed_01_minigun_F";
 		_BoatCrew = "I_C_Soldier_Para_1_F";
+        [_side, _MarkerColour, _Boat, _BoatCrew];
     };
-};
+} params ["_side", "_MarkerColour", "_Boat", "_BoatCrew"];
 ///////////////////////////////////////////////////////////
 // AO Setup
 ///////////////////////////////////////////////////////////
