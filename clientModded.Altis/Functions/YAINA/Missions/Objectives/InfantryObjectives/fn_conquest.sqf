@@ -102,31 +102,22 @@ _buildings   = _CQElements;
 ///////////////////////////////////////////////////////////
 // Spawn AI
 ///////////////////////////////////////////////////////////
-
 // Spawn the Garrison
-private _cg = [_CQPosition, [0,50], _army, 3] call SFNC(infantryGarrison);
+private _cg = [_CQPosition, [0,50], _army, 2] call SFNC(infantryGarrison);
 _units append _cg;
 [_cg, format["Conquest_Garrison_%1", _missionID]] call FNC(prefixGroups);
 
 // Spawn the rest
-
-([format["Conquest_%1", _missionID], _CQPosition, _AOSize*0.5, _army, [1, 0, _AOSize*0.5, "LRG Default", 6], [4,6, "LRG Default"], [1,0, "LRG Default"], [1,0, "LRG Default"], [1,0, "LRG Default"], [0,0], [1,1], [1,1], [0], [0,1]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
-
+([format["Conquest_%1", _missionID], _CQPosition, _AOSize*0.5, _army, [1, 1, _AOSize*0.5, "LRG Default", 6], [3,2, "LRG Default"], [0], [0], [0], [0], [0], [0], [1,1], [0]] call SFNC(populateArea)) params ["_spUnits", "_spVehs"];
 _units append _spUnits;
 _vehicles append _spVehs;
 
 // Spawn Bunkers
-
 for "_x" from 0 to (1 + (random 3)) do {
-
 	_bunker = [_AOPosition, _AOSize * 0.75, _army, _missionID] call SFNC(bunker) params ["_bunits", "_bvehicles", "_bobjects"];
-
 	_units append _bunits;
-
 	_buildings append _bobjects;
-
 };
-
 ///////////////////////////////////////////////////////////
 // Start Mission
 ///////////////////////////////////////////////////////////
