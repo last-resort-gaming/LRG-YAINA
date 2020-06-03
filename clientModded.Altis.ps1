@@ -4,7 +4,7 @@ $verifySignatures = 1
 $EnableVON = 0
 $EnableBattleye = 1
 $Headless_Clients = 0
-
+$Enable3rdPerson = 1
 #Mission Parameters
 $Password = ''
 $MissionFolder = 'clientModded.Altis'
